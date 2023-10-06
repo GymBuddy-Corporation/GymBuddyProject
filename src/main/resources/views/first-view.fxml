@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="goForward" mnemonicParsing="false" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
+      <ImageView fx:id="GymBuddy" fitHeight="222.0" layoutX="60.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.25" AnchorPane.rightAnchor="60.25" AnchorPane.topAnchor="48.0">
+         <image>
+            <Image url="@png/Logo-NoBackground.png" />
+         </image>
+      </ImageView>
+
+      <Label fx:id="ClickHere" layoutX="289.0" layoutY="332.0" text="Click Anywhere">
+         <textFill>
+            <LinearGradient endX="0.5" endY="1.0">
+               <stops>
+                  <Stop color="#00e4af" offset="0.0" />
+                  <Stop color="#5d7cf3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="33.0" />
+         </font>
+
+      </Label>
+   </children>
+</AnchorPane>
