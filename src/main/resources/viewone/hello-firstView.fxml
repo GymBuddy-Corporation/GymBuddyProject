@@ -14,11 +14,11 @@
       <Button fx:id="goForward" mnemonicParsing="false" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
       <ImageView fx:id="GymBuddy" fitHeight="222.0" layoutX="60.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.25" AnchorPane.rightAnchor="60.25" AnchorPane.topAnchor="48.0">
          <image>
-            <Image url="@png/Logo-NoBackground.png" />
+            <Image url="@images/Logo-NoBackground.png" />
          </image>
       </ImageView>
 
-      <Label fx:id="ClickHere" layoutX="289.0" layoutY="332.0" text="Click Anywhere">
+      <Label fx:id="ClickHere" layoutX="289.0" layoutY="332.0" text="Click to continue">
          <textFill>
             <LinearGradient endX="0.5" endY="1.0">
                <stops>

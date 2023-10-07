@@ -4,4 +4,6 @@ module start {
 
     opens start to javafx.fxml;
     exports start;
+    exports viewone;
+    opens viewone to javafx.fxml;
 }
