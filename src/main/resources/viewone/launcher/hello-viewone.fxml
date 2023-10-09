@@ -14,7 +14,7 @@
          </image>
       </ImageView>
 
-      <Label fx:id="ClickHere" layoutX="289.0" layoutY="332.0" style="-fx-font-family: Allerta Stencil;" text="Click to continue">
+      <Label fx:id="ClickHere" layoutX="292.0" layoutY="330.0" stylesheets="@../../font.css" text="Click to continue">
          <textFill>
             <LinearGradient endX="0.5" endY="1.0">
                <stops>
@@ -24,7 +24,7 @@
             </LinearGradient>
          </textFill>
          <font>
-            <Font name="Allerta Stencil" size="26.0" />
+            <Font name="Allerta Stencil Regular" size="27.0" />
          </font>
 
       </Label>
