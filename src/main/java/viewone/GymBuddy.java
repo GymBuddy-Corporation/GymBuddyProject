@@ -12,7 +12,7 @@ public class GymBuddy extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/hello-viewone.fxml"));
-        Font.loadFont(getClass().getResourceAsStream("/AllertaStencil-Regular.ttf"), 14);
+
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         stage.setTitle("GymBuddy");
         stage.setResizable(false);

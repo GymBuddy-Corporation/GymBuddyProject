@@ -10,7 +10,7 @@
    <children>
       <ImageView fx:id="GymBuddy" fitHeight="222.0" layoutX="60.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.25" AnchorPane.rightAnchor="60.25" AnchorPane.topAnchor="48.0">
          <image>
-            <Image url="@../images/Logo-NoBackground.png" />
+            <Image url="@../images/LogoGymBuddy.png" />
          </image>
       </ImageView>
 

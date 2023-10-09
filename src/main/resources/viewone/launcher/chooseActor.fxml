@@ -28,9 +28,9 @@
             <Image url="@../images/LogoInfo96.png" />
          </image>
       </ImageView>
-      <RadioButton fx:id="gym" layoutX="149.0" layoutY="241.0" mnemonicParsing="false" />
-      <RadioButton fx:id="pt" layoutX="333.0" layoutY="241.0" mnemonicParsing="false" />
-      <RadioButton fx:id="user" layoutX="578.0" layoutY="241.0" mnemonicParsing="false" />
+      <RadioButton fx:id="gym" layoutX="149.0" layoutY="241.0" mnemonicParsing="false" styleClass="radio-button" stylesheets="@../../gradientColor.css" />
+      <RadioButton fx:id="pt" layoutX="333.0" layoutY="241.0" mnemonicParsing="false" styleClass="radio-button" stylesheets="@../../gradientColor.css"/>
+      <RadioButton fx:id="user" layoutX="578.0" layoutY="241.0" mnemonicParsing="false" styleClass="radio-button" stylesheets="@../../gradientColor.css"/>
       <Label fx:id="Gym" layoutX="172.0" layoutY="232.0" prefHeight="36.0" prefWidth="53.0" text="Gym">
          <textFill>
             <LinearGradient endX="0.5">
