@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <prefHeight>500.0</prefHeight>
+   <ImageView fx:id="Home" fitHeight="33.0" fitWidth="35.0" layoutX="750.0" layoutY="22.0">
+      <Image url="@../images/LogoHome96.png" />
+   </ImageView>
+   <ImageView fx:id="GymBuddy" fitHeight="55.0" fitWidth="177.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="617.6682739257812" AnchorPane.topAnchor="14.0">
+      <Image url="@../images/Logo-NoBackground.png" />
+   </ImageView>
+   <Button fx:id="register" layoutX="306.0" layoutY="311.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="187.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" textAlignment="CENTER" textFill="#300743" />
+
+   <Label fx:id="Register" layoutX="328.0" layoutY="324.0" prefHeight="24.0" prefWidth="142.0" stylesheets="@../../font.css" text="Register">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="32.0" />
+      </font>
+
+   </Label>
+   <Button fx:id="login" layoutX="305.0" layoutY="122.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="187.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" textAlignment="CENTER" textFill="#300743" />
+   <Label fx:id="Login" layoutX="353.0" layoutY="135.0" prefHeight="44.0" prefWidth="103.0" stylesheets="@../../font.css" text="Login" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="33.0" />
+      </font>
+   </Label>
+   <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="14.0" layoutY="453.0">
+      <Image url="@../images/LogoInfo96.png" />
+   </ImageView>
+
+   <!-- Definisci il controller !-->
+
+</AnchorPane>

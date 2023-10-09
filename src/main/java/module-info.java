@@ -5,5 +5,7 @@ module start {
     opens start to javafx.fxml;
     exports start;
     exports viewone;
+    exports viewone.graphical_controllers.launcher;
     opens viewone to javafx.fxml;
+    opens viewone.graphical_controllers.launcher to javafx.fxml;
 }

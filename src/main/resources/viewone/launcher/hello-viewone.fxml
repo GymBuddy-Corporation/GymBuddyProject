@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.GeneralGUIController">
+   <children>
+      <ImageView fx:id="GymBuddy" fitHeight="222.0" layoutX="60.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.25" AnchorPane.rightAnchor="60.25" AnchorPane.topAnchor="48.0">
+         <image>
+            <Image url="@../images/Logo-NoBackground.png" />
+         </image>
+      </ImageView>
+
+      <Label fx:id="ClickHere" layoutX="289.0" layoutY="332.0" style="-fx-font-family: Allerta Stencil;" text="Click to continue">
+         <textFill>
+            <LinearGradient endX="0.5" endY="1.0">
+               <stops>
+                  <Stop color="#00e4af" offset="0.0" />
+                  <Stop color="#5d7cf3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Allerta Stencil" size="26.0" />
+         </font>
+
+      </Label>
+      <Button fx:id="goForward" onAction="#goForward" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0, 0, 0, 0);" textFill="#a1a07800" />
+      
+   </children>
+</AnchorPane>

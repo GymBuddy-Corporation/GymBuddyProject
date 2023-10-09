@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "Allerta Stencil";
+    src: url(AllertaStencil-Regular.ttf);
+}
+
+.ClickHere{
+    -fx-font-family: "Allerta Stencil";
+}

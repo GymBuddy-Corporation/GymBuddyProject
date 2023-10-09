@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.launcher"> //Crea Login Gui Class
+   <children>
+      <ImageView fitHeight="55.0" fitWidth="190.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo-NoBackground.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="540.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/LogoHome96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/LogoInfo96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="540.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/LogoNextPage96.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="37.0" layoutY="114.0" style="-fx-background-color: #00F198;" />
+       <Label fx:id="ClickHere" layoutX="37.0" layoutY="90.0" prefHeight="23.0" prefWidth="61.0" text="Name">
+           <textFill>
+               <LinearGradient endX="0.5" endY="1.0">
+                   <stops>
+                       <Stop color="#00e4af" offset="0.0" />
+                       <Stop color="#5d7cf3" offset="1.0" />
+                   </stops>
+               </LinearGradient>
+           </textFill>
+           <font>
+               <Font name="Arial Rounded MT Bold" size="16.0" />
+           </font>
+       </Label>
+
+      <TextField layoutX="37.0" layoutY="174.0" style="-fx-background-color: #00F198;" />
+      <Label fx:id="ClickHere1" layoutX="37.0" layoutY="150.0" prefHeight="23.0" prefWidth="76.0" text="Surname">
+         <textFill>
+            <LinearGradient endX="0.5" endY="1.0">
+               <stops>
+                  <Stop color="#00e4af" offset="0.0" />
+                  <Stop color="#5d7cf3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="215.0" layoutY="113.0" style="-fx-background-color: #00F198;" />
+      <Label fx:id="ClickHere2" layoutX="215.0" layoutY="89.0" prefHeight="23.0" prefWidth="84.0" text="Username">
+         <textFill>
+            <LinearGradient endX="0.5" endY="1.0">
+               <stops>
+                  <Stop color="#00e4af" offset="0.0" />
+                  <Stop color="#5d7cf3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="215.0" layoutY="173.0" style="-fx-background-color: #00F198;" />
+      <Label fx:id="ClickHere21" layoutX="215.0" layoutY="149.0" prefHeight="23.0" prefWidth="84.0" text="Password">
+         <textFill>
+            <LinearGradient endX="0.5" endY="1.0">
+               <stops>
+                  <Stop color="#00e4af" offset="0.0" />
+                  <Stop color="#5d7cf3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="390.0" layoutY="111.0" style="-fx-background-color: #00F198;" />
+      <Label fx:id="ClickHere211" layoutX="390.0" layoutY="87.0" prefHeight="23.0" prefWidth="84.0" text="Email">
+         <textFill>
+            <LinearGradient endX="0.5" endY="1.0">
+               <stops>
+                  <Stop color="#00e4af" offset="0.0" />
+                  <Stop color="#5d7cf3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="390.0" layoutY="172.0" style="-fx-background-color: #00F198;" />
+      <Label fx:id="ClickHere2111" layoutX="390.0" layoutY="148.0" prefHeight="23.0" prefWidth="104.0" text="Fiscal Code">
+         <textFill>
+            <LinearGradient endX="0.5" endY="1.0">
+               <stops>
+                  <Stop color="#00e4af" offset="0.0" />
+                  <Stop color="#5d7cf3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
