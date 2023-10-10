@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import viewone.GymBuddy;
 
@@ -19,6 +21,8 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private RadioButton gym;
     @FXML private RadioButton pt;
     @FXML private RadioButton user;
+
+
     public void goForward(ActionEvent event) throws Exception {
         Stage newStage = new Stage();
         if(gym.isSelected()) {

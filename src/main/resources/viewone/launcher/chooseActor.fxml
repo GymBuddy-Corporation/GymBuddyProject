@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="500.0" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.launcher.ChooseActorGUIController">
-   <ImageView fitHeight="63.0" fitWidth="259.0" layoutX="723.0" layoutY="423.0" pickOnBounds="true"
-              preserveRatio="true">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.ChooseActorGUIController">
+   <ImageView fitHeight="63.0" fitWidth="259.0" layoutX="723.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
-   <ImageView fitHeight="63.0" fitWidth="259.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true"
-              preserveRatio="true">
+   <ImageView fitHeight="63.0" fitWidth="259.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <ImageView fx:id="Home" fitHeight="63.0" fitWidth="259.0" layoutX="723.0" layoutY="14.0"
-              pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="Home" fitHeight="63.0" fitWidth="259.0" layoutX="723.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoLanguages96.png" />
    </ImageView>
-   <ImageView fitHeight="63.0" fitWidth="259.0" layoutX="14.0" layoutY="423.0" pickOnBounds="true"
-              preserveRatio="true">
+   <ImageView fitHeight="63.0" fitWidth="259.0" layoutX="14.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoInfo96.png" />
    </ImageView>
+
    <RadioButton fx:id="gym" layoutX="149.0" layoutY="241.0" mnemonicParsing="false" />
    <RadioButton fx:id="pt" layoutX="333.0" layoutY="241.0" mnemonicParsing="false" />
    <RadioButton fx:id="user" layoutX="578.0" layoutY="241.0" mnemonicParsing="false" />
+
    <Label fx:id="Gym" layoutX="172.0" layoutY="232.0" prefHeight="36.0" prefWidth="53.0" text="Gym">
       <textFill>
          <LinearGradient endX="0.5">
@@ -42,8 +41,7 @@
          <Font size="20.0" />
       </font>
    </Label>
-   <Label fx:id="PT" layoutX="356.0" layoutY="232.0" prefHeight="36.0" prefWidth="153.0"
-          text="Personal Trainer">
+   <Label fx:id="PT" layoutX="356.0" layoutY="232.0" prefHeight="36.0" prefWidth="153.0" text="Personal Trainer">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
@@ -69,11 +67,8 @@
          <Font size="20.0" />
       </font>
    </Label>
-   <Button fx:id="Next2" layoutX="14.0" layoutY="423.0" mnemonicParsing="false" prefHeight="63.0"
-           prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
-   <Button fx:id="Next1" layoutX="723.0" layoutY="14.0" mnemonicParsing="false" prefHeight="63.0"
-           prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
-   <Button fx:id="nextButton" layoutX="723.0" layoutY="423.0" mnemonicParsing="false" onAction="#goForward"
-           prefHeight="63.0" prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
+   <Button fx:id="Next2" layoutX="14.0" layoutY="423.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
+   <Button fx:id="Next1" layoutX="723.0" layoutY="14.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
+   <Button fx:id="nextButton" layoutX="723.0" layoutY="423.0" mnemonicParsing="false" onAction="#goForward" prefHeight="63.0" prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
 
 </AnchorPane>
