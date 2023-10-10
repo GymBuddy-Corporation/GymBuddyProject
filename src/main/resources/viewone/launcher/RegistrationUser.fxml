@@ -6,7 +6,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.launcher"> //Crea Login Gui Class
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2D043D;"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="viewone.graphical_controllers.launcher.gym.UserRegistrationGUI">
    <children>
       <ImageView fitHeight="55.0" fitWidth="190.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>

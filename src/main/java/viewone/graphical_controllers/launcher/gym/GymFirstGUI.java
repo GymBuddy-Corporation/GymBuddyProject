@@ -15,8 +15,7 @@ public class GymFirstGUI {
     @FXML
     protected void login(ActionEvent event) throws IOException {
         Stage newStage = new Stage();
-        //metti fxml di login
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/chooseActor.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymLogin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         newStage.setTitle("GymBuddy");
         newStage.setResizable(false);
@@ -27,8 +26,7 @@ public class GymFirstGUI {
 
     @FXML protected void registration(ActionEvent event) throws IOException {
         Stage newStage = new Stage();
-        //metti fxml di registration
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/chooseActor.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymRegistration.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         newStage.setTitle("GymBuddy");
         newStage.setResizable(false);
