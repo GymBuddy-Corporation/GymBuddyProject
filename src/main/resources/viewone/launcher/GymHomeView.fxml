@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.gym.GymHomeGUIController">
+
+    <ImageView fitHeight="55.0" fitWidth="190.0" layoutX="320.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/LogoGymBuddy.png" />
+    </ImageView>
+    <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/LogoHome96.png" />
+    </ImageView>
+    <ImageView id="Back" fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/LogoBackPage96.png" />
+    </ImageView>
+    <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/LogoNextPage96.png" />
+    </ImageView>
+   <ImageView id="Back" fitHeight="55.0" fitWidth="62.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoUser96.png" />
+      </image>
+   </ImageView>
+   <Text fx:id="usernameText1" layoutX="69.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="132.65201902389526">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endX="1.0" endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill></Text>
+   <Button fx:id="logoutButton" layoutX="69.0" layoutY="41.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="19.0" prefWidth="55.0" text="Logout" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <font>
+         <Font name="ABeeZee Regular" size="12.0" />
+      </font>
+   </Button>
+
+</AnchorPane>
