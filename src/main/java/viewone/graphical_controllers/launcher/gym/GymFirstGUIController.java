@@ -10,7 +10,7 @@ import viewone.GymBuddy;
 
 import java.io.IOException;
 
-public class GymFirstGUI {
+public class GymFirstGUIController {
 
     @FXML
     protected void login(ActionEvent event) throws IOException {
