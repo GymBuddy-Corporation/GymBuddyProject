@@ -7,6 +7,7 @@ module start {
     exports start;
     exports viewone.graphical_controllers.launcher.gym;
     exports viewone;
+
     exports viewone.graphical_controllers.launcher;
     opens viewone to javafx.fxml;
     opens viewone.graphical_controllers.launcher.gym to javafx.fxml;
