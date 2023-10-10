@@ -7,8 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import viewone.GymBuddy;
 
@@ -29,10 +27,10 @@ public class ChooseActorGUIController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirstView.fxml"));
             stampa(newStage, fxmlLoader);
         } else if (pt.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/chooseActor.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActorView.fxml"));
             stampa(newStage, fxmlLoader);
         } else {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/chooseActor.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActorView.fxml"));
             stampa(newStage, fxmlLoader);
         }
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
