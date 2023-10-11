@@ -33,7 +33,7 @@ public class GymRegistrationGUIController {
 
     public void goForward() throws Exception {
         Stage newStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymHomeView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/gym/GymHomeView.fxml"));
         stampa(newStage, fxmlLoader);
     }
 
