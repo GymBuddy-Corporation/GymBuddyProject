@@ -31,12 +31,14 @@ public class GymRegistrationGUIController {
     }*/
 
 
+    @FXML
     public void goForward() throws Exception {
         Stage newStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/gym/GymHomeView.fxml"));
         stampa(newStage, fxmlLoader);
     }
 
+    @FXML
     public void goBack(ActionEvent event) throws Exception {
         Stage newStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirstView.fxml"));
@@ -44,6 +46,7 @@ public class GymRegistrationGUIController {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
+    @FXML
     public void stampa(Stage newStage, FXMLLoader fxmlLoader) throws Exception {
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         newStage.setTitle("GymBuddy");
