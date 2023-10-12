@@ -9,8 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import viewone.GymBuddy;
 
-import java.io.IOException;
-
 public class GymFirstGUIController {
 
     @FXML
@@ -34,7 +32,7 @@ public class GymFirstGUIController {
 
     @FXML public void goBack(MouseEvent event) throws Exception {
         Stage newStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirstView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirst.fxml"));
         stampa(newStage, fxmlLoader);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }

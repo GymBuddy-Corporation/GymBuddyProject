@@ -1,5 +1,4 @@
 package viewone.graphical_controllers.launcher;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import viewone.GymBuddy;
 
@@ -21,20 +21,24 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private RadioButton user;
 
 
-    public void goForward(ActionEvent event) throws Exception {
+    public void goForward(MouseEvent event) throws Exception {
         Stage newStage = new Stage();
         if(gym.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirstView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirst.fxml"));
             stampa(newStage, fxmlLoader);
         } else if (pt.isSelected()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActorView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActor.fxml"));
             stampa(newStage, fxmlLoader);
         } else {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActorView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActor.fxml"));
             stampa(newStage, fxmlLoader);
         }
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
+    }
+
+    public void changeLanguage(MouseEvent event){
+        //TODO gestisci il bottone con il pop sulla scelta della lingua (il cambio è dummy)
     }
 
     public void stampa(Stage newStage, FXMLLoader fxmlLoader) throws Exception {

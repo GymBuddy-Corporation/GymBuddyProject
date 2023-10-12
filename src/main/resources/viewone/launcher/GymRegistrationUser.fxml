@@ -13,7 +13,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
             xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.launcher.gym.GymUserRegistrationGUI">
+            fx:controller="viewone.graphical_controllers.gym.GymUserRegistrationGUI">
 
    <ImageView fitHeight="108.0" fitWidth="225.0" layoutX="299.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
@@ -39,6 +39,10 @@
       </font>
    </Label>
 
+   <RadioButton fx:id="Male" layoutX="229.0" layoutY="330.0" mnemonicParsing="false" />
+   <RadioButton fx:id="Female" layoutX="229.0" layoutY="374.0" mnemonicParsing="false" />
+   <RadioButton fx:id="Athlete" layoutX="473.0" layoutY="330.0" mnemonicParsing="false" />
+   <RadioButton fx:id="PersonalTrainer" layoutX="473.0" layoutY="374.0" mnemonicParsing="false" />
 
    <TextField layoutX="149.0" layoutY="261.0" style="-fx-background-color: #00F198;" />
    <TextField layoutX="327.0" layoutY="261.0" style="-fx-background-color: #00F198;" />
@@ -135,8 +139,7 @@
          <Font name="Allerta Stencil Regular" size="29.0" />
       </font>
    </Label>
-   <RadioButton layoutX="229.0" layoutY="374.0" mnemonicParsing="false" />
-   <RadioButton layoutX="473.0" layoutY="374.0" mnemonicParsing="false" />
+
    <Label layoutX="250.0" layoutY="371.0" prefHeight="23.0" prefWidth="62.0" text="Athlete">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
@@ -163,8 +166,7 @@
          <Font name="Allerta Stencil Regular" size="16.0" />
       </font>
    </Label>
-   <RadioButton layoutX="229.0" layoutY="330.0" mnemonicParsing="false" />
-   <RadioButton layoutX="473.0" layoutY="330.0" mnemonicParsing="false" />
+
    <Label layoutX="250.0" layoutY="327.0" prefHeight="23.0" prefWidth="62.0" text="Male">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">

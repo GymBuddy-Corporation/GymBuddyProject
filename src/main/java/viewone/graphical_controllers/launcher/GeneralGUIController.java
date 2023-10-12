@@ -16,7 +16,7 @@ public class GeneralGUIController {
 
     @FXML protected void goForward(ActionEvent event) throws IOException {
         Stage newStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActorView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActor.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         newStage.setTitle("GymBuddy");
         newStage.setResizable(false);
