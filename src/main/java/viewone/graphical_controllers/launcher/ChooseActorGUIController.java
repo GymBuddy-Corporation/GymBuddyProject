@@ -23,7 +23,7 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private ImageView gym;
     @FXML private ImageView pt;
     @FXML private ImageView user;
-
+//TODO: devo trovare una solzione per i radio button sylarli con il css oppure non so
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
