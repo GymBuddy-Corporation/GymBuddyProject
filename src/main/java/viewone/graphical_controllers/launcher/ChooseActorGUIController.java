@@ -50,7 +50,6 @@ public class ChooseActorGUIController implements Initializable {
     }
 @FXML
     public void setBottonegym()throws  Exception{
-        resetButtons();
         pt.setImage(empty);
         gym.setImage(full);
         user.setImage(empty);
@@ -58,15 +57,13 @@ public class ChooseActorGUIController implements Initializable {
     }
     @FXML
     public void setBottonept()throws  Exception{
-        resetButtons();
         pt.setImage(full);
         gym.setImage(empty);
         user.setImage(empty);
-        scelta=Selezione.GYM;
+        scelta=Selezione.PT;
     }
     @FXML
     public void setBottoneuser()throws  Exception{
-        resetButtons();
         pt.setImage(empty);
         gym.setImage(empty);
         user.setImage(full);
@@ -79,7 +76,7 @@ public class ChooseActorGUIController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirst.fxml"));
             stampa(newStage, fxmlLoader);
         } else if (scelta==Selezione.PT) {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActor.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/PTLogin.fxml"));
             stampa(newStage, fxmlLoader);
         } else if(scelta==Selezione.USER) {
             FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActor.fxml"));
