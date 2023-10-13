@@ -6,7 +6,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.gym.GymUserGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="viewone.graphical_controllers.gym.GymUserGUIController">
    <Button fx:id="login2" layoutX="50.0" layoutY="141.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
    <Text fx:id="Logout" layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">

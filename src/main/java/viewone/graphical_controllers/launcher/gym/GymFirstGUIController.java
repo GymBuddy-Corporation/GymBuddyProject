@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -13,17 +14,17 @@ public class GymFirstGUIController {
 
     @FXML
     protected void login(ActionEvent event) throws Exception {
-        Stage newStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymLogin.fxml"));
-        stampa(newStage, fxmlLoader);
-        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        String path = "/viewone/launcher/GymLogin.fxml";
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        stampa(root, stage);
     }
 
     @FXML protected void registration(ActionEvent event) throws Exception {
-        Stage newStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymRegistration.fxml"));
-        stampa(newStage, fxmlLoader);
-        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+       String path = "/viewone/launcher/GymRegistration.fxml";
+       Parent root = FXMLLoader.load(getClass().getResource(path));
+       Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+       stampa(root, stage);
     }
 
     @FXML public void getInfo(MouseEvent event) throws Exception {
@@ -31,17 +32,17 @@ public class GymFirstGUIController {
     }
 
     @FXML public void goBack(MouseEvent event) throws Exception {
-        Stage newStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirst.fxml"));
-        stampa(newStage, fxmlLoader);
-        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        String path = "/viewone/launcher/GymFirst.fxml";
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        stampa(root, stage);
     }
 
-    public void stampa(Stage newStage, FXMLLoader fxmlLoader) throws Exception {
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-        newStage.setTitle("GymBuddy");
-        newStage.setResizable(false);
-        newStage.setScene(scene);
-        newStage.show();
+    public void stampa(Parent root, Stage stage) throws Exception {
+        Scene scene = new Scene(root);
+        stage.setTitle("GymBuddy");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }

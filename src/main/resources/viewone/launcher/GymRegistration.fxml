@@ -13,10 +13,12 @@
    <ImageView fitHeight="108.0" fitWidth="239.0" layoutX="281.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <ImageView id="Back" fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView id="Back" fitHeight="46.0" fitWidth="47.0" onMouseClicked="#goBack"
+              layoutX="14.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
-   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="46.0" fitWidth="47.0" onMouseClicked="#goForward"
+              layoutX="740.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
    <TextField fx:id="name" layoutX="478.0" layoutY="209.0" style="-fx-background-color: #00F198;" />

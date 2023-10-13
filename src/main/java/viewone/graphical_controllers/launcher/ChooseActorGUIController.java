@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -15,6 +16,7 @@ import viewone.GymBuddy;
 
 import java.net.URL;
 import java.util.EnumMap;
+import java.util.EventObject;
 import java.util.ResourceBundle;
 
 
@@ -71,29 +73,30 @@ public class ChooseActorGUIController implements Initializable {
     }
     @FXML
     public void goForward(ActionEvent event) throws Exception {
-        Stage newStage = new Stage();
         if(scelta==Selezione.GYM) {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/GymFirst.fxml"));
-            stampa(newStage, fxmlLoader);
+            String path = "/viewone/launcher/GymFirst.fxml";
+            stampa(path, event);
         } else if (scelta==Selezione.PT) {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/PTLogin.fxml"));
-            stampa(newStage, fxmlLoader);
+            String path = "/viewone/launcher/PTLogin.fxml";
+            stampa(path, event);
         } else if(scelta==Selezione.USER) {
-            FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/ChooseActor.fxml"));
-            stampa(newStage, fxmlLoader);
-        }else{return ;}
-        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+            String path = "/viewone/launcher/ChooseActor.fxml";
+            stampa(path, event);
+        }
     }
 
-    public void changeLanguage(MouseEvent event){
+    public void changeLanguage(MouseEvent event) {
         //TODO gestisci il bottone con il pop sulla scelta della lingua (il cambio è dummy)
     }
 
-    public void stampa(Stage newStage, FXMLLoader fxmlLoader) throws Exception {
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-        newStage.setTitle("GymBuddy");
-        newStage.setResizable(false);
-        newStage.setScene(scene);
-        newStage.show();
-    }}
+    public void stampa(String path, ActionEvent event) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        Scene scene = new Scene(root);
+        stage.setTitle("GymBuddy");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+    }
+}
 
