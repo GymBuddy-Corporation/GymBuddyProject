@@ -1,126 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.gym.GymUserRegistrationGUI">
-   <Button layoutX="84.0" layoutY="55.0" mnemonicParsing="false" prefHeight="370.0" prefWidth="634.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="440.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoBackPage96.png" />
-   </ImageView>
-   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoNextPage96.png" />
-   </ImageView>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.gym.GymUserRegistrationGUI">
 
-   <Label fx:id="ClickHere" layoutX="141.0" layoutY="122.0" prefHeight="23.0" prefWidth="61.0" text="Name">
-      <textFill>
-         <LinearGradient endX="0.5">
-            <stops>
-               <Stop color="#00e4af" />
-               <Stop color="#5d7cf3" offset="1.0" />
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-
-   <RadioButton fx:id="Male" layoutX="554.0" layoutY="138.0" mnemonicParsing="false" />
-   <RadioButton fx:id="Athlete" layoutX="557.0" layoutY="181.0" mnemonicParsing="false" />
-
-   <TextField layoutX="141.0" layoutY="261.0" />
-   <TextField layoutX="327.0" layoutY="261.0" />
-   <TextField layoutX="141.0" layoutY="339.0" prefHeight="26.0" prefWidth="338.0" />
-   <TextField layoutX="141.0" layoutY="143.0" />
-   <TextField layoutX="327.0" layoutY="141.0" />
-   <TextField layoutX="141.0" layoutY="202.0" prefHeight="26.0" prefWidth="338.0" />
-
-   <Label layoutX="327.0" layoutY="119.0" prefHeight="23.0" prefWidth="84.0" text="Username">
-      <textFill>
-         <LinearGradient endX="0.5" endY="1.0">
-            <stops>
-               <Stop color="#00e4af" offset="0.0" />
-               <Stop color="#5d7cf3" offset="1.0" />
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-
-   <Label layoutX="141.0" layoutY="178.0" prefHeight="23.0" prefWidth="84.0" text="Email">
-      <textFill>
-         <LinearGradient endX="0.5" endY="1.0">
-            <stops>
-               <Stop color="#00e4af" offset="0.0" />
-               <Stop color="#5d7cf3" offset="1.0" />
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-
-   <Label layoutX="141.0" layoutY="315.0" prefHeight="23.0" prefWidth="104.0" text="Fiscal Code">
-      <textFill>
-         <LinearGradient endX="0.5">
-            <stops>
-               <Stop color="#00e4af" />
-               <Stop color="#5d7cf3" offset="1.0" />
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoInfo96.png" />
-   </ImageView>
-   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoHome96.png" />
-      </image>
-   </ImageView>
-   <Label layoutX="141.0" layoutY="239.0" prefHeight="23.0" prefWidth="104.0" text="Surname">
-      <textFill>
-         <LinearGradient endX="0.5">
-            <stops>
-               <Stop color="#00e4af" />
-               <Stop color="#5d7cf3" offset="1.0" />
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-   <Label layoutX="327.0" layoutY="239.0" prefHeight="23.0" prefWidth="104.0" text="Password">
-      <textFill>
-         <LinearGradient endX="0.5">
-            <stops>
-               <Stop color="#00e4af" />
-               <Stop color="#5d7cf3" offset="1.0" />
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-   <Label layoutX="256.0" layoutY="60.0" prefHeight="61.0" prefWidth="350.0" text="ATHLETE REGISTRATION" textAlignment="CENTER">
+   <Label text="ATHLETE REGISTRATION" layoutX="256.0" layoutY="60.0" prefHeight="61.0" prefWidth="350.0"  textAlignment="CENTER">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
             <stops>
@@ -134,7 +22,91 @@
       </font>
    </Label>
 
-   <Label layoutX="575.0" layoutY="135.0" prefHeight="23.0" prefWidth="62.0" text="Male">
+   <Button id="Contorno" layoutX="84.0" layoutY="55.0" mnemonicParsing="false" prefHeight="370.0" prefWidth="634.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" textAlignment="CENTER" textFill="#300743" />
+
+   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="440.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoBackPage96.png" />
+   </ImageView>
+   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoNextPage96.png" />
+   </ImageView>
+   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoInfo96.png" />
+   </ImageView>
+   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoHome96.png" />
+   </ImageView>
+
+   <RadioButton fx:id="Male" layoutX="522.0" layoutY="143.0" mnemonicParsing="false" />
+   <RadioButton fx:id="Athlete" layoutX="606.0" layoutY="143.0" mnemonicParsing="false" />
+
+   <TextField id="Name" layoutX="141.0" layoutY="143.0"/>
+   <TextField id="Surname" layoutX="327.0" layoutY="143.0"/>
+
+   <TextField id="Email" layoutX="141.0" layoutY="202.0" prefHeight="26.0" prefWidth="338.0"/>
+   <DatePicker layoutX="521.0" layoutY="202.0" />
+
+   <TextField id="Username" layoutX="141.0" layoutY="260.0"/>
+   <TextField id="Password" layoutX="327.0" layoutY="260.0"/>
+
+   <TextField id="Fiscal Code" layoutX="141.0" layoutY="330.0" prefHeight="26.0" prefWidth="338.0"/>
+
+   <Label text="Name" layoutX="141.0" layoutY="122.0" prefHeight="23.0" prefWidth="61.0">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="16.0" />
+      </font>
+   </Label>
+
+   <Label text="Surname" layoutX="326.0" layoutY="121.0" prefHeight="23.0" prefWidth="104.0" >
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="16.0" />
+      </font>
+   </Label>
+   <Label text="Male" layoutX="543.0" layoutY="142.0" prefHeight="23.0" prefWidth="62.0">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af"/>
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="16.0" />
+      </font>
+   </Label>
+
+   <Label text="Female" layoutX="627.0" layoutY="142.0" prefHeight="23.0" prefWidth="62.0">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af"/>
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="16.0" />
+      </font>
+   </Label>
+
+   <Label text="Email" layoutX="141.0" layoutY="178.0" prefHeight="23.0" prefWidth="84.0">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
             <stops>
@@ -147,9 +119,10 @@
          <Font name="Allerta Stencil Regular" size="16.0" />
       </font>
    </Label>
-   <Label layoutX="578.0" layoutY="178.0" prefHeight="23.0" prefWidth="138.0" text="Female">
+
+   <Label text="Username" layoutX="141.0" layoutY="237.0" prefHeight="23.0" prefWidth="84.0" >
       <textFill>
-         <LinearGradient endX="0.5" endY="1.0">
+         <LinearGradient endX="0.5">
             <stops>
                <Stop color="#00e4af" offset="0.0" />
                <Stop color="#5d7cf3" offset="1.0" />
@@ -160,5 +133,33 @@
          <Font name="Allerta Stencil Regular" size="16.0" />
       </font>
    </Label>
-   <DatePicker layoutX="518.0" layoutY="215.0" />
+
+   <Label text="Password" layoutX="327.0" layoutY="239.0" prefHeight="23.0" prefWidth="104.0">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="16.0" />
+      </font>
+   </Label>
+
+   <Label text="Fiscal Code" layoutX="141.0" layoutY="306.0" prefHeight="23.0" prefWidth="104.0">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="16.0" />
+      </font>
+   </Label>
+
 </AnchorPane>

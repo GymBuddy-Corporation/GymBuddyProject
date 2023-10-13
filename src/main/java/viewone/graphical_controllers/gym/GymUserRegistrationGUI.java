@@ -29,7 +29,7 @@ public class GymUserRegistrationGUI implements Initializable {
     }
 
     @FXML public void goBack(ActionEvent event) throws Exception {
-        String path = "/viewone/launcher/GymHome.fxml";
+        String path = "/viewone/gym/GymUserView.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 
