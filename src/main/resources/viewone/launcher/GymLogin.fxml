@@ -6,20 +6,17 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.launcher.gym.GymLoginGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.gym.GymLoginGUIController">
 
    <prefHeight>500.0</prefHeight>
    <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="14.0" layoutY="431.0" onMouseClicked="#goBack">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
-   <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="735.0" layoutY="431.0" onMouseClicked="#goForward">
-      <Image url="@../images/LogoNextPage96.png"/>
+   <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="731.0" layoutY="431.0" onMouseClicked="#goForward">
+      <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
 
-   <ImageView fx:id="GymBuddy" fitHeight="55.0" fitWidth="177.0" layoutX="316.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="315.66827392578125" AnchorPane.topAnchor="22.0">
+   <ImageView fx:id="GymBuddy" fitHeight="55.0" fitWidth="177.0" layoutX="316.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="315.66827392578125" AnchorPane.topAnchor="14.0">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
    <Label fx:id="Login" layoutX="317.0" layoutY="127.0" prefHeight="62.0" prefWidth="139.0" stylesheets="@../../font.css" text="LOGIN">
@@ -35,7 +32,7 @@
          <Font name="Allerta Stencil Regular" size="45.0" />
       </font>
    </Label>
-   <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="735.0" layoutY="14.0" onMouseClicked="#getInfo">
+   <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="731.0" layoutY="14.0" onMouseClicked="#getInfo">
       <Image url="@../images/LogoInfo96.png" />
    </ImageView>
    <TextField layoutX="319.0" layoutY="237.0" prefHeight="26.0" prefWidth="168.0" />
