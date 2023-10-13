@@ -6,18 +6,15 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.gym.GymUserRegistrationGUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.gym.GymUserRegistrationGUI">
 
-   <Button id="Contorno" layoutX="83.0" layoutY="89.0" mnemonicParsing="false" prefHeight="326.0" prefWidth="634.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" textAlignment="CENTER" textFill="#300743" />
+   <Button id="Contorno" layoutX="83.0" layoutY="89.0" mnemonicParsing="false" prefHeight="355.0" prefWidth="634.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" textAlignment="CENTER" textFill="#300743" />
 
    <Label layoutX="236.0" layoutY="89.0" prefHeight="61.0" prefWidth="350.0" text="ATHLETE REGISTRATION" textAlignment="CENTER">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
-               <Stop color="#00e4af"/>
+               <Stop color="#00e4af" />
                <Stop color="#5d7cf3" offset="1.0" />
             </stops>
          </LinearGradient>
@@ -29,9 +26,6 @@
 
    <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="440.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoBackPage96.png" />
-   </ImageView>
-   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
    <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoInfo96.png" />
@@ -167,10 +161,16 @@
    <TextField id="Username" layoutX="510.0" layoutY="360.0" prefHeight="26.0" prefWidth="62.0" />
    <Label layoutX="510.0" layoutY="337.0" prefHeight="23.0" prefWidth="84.0" text="Height">
       <textFill>
-         <LinearGradient endX="0.5">
+         <LinearGradient endX="0.5" endY="1.0">
             <stops>
-               <Stop color="#00e4af" offset="0.0" />
-               <Stop color="#5d7cf3" offset="1.0" />
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color></Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color></Stop>
             </stops>
          </LinearGradient>
       </textFill>
@@ -224,5 +224,26 @@
          <Image url="@../images/LogoGymBuddy.png" />
       </image>
    </ImageView>
+   <Button id="Contorno" layoutX="351.0" layoutY="402.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" text="Submit" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="16.0" />
+      </font>
+   </Button>
 
 </AnchorPane>
