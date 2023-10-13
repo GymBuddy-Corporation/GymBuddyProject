@@ -1,4 +1,4 @@
-package Nome_a_caso;
+package utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

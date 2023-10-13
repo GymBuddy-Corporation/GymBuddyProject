@@ -1,7 +1,7 @@
 package viewone;
 
-import Nome_a_caso.MainStage;
-import Nome_a_caso.SwitchPage;
+import utils.MainStage;
+import utils.SwitchPage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
