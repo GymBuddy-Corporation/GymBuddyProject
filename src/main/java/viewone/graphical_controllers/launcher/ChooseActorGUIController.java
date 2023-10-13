@@ -1,22 +1,14 @@
 package viewone.graphical_controllers.launcher;
+import Nome_a_caso.MainStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import viewone.GymBuddy;
+import Nome_a_caso.SwitchPage;
 
 import java.net.URL;
-import java.util.EnumMap;
-import java.util.EventObject;
 import java.util.ResourceBundle;
 
 
@@ -25,7 +17,7 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private ImageView gym;
     @FXML private ImageView pt;
     @FXML private ImageView user;
-//TODO: devo trovare una solzione per i radio button sylarli con il css oppure non so
+//TODO: devo trovare una solzione per i radio button, li posso lasciare cosi oppure creare una classe che gli gestisce
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -73,30 +65,21 @@ public class ChooseActorGUIController implements Initializable {
     }
     @FXML
     public void goForward(ActionEvent event) throws Exception {
+        String path;
         if(scelta==Selezione.GYM) {
-            String path = "/viewone/launcher/GymFirst.fxml";
-            stampa(path, event);
+            path = "/viewone/launcher/GymFirst.fxml";
         } else if (scelta==Selezione.PT) {
-            String path = "/viewone/launcher/PTLogin.fxml";
-            stampa(path, event);
+             path = "/viewone/launcher/PTLogin.fxml";
         } else if(scelta==Selezione.USER) {
-            String path = "/viewone/launcher/ChooseActor.fxml";
-            stampa(path, event);
-        }
+             path = "/viewone/launcher/ChooseActor.fxml";
+        }else{return;}
+        SwitchPage.setStage(MainStage.stage,path);
     }
 
     public void changeLanguage(MouseEvent event) {
         //TODO gestisci il bottone con il pop sulla scelta della lingua (il cambio è dummy)
     }
 
-    public void stampa(String path, ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(path));
-        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        Scene scene = new Scene(root);
-        stage.setTitle("GymBuddy");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-    }
+
 }
 

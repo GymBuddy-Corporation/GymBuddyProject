@@ -1,9 +1,8 @@
 package viewone;
 
+import Nome_a_caso.MainStage;
+import Nome_a_caso.SwitchPage;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,13 +10,8 @@ import java.io.IOException;
 public class GymBuddy extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GymBuddy.class.getResource("/viewone/launcher/hello-viewone.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-        stage.setTitle("GymBuddy");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        MainStage.stage=stage; //Va fatto una sola volta siccome è static, quindi una volta lanciata l'applicazione non serve cambiarlo
+        SwitchPage.setStage(MainStage.stage,"/viewone/launcher/hello-viewone.fxml");
     }
 
     public static void main(String[] args) {

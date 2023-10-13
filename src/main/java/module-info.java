@@ -14,4 +14,6 @@ module start {
     opens viewone.graphical_controllers.launcher to javafx.fxml;
     exports viewone.graphical_controllers.gym;
     opens viewone.graphical_controllers.gym to javafx.fxml;
+    exports Nome_a_caso;
+    opens Nome_a_caso to javafx.fxml;
 }
