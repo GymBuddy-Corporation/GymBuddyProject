@@ -24,7 +24,7 @@ public class GymUserGUIController implements Initializable {
 
     @FXML
     public void goBack(MouseEvent event) throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
+        String path = "/viewone/gym/GymHome.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 
