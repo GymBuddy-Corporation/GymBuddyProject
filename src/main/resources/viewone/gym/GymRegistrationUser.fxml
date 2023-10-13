@@ -27,9 +27,9 @@
 
    <Label fx:id="ClickHere" layoutX="149.0" layoutY="179.0" prefHeight="23.0" prefWidth="61.0" text="Name">
       <textFill>
-         <LinearGradient endX="0.5" endY="1.0">
+         <LinearGradient endX="0.5">
             <stops>
-               <Stop color="#00e4af" offset="0.0" />
+               <Stop color="#00e4af"/>
                <Stop color="#5d7cf3" offset="1.0" />
             </stops>
          </LinearGradient>

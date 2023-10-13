@@ -9,9 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import viewone.GymBuddy;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,8 +48,10 @@ public class GymUserRegistrationGUI implements Initializable {
         ToggleGroup group2 = new ToggleGroup();
         Male.setToggleGroup(group1);
         Female.setToggleGroup(group1);
+        Male.fire();
         Athlete.setToggleGroup(group2);
         PersonalTrainer.setToggleGroup(group2);
         Athlete.fire();
+
     }
 }

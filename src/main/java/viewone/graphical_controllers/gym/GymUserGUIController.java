@@ -1,6 +1,5 @@
 package viewone.graphical_controllers.gym;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,15 +20,15 @@ public class GymUserGUIController implements Initializable {
 
     @FXML private ListView<String> AthletesList;
 
-    public void Scroll(){
-
-    //TODO Successivamente qui andremo a sistemare la visualizzazione da database degli atleti allo scroll
-
-    }
-
     @FXML
     public void goBack(MouseEvent event) throws Exception {
         String path = "/viewone/launcher/GymFirst.fxml";
+        stampa(event, path);
+    }
+
+    @FXML
+    public void goForward(MouseEvent event) throws Exception {
+        String path = "/viewone/gym/GymRegistrationUser.fxml";
         stampa(event, path);
     }
     @FXML

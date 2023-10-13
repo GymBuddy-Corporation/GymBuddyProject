@@ -9,7 +9,9 @@
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="viewone.graphical_controllers.gym.GymUserGUIController">
-   <Button fx:id="login2" layoutX="50.0" layoutY="141.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+
+   <Button layoutX="50.0" layoutY="141.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+
 
    <Text fx:id="Logout" layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">
       <font>
@@ -36,13 +38,15 @@
     <ImageView fitHeight="150.0" fitWidth="239.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../images/LogoGymBuddy.png" />
     </ImageView>
+
    <ImageView id="Back" fitHeight="55.0" fitWidth="55.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoUser96.png" />
-      </image>
+      <Image url="@../images/LogoUser96.png" />
    </ImageView>
-   <Button fx:id="login" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <Button fx:id="login1" layoutX="69.0" layoutY="43.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;">
+
+
+   <Button fx:id="login" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+
+   <Button fx:id="login1" layoutX="69.0" layoutY="43.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;">
       <textFill>
          <LinearGradient>
             <stops>
@@ -73,7 +77,7 @@
          <Font name="Allerta Stencil Regular" size="15.0" />
       </font>
       <fill>
-         <LinearGradient endX="1.0" endY="0.3977272420218496">
+         <LinearGradient endY="0.3977272420218496">
             <stops>
                <Stop>
                   <color>
@@ -88,21 +92,18 @@
             </stops>
          </LinearGradient>
       </fill></Text>
-   <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="732.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoPlus96.png" />
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
-   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="14.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoBackPage96.png" />
-      </image>
-   </ImageView>
-   <ListView fx:id="AthletesList" editable="true" layoutX="75.0" layoutY="156.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <ListView fx:id="AthletesList" editable="true" layoutX="75.0" layoutY="156.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css">
+   </ListView>
+
    <Text fx:id="usernameText11" layoutX="285.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Athletes" textAlignment="CENTER" wrappingWidth="231.59997100830083">
       <font>
          <Font name="Allerta Stencil Regular" size="27.0" />
       </font>
       <fill>
-         <LinearGradient endX="1.0" endY="0.3977272420218496">
+         <LinearGradient endY="0.3977272420218496">
             <stops>
                <Stop>
                   <color>
@@ -123,7 +124,7 @@
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
       <fill>
-         <LinearGradient endX="1.0" endY="0.3977272420218496">
+         <LinearGradient endY="0.3977272420218496">
             <stops>
                <Stop>
                   <color>
@@ -139,7 +140,16 @@
          </LinearGradient>
       </fill>
    </Text>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoAdd96.png" />
+      </image>
+   </ImageView>
    <Button fx:id="login3" layoutX="630.0" layoutY="15.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward"
+              pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoNextPage96.png"/>
+   </ImageView>
 
 
 </AnchorPane>
