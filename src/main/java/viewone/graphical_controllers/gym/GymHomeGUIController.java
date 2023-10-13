@@ -1,7 +1,7 @@
 package viewone.graphical_controllers.gym;
 
-import Nome_a_caso.MainStage;
-import Nome_a_caso.SwitchPage;
+import utils.MainStage;
+import utils.SwitchPage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
