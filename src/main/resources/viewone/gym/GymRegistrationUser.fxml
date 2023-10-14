@@ -24,7 +24,7 @@
       </font>
    </Label>
 
-   <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="14.0" layoutY="440.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
    <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="740.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

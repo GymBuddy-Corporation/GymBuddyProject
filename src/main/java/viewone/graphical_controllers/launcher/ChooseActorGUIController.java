@@ -64,7 +64,7 @@ public class ChooseActorGUIController implements Initializable {
         scelta=Selezione.USER;
     }
     @FXML
-    public void goForward(ActionEvent event) throws Exception {
+    public void goForward() throws Exception {
         String path;
         if(scelta==Selezione.GYM) {
             path = "/viewone/launcher/GymFirst.fxml";
@@ -76,7 +76,7 @@ public class ChooseActorGUIController implements Initializable {
         SwitchPage.setStage(MainStage.stage,path);
     }
 
-    public void changeLanguage(MouseEvent event) {
+    public void changeLanguage() {
         //TODO gestisci il bottone con il pop sulla scelta della lingua (il cambio è dummy)
     }
 
