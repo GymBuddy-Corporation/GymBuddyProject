@@ -26,18 +26,21 @@ public class GymPTGUIController implements Initializable {
 
     @FXML
     public void goForward(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymRegistrationUser.fxml"; //TODO sistema sto path con PT al posto di User
+        String path = "/viewone/gym/GymRegistrationPT.fxml"; //TODO sistema sto path con PT al posto di User
         SwitchPage.setStage(MainStage.stage,path);
     }
 
 
     @FXML
     public void addPT(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymRegistrationUser.fxml"; //TODO sistema sto path con PT al posto di User
+        String path = "/viewone/gym/GymRegistrationPT.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 
-
+    @FXML
+    public void deletePT(MouseEvent event) throws Exception {
+        //TODO questo diventa il popup da sitemare e cliccabile solo se è stata scelta almeno un'opzione dalla ListView.
+    }
 
 
     @Override
