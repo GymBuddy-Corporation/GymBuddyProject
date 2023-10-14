@@ -32,7 +32,7 @@ public class GymFirstGUIController {
     }
 
     @FXML public void goBack(MouseEvent event) throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
+        String path = "/viewone/launcher/ChooseActor.fxml";
         SwitchPage.setStage(MainStage.stage,path);
 
     }

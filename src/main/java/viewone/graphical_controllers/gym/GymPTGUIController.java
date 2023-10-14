@@ -24,6 +24,11 @@ public class GymPTGUIController implements Initializable {
         SwitchPage.setStage(MainStage.stage,path);
     }
 
+    public void logout() throws Exception {
+        String path = "/viewone/launcher/GymFirst.fxml";
+        SwitchPage.setStage(MainStage.stage,path);
+    }
+
     @FXML
     public void goForward(MouseEvent event) throws Exception {
         String path = "/viewone/gym/GymRegistrationPT.fxml"; //TODO sistema sto path con PT al posto di User

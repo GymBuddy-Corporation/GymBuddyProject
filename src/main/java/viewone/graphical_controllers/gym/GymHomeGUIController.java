@@ -24,7 +24,10 @@ public class GymHomeGUIController {
         SwitchPage.setStage(MainStage.stage,path);
     }
 
-
+    public void logout() throws Exception {
+        String path = "/viewone/launcher/GymFirst.fxml";
+        SwitchPage.setStage(MainStage.stage,path);
+    }
 
 
 }
