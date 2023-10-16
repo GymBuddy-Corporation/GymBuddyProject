@@ -1,4 +1,4 @@
-package viewone.graphical_controllers.athletes;
+package viewone.graphical_controllers.athlete;
 
 import javafx.fxml.FXML;
 import utils.MainStage;
@@ -12,13 +12,13 @@ public class AthletesHomeGUIController {
     }
 
     @FXML
-    public void managePT() throws Exception {
-        String path = "/viewone/gym/GymPTView.fxml";
+    public void manageWorkoutRoutine() throws Exception {
+        String path = "/viewone/athlete/AthleteRoutine.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 
-    public void manageGymEquipment() throws Exception {
-        String path = "/viewone/gym/GymEquipmentView.fxml";
+    public void manageWorkouts() throws Exception {
+        String path = "/viewone/athlete/AthleteWorkouts.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 

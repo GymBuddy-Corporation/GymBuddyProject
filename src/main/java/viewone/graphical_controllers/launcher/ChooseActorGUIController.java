@@ -69,9 +69,9 @@ public class ChooseActorGUIController implements Initializable {
         if(scelta==Selezione.GYM) {
             path = "/viewone/launcher/GymFirst.fxml";
         } else if (scelta==Selezione.PT) {
-             path = "/viewone/launcher/PTLogin.fxml";
+             path = "/viewone/launcher/PTLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         } else if(scelta==Selezione.USER) {
-             path = "/viewone/launcher/ChooseActor.fxml";
+             path = "/viewone/launcher/AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         }else{return;}
         SwitchPage.setStage(MainStage.stage,path);
     }

@@ -12,14 +12,13 @@ import javafx.stage.Stage;
 
 public class PTLoginGUIController {
     @FXML
-    public void goForward(MouseEvent event) throws Exception {
+    public void goForward() throws Exception {
         String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.stage,path);
-
     }
 
     @FXML
-    public void goBack(MouseEvent event) throws Exception {
+    public void goBack() throws Exception {
        String path = "/viewone/launcher/ChooseActor.fxml";
        SwitchPage.setStage(MainStage.stage,path);
     }
