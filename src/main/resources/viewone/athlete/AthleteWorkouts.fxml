@@ -16,8 +16,7 @@
 
    <Button layoutX="60.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <ListView fx:id="AthletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0"
-             prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <ListView fx:id="AthletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
 
    <Text layoutX="649.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify" textAlignment="CENTER" wrappingWidth="86.99990386962895">
       <font>
@@ -125,7 +124,7 @@
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
 
-   <Text layoutX="649.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Workout" textAlignment="CENTER" wrappingWidth="86.99990386962895">
+   <Text layoutX="646.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Workout" textAlignment="CENTER" wrappingWidth="92.99990386962895">
       <font>
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>

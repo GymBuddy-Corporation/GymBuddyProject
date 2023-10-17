@@ -38,7 +38,6 @@ public class AthletesRoutineGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<String> Lista = new ArrayList<>(Arrays.asList("13/05/2023", "23/08/2023", "05/10/2023"));
-        AthletesList.getItems().addAll(Lista);
+
     }
 }
