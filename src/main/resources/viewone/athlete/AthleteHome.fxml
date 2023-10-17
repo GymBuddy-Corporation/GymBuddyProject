@@ -73,31 +73,6 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button layoutX="485.0" layoutY="181.0" mnemonicParsing="false" onAction="#manageWorkoutRoutine"
-           prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);
-           -fx-background-radius: 5em;
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;"
-           textAlignment="CENTER">
-      <textFill>
-         <LinearGradient>
-            <stops>
-               <Stop>
-                  <color>
-                     <Color green="0.8941176533699036" blue="0.686274528503418" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
-                  </color>
-               </Stop>
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="17.0" />
-      </font>
-   </Button>
 
    <Text fx:id="usernameText111121" layoutX="498.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ask for Workout Report" textAlignment="CENTER" wrappingWidth="142.65198850631714">
       <font>
@@ -120,7 +95,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button layoutX="485.0" layoutY="270.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
+   <Button layoutX="485.0" layoutY="270.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -142,7 +117,7 @@
       </font>
    </Button>
 
-   <Text fx:id="usernameText11112" layoutX="165.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Old Workout Routines" textAlignment="CENTER" wrappingWidth="156.00000000000003">
+   <Text layoutX="165.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Old Workout Routines" textAlignment="CENTER" wrappingWidth="156.00000000000003">
       <font>
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
@@ -184,10 +159,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <Button layoutX="159.0" layoutY="359.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0"
-           style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em;
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;"
-           textAlignment="CENTER">
+   <Button layoutX="159.0" layoutY="359.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em; -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3)" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -208,11 +180,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <Button layoutX="159.0" layoutY="181.0" mnemonicParsing="false" onAction="#manageWorkouts" prefHeight="55.0"
-           prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;
-           -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.bottomAnchor="264.0"
-           AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="472.0" AnchorPane.topAnchor="181.0">
+   <Button layoutX="159.0" layoutY="181.0" mnemonicParsing="false" onAction="#manageWorkouts" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -310,7 +278,7 @@
             </stops>
          </LinearGradient>
       </fill></Text>
-   <Button fx:id="login21431" layoutX="485.0" layoutY="359.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Send Email" textAlignment="CENTER">
+   <Button layoutX="485.0" layoutY="359.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Send Email" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -355,5 +323,29 @@
          </LinearGradient>
       </fill>
    </Text>
+   <Button layoutX="485.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#manageWorkoutRoutine"
+           prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);
+           -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+           -fx-border-radius: 5em;" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
 
 </AnchorPane>

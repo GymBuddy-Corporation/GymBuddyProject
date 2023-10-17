@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.athlete.AthletesRoutineGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.athlete.AthletesRoutineGUIController">
 
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="439.0" pickOnBounds="true"
-              preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoCircle96.png" />
    </ImageView>
 
-   <Button layoutX="60.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0"
-           style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;"
-           textAlignment="CENTER" textFill="#300743" />
-
-   <ListView fx:id="AthletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <Button layoutX="60.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
    <Text layoutX="649.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify" textAlignment="CENTER" wrappingWidth="86.99990386962895">
       <font>
@@ -154,7 +152,7 @@
       <Image url="@../images/LogoAdd96.png" />
    </ImageView>
 
-   <Text fx:id="usernameText11" layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Workout Routines" textAlignment="CENTER" wrappingWidth="356.5999710083008">
+   <Text fx:id="usernameText11" layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Workout Routine" textAlignment="CENTER" wrappingWidth="356.5999710083008">
       <font>
          <Font name="Allerta Stencil Regular" size="27.0" />
       </font>
@@ -180,14 +178,18 @@
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
 
-   <Button layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#askForNewRoutine"
-           prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);
-           -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Button layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#askForNewRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <Button layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#modifyRoutine"
-           prefHeight="55.0" prefWidth="156.0"  style="-fx-background-color: rgba(0, 0, 0, 0);
-           -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
-           -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Button layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#modifyRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+
+   <TableView layoutX="79.0" layoutY="148.0" prefHeight="257.0" prefWidth="662.0" style="-fx-background-color: transparent;" stylesheets="@../../tableView.css">
+     <columns>
+       <TableColumn prefWidth="165.5" style="-fx-background-color: transparent;" text="Esercizio" />
+        <TableColumn prefWidth="165.5" style="-fx-background-color: transparent;" text="Set" />
+       <TableColumn prefWidth="165.5" style="-fx-background-color: transparent;" text="Ripetizioni" />
+        <TableColumn prefWidth="165.5" style="-fx-background-color: transparent;" text="Recupero" />
+     </columns>
+   </TableView>
 
 
 
