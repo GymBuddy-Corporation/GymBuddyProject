@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800" style="-fx-background-color: #2D043D;"
+            xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="viewone.graphical_controllers.launcher.ChooseActorGUIController">
+
+   <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoGymBuddy.png" />
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="730.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoLanguages96.png" />
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoInfo96.png" />
+   </ImageView>
+   <ImageView fx:id="gym" fitHeight="20.0" fitWidth="20.0" layoutX="135.0" layoutY="240.0" onMouseClicked="#setBottonegym" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoEmptyButton96.png" />
+      </image></ImageView>
+   <ImageView fx:id="pt" fitHeight="20.0" fitWidth="20.0" layoutX="311.0" layoutY="240.0" onMouseClicked="#setBottonept" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoEmptyButton96.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="user" fitHeight="20.0" fitWidth="20.0" layoutX="556.0" layoutY="240.0" onMouseClicked="#setBottoneuser" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoEmptyButton96.png" />
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="730.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoNextPage96.png" />
+   </ImageView>
+   <Label layoutX="307.0" layoutY="158.0" prefHeight="38.0" prefWidth="199.0" text="Who are you?" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="28.0" />
+      </font>
+   </Label>
+   <Label layoutX="159.0" layoutY="231.0" prefHeight="38.0" prefWidth="50.0" text="Gym" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="582.0" layoutY="231.0" prefHeight="38.0" prefWidth="81.0" text="Athlete" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="337.0" layoutY="231.0" prefHeight="38.0" prefWidth="173.0" text="Personal Trainer" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="20.0" />
+      </font>
+   </Label>
+
+</AnchorPane>

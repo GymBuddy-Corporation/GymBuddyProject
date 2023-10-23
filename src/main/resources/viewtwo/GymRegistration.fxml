@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.gym.GymRegistrationGUIController">
+
+   <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoGymBuddy.png" />
+   </ImageView>
+   <ImageView id="Back" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoBackPage96.png" />
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="730.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoNextPage96.png" />
+   </ImageView>
+   <TextField fx:id="name" layoutX="478.0" layoutY="209.0" />
+   <Label fx:id="Name" layoutX="478.0" layoutY="185.0" prefHeight="23.0" prefWidth="61.0" text="Name">
+      <textFill>
+         <LinearGradient endX="0.5">
+            <stops>
+               <Stop color="#00e4af" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Arial Rounded MT Bold" size="16.0" />
+      </font>
+   </Label>
+
+   <TextField fx:id="address" layoutX="478.0" layoutY="268.0" />
+   <Label fx:id="Address" layoutX="478.0" layoutY="245.0" prefHeight="23.0" prefWidth="76.0" text="Address">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop color="#00e4af" offset="0.0" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Arial Rounded MT Bold" size="16.0" />
+      </font>
+   </Label>
+   <TextField fx:id="password" layoutX="320.0" layoutY="268.0" />
+   <Label fx:id="Password" layoutX="320.0" layoutY="244.0" prefHeight="23.0" prefWidth="84.0" text="Password">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop color="#00e4af" offset="0.0" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Arial Rounded MT Bold" size="16.0" />
+      </font>
+   </Label>
+   <TextField fx:id="email" layoutX="320.0" layoutY="209.0" />
+   <Label fx:id="Email" layoutX="320.0" layoutY="185.0" prefHeight="23.0" prefWidth="84.0" text="Email">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop color="#00e4af" offset="0.0" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Arial Rounded MT Bold" size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="Registration" layoutX="173.0" layoutY="143.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../../font.css" text="Set up your account">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color></Stop>
+               <Stop offset="0.007680491551459294">
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color></Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="31.0" />
+      </font>
+   </Label>
+   <ImageView fitHeight="105.0" fitWidth="102.0" layoutX="173.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoUser96.png" />
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="730.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoInfo96.png" />
+   </ImageView>
+</AnchorPane>
