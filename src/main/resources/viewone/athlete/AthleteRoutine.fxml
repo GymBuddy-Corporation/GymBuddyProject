@@ -133,7 +133,7 @@
          <Font name="Allerta Stencil Regular" size="27.0" />
       </font>
       <fill>
-         <LinearGradient endY="0.3977272420218496">
+         <LinearGradient endX="1.0" endY="0.3977272420218496">
             <stops>
                <Stop>
                   <color>

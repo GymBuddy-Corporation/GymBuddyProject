@@ -1,5 +1,7 @@
 package viewone.graphical_controllers.athlete;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -38,6 +40,13 @@ public class AthletesRoutineGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+/*        AthletesList.setCellFactory(nodeListView -> new PersonListCellFactory(false));
+        AthletesList.getSelectionModel().selectedItemProperty().
+                addListener(new ChangeListener<>() {
+                    @Override
+                    public void changed(ObservableValue<? extends UserBean> observableValue, UserBean oldItem, UserBean newItem) {
+                        setInfoBox(newItem);
+                    }
+                });*/
     }
 }
