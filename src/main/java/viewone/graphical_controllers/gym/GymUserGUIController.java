@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class GymUserGUIController implements Initializable {
 
-    @FXML private ListView<String> AthletesList;
+    @FXML private ListView<String> athletesList;
 
     @FXML
     public void goBack(MouseEvent event) throws Exception {
@@ -38,6 +38,6 @@ public class GymUserGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<String> Lista = new ArrayList<>(Arrays.asList("Luca", "Matteo", "Marco"));
-        AthletesList.getItems().addAll(Lista);
+        athletesList.getItems().addAll(Lista);
     }
 }

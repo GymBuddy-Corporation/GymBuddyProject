@@ -163,7 +163,7 @@
            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;
            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <ListView fx:id="AthletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0"
+   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0"
              prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
 
    <Text fx:id="usernameText11" layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Athletes" textAlignment="CENTER" wrappingWidth="356.5999710083008">

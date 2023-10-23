@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class AthletesRoutineGUIController implements Initializable {
 
     @FXML
-    private ListView<String> AthletesList;
+    private ListView<String> athletesList;
 
     @FXML
     public void goBack() throws Exception {
@@ -40,8 +40,8 @@ public class AthletesRoutineGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-/*        AthletesList.setCellFactory(nodeListView -> new PersonListCellFactory(false));
-        AthletesList.getSelectionModel().selectedItemProperty().
+/*        athletesList.setCellFactory(nodeListView -> new PersonListCellFactory(false));
+        athletesList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
                     public void changed(ObservableValue<? extends UserBean> observableValue, UserBean oldItem, UserBean newItem) {

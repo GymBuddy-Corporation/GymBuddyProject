@@ -115,7 +115,7 @@
       </fill>
    </Text>
    <Button fx:id="login2" layoutX="60.0" layoutY="151.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <ListView fx:id="AthletesList" editable="true" layoutX="85.0" layoutY="166.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="166.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
 
 
    

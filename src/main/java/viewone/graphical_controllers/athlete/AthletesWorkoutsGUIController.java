@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class AthletesWorkoutsGUIController implements Initializable {
 
     @FXML
-    private ListView<String> AthletesList;
+    private ListView<String> athletesList;
 
     @FXML
     public void goBack() throws Exception {
@@ -41,6 +41,6 @@ public class AthletesWorkoutsGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<String> Lista = new ArrayList<>(Arrays.asList("13/05/2023", "23/08/2023", "05/10/2023"));
-        AthletesList.getItems().addAll(Lista);
+        athletesList.getItems().addAll(Lista);
     }
 }

@@ -153,7 +153,7 @@
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <ListView fx:id="AthletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
 
 
 
