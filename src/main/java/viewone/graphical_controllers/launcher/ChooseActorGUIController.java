@@ -17,7 +17,7 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private ImageView gym;
     @FXML private ImageView pt;
     @FXML private ImageView user;
-//TODO: devo trovare una solzione per i radio button, li posso lasciare cosi oppure creare una classe che gli gestisce
+//TODO: devo trovare una soluzione per i radio button, li posso lasciare cosi oppure creare una classe che gli gestisce
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
