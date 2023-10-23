@@ -21,6 +21,6 @@ public class AthleteLoginGUIController {
 
 
     public void getInfo() throws Exception {
-
+        //TODO Connected with the LogoInfoButton
     }
 }

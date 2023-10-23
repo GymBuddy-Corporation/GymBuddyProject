@@ -28,7 +28,7 @@ public class GymLoginGUIController {
 
 
     public void getInfo(MouseEvent event) throws Exception {
-
+        //TODO Connected with the LogoInfoButton
     }
 
 
