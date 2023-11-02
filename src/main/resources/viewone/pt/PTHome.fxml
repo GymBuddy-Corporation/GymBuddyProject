@@ -11,9 +11,133 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.pt.PTHomeGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.PTHomeGUIController">
+   <Button layoutX="408.0" layoutY="324.0" mnemonicParsing="false" onAction="#manageWorkouts" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.leftAnchor="492.5" AnchorPane.topAnchor="325.0">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
+   <Button layoutX="408.0" layoutY="225.0" mnemonicParsing="false" onAction="#manageWorkouts" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.leftAnchor="408.0" AnchorPane.topAnchor="225.0">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
+   <Button layoutX="609.0" layoutY="151.0" mnemonicParsing="false" onAction="#manageWorkouts" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="225.0">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
+   <Text layoutX="595.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Workout Routines Request" textAlignment="CENTER" wrappingWidth="156.0" AnchorPane.topAnchor="227.677978515625">
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.75" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="416.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Workout Routines" textAlignment="CENTER" wrappingWidth="156.0" AnchorPane.topAnchor="228.677978515625">
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.75" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="500.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Communication" textAlignment="CENTER" wrappingWidth="156.0">
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.75" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
 
    <Text layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">
       <font>
@@ -93,9 +217,11 @@
    <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="741.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoNoNotification96.png" />
    </ImageView>
-   <Text layoutX="316.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Athletes" textAlignment="CENTER" wrappingWidth="187.65198850631714">
+   <Button fx:id="login21" layoutX="42.0" layoutY="152.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="350.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <ListView fx:id="athletesList1" editable="true" layoutX="67.0" layoutY="167.0" prefHeight="270.0" prefWidth="300.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <Text layoutX="108.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gym Communications" textAlignment="CENTER" wrappingWidth="217.60000000000002">
       <font>
-         <Font name="Allerta Stencil Regular" size="27.0" />
+         <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
       <fill>
          <LinearGradient endY="0.3977272420218496">
@@ -114,8 +240,6 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button fx:id="login2" layoutX="60.0" layoutY="151.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="166.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
 
 
    

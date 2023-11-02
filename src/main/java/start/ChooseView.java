@@ -24,7 +24,7 @@ public class ChooseView implements Initializable {
         if(viewoneSelection.isSelected()) {
             application = new viewone.GymBuddy();
         } else {
-            application = new viewtwo.GymBuddy(); // Cambiato in viewtwo
+            application = new viewtwo.GymBuddy();
         }
         application.start(new Stage());
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
