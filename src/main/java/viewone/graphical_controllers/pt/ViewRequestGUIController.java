@@ -19,7 +19,7 @@ public class ViewRequestGUIController implements Initializable {
 
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/athlete/PTHome.fxml";
+        String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
     public void logout() throws Exception {

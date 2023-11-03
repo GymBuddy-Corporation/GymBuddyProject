@@ -6,11 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.athlete.AthletesWorkoutsGUIController">
-
-   <Button layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#askForNewRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.athlete.AthletesWorkoutsGUIController">
 
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoCircle96.png" />
@@ -179,6 +175,8 @@
    </ImageView>
 
    <Button layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#modifyRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+
+   <Button layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#askForNewRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
 
 

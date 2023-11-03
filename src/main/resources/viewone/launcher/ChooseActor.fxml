@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.launcher.ChooseActorGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.ChooseActorGUIController">
 
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="730.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoLanguages96.png" />
    </ImageView>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
@@ -33,7 +29,7 @@
    <ImageView fx:id="user" fitHeight="20.0" fitWidth="20.0" layoutX="556.0" layoutY="240.0" onMouseClicked="#setBottoneuser" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoEmptyButton96.png" />
    </ImageView>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="730.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
    <Label layoutX="307.0" layoutY="158.0" prefHeight="38.0" prefWidth="199.0" text="Who are you?" textAlignment="CENTER">

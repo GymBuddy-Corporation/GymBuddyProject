@@ -12,8 +12,19 @@ import javafx.stage.Stage;
 
 public class PTHomeGUIController {
     @FXML
-    public void manageWorkouts(ActionEvent event) throws Exception {
-        String path="/viewone/gym/GymUserView.fxml";
+    public void sendCommunication(ActionEvent event) throws Exception {
+        //TODO gestisci le comunicazioni con i propri atleti
+    }
+
+    @FXML
+    public void manageWorkoutRoutines(ActionEvent event) throws Exception {
+        String path="/viewone/pt/ManageWorkoutRoutines.fxml";
+        SwitchPage.setStage(MainStage.stage,path);
+    }
+
+    @FXML
+    public void viewRequests(ActionEvent event) throws Exception {
+        String path="/viewone/pt/ViewWorkoutRoutineRequests.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 

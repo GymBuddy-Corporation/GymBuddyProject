@@ -297,7 +297,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="730.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoNoNotification96.png" />
    </ImageView>
    <Text layoutX="319.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" textAlignment="CENTER" wrappingWidth="162.65198850631714">

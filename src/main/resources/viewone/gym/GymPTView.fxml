@@ -171,9 +171,9 @@
       </fill>
    </Text>
 
-   <Button fx:id="add" layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addPT" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-
    <Button fx:id="delete" layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#deletePT" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+
+   <Button fx:id="add" layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addPT" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
 
 </AnchorPane>
