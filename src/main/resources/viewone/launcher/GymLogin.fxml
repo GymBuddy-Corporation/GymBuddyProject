@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.gym.GymLoginGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.gym.GymLoginGUIController">
 
    <prefHeight>500.0</prefHeight>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack">
-      <Image url="@../images/LogoBackPage96.png" />
-   </ImageView>
 
    <ImageView fx:id="GymBuddy" fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
@@ -65,9 +66,14 @@
       </font>
    </Label>
    <PasswordField layoutX="319.0" layoutY="302.0" prefHeight="26.0" prefWidth="168.0" />
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack">
+      <image>
+         <Image url="@../../../../../../GymBuddy/GymBuddyProject/src/main/resources/viewone/images/LogoBackPage96.png" />
+      </image>
+   </ImageView>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward">
       <image>
-         <Image url="@../images/LogoNextPage96.png" />
+         <Image url="@../../../../../../GymBuddy/GymBuddyProject/src/main/resources/viewone/images/LogoNextPage96.png" />
       </image>
    </ImageView>
 

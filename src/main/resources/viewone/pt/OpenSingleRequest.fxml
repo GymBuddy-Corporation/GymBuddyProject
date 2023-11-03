@@ -6,8 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.SingleRequestGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.SingleRequestGUIController">
    <Text layoutX="572.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Routine" textAlignment="CENTER" wrappingWidth="106.39990234375" AnchorPane.topAnchor="200.845947265625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
@@ -80,7 +79,7 @@
       <Image url="@../images/LogoUser96.png" />
    </ImageView>
    <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <Button layoutX="69.0" layoutY="43.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-background-radius: 5em; -fx-border-radius: 5em;">
+   <Button layoutX="69.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="23.0" prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-background-radius: 5em; -fx-border-radius: 5em;">
       <textFill>
          <LinearGradient>
             <stops>

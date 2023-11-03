@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.PTHomeGUIController">
-   <Text layoutX="505.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Communication" textAlignment="CENTER" wrappingWidth="156.0">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.PTHomeGUIController">
+   <Text layoutX="446.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Athletes" textAlignment="CENTER" wrappingWidth="104.0" AnchorPane.topAnchor="250.845947265625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
       </font>
@@ -28,7 +33,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Text layoutX="421.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Workout Routines" textAlignment="CENTER" wrappingWidth="156.0" AnchorPane.topAnchor="251.677978515625">
+   <Text layoutX="600.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Communication" textAlignment="CENTER" wrappingWidth="156.0">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
       </font>
@@ -49,7 +54,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Text layoutX="600.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Workout Routines Request" textAlignment="CENTER" wrappingWidth="156.0" AnchorPane.topAnchor="250.677978515625">
+   <Text layoutX="505.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Workout Routines Request" textAlignment="CENTER" wrappingWidth="156.0" AnchorPane.topAnchor="353.845947265625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
       </font>
@@ -70,7 +75,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button layoutX="498.0" layoutY="348.0" mnemonicParsing="false" onAction="#sendCommunication" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.leftAnchor="498.0" AnchorPane.topAnchor="348.0">
+   <Button layoutX="593.0" layoutY="248.0" mnemonicParsing="false" onAction="#sendCommunication" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.leftAnchor="593.0" AnchorPane.topAnchor="248.0">
       <textFill>
          <LinearGradient>
             <stops>
@@ -91,7 +96,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <Button layoutX="413.0" layoutY="248.0" mnemonicParsing="false" onAction="#manageWorkoutRoutines" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.leftAnchor="413.0" AnchorPane.topAnchor="248.0">
+   <Button layoutX="413.0" layoutY="248.0" mnemonicParsing="false" onAction="#yourAthletes" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.leftAnchor="413.0" AnchorPane.topAnchor="248.0">
       <textFill>
          <LinearGradient>
             <stops>
@@ -112,7 +117,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <Button layoutX="593.0" layoutY="248.0" mnemonicParsing="false" onAction="#viewRequests" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.rightAnchor="37.39999999999998" AnchorPane.topAnchor="248.0">
+   <Button layoutX="498.0" layoutY="351.0" mnemonicParsing="false" onAction="#viewRequests" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.rightAnchor="132.39999999999998" AnchorPane.topAnchor="351.0">
       <textFill>
          <LinearGradient>
             <stops>
@@ -163,7 +168,7 @@
       <Image url="@../images/LogoUser96.png" />
    </ImageView>
    <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <Button layoutX="69.0" layoutY="43.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-background-radius: 5em; -fx-border-radius: 5em;">
+   <Button layoutX="69.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="23.0" prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-background-radius: 5em; -fx-border-radius: 5em;">
       <textFill>
          <LinearGradient>
             <stops>

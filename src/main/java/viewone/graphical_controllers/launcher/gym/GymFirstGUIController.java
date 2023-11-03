@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import viewone.GymBuddy;
 
 public class GymFirstGUIController {
-
+    //TODO sistema sti cazzo di pulsanti avanti indietro che non apparono
     @FXML
     protected void login(ActionEvent event) throws Exception {
         String path = "/viewone/launcher/GymLogin.fxml";

@@ -64,7 +64,7 @@
    <TextField id="Username" layoutX="130.0" layoutY="298.0" />
    <TextField id="Password" layoutX="316.0" layoutY="298.0" />
 
-   <TextField id="Fiscal Code" layoutX="130.0" layoutY="361.0" prefHeight="26.0" prefWidth="338.0" />
+   <TextField id="Fiscal Code" layoutX="242.0" layoutY="361.0" prefHeight="26.0" prefWidth="338.0" />
 
    <Label layoutX="130.0" layoutY="160.0" prefHeight="23.0" prefWidth="61.0" text="Name">
       <textFill>
@@ -163,44 +163,11 @@
       </font>
    </Label>
 
-   <Label layoutX="130.0" layoutY="337.0" prefHeight="23.0" prefWidth="104.0" text="Fiscal Code">
+   <Label layoutX="242.0" layoutY="337.0" prefHeight="23.0" prefWidth="104.0" text="Fiscal Code">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
                <Stop color="#00e4af" />
-               <Stop color="#5d7cf3" offset="1.0" />
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-   <TextField id="Username" layoutX="510.0" layoutY="360.0" prefHeight="26.0" prefWidth="62.0" />
-   <Label layoutX="510.0" layoutY="337.0" prefHeight="23.0" prefWidth="84.0" text="Height">
-      <textFill>
-         <LinearGradient endX="0.5" endY="1.0">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color green="0.8941176533699036" blue="0.686274528503418" />
-                  </color></Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
-                  </color></Stop>
-            </stops>
-         </LinearGradient>
-      </textFill>
-      <font>
-         <Font name="Allerta Stencil Regular" size="16.0" />
-      </font>
-   </Label>
-   <Label layoutX="603.0" layoutY="337.0" prefHeight="23.0" prefWidth="62.0" text="Weight">
-      <textFill>
-         <LinearGradient endX="0.5">
-            <stops>
-               <Stop color="#00e4af" offset="0.0" />
                <Stop color="#5d7cf3" offset="1.0" />
             </stops>
          </LinearGradient>
@@ -222,7 +189,7 @@
          <Font name="Allerta Stencil Regular" size="16.0" />
       </font>
    </Label>
-   <TextField id="Password" layoutX="509.0" layoutY="297.0" />
+   <TextField id="Password" layoutX="509.0" layoutY="297.0" prefHeight="26.0" prefWidth="175.0" />
    <Label layoutX="509.0" layoutY="276.0" prefHeight="23.0" prefWidth="104.0" text="Birth Place">
       <textFill>
          <LinearGradient endX="0.5">
@@ -236,7 +203,6 @@
          <Font name="Allerta Stencil Regular" size="16.0" />
       </font>
    </Label>
-   <TextField id="Username" layoutX="603.0" layoutY="361.0" prefHeight="26.0" prefWidth="62.0" />
    <Button id="Contorno" layoutX="351.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#submit" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" text="Submit" textAlignment="CENTER">
       <textFill>
          <LinearGradient>

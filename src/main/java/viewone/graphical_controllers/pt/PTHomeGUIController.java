@@ -15,7 +15,15 @@ public class PTHomeGUIController {
     public void sendCommunication(ActionEvent event) throws Exception {
         //TODO gestisci le comunicazioni con i propri atleti
     }
-
+    @FXML
+    public void yourAthletes(ActionEvent event) throws Exception {
+        //TODO fai la stampa degli atleti
+    }
+    @FXML
+    public void logout() throws Exception {
+        String path = "/viewone/launcher/PTLogin.fxml";
+        SwitchPage.setStage(MainStage.stage,path);
+    }
     @FXML
     public void manageWorkoutRoutines(ActionEvent event) throws Exception {
         String path="/viewone/pt/ManageWorkoutRoutines.fxml";
