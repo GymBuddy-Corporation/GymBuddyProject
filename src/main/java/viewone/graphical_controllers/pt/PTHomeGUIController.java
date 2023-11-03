@@ -12,11 +12,9 @@ import javafx.stage.Stage;
 
 public class PTHomeGUIController {
     @FXML
-    public void manageAthletes(ActionEvent event) throws Exception {
-        Stage newStage = new Stage();
+    public void manageWorkouts(ActionEvent event) throws Exception {
         String path="/viewone/gym/GymUserView.fxml";
         SwitchPage.setStage(MainStage.stage,path);
-
     }
 
 
