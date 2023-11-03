@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
 
-public class SingleRequestGUIController {
+public class CreateNewRoutineGUIController {
 
     @FXML
     public void goBack() throws Exception {
@@ -17,8 +17,8 @@ public class SingleRequestGUIController {
         SwitchPage.setStage(MainStage.stage,path);
     }
     @FXML
-    public void editRoutine() throws Exception {
-        //TODO gestisci la modifica di una scheda già esistente
+    public void editExercise() throws Exception {
+        //TODO gestisci la modifica di un esercizio già esistente
         String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
@@ -27,14 +27,14 @@ public class SingleRequestGUIController {
         String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
-    public void createNewRoutine() throws Exception {
-        //TODO gestisci la creazione di una nuova scheda
-        String path = "/viewone/pt/CreateNewWorkoutRoutine.fxml";
+    public void addNewExercise() throws Exception {
+        //TODO gestisci l'aggiunta di un esercizio
+        String path = "/viewone/pt/AddExercise.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
     @FXML
-    public void cancelRequest() throws Exception {
-        //TODO gestisci la cancellazione di una richiesta
+    public void cancelExercise() throws Exception {
+        //TODO gestisci la cancellazione di un esercizio
         String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }

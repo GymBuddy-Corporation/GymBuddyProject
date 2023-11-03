@@ -29,7 +29,7 @@ public class ViewRequestGUIController implements Initializable {
     @FXML
     public void openRequest() throws Exception {
         //TODO gestisci la visualizzazione di una richiesta
-        String path = "/viewone/launcher/PTLogin.fxml";
+        String path = "/viewone/pt/OpenSingleRequest.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 
