@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
 
-public class CreateNewRoutineGUIController {
+public class ManageWorkoutRoutineGUIController {
 
     @FXML
     public void goBack() throws Exception {

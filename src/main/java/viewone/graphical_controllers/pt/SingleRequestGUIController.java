@@ -19,7 +19,7 @@ public class SingleRequestGUIController {
     @FXML
     public void editRoutine() throws Exception {
         //TODO gestisci la modifica di una scheda già esistente
-        String path = "/viewone/pt/PTHome.fxml";
+        String path = "/viewone/pt/ManageWorkoutRoutine.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
     @FXML
@@ -29,7 +29,7 @@ public class SingleRequestGUIController {
     }
     public void createNewRoutine() throws Exception {
         //TODO gestisci la creazione di una nuova scheda
-        String path = "/viewone/pt/CreateNewWorkoutRoutine.fxml";
+        String path = "/viewone/pt/ManageWorkoutRoutine.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
     @FXML

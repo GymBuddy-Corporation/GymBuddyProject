@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.ProfilePTGUIController">
+   <Text layoutX="631.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Account" textAlignment="CENTER" wrappingWidth="106.39990234375" AnchorPane.topAnchor="436.845947265625">
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.75" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+
+    <ImageView fitHeight="150.0" fitWidth="239.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/LogoGymBuddy.png" />
+    </ImageView>
+   <ImageView id="Back" fitHeight="65.0" fitWidth="65.0" layoutX="39.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoUser96.png" />
+   </ImageView>
+   <Button layoutX="439.0" layoutY="169.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="332.0" style="-fx-background-color: rgba(0, 0, 0, 0.25); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Text layoutX="92.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Profile" textAlignment="CENTER" wrappingWidth="180.40004882812514">
+      <font>
+         <Font name="Allerta Stencil Regular" size="27.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="18.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoHome96.png" />
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoCancel96.png" />
+   </ImageView>
+   <Button layoutX="619.0" layoutY="433.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(255, 255, 255, 0.15);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.rightAnchor="11.399999999999977" AnchorPane.topAnchor="433.0">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
+   <VBox layoutX="50.0" layoutY="188.0" prefHeight="127.0" prefWidth="194.0">
+      <children>
+         <HBox prefHeight="54.0" prefWidth="262.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="150.0">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="200.0">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+            </children>
+         </HBox>
+         <HBox prefHeight="52.0" prefWidth="318.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City" wrappingWidth="150.0">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="200.0">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+            </children>
+         </HBox>
+         <HBox prefHeight="24.0" prefWidth="330.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN:" textAlignment="CENTER" wrappingWidth="56.799896240234375">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN NUMBER" textAlignment="CENTER" wrappingWidth="298.3999328613281">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+   <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="273.0" layoutY="125.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoModify96.png" />
+      </image>
+   </ImageView>
+   <VBox layoutX="483.0" layoutY="186.0" prefHeight="36.0" prefWidth="244.0">
+      <children>
+         <HBox prefHeight="50.0" prefWidth="244.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="CENTER" wrappingWidth="120.79998779296875">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="CENTER" wrappingWidth="123.199951171875">
+                  <font>
+                     <Font name="Allerta Stencil Regular" size="17.75" />
+                  </font>
+                  <fill>
+                     <LinearGradient endY="0.3977272420218496">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color green="0.8941176533699036" blue="0.686274528503418" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </fill>
+               </Text>
+            </children>
+         </HBox>
+         <HBox prefHeight="44.0" prefWidth="244.0" />
+      </children>
+   </VBox>
+   <Text layoutX="485.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Credentials" textAlignment="CENTER" wrappingWidth="239.0">
+      <font>
+         <Font name="Allerta Stencil Regular" size="27.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoBackPage96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="263.0" layoutY="116.0" onMouseClicked="#editProfile" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoCircle96.png" />
+      </image>
+   </ImageView>
+
+   
+
+</AnchorPane>

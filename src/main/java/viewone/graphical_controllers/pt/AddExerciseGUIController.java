@@ -24,7 +24,7 @@ public class AddExerciseGUIController {
     @FXML
     public void addNewExercise() throws Exception {
         //TODO gestisci l'aggiunta di un esercizio
-        String path = "/viewone/pt/CreateNewWorkoutRoutine.fxml";
+        String path = "/viewone/pt/ManageWorkoutRoutine.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
 

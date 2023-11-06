@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 public class PTHomeGUIController {
     @FXML
     public void sendCommunication(ActionEvent event) throws Exception {
-        //TODO gestisci le comunicazioni con i propri atleti
+        String path = "/viewone/pt/SendPTCommunication.fxml";
+        SwitchPage.setStage(MainStage.stage,path);
     }
     @FXML
     public void yourAthletes(ActionEvent event) throws Exception {

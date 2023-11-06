@@ -218,7 +218,13 @@
       </fill>
    </Text>
    <Spinner editable="true" initialValue="0" layoutX="113.0" layoutY="381.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" />
-   <Spinner editable="true" initialValue="0" layoutX="372.0" layoutY="380.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" />
+   <Spinner editable="true" initialValue="0" layoutX="374.0" layoutY="381.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" />
+   <SplitMenuButton layoutX="510.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0">
+     <items>
+       <MenuItem mnemonicParsing="false" text="Action 1" />
+       <MenuItem mnemonicParsing="false" text="Action 2" />
+     </items>
+   </SplitMenuButton>
 
    
 

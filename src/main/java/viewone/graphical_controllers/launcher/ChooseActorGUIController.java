@@ -1,11 +1,9 @@
 package viewone.graphical_controllers.launcher;
 import utils.MainStage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import utils.SwitchPage;
 
 import java.net.URL;
@@ -18,6 +16,7 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private ImageView pt;
     @FXML private ImageView user;
 //TODO: devo trovare una soluzione per i radio button, li posso lasciare cosi oppure creare una classe che gli gestisce
+    //Sono Luca e ho copiato qesto codice nei send communication
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

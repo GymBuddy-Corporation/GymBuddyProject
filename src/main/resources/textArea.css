@@ -1,0 +1,8 @@
+.text-area{
+    -fx-font-size: 15px;
+    -fx-background-color:  rgb(50, 0, 0);
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-font-family: "Allerta Stencil";
+}
+
+
