@@ -180,7 +180,7 @@
          </HBox>
          <HBox prefHeight="24.0" prefWidth="330.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN" textAlignment="CENTER" wrappingWidth="56.799896240234375">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN:" textAlignment="CENTER" wrappingWidth="56.799896240234375">
                   <font>
                      <Font name="Allerta Stencil Regular" size="17.75" />
                   </font>

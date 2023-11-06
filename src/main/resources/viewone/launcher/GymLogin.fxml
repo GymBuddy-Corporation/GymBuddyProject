@@ -66,14 +66,14 @@
       </font>
    </Label>
    <PasswordField layoutX="319.0" layoutY="302.0" prefHeight="26.0" prefWidth="168.0" />
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack">
-      <image>
-         <Image url="@../../../../../../GymBuddy/GymBuddyProject/src/main/resources/viewone/images/LogoBackPage96.png" />
-      </image>
-   </ImageView>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward">
       <image>
-         <Image url="@../../../../../../GymBuddy/GymBuddyProject/src/main/resources/viewone/images/LogoNextPage96.png" />
+         <Image url="@../images/LogoNextPage96.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack">
+      <image>
+         <Image url="@../images/LogoBackPage96.png" />
       </image>
    </ImageView>
 
