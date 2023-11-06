@@ -14,11 +14,12 @@ public class PTHomeGUIController {
     @FXML
     public void sendCommunication(ActionEvent event) throws Exception {
         String path = "/viewone/pt/SendPTCommunication.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.stage, path);
     }
     @FXML
     public void yourAthletes(ActionEvent event) throws Exception {
-        //TODO fai la stampa degli atleti
+        String path = "/viewone/pt/ViewYourAthletes.fxml";
+        SwitchPage.setStage(MainStage.stage, path);
     }
     @FXML
     public void logout() throws Exception {
