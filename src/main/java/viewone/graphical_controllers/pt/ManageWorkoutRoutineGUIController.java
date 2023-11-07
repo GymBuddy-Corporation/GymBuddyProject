@@ -1,10 +1,23 @@
 package viewone.graphical_controllers.pt;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import utils.MainStage;
 import utils.SwitchPage;
 
 public class ManageWorkoutRoutineGUIController {
+
+    @FXML private RadioButton fridayRadioButton;
+    @FXML private RadioButton mondayRadioButton;
+    @FXML private RadioButton saturdayRadioButton;
+    @FXML private TextField searchExerciseText;
+
+    @FXML private RadioButton sundayRadioButton;
+    @FXML private RadioButton thursdayRadioButton;
+    @FXML private RadioButton tuesdayRadioButton;
+    @FXML private RadioButton wednesdayRadioButton;
 
     @FXML
     public void goBack() throws Exception {
