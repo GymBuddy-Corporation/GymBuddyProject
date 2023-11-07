@@ -40,13 +40,6 @@ public class AthletesRoutineGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-/*        athletesList.setCellFactory(nodeListView -> new PersonListCellFactory(false));
-        athletesList.getSelectionModel().selectedItemProperty().
-                addListener(new ChangeListener<>() {
-                    @Override
-                    public void changed(ObservableValue<? extends UserBean> observableValue, UserBean oldItem, UserBean newItem) {
-                        setInfoBox(newItem);
-                    }
-                });*/
+
     }
 }

@@ -37,11 +37,7 @@ public class ChooseActorGUIController implements Initializable {
     Image full;
 
 
-    private void resetButtons(){
-        gym.setImage(empty);
-        pt.setImage(empty);
-        user.setImage(empty);
-    }
+
 @FXML
     public void setBottonegym()throws  Exception{
         pt.setImage(empty);

@@ -29,15 +29,12 @@ public class SendGymCommunicationGUIController implements Initializable {
     Image empty;
     Image full;
 
-    enum Selezione{
+    enum Selezione{//TODO: Da rimuovere i bottoni radio belli e implementarli con una classe
         PT,
         USER
     }
 
-    private void resetButtons(){
-        pt.setImage(empty);
-        user.setImage(empty);
-    }
+
     @FXML
     public void logout() throws Exception {
         String path = "/viewone/launcher/GymFirst.fxml";
