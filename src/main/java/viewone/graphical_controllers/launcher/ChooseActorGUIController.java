@@ -33,7 +33,8 @@ public class ChooseActorGUIController implements Initializable {
     }
 
     Selezione scelta;
-    Image empty,full;
+    Image empty;
+    Image full;
 
 
     private void resetButtons(){

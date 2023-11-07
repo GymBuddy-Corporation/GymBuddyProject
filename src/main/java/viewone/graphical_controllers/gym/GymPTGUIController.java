@@ -50,7 +50,7 @@ public class GymPTGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<String> Lista = new ArrayList<>(Arrays.asList("Alex", "Nazare", "Alex Nazare"));
-        athletesList.getItems().addAll(Lista);
+        List<String> lista = new ArrayList<>(Arrays.asList("Alex", "Nazare", "Alex Nazare"));
+        athletesList.getItems().addAll(lista);
     }
 }

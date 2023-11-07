@@ -26,7 +26,8 @@ public class SendGymCommunicationGUIController implements Initializable {
     }
 
     SendGymCommunicationGUIController.Selezione scelta;
-    Image empty,full;
+    Image empty;
+    Image full;
 
     enum Selezione{
         PT,

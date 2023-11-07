@@ -45,7 +45,7 @@ public class GymEquipmentGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<String> Lista = new ArrayList<>(Arrays.asList("Panca Piana", "Panca Inclinata", "Lat Machine"));
-        athletesList.getItems().addAll(Lista);
+        List<String> lista = new ArrayList<>(Arrays.asList("Panca Piana", "Panca Inclinata", "Lat Machine"));
+        athletesList.getItems().addAll(lista);
     }
 }

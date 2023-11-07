@@ -31,8 +31,8 @@
       <Image url="@../images/LogoHome96.png" />
    </ImageView>
 
-   <RadioButton fx:id="Male" layoutX="509.0" layoutY="181.0" mnemonicParsing="false" />
-   <RadioButton fx:id="Female" layoutX="595.0" layoutY="181.0" mnemonicParsing="false" />
+   <RadioButton fx:id="male" layoutX="509.0" layoutY="181.0" mnemonicParsing="false" />
+   <RadioButton fx:id="female" layoutX="595.0" layoutY="181.0" mnemonicParsing="false" />
 
    <TextField id="Name" layoutX="130.0" layoutY="181.0" />
    <TextField id="Surname" layoutX="316.0" layoutY="181.0" />

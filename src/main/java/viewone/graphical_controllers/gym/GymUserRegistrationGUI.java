@@ -13,8 +13,8 @@ import java.util.ResourceBundle;
 
 public class GymUserRegistrationGUI implements Initializable {
 
-    @FXML RadioButton Male;
-    @FXML RadioButton Female;
+    @FXML RadioButton male;
+    @FXML RadioButton female;
 
     @FXML public void goForward() throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
@@ -29,8 +29,8 @@ public class GymUserRegistrationGUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ToggleGroup group1 = new ToggleGroup();
-        Male.setToggleGroup(group1);
-        Female.setToggleGroup(group1);
-        Male.fire();
+        male.setToggleGroup(group1);
+        female.setToggleGroup(group1);
+        male.fire();
     }
 }
