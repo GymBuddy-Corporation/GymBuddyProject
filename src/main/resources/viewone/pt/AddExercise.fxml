@@ -105,7 +105,7 @@
          </LinearGradient>
       </fill></Text>
    <Button layoutX="42.0" layoutY="127.0" mnemonicParsing="false" prefHeight="237.0" prefWidth="718.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <Text layoutX="249.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose One Exercise" textAlignment="CENTER" wrappingWidth="306.00002441406264">
+   <Text layoutX="249.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add One Exercise" textAlignment="CENTER" wrappingWidth="306.00002441406264">
       <font>
          <Font name="Allerta Stencil Regular" size="27.0" />
       </font>
@@ -126,8 +126,8 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="18.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoHome96.png" />
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="438.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoAdd96.png" />

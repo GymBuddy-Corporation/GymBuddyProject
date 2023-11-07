@@ -15,12 +15,6 @@ public class AddExerciseGUIController {
         String path = "/viewone/launcher/PTLogin.fxml";
         SwitchPage.setStage(MainStage.stage,path);
     }
-
-    @FXML
-    public void goHome() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
-    }
     @FXML
     public void addNewExercise() throws Exception {
         //TODO gestisci l'aggiunta di un esercizio
