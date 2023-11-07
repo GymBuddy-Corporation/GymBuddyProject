@@ -20,18 +20,18 @@ public class GymUserGUIController implements Initializable {
     @FXML
     public void goBack(MouseEvent event) throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     public void logout() throws Exception {
         String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML
     public void addAthlete(MouseEvent event) throws Exception {
         String path = "/viewone/gym/GymRegistrationUser.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
 

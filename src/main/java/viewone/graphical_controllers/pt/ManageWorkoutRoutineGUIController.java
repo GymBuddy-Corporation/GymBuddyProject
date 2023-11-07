@@ -9,33 +9,33 @@ public class ManageWorkoutRoutineGUIController {
     @FXML
     public void goBack() throws Exception {
         String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void logout() throws Exception {
         String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void editExercise() throws Exception {
         //TODO gestisci la modifica di un esercizio già esistente
         String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void goHome() throws Exception {
         String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     public void addNewExercise() throws Exception {
         //TODO gestisci l'aggiunta di un esercizio
         String path = "/viewone/pt/AddExercise.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void cancelExercise() throws Exception {
         //TODO gestisci la cancellazione di un esercizio
         String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 }

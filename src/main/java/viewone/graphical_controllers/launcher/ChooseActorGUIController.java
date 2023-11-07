@@ -72,7 +72,7 @@ public class ChooseActorGUIController implements Initializable {
         } else if(scelta==Selezione.USER) {
              path = "/viewone/launcher/AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         }else{return;}
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     public void changeLanguage() {

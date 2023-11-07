@@ -17,13 +17,13 @@ public class GymFirstGUIController {
     @FXML
     protected void login(ActionEvent event) throws Exception {
         String path = "/viewone/launcher/GymLogin.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
 
     }
 
     @FXML protected void registration(ActionEvent event) throws Exception {
        String path = "/viewone/launcher/GymRegistration.fxml";
-       SwitchPage.setStage(MainStage.stage,path);
+       SwitchPage.setStage(MainStage.getStage(),path);
 
     }
 
@@ -33,7 +33,7 @@ public class GymFirstGUIController {
 
     @FXML public void goBack(MouseEvent event) throws Exception {
         String path = "/viewone/launcher/ChooseActor.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
 
     }
 

@@ -22,11 +22,11 @@ public class AthletesRoutineGUIController implements Initializable {
     @FXML
     public void goBack() throws Exception {
         String path = "/viewone/athlete/AthleteHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     public void logout() throws Exception {
         String path = "/viewone/launcher/AthleteLogin.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void askForNewRoutine() throws Exception {

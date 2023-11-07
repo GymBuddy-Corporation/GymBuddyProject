@@ -14,13 +14,13 @@ public class PTLoginGUIController {
     @FXML
     public void goForward() throws Exception {
         String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML
     public void goBack() throws Exception {
        String path = "/viewone/launcher/ChooseActor.fxml";
-       SwitchPage.setStage(MainStage.stage,path);
+       SwitchPage.setStage(MainStage.getStage(),path);
     }
 
 

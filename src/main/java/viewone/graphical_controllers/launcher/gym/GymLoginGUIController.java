@@ -16,13 +16,13 @@ public class GymLoginGUIController {
     @FXML
     public void goForward(MouseEvent event) throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML
     public void goBack(MouseEvent event) throws Exception {
         String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
 

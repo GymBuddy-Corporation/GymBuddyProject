@@ -18,7 +18,7 @@ public class GymPTRegistrationGUI implements Initializable {
 
     @FXML public void home() throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML public void info() throws Exception {
@@ -27,12 +27,12 @@ public class GymPTRegistrationGUI implements Initializable {
 
     @FXML public void goBack() throws Exception {
         String path = "/viewone/gym/GymPTView.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML public void submit() throws Exception {
         String path = "/viewone/gym/GymPTView.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     } //TODO questo diventa il popup da sitemare e cliccabile solo se ogni campo è stato colmato, sennò stampa "ci sono campi incompleti".
 
 

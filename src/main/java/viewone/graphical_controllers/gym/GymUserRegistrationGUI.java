@@ -18,12 +18,12 @@ public class GymUserRegistrationGUI implements Initializable {
 
     @FXML public void goForward() throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML public void goBack() throws Exception {
         String path = "/viewone/gym/GymUserView.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @Override

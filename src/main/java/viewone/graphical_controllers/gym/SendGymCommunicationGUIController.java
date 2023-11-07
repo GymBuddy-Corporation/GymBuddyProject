@@ -40,7 +40,7 @@ public class SendGymCommunicationGUIController implements Initializable {
     @FXML
     public void logout() throws Exception {
         String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void setBottonept()throws  Exception{
@@ -51,12 +51,12 @@ public class SendGymCommunicationGUIController implements Initializable {
     @FXML
     public void sendCommunication() throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void goBack() throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void setBottoneuser()throws  Exception{
@@ -72,6 +72,6 @@ public class SendGymCommunicationGUIController implements Initializable {
         } else if(scelta== SendGymCommunicationGUIController.Selezione.USER) {
             path = "/viewone/launcher/AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         }else{return;}
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 }

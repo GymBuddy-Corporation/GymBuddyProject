@@ -14,28 +14,28 @@ public class PTHomeGUIController {
     @FXML
     public void sendCommunication(ActionEvent event) throws Exception {
         String path = "/viewone/pt/SendPTCommunication.fxml";
-        SwitchPage.setStage(MainStage.stage, path);
+        SwitchPage.setStage(MainStage.getStage(), path);
     }
     @FXML
     public void yourAthletes(ActionEvent event) throws Exception {
         String path = "/viewone/pt/ViewYourAthletes.fxml";
-        SwitchPage.setStage(MainStage.stage, path);
+        SwitchPage.setStage(MainStage.getStage(), path);
     }
     @FXML
     public void logout() throws Exception {
         String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
     public void manageWorkoutRoutines(ActionEvent event) throws Exception {
         String path="/viewone/pt/ManageWorkoutRoutines.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML
     public void viewRequests(ActionEvent event) throws Exception {
         String path="/viewone/pt/ViewWorkoutRoutineRequests.fxml";
-        SwitchPage.setStage(MainStage.stage,path);
+        SwitchPage.setStage(MainStage.getStage(),path);
     }
 
 
