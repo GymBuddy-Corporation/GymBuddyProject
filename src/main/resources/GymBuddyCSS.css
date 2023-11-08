@@ -8,18 +8,13 @@
 }
 
 .list-view ,.list-view .list-cell{
-    -fx-font-size: 18px;
     -fx-background-color: transparent;
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-font-family: "Allerta Stencil";
+    -fx-background-radius: 5em;
 }
 
 .list-view .list-cell:filled:hover{
-    -fx-font-size: 18px;
     -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-background-radius: 5em;
-    -fx-font-family: "Allerta Stencil";
 }
 
 .table-view .column-header-background {
