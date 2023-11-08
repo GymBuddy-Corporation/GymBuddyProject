@@ -19,38 +19,26 @@ public class ManageWorkoutRoutineGUIController {
     @FXML private RadioButton tuesdayRadioButton;
     @FXML private RadioButton wednesdayRadioButton;
 
-
-    //GESTISCI LE ECCEZIONI DOPO
     @FXML
-    public void goBack() {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void logout() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
     @FXML
-    public void logout() {
-        String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void deleteChanges() throws Exception{
+        //TODO gestisci la cancellazione dei cambiamenti
+        SwitchPage.setStage(MainStage.getStage(),"OpenSingleRequest.fxml","pt",1);
     }
     @FXML
-    public void editExercise() {
-        //TODO gestisci la modifica di un esercizio già esistente
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void goHome() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
-    @FXML
-    public void goHome() {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
-    }
-    public void addNewExercise() {
-        //TODO gestisci l'aggiunta di un esercizio
+    public void submitRoutine() throws Exception{
+        //TODO gestisci il submit di una nuova scheda
         String path = "/viewone/pt/AddExercise.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"OpenSingleRequest.fxml","pt",1);
     }
     @FXML
-    public void cancelExercise()  {
-        //TODO gestisci la cancellazione di un esercizio
-        /*String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);*/
+    public void searchExercise(){
+        //TODO gestisci la ricerca di un esercizio nel database
     }
 }

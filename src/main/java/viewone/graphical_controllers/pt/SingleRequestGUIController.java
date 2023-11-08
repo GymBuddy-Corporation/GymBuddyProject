@@ -7,7 +7,7 @@ import utils.SwitchPage;
 public class SingleRequestGUIController {
 
 
-    //TODO manage the difference between the eidt and the creation of a workout routine
+    //TODO manage the difference between the edit and the creation of a workout routine
     @FXML
     public void goBack() throws Exception {
         //TODO metti il bottone per andare indietro

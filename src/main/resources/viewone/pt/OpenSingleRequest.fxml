@@ -156,7 +156,7 @@
          <Font name="Allerta Stencil Regular" size="15.0" />
       </font>
       <fill>
-         <LinearGradient endX="1.0" endY="0.3977272420218496">
+         <LinearGradient endY="0.3977272420218496">
             <stops>
                <Stop>
                   <color>
@@ -245,9 +245,7 @@
       </fill>
    </Text>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="676.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoManage96.png" />
-      </image>
+      <Image url="@../images/LogoManage96.png"/>
    </ImageView>
    <Button layoutX="560.0" layoutY="277.0" mnemonicParsing="false" onAction="#editRoutine" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
       <textFill>
