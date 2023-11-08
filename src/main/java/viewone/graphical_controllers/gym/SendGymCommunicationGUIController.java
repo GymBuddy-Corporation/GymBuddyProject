@@ -10,6 +10,8 @@ import utils.SwitchPage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//TODO GESTISCI BENE I PASSAGGI FRA UNA SCHERAMATA E UN'ALTRA
+
 public class SendGymCommunicationGUIController implements Initializable {
 
     @FXML
@@ -38,7 +40,7 @@ public class SendGymCommunicationGUIController implements Initializable {
     @FXML
     public void logout() throws Exception {
         String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
     @FXML
     public void setBottonept()throws  Exception{
@@ -48,13 +50,11 @@ public class SendGymCommunicationGUIController implements Initializable {
     }
     @FXML
     public void sendCommunication() throws Exception {
-        String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
     @FXML
     public void setBottoneuser()throws  Exception{
@@ -66,10 +66,11 @@ public class SendGymCommunicationGUIController implements Initializable {
     public void goForward() throws Exception {
         String path;
         if (scelta== SendGymCommunicationGUIController.Selezione.PT) {
-            path = "/viewone/launcher/PTLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            path = "PTLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         } else if(scelta== SendGymCommunicationGUIController.Selezione.USER) {
-            path = "/viewone/launcher/AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            path = "AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         }else{return;}
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),path,"gym",1);
     }
+
 }

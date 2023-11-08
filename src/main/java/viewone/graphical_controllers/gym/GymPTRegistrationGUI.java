@@ -16,25 +16,19 @@ public class GymPTRegistrationGUI implements Initializable {
     RadioButton male;
     @FXML RadioButton female;
 
-    @FXML public void home() throws Exception {
-        String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
-    }
-
-    @FXML public void info() throws Exception {
-        //TODO per il pulsante info
+    @FXML
+    public void home() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
 
     @FXML public void goBack() throws Exception {
-        String path = "/viewone/gym/GymPTView.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymPTView.fxml","gym",1);
     }
 
     @FXML public void submit() throws Exception {
-        String path = "/viewone/gym/GymPTView.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
-    } //TODO questo diventa il popup da sitemare e cliccabile solo se ogni campo è stato colmato, sennò stampa "ci sono campi incompleti".
-
+        //TODO questo diventa il popup da sitemare e cliccabile solo se ogni campo è stato colmato, sennò stampa "ci sono campi incompleti".
+        SwitchPage.setStage(MainStage.getStage(),"GymPTView.fxml","gym",1);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

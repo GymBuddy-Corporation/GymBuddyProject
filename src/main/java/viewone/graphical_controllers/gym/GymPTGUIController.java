@@ -3,7 +3,6 @@ package viewone.graphical_controllers.gym;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
 
@@ -19,31 +18,27 @@ public class GymPTGUIController implements Initializable {
     private ListView<String> athletesList;
 
     @FXML
-    public void goBack(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void goBack() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
 
     public void logout() throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
 
     @FXML
-    public void goForward(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymRegistrationPT.fxml"; //TODO sistema sto path con PT al posto di User
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void goForward() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationPT.fxml","gym",1);
     }
 
 
     @FXML
-    public void addPT(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymRegistrationPT.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void addPT() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationPT.fxml","gym",1);
     }
 
     @FXML
-    public void deletePT(MouseEvent event) throws Exception {
+    public void deletePT() throws Exception {
         //TODO questo diventa il popup da sitemare e cliccabile solo se è stata scelta almeno un'opzione dalla ListView.
     }
 

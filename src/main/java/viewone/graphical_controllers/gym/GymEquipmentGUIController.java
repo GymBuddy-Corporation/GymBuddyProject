@@ -3,7 +3,6 @@ package viewone.graphical_controllers.gym;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
 
@@ -19,27 +18,25 @@ public class GymEquipmentGUIController implements Initializable {
     private ListView<String> athletesList;
 
     @FXML
-    public void goBack(MouseEvent event) throws Exception {
+    public void goBack() throws Exception {
         String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
     }
 
     @FXML
-    public void goForward(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymRegistrationUser.fxml"; //TODO sistema sto path con Equipment al posto di User
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void goForward() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
     }
 
 
     @FXML
-    public void addEquipment(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymRegistrationUser.fxml"; //TODO sistema sto path con Equipment al posto di User
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void addEquipment() throws Exception {
+        //TODO fai la GUI appropriata
+        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
     }
 
     public void logout() throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
 
 

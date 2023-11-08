@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.ProfilePTGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.ProfileGymGUIController">
    <Text layoutX="631.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Account" textAlignment="CENTER" wrappingWidth="106.39990234375" AnchorPane.topAnchor="436.845947265625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
@@ -57,9 +57,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="18.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoHome96.png" />
-   </ImageView>
+
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoCancel96.png" />
    </ImageView>
@@ -226,7 +224,7 @@
          </HBox>
       </children>
    </VBox>
-   <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="273.0" layoutY="125.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="273.0" layoutY="125.0" onMouseClicked="#editProfile" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/LogoModify96.png" />
       </image>
@@ -303,15 +301,13 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoBackPage96.png" />
-      </image>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack"
+              pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoBackPage96.png"/>
    </ImageView>
-   <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="263.0" layoutY="116.0" onMouseClicked="#editProfile" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoCircle96.png" />
-      </image>
+   <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="263.0" layoutY="116.0" onMouseClicked="#editProfile"
+              pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoCircle96.png"/>
    </ImageView>
 
    

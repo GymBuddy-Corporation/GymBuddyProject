@@ -8,30 +8,23 @@ public class GymHomeGUIController {
 
     @FXML
     public void manageAthletes() throws Exception {
-        String path = "/viewone/gym/GymUserView.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymUserView.fxml","gym",1);
     }
 
     @FXML
     public void managePT() throws Exception {
-        String path = "/viewone/gym/GymPTView.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymPTView.fxml","gym",1);
     }
     @FXML
     public void manageGymEquipment() throws Exception {
-        String path = "/viewone/gym/GymEquipmentView.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymEquipmentView.fxml","gym",1);
     }
     @FXML
     public void sendCommunication() throws Exception {
-        String path = "/viewone/gym/SendGymCommunication.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"SendGymCommunication.fxml","gym",1);
     }
     @FXML
     public void logout() throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
-
-
 }

@@ -17,13 +17,11 @@ public class GymUserRegistrationGUI implements Initializable {
     @FXML RadioButton female;
 
     @FXML public void goForward() throws Exception {
-        String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
 
     @FXML public void goBack() throws Exception {
-        String path = "/viewone/gym/GymUserView.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymUserView.fxml","gym",1);
     }
 
     @Override
