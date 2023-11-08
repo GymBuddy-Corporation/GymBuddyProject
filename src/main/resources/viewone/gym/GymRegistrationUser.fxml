@@ -10,7 +10,7 @@
 
    <Button id="Contorno" layoutX="83.0" layoutY="89.0" mnemonicParsing="false" prefHeight="355.0" prefWidth="634.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" textAlignment="CENTER" textFill="#300743" />
 
-   <Label layoutX="236.0" layoutY="89.0" prefHeight="61.0" prefWidth="350.0" stylesheets="@../../font.css" text="ATHLETE REGISTRATION" textAlignment="CENTER">
+   <Label layoutX="236.0" layoutY="89.0" prefHeight="61.0" prefWidth="350.0" stylesheets="@../../GymBuddyCSS.css" text="ATHLETE REGISTRATION" textAlignment="CENTER">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>

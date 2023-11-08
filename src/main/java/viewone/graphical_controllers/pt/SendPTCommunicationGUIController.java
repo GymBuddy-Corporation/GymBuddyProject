@@ -7,17 +7,15 @@ import utils.SwitchPage;
 public class SendPTCommunicationGUIController {
     @FXML
     public void logout() throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     @FXML
     public void sendCommunication() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        //TODO manage how to send the communications
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
 }

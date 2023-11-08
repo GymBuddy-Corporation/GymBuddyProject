@@ -1,8 +1,0 @@
-@font-face {
-    font-family: "Allerta Stencil";
-    src: url(AllertaStencil-Regular.ttf);
-}
-
-.Label{
-    -fx-font-family: "Allerta Stencil";
-}

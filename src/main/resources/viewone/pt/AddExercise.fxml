@@ -153,7 +153,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <ListView editable="true" layoutX="64.0" layoutY="142.0" prefHeight="208.0" prefWidth="674.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <ListView editable="true" layoutX="64.0" layoutY="142.0" prefHeight="208.0" prefWidth="674.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
    <Text layoutX="64.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sets:" wrappingWidth="46.39999999999998">
       <font>
          <Font name="Allerta Stencil Regular" size="18.0" />

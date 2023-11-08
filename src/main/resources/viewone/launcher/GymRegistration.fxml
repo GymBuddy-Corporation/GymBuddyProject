@@ -67,7 +67,7 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <Label fx:id="Registration" layoutX="173.0" layoutY="143.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../../font.css" text="Set up your account">
+   <Label fx:id="Registration" layoutX="173.0" layoutY="143.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../../GymBuddyCSS.css" text="Set up your account">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
             <stops>

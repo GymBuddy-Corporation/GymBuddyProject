@@ -15,7 +15,7 @@
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward">
       <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
-   <Label fx:id="Login" layoutX="317.0" layoutY="127.0" prefHeight="62.0" prefWidth="139.0" stylesheets="@../../font.css" text="LOGIN">
+   <Label fx:id="Login" layoutX="317.0" layoutY="127.0" prefHeight="62.0" prefWidth="139.0" stylesheets="@../../GymBuddyCSS.css" text="LOGIN">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
@@ -35,7 +35,7 @@
    <ImageView fitHeight="104.0" fitWidth="112.0" layoutX="152.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoUser96.png" />
    </ImageView>
-   <Label fx:id="Login1" layoutX="319.0" layoutY="209.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../../font.css" text="Username">
+   <Label fx:id="Login1" layoutX="319.0" layoutY="209.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../../GymBuddyCSS.css" text="Username">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
@@ -48,7 +48,7 @@
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
    </Label>
-   <Label fx:id="Login11" layoutX="319.0" layoutY="275.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../../font.css" text="Password">
+   <Label fx:id="Login11" layoutX="319.0" layoutY="275.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../../GymBuddyCSS.css" text="Password">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>

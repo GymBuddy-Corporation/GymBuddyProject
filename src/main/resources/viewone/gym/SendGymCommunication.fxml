@@ -93,7 +93,7 @@
       <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
    <Button layoutX="51.0" layoutY="134.0" mnemonicParsing="false" prefHeight="262.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <ListView editable="true" layoutX="78.0" layoutY="146.0" prefHeight="239.0" prefWidth="647.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <ListView editable="true" layoutX="78.0" layoutY="146.0" prefHeight="239.0" prefWidth="647.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
    <Text layoutX="296.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Communication" textAlignment="CENTER" wrappingWidth="210.20001220703125">
       <font>
          <Font name="Allerta Stencil Regular" size="27.0" />

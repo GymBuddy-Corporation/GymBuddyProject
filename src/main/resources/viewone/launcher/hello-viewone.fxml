@@ -14,7 +14,7 @@
          </image>
       </ImageView>
 
-      <Label fx:id="ClickHere" layoutX="292.0" layoutY="330.0" stylesheets="@../../font.css" text="Click to continue">
+      <Label fx:id="ClickHere" layoutX="292.0" layoutY="330.0" stylesheets="@../../GymBuddyCSS.css" text="Click to continue">
          <textFill>
             <LinearGradient endX="0.5" endY="1.0">
                <stops>

@@ -8,28 +8,25 @@ public class ProfilePTGUIController {
 
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     @FXML
     public void logout() throws Exception {
-        String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
     @FXML
     public void deleteAccount() throws Exception {
         //TODO gestisci l'eliminazione dell'account con notifiche e pop-up
-        String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(), path);
+        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
     @FXML
     public void goHome() throws Exception {
         String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     @FXML
     public void editProfile() throws Exception {
         String path = "/viewone/pt/ProfilePT.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
 }

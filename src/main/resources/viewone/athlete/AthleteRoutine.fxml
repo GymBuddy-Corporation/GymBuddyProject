@@ -146,7 +146,7 @@
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
    <Text layoutX="303.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active since:" textAlignment="CENTER" wrappingWidth="121.5999755859375">
       <font>
          <Font name="Allerta Stencil Regular" size="18.0" />

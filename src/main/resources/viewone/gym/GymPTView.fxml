@@ -146,7 +146,7 @@
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
-   <ListView fx:id="athletesList" editable="true" layoutX="75.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css">
+   <ListView fx:id="athletesList" editable="true" layoutX="75.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css">
    </ListView>
 
    <Text layoutX="222.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Personal Trainers" textAlignment="CENTER" wrappingWidth="356.5999710083008">
