@@ -29,12 +29,12 @@ public class AthletesWorkoutsGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
-    public void askForNewRoutine() throws Exception {
+    public void addWorkout() {
         //TODO gestisci la rischiesta di una nuova scheda
     }
 
     @FXML
-    public void modifyRoutine() throws Exception {
+    public void modifyWorkout() {
         //TODO gestisci la modifica di una scheda
     }
 

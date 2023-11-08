@@ -19,36 +19,38 @@ public class ManageWorkoutRoutineGUIController {
     @FXML private RadioButton tuesdayRadioButton;
     @FXML private RadioButton wednesdayRadioButton;
 
+
+    //GESTISCI LE ECCEZIONI DOPO
     @FXML
-    public void goBack() throws Exception {
+    public void goBack() {
         String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
-    public void logout() throws Exception {
+    public void logout() {
         String path = "/viewone/launcher/PTLogin.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
-    public void editExercise() throws Exception {
+    public void editExercise() {
         //TODO gestisci la modifica di un esercizio già esistente
         String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
-    public void goHome() throws Exception {
+    public void goHome() {
         String path = "/viewone/pt/PTHome.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }
-    public void addNewExercise() throws Exception {
+    public void addNewExercise() {
         //TODO gestisci l'aggiunta di un esercizio
         String path = "/viewone/pt/AddExercise.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
-    public void cancelExercise() throws Exception {
+    public void cancelExercise()  {
         //TODO gestisci la cancellazione di un esercizio
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        /*String path = "/viewone/pt/PTHome.fxml";
+        SwitchPage.setStage(MainStage.getStage(),path);*/
     }
 }

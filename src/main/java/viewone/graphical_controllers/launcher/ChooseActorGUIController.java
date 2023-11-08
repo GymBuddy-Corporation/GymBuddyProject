@@ -63,13 +63,13 @@ public class ChooseActorGUIController implements Initializable {
     public void goForward() throws Exception {
         String path;
         if(scelta==Selezione.GYM) {
-            path = "/viewone/launcher/GymFirst.fxml";
+            path = "GymFirst.fxml";
         } else if (scelta==Selezione.PT) {
-             path = "/viewone/launcher/PTLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+             path = "PTLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         } else if(scelta==Selezione.USER) {
-             path = "/viewone/launcher/AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+             path = "AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         }else{return;}
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
     }
 
     public void changeLanguage() {

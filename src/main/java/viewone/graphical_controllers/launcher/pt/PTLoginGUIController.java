@@ -13,18 +13,16 @@ import javafx.stage.Stage;
 public class PTLoginGUIController {
     @FXML
     public void goForward() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
 
     @FXML
     public void goBack() throws Exception {
-       String path = "/viewone/launcher/ChooseActor.fxml";
-       SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml","launcher",1);
     }
 
 
-    public void getInfo(MouseEvent event) throws Exception {
+    public void getInfo(MouseEvent event){
         //TODO Connected with the LogoInfoButton
     }
 }

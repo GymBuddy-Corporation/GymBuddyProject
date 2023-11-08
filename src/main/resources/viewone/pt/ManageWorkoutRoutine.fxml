@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.ManageWorkoutRoutineGUIController">
-   <Button layoutX="642.0" layoutY="15.0" mnemonicParsing="false" onAction="#addNewExercise" prefHeight="55.0"
-           prefWidth="148.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
-           -fx-border-radius: 5em;" textAlignment="CENTER">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.ManageWorkoutRoutineGUIController">
+   <Button layoutX="642.0" layoutY="15.0" mnemonicParsing="false" onAction="#addNewExercise" prefHeight="55.0" prefWidth="148.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -155,8 +163,8 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button layoutX="505.0" layoutY="137.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="239.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <ListView fx:id="athletesList1" editable="true" layoutX="531.0" layoutY="152.0" prefHeight="270.0" prefWidth="191.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
+   <Button layoutX="505.0" layoutY="137.0" mnemonicParsing="false" prefHeight="193.0" prefWidth="239.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <ListView fx:id="athletesList1" editable="true" layoutX="531.0" layoutY="152.0" prefHeight="164.0" prefWidth="191.0" style="-fx-background-color: transparent" stylesheets="@../../listaView.css" />
    <TextField layoutX="541.0" layoutY="100.0" prefHeight="26.0" prefWidth="170.0" promptText="Exercise Name" stylesheets="@../../textField.css" />
    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="684.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -293,6 +301,77 @@
          </RadioButton>
       </children>
    </VBox>
+   <Text layoutX="579.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sets:" wrappingWidth="46.39999999999998">
+      <font>
+         <Font name="Allerta Stencil Regular" size="18.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="572.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rest:" wrappingWidth="46.39999999999998">
+      <font>
+         <Font name="Allerta Stencil Regular" size="18.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="540.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetitions:" wrappingWidth="112.79995269775395">
+      <font>
+         <Font name="Allerta Stencil Regular" size="18.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Spinner editable="true" initialValue="0" layoutX="628.0" layoutY="343.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" />
+   <Spinner editable="true" initialValue="0" layoutX="654.0" layoutY="376.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" />
+   <SplitMenuButton layoutX="623.0" layoutY="410.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0">
+      <items>
+         <MenuItem mnemonicParsing="false" text="Action 1" />
+         <MenuItem mnemonicParsing="false" text="Action 2" />
+      </items>
+   </SplitMenuButton>
 
 
    

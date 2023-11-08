@@ -6,25 +6,25 @@ import utils.SwitchPage;
 
 public class AthletesHomeGUIController {
 
-
+    //TODO manage the exceptions
     @FXML
-    public void manageAthletes() throws Exception { //TODO here there's a code smell for throw exception
+    public void manageAthletes() {
         String path = "/viewone/gym/GymUserView.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }
 
     @FXML
-    public void manageWorkoutRoutine() throws Exception {
+    public void manageWorkoutRoutine() {
         String path = "/viewone/athlete/AthleteRoutine.fxml";
         SwitchPage.setStage(MainStage.getStage(), path);
     }
 
-    public void manageWorkouts() throws Exception {
+    public void manageWorkouts() {
         String path = "/viewone/athlete/AthleteWorkouts.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }
 
-    public void logout() throws Exception {
+    public void logout() {
         String path = "/viewone/launcher/GymFirst.fxml";
         SwitchPage.setStage(MainStage.getStage(),path);
     }

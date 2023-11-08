@@ -6,36 +6,31 @@ import utils.SwitchPage;
 
 public class SingleRequestGUIController {
 
+
+    //TODO manage the difference between the eidt and the creation of a workout routine
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        //TODO metti il bottone per andare indietro
+        SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
     }
     @FXML
     public void logout() throws Exception {
-        String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
     @FXML
     public void editRoutine() throws Exception {
-        //TODO gestisci la modifica di una scheda già esistente
-        String path = "/viewone/pt/ManageWorkoutRoutine.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"ManageWorkoutRoutine.fxml","pt",1);
     }
     @FXML
     public void goHome() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     public void createNewRoutine() throws Exception {
-        //TODO gestisci la creazione di una nuova scheda
-        String path = "/viewone/pt/ManageWorkoutRoutine.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"ManageWorkoutRoutine.fxml","pt",1);
     }
     @FXML
     public void cancelRequest() throws Exception {
         //TODO gestisci la cancellazione di una richiesta
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
 }

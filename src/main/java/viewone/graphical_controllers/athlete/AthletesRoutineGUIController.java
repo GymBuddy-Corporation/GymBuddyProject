@@ -29,13 +29,8 @@ public class AthletesRoutineGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),path);
     }
     @FXML
-    public void askForNewRoutine() throws Exception {
+    public void askForNewRoutine() {
         //TODO gestisci la rischiesta di una nuova scheda
-    }
-
-    @FXML
-    public void modifyRoutine() throws Exception {
-        //TODO gestisci la modifica di una scheda
     }
 
     @Override

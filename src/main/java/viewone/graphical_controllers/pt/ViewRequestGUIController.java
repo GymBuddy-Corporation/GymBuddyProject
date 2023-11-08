@@ -19,18 +19,14 @@ public class ViewRequestGUIController implements Initializable {
 
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/pt/PTHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     public void logout() throws Exception {
-        String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
     @FXML
     public void openRequest() throws Exception {
-        //TODO gestisci la visualizzazione di una richiesta
-        String path = "/viewone/pt/OpenSingleRequest.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"OpenSingleRequest.fxml","pt",1);
     }
 
     @Override

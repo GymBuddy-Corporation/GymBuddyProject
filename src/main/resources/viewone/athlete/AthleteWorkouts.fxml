@@ -148,7 +148,7 @@
       <Image url="@../images/LogoAdd96.png" />
    </ImageView>
 
-   <Text fx:id="usernameText11" layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Workouts" textAlignment="CENTER" wrappingWidth="356.5999710083008">
+   <Text layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Workouts" textAlignment="CENTER" wrappingWidth="356.5999710083008">
       <font>
          <Font name="Allerta Stencil Regular" size="27.0" />
       </font>
@@ -174,9 +174,9 @@
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
 
-   <Button layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#modifyRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Button layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#modifyWorkout" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <Button layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#askForNewRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Button layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addWorkout" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
 
 

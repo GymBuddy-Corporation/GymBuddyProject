@@ -12,30 +12,21 @@ import javafx.stage.Stage;
 
 public class PTHomeGUIController {
     @FXML
-    public void sendCommunication(ActionEvent event) throws Exception {
-        String path = "/viewone/pt/SendPTCommunication.fxml";
-        SwitchPage.setStage(MainStage.getStage(), path);
+    public void sendCommunication() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
     }
     @FXML
-    public void yourAthletes(ActionEvent event) throws Exception {
-        String path = "/viewone/pt/ViewYourAthletes.fxml";
-        SwitchPage.setStage(MainStage.getStage(), path);
+    public void yourAthletes() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"ViewYourAthletes.fxml","pt",1);
     }
     @FXML
     public void logout() throws Exception {
-        String path = "/viewone/launcher/PTLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
-    }
-    @FXML
-    public void manageWorkoutRoutines(ActionEvent event) throws Exception {
-        String path="/viewone/pt/ManageWorkoutRoutines.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(), "PTLogin.fxml", "launcher", 1);
     }
 
     @FXML
-    public void viewRequests(ActionEvent event) throws Exception {
-        String path="/viewone/pt/ViewWorkoutRoutineRequests.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void viewRequests() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(), "ViewWorkoutRoutineRequests.fxml", "pt", 1);
     }
 
 
