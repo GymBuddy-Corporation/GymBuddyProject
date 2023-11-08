@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
+
 import java.io.IOException;
 
 import static java.lang.System.exit;
@@ -18,9 +18,11 @@ public class SwitchPage {
     static int x=800;
     static int y=500;
 
-    private static String SEP="/";
-    private static String VIEWONE="viewone";
-    public static  Scene setStage(Stage stage, String path){
+    private static final String SEP="/";
+    private static final String VIEWONE="viewone";
+    public static  Scene setStage(Stage stage, String path){//TODO: REmove after changing all calls to it
+        String temp=stage+path;
+        System.out.println(temp);
         return null;
     }
     public static  Scene setStage(Stage stage, String name,String folder,int view) throws IOException {

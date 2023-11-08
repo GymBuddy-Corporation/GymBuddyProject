@@ -18,8 +18,7 @@ public class GeneralGUIController {
     //passaggio da hello a choose actor
 
     @FXML protected void goForward(ActionEvent event) throws IOException {
-        String path = "/viewone/launcher/ChooseActor.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml","launcher",1);
     }
 
 }
