@@ -12,22 +12,19 @@
     -fx-background-color: transparent;
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-font-family: "Allerta Stencil";
-    -fx-background-radius: 50;
+    -fx-background-radius: 5em;
 }
 
-.list-view .list-cell:hover{
+.list-view .list-cell:hover, .list-view .list-cell:selected{
     -fx-font-size: 18px;
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-background-radius: 50;
+    -fx-background-radius: 5em;
     -fx-font-family: "Allerta Stencil";
 }
-.list-view .list-cell:selected{
-    -fx-font-size: 18px;
-    -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-background-radius: 50;
-    -fx-font-family: "Allerta Stencil";
+
+.list-view .scroll-bar:vertical, .list-view .scroll-bar:horizontal{
+    -fx-background-color: transparent;
 }
 
 .table-view .column-header-background {
@@ -80,5 +77,88 @@
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-background-radius: 5em;
     -fx-font-family: "Allerta Stencil";
+}
+
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-radius: 5em;
+    -fx-cursor: hand;
+}
+
+
+.spinner {
+    -fx-background-color: transparent;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-cursor: hand;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #00ffcc, #4a90e2);
+    -fx-cursor: hand;
+}
+
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #00c99e, #4969b3);
+    -fx-cursor: hand;
+}
+.spinner .increment-arrow-button .increment-arrow,
+.spinner .decrement-arrow-button .decrement-arrow {
+    -fx-background-color: #2D043D;
+}
+
+
+
+.split-menu-button, .split {
+    -fx-background-color: transparent;
+}
+.split-menu-button .arrow-button {
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-cursor: hand;
+}
+.split-menu-button .arrow{
+    -fx-background-radius: 50;
+    -fx-background-color: #2D043D;
+    -fx-cursor: hand;
+}
+.split-menu-button .arrow-button:hover {
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #00ffcc, #4a90e2);
+    -fx-cursor: hand;
+}
+.split-menu-button .arrow-button:hover:pressed,
+.split-menu-button .arrow-button:pressed{
+    -fx-background-radius: 50;
+    -fx-cursor: hand;
+}
+.split-menu-button .menu-item {
+    -fx-text-fill: #2D043D;
+}
+.split-menu-button .menu-item:hover{
+    -fx-background-color: linear-gradient(to bottom, #00ffcc, #4a90e2);
+    -fx-text-fill: #2D043D;
+}
+
+.split-menu-button .menu-item:pressed,
+.split-menu-button .menu-item:hover:pressed{
+    -fx-background-color: linear-gradient(to bottom, #00c99e, #4969b3);
+    -fx-text-fill: #2D043D;
 }
 

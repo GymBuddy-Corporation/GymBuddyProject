@@ -37,7 +37,7 @@
 
    <Button layoutX="50.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <ListView fx:id="athletesList" editable="true" layoutX="75.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
+   <ListView fx:id="requestList" editable="true" layoutX="75.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
 
    <Text layoutX="648.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Open Request" textAlignment="CENTER" wrappingWidth="86.99990386962895">
       <font>

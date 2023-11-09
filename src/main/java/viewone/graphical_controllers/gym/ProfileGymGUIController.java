@@ -1,4 +1,4 @@
-package viewone.graphical_controllers.pt;
+package viewone.graphical_controllers.gym;
 
 import javafx.fxml.FXML;
 import utils.MainStage;

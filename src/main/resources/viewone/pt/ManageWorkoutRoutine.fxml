@@ -489,12 +489,18 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Spinner editable="true" initialValue="0" layoutX="643.0" layoutY="340.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" />
-   <Spinner editable="true" initialValue="0" layoutX="643.0" layoutY="307.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" />
-   <SplitMenuButton layoutX="623.0" layoutY="373.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="00:00">
+   <Spinner editable="true" initialValue="0" layoutX="643.0" layoutY="340.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../GymBuddyCSS.css" />
+   <Spinner editable="true" initialValue="0" layoutX="643.0" layoutY="307.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../GymBuddyCSS.css" />
+   <SplitMenuButton layoutX="623.0" layoutY="373.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" stylesheets="@../../GymBuddyCSS.css" text="00:00">
       <items>
-         <MenuItem mnemonicParsing="false" text="Action 1" />
-         <MenuItem mnemonicParsing="false" text="Action 2" />
+         <MenuItem mnemonicParsing="false" text="00:30" />
+         <MenuItem mnemonicParsing="false" text="01:00" />
+         <MenuItem mnemonicParsing="false" text="01:30" />
+         <MenuItem mnemonicParsing="false" text="02:00" />
+         <MenuItem mnemonicParsing="false" text="02:30" />
+         <MenuItem mnemonicParsing="false" text="03:00" />
+         <MenuItem mnemonicParsing="false" text="03:30" />
+         <MenuItem mnemonicParsing="false" text="04:00" />
       </items>
    </SplitMenuButton>
    <Button layoutX="14.0" layoutY="428.0" mnemonicParsing="false" onAction="#deleteChanges" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER">
