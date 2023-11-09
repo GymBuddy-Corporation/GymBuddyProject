@@ -13,12 +13,10 @@ public class ViewOldRoutinesGUIController {
 
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/athlete/AthleteHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
     }
     public void logout() throws Exception {
-        String path = "/viewone/launcher/AthleteLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteLogin.fxml","launcher",1);
     }
     @FXML
     public void viewOldRoutine() {

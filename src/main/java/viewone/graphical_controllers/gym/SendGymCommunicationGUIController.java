@@ -39,7 +39,6 @@ public class SendGymCommunicationGUIController implements Initializable {
 
     @FXML
     public void logout() throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
         SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
     @FXML

@@ -15,26 +15,20 @@ import viewone.GymBuddy;
 public class GymFirstGUIController {
     //TODO sistema sti cazzo di pulsanti avanti indietro che non apparono
     @FXML
-    protected void login(ActionEvent event) throws Exception {
-        String path = "/viewone/launcher/GymLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
-
+    protected void login() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymLogin.fxml","launcher",1);
     }
 
-    @FXML protected void registration(ActionEvent event) throws Exception {
-       String path = "/viewone/launcher/GymRegistration.fxml";
-       SwitchPage.setStage(MainStage.getStage(),path);
-
+    @FXML protected void registration() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymRegistration.fxml","launcher",1);
     }
 
-    @FXML public void getInfo(MouseEvent event) throws Exception {
+    @FXML public void getInfo() throws Exception {
         //TODO organizza il bottone info
     }
 
-    @FXML public void goBack(MouseEvent event) throws Exception {
-        String path = "/viewone/launcher/ChooseActor.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
-
+    @FXML public void goBack() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml","launcher",1);
     }
 
 }

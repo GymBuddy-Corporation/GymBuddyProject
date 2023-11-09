@@ -9,16 +9,13 @@ public class AthleteLoginGUIController {
 
     @FXML
     public void goForward() throws Exception {
-        String path = "/viewone/athlete/AthleteHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
     }
 
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/launcher/ChooseActor.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml","launcher",1);
     }
-
 
     public void getInfo() throws Exception {
         //TODO Connected with the LogoInfoButton

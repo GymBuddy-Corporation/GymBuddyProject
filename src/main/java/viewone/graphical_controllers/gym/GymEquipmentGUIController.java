@@ -19,8 +19,7 @@ public class GymEquipmentGUIController implements Initializable {
 
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
+        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
 
     @FXML
@@ -30,9 +29,9 @@ public class GymEquipmentGUIController implements Initializable {
 
 
     @FXML
-    public void addEquipment() throws Exception {
+    public void addEquipment() /*throws Exception*/ {
         //TODO fai la GUI appropriata
-        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
+        //SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
     }
 
     public void logout() throws Exception {
