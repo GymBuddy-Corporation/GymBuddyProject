@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-//TODO SISTEMA TUTTO IL CONTROLLER
-
 public class AthletesWorkoutsGUIController implements Initializable {
 
     @FXML
@@ -21,12 +19,10 @@ public class AthletesWorkoutsGUIController implements Initializable {
 
     @FXML
     public void goBack() throws Exception {
-        String path = "/viewone/athlete/AthleteHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
     }
     public void logout() throws Exception {
-        String path = "/viewone/launcher/AthleteLogin.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteLogin.fxml","launcher",1);
     }
     @FXML
     public void addWorkout() {
