@@ -34,8 +34,7 @@ public class ManageWorkoutRoutineGUIController {
     }
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda
-        String path = "/viewone/pt/AddExercise.fxml";
-        SwitchPage.setStage(MainStage.getStage(),"OpenSingleRequest.fxml","pt",1);
+        /*SwitchPage.setStage(MainStage.getStage(),"AddExercise.fxml","pt",1);*/
     }
     @FXML
     public void searchExercise(){

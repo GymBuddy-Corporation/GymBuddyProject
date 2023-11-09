@@ -14,20 +14,18 @@ import viewone.GymBuddy;
 public class GymLoginGUIController {
 
     @FXML
-    public void goForward(MouseEvent event) throws Exception {
-        String path = "/viewone/gym/GymHome.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void goForward() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
 
     @FXML
-    public void goBack(MouseEvent event) throws Exception {
-        String path = "/viewone/launcher/GymFirst.fxml";
-        SwitchPage.setStage(MainStage.getStage(),path);
+    public void goBack() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
 
 
 
-    public void getInfo(MouseEvent event) throws Exception {
+    public void getInfo() throws Exception {
         //TODO Connected with the LogoInfoButton
     }
 
