@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="400.0" spacing="10.0" style="-fx-background-radius: 50; -fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <Label fx:id="itemName1" layoutX="36.0" layoutY="28.0" prefHeight="22.0" prefWidth="200.0" text="Athletes Name">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="0.006729475100942127">
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+   </Label>
+   <Label fx:id="itemName1111" layoutX="255.0" layoutY="28.0" prefHeight="22.0" prefWidth="200.0" stylesheets="@../../GymBuddyCSS.css" text="Athletes Surname">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="0.006729475100942127">
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+   </Label>
+</HBox>
