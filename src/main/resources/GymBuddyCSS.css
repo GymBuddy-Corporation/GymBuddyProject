@@ -123,7 +123,13 @@
     -fx-background-color: #2D043D;
 }
 
-
+.split-menu-button .label {
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 5em;
+    -fx-border-color: transparent;
+    -fx-font-family: "Allerta Stencil";
+}
 
 .split-menu-button, .split {
     -fx-background-color: transparent;
@@ -149,7 +155,10 @@
     -fx-cursor: hand;
 }
 .split-menu-button .menu-item {
-    -fx-text-fill: #2D043D;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: #2D043D;
+    -fx-font-family: "Allerta Stencil";
+
 }
 .split-menu-button .menu-item:hover{
     -fx-background-color: linear-gradient(to bottom, #00ffcc, #4a90e2);
@@ -161,4 +170,5 @@
     -fx-background-color: linear-gradient(to bottom, #00c99e, #4969b3);
     -fx-text-fill: #2D043D;
 }
+
 
