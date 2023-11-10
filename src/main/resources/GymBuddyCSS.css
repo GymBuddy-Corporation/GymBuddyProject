@@ -213,3 +213,7 @@
     -fx-color: rgb(0, 201, 158);
 }
 
+.image-view {
+    -fx-cursor: hand;
+}
+

@@ -17,4 +17,14 @@ public class AthletesPTCommunicationsGUIController {
         SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
     }
 
+    @FXML
+    public void logout() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"AthleteLogin.fxml","launcher",1);
+    }
+
+    @FXML
+    public void openProfile() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"ProfileAthlete.fxml","athlete",1);
+    }
+
 }

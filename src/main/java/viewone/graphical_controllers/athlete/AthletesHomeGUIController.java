@@ -11,16 +11,23 @@ public class AthletesHomeGUIController {
         SwitchPage.setStage(MainStage.getStage(),"AthleteRoutine.fxml","athlete",1);
     }
 
-/*    @FXML
-        public void viewPTCommunications throws Exception() {
-        SwitchPage.setStage(MainStage.getStage(),"AthleteRoutine.fxml","athlete",1);
-    }*/
+    @FXML
+        public void viewPTCommunications() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"AthletePTCommunications.fxml","athlete",1);
+    }
 
+    @FXML
     public void manageWorkouts() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"AthleteWorkouts.fxml","athlete",1);
     }
 
+    @FXML
     public void logout() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteLogin.fxml","launcher",1);
+    }
+
+    @FXML
+    public void openProfile() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(),"ProfileAthlete.fxml","athlete",1);
     }
 }
