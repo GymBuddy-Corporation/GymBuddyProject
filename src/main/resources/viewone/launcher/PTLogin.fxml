@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.pt.PTLoginGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.pt.PTLoginGUIController">
 
    <prefHeight>500.0</prefHeight>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" style="-fx-cursor: hand;">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
    <Label fx:id="Login" layoutX="317.0" layoutY="127.0" prefHeight="62.0" prefWidth="139.0" stylesheets="@../../GymBuddyCSS.css" text="LOGIN">
@@ -29,10 +25,7 @@
          <Font name="Allerta Stencil Regular" size="45.0" />
       </font>
    </Label>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="18.0" onMouseClicked="#getInfo">
-      <Image url="@../images/LogoInfo96.png" />
-   </ImageView>
-   <TextField layoutX="319.0" layoutY="237.0" prefHeight="26.0" prefWidth="168.0" />
+   <TextField layoutX="319.0" layoutY="237.0" prefHeight="26.0" prefWidth="168.0" stylesheets="@../../GymBuddyCSS.css" />
    <ImageView fitHeight="104.0" fitWidth="112.0" layoutX="152.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/LogoUser96.png" />
@@ -64,13 +57,13 @@
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
    </Label>
-   <PasswordField layoutX="319.0" layoutY="302.0" prefHeight="26.0" prefWidth="168.0" />
+   <PasswordField layoutX="319.0" layoutY="302.0" prefHeight="26.0" prefWidth="168.0" stylesheets="@../../GymBuddyCSS.css" />
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/LogoGymBuddy.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
       <image>
          <Image url="@../images/LogoNextPage96.png" />
       </image>

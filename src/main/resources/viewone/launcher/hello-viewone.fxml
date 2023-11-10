@@ -28,7 +28,7 @@
          </font>
 
       </Label>
-      <Button fx:id="goForward" onAction="#goForward" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0, 0, 0, 0);" textFill="#a1a07800" />
+      <Button fx:id="goForward" onAction="#goForward" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-cursor: hand;" textFill="#a1a07800" />
       
    </children>
 </AnchorPane>

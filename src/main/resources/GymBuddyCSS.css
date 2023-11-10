@@ -7,12 +7,15 @@
     -fx-font-family: "Allerta Stencil";
 }
 
+
+
 .list-view ,.list-view .list-cell{
     -fx-font-size: 18px;
     -fx-background-color: transparent;
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-font-family: "Allerta Stencil";
     -fx-background-radius: 5em;
+    -fx-cursor: hand;
 }
 
 .list-view .list-cell:hover, .list-view .list-cell:selected{
@@ -21,10 +24,12 @@
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-background-radius: 5em;
     -fx-font-family: "Allerta Stencil";
+    -fx-cursor: hand;
 }
 
 .list-view .scroll-bar:vertical, .list-view .scroll-bar:horizontal{
     -fx-background-color: transparent;
+    -fx-cursor: hand;
 }
 
 .table-view .column-header-background {
@@ -45,6 +50,7 @@
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-background-radius: 5em;
     -fx-font-family: "Allerta Stencil";
+    -fx-cursor: hand;
 }
 
 .text-area {
@@ -53,11 +59,13 @@
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-font-family: "Allerta Stencil";
     -fx-font-size: 15px;
+    -fx-cursor: text;
 }
 
 .text-area .scroll-bar{
     -fx-background-radius: 50;
     -fx-background-color: rgba(255,255,255,0.2);
+    -fx-cursor: hand;
 }
 
 .text-area .scroll-pane {
@@ -77,6 +85,7 @@
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-background-radius: 5em;
     -fx-font-family: "Allerta Stencil";
+    -fx-cursor: text;
 }
 
 
@@ -91,6 +100,29 @@
     -fx-cursor: hand;
 }
 
+.button {
+    -fx-background-color:  rgba(0, 0, 0, 0);
+    -fx-background-radius:  5em;
+    -fx-border-color:  linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-border-radius:  5em;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius:  5em;
+    -fx-border-color:  linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-border-radius:  5em;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+}
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-radius:  5em;
+    -fx-border-color:  #2D043D;
+    -fx-border-radius:  5em;
+    -fx-text-fill: #2D043D;
+}
 
 .spinner {
     -fx-background-color: transparent;
@@ -171,4 +203,13 @@
     -fx-text-fill: #2D043D;
 }
 
+.radio-button .radio{
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to bottom, #00c99e, #4969b3);
+    -fx-border-radius:20;
+    -fx-cursor: hand;
+}
+.radio-button .dot{
+    -fx-color: rgb(0, 201, 158);
+}
 
