@@ -9,13 +9,14 @@
 
 
 
-.list-view ,.list-view .list-cell{
+.list-view{
     -fx-font-size: 18px;
     -fx-background-color: transparent;
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-font-family: "Allerta Stencil";
     -fx-background-radius: 5em;
     -fx-cursor: hand;
+    border: none;
 }
 
 .list-view .list-cell:hover, .list-view .list-cell:selected{
@@ -24,6 +25,16 @@
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-background-radius: 5em;
     -fx-font-family: "Allerta Stencil";
+    -fx-cursor: hand;
+}
+
+.list-view .list-cell {
+    border: none;
+    -fx-font-size: 18px;
+    -fx-background-color: transparent;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-font-family: "Allerta Stencil";
+    -fx-background-radius: 5em;
     -fx-cursor: hand;
 }
 

@@ -1,0 +1,45 @@
+.list-view{
+    -fx-font-size: 10px;
+    -fx-background-color: transparent;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-font-family: "Allerta Stencil";
+    -fx-background-radius: 5em;
+    -fx-cursor: hand;
+    border: none;
+}
+
+.list-view .list-cell:hover, .list-view .list-cell:selected{
+    -fx-font-size: 10px;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-radius: 5em;
+    -fx-font-family: "Allerta Stencil";
+    -fx-cursor: hand;
+}
+
+.list-view .list-cell {
+    border: none;
+    -fx-font-size: 10px;
+    -fx-background-color: transparent;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-font-family: "Allerta Stencil";
+    -fx-background-radius: 5em;
+    -fx-cursor: hand;
+}
+
+.list-view .scroll-bar:vertical, .list-view .scroll-bar:horizontal{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-radius: 5em;
+    -fx-cursor: hand;
+}

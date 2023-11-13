@@ -2,21 +2,18 @@ package viewone.graphical_controllers.pt;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
 
+import java.net.URL;
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
-public class ManageWorkoutRoutineGUIController {
+public class ManageWorkoutRoutineGUIController implements Initializable {
 
     @FXML private RadioButton fridayRadioButton;
     @FXML private RadioButton mondayRadioButton;
@@ -29,6 +26,19 @@ public class ManageWorkoutRoutineGUIController {
     @FXML private RadioButton wednesdayRadioButton;
 
     private Button previousButton;
+
+    @FXML private ListView<String> DBExercise;
+    @FXML private ListView<String> RoutineExerciselist;
+    @FXML private Spinner<Integer> spinnerRepeatitions;
+    @FXML private Spinner<Integer> spinnerSets;
+    @FXML private SplitMenuButton splitMenuRest;
+    @FXML private Text labelSets;
+    @FXML private Text labelRepeatitions;
+    @FXML private Text labelRest;
+    @FXML private Button addExerciseButton;
+
+
+
 
     private final List<String> buttonNameList = new ArrayList<>(Arrays.asList(
             "mondayButton",
@@ -44,7 +54,6 @@ public class ManageWorkoutRoutineGUIController {
         if(previousButton!=null){
             previousButton.setStyle(null);
         }
-        //TODO sistema i colori
         button.setStyle("-fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" +
                 "-fx-background-radius:  5em;" + "-fx-border-color:  #2D043D;" +
                 "-fx-border-radius:  5em;" + "-fx-text-fill: #2D043D;");
@@ -61,6 +70,7 @@ public class ManageWorkoutRoutineGUIController {
         }
         return null;
     }
+
     @FXML
     public void logout() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
@@ -84,5 +94,42 @@ public class ManageWorkoutRoutineGUIController {
     @FXML
     public void searchExercise(){
         //TODO gestisci la ricerca di un esercizio dal database
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        DBExercise.getItems().addAll("Tricep Pushdown", "Squat", "Bicep Curl");
+
+        spinnerRepeatitions.setVisible(false);
+        spinnerSets.setVisible(false);
+        splitMenuRest.setVisible(false);
+        labelSets.setVisible(false);
+        labelRepeatitions.setVisible(false);
+        labelRest.setVisible(false);
+        addExerciseButton.setVisible(false);
+
+        // Add a listener to the DBExercise ListView
+        DBExercise.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // If an item is selected, show the Spinner
+                spinnerRepeatitions.setVisible(true);
+                spinnerSets.setVisible(true);
+                splitMenuRest.setVisible(true);
+                labelSets.setVisible(true);
+                labelRepeatitions.setVisible(true);
+                labelRest.setVisible(true);
+                addExerciseButton.setVisible(true);
+            } else {
+                // If no item is selected, hide the Spinner
+                spinnerRepeatitions.setVisible(false);
+                spinnerSets.setVisible(false);
+                splitMenuRest.setVisible(false);
+                labelSets.setVisible(false);
+                labelRepeatitions.setVisible(false);
+                labelRest.setVisible(false);
+                addExerciseButton.setVisible(false);
+            }
+        });
     }
 }
