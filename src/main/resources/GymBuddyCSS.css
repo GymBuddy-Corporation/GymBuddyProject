@@ -9,17 +9,13 @@
 
 
 
-.list-view{
-    -fx-font-size: 18px;
+.list-view, .list-view .list-cell{
     -fx-background-color: transparent;
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-font-family: "Allerta Stencil";
     -fx-background-radius: 5em;
-    -fx-cursor: hand;
     border: none;
 }
 
-.list-view .list-cell:hover, .list-view .list-cell:selected{
+.list-view .list-cell:filled:hover, .list-view .list-cell:filled:selected{
     -fx-font-size: 18px;
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
@@ -28,7 +24,7 @@
     -fx-cursor: hand;
 }
 
-.list-view .list-cell {
+.list-view .list-cell:filled {
     border: none;
     -fx-font-size: 18px;
     -fx-background-color: transparent;
@@ -37,6 +33,7 @@
     -fx-background-radius: 5em;
     -fx-cursor: hand;
 }
+
 
 .list-view .scroll-bar:vertical, .list-view .scroll-bar:horizontal{
     -fx-background-color: transparent;

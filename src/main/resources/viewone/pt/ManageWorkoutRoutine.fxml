@@ -109,7 +109,6 @@
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="113.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoDelete64.png" />
    </ImageView>
-   <ListView fx:id="RoutineExerciselist" editable="true" layoutX="176.0" layoutY="134.0" prefHeight="270.0" prefWidth="285.0" stylesheets="@../../GymBuddyCSS.css" />
    <Text layoutX="21.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Changes" textAlignment="CENTER" wrappingWidth="106.39990234375">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
@@ -139,7 +138,7 @@
    <VBox alignment="CENTER" layoutX="54.0" layoutY="127.0" prefHeight="246.0" prefWidth="78.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;">
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Mon" textAlignment="CENTER">
+            <Button fx:id="mondayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Mon" textAlignment="CENTER">
                <textFill>
                   <LinearGradient>
                      <stops>
@@ -163,7 +162,7 @@
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Tue" textAlignment="CENTER">
+         <Button fx:id="tuesdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Tue" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -186,7 +185,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Wed" textAlignment="CENTER">
+         <Button fx:id="wednesdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Wed" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -209,7 +208,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Thu" textAlignment="CENTER">
+         <Button fx:id="thursdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Thu" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -232,7 +231,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Fri" textAlignment="CENTER">
+         <Button fx:id="fridayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Fri" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -255,7 +254,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Sat" textAlignment="CENTER">
+         <Button fx:id="saturdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Sat" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -278,7 +277,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Sun" textAlignment="CENTER">
+         <Button fx:id="sundayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../../GymBuddyCSS.css" text="Sun" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -343,7 +342,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Text fx:id="labelRepeatitions" layoutX="559.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat:" wrappingWidth="78.40000000000003">
+   <Text fx:id="labelRepetitions" layoutX="559.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repet:" wrappingWidth="78.40000000000003">
       <font>
          <Font name="Allerta Stencil Regular" size="18.0" />
       </font>
@@ -365,7 +364,7 @@
       </fill>
    </Text>
    <Spinner fx:id="spinnerSets" editable="true" initialValue="0" layoutX="638.0" layoutY="295.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../GymBuddyCSS.css" />
-   <Spinner fx:id="spinnerRepeatitions" editable="true" initialValue="0" layoutX="638.0" layoutY="262.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../GymBuddyCSS.css" />
+   <Spinner fx:id="spinnerRepetitions" editable="true" initialValue="0" layoutX="638.0" layoutY="262.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../GymBuddyCSS.css" />
    <SplitMenuButton fx:id="splitMenuRest" layoutX="610.0" layoutY="328.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" stylesheets="@../../GymBuddyCSS.css" text="00:00">
       <items>
          <MenuItem mnemonicParsing="false" text="00:30" />
@@ -473,6 +472,28 @@
       </font>
    </Button>
    <VBox alignment="CENTER" layoutX="150.0" layoutY="119.0" prefHeight="300.0" prefWidth="335.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;" />
+   <ListView fx:id="RoutineExerciselist" editable="true" layoutX="176.0" layoutY="134.0" prefHeight="270.0" prefWidth="285.0" stylesheets="@../../GymBuddyCSS.css" />
+   <Button fx:id="cancelExerciseButton" layoutX="582.0" layoutY="367.0" mnemonicParsing="false" onAction="#cancelExercise" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Delete" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
 
 
    
