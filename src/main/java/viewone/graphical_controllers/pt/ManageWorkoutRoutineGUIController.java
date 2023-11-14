@@ -4,7 +4,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import utils.MainStage;
@@ -12,7 +11,6 @@ import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
 
 import java.net.URL;
-import java.time.DayOfWeek;
 import java.util.*;
 
 public class ManageWorkoutRoutineGUIController implements Initializable {
@@ -76,7 +74,7 @@ public class ManageWorkoutRoutineGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     public void submitRoutine() throws Exception{
-        //TODO gestisci il submit di una nuova scheda
+        //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
         /*SwitchPage.setStage(MainStage.getStage(),"AddExercise.fxml","pt",1);*/
     }//TODO gestisci l'aggiunta di un esercizio nella scheda DB
 

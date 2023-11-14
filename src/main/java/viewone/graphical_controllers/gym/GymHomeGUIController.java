@@ -27,4 +27,10 @@ public class GymHomeGUIController {
     public void logout() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
     }
+
+    @FXML
+    public void seeProfile() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"ProfileGym.fxml","gym",1);
+    }
+
 }

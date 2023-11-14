@@ -6,12 +6,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewone.graphical_controllers.gym.GymUserGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.gym.GymUserGUIController">
 
-   <Text fx:id="usernameText1111" layoutX="649.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="Delete Athletes" textAlignment="CENTER" wrappingWidth="86.99990386962895">
+   <Text fx:id="usernameText1111" layoutX="649.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Athletes" textAlignment="CENTER" wrappingWidth="86.99990386962895">
       <font>
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
@@ -32,14 +29,12 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="439.0" onMouseClicked="#addAthlete"
-              pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoCancel96.png"/>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="439.0" onMouseClicked="#addAthlete" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoCancel96.png" />
    </ImageView>
 
 
-   <Text fx:id="Logout" layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout"
-         wrappingWidth="37.600001525878895">
+   <Text fx:id="Logout" layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">
       <font>
          <Font name="Allerta Stencil Regular" size="10.0" />
       </font>
@@ -61,21 +56,14 @@
       </fill>
    </Text>
 
-   <ImageView id="Back" fitHeight="55.0" fitWidth="55.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true"
-              preserveRatio="true">
+   <ImageView id="Back" fitHeight="55.0" fitWidth="55.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoUser96.png" />
    </ImageView>
 
 
-   <Button fx:id="login" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="55.0"
-           prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;
-           -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Button fx:id="login" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <Button fx:id="login1" layoutX="69.0" layoutY="43.0" mnemonicParsing="false" prefHeight="23.0"
-           prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;
-           -fx-border-radius: 5em;" onMouseClicked="#logout">
+   <Button fx:id="login1" layoutX="69.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="23.0" prefWidth="46.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;">
       <textFill>
          <LinearGradient>
             <stops>
@@ -152,19 +140,11 @@
       <Image url="@../images/LogoAdd96.png" />
    </ImageView>
 
-   <Button fx:id="addAthlete" layoutX="630.0" layoutY="15.0" mnemonicParsing="false"
-           onMouseClicked="#addAthlete" prefHeight="55.0" prefWidth="156.0"
-           style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;"
-           textAlignment="CENTER" textFill="#300743" />
+   <Button fx:id="addAthlete" layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addAthlete" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <Button layoutX="60.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0"
-           style="-fx-background-color: rgba(0, 0, 0, 0);
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;
-           -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Button layoutX="60.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0"
-             prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
+   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
 
    <Text fx:id="usernameText11" layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Athletes" textAlignment="CENTER" wrappingWidth="356.5999710083008">
       <font>
@@ -187,13 +167,10 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button fx:id="login31" layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#goBack"
-           prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);
-           -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;
-           -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Button fx:id="login31" layoutX="630.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoGymBuddy.png"/>
+      <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
 
 

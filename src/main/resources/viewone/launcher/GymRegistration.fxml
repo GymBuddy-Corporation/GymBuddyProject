@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -98,12 +100,6 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <SplitMenuButton layoutX="320.0" layoutY="326.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" text="SplitMenuButton" AnchorPane.topAnchor="326.0">
-     <items>
-       <MenuItem mnemonicParsing="false" text="Action 1" />
-       <MenuItem mnemonicParsing="false" text="Action 2" />
-     </items>
-   </SplitMenuButton>
    <TextField fx:id="password1" layoutX="478.0" layoutY="326.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" AnchorPane.topAnchor="326.0" />
    <Label fx:id="Password1" layoutX="479.0" layoutY="302.0" prefHeight="23.0" prefWidth="84.0" text="Address">
       <textFill>
@@ -147,4 +143,15 @@
       </font>
    </Label>
    <PasswordField layoutX="478.0" layoutY="268.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" />
+   <ComboBox fx:id="myComboBox" editable="true" layoutX="320.0" layoutY="326.0" prefHeight="27.0" prefWidth="150.0" promptText="Click on the arrow" stylesheets="@../../GymBuddyCSS.css">
+      <!-- Your items -->
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Option 1" />
+            <String fx:value="Option 2" />
+            <String fx:value="Option 3" />
+            <!-- Add more options as needed -->
+         </FXCollections>
+      </items>
+   </ComboBox>
 </AnchorPane>

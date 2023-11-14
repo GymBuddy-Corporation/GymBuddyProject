@@ -163,65 +163,120 @@
     -fx-background-color: #2D043D;
 }
 
-.split-menu-button .label {
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-background-radius: 5em;
-    -fx-border-color: transparent;
-    -fx-font-family: "Allerta Stencil";
-}
-
-.split-menu-button, .split {
-    -fx-background-color: transparent;
-}
-.split-menu-button .arrow-button {
-    -fx-background-radius: 50;
-    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-cursor: hand;
-}
-.split-menu-button .arrow{
-    -fx-background-radius: 50;
-    -fx-background-color: #2D043D;
-    -fx-cursor: hand;
-}
-.split-menu-button .arrow-button:hover {
-    -fx-background-radius: 50;
-    -fx-background-color: linear-gradient(to bottom, #00ffcc, #4a90e2);
-    -fx-cursor: hand;
-}
-.split-menu-button .arrow-button:hover:pressed,
-.split-menu-button .arrow-button:pressed{
-    -fx-background-radius: 50;
-    -fx-cursor: hand;
-}
-.split-menu-button .menu-item {
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-background-color: #2D043D;
-    -fx-font-family: "Allerta Stencil";
-
-}
-.split-menu-button .menu-item:hover{
-    -fx-background-color: linear-gradient(to bottom, #00ffcc, #4a90e2);
-    -fx-text-fill: #2D043D;
-}
-
-.split-menu-button .menu-item:pressed,
-.split-menu-button .menu-item:hover:pressed{
-    -fx-background-color: linear-gradient(to bottom, #00c99e, #4969b3);
-    -fx-text-fill: #2D043D;
-}
-
-.radio-button .radio{
-    -fx-background-color: transparent;
-    -fx-border-color: linear-gradient(to bottom, #00c99e, #4969b3);
-    -fx-border-radius:20;
-    -fx-cursor: hand;
-}
-.radio-button .dot{
-    -fx-color: rgb(0, 201, 158);
-}
 
 .image-view {
     -fx-cursor: hand;
 }
 
+
+.combo-box{
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: transparent;
+    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-border-radius: 5em;
+    -fx-background-radius: 5em;
+    -fx-cursor: none;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+}
+
+.combo-box .arrow-button {
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.combo-box .arrow{
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-cursor: hand;
+}
+
+.combo-box-base .text-field {
+    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: transparent;
+}
+.combo-box-base .text-field:focused {
+    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: transparent;
+}
+
+.combo-box .menu-item {
+    -fx-font-size: 12px;
+    -fx-text-fill: linear-gradient(to bottom, #00c99e, #4969b3);
+    -fx-cursor: hand;
+}
+
+.combo-box-popup .list-view, .combo-box-popup .list-view.list-cell{
+    -fx-background-color: #2D043D;
+    -fx-background-radius: 10;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5em;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-cursor: hand;
+
+}
+.combo-box-popup .list-view .list-cell:hover{
+    -fx-background-color: #511065;
+    -fx-background-radius:  5em;
+    -fx-border-radius:  5em;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-cursor: hand;
+}
+
+
+.combo-box-popup .list-view .list-cell:selected{
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-radius:  5em;
+    -fx-border-color:  #2D043D;
+    -fx-border-radius:  5em;
+    -fx-text-fill: #2D043D;
+    -fx-cursor: hand;
+}
+
+
+
+
+.date-picker {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: transparent;
+    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-border-radius: 5em;
+    -fx-background-radius: 5em;
+    -fx-cursor: none;
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+}
+.date-picker-popup {
+    -fx-background-color: transparent;
+}
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50;
+    -fx-cursor: none;
+}
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.date-picker-popup .day-cell:hover{
+    -fx-background-color: rgba(45, 4, 61, 0.7);
+}
+.date-picker-popup .day-cell:focused{
+    -fx-background-color: rgba(45, 4, 61, 1);
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+}
+.date-picker-popup .week-number-cell{
+    -fx-text-fill: rgba(45, 4, 61, 1);
+}
+.date-picker-popup .today{
+    -fx-cell-focus-inner-border: rgba(45, 4, 61, 1);
+}
+
+/* Change the color of the arrow (optional) */
+.date-picker .arrow-button .arrow {
+    -fx-background-radius: 50;
+    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-cursor: hand;
+}
