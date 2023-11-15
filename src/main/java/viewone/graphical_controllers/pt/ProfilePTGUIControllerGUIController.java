@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
 
-public class ProfilePTGUIController {
+public class ProfilePTGUIControllerGUIController {
 
     @FXML
     public void goBack() throws Exception {

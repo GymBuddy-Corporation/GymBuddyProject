@@ -25,8 +25,20 @@ public class ViewRequestGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
     @FXML
-    public void openRequest() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"OpenSingleRequest.fxml","pt",1);
+    public void askClarification() throws Exception {
+        //TODO sistema la nuova grafica SwitchPage.setStage(MainStage.getStage(),"ManageWorkoutRoutine.fxml","pt",1);
+    }
+    @FXML
+    public void goHome() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
+    }
+    public void createNewRoutine() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"ManageWorkoutRoutine.fxml","pt",1);
+    }
+    @FXML
+    public void cancelRequest() throws Exception {
+        //TODO gestisci la cancellazione di una richiesta
+        SwitchPage.setStage(MainStage.getStage(), "PTHome.fxml", "pt", 1);
     }
 
     @Override

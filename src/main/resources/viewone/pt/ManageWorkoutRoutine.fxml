@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.ManageWorkoutRoutineGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.SatisfyWorkoutRoutineRequestGUIController">
    <VBox alignment="CENTER" layoutX="506.0" layoutY="119.0" prefHeight="135.0" prefWidth="239.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;" />
 
    <Text layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">
@@ -365,18 +367,20 @@
    </Text>
    <Spinner fx:id="spinnerSets" editable="true" initialValue="0" layoutX="638.0" layoutY="295.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../GymBuddyCSS.css" />
    <Spinner fx:id="spinnerRepetitions" editable="true" initialValue="0" layoutX="638.0" layoutY="262.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../../GymBuddyCSS.css" />
-   <SplitMenuButton fx:id="splitMenuRest" layoutX="610.0" layoutY="328.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" stylesheets="@../../GymBuddyCSS.css" text="00:00">
+   <ComboBox fx:id="restTimeComboBox" editable="true" layoutX="620.0" layoutY="327.0" prefHeight="27.0" prefWidth="77.0" promptText="00:00" stylesheets="@../../GymBuddyCSS.css">
       <items>
-         <MenuItem mnemonicParsing="false" text="00:30" />
-         <MenuItem mnemonicParsing="false" text="01:00" />
-         <MenuItem mnemonicParsing="false" text="01:30" />
-         <MenuItem mnemonicParsing="false" text="02:00" />
-         <MenuItem mnemonicParsing="false" text="02:30" />
-         <MenuItem mnemonicParsing="false" text="03:00" />
-         <MenuItem mnemonicParsing="false" text="03:30" />
-         <MenuItem mnemonicParsing="false" text="04:00" />
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="00:30" />
+            <String fx:value="01:00" />
+            <String fx:value="01:30" />
+            <String fx:value="02:00" />
+            <String fx:value="02:30" />
+            <String fx:value="03:00" />
+            <String fx:value="03:30" />
+            <String fx:value="04:00" />
+         </FXCollections>
       </items>
-   </SplitMenuButton>
+   </ComboBox>
    <Button layoutX="14.0" layoutY="428.0" mnemonicParsing="false" onAction="#deleteChanges" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
@@ -399,9 +403,7 @@
       </font>
    </Button>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="732.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoNextPage96.png" />
-      </image>
+      <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
    <Text layoutX="640.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Submit Routine" textAlignment="CENTER" wrappingWidth="106.39990234375">
       <font>
@@ -450,7 +452,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <Button fx:id="addExerciseButton" layoutX="586.0" layoutY="367.0" mnemonicParsing="false" onAction="#addExercise" prefHeight="27.0" prefWidth="78.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Add" textAlignment="CENTER">
+   <Button fx:id="addExerciseButton" layoutX="586.0" layoutY="367.0" mnemonicParsing="false" onAction="#addExercise" prefHeight="27.0" prefWidth="78.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em; -fx-cursor: hand;" text="Add" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -473,7 +475,7 @@
    </Button>
    <VBox alignment="CENTER" layoutX="150.0" layoutY="119.0" prefHeight="300.0" prefWidth="335.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;" />
    <ListView fx:id="RoutineExerciselist" editable="true" layoutX="176.0" layoutY="134.0" prefHeight="270.0" prefWidth="285.0" stylesheets="@../../GymBuddyCSS.css" />
-   <Button fx:id="cancelExerciseButton" layoutX="582.0" layoutY="367.0" mnemonicParsing="false" onAction="#cancelExercise" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Delete" textAlignment="CENTER">
+   <Button fx:id="cancelExerciseButton" layoutX="582.0" layoutY="367.0" mnemonicParsing="false" onAction="#cancelExercise" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em; -fx-cursor: hand;" text="Delete" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>

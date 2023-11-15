@@ -13,7 +13,7 @@ import viewone.DaysOfTheWeekButtonController;
 import java.net.URL;
 import java.util.*;
 
-public class ManageWorkoutRoutineGUIController implements Initializable {
+public class SatisfyWorkoutRoutineRequestGUIController implements Initializable {
 
     @FXML private Button mondayButton;
 
@@ -24,7 +24,7 @@ public class ManageWorkoutRoutineGUIController implements Initializable {
     @FXML private ListView<String> RoutineExerciselist;
     @FXML private Spinner<Integer> spinnerRepetitions;
     @FXML private Spinner<Integer> spinnerSets;
-    @FXML private SplitMenuButton splitMenuRest;
+    @FXML private ComboBox<String> restTimeComboBox;
     @FXML private Text labelSets;
     @FXML private Text labelRepetitions;
     @FXML private Text labelRest;
@@ -37,7 +37,7 @@ public class ManageWorkoutRoutineGUIController implements Initializable {
     public void setNotVisible(){
         spinnerRepetitions.setVisible(false);
         spinnerSets.setVisible(false);
-        splitMenuRest.setVisible(false);
+        restTimeComboBox.setVisible(false);
         labelSets.setVisible(false);
         labelRepetitions.setVisible(false);
         labelRest.setVisible(false);
@@ -49,7 +49,7 @@ public class ManageWorkoutRoutineGUIController implements Initializable {
     public void setVisible(){
         spinnerRepetitions.setVisible(true);
         spinnerSets.setVisible(true);
-        splitMenuRest.setVisible(true);
+        restTimeComboBox.setVisible(true);
         labelSets.setVisible(true);
         labelRepetitions.setVisible(true);
         labelRest.setVisible(true);
@@ -67,7 +67,7 @@ public class ManageWorkoutRoutineGUIController implements Initializable {
     @FXML
     public void deleteChanges() throws Exception{
         //TODO gestisci la cancellazione della scheda
-        SwitchPage.setStage(MainStage.getStage(),"OpenSingleRequest.fxml","pt",1);
+        SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
     }
     @FXML
     public void goHome() throws Exception{
