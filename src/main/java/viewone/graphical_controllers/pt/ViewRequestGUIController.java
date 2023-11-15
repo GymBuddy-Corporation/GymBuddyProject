@@ -26,14 +26,14 @@ public class ViewRequestGUIController implements Initializable {
     }
     @FXML
     public void askClarification() throws Exception {
-        //TODO sistema la nuova grafica SwitchPage.setStage(MainStage.getStage(),"ManageWorkoutRoutine.fxml","pt",1);
+        //TODO sistema la nuova grafica SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
     }
     @FXML
     public void goHome() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     public void createNewRoutine() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"ManageWorkoutRoutine.fxml","pt",1);
+        SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
     }
     @FXML
     public void cancelRequest() throws Exception {
