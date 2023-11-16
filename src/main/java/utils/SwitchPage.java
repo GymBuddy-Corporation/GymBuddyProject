@@ -42,6 +42,7 @@ public class SwitchPage {
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
         Parent load = fxmlLoader.load();
         Scene scena = new Scene(load, x, y);
+        stage.getIcons().add(new javafx.scene.image.Image("LogoSoloImageWhite.png"));
         stage.setResizable(false);
         stage.setScene(scena);
         stage.show();

@@ -65,6 +65,6 @@ public class SatisfyWorkoutRequestsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //comment so to not have code smell
     }
 }

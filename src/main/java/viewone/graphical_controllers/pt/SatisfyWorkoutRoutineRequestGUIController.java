@@ -35,23 +35,29 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML private Text labelRest;
     @FXML private Button addExerciseButton;
     @FXML private Button cancelExerciseButton;
+    @FXML private Label repetLabelExerciseInserted;
+    @FXML private Label setLabelExerciseInserted;
+    @FXML private Label restLabelExerciseInserted;
 
 
     private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
-    public void setVisible(Boolean bool){
+    public void setVisibleAdd(Boolean bool){
         spinnerRepetitions.setVisible(bool);
         spinnerSets.setVisible(bool);
         restTimeComboBox.setVisible(bool);
-        labelSets.setVisible(bool);
-        labelRepetitions.setVisible(bool);
-        labelRest.setVisible(bool);
+        addExerciseButton.setVisible(bool);
     }
     public void setVisibleCancel(Boolean bool) {
         cancelExerciseButton.setVisible(bool);
+        repetLabelExerciseInserted.setVisible(bool);
+        setLabelExerciseInserted.setVisible(bool);
+        restLabelExerciseInserted.setVisible(bool);
     }
-    public void setVisibleAdd(Boolean bool) {
-        addExerciseButton.setVisible(bool);
+    public void setVisibleLabel(Boolean bool) {
+        labelSets.setVisible(bool);
+        labelRepetitions.setVisible(bool);
+        labelRest.setVisible(bool);
     }
     @FXML
     public void logout() throws Exception{
@@ -94,7 +100,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         if (selectedExercise != null && !RoutineExerciselist.getItems().contains(selectedExercise)) {
             RoutineExerciselist.getItems().add(selectedExercise);
         }
-        setVisible(false);
+        setVisibleLabel(false);
         setVisibleAdd(false);
         DBExercise.getSelectionModel().clearSelection();
         RoutineExerciselist.getSelectionModel().clearSelection();
@@ -108,7 +114,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
             items.remove(selectedItem);
             RoutineExerciselist.getSelectionModel().clearSelection();
         }
-        setVisible(false);
+        setVisibleLabel(false);
         setVisibleCancel(false);
     }
 
@@ -126,14 +132,13 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mondayButton.fire();
-        /*setValue();*/
 
-        setVisible(false);
         setVisibleAdd(false);
+        setVisibleLabel(false);
         setVisibleCancel(false);
         DBExercise.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                setVisible(true);
+                setVisibleLabel(true);
                 setVisibleAdd(true);
                 setVisibleCancel(false);
                 RoutineExerciselist.getSelectionModel().clearSelection();
@@ -142,7 +147,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
         RoutineExerciselist.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                setVisible(true);
+                setVisibleLabel(true);
                 setVisibleCancel(true);
                 setVisibleAdd(false);
                 DBExercise.getSelectionModel().clearSelection();

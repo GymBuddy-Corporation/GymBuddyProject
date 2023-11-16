@@ -496,6 +496,20 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
+   <Label fx:id="repetLabelExerciseInserted" alignment="CENTER" contentDisplay="TOP" layoutX="637.0" layoutY="262.0" prefHeight="26.0" prefWidth="31.0" style="-fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-color: rgba(255, 255, 255, 0.1); -fx-background-radius: 5em;" text="10" textAlignment="CENTER">
+      <font>
+         <Font name="Allerta Stencil Regular" size="12.0" />
+      </font></Label>
+   <Label fx:id="setLabelExerciseInserted" alignment="CENTER" contentDisplay="TOP" layoutX="637.0" layoutY="295.0" prefHeight="26.0" prefWidth="31.0" style="-fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-color: rgba(255, 255, 255, 0.1); -fx-background-radius: 5em;" text="10" textAlignment="CENTER">
+      <font>
+         <Font name="Allerta Stencil Regular" size="12.0" />
+      </font>
+   </Label>
+   <Label fx:id="restLabelExerciseInserted" alignment="CENTER" contentDisplay="TOP" layoutX="621.0" layoutY="327.0" prefHeight="26.0" prefWidth="55.0" style="-fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-color: rgba(255, 255, 255, 0.1); -fx-background-radius: 5em;" text="10" textAlignment="CENTER">
+      <font>
+         <Font name="Allerta Stencil Regular" size="12.0" />
+      </font>
+   </Label>
 
 
    
