@@ -25,7 +25,7 @@ public class SwitchPage {
         System.out.println(temp);
         return null;
     }
-    public static  Scene setStage(Stage stage, String name,String folder,int view) throws IOException {
+    public static  Object setStage(Stage stage, String name,String folder,int view) throws IOException {
         String path;
         String view_path="";
         switch (view){
@@ -43,8 +43,8 @@ public class SwitchPage {
         Parent load = fxmlLoader.load();
         Scene scena = new Scene(load, x, y);
         stage.setResizable(false);
-        stage.setScene(scena);
+        //stage.setScene(scena);
         stage.show();
-        return scena;
+        return fxmlLoader.getController();
     }
 }
