@@ -43,7 +43,7 @@ public class SwitchPage {
         Parent load = fxmlLoader.load();
         Scene scena = new Scene(load, x, y);
         stage.setResizable(false);
-        //stage.setScene(scena);
+        stage.setScene(scena);
         stage.show();
         return fxmlLoader.getController();
     }
