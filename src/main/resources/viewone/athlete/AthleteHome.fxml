@@ -49,27 +49,6 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Text layoutX="406.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Email" textAlignment="CENTER" wrappingWidth="156.00000000000003">
-      <font>
-         <Font name="Allerta Stencil Regular" size="17.0" />
-      </font>
-      <fill>
-         <LinearGradient endY="0.3977272420218496">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color green="0.8941176533699036" blue="0.686274528503418" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
-                  </color>
-               </Stop>
-            </stops>
-         </LinearGradient>
-      </fill>
-   </Text>
    <Button layoutX="400.0" layoutY="287.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-background-radius: 5em;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
@@ -177,7 +156,7 @@
       </fill>
    </Text>
 
-   <Text fx:id="usernameText111121" layoutX="597.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ask for Workout Report" textAlignment="CENTER" wrappingWidth="142.65198850631714">
+   <Text fx:id="usernameText111121" layoutX="597.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ask For Workout Report" textAlignment="CENTER" wrappingWidth="142.65198850631714">
       <font>
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
@@ -347,6 +326,27 @@
    <Text layoutX="96.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gym Communications" textAlignment="CENTER" wrappingWidth="217.60000000000002">
       <font>
          <Font name="Allerta Stencil Regular" size="20.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="408.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write Message To Gym Reception" textAlignment="CENTER" wrappingWidth="156.00000000000003">
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
       <fill>
          <LinearGradient endY="0.3977272420218496">

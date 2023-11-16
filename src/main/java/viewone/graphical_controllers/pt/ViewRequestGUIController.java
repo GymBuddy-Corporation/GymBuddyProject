@@ -1,21 +1,39 @@
 package viewone.graphical_controllers.pt;
 
+import beans.RequestBean;
+import controllers.SatisfyWorkoutRequestsController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+/*import java.sql.SQLException;*/
+import java.util.*;
 
 public class ViewRequestGUIController implements Initializable {
 
     @FXML
     private ListView<String> requestList;
+
+    @FXML
+    private Text textUsersRequest;
+
+    private RequestBean selectedRequest;
+
+    private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
+
+    public ViewRequestGUIController() {
+        satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+    }
+
+    public void setSelectedRequest(RequestBean requestBean) {
+        this.selectedRequest = requestBean;
+        textUsersRequest.setText(selectedRequest.getInfo());
+    }
 
     @FXML
     public void goBack() throws Exception {
@@ -33,11 +51,13 @@ public class ViewRequestGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     public void createNewRoutine() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
+        SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(), "SatisfyWorkoutRoutineRequest.fxml", "pt", 1);
+        Objects.requireNonNull(controller).setValue(selectedRequest, satisfyWorkoutRequestsController);
     }
     @FXML
     public void cancelRequest() throws Exception {
         //TODO gestisci la cancellazione di una richiesta
+        //satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
         SwitchPage.setStage(MainStage.getStage(), "PTHome.fxml", "pt", 1);
     }
 

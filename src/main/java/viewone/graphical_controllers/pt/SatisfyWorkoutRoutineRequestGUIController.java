@@ -1,5 +1,8 @@
 package viewone.graphical_controllers.pt;
 
+import beans.ExerciseBean;
+import beans.RequestBean;
+import beans.WorkoutDayBean;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +12,7 @@ import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
+import controllers.SatisfyWorkoutRequestsController;
 
 import java.net.URL;
 import java.util.*;
@@ -16,9 +20,10 @@ import java.util.*;
 public class SatisfyWorkoutRoutineRequestGUIController implements Initializable {
 
     @FXML private Button mondayButton;
-
     @FXML private TextField searchExerciseText;
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
+
+    private RequestBean requestBean;
 
     @FXML private ListView<String> DBExercise;
     @FXML private ListView<String> RoutineExerciselist;
@@ -31,34 +36,22 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML private Button addExerciseButton;
     @FXML private Button cancelExerciseButton;
 
-    public void setNotVisibleAdd(){
-        addExerciseButton.setVisible(false);
-    }
-    public void setNotVisible(){
-        spinnerRepetitions.setVisible(false);
-        spinnerSets.setVisible(false);
-        restTimeComboBox.setVisible(false);
-        labelSets.setVisible(false);
-        labelRepetitions.setVisible(false);
-        labelRest.setVisible(false);
-    }
-    public void setNotVisibleCancel(){
-        cancelExerciseButton.setVisible(false);
-    }
 
-    public void setVisible(){
-        spinnerRepetitions.setVisible(true);
-        spinnerSets.setVisible(true);
-        restTimeComboBox.setVisible(true);
-        labelSets.setVisible(true);
-        labelRepetitions.setVisible(true);
-        labelRest.setVisible(true);
+    private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
+
+    public void setVisible(Boolean bool){
+        spinnerRepetitions.setVisible(bool);
+        spinnerSets.setVisible(bool);
+        restTimeComboBox.setVisible(bool);
+        labelSets.setVisible(bool);
+        labelRepetitions.setVisible(bool);
+        labelRest.setVisible(bool);
     }
-    public void setVisibleCancel() {
-        cancelExerciseButton.setVisible(true);
+    public void setVisibleCancel(Boolean bool) {
+        cancelExerciseButton.setVisible(bool);
     }
-    public void setVisibleAdd() {
-        addExerciseButton.setVisible(true);
+    public void setVisibleAdd(Boolean bool) {
+        addExerciseButton.setVisible(bool);
     }
     @FXML
     public void logout() throws Exception{
@@ -79,18 +72,30 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }//TODO gestisci l'aggiunta di un esercizio nella scheda DB
 
 
+    public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
+        requestBean = request;
+        this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
+       /* ExerciseBean ex1 = new ExerciseBean("Tricep Pushdown");
+        ExerciseBean ex2 = new ExerciseBean("Shoulder Press");
+        ExerciseBean ex3 = new ExerciseBean("Squat");
+        ExerciseBean ex4 = new ExerciseBean("Dips");
+        List<ExerciseBean> exerciseBeanList = new ArrayList<>(Arrays.asList(ex1, ex2, ex3, ex4));
+*/
+        DBExercise.getItems().addAll("Tricep Pushdown", "Squat", "Bicep Curl");
+        mondayButton.fire();
+    }
+
     @FXML
     public void addExercise() {
-        // Get the selected exercise from RoutineExerciselist
         String selectedExercise = DBExercise.getSelectionModel().getSelectedItem();
+        String selectedDay = daysController.getDay();
+        satisfyWorkoutRequestsController.addExerciseToWorkoutDay(selectedExercise, selectedDay, RoutineExerciselist);
 
-        // Check if an exercise is selected
         if (selectedExercise != null && !RoutineExerciselist.getItems().contains(selectedExercise)) {
-            // Add the selected exercise to DBExercise
             RoutineExerciselist.getItems().add(selectedExercise);
         }
-        setNotVisible();
-        setNotVisibleAdd();
+        setVisible(false);
+        setVisibleAdd(false);
         DBExercise.getSelectionModel().clearSelection();
         RoutineExerciselist.getSelectionModel().clearSelection();
     }
@@ -98,18 +103,13 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML
     public void cancelExercise() {
         String selectedItem = RoutineExerciselist.getSelectionModel().getSelectedItem();
-
-        // Check if an item is selected
         if (selectedItem != null) {
-            // Remove the item from the underlying data model
             ObservableList<String> items = RoutineExerciselist.getItems();
             items.remove(selectedItem);
-
-            // Optional: Clear the selection
             RoutineExerciselist.getSelectionModel().clearSelection();
         }
-        setNotVisible();
-        setNotVisibleCancel();
+        setVisible(false);
+        setVisibleCancel(false);
     }
 
     @FXML
@@ -126,27 +126,25 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mondayButton.fire();
-        DBExercise.getItems().addAll("Tricep Pushdown", "Squat", "Bicep Curl");
-        setNotVisible();
-        setNotVisibleAdd();
-        setNotVisibleCancel();
+        /*setValue();*/
 
-        // Add a listener to the DBExercise ListView
+        setVisible(false);
+        setVisibleAdd(false);
+        setVisibleCancel(false);
         DBExercise.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                // If an item is selected, show this things:
-                setVisible();
-                setVisibleAdd();
-                setNotVisibleCancel();
+                setVisible(true);
+                setVisibleAdd(true);
+                setVisibleCancel(false);
                 RoutineExerciselist.getSelectionModel().clearSelection();
             }
         });
 
         RoutineExerciselist.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                setVisible();
-                setVisibleCancel();
-                setNotVisibleAdd();
+                setVisible(true);
+                setVisibleCancel(true);
+                setVisibleAdd(false);
                 DBExercise.getSelectionModel().clearSelection();
             }
         });
