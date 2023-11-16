@@ -1,14 +1,18 @@
 package viewone.graphical_controllers.pt;
 
 import beans.ExerciseBean;
+import beans.ExerciseForWorkoutRoutineBean;
 import beans.RequestBean;
 import beans.WorkoutDayBean;
+import engineering.ManageExerciseList;
+import engineering.list_cell_factories.ExerciseListCellFactory;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import utils.ExerciseCatalogue;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
@@ -25,8 +29,8 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
     private RequestBean requestBean;
 
-    @FXML private ListView<String> DBExercise;
-    @FXML private ListView<String> RoutineExerciselist;
+    @FXML private ListView<ExerciseBean> DBExercise;
+    @FXML private ListView<ExerciseBean> RoutineExerciselist;
     @FXML private Spinner<Integer> spinnerRepetitions;
     @FXML private Spinner<Integer> spinnerSets;
     @FXML private ComboBox<String> restTimeComboBox;
@@ -81,36 +85,61 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
         requestBean = request;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
-       /* ExerciseBean ex1 = new ExerciseBean("Tricep Pushdown");
-        ExerciseBean ex2 = new ExerciseBean("Shoulder Press");
-        ExerciseBean ex3 = new ExerciseBean("Squat");
-        ExerciseBean ex4 = new ExerciseBean("Dips");
-        List<ExerciseBean> exerciseBeanList = new ArrayList<>(Arrays.asList(ex1, ex2, ex3, ex4));
-*/
-        DBExercise.getItems().addAll("Tricep Pushdown", "Squat", "Bicep Curl");
+        /*ManageExerciseList.setListener(DBExercise, daysController, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListener(RoutineExerciselist, daysController, satisfyWorkoutRequestsController, this);*/
+        ExerciseCatalogue exerciseList = new ExerciseCatalogue();
+        DBExercise.setCellFactory(new ExerciseListCellFactory());
+        RoutineExerciselist.setCellFactory(new ExerciseListCellFactory());
+
+        for (ExerciseBean element : exerciseList.getExerciseList()) {
+            DBExercise.getItems().add(element);
+        }
+
         mondayButton.fire();
     }
 
+
+
     @FXML
     public void addExercise() {
-        String selectedExercise = DBExercise.getSelectionModel().getSelectedItem();
+        String selectedExercise = DBExercise.getSelectionModel().getSelectedItem().getName();
         String selectedDay = daysController.getDay();
-        satisfyWorkoutRequestsController.addExerciseToWorkoutDay(selectedExercise, selectedDay, RoutineExerciselist);
 
-        if (selectedExercise != null && !RoutineExerciselist.getItems().contains(selectedExercise)) {
-            RoutineExerciselist.getItems().add(selectedExercise);
-        }
         setVisibleLabel(false);
         setVisibleAdd(false);
         DBExercise.getSelectionModel().clearSelection();
         RoutineExerciselist.getSelectionModel().clearSelection();
+
+        int repetitions = spinnerRepetitions.getValue();
+        int sets = spinnerSets.getValue();
+        String rest = restTimeComboBox.getValue();
+        boolean test = true;
+        if (selectedExercise != null && !RoutineExerciselist.getItems().contains(selectedExercise)
+                && sets!=0 && repetitions !=0) {
+            ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, selectedExercise);
+            newExercise.setRepetitions(repetitions);
+            newExercise.setSets(sets);
+            if(!newExercise.setRest(rest)){
+                test = false;
+            }
+            if(test){
+                RoutineExerciselist.getItems().add(newExercise);
+                System.out.println("Hai appena aggiunto l'esercizio " + selectedExercise + " nel giorno: " + selectedDay+
+                        " con "+ repetitions + " ripetizioni, "+ sets + " set e " + rest+ " minuti di recupero.\n\n");
+            } else {
+                System.out.println("Esercizio non inserito\n");
+            }
+
+        }
+
+        //satisfyWorkoutRequestsController.addExerciseToWorkoutDay(selectedExercise, selectedDay, RoutineExerciselist);
     }
 
     @FXML
     public void cancelExercise() {
-        String selectedItem = RoutineExerciselist.getSelectionModel().getSelectedItem();
+        String selectedItem = RoutineExerciselist.getSelectionModel().getSelectedItem().getName();
         if (selectedItem != null) {
-            ObservableList<String> items = RoutineExerciselist.getItems();
+            ObservableList<ExerciseBean> items = RoutineExerciselist.getItems();
             items.remove(selectedItem);
             RoutineExerciselist.getSelectionModel().clearSelection();
         }
@@ -128,6 +157,12 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         //updateSelectedExerciseList();
     }
 
+    public void resetInput(){
+        restTimeComboBox.setValue("00:00");
+        spinnerRepetitions.getValueFactory().setValue(0);
+        spinnerSets.getValueFactory().setValue(0);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -142,6 +177,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 setVisibleAdd(true);
                 setVisibleCancel(false);
                 RoutineExerciselist.getSelectionModel().clearSelection();
+                resetInput();
             }
         });
 
