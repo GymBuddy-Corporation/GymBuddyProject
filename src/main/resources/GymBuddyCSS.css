@@ -63,7 +63,7 @@
 
 .text-area {
     -fx-background-color: transparent;
-    -fx-prompt-text-fill: rgba(255,255,255,0.8);
+    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-font-family: "Allerta Stencil";
     -fx-font-size: 15px;
@@ -124,13 +124,7 @@
     -fx-border-radius:  5em;
     -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
 }
-.button:pressed {
-    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-background-radius:  5em;
-    -fx-border-color:  #2D043D;
-    -fx-border-radius:  5em;
-    -fx-text-fill: #2D043D;
-}
+
 
 .spinner {
     -fx-background-color: transparent;

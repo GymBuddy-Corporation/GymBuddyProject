@@ -7,18 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.io.File;
 import java.io.IOException;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.ListCell;
+
 import javafx.util.Callback;
 
-import java.io.IOException;
+
 
 public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>, ListCell<ExerciseBean>> {
 

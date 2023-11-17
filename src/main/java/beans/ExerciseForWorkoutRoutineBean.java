@@ -3,6 +3,9 @@ package beans;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Occhio a come si fa la seconda interfaccia, perchè se si usa un altro metodo di
+//input per i dati (non più bottoni semplici), dovrà essere trasformata in un'interfaccia che poi successivamente,
+//a seconda dei casi, verrà implementata dai diversi Bean
 public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
     private final String day;
     private final String name;

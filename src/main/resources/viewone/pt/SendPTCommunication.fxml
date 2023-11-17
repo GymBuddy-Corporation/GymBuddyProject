@@ -111,7 +111,7 @@
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="17.0" layoutY="430.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
-   <TextArea layoutX="73.0" layoutY="150.0" prefHeight="256.0" prefWidth="654.0" styleClass="text-area" stylesheets="@../../GymBuddyCSS.css" text="Domani non potrò farvi le schede perchè sono in ferie." />
+   <TextArea layoutX="73.0" layoutY="150.0" prefHeight="256.0" prefWidth="654.0" promptText="Domani non potrò farvi le schede perchè sono in ferie." styleClass="text-area" stylesheets="@../../GymBuddyCSS.css" />
 
 
    

@@ -3,18 +3,15 @@ package engineering;
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 import viewone.DaysOfTheWeekButtonController;
 import viewone.graphical_controllers.pt.SatisfyWorkoutRoutineRequestGUIController;
 
 
-import java.io.IOException;
 import java.util.List;
 
 public class ManageExerciseList {
@@ -37,6 +34,7 @@ public class ManageExerciseList {
                 satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(true);
                 satisfyWorkoutRoutineRequestGUIController.setVisibleCancel(false);
                 satisfyWorkoutRoutineRequestGUIController.resetInputCollectors();
+                satisfyWorkoutRoutineRequestGUIController.resetSelection(1);
             }
 
     }
@@ -62,6 +60,7 @@ public class ManageExerciseList {
             satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);
             satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(false);
             satisfyWorkoutRoutineRequestGUIController.setVisibleCancel(true);
+            satisfyWorkoutRoutineRequestGUIController.resetSelection(2);
         }
     }
 

@@ -5,7 +5,7 @@ import utils.SwitchPage;
 import javafx.fxml.FXML;
 
 
-public class PTHomeGUIControllerGUIController {
+public class PTHomeGUIController {
     @FXML
     public void sendCommunication() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
@@ -23,6 +23,5 @@ public class PTHomeGUIControllerGUIController {
     public void viewRequests() throws Exception{
         SwitchPage.setStage(MainStage.getStage(), "ViewWorkoutRoutineRequests.fxml", "pt", 1);
     }
-
 
 }

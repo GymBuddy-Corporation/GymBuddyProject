@@ -29,7 +29,7 @@ public class RequestListCellFactory implements Callback<ListView<RequestBean>, L
                 } else {
                     if (parentNode == null) {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListExerciseWorkoutRoutine.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListAthlete.fxml"));
                             parentNode = loader.load();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -37,7 +37,7 @@ public class RequestListCellFactory implements Callback<ListView<RequestBean>, L
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(requestBean.getAthleteBean().getName());
+                    itemNameLabel.setText(requestBean.getAthleteBean().getUsername());
 
                     setGraphic(parentNode);
                 }

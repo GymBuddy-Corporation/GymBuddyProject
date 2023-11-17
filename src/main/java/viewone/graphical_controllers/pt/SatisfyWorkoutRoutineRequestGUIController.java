@@ -3,7 +3,6 @@ package viewone.graphical_controllers.pt;
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
 import beans.RequestBean;
-import beans.WorkoutDayBean;
 import engineering.ExerciseForWOListCellFactory;
 import engineering.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
@@ -86,7 +85,9 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
-        /*SwitchPage.setStage(MainStage.getStage(),"AddExercise.fxml","pt",1);*/
+        AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"AddCommentToWorkoutRoutine.fxml","pt",1);
+        Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController);
+
     }//TODO gestisci l'aggiunta di un esercizio nella scheda DB
 
 
@@ -124,9 +125,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
             setVisibleLabel(false);
             setVisibleAdd(false);
 
-            DBExercise.getSelectionModel().clearSelection();
-            RoutineExerciselist.getSelectionModel().clearSelection();
-
             int repetitions = spinnerRepetitions.getValue();
             int sets = spinnerSets.getValue();
             String rest = restTimeComboBox.getValue();
@@ -151,8 +149,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 } else {
                     System.out.println("Esercizio non inserito\n");
                 }
-                resetSelection(1);
+
             }
+            resetSelection(1);
+            DBExercise.getSelectionModel().clearSelection();
+            RoutineExerciselist.getSelectionModel().clearSelection();
         }    //satisfyWorkoutRequestsController.addExerciseToWorkoutDay(selectedExercise, selectedDay, RoutineExerciselist);
 
     }
@@ -172,6 +173,8 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         setVisibleLabel(false);
         setVisibleCancel(false);
         resetSelection(2);
+        DBExercise.getSelectionModel().clearSelection();
+        RoutineExerciselist.getSelectionModel().clearSelection();
     }
 
     @FXML

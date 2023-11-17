@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="250.0" prefWidth="400.0" style="-fx-background-color: #2D043D;" stylesheets="@../../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.ConfirmSubmitRoutineGUIController">
+   <Button layoutX="278.0" layoutY="182.0" mnemonicParsing="false" onAction="#submitRoutine" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Submit" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
+
+    <ImageView fitHeight="75.0" fitWidth="179.0" layoutX="111.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/LogoGymBuddy.png" />
+    </ImageView>
+   <Text layoutX="74.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to conferm the workout routine?" textAlignment="CENTER" wrappingWidth="252.79998779296875">
+      <font>
+         <Font name="Allerta Stencil Regular" size="20.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Button layoutX="14.0" layoutY="182.0" mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Go Back" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+   </Button>
+
+
+   
+
+</AnchorPane>
