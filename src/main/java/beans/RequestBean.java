@@ -3,7 +3,7 @@ package beans;
 import java.time.LocalDateTime;
 
 public class RequestBean {
-    private int id;
+    private int id;  /*TODO Da chiarire a cosa mi può servire l'id?*/
     private final LocalDateTime requestDate;
     private String info;
     private final AthleteBean athleteBean;

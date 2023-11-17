@@ -29,7 +29,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
         return day;
     }
 
-    public String getName() {
+    @Override public String getName() {
         return name;
     }
 
@@ -45,7 +45,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
             return true;
             //poi gestisci le eccezioni
         } else {
-            System.out.println("Recupero inappriato; scegli tra le opzioni proposte.\n");
+            System.out.println("Recupero inappropriato: " + timeString + " scegli tra le opzioni proposte.\n");
             return false;
         }
     }
@@ -55,7 +55,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
 
     public static boolean isValidTime(String timeString) {
         if (timeString == null) {
-            return false;  // or handle the null case accordingly
+            return false;  // or handle the null case differently
         }
 
         String timeRegex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";

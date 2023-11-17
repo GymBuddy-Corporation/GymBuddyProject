@@ -4,15 +4,15 @@ import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
 import beans.RequestBean;
 import beans.WorkoutDayBean;
-import engineering.ManageExerciseList;
-import engineering.list_cell_factories.ExerciseListCellFactory;
-import javafx.collections.ObservableList;
+import engineering.ExerciseForWOListCellFactory;
+import engineering.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import utils.ExerciseCatalogue;
+import engineering.ManageExerciseList;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
@@ -30,7 +30,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     private RequestBean requestBean;
 
     @FXML private ListView<ExerciseBean> DBExercise;
-    @FXML private ListView<ExerciseBean> RoutineExerciselist;
+    @FXML private ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist;
     @FXML private Spinner<Integer> spinnerRepetitions;
     @FXML private Spinner<Integer> spinnerSets;
     @FXML private ComboBox<String> restTimeComboBox;
@@ -63,6 +63,14 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         labelRepetitions.setVisible(bool);
         labelRest.setVisible(bool);
     }
+
+    public void resetSelection(int choice){
+        if(choice == 1){
+            RoutineExerciselist.getSelectionModel().clearSelection();
+        } else {
+            DBExercise.getSelectionModel().clearSelection();
+        }
+    }
     @FXML
     public void logout() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
@@ -85,66 +93,85 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
         requestBean = request;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
-        /*ManageExerciseList.setListener(DBExercise, daysController, satisfyWorkoutRequestsController, this);
-        ManageExerciseList.setListener(RoutineExerciselist, daysController, satisfyWorkoutRequestsController, this);*/
-        ExerciseCatalogue exerciseList = new ExerciseCatalogue();
-        DBExercise.setCellFactory(new ExerciseListCellFactory());
-        RoutineExerciselist.setCellFactory(new ExerciseListCellFactory());
-
-        for (ExerciseBean element : exerciseList.getExerciseList()) {
-            DBExercise.getItems().add(element);
-        }
+        ManageExerciseList.setListenerDB(DBExercise, daysController, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListenerRoutineWorkout(RoutineExerciselist, daysController, satisfyWorkoutRequestsController, this);
 
         mondayButton.fire();
     }
 
 
+    public boolean checkAlreadyAdded(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean) {
+        /*WorkoutDayBean workoutDayBean = satisfyWorkoutRequestsController.getWorkoutDayBean(new DayBeanA(exerciseForWorkoutRoutineBean.getDay()));*/
+        for (ExerciseBean exercise : RoutineExerciselist.getItems()/*workoutDayBean.getExerciseBeanList()*/) {
+            /*Il commento serve perchè poi scorreremo tutto il giorno e vedremo se c'è SOLO per quel giorno*/
+            if (Objects.equals(exercise.getName(), exerciseForWorkoutRoutineBean.getName())) {
+                System.out.println("Esercizio già inserito nella tua scheda\n");
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @FXML
     public void addExercise() {
-        String selectedExercise = DBExercise.getSelectionModel().getSelectedItem().getName();
-        String selectedDay = daysController.getDay();
+        ExerciseBean selectedExercise = DBExercise.getSelectionModel().getSelectedItem();
 
-        setVisibleLabel(false);
-        setVisibleAdd(false);
-        DBExercise.getSelectionModel().clearSelection();
-        RoutineExerciselist.getSelectionModel().clearSelection();
+        if (selectedExercise != null) {
+            String exerciseName = selectedExercise.getName();
+            String selectedDay = daysController.getDay();
 
-        int repetitions = spinnerRepetitions.getValue();
-        int sets = spinnerSets.getValue();
-        String rest = restTimeComboBox.getValue();
-        boolean test = true;
-        if (selectedExercise != null && !RoutineExerciselist.getItems().contains(selectedExercise)
-                && sets!=0 && repetitions !=0) {
-            ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, selectedExercise);
-            newExercise.setRepetitions(repetitions);
-            newExercise.setSets(sets);
-            if(!newExercise.setRest(rest)){
-                test = false;
+            setVisibleLabel(false);
+            setVisibleAdd(false);
+
+            DBExercise.getSelectionModel().clearSelection();
+            RoutineExerciselist.getSelectionModel().clearSelection();
+
+            int repetitions = spinnerRepetitions.getValue();
+            int sets = spinnerSets.getValue();
+            String rest = restTimeComboBox.getValue();
+            boolean test = true;
+            ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, exerciseName);
+
+            if (!checkAlreadyAdded(newExercise) && sets != 0 && repetitions != 0) {
+                newExercise.setRepetitions(repetitions);
+                newExercise.setSets(sets);
+
+                if (!newExercise.setRest(rest)) {
+                    test = false;
+                }
+
+                if (test) {
+                    RoutineExerciselist.getItems().add(newExercise);
+                    repetLabelExerciseInserted.setText(Integer.toString(repetitions));
+                    setLabelExerciseInserted.setText(Integer.toString(sets));
+                    restLabelExerciseInserted.setText(rest);
+                    System.out.println("Hai appena aggiunto l'esercizio " + exerciseName + " nel giorno: " + selectedDay +
+                            " con " + repetitions + " ripetizioni, " + sets + " set e " + rest + " minuti di recupero.\n");
+                } else {
+                    System.out.println("Esercizio non inserito\n");
+                }
+                resetSelection(1);
             }
-            if(test){
-                RoutineExerciselist.getItems().add(newExercise);
-                System.out.println("Hai appena aggiunto l'esercizio " + selectedExercise + " nel giorno: " + selectedDay+
-                        " con "+ repetitions + " ripetizioni, "+ sets + " set e " + rest+ " minuti di recupero.\n\n");
-            } else {
-                System.out.println("Esercizio non inserito\n");
-            }
+        }    //satisfyWorkoutRequestsController.addExerciseToWorkoutDay(selectedExercise, selectedDay, RoutineExerciselist);
 
-        }
-
-        //satisfyWorkoutRequestsController.addExerciseToWorkoutDay(selectedExercise, selectedDay, RoutineExerciselist);
     }
+
 
     @FXML
     public void cancelExercise() {
         String selectedItem = RoutineExerciselist.getSelectionModel().getSelectedItem().getName();
         if (selectedItem != null) {
-            ObservableList<ExerciseBean> items = RoutineExerciselist.getItems();
-            items.remove(selectedItem);
-            RoutineExerciselist.getSelectionModel().clearSelection();
+            for (ExerciseForWorkoutRoutineBean  item : RoutineExerciselist.getItems()) {
+                if (selectedItem.equals(item.getName())) {
+                    RoutineExerciselist.getItems().remove(item);
+                    break; // Exit the loop once the item is removed
+                }
+            }
         }
         setVisibleLabel(false);
         setVisibleCancel(false);
+        resetSelection(2);
     }
 
     @FXML
@@ -157,7 +184,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         //updateSelectedExerciseList();
     }
 
-    public void resetInput(){
+    public void resetInputCollectors(){
         restTimeComboBox.setValue("00:00");
         spinnerRepetitions.getValueFactory().setValue(0);
         spinnerSets.getValueFactory().setValue(0);
@@ -166,35 +193,15 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mondayButton.fire();
-
         setVisibleAdd(false);
         setVisibleLabel(false);
         setVisibleCancel(false);
-        DBExercise.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                setVisibleLabel(true);
-                setVisibleAdd(true);
-                setVisibleCancel(false);
-                RoutineExerciselist.getSelectionModel().clearSelection();
-                resetInput();
-            }
-        });
+        DBExercise.setCellFactory(new ExerciseListCellFactory());
+        RoutineExerciselist.setCellFactory(new ExerciseForWOListCellFactory());
+        ExerciseCatalogue exerciseList = new ExerciseCatalogue();
 
-        RoutineExerciselist.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                setVisibleLabel(true);
-                setVisibleCancel(true);
-                setVisibleAdd(false);
-                DBExercise.getSelectionModel().clearSelection();
-            }
-        });
-        /*
-        TODO sistema poi le liste con funzioni del genere
-        exerciseList.setCellFactory(nodeListView -> new ExerciseListCellFactory(false));
-        selectedExerciseList.setCellFactory(nodeListView -> new ExerciseListCellFactory(false));
-        */
-
-
+        for (ExerciseBean element : exerciseList.getExerciseList()) {
+            DBExercise.getItems().add(element);
+        }
     }
 }

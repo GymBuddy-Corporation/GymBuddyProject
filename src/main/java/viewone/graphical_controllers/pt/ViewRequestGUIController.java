@@ -2,6 +2,8 @@ package viewone.graphical_controllers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import engineering.ExerciseListCellFactory;
+import engineering.RequestListCellFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -17,7 +19,7 @@ import java.util.*;
 public class ViewRequestGUIController implements Initializable {
 
     @FXML
-    private ListView<String> requestList;
+    private ListView<RequestBean> requestList;
 
     @FXML
     private Text textUsersRequest;
@@ -63,7 +65,11 @@ public class ViewRequestGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<String> lista = new ArrayList<>(Arrays.asList("13/05/2023", "23/08/2023", "05/10/2023"));
+        requestList.setCellFactory(new RequestListCellFactory());
+
+        List<RequestBean> lista = new ArrayList<>();
         requestList.getItems().addAll(lista);
+
+        /*Arrays.asList("13/05/2023", "23/08/2023", "05/10/2023")*/
     }
 }
