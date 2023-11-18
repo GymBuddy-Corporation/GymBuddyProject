@@ -57,10 +57,13 @@ public class ManageExerciseList {
 
     private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, DaysOfTheWeekButtonController daysController, ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
         if(newItem != null){
+            //implementa delle get per prendere i valori
+            satisfyWorkoutRoutineRequestGUIController.setExerciseDetails(newItem.getRepetitions(), newItem.getSets(), newItem.getRest());
             satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);
             satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(false);
             satisfyWorkoutRoutineRequestGUIController.setVisibleCancel(true);
             satisfyWorkoutRoutineRequestGUIController.resetSelection(2);
+
         }
     }
 

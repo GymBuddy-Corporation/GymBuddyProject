@@ -46,6 +46,13 @@ public class ViewRequestGUIController implements Initializable {
         //TODO sistema la nuova grafica SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
     }
 
+    @FXML
+    public void wantToCreateNewRoutine() throws Exception {
+        if (!requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
+            createNewRoutine();
+        }
+    }
+
     public void createNewRoutine() throws Exception {
         SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(), "SatisfyWorkoutRoutineRequest.fxml", "pt", 1);
         Objects.requireNonNull(controller).setValue(selectedRequest, satisfyWorkoutRequestsController);

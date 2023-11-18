@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.ExerciseForWorkoutRoutineBean;
 import beans.WorkoutDayBean;
 import beans.WorkoutRoutineBean;
 import javafx.fxml.Initializable;
@@ -34,11 +35,11 @@ public class SatisfyWorkoutRequestsController implements Initializable {
     }
 
 
-    public void addExerciseToWorkoutDay(String exercise, String nameDay, ListView<String> RoutineExerciselist)  {
+    public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, String nameDay, ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist)  {
         //verifica se nella scheda c'è già un giorno con esercizi
         //in attesa delle bean passo i valori attraverso la GUIController
 
-        RoutineExerciselist.getItems().addAll(exercise);
+        RoutineExerciselist.getItems().add(exercise);
         /*
         WorkoutDay workoutDay = new WorkoutDay(nameDay, numDay);
         workoutDay = getWorkoutDay(nameDay);*/

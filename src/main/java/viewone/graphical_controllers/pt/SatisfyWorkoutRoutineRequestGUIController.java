@@ -42,7 +42,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML private Label setLabelExerciseInserted;
     @FXML private Label restLabelExerciseInserted;
 
-
     private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
     public void setVisibleAdd(Boolean bool){
@@ -113,6 +112,12 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         return false;
     }
 
+    public void setExerciseDetails(int repetitions, int sets, String rest){
+        repetLabelExerciseInserted.setText(Integer.toString(repetitions));
+        setLabelExerciseInserted.setText(Integer.toString(sets));
+        restLabelExerciseInserted.setText(rest);
+    }
+
 
     @FXML
     public void addExercise() {
@@ -140,10 +145,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 }
 
                 if (test) {
-                    RoutineExerciselist.getItems().add(newExercise);
-                    repetLabelExerciseInserted.setText(Integer.toString(repetitions));
-                    setLabelExerciseInserted.setText(Integer.toString(sets));
-                    restLabelExerciseInserted.setText(rest);
+                    satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, selectedDay, RoutineExerciselist);
+                    /*RoutineExerciselist.getItems().add(newExercise);*/
+
+
+
                     System.out.println("Hai appena aggiunto l'esercizio " + exerciseName + " nel giorno: " + selectedDay +
                             " con " + repetitions + " ripetizioni, " + sets + " set e " + rest + " minuti di recupero.\n");
                 } else {
