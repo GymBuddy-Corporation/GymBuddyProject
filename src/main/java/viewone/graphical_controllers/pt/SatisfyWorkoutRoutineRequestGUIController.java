@@ -23,10 +23,13 @@ import java.util.*;
 public class SatisfyWorkoutRoutineRequestGUIController implements Initializable {
 
     @FXML private Button mondayButton;
-    @FXML private TextField searchExerciseText;
+    //@FXML private TextField searchExerciseText;
+
+    private final Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap = new HashMap<>();
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
 
     private RequestBean requestBean;
+    private String selectedDay;
 
     @FXML private ListView<ExerciseBean> DBExercise;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist;
@@ -95,7 +98,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
         ManageExerciseList.setListenerDB(DBExercise, daysController, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(RoutineExerciselist, daysController, satisfyWorkoutRequestsController, this);
-
         mondayButton.fire();
     }
 
@@ -119,13 +121,13 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
 
 
+
     @FXML
     public void addExercise() {
         ExerciseBean selectedExercise = DBExercise.getSelectionModel().getSelectedItem();
 
-        if (selectedExercise != null) {
+        if (selectedExercise != null && selectedDay != null) {
             String exerciseName = selectedExercise.getName();
-            String selectedDay = daysController.getDay();
 
             setVisibleLabel(false);
             setVisibleAdd(false);
@@ -146,22 +148,19 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
                 if (test) {
                     satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, selectedDay, RoutineExerciselist);
-                    /*RoutineExerciselist.getItems().add(newExercise);*/
-
-
+                    // Update the map with the new exercise
+                    dayExercisesMap.get(selectedDay).add(newExercise);
 
                     System.out.println("Hai appena aggiunto l'esercizio " + exerciseName + " nel giorno: " + selectedDay +
                             " con " + repetitions + " ripetizioni, " + sets + " set e " + rest + " minuti di recupero.\n");
                 } else {
                     System.out.println("Esercizio non inserito\n");
                 }
-
             }
             resetSelection(1);
             DBExercise.getSelectionModel().clearSelection();
             RoutineExerciselist.getSelectionModel().clearSelection();
-        }    //satisfyWorkoutRequestsController.addExerciseToWorkoutDay(selectedExercise, selectedDay, RoutineExerciselist);
-
+        }
     }
 
 
@@ -188,10 +187,21 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         //TODO gestisci la ricerca di un esercizio dal database
     }
 
-    @FXML void dayButtonAction(ActionEvent event) {
-        daysController.dayButtonAction(event);
-        //updateSelectedExerciseList();
+    @FXML
+    void dayButtonAction(ActionEvent event) {
+        selectedDay = daysController.dayButtonAction(event);
+
+        // If exercises for the selected day are not loaded, load them
+        if (!dayExercisesMap.containsKey(selectedDay)) {
+            dayExercisesMap.put(selectedDay, new ArrayList<>());
+        }
+
+        // Update the RoutineExerciselist with exercises for the selected day
+        RoutineExerciselist.getItems().setAll(dayExercisesMap.get(selectedDay));
+
+        // Optionally, update other UI elements based on the selected day
     }
+
 
     public void resetInputCollectors(){
         restTimeComboBox.setValue("00:00");
