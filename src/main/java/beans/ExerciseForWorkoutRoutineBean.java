@@ -6,34 +6,32 @@ import java.util.regex.Pattern;
 //Occhio a come si fa la seconda interfaccia, perchè se si usa un altro metodo di
 //input per i dati (non più bottoni semplici), dovrà essere trasformata in un'interfaccia che poi successivamente,
 //a seconda dei casi, verrà implementata dai diversi Bean
-public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
+public class ExerciseForWorkoutRoutineBean{
     private final String day;
-    private final String name;
     private int repetitions;
     private int sets;
     private String rest;
+    private final ExerciseBean exercise;
 
-    public ExerciseForWorkoutRoutineBean(String day, String name, int repetitions, int sets, String rest) {
-        super(name);
+    public ExerciseForWorkoutRoutineBean(String day, ExerciseBean exercise, int repetitions, int sets, String rest) {
         this.day = day;
-        this.name = name;
+        this.exercise = exercise;
         this.rest = rest;
         this.sets = sets;
         this.repetitions = repetitions;
     }
 
-    public ExerciseForWorkoutRoutineBean(String day, String name) {
-        super(name);
+    public ExerciseForWorkoutRoutineBean(String day, ExerciseBean exercise) {
         this.day = day;
-        this.name = name;
+        this.exercise = exercise;
     }
 
     public String getDay() {
         return day;
     }
 
-    @Override public String getName() {
-        return name;
+    public ExerciseBean getExercise() {
+        return exercise;
     }
 
     public int getRepetitions() {return repetitions;}

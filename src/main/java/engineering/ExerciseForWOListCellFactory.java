@@ -36,7 +36,7 @@ public class ExerciseForWOListCellFactory implements Callback<ListView<ExerciseF
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(exerciseBean.getName());
+                    itemNameLabel.setText(exerciseBean.getExercise().getName());
 
                     setGraphic(parentNode);
                 }

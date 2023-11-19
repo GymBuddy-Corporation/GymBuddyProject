@@ -5,14 +5,14 @@ import java.util.List;
 
 public class WorkoutRoutineBean {
 
-    private int id;
+    private AthleteBean athlete;
     private String name;
+    private String comment;
     private List<WorkoutDayBean> workoutDayList;
 
-    public WorkoutRoutineBean(int id, String name) {
-        this.id = id;
+    public WorkoutRoutineBean(AthleteBean athlete) {
+        this.athlete = athlete;
         this.workoutDayList = new ArrayList<>();
-        this.name = name;
     }
 
     public WorkoutRoutineBean() {
@@ -25,8 +25,8 @@ public class WorkoutRoutineBean {
         this.workoutDayList = workoutDayList;
     }
 
-    public int getId() {
-        return id;
+    public AthleteBean getAthlete() {
+        return athlete;
     }
 
     public void addWorkoutDayBean(WorkoutDayBean workoutDayBean) {
@@ -37,4 +37,12 @@ public class WorkoutRoutineBean {
     public String getName() {return name;}
 
     public void setName(String name) {this.name = name;}
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

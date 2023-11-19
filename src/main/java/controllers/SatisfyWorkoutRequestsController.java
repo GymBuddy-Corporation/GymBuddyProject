@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
 import beans.WorkoutDayBean;
 import beans.WorkoutRoutineBean;
@@ -10,6 +11,7 @@ import model.WorkoutRoutine;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SatisfyWorkoutRequestsController implements Initializable {
@@ -40,6 +42,9 @@ public class SatisfyWorkoutRequestsController implements Initializable {
         //in attesa delle bean passo i valori attraverso la GUIController
 
         RoutineExerciselist.getItems().add(exercise);
+/*        this.workoutRoutine.*/
+
+
         /*
         WorkoutDay workoutDay = new WorkoutDay(nameDay, numDay);
         workoutDay = getWorkoutDay(nameDay);*/
@@ -54,10 +59,48 @@ public class SatisfyWorkoutRequestsController implements Initializable {
         */
     }
 
-    private WorkoutDayBean getWorkoutDay(String day) {
+
+    public void submitRoutine(ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist) {
+        // TODO sistema il submit
+        for (ExerciseForWorkoutRoutineBean exercise : RoutineExerciselist.getItems()) {
+            String exerciseDay = exercise.getDay();
+
+            // Check if there is a WorkoutDayBean for the current day in the list
+            Optional<WorkoutDayBean> workoutDayOptional = workoutRoutine.getWorkoutDayList().stream()
+                    .filter(workoutDay -> workoutDay.getName().equals(exerciseDay))
+                    .findFirst();
+
+            // If a WorkoutDayBean for the current day is not found, create one
+            WorkoutDayBean workoutDay = workoutDayOptional.orElseGet(() -> {
+                WorkoutDayBean newWorkoutDay = new WorkoutDayBean(exerciseDay);
+                workoutRoutine.addWorkoutDayBean(newWorkoutDay);
+                return newWorkoutDay;
+            });
+
+            // Add the current exercise to the list of exercises for the current day
+            workoutDay.addExerciseBean(new ExerciseBean(exercise.getExercise().getName()));
+        }
+
+        // Print details outside the loop
+        for (ExerciseForWorkoutRoutineBean exercisePrint : RoutineExerciselist.getItems()) {
+            ExerciseBean exerciseName = exercisePrint.getExercise();
+            String dayP = exercisePrint.getDay();
+            int repetitionsP = exercisePrint.getRepetitions();
+            int setsP = exercisePrint.getSets();
+            String restP = exercisePrint.getRest();
+            System.out.println("Exercise: " + exerciseName.getName() +
+                    ", Day: " + dayP +
+                    ", Repetitions: " + repetitionsP +
+                    ", Sets: " + setsP +
+                    ", Rest: " + restP);
+        }
+    }
+
+
+    private WorkoutDayBean getWorkoutDay(WorkoutDayBean day) {
         //ragiona solo con le bean
         for(WorkoutDayBean workoutDay: workoutRoutine.getWorkoutDayList()){
-            if(Objects.equals(workoutDay.getName(), day)) {
+            if(Objects.equals(workoutDay, day)) {
                 return workoutDay;
             }
         }

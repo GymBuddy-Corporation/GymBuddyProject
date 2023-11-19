@@ -87,6 +87,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
+        satisfyWorkoutRequestsController.submitRoutine(this.RoutineExerciselist);
         AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"AddCommentToWorkoutRoutine.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController);
 
@@ -104,9 +105,9 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
     public boolean checkAlreadyAdded(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean) {
         /*WorkoutDayBean workoutDayBean = satisfyWorkoutRequestsController.getWorkoutDayBean(new DayBeanA(exerciseForWorkoutRoutineBean.getDay()));*/
-        for (ExerciseBean exercise : RoutineExerciselist.getItems()/*workoutDayBean.getExerciseBeanList()*/) {
+        for (ExerciseForWorkoutRoutineBean exercise : RoutineExerciselist.getItems()/*workoutDayBean.getExerciseBeanList()*/) {
             /*Il commento serve perchè poi scorreremo tutto il giorno e vedremo se c'è SOLO per quel giorno*/
-            if (Objects.equals(exercise.getName(), exerciseForWorkoutRoutineBean.getName())) {
+            if (Objects.equals(exercise.getExercise(), exerciseForWorkoutRoutineBean.getExercise())) {
                 System.out.println("Esercizio già inserito nella tua scheda\n");
                 return true;
             }
@@ -136,7 +137,8 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
             int sets = spinnerSets.getValue();
             String rest = restTimeComboBox.getValue();
             boolean test = true;
-            ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, exerciseName);
+
+            ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, selectedExercise);
 
             if (!checkAlreadyAdded(newExercise) && sets != 0 && repetitions != 0) {
                 newExercise.setRepetitions(repetitions);
@@ -166,10 +168,10 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
     @FXML
     public void cancelExercise() {
-        String selectedItem = RoutineExerciselist.getSelectionModel().getSelectedItem().getName();
-        if (selectedItem != null) {
+        ExerciseBean selectedExercise = RoutineExerciselist.getSelectionModel().getSelectedItem().getExercise();
+        if (selectedExercise != null) {
             for (ExerciseForWorkoutRoutineBean  item : RoutineExerciselist.getItems()) {
-                if (selectedItem.equals(item.getName())) {
+                if (selectedExercise.equals(item.getExercise())) {
                     RoutineExerciselist.getItems().remove(item);
                     break; // Exit the loop once the item is removed
                 }
