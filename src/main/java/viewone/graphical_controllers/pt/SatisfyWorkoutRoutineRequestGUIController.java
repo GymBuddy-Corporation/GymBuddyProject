@@ -87,7 +87,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
-        satisfyWorkoutRequestsController.submitRoutine(this.RoutineExerciselist);
+        satisfyWorkoutRequestsController.submitRoutine(/*this.RoutineExerciselist*/);
         AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"AddCommentToWorkoutRoutine.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController);
 
@@ -149,12 +149,9 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 }
 
                 if (test) {
-                    satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, selectedDay, RoutineExerciselist);
+                    satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, repetitions, sets, rest, RoutineExerciselist);
                     // Update the map with the new exercise
                     dayExercisesMap.get(selectedDay).add(newExercise);
-
-                    System.out.println("Hai appena aggiunto l'esercizio " + exerciseName + " nel giorno: " + selectedDay +
-                            " con " + repetitions + " ripetizioni, " + sets + " set e " + rest + " minuti di recupero.\n");
                 } else {
                     System.out.println("Esercizio non inserito\n");
                 }

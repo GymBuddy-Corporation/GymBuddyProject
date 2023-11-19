@@ -7,7 +7,7 @@ public class WorkoutDayBean {
 
     private final String name;
 
-    List<ExerciseBean> exerciseBeanList;
+    List<ExerciseForWorkoutRoutineBean> exerciseBeanList;
 
 
     public WorkoutDayBean(String name){
@@ -15,11 +15,11 @@ public class WorkoutDayBean {
         this.exerciseBeanList = new ArrayList<>();
     }
 
-    public List<ExerciseBean> getExerciseBeanList() {
+    public List<ExerciseForWorkoutRoutineBean> getExerciseList() {
         return exerciseBeanList;
     }
 
-    public void setExerciseBeanList(List<ExerciseBean> exerciseBeanList) {
+    public void setExerciseBeanList(List<ExerciseForWorkoutRoutineBean> exerciseBeanList) {
         this.exerciseBeanList = exerciseBeanList;
     }
 
@@ -27,7 +27,11 @@ public class WorkoutDayBean {
         return this.name;
     }
 
-    public void addExerciseBean(ExerciseBean exerciseBean) {
+    /*public ExerciseForWorkoutRoutineBean getExerciseForWorkoutRoutine(){
+        return null;
+    }*/
+
+    public void addExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) {
         exerciseBeanList.add(exerciseBean);
     }
 

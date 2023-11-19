@@ -63,7 +63,9 @@ public class ManageExerciseList {
             satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(false);
             satisfyWorkoutRoutineRequestGUIController.setVisibleCancel(true);
             satisfyWorkoutRoutineRequestGUIController.resetSelection(2);
-
+        } else {
+            satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(false);
+            satisfyWorkoutRoutineRequestGUIController.setVisibleCancel(false);
         }
     }
 
