@@ -6,7 +6,6 @@ import beans.WorkoutDayBean;
 import beans.WorkoutRoutineBean;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import model.WorkoutRoutine;
 
 import java.net.URL;
 import java.util.*;

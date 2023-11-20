@@ -22,7 +22,7 @@ public class AddCommentToWorkoutRoutineGUIController {
     }
     @FXML
     public void submitRoutine() throws Exception{
-        SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(),"AddCommentToWorkoutRoutine.fxml","pt",1);
+        AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(), "AddCommentToWorkoutRoutine.fxml", "pt", 1);
         Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController);
     }
     @FXML
