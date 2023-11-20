@@ -6,13 +6,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.pt.PTLoginGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.pt.PTLoginGUIController">
 
    <prefHeight>500.0</prefHeight>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" style="-fx-cursor: hand;">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
-   <Label fx:id="Login" layoutX="317.0" layoutY="127.0" prefHeight="62.0" prefWidth="139.0" stylesheets="@../../GymBuddyCSS.css" text="LOGIN">
+   <Label fx:id="Login" layoutX="317.0" layoutY="127.0" prefHeight="62.0" prefWidth="139.0" stylesheets="@../GymBuddyCSS.css" text="LOGIN">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
@@ -25,13 +25,13 @@
          <Font name="Allerta Stencil Regular" size="45.0" />
       </font>
    </Label>
-   <TextField layoutX="319.0" layoutY="237.0" prefHeight="26.0" prefWidth="168.0" stylesheets="@../../GymBuddyCSS.css" />
+   <TextField layoutX="319.0" layoutY="237.0" prefHeight="26.0" prefWidth="168.0" stylesheets="@../GymBuddyCSS.css" />
    <ImageView fitHeight="104.0" fitWidth="112.0" layoutX="152.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/LogoUser96.png" />
       </image>
    </ImageView>
-   <Label fx:id="Login1" layoutX="319.0" layoutY="209.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../../GymBuddyCSS.css" text="Username">
+   <Label fx:id="Login1" layoutX="319.0" layoutY="209.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../GymBuddyCSS.css" text="Username">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
@@ -44,7 +44,7 @@
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
    </Label>
-   <Label fx:id="Login11" layoutX="319.0" layoutY="275.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../../GymBuddyCSS.css" text="Password">
+   <Label fx:id="Login11" layoutX="319.0" layoutY="275.0" prefHeight="27.0" prefWidth="104.0" stylesheets="@../GymBuddyCSS.css" text="Password">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
@@ -57,7 +57,7 @@
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
    </Label>
-   <PasswordField layoutX="319.0" layoutY="302.0" prefHeight="26.0" prefWidth="168.0" stylesheets="@../../GymBuddyCSS.css" />
+   <PasswordField layoutX="319.0" layoutY="302.0" prefHeight="26.0" prefWidth="168.0" stylesheets="@../GymBuddyCSS.css" />
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/LogoGymBuddy.png" />

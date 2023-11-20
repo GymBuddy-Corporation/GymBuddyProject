@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.PTHomeGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.PTHomeGUIController">
    <Text layoutX="446.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Athletes" textAlignment="CENTER" wrappingWidth="104.0" AnchorPane.topAnchor="250.845947265625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
@@ -213,7 +213,7 @@
       <Image url="@../images/LogoNoNotification96.png" />
    </ImageView>
    <Button fx:id="login21" layoutX="42.0" layoutY="199.0" mnemonicParsing="false" prefHeight="253.0" prefWidth="350.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <ListView fx:id="athletesList1" editable="true" layoutX="67.0" layoutY="212.0" prefHeight="226.0" prefWidth="300.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
+   <ListView fx:id="athletesList1" editable="true" layoutX="67.0" layoutY="212.0" prefHeight="226.0" prefWidth="300.0" style="-fx-background-color: transparent" stylesheets="@../GymBuddyCSS.css" />
    <Text layoutX="108.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gym Communications" textAlignment="CENTER" wrappingWidth="217.60000000000002">
       <font>
          <Font name="Allerta Stencil Regular" size="20.0" />

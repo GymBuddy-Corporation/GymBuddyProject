@@ -92,7 +92,7 @@
          </LinearGradient>
       </textFill>
    </Label>
-   <Label fx:id="itemName1111" layoutX="255.0" layoutY="28.0" prefHeight="18.0" prefWidth="144.4" stylesheets="@../../GymBuddyCSS.css" text="Recupero">
+   <Label fx:id="itemName1111" layoutX="255.0" layoutY="28.0" prefHeight="18.0" prefWidth="144.4" stylesheets="@../GymBuddyCSS.css" text="Recupero">
       <font>
          <Font name="Allerta Stencil Regular" size="15.0" />
       </font>

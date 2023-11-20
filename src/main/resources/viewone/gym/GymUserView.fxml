@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.gym.GymUserGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.gym.GymUserGUIController">
 
    <Text fx:id="usernameText1111" layoutX="649.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Athletes" textAlignment="CENTER" wrappingWidth="86.99990386962895">
       <font>
@@ -144,7 +144,7 @@
 
    <Button layoutX="60.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
-   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../../GymBuddyCSS.css" />
+   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../GymBuddyCSS.css" />
 
    <Text fx:id="usernameText11" layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Athletes" textAlignment="CENTER" wrappingWidth="356.5999710083008">
       <font>
