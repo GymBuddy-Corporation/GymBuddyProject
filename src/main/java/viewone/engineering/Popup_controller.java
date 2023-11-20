@@ -6,9 +6,11 @@ import javafx.scene.control.TextField;
 
 public class Popup_controller {
     @FXML
-    TextField textbox;
+    TextField testo;
     @FXML
-    Button bottone_conferma;
+    Button bottone_conferm;
     @FXML
     Button bottone_rifiuta;
+
+    public 
 }
