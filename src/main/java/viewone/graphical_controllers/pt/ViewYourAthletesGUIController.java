@@ -1,5 +1,7 @@
 package viewone.graphical_controllers.pt;
 
+import beans.AthleteBean;
+import beans.UserBean;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,7 @@ public class ViewYourAthletesGUIController implements Initializable{
     /*private ListView<EventBean> dashboard;
 
     private final ArrayList<EventBean> elements= new ArrayList<>();*/
-    private ListView<String> athletesList;
+    private ListView<AthleteBean> athletesList;
 
     /*private void clear(){
         elements.clear();
@@ -37,45 +39,36 @@ public class ViewYourAthletesGUIController implements Initializable{
         SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
 
+    private void setInfoBox(UserBean selectedSubscriber) {
+        /*if(!clicked) {
+            infoSubscriberBox.setDisable(false);
+            infoSubscriberBox.setVisible(true);
+            clicked = true;
+        }
+        infoName.setText(" Name: " + selectedSubscriber.getName());
+        infoSurname.setText(" Surname: " + selectedSubscriber.getSurname());
+        infoUsername.setText(" Username: " + selectedSubscriber.getUsername());
+        infoBirth.setText(" Birth: " + selectedSubscriber.getBirth());
+        infoEmail.setText(" Email: " + selectedSubscriber.getEmail());
+        infoFiscalCode.setText(" FiscalCode: " + selectedSubscriber.getFiscalCode());*/
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*clear();
-        refresh();
-        List<EventBean> y;*/
-        /*y = new ItemController().item("");*/
-
-        /*while(!(y.isEmpty())){
-            EventBean z= y.get(0);
-            elements.add(z);
-            y.remove(0);
-        }*/
-
-
-        /*dashboard.setItems(FXCollections.observableList(elements));
-
-        dashboard.setCellFactory(param -> new AddAthletesPTListCellFactory());
-        dashboard.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-
-            Stage stage = new Stage();
-            FXMLLoader root;
-            root = new FXMLLoader(Objects.requireNonNull(getClass().getResource("ViewYourAthletes.fxml")));
-            String x= elements.get(dashboard.getSelectionModel().getSelectedIndex());
-
-            Scene scene;
-            scene = new Scene(root.load(), 417, 359);
-            stage.setTitle("Hello!");
-            stage.setScene(scene);
-            stage.show();
-                JoinEventGraphicController o = root.getController();
-                o.setDescriptionText(x);
-            assert false;
-
-        });*/
-        List<String> lista = new ArrayList<>(Arrays.asList("Luca Martorelli", "Matteo Martorelli",
-                "Marco Martorelli", "Alexandru Nazare", "Alessandro Lori", "Alessandro Cortese",
-                "Giulia Boccuccia", "Andrea De Filippis", "Edoardo Manenti", "Chiara Iurato", "Simone Thanos"));
-        athletesList.getItems().addAll(lista);
+        AthleteBean athlete1 = new AthleteBean("LuX71");
+        AthleteBean athlete2 = new AthleteBean("accroccoman");
+        AthleteBean athlete3 = new AthleteBean("AlexNazi");
+        AthleteBean athlete4 = new AthleteBean("Xavel");
+        AthleteBean athlete5 = new AthleteBean("EdmondDantes");
+        AthleteBean athlete6 = new AthleteBean("ALessandroLori");
+        AthleteBean athlete7 = new AthleteBean("RonnieColeman");
+        AthleteBean athlete8 = new AthleteBean("Cbum");
+        AthleteBean athlete9 = new AthleteBean("Andreaxdf");
+        AthleteBean athlete10 = new AthleteBean("EdoMan00");
+        AthleteBean athlete11 = new AthleteBean("Cortix");
+        athletesList.getItems().addAll(athlete1, athlete2, athlete3, athlete4, athlete5, athlete6,
+                athlete7, athlete8, athlete9, athlete10, athlete11);
     }
 }

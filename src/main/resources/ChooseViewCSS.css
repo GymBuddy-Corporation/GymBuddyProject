@@ -1,0 +1,27 @@
+.radio-button1 .radio{
+    -fx-background-color: transparent;
+    -fx-border-color: #300743;
+    -fx-border-radius:20;
+    -fx-cursor: hand;
+}
+.radio-button1 .dot{
+    -fx-color: #300743;
+}
+
+.radio-button2 .radio{
+    -fx-background-color: transparent;
+    -fx-border-color: #ff9901;
+    -fx-border-radius:20;
+    -fx-cursor: hand;
+}
+.radio-button2 .dot{
+    -fx-color: #ff9901;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-border-radius: 5em;
+}

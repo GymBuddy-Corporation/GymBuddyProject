@@ -165,8 +165,8 @@
       </fill>
    </Text>
    <VBox layoutX="412.0" layoutY="150.0" prefHeight="256.0" prefWidth="360.0">
-      <VBox prefHeight="258.0" prefWidth="360.0">
-         <Label prefHeight="38.0" prefWidth="361.0" text="Name" textAlignment="CENTER">
+      <VBox fx:id="labelFC" prefHeight="258.0" prefWidth="360.0">
+         <Label fx:id="labelName" prefHeight="38.0" prefWidth="361.0" text="Name" textAlignment="CENTER">
             <textFill>
                <LinearGradient endX="0.5">
                   <stops>
@@ -179,7 +179,7 @@
                <Font name="Allerta Stencil Regular" size="15.0" />
             </font>
          </Label>
-         <Label prefHeight="38.0" prefWidth="361.0" text="Surname" textAlignment="CENTER">
+         <Label fx:id="labelSurname" prefHeight="38.0" prefWidth="361.0" text="Surname" textAlignment="CENTER">
             <textFill>
                <LinearGradient endX="0.5">
                   <stops>
@@ -192,7 +192,7 @@
                <Font name="Allerta Stencil Regular" size="15.0" />
             </font>
          </Label>
-         <Label layoutX="10.0" layoutY="101.0" prefHeight="38.0" prefWidth="361.0" text="Username" textAlignment="CENTER">
+         <Label fx:id="labelUserame" layoutX="10.0" layoutY="101.0" prefHeight="38.0" prefWidth="361.0" text="Username" textAlignment="CENTER">
             <textFill>
                <LinearGradient endX="0.5">
                   <stops>
@@ -205,7 +205,7 @@
                <Font name="Allerta Stencil Regular" size="15.0" />
             </font>
          </Label>
-         <Label layoutX="10.0" layoutY="140.0" prefHeight="38.0" prefWidth="361.0" text="Birth Date" textAlignment="CENTER">
+         <Label fx:id="labelBirthDate" layoutX="10.0" layoutY="140.0" prefHeight="38.0" prefWidth="361.0" text="Birth Date" textAlignment="CENTER">
             <textFill>
                <LinearGradient endX="0.5">
                   <stops>
@@ -218,7 +218,7 @@
                <Font name="Allerta Stencil Regular" size="15.0" />
             </font>
          </Label>
-         <Label layoutX="10.0" layoutY="143.0" prefHeight="38.0" prefWidth="361.0" text="Email" textAlignment="CENTER">
+         <Label fx:id="labelEmail" layoutX="10.0" layoutY="143.0" prefHeight="38.0" prefWidth="361.0" text="Email" textAlignment="CENTER">
             <textFill>
                <LinearGradient endX="0.5">
                   <stops>
