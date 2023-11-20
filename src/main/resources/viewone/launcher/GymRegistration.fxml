@@ -19,7 +19,7 @@
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
       <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
-   <TextField fx:id="name" layoutX="478.0" layoutY="209.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" />
+   <TextField fx:id="name" layoutX="478.0" layoutY="209.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS.css" />
    <Label fx:id="Name" layoutX="478.0" layoutY="185.0" prefHeight="23.0" prefWidth="61.0" text="Email">
       <textFill>
          <LinearGradient endX="0.5">
@@ -46,7 +46,7 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <TextField fx:id="email" layoutX="320.0" layoutY="209.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" />
+   <TextField fx:id="email" layoutX="320.0" layoutY="209.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS.css" />
    <Label fx:id="Email" layoutX="320.0" layoutY="185.0" prefHeight="23.0" prefWidth="84.0" text="Name">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
@@ -60,7 +60,7 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <Label fx:id="Registration" layoutX="173.0" layoutY="143.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../../GymBuddyCSS.css" text="Set up your account">
+   <Label fx:id="Registration" layoutX="173.0" layoutY="143.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../GymBuddyCSS.css" text="Set up your account">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
             <stops>
@@ -100,7 +100,7 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <TextField fx:id="password1" layoutX="478.0" layoutY="326.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" AnchorPane.topAnchor="326.0" />
+   <TextField fx:id="password1" layoutX="478.0" layoutY="326.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS.css" AnchorPane.topAnchor="326.0" />
    <Label fx:id="Password1" layoutX="479.0" layoutY="302.0" prefHeight="23.0" prefWidth="84.0" text="Address">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
@@ -127,8 +127,8 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <PasswordField layoutX="320.0" layoutY="268.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" />
-   <TextField fx:id="password11" layoutX="320.0" layoutY="385.0" prefHeight="26.0" prefWidth="309.6" stylesheets="@../../GymBuddyCSS.css" />
+   <PasswordField layoutX="320.0" layoutY="268.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS.css" />
+   <TextField fx:id="password11" layoutX="320.0" layoutY="385.0" prefHeight="26.0" prefWidth="309.6" stylesheets="@../GymBuddyCSS.css" />
    <Label fx:id="Password11" layoutX="320.0" layoutY="361.0" prefHeight="23.0" prefWidth="44.0" text="IBAN">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
@@ -142,8 +142,8 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <PasswordField layoutX="478.0" layoutY="268.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../../GymBuddyCSS.css" />
-   <ComboBox fx:id="myComboBox" editable="true" layoutX="320.0" layoutY="326.0" prefHeight="27.0" prefWidth="150.0" promptText="Click on the arrow" stylesheets="@../../GymBuddyCSS.css">
+   <PasswordField layoutX="478.0" layoutY="268.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS.css" />
+   <ComboBox fx:id="myComboBox" editable="true" layoutX="320.0" layoutY="326.0" prefHeight="27.0" prefWidth="150.0" promptText="Click on the arrow" stylesheets="@../GymBuddyCSS.css">
       <!-- Your items -->
       <items>
          <FXCollections fx:factory="observableArrayList">

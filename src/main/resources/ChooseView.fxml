@@ -4,15 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: grey;"
-      xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="start.ChooseView">
-    <RadioButton fx:id="viewoneSelection" layoutX="270.0" layoutY="208.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Viewone" textFill="#300743" />
-    <RadioButton fx:id="viewtwoSelection" layoutX="498.0" layoutY="208.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Viewtwo" textFill="#ff9901" />
-    <Text layoutX="161.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GymBuddy View Selection">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: rgb(200, 200, 200);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="start.ChooseView">
+    <RadioButton fx:id="viewoneSelection" layoutX="231.0" layoutY="208.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" styleClass="radio-button1" stylesheets="@ChooseViewCSS.css" text="Viewone" textFill="#300743" />
+    <RadioButton fx:id="viewtwoSelection" layoutX="499.0" layoutY="208.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" styleClass="radio-button2" stylesheets="@ChooseViewCSS.css" text="Viewtwo" textFill="#ff9901" />
+    <Text layoutX="170.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GymBuddy View Selection">
         <font>
             <Font size="40.0" />
         </font>
     </Text>
-    <Button layoutX="374.0" layoutY="323.0" mnemonicParsing="false" onAction="#nextAction" opacity="0.75" text="Next" />
+    <Button layoutX="374.0" layoutY="324.0" mnemonicParsing="false" onAction="#nextAction" opacity="0.75" stylesheets="@ChooseViewCSS.css" text="Next">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
 </Pane>
