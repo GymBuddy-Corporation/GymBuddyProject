@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.gym.GymRegistrationGUIController">
+   <ImageView fitHeight="105.0" fitWidth="102.0" layoutX="175.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoCircle96.png" />
+      </image>
+   </ImageView>
+
+   <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoGymBuddy.png" />
+   </ImageView>
+   <ImageView id="Back" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <Image url="@../images/LogoBackPage96.png" />
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <Image url="@../images/LogoNextPage96.png" />
+   </ImageView>
+   <Label fx:id="Password" layoutX="322.0" layoutY="226.0" prefHeight="23.0" prefWidth="123.0" text="Info Course...">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop color="#00e4af" offset="0.0" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Arial Rounded MT Bold" size="16.0" />
+      </font>
+   </Label>
+   <TextField fx:id="email" layoutX="322.0" layoutY="191.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS.css" />
+   <Label fx:id="Email" layoutX="322.0" layoutY="167.0" prefHeight="23.0" prefWidth="84.0" text="Name">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop color="#00e4af" offset="0.0" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Arial Rounded MT Bold" size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="Registration" layoutX="175.0" layoutY="125.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../GymBuddyCSS.css" text="Add your course">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color></Stop>
+               <Stop offset="0.007680491551459294">
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color></Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Allerta Stencil Regular" size="31.0" />
+      </font>
+   </Label>
+   <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="195.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/LogoCourses96.png" />
+   </ImageView>
+   <Label fx:id="Email1" layoutX="483.0" layoutY="167.0" prefHeight="23.0" prefWidth="84.0" text="Category">
+      <textFill>
+         <LinearGradient endX="0.5" endY="1.0">
+            <stops>
+               <Stop color="#00e4af" offset="0.0" />
+               <Stop color="#5d7cf3" offset="1.0" />
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font name="Arial Rounded MT Bold" size="16.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="myComboBox" editable="true" layoutX="483.0" layoutY="191.0" prefHeight="27.0" prefWidth="150.0" promptText="Click on the arrow" stylesheets="@../GymBuddyCSS.css">
+      <!-- Your items -->
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Option 1" />
+            <String fx:value="Option 2" />
+            <String fx:value="Option 3" />
+            <!-- Add more options as needed -->
+         </FXCollections>
+      </items>
+   </ComboBox>
+   <TextArea layoutX="321.0" layoutY="256.0" prefHeight="173.0" prefWidth="312.0" style="-fx-background-color: transparent; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 30;" stylesheets="@../GymBuddyCSS.css" />
+</AnchorPane>

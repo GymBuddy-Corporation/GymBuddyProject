@@ -85,6 +85,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     public void goHome() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
+    @FXML
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
         satisfyWorkoutRequestsController.submitRoutine(/*this.RoutineExerciselist*/);

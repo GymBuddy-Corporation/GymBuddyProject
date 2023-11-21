@@ -24,4 +24,9 @@ public class PTHomeGUIController {
         SwitchPage.setStage(MainStage.getStage(), "ViewWorkoutRoutineRequests.fxml", "pt", 1);
     }
 
+    @FXML
+    public void manageCourse() throws Exception{
+        SwitchPage.setStage(MainStage.getStage(), "ManageCourse.fxml", "pt", 1);
+    }
+
 }

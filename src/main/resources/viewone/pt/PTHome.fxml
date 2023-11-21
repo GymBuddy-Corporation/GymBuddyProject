@@ -7,6 +7,27 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.PTHomeGUIController">
+   <Text layoutX="622.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Course" textAlignment="CENTER" wrappingWidth="111.199951171875">
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.75" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
    <Text layoutX="446.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Athletes" textAlignment="CENTER" wrappingWidth="104.0" AnchorPane.topAnchor="250.845947265625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
@@ -49,7 +70,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Text layoutX="505.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Workout Routines Request" textAlignment="CENTER" wrappingWidth="156.0" AnchorPane.topAnchor="353.845947265625">
+   <Text layoutX="420.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Workout Routines Request" textAlignment="CENTER" wrappingWidth="156.0" AnchorPane.topAnchor="339.677978515625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
       </font>
@@ -112,7 +133,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <Button layoutX="498.0" layoutY="351.0" mnemonicParsing="false" onAction="#viewRequests" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.rightAnchor="132.39999999999998" AnchorPane.topAnchor="351.0">
+   <Button layoutX="413.0" layoutY="337.0" mnemonicParsing="false" onAction="#viewRequests" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER" AnchorPane.rightAnchor="217.39999999999998" AnchorPane.topAnchor="337.0">
       <textFill>
          <LinearGradient>
             <stops>
@@ -256,6 +277,7 @@
          </LinearGradient>
       </fill>
    </Text>
+   <Button layoutX="593.0" layoutY="337.0" mnemonicParsing="false" onAction="#manageCourse" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-background-radius: 5em;" />
 
 
    
