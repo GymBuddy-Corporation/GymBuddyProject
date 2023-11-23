@@ -1,7 +1,5 @@
 package beans;
 
-import java.time.YearMonth;
-
 public class AthleteBean extends UserBean{
 
 

@@ -1,8 +1,8 @@
 package viewone.graphical_controllers.athlete;
 
-        import javafx.fxml.FXML;
-        import utils.MainStage;
-        import utils.SwitchPage;
+import javafx.fxml.FXML;
+import utils.MainStage;
+import utils.SwitchPage;
 
 public class ProfileAthleteGUIController {
 

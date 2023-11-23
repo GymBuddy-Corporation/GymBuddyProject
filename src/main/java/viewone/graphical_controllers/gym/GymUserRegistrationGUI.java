@@ -2,7 +2,6 @@ package viewone.graphical_controllers.gym;
 
 import utils.MainStage;
 import utils.SwitchPage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;

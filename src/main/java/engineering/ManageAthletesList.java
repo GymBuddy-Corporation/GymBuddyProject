@@ -1,16 +1,11 @@
 package engineering;
 
 import beans.AthleteBean;
-import beans.ExerciseBean;
-import beans.ExerciseForWorkoutRoutineBean;
-import controllers.SatisfyWorkoutRequestsController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import viewone.DaysOfTheWeekButtonController;
-import viewone.graphical_controllers.pt.SatisfyWorkoutRoutineRequestGUIController;
 import viewone.graphical_controllers.pt.ViewYourAthletesGUIController;
 
 import java.util.List;
@@ -24,12 +19,12 @@ public class ManageAthletesList {
                 addListener(new ChangeListener<>() {
                     @Override
                     public void changed(ObservableValue<? extends AthleteBean> observableValue, AthleteBean oldItem, AthleteBean newItem) {
-                        listEventAthletes(newItem, athletesList, viewYourAthletesGUIController);
+                        listEventAthletes(newItem, viewYourAthletesGUIController);
                     }
                 });
     }
 
-    private static void listEventAthletes(AthleteBean newItem, ListView<AthleteBean> athletesList,  ViewYourAthletesGUIController viewYourAthletesGUIController) {
+    private static void listEventAthletes(AthleteBean newItem,  ViewYourAthletesGUIController viewYourAthletesGUIController) {
         viewYourAthletesGUIController.setInfoBox(newItem);
     }
 

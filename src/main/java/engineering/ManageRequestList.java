@@ -8,8 +8,6 @@ import controllers.SatisfyWorkoutRequestsController;
 /*
 import exceptions.DBUnreachableException;
 */
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 
 import java.time.LocalDate;

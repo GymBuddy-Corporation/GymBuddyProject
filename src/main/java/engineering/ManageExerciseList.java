@@ -23,12 +23,12 @@ public class ManageExerciseList {
                 addListener(new ChangeListener<>() {
                     @Override
                     public void changed(ObservableValue<? extends ExerciseBean> observableValue, ExerciseBean oldItem, ExerciseBean newItem) {
-                        listEventDB(newItem, daysController, exerciseList, satisfyWorkoutRequestsController, satisfyWorkoutRoutineRequestGUIController);
+                        listEventDB(newItem, satisfyWorkoutRoutineRequestGUIController);
                     }
                 });
     }
 
-    private static void listEventDB(ExerciseBean newItem, DaysOfTheWeekButtonController daysController, ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    private static void listEventDB(ExerciseBean newItem, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
             if(newItem != null){
                 satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);
                 satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(true);
@@ -50,12 +50,12 @@ public class ManageExerciseList {
                 addListener(new ChangeListener<>() {
                     @Override
                     public void changed(ObservableValue<? extends ExerciseForWorkoutRoutineBean> observableValue, ExerciseForWorkoutRoutineBean oldItem, ExerciseForWorkoutRoutineBean newItem) {
-                        listEventRoutineWorkout(newItem, daysController, exerciseList, satisfyWorkoutRequestsController, satisfyWorkoutRoutineRequestGUIController);
+                        listEventRoutineWorkout(newItem, satisfyWorkoutRoutineRequestGUIController);
                     }
                 });
     }
 
-    private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, DaysOfTheWeekButtonController daysController, ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
         if(newItem != null){
             //implementa delle get per prendere i valori
             satisfyWorkoutRoutineRequestGUIController.setExerciseDetails(newItem.getRepetitions(), newItem.getSets(), newItem.getRest());
