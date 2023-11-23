@@ -7,10 +7,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
+import viewone.engineering.Popup_abstract;
+import viewone.engineering.Popup_gymbuddy;
 
 import java.util.Objects;
 
-public class AddCommentToWorkoutRoutineGUIController {
+public class AddCommentToWorkoutRoutineGUIController extends Popup_abstract {
 
     SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
     RequestBean requestBean;
@@ -22,8 +24,7 @@ public class AddCommentToWorkoutRoutineGUIController {
     }
     @FXML
     public void submitRoutine() throws Exception{
-        AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(), "AddCommentToWorkoutRoutine.fxml", "pt", 1);
-        Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController);
+        Popup_gymbuddy.startPopUp(this,"ciao","come","va");
     }
     @FXML
     public void goBack() throws Exception{
@@ -35,4 +36,13 @@ public class AddCommentToWorkoutRoutineGUIController {
         commentTextArea.setPromptText("Insert here your comment for "+ requestBean.getAthleteBean().getUsernameBean() +"s' workout routine.");
     }
 
+    @Override
+    public void popUpConfirm() {
+
+    }
+
+    @Override
+    public void popUpDelete() {
+
+    }
 }

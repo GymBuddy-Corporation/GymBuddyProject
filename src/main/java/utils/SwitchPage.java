@@ -27,18 +27,7 @@ public class SwitchPage {
     }
     public static  Object setStage(Stage stage, String name,String folder,int view) throws IOException {
         String path;
-        String view_path="";
-        switch (view){
-            case 1:
-                view_path=VIEWONE;
-                break;
-
-            default:
-                //TODO:trhoware un exception quando capiro come fare
-                exit(0);
-            break;
-        }
-        path=SEP+view_path+SEP+folder+SEP+name;
+        path=SwitchPage.getpath(name,folder,view);
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
         Parent load = fxmlLoader.load();
         Scene scena = new Scene(load, x, y);
@@ -48,4 +37,17 @@ public class SwitchPage {
         stage.show();
         return fxmlLoader.getController();
     }
+    public static String getpath(String name,String folder,int view){
+        String view_path="";
+        switch (view){
+            case 1:
+                view_path=VIEWONE;
+                break;
+
+            default:
+                //TODO:trhoware un exception quando capiro come fare
+                exit(0);
+                break;
+        }
+        return SEP+view_path+SEP+folder+SEP+name;}
 }
