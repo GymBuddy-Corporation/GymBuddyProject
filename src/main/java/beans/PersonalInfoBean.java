@@ -28,8 +28,8 @@ public class PersonalInfoBean {
         this.gender = gender;
     }
 
-   /* public PersonalInfoBean(String name, String surname, String dateOfBirth, String fc, char gender) throws InvalidUserInfoException, InvalidFiscalCodeException, EmptyFieldsException, InvalidBirthException*//* {
-        *//**//*This is a constructor with syntax check and is used by view*//*
+    public PersonalInfoBean(String name, String surname, String dateOfBirth, String fc, char gender)/* throws InvalidUserInfoException, InvalidFiscalCodeException, EmptyFieldsException, InvalidBirthException*/ {
+        /*This is a constructor with syntax check and is used by view*/
         checkValue(name, surname, fc);
         this.name = name;
         this.surname = surname;
@@ -38,54 +38,66 @@ public class PersonalInfoBean {
         this.gender = gender;
     }
 
-    private void checkValue(String name, String surname, String fiscalCode) throws InvalidUserInfoException, InvalidFiscalCodeException, EmptyFieldsException {
+    private void checkValue(String name, String surname, String fiscalCode) /*throws InvalidUserInfoException, InvalidFiscalCodeException, EmptyFieldsException*/ {
         checkName(name);
         checkSurname(surname);
         checkFc(fiscalCode);
     }
 
-    private void checkName(String name) throws InvalidUserInfoException, EmptyFieldsException {
+    private void checkName(String name) /*throws InvalidUserInfoException, EmptyFieldsException*/ {
         if(name.isEmpty()){
-            throw new EmptyFieldsException();
+            System.out.println("Name field empty.");
+            /*throw new EmptyFieldsException();*/
         } else if(isNotValidLength(name)) {
-            throw new InvalidUserInfoException();
+            System.out.println("Name field invalid length.");
+            /*throw new InvalidUserInfoException();*/
         }
     }
 
-    private LocalDate checkBirth(String birth) throws InvalidBirthException, EmptyFieldsException {
+    private LocalDate checkBirth(String birth) /*throws InvalidBirthException, EmptyFieldsException*/ {
         if(birth.isEmpty()){
-            throw new EmptyFieldsException();
+            /*throw new EmptyFieldsException();*/
+            System.out.println("Birth field empty.");
+            //poi da togliere, mi serve solo per rispettare la firma -->
+            return null;
         } else if(isValidBirth(birth)) {
             return LocalDate.parse(birth, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }else {
-            throw new InvalidBirthException();
+            System.out.println("Birth field invalid.");
+            //poi da togliere, mi serve solo per rispettare la firma -->
+            return null;
+            /*throw new InvalidBirthException();*/
         }
-    }*/
+    }
 
     private boolean isNotValidLength(String str) {
         return str.length() > 45;
     }
 
-    /*private void checkFc(String fc) throws InvalidFiscalCodeException, EmptyFieldsException {
+    private void checkFc(String fc) /*throws InvalidFiscalCodeException, EmptyFieldsException */{
         if(fc.isEmpty()){
-            throw new EmptyFieldsException();
+            /*throw new EmptyFieldsException();*/
+            System.out.println("Fiscal Code field empty.");
         } else if(!isValidFc(fc)) {
-            throw new InvalidFiscalCodeException();
+            /*throw new InvalidFiscalCodeException();*/
+            System.out.println("Fiscal Code field invalid.");
         }
-    }*/
+    }
 
 
     private boolean isValidFc(String fc) {
         return Pattern.matches("^([A-Z]{6}[\\dLMNPQRSTUV]{2}[ABCDEHLMPRST][\\dLMNPQRSTUV]{2}[A-Z][\\dLMNPQRSTUV]{3}[A-Z])$|(\\d{11})$",fc);
     }
 
-    /*private void checkSurname(String surname) throws InvalidUserInfoException, EmptyFieldsException {
+    private void checkSurname(String surname) /*throws InvalidUserInfoException, EmptyFieldsException*/ {
         if(surname.isEmpty()){
-            throw new EmptyFieldsException();
+            /*throw new EmptyFieldsException();*/
+            System.out.println("Surname field empty.");
         } else if(isNotValidLength(surname)){
-            throw new InvalidUserInfoException();
+            /*throw new InvalidUserInfoException();*/
+            System.out.println("Surname field invalid.");
         }
-    }*/
+    }
 
     private static boolean isValidBirth(String value) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

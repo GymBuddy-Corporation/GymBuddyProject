@@ -231,7 +231,7 @@
                <Font name="Allerta Stencil Regular" size="15.0" />
             </font>
          </Label>
-         <Label layoutX="10.0" layoutY="164.0" prefHeight="38.0" prefWidth="90.0" text="Fiscal Code" textAlignment="CENTER">
+         <Label fx:id="labelFiscalCode" layoutX="10.0" layoutY="164.0" prefHeight="38.0" prefWidth="360.0" text="Fiscal Code" textAlignment="CENTER">
             <textFill>
                <LinearGradient endX="0.5">
                   <stops>

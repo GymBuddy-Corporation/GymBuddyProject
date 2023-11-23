@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.SatisfyWorkoutRoutineRequestGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.SetExerciseStatusGUIController">
    <VBox alignment="CENTER" layoutX="78.0" layoutY="162.0" prefHeight="224.0" prefWidth="645.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;" />
 
    <Text layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">
@@ -113,23 +106,15 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="428.0" onMouseClicked="#deleteChanges" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoBackPage96.png" />
-   </ImageView>
    <ListView fx:id="DBExercise" editable="true" layoutX="306.0" layoutY="177.0" prefHeight="105.0" prefWidth="191.0" stylesheets="@../smallListCells.css" />
    <TextField layoutX="130.0" layoutY="125.0" prefHeight="26.0" prefWidth="535.0" promptText="Exercise Name" stylesheets="@../GymBuddyCSS.css" />
    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="633.0" layoutY="126.0" onMouseClicked="#searchExercise" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoSearch96.png" />
    </ImageView>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="738.0" layoutY="428.0" onMouseClicked="#submitRoutine" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="738.0" layoutY="428.0" onMouseClicked="#turnBackToRoutine" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoNextPage96.png" />
    </ImageView>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="738.0" layoutY="16.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/LogoHome96.png" />
-      </image>
-   </ImageView>
-   <Button fx:id="mondayButton" layoutX="264.0" layoutY="410.0" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="84.0" stylesheets="@../GymBuddyCSS.css" text="Active" textAlignment="CENTER">
+   <Button fx:id="activeStatusButton" layoutX="264.0" layoutY="410.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="84.0" stylesheets="@../GymBuddyCSS.css" text="Active" textAlignment="CENTER" AnchorPane.topAnchor="410.0">
       <textFill>
          <LinearGradient>
             <stops>
@@ -150,7 +135,7 @@
          <Font name="Allerta Stencil Regular" size="12.0" />
       </font>
    </Button>
-   <Button fx:id="tuesdayButton" layoutX="455.0" layoutY="410.0" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="84.0" stylesheets="@../GymBuddyCSS.css" text="Suspended" textAlignment="CENTER">
+   <Button fx:id="suspendStatusButton" layoutX="455.0" layoutY="410.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="84.0" stylesheets="@../GymBuddyCSS.css" text="Suspended" textAlignment="CENTER" AnchorPane.topAnchor="410.0">
       <textFill>
          <LinearGradient>
             <stops>

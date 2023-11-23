@@ -1,7 +1,7 @@
 package engineering;
 
 
-import beans.ExerciseBean;
+import beans.AthleteBean;
 import beans.RequestBean;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,15 +12,15 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class RequestListCellFactory implements Callback<ListView<RequestBean>, ListCell<RequestBean>> {
+public class AthleteListCellFactory implements Callback<ListView<AthleteBean>, ListCell<AthleteBean>> {
 
     @Override
-    public ListCell<RequestBean> call(ListView<RequestBean> param) {
-        return new ListCell<RequestBean>() {
+    public ListCell<AthleteBean> call(ListView<AthleteBean> param) {
+        return new ListCell<AthleteBean>() {
             private Parent parentNode = null;
 
             @Override
-            protected void updateItem(RequestBean requestBean, boolean empty) {
+            protected void updateItem(AthleteBean requestBean, boolean empty) {
                 super.updateItem(requestBean, empty);
 
                 if (empty || requestBean == null) {
@@ -37,7 +37,7 @@ public class RequestListCellFactory implements Callback<ListView<RequestBean>, L
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(requestBean.getAthleteBean().getUsernameBean());
+                    itemNameLabel.setText(requestBean.getUsernameBean());
 
                     setGraphic(parentNode);
                 }

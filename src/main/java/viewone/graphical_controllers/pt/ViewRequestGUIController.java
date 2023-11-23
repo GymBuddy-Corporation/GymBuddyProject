@@ -75,7 +75,7 @@ public class ViewRequestGUIController implements Initializable {
                             if(newItem != null){
                                 textUsersRequest.setText(newItem.getInfo());
                                 selectedRequest = newItem;
-                                usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
+                                usernameRequestText.setText(selectedRequest.getAthleteBean().getUsernameBean() + " Request");
                             }
                         }
                     });
