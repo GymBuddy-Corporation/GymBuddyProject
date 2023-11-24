@@ -18,6 +18,7 @@ import utils.SwitchPage;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SetExerciseStatusGUIController implements Initializable{
@@ -36,7 +37,8 @@ public class SetExerciseStatusGUIController implements Initializable{
     }
     @FXML
     public void turnBackToRoutine() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
+        SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
+        Objects.requireNonNull(controller).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap);
     }
     @FXML
     public void searchExercise(){
@@ -70,7 +72,6 @@ public class SetExerciseStatusGUIController implements Initializable{
         setVisibleButtons(false);
     }
 
-    //TODO Bug se provo a fare loop fra SetExerciseStatusGUIController e SatisfyWorkoutRoutineRequestGUIController
-    // risolvi passando di volta in volta i dati giusti
+
 
 }
