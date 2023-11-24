@@ -1,5 +1,7 @@
 package viewone.engineering;
 
+import java.io.IOException;
+
 public abstract class Popup_abstract {
 
     private Popup_gymbuddy temp;
@@ -7,7 +9,7 @@ public abstract class Popup_abstract {
     private void popUpCreate(String testo,String conferma,String rifiuta){
 
     }
-    private void popUpCreate(Popup_abstract me,String testo){
+    private void popUpCreate(Popup_abstract me,String testo) throws IOException {
        this.temp=Popup_gymbuddy.startPopUp(me,testo);
     }
     public abstract void popUpConfirm();

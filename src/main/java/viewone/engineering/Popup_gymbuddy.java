@@ -24,7 +24,7 @@ public class Popup_gymbuddy {
     private static Popup_gymbuddy me;
 
 
-    private Popup_gymbuddy(Popup_abstract a,String testo,String conferma,String rifiuto) {
+    private Popup_gymbuddy(Popup_abstract a,String testo,String conferma,String rifiuto) throws IOException {
         this.testo=testo;
         this.conferma=conferma;
         this.rifiuto=rifiuto;
@@ -32,21 +32,23 @@ public class Popup_gymbuddy {
         String path=SwitchPage.getpath("ConfirmSubmitRoutine.fxml","pt",1);
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
         Parent load = null;
-        try{load = fxmlLoader.load();}catch (IOException e){System.out.println(e.getMessage());System.exit(-1);};
+        load = fxmlLoader.load();
         //Scene scena = new Scene(load, 100, 100);
         popup_reference=new Popup();
         popup_reference.getContent().add(load);
         ((Popup_controller)fxmlLoader.getController()).setValues(testo,conferma,rifiuto);
         popup_reference.show(MainStage.getStage());
+        popup_reference.setAutoHide(true);
+        popup_reference.setOnAutoHide(handler->{clearSingleton();});
     }
 
-    public static Popup_gymbuddy startPopUp(Popup_abstract a,String testo,String conferma,String rifiuto){
+    public static Popup_gymbuddy startPopUp(Popup_abstract a,String testo,String conferma,String rifiuto) throws IOException {
            if(Popup_gymbuddy.me==null){
                Popup_gymbuddy.me=new Popup_gymbuddy(a,testo,conferma,rifiuto);
            }
            return me;
     }
-    public static Popup_gymbuddy startPopUp(Popup_abstract a,String testo){
+    public static Popup_gymbuddy startPopUp(Popup_abstract a,String testo) throws IOException {
 
           return  Popup_gymbuddy.startPopUp(a,testo,"conferma","rifiuta");
     }
