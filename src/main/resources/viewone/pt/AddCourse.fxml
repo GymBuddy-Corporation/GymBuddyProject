@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.launcher.gym.GymRegistrationGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.launcher.gym.GymRegistrationGUIController">
    <ImageView fitHeight="105.0" fitWidth="102.0" layoutX="175.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/LogoCircle96.png" />

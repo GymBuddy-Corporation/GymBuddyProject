@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphical_controllers.pt.AddCommentToWorkoutRoutineGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.pt.AddCommentToWorkoutRoutineGUIController">
    <Text layoutX="667.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Submit Routine" textAlignment="CENTER" wrappingWidth="98.4000244140625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />

@@ -6,7 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import viewone.graphical_controllers.pt.ViewYourAthletesGUIController;
+import viewone.graphicalControllers.pt.ViewYourAthletesGUIController;
 
 import java.util.List;
 

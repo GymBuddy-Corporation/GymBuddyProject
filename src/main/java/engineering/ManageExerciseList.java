@@ -9,8 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import viewone.DaysOfTheWeekButtonController;
-import viewone.graphical_controllers.pt.SatisfyWorkoutRoutineRequestGUIController;
-import viewone.graphical_controllers.pt.SetExerciseStatusGUIController;
+import viewone.graphicalControllers.pt.SatisfyWorkoutRoutineRequestGUIController;
+import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
 
 
 import java.util.List;

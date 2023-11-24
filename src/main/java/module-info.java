@@ -6,25 +6,25 @@ module start {
 
     opens start to javafx.fxml;
     exports start;
-    exports viewone.graphical_controllers.pt;
-    exports viewone.graphical_controllers.launcher.gym;
-    exports viewone.graphical_controllers.launcher.pt;
+    exports viewone.graphicalControllers.pt;
+    exports viewone.graphicalControllers.launcher.gym;
+    exports viewone.graphicalControllers.launcher.pt;
     exports viewone;
-    exports viewone.graphical_controllers.launcher.athlete;
-    exports viewone.graphical_controllers.athlete;
-    exports viewone.graphical_controllers.launcher;
+    exports viewone.graphicalControllers.launcher.athlete;
+    exports viewone.graphicalControllers.athlete;
+    exports viewone.graphicalControllers.launcher;
     opens viewone to javafx.fxml;
-    opens viewone.graphical_controllers.pt;
+    opens viewone.graphicalControllers.pt;
     exports  viewone.engineering;
     opens viewone.engineering to javafx.fxml;
-    opens viewone.graphical_controllers.launcher.athlete  to javafx.fxml;
-    opens viewone.graphical_controllers.launcher.gym to javafx.fxml;
-    opens viewone.graphical_controllers.launcher to javafx.fxml;
-    exports viewone.graphical_controllers.gym;
+    opens viewone.graphicalControllers.launcher.athlete  to javafx.fxml;
+    opens viewone.graphicalControllers.launcher.gym to javafx.fxml;
+    opens viewone.graphicalControllers.launcher to javafx.fxml;
+    exports viewone.graphicalControllers.gym;
     exports utils;
     exports beans;
     exports controllers;
     opens utils to javafx.fxml;
-    opens viewone.graphical_controllers.gym;
-    opens viewone.graphical_controllers.athlete;
+    opens viewone.graphicalControllers.gym;
+    opens viewone.graphicalControllers.athlete;
 }
