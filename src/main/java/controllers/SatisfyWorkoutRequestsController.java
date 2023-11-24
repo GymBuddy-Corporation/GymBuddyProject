@@ -5,6 +5,7 @@ import javafx.scene.control.ListView;
 import model.Exercise;
 import org.jetbrains.annotations.NotNull;
 
+import javax.net.ssl.SSLContext;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
@@ -18,6 +19,7 @@ public class SatisfyWorkoutRequestsController {
     private final List<Exercise> exerciseCatalogue;
 
     public List<ExerciseBean> getGymExercises() {
+        System.out.println(exerciseCatalogue);
         return getExerciseBeanList(exerciseCatalogue);
     }
 
@@ -71,12 +73,12 @@ public class SatisfyWorkoutRequestsController {
         // Additional code if needed
     }
 
-    public void changeExerciseStatus(){
+    public void setExerciseStatus(){
         //TODO
     }
 
-    public void submitRoutine() {
-
+    public void submitRoutine(RequestBean request) {
+        //TODO sistema poi il metodo con atleta in questione e invio scheda
         for (WorkoutDayBean workoutDay : workoutRoutine.getWorkoutDayList()) {
             String dayName = workoutDay.getName();
 
@@ -127,7 +129,12 @@ public class SatisfyWorkoutRequestsController {
         return null;
     }
 
-    public void removeExerciseToWorkoutDay(ExerciseBean selectedExercise, ListView<ExerciseForWorkoutRoutineBean> routineExerciselist) {
+    public void removeExerciseFromDayExercisesMap(ExerciseForWorkoutRoutineBean exercise, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap) {
+        // Iterate through the map and remove the exercise for the corresponding day
+        dayExercisesMap.forEach((day, exercises) -> exercises.removeIf(e -> e.equals(exercise)));
+    }
+
+    public void removeExerciseToWorkoutDay(ExerciseBean selectedExercise, ListView<ExerciseForWorkoutRoutineBean> routineExerciselist, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap) {
         // Create a copy of the routineExerciselist items to avoid ConcurrentModificationException
         List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(routineExerciselist.getItems());
 
@@ -135,12 +142,14 @@ public class SatisfyWorkoutRequestsController {
             if (selectedExercise.equals(item.getExercise())) {
                 routineExerciselist.getItems().remove(item);
 
+                // Remove the exercise from the dayExercisesMap
+                removeExerciseFromDayExercisesMap(item,dayExercisesMap);
+
                 break; // Exit the loop once the item is removed
             }
         }
-        // Remove the exercise from the exerciseCatalogue
-        exerciseCatalogue.removeIf(exercise -> selectedExercise.getName().equals(exercise.getName()));
     }
+
 
 
 }

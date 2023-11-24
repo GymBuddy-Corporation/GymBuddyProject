@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import viewone.DaysOfTheWeekButtonController;
 import viewone.graphical_controllers.pt.SatisfyWorkoutRoutineRequestGUIController;
+import viewone.graphical_controllers.pt.SetExerciseStatusGUIController;
 
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ManageExerciseList {
 
     private ManageExerciseList() {}
 
-    public static void setListenerDB(ListView<ExerciseBean> exerciseList, DaysOfTheWeekButtonController daysController, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerDB(ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -36,13 +37,11 @@ public class ManageExerciseList {
                 satisfyWorkoutRoutineRequestGUIController.resetInputCollectors();
                 satisfyWorkoutRoutineRequestGUIController.resetSelection(1);
             }
-
     }
 
     public static void updateList(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
         ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(exerciseBeanList);
         exerciseBeanListView.setItems(exerciseBeanObservableList);
-        System.out.println("Updated List Size: " + exerciseBeanObservableList.size());
     }
 
 
@@ -58,7 +57,6 @@ public class ManageExerciseList {
 
     private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
         if(newItem != null){
-            //implementa delle get per prendere i valori
             satisfyWorkoutRoutineRequestGUIController.setExerciseDetails(newItem.getRepetitions(), newItem.getSets(), newItem.getRest());
             satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);
             satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(false);
@@ -70,4 +68,21 @@ public class ManageExerciseList {
         }
     }
 
+    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SetExerciseStatusGUIController setExerciseStatusGUIController) {
+        exerciseDBList.getSelectionModel().selectedItemProperty().
+                addListener(new ChangeListener<>() {
+                    @Override
+                    public void changed(ObservableValue<? extends ExerciseBean> observableValue, ExerciseBean oldItem, ExerciseBean newItem) {
+                        listEventDBSet(newItem, setExerciseStatusGUIController);
+                    }
+                });
+    }
+
+    private static void listEventDBSet(ExerciseBean newItem, SetExerciseStatusGUIController setExerciseStatusGUIController) {
+        if(newItem != null){
+            setExerciseStatusGUIController.setVisibleButtons(true);
+            //TODO imposta quale dei due deve essere premuto quando la cella è selezionata,
+            // aka = prendi il dato dal DB
+        }
+    }
 }

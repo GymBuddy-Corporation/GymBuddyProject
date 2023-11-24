@@ -106,8 +106,8 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ListView fx:id="DBExercise" editable="true" layoutX="306.0" layoutY="177.0" prefHeight="105.0" prefWidth="191.0" stylesheets="@../smallListCells.css" />
-   <TextField layoutX="130.0" layoutY="125.0" prefHeight="26.0" prefWidth="535.0" promptText="Exercise Name" stylesheets="@../GymBuddyCSS.css" />
+   <ListView fx:id="exerciseDBList" editable="true" layoutX="104.0" layoutY="177.0" prefHeight="195.0" prefWidth="593.0" stylesheets="@../smallListCells.css" />
+   <TextField fx:id="searchExerciseText" layoutX="130.0" layoutY="125.0" prefHeight="26.0" prefWidth="535.0" promptText="Exercise Name" stylesheets="@../GymBuddyCSS.css" />
    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="633.0" layoutY="126.0" onMouseClicked="#searchExercise" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoSearch96.png" />
    </ImageView>

@@ -25,7 +25,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML private Button mondayButton;
     //@FXML private TextField searchExerciseText;
 
-    private final Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap = new HashMap<>();
+    private Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap = new HashMap<>();
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
 
     private RequestBean requestBean;
@@ -79,6 +79,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
     }
     @FXML
+    public void setExerciseStatus() throws Exception{
+        SetExerciseStatusGUIController controller = (SetExerciseStatusGUIController) SwitchPage.setStage(MainStage.getStage(),"SetExerciseStatus.fxml","pt",1);
+        Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap);
+    }
+    @FXML
     public void deleteChanges() throws Exception{
         //TODO gestisci la cancellazione della scheda
         SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
@@ -90,7 +95,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
-        satisfyWorkoutRequestsController.submitRoutine(/*this.RoutineExerciselist*/);
+        satisfyWorkoutRequestsController.submitRoutine(requestBean);
         AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"AddCommentToWorkoutRoutine.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController);
 
@@ -98,15 +103,28 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
 
     public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
-        requestBean = request;
+        this.requestBean = request;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
-        ManageExerciseList.setListenerDB(exerciseDBList, daysController, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, daysController, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
         ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
         mondayButton.fire();
     }
 
+    //Adjust this method, I think it's necessary to pass back all the information
+    //if I come back after setting N exercises' status.
+
+    public void setBackValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap) {
+        this.requestBean = request;
+        this.dayExercisesMap=dayExercisesMap;
+        this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
+        ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, daysController, satisfyWorkoutRequestsController, this);
+        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
+        ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
+        mondayButton.fire();
+    }
 
     public boolean checkAlreadyAdded(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean) {
         /*WorkoutDayBean workoutDayBean = satisfyWorkoutRequestsController.getWorkoutDayBean(new DayBeanA(exerciseForWorkoutRoutineBean.getDay()));*/
@@ -125,8 +143,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         setLabelExerciseInserted.setText(Integer.toString(sets));
         restLabelExerciseInserted.setText(rest);
     }
-
-
 
     @FXML
     public void addExercise() {
@@ -155,7 +171,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 if (test) {
                     satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, routineExerciselist);
                     // Update the map with the new exercise
-                    dayExercisesMap.get(selectedDay).add(newExercise);
+                    dayExercisesMap.computeIfAbsent(newExercise.getDay(), k -> new ArrayList<>()).add(newExercise);
                 } else {
                     System.out.println("Esercizio non inserito\n");
                 }
@@ -166,12 +182,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         }
     }
 
-
     @FXML
     public void cancelExercise() {
         ExerciseForWorkoutRoutineBean selectedExercise = routineExerciselist.getSelectionModel().getSelectedItem();
         if (selectedExercise != null) {
-            satisfyWorkoutRequestsController.removeExerciseToWorkoutDay(selectedExercise.getExercise(), routineExerciselist);
+            satisfyWorkoutRequestsController.removeExerciseToWorkoutDay(selectedExercise.getExercise(), routineExerciselist, dayExercisesMap);
 
             // Remove the exercise from the dayExercisesMap
             List<ExerciseForWorkoutRoutineBean> dayExercises = dayExercisesMap.get(selectedExercise.getDay());
@@ -185,7 +200,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         exerciseDBList.getSelectionModel().clearSelection();
         routineExerciselist.getSelectionModel().clearSelection();
     }
-
 
     @FXML
     void dayButtonAction(ActionEvent event) {
@@ -207,7 +221,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         spinnerRepetitions.getValueFactory().setValue(0);
         spinnerSets.getValueFactory().setValue(0);
     }
-
 
     @FXML public void searchButtonAction() {
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
