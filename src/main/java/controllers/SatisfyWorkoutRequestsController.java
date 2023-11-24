@@ -1,17 +1,13 @@
 package controllers;
 
 import beans.*;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import model.Exercise;
-import model.WorkoutRoutine;
 import org.jetbrains.annotations.NotNull;
 
-import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class SatisfyWorkoutRequestsController implements Initializable {
+public class SatisfyWorkoutRequestsController {
 
     //TODO da risistemare; occhio che da un punto di vista di svolgimento di codice questa classe deve estendere la classe
 
@@ -19,7 +15,7 @@ public class SatisfyWorkoutRequestsController implements Initializable {
 
     private final WorkoutRoutineBean workoutRoutine;
     private final String trainer;
-    private List<Exercise> exerciseCatalogue;
+    private final List<Exercise> exerciseCatalogue;
 
     public List<ExerciseBean> getGymExercises() {
         return getExerciseBeanList(exerciseCatalogue);
@@ -28,11 +24,7 @@ public class SatisfyWorkoutRequestsController implements Initializable {
     public SatisfyWorkoutRequestsController() {
         workoutRoutine = new WorkoutRoutineBean();
         trainer = "Personal Trainer Loggato";
-        exerciseCatalogue  = new ArrayList<>() ;
-    }
-
-    public void setExerciseCatalogue(List<Exercise> exerciseCatalogue){
-        this.exerciseCatalogue=exerciseCatalogue;
+        exerciseCatalogue = new ArrayList<>();
     }
 
     public SatisfyWorkoutRequestsController(String trainer, List<Exercise> exerciseCatalogue) {
@@ -41,7 +33,7 @@ public class SatisfyWorkoutRequestsController implements Initializable {
         this.exerciseCatalogue = exerciseCatalogue;
     }
 
-    public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, int repetitions, int sets, String rest, ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist)  {
+    public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist)  {
         RoutineExerciselist.getItems().add(exercise);
 
         // Retrieve rest, sets, and repetitions from the ExerciseForWorkoutRoutineBean instance
@@ -80,11 +72,8 @@ public class SatisfyWorkoutRequestsController implements Initializable {
     }
 
     public void changeExerciseStatus(){
-
+        //TODO
     }
-
-
-
 
     public void submitRoutine() {
 
@@ -128,8 +117,6 @@ public class SatisfyWorkoutRequestsController implements Initializable {
         return exerciseBeanList;
     }
 
-
-
     private WorkoutDayBean getWorkoutDay(WorkoutDayBean day) {
         //ragiona solo con le bean
         for(WorkoutDayBean workoutDay: workoutRoutine.getWorkoutDayList()){
@@ -140,8 +127,20 @@ public class SatisfyWorkoutRequestsController implements Initializable {
         return null;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //comment so to not have code smell
+    public void removeExerciseToWorkoutDay(ExerciseBean selectedExercise, ListView<ExerciseForWorkoutRoutineBean> routineExerciselist) {
+        // Create a copy of the routineExerciselist items to avoid ConcurrentModificationException
+        List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(routineExerciselist.getItems());
+
+        for (ExerciseForWorkoutRoutineBean item : copyList) {
+            if (selectedExercise.equals(item.getExercise())) {
+                routineExerciselist.getItems().remove(item);
+
+                break; // Exit the loop once the item is removed
+            }
+        }
+        // Remove the exercise from the exerciseCatalogue
+        exerciseCatalogue.removeIf(exercise -> selectedExercise.getName().equals(exercise.getName()));
     }
+
+
 }
