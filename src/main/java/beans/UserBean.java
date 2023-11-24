@@ -51,4 +51,7 @@ public class UserBean {
         return str.length() <= 20;
     }
 
+    public String getType() {
+        return type;
+    }
 }

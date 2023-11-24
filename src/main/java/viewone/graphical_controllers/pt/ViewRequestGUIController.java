@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import model.Exercise;
+import model.Gym;
 import utils.MainStage;
 import utils.SwitchPage;
 
@@ -31,7 +33,23 @@ public class ViewRequestGUIController implements Initializable {
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
     public ViewRequestGUIController() {
-        satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        List<Exercise>exerciseList = new ArrayList<>();
+
+        Gym gym1 = new Gym("Palestra1");
+        Gym gym2 = new Gym("Palestra2");
+        Gym gym3 = new Gym("Palestra3");
+        Gym gym4 = new Gym("Palestra4");
+
+        Exercise ex1 = new Exercise("Tricep Pushdown", gym1);
+        Exercise ex2 = new Exercise("Shoulder Press", gym2);
+        Exercise ex3 = new Exercise("Squat", gym3);
+        Exercise ex4 = new Exercise("Dips", gym4);
+
+        exerciseList.add(ex1);
+        exerciseList.add(ex2);
+        exerciseList.add(ex3);
+        exerciseList.add(ex4);
+        satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController("trainer", exerciseList);
     }
 
     @FXML

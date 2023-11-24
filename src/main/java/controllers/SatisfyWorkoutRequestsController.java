@@ -1,15 +1,15 @@
 package controllers;
 
-import beans.ExerciseBean;
-import beans.ExerciseForWorkoutRoutineBean;
-import beans.WorkoutDayBean;
-import beans.WorkoutRoutineBean;
+import beans.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-//import model.WorkoutRoutine;
+import model.Exercise;
+import model.WorkoutRoutine;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SatisfyWorkoutRequestsController implements Initializable {
 
@@ -19,7 +19,11 @@ public class SatisfyWorkoutRequestsController implements Initializable {
 
     private final WorkoutRoutineBean workoutRoutine;
     private final String trainer;
-    private final ArrayList<String> exerciseCatalogue;
+    private List<Exercise> exerciseCatalogue;
+
+    public List<ExerciseBean> getGymExercises() {
+        return getExerciseBeanList(exerciseCatalogue);
+    }
 
     public SatisfyWorkoutRequestsController() {
         workoutRoutine = new WorkoutRoutineBean();
@@ -27,7 +31,11 @@ public class SatisfyWorkoutRequestsController implements Initializable {
         exerciseCatalogue  = new ArrayList<>() ;
     }
 
-    public SatisfyWorkoutRequestsController(String trainer, ArrayList<String> exerciseCatalogue) {
+    public void setExerciseCatalogue(List<Exercise> exerciseCatalogue){
+        this.exerciseCatalogue=exerciseCatalogue;
+    }
+
+    public SatisfyWorkoutRequestsController(String trainer, List<Exercise> exerciseCatalogue) {
         workoutRoutine = new WorkoutRoutineBean();
         this.trainer = trainer;
         this.exerciseCatalogue = exerciseCatalogue;
@@ -71,10 +79,14 @@ public class SatisfyWorkoutRequestsController implements Initializable {
         // Additional code if needed
     }
 
+    public void changeExerciseStatus(){
+
+    }
 
 
 
-    public void submitRoutine(/*ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist*/) {
+
+    public void submitRoutine() {
 
         for (WorkoutDayBean workoutDay : workoutRoutine.getWorkoutDayList()) {
             String dayName = workoutDay.getName();
@@ -93,6 +105,27 @@ public class SatisfyWorkoutRequestsController implements Initializable {
                         ", Rest: " + restP);
             }
         }
+    }
+
+    public List<ExerciseBean> searchExercise(SearchBean searchBean) {
+        System.out.println(searchBean.getName());
+        List<Exercise> exerciseList = new ArrayList<>();
+        for(Exercise exercise: exerciseCatalogue) {
+            System.out.println(exercise.getName());
+            if((exercise.getName().toLowerCase()).contains(searchBean.getName().toLowerCase())) {
+                exerciseList.add(exercise);
+            }
+        }
+        return getExerciseBeanList(exerciseList);
+    }
+
+    @NotNull
+    private List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList) {
+        List<ExerciseBean> exerciseBeanList = new ArrayList<>();
+        for(Exercise exercise: exerciseList){
+            exerciseBeanList.add(new ExerciseBean(exercise.getName()));
+        }
+        return exerciseBeanList;
     }
 
 

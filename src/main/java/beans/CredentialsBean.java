@@ -1,9 +1,7 @@
 package beans;
 
-/*
-import exceptions.invalid_data_exception.EmptyFieldsException;
-import exceptions.invalid_data_exception.InvalidCredentialsException;
-*/
+/*import exceptions.invalid_data_exception.EmptyFieldsException;
+import exceptions.invalid_data_exception.InvalidCredentialsException;*/
 
 import java.util.regex.Pattern;
 
@@ -41,6 +39,7 @@ public class CredentialsBean {
             this.email = email;
         } else {
             /*throw new InvalidCredentialsException();*/
+            System.out.println("Email field invalid.");
         }
     }
 

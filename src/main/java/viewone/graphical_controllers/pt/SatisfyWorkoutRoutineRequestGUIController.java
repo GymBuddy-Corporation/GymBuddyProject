@@ -3,6 +3,7 @@ package viewone.graphical_controllers.pt;
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
 import beans.RequestBean;
+import beans.SearchBean;
 import engineering.ExerciseForWOListCellFactory;
 import engineering.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import model.Exercise;
 import utils.ExerciseCatalogue;
 import engineering.ManageExerciseList;
 import utils.MainStage;
@@ -31,7 +33,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     private RequestBean requestBean;
     private String selectedDay;
 
-    @FXML private ListView<ExerciseBean> DBExercise;
+    @FXML private ListView<ExerciseBean> DBExerciseList;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist;
     @FXML private Spinner<Integer> spinnerRepetitions;
     @FXML private Spinner<Integer> spinnerSets;
@@ -44,6 +46,8 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML private Label repetLabelExerciseInserted;
     @FXML private Label setLabelExerciseInserted;
     @FXML private Label restLabelExerciseInserted;
+    @FXML
+    private TextField searchExerciseText;
 
     private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
@@ -69,7 +73,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         if(choice == 1){
             RoutineExerciselist.getSelectionModel().clearSelection();
         } else {
-            DBExercise.getSelectionModel().clearSelection();
+            DBExerciseList.getSelectionModel().clearSelection();
         }
     }
     @FXML
@@ -98,8 +102,10 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
         requestBean = request;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
-        ManageExerciseList.setListenerDB(DBExercise, daysController, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListenerDB(DBExerciseList, daysController, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(RoutineExerciselist, daysController, satisfyWorkoutRequestsController, this);
+        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
+        ManageExerciseList.updateList(DBExerciseList, exerciseBeanList);
         mondayButton.fire();
     }
 
@@ -126,7 +132,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
     @FXML
     public void addExercise() {
-        ExerciseBean selectedExercise = DBExercise.getSelectionModel().getSelectedItem();
+        ExerciseBean selectedExercise = DBExerciseList.getSelectionModel().getSelectedItem();
 
         if (selectedExercise != null && selectedDay != null) {
             String exerciseName = selectedExercise.getName();
@@ -158,7 +164,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 }
             }
             resetSelection(1);
-            DBExercise.getSelectionModel().clearSelection();
+            DBExerciseList.getSelectionModel().clearSelection();
             RoutineExerciselist.getSelectionModel().clearSelection();
         }
     }
@@ -178,7 +184,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         setVisibleLabel(false);
         setVisibleCancel(false);
         resetSelection(2);
-        DBExercise.getSelectionModel().clearSelection();
+        DBExerciseList.getSelectionModel().clearSelection();
         RoutineExerciselist.getSelectionModel().clearSelection();
     }
 
@@ -210,17 +216,24 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
 
 
+    @FXML public void searchButtonAction() {
+        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
+        System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
+        ManageExerciseList.updateList(DBExerciseList, exerciseBeanList);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setVisibleAdd(false);
         setVisibleLabel(false);
         setVisibleCancel(false);
-        DBExercise.setCellFactory(new ExerciseListCellFactory());
+        DBExerciseList.setCellFactory(new ExerciseListCellFactory());
         RoutineExerciselist.setCellFactory(new ExerciseForWOListCellFactory());
-        ExerciseCatalogue exerciseList = new ExerciseCatalogue();
 
-        for (ExerciseBean element : exerciseList.getExerciseList()) {
-            DBExercise.getItems().add(element);
-        }
+        /*ExerciseCatalogue exerciseList = new ExerciseCatalogue();
+
+        for (Exercise element : exerciseList.getExerciseList()) {
+            DBExerciseList.getItems().add(element);
+        }*/
     }
 }

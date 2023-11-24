@@ -42,6 +42,7 @@ public class ManageExerciseList {
     public static void updateList(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
         ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(exerciseBeanList);
         exerciseBeanListView.setItems(exerciseBeanObservableList);
+        System.out.println("Updated List Size: " + exerciseBeanObservableList.size());
     }
 
 

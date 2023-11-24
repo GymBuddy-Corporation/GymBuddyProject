@@ -2,6 +2,7 @@ module start {
 
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.jetbrains.annotations;
 
     opens start to javafx.fxml;
     exports start;
