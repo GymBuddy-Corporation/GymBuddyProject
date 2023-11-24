@@ -106,7 +106,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         this.requestBean = request;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
-        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, daysController, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
         ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
         mondayButton.fire();
@@ -120,7 +120,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         this.dayExercisesMap=dayExercisesMap;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
-        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, daysController, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
         ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
         mondayButton.fire();

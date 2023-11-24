@@ -5,7 +5,6 @@ import javafx.scene.control.ListView;
 import model.Exercise;
 import org.jetbrains.annotations.NotNull;
 
-import javax.net.ssl.SSLContext;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
@@ -132,6 +131,12 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-
+    public void setStatus(ExerciseBean exercise, String status){
+        if(status == "active"){
+            exercise.setStatusExercise(ExerciseStatusBean.ACTIVE);
+        } else {
+            exercise.setStatusExercise(ExerciseStatusBean.SUSPENDED);
+        }
+    }
 
 }

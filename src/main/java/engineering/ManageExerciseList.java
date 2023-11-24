@@ -2,13 +2,13 @@ package engineering;
 
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
+import beans.ExerciseStatusBean;
 import controllers.SatisfyWorkoutRequestsController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import viewone.DaysOfTheWeekButtonController;
 import viewone.graphicalControllers.pt.SatisfyWorkoutRoutineRequestGUIController;
 import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
 
@@ -45,7 +45,7 @@ public class ManageExerciseList {
     }
 
 
-    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, DaysOfTheWeekButtonController daysController, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -81,8 +81,12 @@ public class ManageExerciseList {
     private static void listEventDBSet(ExerciseBean newItem, SetExerciseStatusGUIController setExerciseStatusGUIController) {
         if(newItem != null){
             setExerciseStatusGUIController.setVisibleButtons(true);
-            //TODO imposta quale dei due deve essere premuto quando la cella è selezionata,
-            // aka = prendi il dato dal DB
+            ExerciseBean selectedExercise = setExerciseStatusGUIController.getExerciseDBList().getSelectionModel().getSelectedItem();
+            if(selectedExercise.getStatusExercise() == ExerciseStatusBean.ACTIVE){
+                setExerciseStatusGUIController.setFireBotton(1);
+            } else {
+                setExerciseStatusGUIController.setFireBotton(2);
+            }
         }
     }
 }

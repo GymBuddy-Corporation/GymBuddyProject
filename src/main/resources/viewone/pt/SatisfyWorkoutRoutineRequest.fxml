@@ -108,7 +108,7 @@
             </stops>
          </LinearGradient>
       </fill></Text>
-   <Text layoutX="315.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Athletes' Routine" textAlignment="CENTER" wrappingWidth="182.4000000000001">
+   <Text fx:id="athletesNameRoutineLabel" layoutX="315.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Athletes' Routine" textAlignment="CENTER" wrappingWidth="182.4000000000001">
       <font>
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>
@@ -447,12 +447,12 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="738.0" layoutY="16.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="738.0" layoutY="16.0" onMouseClicked="#goHome" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
       <image>
          <Image url="@../images/LogoHome96.png" />
       </image>
    </ImageView>
-   <Button layoutX="630.0" layoutY="426.0" mnemonicParsing="false" onAction="#submitRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
+   <Button layoutX="630.0" layoutY="426.0" mnemonicParsing="false" onAction="#submitRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em; -fx-cursor: hand;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -552,7 +552,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button layoutX="406.0" layoutY="433.0" mnemonicParsing="false" onAction="#setExerciseStatus" prefHeight="46.0" prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
+   <Button layoutX="406.0" layoutY="433.0" mnemonicParsing="false" onAction="#setExerciseStatus" prefHeight="46.0" prefWidth="63.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em; -fx-cursor: hand;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>

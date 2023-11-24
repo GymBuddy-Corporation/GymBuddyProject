@@ -2,7 +2,7 @@ package beans;
 
 /*import java.time.LocalTime;*/
 
-import static beans.ExerciseStatusBean.Active;
+import static beans.ExerciseStatusBean.ACTIVE;
 
 public class ExerciseBean {
     private final String name;
@@ -10,7 +10,7 @@ public class ExerciseBean {
 
     public ExerciseBean(String name) {
         this.name = name;
-        this.statusExercise = Active;
+        this.statusExercise = ACTIVE;
     }
 
     public String getName() {
