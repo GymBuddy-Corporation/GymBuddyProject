@@ -12,13 +12,13 @@ public class Exercise implements Serializable {
         this.id = id;
         this.name = name;
         this.gym = gym;
-        this.status=ExerciseStatus.Active;
+        this.status=ExerciseStatus.ACTIVE;
     }
 
     public Exercise(String name, Gym gym){
         this.name = name;
         this.gym = gym;
-        this.status=ExerciseStatus.Active;
+        this.status=ExerciseStatus.ACTIVE;
     }
 
     public int getId() {

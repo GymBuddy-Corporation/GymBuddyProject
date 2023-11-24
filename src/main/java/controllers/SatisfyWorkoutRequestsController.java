@@ -52,23 +52,11 @@ public class SatisfyWorkoutRequestsController {
 
         if (existingWorkoutDay.isPresent()) {
             existingWorkoutDay.get().addExerciseBean(exercise);
-            // Print info when WorkoutDayBean exists
-            System.out.println("WorkoutDayBean already exists for day: " + exerciseDay +
-                    ", Exercise: " + exerciseName +
-                    ", Repetitions: " + exerciseRepetitions +
-                    ", Sets: " + exerciseSets +
-                    ", Rest: " + exerciseRest);
         } else {
             // If WorkoutDayBean doesn't exist, create a new one and add the exercise to it
             WorkoutDayBean newWorkoutDay = new WorkoutDayBean(exercise.getDay());
             newWorkoutDay.addExerciseBean(exercise);
             workoutRoutine.addWorkoutDayBean(newWorkoutDay);
-            // Print info when creating a new WorkoutDayBean
-            System.out.println("Created new WorkoutDayBean for day: " + exerciseDay +
-                    ", Exercise: " + exerciseName +
-                    ", Repetitions: " + exerciseRepetitions +
-                    ", Sets: " + exerciseSets +
-                    ", Rest: " + exerciseRest);
         }
         // Additional code if needed
     }
@@ -88,12 +76,6 @@ public class SatisfyWorkoutRequestsController {
                 int repetitionsP = exercisePrint.getRepetitions();
                 int setsP = exercisePrint.getSets();
                 String restP = exercisePrint.getRest();
-
-                System.out.println("Day: " + dayName +
-                        ", Exercise: " + exerciseName.getName() +
-                        ", Repetitions: " + repetitionsP +
-                        ", Sets: " + setsP +
-                        ", Rest: " + restP);
             }
         }
     }
