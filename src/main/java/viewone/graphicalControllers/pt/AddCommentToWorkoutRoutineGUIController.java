@@ -36,11 +36,11 @@ public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
 
     @Override
     public void popUpConfirm() {
-
+        //comment to avoid code smell
     }
 
     @Override
     public void popUpDelete() {
-
+        //comment to avoid code smell
     }
 }

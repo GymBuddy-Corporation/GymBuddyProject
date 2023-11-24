@@ -5,16 +5,17 @@ import utils.MainStage;
 import utils.SwitchPage;
 
 public class AthletesPTCommunicationsGUIController {
+    private final String athlete = "athlete";
 
     @FXML
     public void goBack() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml",athlete,1);
     }
 
     @FXML
     public void openCommunication() throws Exception{
         //TODO apri la schermata con la comunicazione
-        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml",athlete,1);
     }
 
     @FXML
@@ -24,7 +25,7 @@ public class AthletesPTCommunicationsGUIController {
 
     @FXML
     public void openProfile() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"ProfileAthlete.fxml","athlete",1);
+        SwitchPage.setStage(MainStage.getStage(),"ProfileAthlete.fxml",athlete,1);
     }
 
 }

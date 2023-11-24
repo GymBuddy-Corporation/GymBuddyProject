@@ -59,10 +59,10 @@ public class ViewYourAthletesGUIController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PersonalInfoBean pi1 = new PersonalInfoBean("Luca", "Martorelli", LocalDate.of(2000, 9, 1), "MRTLCU00P01D612J", 'm');
-        PersonalInfoBean pi2 = new PersonalInfoBean("Mario", "Regine", LocalDate.of(2002, 9, 23), "MRTLCU00P01D612J", 'm');
-        PersonalInfoBean pi3 = new PersonalInfoBean("Edoardo", "Manenti", LocalDate.of(2007, 9, 6), "MRTLCU00P01D612J", 'm');
-        PersonalInfoBean pi4 = new PersonalInfoBean("Alexandru", "Nazare", LocalDate.of(2002, 5, 15), "MRTLCU00P01D612J", 'm');
-        PersonalInfoBean pi5 = new PersonalInfoBean("Alessandro", "Cortese", LocalDate.of(1999, 6, 1), "MRTLCU00P01D612J", 'm');
+        PersonalInfoBean pi2 = new PersonalInfoBean("Mario", "Regine", LocalDate.of(2002, 9, 23), "MHTLCU00P01D612J", 'm');
+        PersonalInfoBean pi3 = new PersonalInfoBean("Edoardo", "Manenti", LocalDate.of(2007, 9, 6), "NRTLCU00P01D612J", 'm');
+        PersonalInfoBean pi4 = new PersonalInfoBean("Alexandru", "Nazare", LocalDate.of(2002, 5, 15), "MDBJEU00P01D612J", 'm');
+        PersonalInfoBean pi5 = new PersonalInfoBean("Alessandro", "Cortese", LocalDate.of(1999, 6, 1), "MFCUCU00P01D612J", 'm');
 
 
         AthleteBean athlete1 = new AthleteBean("LuX71", pi1,
