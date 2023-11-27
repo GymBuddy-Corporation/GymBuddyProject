@@ -1,6 +1,5 @@
 package engineering;
 
-
 import beans.ExerciseBean;
 import beans.ExerciseStatusBean;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import java.io.IOException;
 
-
 import javafx.util.Callback;
-
-
 
 public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>, ListCell<ExerciseBean>> {
 
@@ -40,15 +36,9 @@ public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>,
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(exerciseBean.getName());
 
-                    // Check the status and decide whether to insert
-                    if (ExerciseStatusBean.ACTIVE.equals(exerciseBean.getStatusExercise())) {
-                        setGraphic(parentNode);
-                    } else {
-                        // Exercise is suspended, do not insert
-                        setGraphic(null);
-                    }
+                    itemNameLabel.setText(exerciseBean.getName());
+                    setGraphic(parentNode);
                 }
             }
         };

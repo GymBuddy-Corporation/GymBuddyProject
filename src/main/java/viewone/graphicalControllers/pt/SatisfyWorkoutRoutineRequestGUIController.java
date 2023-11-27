@@ -108,7 +108,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
-        ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
+        ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
         mondayButton.fire();
     }
 
@@ -122,7 +122,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
-        ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
+        ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
         mondayButton.fire();
     }
 
@@ -225,7 +225,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML public void searchButtonAction() {
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
-        ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
+        ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
     }
 
     @Override
@@ -236,12 +236,5 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         exerciseDBList.setCellFactory(new ExerciseListCellFactory());
         routineExerciselist.setCellFactory(new ExerciseForWOListCellFactory());
 
-        /* The code goes without this:
-
-        ExerciseCatalogue exerciseList = new ExerciseCatalogue();
-
-        for (Exercise element : exerciseList.getExerciseList()) {
-            DBExerciseList.getItems().add(element);
-        }*/
     }
 }

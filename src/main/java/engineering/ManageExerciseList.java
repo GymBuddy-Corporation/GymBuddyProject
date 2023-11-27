@@ -14,6 +14,7 @@ import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ManageExerciseList {
 
@@ -41,6 +42,16 @@ public class ManageExerciseList {
 
     public static void updateList(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
         ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(exerciseBeanList);
+        exerciseBeanListView.setItems(exerciseBeanObservableList);
+    }
+
+    public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
+        // Filter out exercises with status other than ACTIVE
+        List<ExerciseBean> filteredList = exerciseBeanList.stream()
+                .filter(exerciseBean -> ExerciseStatusBean.ACTIVE.equals(exerciseBean.getStatusExercise()))
+                .collect(Collectors.toList());
+
+        ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(filteredList);
         exerciseBeanListView.setItems(exerciseBeanObservableList);
     }
 

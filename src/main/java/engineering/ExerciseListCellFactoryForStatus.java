@@ -1,6 +1,5 @@
 package engineering;
 
-
 import beans.ExerciseBean;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import java.io.IOException;
 
-
 import javafx.util.Callback;
-
-
 
 public class ExerciseListCellFactoryForStatus implements Callback<ListView<ExerciseBean>, ListCell<ExerciseBean>> {
 
