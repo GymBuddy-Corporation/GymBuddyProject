@@ -37,13 +37,6 @@ public class SatisfyWorkoutRequestsController {
     public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist)  {
         RoutineExerciselist.getItems().add(exercise);
 
-        // Retrieve rest, sets, and repetitions from the ExerciseForWorkoutRoutineBean instance
-        String exerciseRest = exercise.getRest();
-        int exerciseSets = exercise.getSets();
-        int exerciseRepetitions = exercise.getRepetitions();
-        String exerciseName = exercise.getExercise().getName();
-        String exerciseDay = exercise.getDay();
-
         // Check if the WorkoutDayBean for the current day already exists
         Optional<WorkoutDayBean> existingWorkoutDay = workoutRoutine.getWorkoutDayList().stream()
                 .filter(workoutDay -> workoutDay.getName().equals(exercise.getDay()))
@@ -92,15 +85,26 @@ public class SatisfyWorkoutRequestsController {
     }
 
     @NotNull
-    private List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList) {
+    public List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList) {
         List<ExerciseBean> exerciseBeanList = new ArrayList<>();
         for(Exercise exercise: exerciseList){
-            exerciseBeanList.add(new ExerciseBean(exercise.getName()));
+            ExerciseStatusBean ex = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
+            exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex));
         }
         return exerciseBeanList;
     }
 
-    private WorkoutDayBean getWorkoutDay(WorkoutDayBean day) {
+    public static ExerciseStatusBean getExerciseStatusBeanFromExercise(Exercise exercise) {
+        return switch (exercise.getStatus()) {
+            case ACTIVE -> ExerciseStatusBean.ACTIVE;
+            case SUSPENDED -> ExerciseStatusBean.SUSPENDED;
+            default ->
+                // Handle other cases or throw an exception
+                    null;
+        };
+    }
+
+    public WorkoutDayBean getWorkoutDay(WorkoutDayBean day) {
         //ragiona solo con le bean
         for(WorkoutDayBean workoutDay: workoutRoutine.getWorkoutDayList()){
             if(Objects.equals(workoutDay, day)) {

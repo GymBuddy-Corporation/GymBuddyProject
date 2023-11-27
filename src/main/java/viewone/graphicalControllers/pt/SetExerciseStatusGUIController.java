@@ -6,6 +6,7 @@ import beans.RequestBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.ExerciseListCellFactory;
+import engineering.ExerciseListCellFactoryForStatus;
 import engineering.ManageExerciseList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,7 +77,7 @@ public class SetExerciseStatusGUIController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        exerciseDBList.setCellFactory(new ExerciseListCellFactory());
+        exerciseDBList.setCellFactory(new ExerciseListCellFactoryForStatus());
         setVisibleButtons(false);
     }
 

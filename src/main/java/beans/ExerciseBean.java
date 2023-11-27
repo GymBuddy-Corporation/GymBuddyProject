@@ -1,16 +1,12 @@
 package beans;
 
-/*import java.time.LocalTime;*/
-
-import static beans.ExerciseStatusBean.ACTIVE;
-
 public class ExerciseBean {
     private final String name;
     private ExerciseStatusBean statusExercise;
 
-    public ExerciseBean(String name) {
+    public ExerciseBean(String name, ExerciseStatusBean statusExercise) {
         this.name = name;
-        this.statusExercise = ACTIVE;
+        this.statusExercise = statusExercise;
     }
 
     public String getName() {
@@ -24,20 +20,9 @@ public class ExerciseBean {
     public void setStatusExercise(ExerciseStatusBean statusExercise) {
         this.statusExercise = statusExercise;
     }
-}
 
-/*    private final int repetitions;
-    private final int sets;
-    private final String rest;
-
-
-    public ExerciseBean(String name, int repetitions, int sets, String rest) {
-        this.name = name;
-        this.rest=rest;
-        this.repetitions=repetitions;
-        this.sets=sets;
+    // New method to get ExerciseStatusBean from ExerciseBean
+    public ExerciseStatusBean getExerciseStatusBean() {
+        return statusExercise;
     }
-
-    public ExerciseBean(String name) {
-        this.name = name;
-    }*/
+}

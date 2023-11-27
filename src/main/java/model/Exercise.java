@@ -8,14 +8,16 @@ public class Exercise implements Serializable {
     private final Gym gym;
     private ExerciseStatus status;
 
-    public Exercise(int id, String name, Gym gym){
+    public Exercise(int id, String name, Gym gym, ExerciseStatus status){
+        //ideato SOLO per passare ora i parametri (che non ho il DB)
         this.id = id;
         this.name = name;
         this.gym = gym;
-        this.status=ExerciseStatus.ACTIVE;
+        this.status = status;
     }
 
     public Exercise(String name, Gym gym){
+        //ideato per essere usato alla creazione di un esercizio
         this.name = name;
         this.gym = gym;
         this.status=ExerciseStatus.ACTIVE;
