@@ -20,6 +20,7 @@ public class SwitchPage {
 
     private static final String SEP="/";
     private static final String VIEWONE="viewone";
+    private static final String VIEWTWO="viewtwo";
     public static  Scene setStage(Stage stage, String path){//TODO: REmove after changing all calls to it
         String temp=stage+path;
         System.out.println(temp);
@@ -43,10 +44,12 @@ public class SwitchPage {
             case 1:
                 view_path=VIEWONE;
                 break;
-
+            case 2:
+                view_path=VIEWTWO;
+                break;
             default:
                 //TODO:trhoware un exception quando capiro come fare
-                exit(0);
+                exit(-1);
                 break;
         }
         return SEP+view_path+SEP+folder+SEP+name;}

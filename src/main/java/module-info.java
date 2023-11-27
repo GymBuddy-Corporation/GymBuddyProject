@@ -13,6 +13,7 @@ module start {
     exports viewone.graphicalControllers.launcher.athlete;
     exports viewone.graphicalControllers.athlete;
     exports viewone.graphicalControllers.launcher;
+    exports viewtwo.graphicalcontrollers.launcher;
     opens viewone to javafx.fxml;
     opens viewone.graphicalControllers.pt;
     exports  viewone.engineering;
@@ -20,6 +21,8 @@ module start {
     opens viewone.graphicalControllers.launcher.athlete  to javafx.fxml;
     opens viewone.graphicalControllers.launcher.gym to javafx.fxml;
     opens viewone.graphicalControllers.launcher to javafx.fxml;
+    opens viewtwo.graphicalcontrollers.launcher to javafx.fxml;
+    opens viewtwo.popups.controllers to javafx.fxml;
     exports viewone.graphicalControllers.gym;
     exports utils;
     exports beans;
@@ -27,4 +30,5 @@ module start {
     opens utils to javafx.fxml;
     opens viewone.graphicalControllers.gym;
     opens viewone.graphicalControllers.athlete;
+
 }

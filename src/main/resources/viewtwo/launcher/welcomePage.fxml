@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane onMouseClicked="#clicked" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.WelcomeController">
+   <children>
+      <ImageView fitHeight="242.0" fitWidth="586.0" layoutX="107.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/versioneOrange.png" />
+         </image></ImageView>
+      <Label layoutX="306.0" layoutY="146.0" text="Welcome" textAlignment="CENTER" textFill="#931701">
+         <font>
+            <Font name="Microsoft Sans Serif" size="45.0" />
+         </font>
+      </Label>
+      <Label layoutX="374.0" layoutY="198.0" text="To" textFill="#931701">
+         <font>
+            <Font name="Microsoft Sans Serif" size="45.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

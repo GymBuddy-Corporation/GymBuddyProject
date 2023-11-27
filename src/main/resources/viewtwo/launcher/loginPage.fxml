@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
+   <children>
+      <Button layoutX="437.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#createPopUp" prefHeight="67.0" prefWidth="191.0" text="Login">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Button>
+      <BorderPane layoutX="14.0" layoutY="33.0" prefHeight="403.0" prefWidth="247.0" style="-fx-background-color: e8aa00; -fx-border-radius: 50; -fx-background-radius: 50;">
+         <top>
+            <Label text="Sei nuovo?" textFill="#931701" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <VBox prefHeight="361.0" prefWidth="247.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="106.0" prefWidth="206.0" text="Gymbuddy è una piattaforma che fornisce servizi alle palestre iscritte e ai loro clienti, i servizi offerti sono vari: gestione abbonamenti, gestione schede, ecc. " textFill="#931701" wrapText="true" />
+                  <Label prefHeight="30.0" prefWidth="214.0" text="    Sei una palestra?" textAlignment="CENTER" textFill="#931701">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" text="Registrati">
+                     <VBox.margin>
+                        <Insets left="70.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label prefHeight="30.0" prefWidth="214.0" text="    Vuoi iscriverti come atleta?" textAlignment="CENTER" textFill="#931701">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="121.0" prefWidth="207.0" text="Al momento non forniamo la registrazione come atleta attraverso la nostra applicazione, ma abbonati ad una delle palestre adderetenti ed otterai delle credenziali per effettuare il login." textFill="#931701" wrapText="true" />
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+      <Label fx:id="errorLabel" layoutX="519.0" layoutY="119.0" />
+   </children>
+</AnchorPane>
