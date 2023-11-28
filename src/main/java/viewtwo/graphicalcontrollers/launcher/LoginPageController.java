@@ -13,13 +13,13 @@ public class LoginPageController implements LoginPopUpInterface {
         LoginPopUp.getLoginPopup(this);
     }
     @FXML
-    Label loginLabel;
+    Label errorLabel;
     @FXML
     public void createPopUp() throws IOException {
         this.invokePopUp();
     }
     @Override
     public void loginCredentialInserted(String name, String password, boolean remember) {
-
+                String.
     }
 }

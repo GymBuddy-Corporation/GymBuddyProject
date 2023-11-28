@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: e8aa00;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="268.0" style="-fx-background-color: f9b700; -fx-border-color: black; -fx-border-radius: 4;" fx:controller="viewtwo.popups.controllers.LoginPopUpController" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label text="Inserisci le tue credenziali" BorderPane.alignment="CENTER" />
+      <Label text="Inserisci le tue credenziali" textFill="#931701" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
    </top>
+   <center>
+      <AnchorPane prefHeight="334.0" prefWidth="256.0" BorderPane.alignment="CENTER">
+         <children>
+            <PasswordField fx:id="inputPassword" layoutX="42.0" layoutY="156.0" prefHeight="35.0" prefWidth="163.0" promptText="********" />
+            <TextField fx:id="inputEmail" layoutX="42.0" layoutY="83.0" prefHeight="35.0" prefWidth="163.0" promptText="example@gmail.eu" />
+            <Label layoutX="42.0" layoutY="61.0" text="Email" textFill="#931701">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="44.0" layoutY="131.0" text="Paswword" textFill="#931701">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="88.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#actionLogin" prefHeight="38.0" prefWidth="72.0" text="Login" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
    <children>
       <Button layoutX="437.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#createPopUp" prefHeight="67.0" prefWidth="191.0" text="Login">
          <font>
             <Font size="29.0" />
          </font>
       </Button>
-      <BorderPane layoutX="14.0" layoutY="33.0" prefHeight="403.0" prefWidth="247.0" style="-fx-background-color: e8aa00; -fx-border-radius: 50; -fx-background-radius: 50;">
+      <BorderPane layoutX="14.0" layoutY="33.0" prefHeight="403.0" prefWidth="247.0" style="-fx-background-color: e8aa00; -fx-border-radius: 50; -fx-background-radius: 50; -fx-border-color: black;">
          <top>
             <Label text="Sei nuovo?" textFill="#931701" BorderPane.alignment="CENTER">
                <font>

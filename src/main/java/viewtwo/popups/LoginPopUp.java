@@ -6,6 +6,7 @@ import javafx.stage.Popup;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewtwo.popups.abstracts.LoginPopUpInterface;
+import viewtwo.popups.controllers.LoginPopUpController;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class LoginPopUp {
         load = fxmlLoader.load();
         popup_reference=new Popup();
         popup_reference.getContent().add(load);
+        ((LoginPopUpController)fxmlLoader.getController()).setCaller(this);
         popup_reference.show(MainStage.getStage());
         popup_reference.setAutoHide(true);
         popup_reference.setOnAutoHide(handler->{clearSingleton();});
@@ -42,10 +44,8 @@ public class LoginPopUp {
         me.caller=null;
         me=null;
     }
-    public void popUpConfirm(){
-      //  caller.popUpConfirm();
-    }
-    public void popUpDelete(){
-       // caller.popUpDelete();
+    public void doLogin(String email,String password) {
+        caller.loginCredentialInserted(email,password,true);
+        clearSingleton();
     }
 }
