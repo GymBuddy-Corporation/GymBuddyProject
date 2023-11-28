@@ -44,7 +44,7 @@ public class LoginPopUp {
         me.caller=null;
         me=null;
     }
-    public void doLogin(String email,String password) {
+    public void doLogin(String email,String password) throws IOException {
         caller.loginCredentialInserted(email,password,true);
         clearSingleton();
     }

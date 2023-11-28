@@ -6,6 +6,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import viewtwo.popups.LoginPopUp;
 
+import java.io.IOException;
+
 public class LoginPopUpController {
     LoginPopUp caller;
     @FXML
@@ -17,7 +19,7 @@ public class LoginPopUpController {
         this.caller = caller;
     }
     @FXML
-    public void actionLogin(){
+    public void actionLogin() throws IOException {
         caller.doLogin(inputEmail.getText(),inputPassword.getText());
     }
 }

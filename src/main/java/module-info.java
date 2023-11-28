@@ -20,11 +20,11 @@ module start {
     opens viewone.graphicalControllers.launcher to javafx.fxml;
     opens viewtwo.graphicalcontrollers.launcher to javafx.fxml;
     opens viewtwo.popups.controllers to javafx.fxml;
+    opens  viewtwo.graphicalcontrollers.home to javafx.fxml;
     exports viewone.graphicalControllers.gym;
     exports utils;
     exports beans;
     exports controllers;
-    opens utils to javafx.fxml;
     opens viewone.graphicalControllers.gym;
     opens viewone.graphicalControllers.athlete;
     exports engineering;
@@ -33,5 +33,6 @@ module start {
     opens engineering.manageListView;
     exports engineering.manageListView.listCells;
     opens engineering.manageListView.listCells;
+    opens utils;
 
 }

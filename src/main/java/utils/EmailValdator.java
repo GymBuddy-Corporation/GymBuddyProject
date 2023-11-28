@@ -1,9 +1,7 @@
-package engineering;
-
+package utils;
 public class EmailValdator {
     public static boolean isEmailValid(String email){
-        try{
-            InternetAddress
-        }
+        //TODO: da implementare
+        return true;
     }
 }

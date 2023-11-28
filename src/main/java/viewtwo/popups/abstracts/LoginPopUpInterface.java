@@ -7,5 +7,5 @@ import java.io.IOException;
 
 public interface LoginPopUpInterface {
     public void invokePopUp() throws IOException;
-    public void loginCredentialInserted(String name,String password,boolean remember);
+    public void loginCredentialInserted(String name,String password,boolean remember) throws IOException;
 }
