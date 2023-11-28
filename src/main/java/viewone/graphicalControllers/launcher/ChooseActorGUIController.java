@@ -5,8 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import utils.SwitchPage;
+import viewone.graphicalControllers.launcher.gym.GymFirstGUIController;
+import viewone.graphicalControllers.pt.SatisfyWorkoutRoutineRequestGUIController;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -14,7 +17,8 @@ public class ChooseActorGUIController implements Initializable {
 
     @FXML private ImageView gym;
     @FXML private ImageView pt;
-    @FXML private ImageView user;
+    @FXML private ImageView athlete;
+    private String user;
 //TODO: devo trovare una soluzione per i radio button, li posso lasciare cosi oppure creare una classe che gli gestisce
     //Sono Luca e ho copiato qesto codice nei send communication
     @Override
@@ -29,7 +33,7 @@ public class ChooseActorGUIController implements Initializable {
     enum Selezione{
         GYM,
         PT,
-        USER
+        ATHLETE
     }
 
     Selezione scelta;
@@ -42,34 +46,44 @@ public class ChooseActorGUIController implements Initializable {
     public void setBottonegym()throws  Exception{
         pt.setImage(empty);
         gym.setImage(full);
-        user.setImage(empty);
+        athlete.setImage(empty);
         scelta=Selezione.GYM;
     }
     @FXML
     public void setBottonept()throws  Exception{
         pt.setImage(full);
         gym.setImage(empty);
-        user.setImage(empty);
+        athlete.setImage(empty);
         scelta=Selezione.PT;
     }
     @FXML
     public void setBottoneuser()throws  Exception{
         pt.setImage(empty);
         gym.setImage(empty);
-        user.setImage(full);
-        scelta=Selezione.USER;
+        athlete.setImage(full);
+        scelta=Selezione.ATHLETE;
     }
     @FXML
     public void goForward() throws Exception {
         String path;
         if(scelta==Selezione.GYM) {
             path = "GymFirst.fxml";
+            this.user = "gym";
+            GymFirstGUIController controller = (GymFirstGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
+            Objects.requireNonNull(controller).setValue(user);
         } else if (scelta==Selezione.PT) {
-             path = "PTLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
-        } else if(scelta==Selezione.USER) {
-             path = "AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
-        }else{return;}
-        SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
+            this.user = "trainer";
+            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            LoginGUIController controller = (LoginGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
+            Objects.requireNonNull(controller).setValue(user);
+        } else if(scelta==Selezione.ATHLETE) {
+            this.user = "athlete";
+            path = "AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            LoginGUIController controller = (LoginGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
+            Objects.requireNonNull(controller).setValue(user);
+        }else{
+            return;
+        }
     }
 
     public void changeLanguage() {

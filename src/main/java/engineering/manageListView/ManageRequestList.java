@@ -1,4 +1,4 @@
-package engineering;
+package engineering.manageListView;
 
 import beans.AthleteBean;
 import beans.CredentialsBean;
@@ -8,6 +8,7 @@ import controllers.SatisfyWorkoutRequestsController;
 /*
 import exceptions.DBUnreachableException;
 */
+import engineering.manageListView.listCells.RequestListCellFactory;
 import javafx.scene.control.ListView;
 
 import java.time.LocalDate;
@@ -27,7 +28,7 @@ public class ManageRequestList {
         PersonalInfoBean pi5 = new PersonalInfoBean("Alessandro", "Cortese", LocalDate.of(1999, 6, 1), "CRTLSS00P01D612J", 'm');
 
         AthleteBean athlete1 = new AthleteBean("LuX71", pi1,
-                CredentialsBean.ctorWithSyntaxCheck("lucam0109@gmail.com", "SSLAZIO1900"));
+                CredentialsBean.ctorWithSyntaxCheck("lucam0109@gmail.com", "LAZINESS1900"));
         RequestBean r1 = new RequestBean("Ciao, vorrei una nuova scheda che" +
                 " aiutasse a crescere principalmente di spalle", athlete1, "MPTCFR00X01D555F");
         AthleteBean athlete2 = new AthleteBean("accroccoman", pi2,
@@ -43,7 +44,10 @@ public class ManageRequestList {
         /*updateList(requestList, satisfyWorkoutRequestsController);*/
     }
 
-    /*public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) *//*throws SQLException, DBUnreachableException *//*{
+    //TODO chiarisci perchè cazzo mi mostra le richieste senz update, mentre non me le mostra se ho update
+    //TODO sistema password null bug
+
+   /* public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) *//*throws SQLException, DBUnreachableException *//*{
         ObservableList<RequestBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getTrainerRequests());
         requestList.setItems(FXCollections.observableList(requestBeanObservableList));
     }*/

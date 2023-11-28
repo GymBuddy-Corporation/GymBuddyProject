@@ -6,12 +6,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.launcher.gym.GymLoginGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.launcher.LoginGUIController">
 
    <prefHeight>500.0</prefHeight>
-
-   <ImageView fx:id="GymBuddy" fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../images/LogoGymBuddy.png" />
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" style="-fx-cursor: hand;">
+      <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
    <Label fx:id="Login" layoutX="317.0" layoutY="127.0" prefHeight="62.0" prefWidth="139.0" stylesheets="@../GymBuddyCSS.css" text="LOGIN">
       <textFill>
@@ -59,15 +58,17 @@
       </font>
    </Label>
    <PasswordField layoutX="319.0" layoutY="302.0" prefHeight="26.0" prefWidth="168.0" stylesheets="@../GymBuddyCSS.css" />
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" style="-fx-cursor: hand;">
+   <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoGymBuddy.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
       <image>
          <Image url="@../images/LogoNextPage96.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" style="-fx-cursor: hand;">
-      <image>
-         <Image url="@../images/LogoBackPage96.png" />
-      </image>
-   </ImageView>
+
+   <!-- Definisci il controllers !-->
 
 </AnchorPane>

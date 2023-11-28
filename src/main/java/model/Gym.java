@@ -1,12 +1,13 @@
 package model;
 
-/*import models.record.Credentials;
-import models.record.PersonalInfo;*/
+import model.record.Credentials;
 
 import java.io.Serializable;
 
-public class Gym /*extends User*/ implements Serializable {
+public class Gym /*extends User CHIARISCI*/implements Serializable {
     private String username;
+    private Credentials credentials;
+    private String iban;
 
     public Gym(String username){
         this.username=username;
@@ -20,8 +21,24 @@ public class Gym /*extends User*/ implements Serializable {
         this.username = username;
     }
 
-    /*public Gym(String username, PersonalInfo personalInfo, Credentials credentials, String iban){
-        super(username, personalInfo, credentials);
+    public Gym(String username, Credentials credentials, String iban){
+        this.username = username;
+        this.credentials = credentials;
         this.iban = iban;
-    }*/
+    }
+    public String getEmail() {
+        return credentials.email();
+    }
+
+    public String getPassword() {
+        return credentials.password();
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
 }

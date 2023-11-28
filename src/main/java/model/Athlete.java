@@ -1,13 +1,16 @@
 package model;
 
+import model.record.Card;
+import model.record.Credentials;
+import model.record.PersonalInfo;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.List;
 
 public class Athlete extends User implements Serializable {
-    /*private Card card;
-    private WorkoutRoutine workoutPlan;
+    private Card card; //TODO vedi come gestire le carte
+    private WorkoutRoutine workoutRoutine;
     private Trainer trainer;
 
     public Athlete(String username, PersonalInfo personalInfo, Credentials credentials) {
@@ -18,60 +21,57 @@ public class Athlete extends User implements Serializable {
         );
     }
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card) throws ExpiredCardException {
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card) /*throws ExpiredCardException*/ {
         super(username, personalInfo, credentials);
-        checkCardExpirationDate(card.cardExpirationDate());
+        //checkCardExpirationDate(card.cardExpirationDate());
         this.card = card;
     }
 
-    public String getCardNumber() *//*throws NoCardInsertedException *//*{
+    public String getCardNumber() /*throws NoCardInsertedException*/ {
         if(card.cardNumber()==null) {
-            throw new NoCardInsertedException();
+            /*throw new NoCardInsertedException();*/
+            System.out.println("Carta non inserita");
+            return null;
         }else{
             return card.cardNumber();
         }
     }
 
-    public void setCard(Card card) *//*throws ExpiredCardException *//*{
+    public void setCard(Card card) /*throws ExpiredCardException*/ {
         checkCardExpirationDate(card.cardExpirationDate());
         this.card = card;
     }
 
-    public YearMonth getCardExpirationDate() *//*throws NoCardInsertedException *//*{
+    public YearMonth getCardExpirationDate() /*throws NoCardInsertedException */{
         if (card.cardExpirationDate() == null) {
-            throw new NoCardInsertedException();
+            /*throw new NoCardInsertedException();*/
+            System.out.println("Carta non inserita");
+            return null;
         } else {
             return card.cardExpirationDate();
         }
     }
 
-    public void checkCardExpirationDate(YearMonth cardExpirationDate) *//*throws ExpiredCardException *//*{
+    public void checkCardExpirationDate(YearMonth cardExpirationDate) /*throws ExpiredCardException*/ {
         if ((cardExpirationDate != null) && !((cardExpirationDate.getYear() > LocalDate.now().getYear()) ||
                 ((cardExpirationDate.getYear() == LocalDate.now().getYear()) &&
                         (cardExpirationDate.getMonthValue() > LocalDate.now().getMonthValue())))) {
-            throw new ExpiredCardException();
+            System.out.println("Carta scaduta");
+            /*throw new ExpiredCardException();*/
         }
     }
 
-    public WorkoutPlan getWorkoutPlan() {
-        return workoutPlan;
+    public WorkoutRoutine getWorkoutPlan() {
+        return workoutRoutine;
     }
 
-    public void setWorkoutPlan(WorkoutPlan workoutPlan) {
-        if(workoutPlan != null) {
-            this.workoutPlan = new WorkoutPlan();
-            this.workoutPlan.addAllWorkoutDays(workoutPlan.getWorkoutDayList());
+    public void setWorkoutRoutine(WorkoutRoutine workoutRoutine) {
+        if(workoutRoutine != null) {
+            this.workoutRoutine = new WorkoutRoutine();
+            this.workoutRoutine.addAllWorkoutDays(workoutRoutine.getWorkoutDayList());
         } else {
-            this.workoutPlan = null;
+            this.workoutRoutine = null;
         }
-    }
-
-    public List<Course> getCourseList() {
-        return courseList;
-    }
-
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
     }
 
     public Trainer getTrainer() {
@@ -80,5 +80,5 @@ public class Athlete extends User implements Serializable {
 
     public void setTrainer(Trainer trainer) {
         this.trainer = trainer;
-    }*/
+    }
 }

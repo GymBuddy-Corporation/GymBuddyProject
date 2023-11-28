@@ -2,36 +2,47 @@ package controllers;
 
 import beans.*;
 import javafx.scene.control.ListView;
+import model.Athlete;
 import model.Exercise;
+import model.Request;
+import model.Trainer;
+import model.record.Credentials;
+import model.record.PersonalInfo;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
 
-    //TODO da risistemare; occhio che da un punto di vista di svolgimento di codice questa classe deve estendere la classe
-
-    //Tutti sti valori bean diventeranno poi model
+    //TODO da risistemare; occhio che da un punto di vista di svolgimento di codice questa classe
+    // deve scambiare i dati da bean a model
 
     private final WorkoutRoutineBean workoutRoutine;
-    private final String trainer;
-    private final List<Exercise> exerciseCatalogue;
+    private final Trainer trainer;
+    private final List<Exercise> exerciseList;
 
     public List<ExerciseBean> getGymExercises() {
-        System.out.println(exerciseCatalogue);
-        return getExerciseBeanList(exerciseCatalogue);
+        System.out.println(exerciseList);
+        return getExerciseBeanList(exerciseList);
     }
 
     public SatisfyWorkoutRequestsController() {
-        workoutRoutine = new WorkoutRoutineBean();
-        trainer = "Personal Trainer Loggato";
-        exerciseCatalogue = new ArrayList<>();
+        this.workoutRoutine = new WorkoutRoutineBean();
+
+        this.trainer = new Trainer("AleCortix",
+                new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
+                new Credentials("alecortix@gmail.com", "forzanapule1926"))
+        /*(Trainer) new LoginController().getLoggedUser()*/;
+        System.out.println(this.trainer.getName() + this.trainer.getEmail());
+        this.exerciseList = new ArrayList<>();
     }
 
-    public SatisfyWorkoutRequestsController(String trainer, List<Exercise> exerciseCatalogue) {
-        workoutRoutine = new WorkoutRoutineBean();
+    public SatisfyWorkoutRequestsController(Trainer trainer, List<Exercise> exerciseList) {
+        this.workoutRoutine = new WorkoutRoutineBean();
         this.trainer = trainer;
-        this.exerciseCatalogue = exerciseCatalogue;
+        this.exerciseList = exerciseList;
     }
 
     public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist)  {
@@ -75,7 +86,7 @@ public class SatisfyWorkoutRequestsController {
     public List<ExerciseBean> searchExercise(SearchBean searchBean) {
         System.out.println(searchBean.getName());
         List<Exercise> exerciseList = new ArrayList<>();
-        for(Exercise exercise: exerciseCatalogue) {
+        for(Exercise exercise: exerciseList) {
             System.out.println(exercise.getName());
             if((exercise.getName().toLowerCase()).contains(searchBean.getName().toLowerCase())) {
                 exerciseList.add(exercise);
@@ -136,11 +147,62 @@ public class SatisfyWorkoutRequestsController {
     }
 
     public void setStatus(ExerciseBean exercise, String status){
-        if(status == "active"){
+        if(status.equals("active")){
             exercise.setStatusExercise(ExerciseStatusBean.ACTIVE);
         } else {
             exercise.setStatusExercise(ExerciseStatusBean.SUSPENDED);
         }
     }
 
+    public List<RequestBean> getTrainerRequests() /*throws SQLException, DBUnreachableException*/ {
+        List<Request> requestList = new ArrayList<>()/*new RequestDAO().loadTrainerRequests(trainer)*/;
+
+        List<RequestBean> requestBeanList = new ArrayList<>();
+        for(Request request: requestList) {
+            Athlete usr = request.getAthlete();
+            AthleteBean athleteBean;
+            /*try {*/
+                athleteBean = new AthleteBean(
+                        usr.getUsername(),
+                        new PersonalInfoBean(
+                                usr.getName(),
+                                usr.getSurname(),
+                                usr.getDateOfBirth(),
+                                usr.getFiscalCode(),
+                                usr.getGender()
+                        ),
+                        CredentialsBean.ctorWithoutSyntaxCheck(
+                                usr.getEmail(),
+                                usr.getPassword()
+                        ));
+           /* } catch (NoCardInsertedException e) {
+                athleteBean = new AthleteBean(
+                        usr.getUsername(),
+                        new PersonalInfoBean(
+                                usr.getName(),
+                                usr.getSurname(),
+                                usr.getDateOfBirth(),
+                                usr.getFiscalCode(),
+                                usr.getGender()
+                        ),
+                        CredentialsBean.ctorWithoutSyntaxCheck(
+                                usr.getEmail(),
+                                usr.getPassword()
+                        ),
+                        new CardInfoBean(
+                                null,
+                                (YearMonth) null
+                        ));
+            }*/
+            requestBeanList.add(new RequestBean(
+                    request.getId(),
+                    request.getRequestDate(),
+                    request.getInfo(),
+                    athleteBean,
+                    request.getTrainer().getFiscalCode()
+            ));
+
+        }
+        return requestBeanList;
+    }
 }

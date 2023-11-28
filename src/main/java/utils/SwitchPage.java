@@ -15,6 +15,14 @@ public class SwitchPage {
     private SwitchPage(){
         //nothing for now
     }
+
+    public static void logOff() {
+        try {
+            SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     static int x=800;
     static int y=500;
 

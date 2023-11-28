@@ -1,7 +1,7 @@
-package engineering;
+package engineering.manageListView.listCells;
 
 
-import beans.ExerciseForWorkoutRoutineBean;
+import beans.AthleteBean;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -11,24 +11,24 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class ExerciseForWOListCellFactory implements Callback<ListView<ExerciseForWorkoutRoutineBean>, ListCell<ExerciseForWorkoutRoutineBean>> {
+public class AthleteListCellFactory implements Callback<ListView<AthleteBean>, ListCell<AthleteBean>> {
 
     @Override
-    public ListCell<ExerciseForWorkoutRoutineBean> call(ListView<ExerciseForWorkoutRoutineBean> param) {
-        return new ListCell<ExerciseForWorkoutRoutineBean>() {
+    public ListCell<AthleteBean> call(ListView<AthleteBean> param) {
+        return new ListCell<AthleteBean>() {
             private Parent parentNode = null;
 
             @Override
-            protected void updateItem(ExerciseForWorkoutRoutineBean exerciseBean, boolean empty) {
-                super.updateItem(exerciseBean, empty);
+            protected void updateItem(AthleteBean requestBean, boolean empty) {
+                super.updateItem(requestBean, empty);
 
-                if (empty || exerciseBean == null) {
+                if (empty || requestBean == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
                     if (parentNode == null) {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListExerciseWorkoutRoutine.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListAthlete.fxml"));
                             parentNode = loader.load();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -36,7 +36,7 @@ public class ExerciseForWOListCellFactory implements Callback<ListView<ExerciseF
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(exerciseBean.getExercise().getName());
+                    itemNameLabel.setText(requestBean.getUsernameBean());
 
                     setGraphic(parentNode);
                 }

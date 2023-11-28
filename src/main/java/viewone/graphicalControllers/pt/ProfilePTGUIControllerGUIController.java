@@ -12,12 +12,12 @@ public class ProfilePTGUIControllerGUIController {
     }
     @FXML
     public void logout() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
     public void deleteAccount() throws Exception {
         //TODO gestisci l'eliminazione dell'account con notifiche e pop-up
-        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
     public void editProfile() throws Exception {

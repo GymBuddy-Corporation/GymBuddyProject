@@ -3,10 +3,13 @@ package model;
 /*import models.record.Credentials;
 import models.record.PersonalInfo;*/
 
+import model.record.Credentials;
+import model.record.PersonalInfo;
+
 import java.time.LocalDate;
 
 public abstract class User {
-    /*private String username;
+    private String username;
     private Credentials credentials;
     private PersonalInfo personalInfo;
 
@@ -48,5 +51,5 @@ public abstract class User {
 
     public String getUsername() {
         return username;
-    }*/
+    }
 }

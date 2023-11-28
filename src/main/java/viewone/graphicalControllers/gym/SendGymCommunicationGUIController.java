@@ -65,7 +65,7 @@ public class SendGymCommunicationGUIController implements Initializable {
     public void goForward() throws Exception {
         String path;
         if (scelta== SendGymCommunicationGUIController.Selezione.PT) {
-            path = "PTLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         } else if(scelta== SendGymCommunicationGUIController.Selezione.USER) {
             path = "AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
         }else{return;}

@@ -4,14 +4,14 @@ import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
 import beans.RequestBean;
 import beans.SearchBean;
-import engineering.ExerciseForWOListCellFactory;
-import engineering.ExerciseListCellFactory;
+import engineering.manageListView.listCells.ExerciseForWOListCellFactory;
+import engineering.manageListView.listCells.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import engineering.ManageExerciseList;
+import engineering.manageListView.ManageExerciseList;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
@@ -76,7 +76,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
     @FXML
     public void logout() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
     public void setExerciseStatus() throws Exception{
@@ -110,6 +110,8 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
         mondayButton.fire();
+        System.out.println("Username:" + this.requestBean.getAthleteBean().getUsernameBean() +
+                "data" + this.requestBean.getRequestDate() + "trainer" + this.requestBean.getTrainerFc());
     }
 
     //Adjust this method, I think it's necessary to pass back all the information
@@ -224,7 +226,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
     @FXML public void searchButtonAction() {
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
-        System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
     }
 

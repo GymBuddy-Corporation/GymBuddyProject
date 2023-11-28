@@ -5,9 +5,8 @@ import beans.ExerciseForWorkoutRoutineBean;
 import beans.RequestBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
-import engineering.ExerciseListCellFactory;
-import engineering.ExerciseListCellFactoryForStatus;
-import engineering.ManageExerciseList;
+import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
+import engineering.manageListView.ManageExerciseList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +35,7 @@ public class SetExerciseStatusGUIController implements Initializable{
 
     @FXML
     public void logout() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"PTLogin.fxml","launcher",1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
     public void turnBackToRoutine() throws Exception{

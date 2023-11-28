@@ -1,18 +1,19 @@
 package model;
 
-/*import java.time.LocalDateTime;
+import beans.WorkoutDayBean;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;*/
+import java.util.List;
 
 public class WorkoutRoutine {
 
-    /*private int numberDays;
+    private int numberDays;
     private String name;
     private LocalDateTime activateDate;
 
-    *//*    private int id;
-    private List<WorkoutDayBean> workoutDayList;*//*
-    private final List<WorkoutDay> workoutDayList;
+        private int id;
+    private List<WorkoutDay> workoutDayList;
 
     public WorkoutRoutine(String name, int numberDays){
         this();
@@ -40,6 +41,23 @@ public class WorkoutRoutine {
 
     public int getNumberDays() {
         return numberDays;
-    }*/
+    }
+
+    public void addAllWorkoutDays(List<WorkoutDay> workoutDayList) {
+        this.workoutDayList = new ArrayList<>();
+        for (WorkoutDay workoutDay : workoutDayList) {
+            WorkoutDay newWorkoutDay = new WorkoutDay(workoutDay.getDay());
+            newWorkoutDay.addAllExercise(workoutDay.getExerciseList());
+            addWorkoutDay(newWorkoutDay);
+        }
+    }
+
+    public void addWorkoutDay(WorkoutDay workoutDay) {
+        workoutDayList.add(workoutDay);
+    }
+
+    public void removeWorkoutDay(WorkoutDay workoutDay) {
+        workoutDayList.remove(workoutDay);
+    }
 
 }

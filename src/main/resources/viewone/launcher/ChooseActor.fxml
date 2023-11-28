@@ -23,7 +23,7 @@
          <Image url="@../images/LogoEmptyButton96.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="user" fitHeight="20.0" fitWidth="20.0" layoutX="556.0" layoutY="240.0" onMouseClicked="#setBottoneuser" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+   <ImageView fx:id="athlete" fitHeight="20.0" fitWidth="20.0" layoutX="556.0" layoutY="240.0" onMouseClicked="#setBottoneuser" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
       <Image url="@../images/LogoEmptyButton96.png" />
    </ImageView>
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">

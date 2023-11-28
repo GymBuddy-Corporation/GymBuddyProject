@@ -8,17 +8,14 @@ module start {
     exports start;
     exports viewone.graphicalControllers.pt;
     exports viewone.graphicalControllers.launcher.gym;
-    exports viewone.graphicalControllers.launcher.pt;
     exports viewone;
-    exports viewone.graphicalControllers.launcher.athlete;
     exports viewone.graphicalControllers.athlete;
     exports viewone.graphicalControllers.launcher;
     exports viewtwo.graphicalcontrollers.launcher;
     opens viewone to javafx.fxml;
     opens viewone.graphicalControllers.pt;
-    exports  viewone.engineering;
-    opens viewone.engineering to javafx.fxml;
-    opens viewone.graphicalControllers.launcher.athlete  to javafx.fxml;
+    exports  viewone.popup;
+    opens viewone.popup to javafx.fxml;
     opens viewone.graphicalControllers.launcher.gym to javafx.fxml;
     opens viewone.graphicalControllers.launcher to javafx.fxml;
     opens viewtwo.graphicalcontrollers.launcher to javafx.fxml;
@@ -30,5 +27,11 @@ module start {
     opens utils to javafx.fxml;
     opens viewone.graphicalControllers.gym;
     opens viewone.graphicalControllers.athlete;
+    exports engineering;
+    opens engineering;
+    exports engineering.manageListView;
+    opens engineering.manageListView;
+    exports engineering.manageListView.listCells;
+    opens engineering.manageListView.listCells;
 
 }

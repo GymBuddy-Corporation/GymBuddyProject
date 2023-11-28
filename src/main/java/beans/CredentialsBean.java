@@ -15,15 +15,24 @@ public class CredentialsBean {
         /*This is a constructor with syntax check and is used by view*/
         CredentialsBean credentialsBean = new CredentialsBean();
         credentialsBean.setEmail(email);
-        credentialsBean.setPassword(password);
+
+        if (password != null) {
+            credentialsBean.setPassword(password);
+        } else {
+            System.out.println("Password field is null or empty.");
+            // Handle the case where password is null (optional: throw an exception or set a default password)
+        }
+
         return credentialsBean;
     }
+
 
     public static CredentialsBean ctorWithoutSyntaxCheck(String email, String password) {
         /*This is a constructor without syntax check and is used by controller*/
         CredentialsBean credentialsBean = new CredentialsBean();
         credentialsBean.email = email;
         credentialsBean.password = password;
+
         return credentialsBean;
     }
 
@@ -32,6 +41,7 @@ public class CredentialsBean {
     }
 
     public void setEmail(String email) /*throws InvalidCredentialsException, EmptyFieldsException */{
+
         if(email.isEmpty()){
             System.out.println("Email field empty.");
             /*throw new EmptyFieldsException();*/
@@ -54,11 +64,13 @@ public class CredentialsBean {
     }
 
     public void setPassword(String password) /*throws InvalidCredentialsException, EmptyFieldsException*/ {
+        System.out.println("Password" + this.password);
         if(password == null || password.isEmpty()){
             System.out.println("Password field is null or empty.");
             /*throw new EmptyFieldsException();*/
         } else if(isValidPassword(password)){
             this.password = password;
+            System.out.println(this.password);
         } else{
             /*throw new InvalidCredentialsException();*/
             System.out.println("Password field is invalid.");

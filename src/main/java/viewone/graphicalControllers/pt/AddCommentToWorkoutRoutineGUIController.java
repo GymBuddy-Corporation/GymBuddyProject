@@ -7,8 +7,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewone.engineering.PopupAbstract;
-import viewone.engineering.PopupGymbuddy;
+import viewone.popup.PopupAbstract;
+import viewone.popup.PopupGymbuddy;
 
 public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
 

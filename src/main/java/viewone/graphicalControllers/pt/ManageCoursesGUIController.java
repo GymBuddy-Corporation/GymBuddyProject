@@ -13,7 +13,7 @@ public class ManageCoursesGUIController {
 
     @FXML
     public void logout() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(), "PTLogin.fxml", "launcher", 1);
+        SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
     }
     @FXML
     public void goBack() throws Exception {

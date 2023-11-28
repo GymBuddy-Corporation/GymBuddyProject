@@ -6,9 +6,15 @@ import javafx.fxml.FXML;
 
 public class GymFirstGUIController {
     private final String launcher = "launcher";
+    private String typeUser;
+
     @FXML
     protected void login() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"GymLogin.fxml",launcher,1);
+    }
+
+    public void setValue(String user){
+        this.typeUser = user;
     }
 
     @FXML protected void registration() throws Exception {

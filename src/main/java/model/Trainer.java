@@ -1,12 +1,12 @@
 package model;
 
-/*import models.record.Credentials;
-import models.record.PersonalInfo;*/
+import model.record.Credentials;
+import model.record.PersonalInfo;
 
 import java.io.Serializable;
 
 public class Trainer extends User implements Serializable {
-    /*private String iban;
+    private String iban;
 
     public Trainer(String username, PersonalInfo personalInfo, Credentials credentials){
         super(username, personalInfo, credentials);
@@ -16,7 +16,7 @@ public class Trainer extends User implements Serializable {
         super(username, personalInfo, credentials);
         this.iban = iban;
     }
-
+/*
     public void setIban(String newIban){
         this.iban = newIban;
     }
