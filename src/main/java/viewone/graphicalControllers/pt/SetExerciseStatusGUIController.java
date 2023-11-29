@@ -65,7 +65,7 @@ public class SetExerciseStatusGUIController implements Initializable{
         this.requestBean= requestBean;
         this.satisfyWorkoutRequestsController=satisfyWorkoutRequestsController;
         ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
-        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExercises();
+        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
         ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
     }
 

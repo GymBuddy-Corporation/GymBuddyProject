@@ -11,7 +11,6 @@ import model.record.PersonalInfo;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
@@ -23,7 +22,7 @@ public class SatisfyWorkoutRequestsController {
     private final Trainer trainer;
     private final List<Exercise> exerciseList;
 
-    public List<ExerciseBean> getGymExercises() {
+    public List<ExerciseBean> getGymExerciseBean() {
         System.out.println(exerciseList);
         return getExerciseBeanList(exerciseList);
     }
@@ -70,6 +69,10 @@ public class SatisfyWorkoutRequestsController {
 
     public void submitRoutine(RequestBean request) {
         //TODO sistema poi il metodo con atleta in questione e invio scheda
+        //Archivia la scheda vecchia
+        //salva la nuova scheda
+        //elimina la richiesta
+        //notifica l'atleta
         for (WorkoutDayBean workoutDay : workoutRoutine.getWorkoutDayList()) {
             String dayName = workoutDay.getName();
 
@@ -168,7 +171,7 @@ public class SatisfyWorkoutRequestsController {
                                 usr.getName(),
                                 usr.getSurname(),
                                 usr.getDateOfBirth(),
-                                usr.getFiscalCode(),
+                                usr.getFC(),
                                 usr.getGender()
                         ),
                         CredentialsBean.ctorWithoutSyntaxCheck(
@@ -199,7 +202,7 @@ public class SatisfyWorkoutRequestsController {
                     request.getRequestDate(),
                     request.getInfo(),
                     athleteBean,
-                    request.getTrainer().getFiscalCode()
+                    request.getTrainer().getFC()
             ));
 
         }

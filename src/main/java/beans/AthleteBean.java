@@ -1,9 +1,8 @@
 package beans;
 
-public class AthleteBean extends UserBean{
+public class AthleteBean extends PersonBean{
 
     public AthleteBean(String username, PersonalInfoBean personalInfo, CredentialsBean credentialsBean/*, CardInfoBean cardInfoBean*/) {
-        super(username, personalInfo,"Athlete",  credentialsBean);
-        /*this.cardInfoBean = cardInfoBean;*/
+        super(username, personalInfo, credentialsBean);
     }
 }

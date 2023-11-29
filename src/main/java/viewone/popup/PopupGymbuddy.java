@@ -2,6 +2,7 @@ package viewone.popup;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import utils.MainStage;
 import utils.SwitchPage;
@@ -35,11 +36,20 @@ public class PopupGymbuddy {
         popupReference.setOnAutoHide(handler->{clearSingleton();});
     }
 
+    public static PopupGymbuddy startPopUp(PopupAbstract a, String testo, String conferma, String rifiuto, int fontSize) throws IOException {
+        if(PopupGymbuddy.me==null){
+            PopupGymbuddy.me=new PopupGymbuddy(a,testo,conferma,rifiuto);
+        }
+        Text messageText = new Text(conferma);
+        messageText.setStyle("-fx-font-size: " + fontSize + ";");
+        return me;
+    }
+
     public static PopupGymbuddy startPopUp(PopupAbstract a, String testo, String conferma, String rifiuto) throws IOException {
-           if(PopupGymbuddy.me==null){
-               PopupGymbuddy.me=new PopupGymbuddy(a,testo,conferma,rifiuto);
-           }
-           return me;
+        if(PopupGymbuddy.me==null){
+            PopupGymbuddy.me=new PopupGymbuddy(a,testo,conferma,rifiuto);
+        }
+        return me;
     }
     public static PopupGymbuddy startPopUp(PopupAbstract a, String testo) throws IOException {
 

@@ -3,6 +3,7 @@ package engineering;
 import beans.*;
 import controllers.LoginController;
 
+import model.Person;
 import model.Trainer;
 import model.User;
 import model.Athlete;
@@ -70,11 +71,11 @@ public class LoggedUserSingleton {
                 return new AthleteBean(
                         usr.getUsername(),
                         new PersonalInfoBean(
-                                usr.getName(),
-                                usr.getSurname(),
-                                usr.getDateOfBirth(),
-                                usr.getFiscalCode(),
-                                usr.getGender()
+                                ((Person) usr).getName(),
+                                ((Person) usr).getSurname(),
+                                ((Person) usr).getDateOfBirth(),
+                                ((Person) usr).getFC(),
+                                ((Person) usr).getGender()
                         ),
                         CredentialsBean.ctorWithoutSyntaxCheck(
                                 usr.getEmail(),
@@ -106,17 +107,16 @@ public class LoggedUserSingleton {
             return new TrainerBean(
                     usr.getUsername(),
                     new PersonalInfoBean(
-                            usr.getName(),
-                            usr.getSurname(),
-                            usr.getDateOfBirth(),
-                            usr.getFiscalCode(),
-                            usr.getGender()
+                            ((Person) usr).getName(),
+                            ((Person) usr).getSurname(),
+                            ((Person) usr).getDateOfBirth(),
+                            ((Person) usr).getFC(),
+                            ((Person) usr).getGender()
                     ),
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             usr.getEmail(),
                             usr.getPassword()
-                    )/*,
-                    ((Trainer) usr).getIban()*/);
+                    ));
         }
     }
 

@@ -8,23 +8,28 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
-public class Athlete extends User implements Serializable {
-    private Card card; //TODO vedi come gestire le carte
-    private WorkoutRoutine workoutRoutine;
-    private Trainer trainer;
+public class Athlete extends Person implements Serializable {
+    private Card card;
+    //TODO Alex vedi come gestire le carte, che potrebbe essere comodo metterle qui
+    // i metodi get e set gia ci sono nel caso, vedi tu come volertela gestire
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials) {
-        super(username, personalInfo, credentials);
-        card = new Card(
-                "",
-                null
-        );
+    private WorkoutRoutine workoutRoutine;
+    private final Trainer trainer;
+    private final Gym gym;
+
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym, Trainer trainer) {
+        super(username, credentials, personalInfo);
+        this.gym = gym;
+        this.trainer = trainer;
     }
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card) /*throws ExpiredCardException*/ {
-        super(username, personalInfo, credentials);
-        //checkCardExpirationDate(card.cardExpirationDate());
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Gym gym, Trainer trainer) /*throws ExpiredCardException*/ {
+        //costruttore con inizializzazione della carta
+        super(username, credentials, personalInfo);
+        checkCardExpirationDate(card.cardExpirationDate());
         this.card = card;
+        this.gym = gym;
+        this.trainer = trainer;
     }
 
     public String getCardNumber() /*throws NoCardInsertedException*/ {
@@ -61,7 +66,7 @@ public class Athlete extends User implements Serializable {
         }
     }
 
-    public WorkoutRoutine getWorkoutPlan() {
+    public WorkoutRoutine getWorkoutRoutine() {
         return workoutRoutine;
     }
 
@@ -78,7 +83,7 @@ public class Athlete extends User implements Serializable {
         return trainer;
     }
 
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
+    public Gym getGym() {
+        return gym;
     }
 }

@@ -4,41 +4,22 @@ import model.record.Credentials;
 
 import java.io.Serializable;
 
-public class Gym /*extends User CHIARISCI*/implements Serializable {
-    private String username;
-    private Credentials credentials;
-    private String iban;
+public class Gym extends User implements Serializable {
+    private final String iban;
 
-    public Gym(String username){
-        this.username=username;
-    }
+    private final String city;
+    private final String address;
+    //TODO alex, sempre, ho messo qui il campo iban perchè secondo me potrebbe esserti utile
+    // poi vedi te come vuoi implememtare il tuo use case e se ti puo essere utile
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Gym(String username, Credentials credentials, String iban){
-        this.username = username;
-        this.credentials = credentials;
+    public Gym(String username, Credentials credentials, String iban, String city, String address){
+        super (username, credentials);
         this.iban = iban;
-    }
-    public String getEmail() {
-        return credentials.email();
-    }
-
-    public String getPassword() {
-        return credentials.password();
+        this.city = city;
+        this.address = address;
     }
 
     public String getIban() {
         return iban;
-    }
-
-    public void setIban(String iban) {
-        this.iban = iban;
     }
 }
