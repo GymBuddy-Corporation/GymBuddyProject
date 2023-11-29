@@ -1,5 +1,7 @@
 package beans;
 
+import exceptions.InvalidExerciseFeaturesException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,14 +42,13 @@ public class ExerciseForWorkoutRoutineBean{
 
     public String getRest() {return rest;}
 
-    public boolean setRest(String timeString){
+    public boolean setRest(String timeString) throws InvalidExerciseFeaturesException {
         if(isValidTime(timeString)) {
             this.rest = timeString;
             return true;
             //poi gestisci le eccezioni
         } else {
-            System.out.println("Recupero inappropriato: " + timeString + " scegli tra le opzioni proposte.\n");
-            return false;
+            throw new InvalidExerciseFeaturesException();
         }
     }
 

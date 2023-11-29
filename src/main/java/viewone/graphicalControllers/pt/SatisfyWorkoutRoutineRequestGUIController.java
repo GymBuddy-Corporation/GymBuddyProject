@@ -6,6 +6,7 @@ import beans.RequestBean;
 import beans.SearchBean;
 import engineering.manageListView.listCells.ExerciseForWOListCellFactory;
 import engineering.manageListView.listCells.ExerciseListCellFactory;
+import exceptions.InvalidExerciseFeaturesException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -147,7 +148,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
 
     @FXML
-    public void addExercise() {
+    public void addExercise() throws InvalidExerciseFeaturesException {
         ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
 
         if (selectedExercise != null && selectedDay != null) {

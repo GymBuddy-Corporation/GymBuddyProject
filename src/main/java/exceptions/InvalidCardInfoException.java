@@ -5,7 +5,7 @@ public class InvalidCardInfoException extends InvalidDataException {
         super(
                 "ERROR DETECTED",
                 "Invalid inserted card info.",
-                "Please chack again if card number or date is correct."
+                "Please check again if card number or date is incorrect."
         );
     }
 }
