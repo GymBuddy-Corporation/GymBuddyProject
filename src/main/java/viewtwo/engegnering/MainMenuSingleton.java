@@ -16,7 +16,6 @@ public class MainMenuSingleton {
         if(MainMenuSingleton.me==null){
                 me=new MainMenuSingleton(controller);
         }
-        //return me;
     }
     public static MainMenuSingleton getMainMenu(){
         return me;
