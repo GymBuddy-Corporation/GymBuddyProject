@@ -9,26 +9,24 @@ public class PopupController {
     @FXML
     private Text testo;
     @FXML
-    private Button bottone_conferma;
+    private Button bottoneConferma;
     @FXML
-    private Button bottone_rifiuta;
+    private Button bottoneRifiuta;
 
     @FXML
     public void conferma(ActionEvent e){
         PopupGymbuddy.getPopUp().popUpConfirm();
-        PopupGymbuddy.getPopUp().clearSingleton();
-        //((Node)e.getSource()).getScene().getWindow().hide();
+        PopupGymbuddy.getPopUp().hidePopUp();
+        PopupGymbuddy.clearSingleton();
     }
     @FXML
     public void rifiuta(ActionEvent e){
         PopupGymbuddy.getPopUp().popUpDelete();
-        PopupGymbuddy.getPopUp().clearSingleton();
-        //((Node)e.getSource()).getScene().getWindow().hide();
-
+        PopupGymbuddy.clearSingleton();
     }
     public void setValues(String text,String conferma,String rifiuta){
         testo.setText(text);
-        bottone_conferma.setText(conferma);
-        bottone_rifiuta.setText(rifiuta);
+        bottoneConferma.setText(conferma);
+        bottoneRifiuta.setText(rifiuta);
     }
 }

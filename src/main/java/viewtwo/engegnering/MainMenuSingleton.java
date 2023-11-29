@@ -10,13 +10,15 @@ public class MainMenuSingleton {
     private static MainMenuSingleton me;
     private MainMenuController controller;
     private MainMenuSingleton(MainMenuController controller){
-        MainMenuSingleton.me=this;
         this.controller=controller;
     }
-    public static MainMenuSingleton getMainMenu(MainMenuController controller){
+    public static void createMainMenu(MainMenuController controller){
         if(MainMenuSingleton.me==null){
-            new MainMenuSingleton(controller);
+                me=new MainMenuSingleton(controller);
         }
+        //return me;
+    }
+    public static MainMenuSingleton getMainMenu(){
         return me;
     }
 

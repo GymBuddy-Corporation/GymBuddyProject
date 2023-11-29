@@ -22,7 +22,7 @@ public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
     }
     @FXML
     public void submitRoutine() throws Exception{
-        PopupGymbuddy.startPopUp(this,"ciao","come","va");
+            popUpCreate("Vuoi cofermare la creazione?","Conferma","Cancella");
     }
     @FXML
     public void goBack() throws Exception{

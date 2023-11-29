@@ -14,7 +14,7 @@ public class LoginPopUp {
 
     LoginPopUpInterface caller;
 
-    private Popup popup_reference;
+    private Popup popupReference;
     protected static LoginPopUp me;
 
 
@@ -24,12 +24,12 @@ public class LoginPopUp {
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
         Parent load = null;
         load = fxmlLoader.load();
-        popup_reference=new Popup();
-        popup_reference.getContent().add(load);
+        popupReference =new Popup();
+        popupReference.getContent().add(load);
         ((LoginPopUpController)fxmlLoader.getController()).setCaller(this);
-        popup_reference.show(MainStage.getStage());
-        popup_reference.setAutoHide(true);
-        popup_reference.setOnAutoHide(handler->{clearSingleton();});
+        popupReference.show(MainStage.getStage());
+        popupReference.setAutoHide(true);
+        popupReference.setOnAutoHide(handler->{clearSingleton();});
     }
 
 
@@ -39,13 +39,16 @@ public class LoginPopUp {
             }
             return LoginPopUp.me;
     }
-    private void clearSingleton(){
-        popup_reference.hide();
+    private static void clearSingleton(){
         me.caller=null;
         me=null;
     }
+    public void hidePopUp(){
+        popupReference.hide();
+    }
     public void doLogin(String email,String password) throws IOException {
         caller.loginCredentialInserted(email,password,true);
-        clearSingleton();
+        hidePopUp();
+        LoginPopUp.clearSingleton();
     }
 }

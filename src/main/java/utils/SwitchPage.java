@@ -29,11 +29,7 @@ public class SwitchPage {
     private static final String SEP="/";
     private static final String VIEWONE="viewone";
     private static final String VIEWTWO="viewtwo";
-    public static  Scene setStage(Stage stage, String path){//TODO: REmove after changing all calls to it
-        String temp=stage+path;
-        System.out.println(temp);
-        return null;
-    }
+
     public static  Object setStage(Stage stage, String name,String folder,int view) throws IOException {
         String path;
         path=SwitchPage.getpath(name,folder,view);
@@ -47,18 +43,18 @@ public class SwitchPage {
         return fxmlLoader.getController();
     }
     public static String getpath(String name,String folder,int view){
-        String view_path="";
+        String viewPath="";
         switch (view){
             case 1:
-                view_path=VIEWONE;
+                viewPath=VIEWONE;
                 break;
             case 2:
-                view_path=VIEWTWO;
+                viewPath=VIEWTWO;
                 break;
             default:
                 //TODO:trhoware un exception quando capiro come fare
                 exit(-1);
                 break;
         }
-        return SEP+view_path+SEP+folder+SEP+name;}
+        return SEP+viewPath+SEP+folder+SEP+name;}
 }

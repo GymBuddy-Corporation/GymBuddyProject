@@ -14,7 +14,7 @@ public class PopupGymbuddy {
     String rifiuto;
     PopupAbstract caller;
 
-    private Popup popup_reference;
+    private Popup popupReference;
     private static PopupGymbuddy me;
 
 
@@ -27,13 +27,12 @@ public class PopupGymbuddy {
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
         Parent load = null;
         load = fxmlLoader.load();
-        //Scene scena = new Scene(load, 100, 100);
-        popup_reference=new Popup();
-        popup_reference.getContent().add(load);
+        popupReference =new Popup();
+        popupReference.getContent().add(load);
         ((PopupController)fxmlLoader.getController()).setValues(testo,conferma,rifiuto);
-        popup_reference.show(MainStage.getStage());
-        popup_reference.setAutoHide(true);
-        popup_reference.setOnAutoHide(handler->{clearSingleton();});
+        popupReference.show(MainStage.getStage());
+        popupReference.setAutoHide(true);
+        popupReference.setOnAutoHide(handler->{clearSingleton();});
     }
 
     public static PopupGymbuddy startPopUp(PopupAbstract a, String testo, String conferma, String rifiuto) throws IOException {
@@ -47,11 +46,13 @@ public class PopupGymbuddy {
           return  PopupGymbuddy.startPopUp(a,testo,"conferma","rifiuta");
     }
 
+    public void hidePopUp(){
+        popupReference.hide();
+    }
     public static PopupGymbuddy getPopUp(){
         return me;
     }
-    public void clearSingleton(){
-        popup_reference.hide();
+    public static void clearSingleton(){
         me.caller=null;
         me=null;
     }

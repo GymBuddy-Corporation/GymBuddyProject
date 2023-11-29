@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import utils.MainStage;
 import utils.SwitchPage;
+import viewtwo.engegnering.MainMenuSingleton;
 import viewtwo.graphicalcontrollers.home.MainMenuController;
 import viewtwo.popups.LoginPopUp;
 import viewtwo.popups.abstracts.LoginPopUpInterface;
@@ -37,6 +38,7 @@ public class LoginPageController implements LoginPopUpInterface {
                 //TODO: effettuare la verifica effettiva delle credenziali
         //capire quale tipologia di utente sta effettuando il logni e inserire nel manel del menu la home giusta, per ora faro semplicemente attraverso l'email utilizzando i nomi gym,user e pt
         MainMenuController a=(MainMenuController)SwitchPage.setStage(MainStage.getStage(),"mainMenu.fxml","home",2);
-        a.setActivity((Node) fx.load());
+        MainMenuSingleton.createMainMenu(a);
+        MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml","gym");
     }
 }

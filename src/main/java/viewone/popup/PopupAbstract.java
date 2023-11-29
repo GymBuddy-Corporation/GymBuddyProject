@@ -6,11 +6,11 @@ public abstract class PopupAbstract {
 
     private PopupGymbuddy temp;
 
-    private void popUpCreate(String testo,String conferma,String rifiuta){
-
+    protected void popUpCreate(String testo,String conferma,String rifiuta) throws IOException {
+        this.temp=PopupGymbuddy.startPopUp(this,testo,conferma,rifiuta);
     }
-    private void popUpCreate(PopupAbstract me, String testo) throws IOException {
-       this.temp= PopupGymbuddy.startPopUp(me,testo);
+    protected void popUpCreate(String testo) throws IOException {
+       this.temp= PopupGymbuddy.startPopUp(this,testo);
     }
     public abstract void popUpConfirm();
     public abstract void popUpDelete();
