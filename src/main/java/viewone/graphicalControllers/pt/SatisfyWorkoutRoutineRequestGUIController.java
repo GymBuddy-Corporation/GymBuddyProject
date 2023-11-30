@@ -1,9 +1,6 @@
 package viewone.graphicalControllers.pt;
 
-import beans.ExerciseBean;
-import beans.ExerciseForWorkoutRoutineBean;
-import beans.RequestBean;
-import beans.SearchBean;
+import beans.*;
 import engineering.manageListView.listCells.ExerciseForWOListCellFactory;
 import engineering.manageListView.listCells.ExerciseListCellFactory;
 import exceptions.InvalidExerciseFeaturesException;
@@ -45,8 +42,8 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML private Label repetLabelExerciseInserted;
     @FXML private Label setLabelExerciseInserted;
     @FXML private Label restLabelExerciseInserted;
-    @FXML
-    private TextField searchExerciseText;
+    @FXML private Text athletesNameRoutineText;
+    @FXML private TextField searchExerciseText;
 
     private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
@@ -96,37 +93,32 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
+        // gestisci l'aggiunta di un esercizio nella scheda DB
         satisfyWorkoutRequestsController.submitRoutine(requestBean);
         AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"AddCommentToWorkoutRoutine.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController);
 
-    }//TODO gestisci l'aggiunta di un esercizio nella scheda DB
-
+    }
 
     public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
         this.requestBean = request;
-        this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
-        ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
-        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
-        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
-        ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
-        mondayButton.fire();
-        System.out.println("Username:" + this.requestBean.getAthleteBean().getUsernameBean() +
-                "data" + this.requestBean.getRequestDate() + "trainer" + this.requestBean.getTrainerFc());
+        setStuff(satisfyWorkoutRequestsController);
     }
-
-    //Adjust this method, I think it's necessary to pass back all the information
-    //if I come back after setting N exercises' status.
 
     public void setBackValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap) {
         this.requestBean = request;
         this.dayExercisesMap=dayExercisesMap;
+        setStuff(satisfyWorkoutRequestsController);
+    }
+
+    public void setStuff(SatisfyWorkoutRequestsController satisfyWorkoutRequestsController){
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
         mondayButton.fire();
+        athletesNameRoutineText.setText(requestBean.getAthleteBean().getUsername() + "s' Routine");
     }
 
     public boolean checkAlreadyAdded(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean) {
@@ -148,40 +140,46 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
 
     @FXML
-    public void addExercise() throws InvalidExerciseFeaturesException {
-        ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
+    public void addExercise() {
+        //TODO sistema il lancio dell'eccezione (non so come farlo, e questo schifo che ho fatto non funziona)
+        try {
+            ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
 
-        if (selectedExercise != null && selectedDay != null) {
+            if (selectedExercise != null && selectedDay != null) {
 
-            setVisibleLabel(false);
-            setVisibleAdd(false);
+                setVisibleLabel(false);
+                setVisibleAdd(false);
 
-            int repetitions = spinnerRepetitions.getValue();
-            int sets = spinnerSets.getValue();
-            String rest = restTimeComboBox.getValue();
-            boolean test = true;
+                int repetitions = spinnerRepetitions.getValue();
+                int sets = spinnerSets.getValue();
+                String rest = restTimeComboBox.getValue();
+                boolean test = true;
 
-            ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, selectedExercise);
+                ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, selectedExercise);
 
-            if (!checkAlreadyAdded(newExercise) && sets != 0 && repetitions != 0) {
-                newExercise.setRepetitions(repetitions);
-                newExercise.setSets(sets);
+                if (!checkAlreadyAdded(newExercise) && sets != 0 && repetitions != 0) {
+                    newExercise.setRepetitions(repetitions);
+                    newExercise.setSets(sets);
 
-                if (!newExercise.setRest(rest)) {
-                    test = false;
+                    if (!newExercise.setRest(rest)) {
+                        test = false;
+                    }
+
+                    if (test) {
+                        satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, routineExerciselist);
+                        // Update the map with the new exercise
+                        dayExercisesMap.computeIfAbsent(newExercise.getDay(), k -> new ArrayList<>()).add(newExercise);
+                    } else {
+                        throw new InvalidExerciseFeaturesException();
+                    }
                 }
-
-                if (test) {
-                    satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, routineExerciselist);
-                    // Update the map with the new exercise
-                    dayExercisesMap.computeIfAbsent(newExercise.getDay(), k -> new ArrayList<>()).add(newExercise);
-                } else {
-                    System.out.println("Esercizio non inserito\n");
-                }
+                resetSelection(1);
+                exerciseDBList.getSelectionModel().clearSelection();
+                routineExerciselist.getSelectionModel().clearSelection();
             }
-            resetSelection(1);
-            exerciseDBList.getSelectionModel().clearSelection();
-            routineExerciselist.getSelectionModel().clearSelection();
+        } catch (InvalidExerciseFeaturesException e) {
+            // Handle the exception, e.g., show an alert or log the error
+            e.printStackTrace();
         }
     }
 
@@ -215,8 +213,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
         // Update the RoutineExerciselist with exercises for the selected day
         routineExerciselist.getItems().setAll(dayExercisesMap.get(selectedDay));
-
-        // Optionally, update other UI elements based on the selected day
     }
 
     public void resetInputCollectors(){

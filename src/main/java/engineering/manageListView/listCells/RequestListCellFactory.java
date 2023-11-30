@@ -36,7 +36,7 @@ public class RequestListCellFactory implements Callback<ListView<RequestBean>, L
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(requestBean.getAthleteBean().getUsernameBean());
+                    itemNameLabel.setText(requestBean.getAthleteBean().getUsername());
 
                     setGraphic(parentNode);
                 }

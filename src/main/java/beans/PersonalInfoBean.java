@@ -1,12 +1,5 @@
 package beans;
 
-/*
-import exceptions.invalid_data_exception.EmptyFieldsException;
-import exceptions.invalid_data_exception.InvalidBirthException;
-import exceptions.invalid_data_exception.InvalidFiscalCodeException;
-import exceptions.invalid_data_exception.InvalidUserInfoException;
-*/
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

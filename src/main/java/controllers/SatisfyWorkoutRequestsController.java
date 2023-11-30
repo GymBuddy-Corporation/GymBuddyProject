@@ -210,4 +210,9 @@ public class SatisfyWorkoutRequestsController {
     }
 
 
+    public void rejectRequest(RequestBean selectedRequest) {
+        //create new model Request
+        //get the dao request equal to the selected request
+        //delete it
+    }
 }

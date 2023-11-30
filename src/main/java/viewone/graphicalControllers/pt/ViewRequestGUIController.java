@@ -94,10 +94,10 @@ public class ViewRequestGUIController implements Initializable {
     }
 
     @FXML
-    public void cancelRequest() throws Exception {
+    public void rejectRequest() {
         //TODO gestisci la cancellazione di una richiesta
-        //satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
-        SwitchPage.setStage(MainStage.getStage(), "PTHome.fxml", "pt", 1);
+        satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
+
     }
 
     @Override
@@ -110,7 +110,9 @@ public class ViewRequestGUIController implements Initializable {
                         if(newItem != null){
                             textUsersRequest.setText(newItem.getInfo());
                             selectedRequest = newItem;
-                            usernameRequestText.setText(selectedRequest.getAthleteBean().getUsernameBean() + " Request");
+                            usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
+                            System.out.println("Username:" + selectedRequest.getAthleteBean().getUsername() +
+                                    "data" + selectedRequest.getRequestDate() + "trainer" + selectedRequest.getTrainerFc());
                         }
                     }
                 });

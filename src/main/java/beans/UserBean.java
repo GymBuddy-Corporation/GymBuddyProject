@@ -5,8 +5,8 @@ package beans;
 public class UserBean {
 
     //Ho tolto il campo 'tipo' perchè poi gestiremo questa cosa direttmente con istance of
-    protected String username;
-    protected final CredentialsBean credentials;
+    private String username;
+    private final CredentialsBean credentials;
 
     public UserBean( CredentialsBean credentials, String username) {
         //This is a constructor without syntax check and is used by controller
@@ -19,10 +19,6 @@ public class UserBean {
         setUsername(username);
         //TODO capire come usare questo costruttore (è da qui che nascono i nullpointer)
         this.credentials = CredentialsBean.ctorWithSyntaxCheck(credentials.getEmail(), credentials.getPassword());
-    }
-
-    public String getUsernameBean() {
-        return this.username;
     }
 
     public CredentialsBean getCredentials() {
@@ -39,5 +35,9 @@ public class UserBean {
 
     private boolean isValidLength(String str) {
         return str.length() <= 20;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

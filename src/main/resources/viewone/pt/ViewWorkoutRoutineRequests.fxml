@@ -194,7 +194,7 @@
          <Image url="@../images/LogoAdd96.png" />
       </image>
    </ImageView>
-   <Button layoutX="623.0" layoutY="329.0" mnemonicParsing="false" onAction="#cancelRequest" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
+   <Button layoutX="623.0" layoutY="329.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>

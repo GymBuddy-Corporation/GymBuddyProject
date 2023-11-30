@@ -31,7 +31,7 @@ public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
     public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
         this.requestBean = request;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
-        commentTextArea.setPromptText("Insert here your comment for "+ requestBean.getAthleteBean().getUsernameBean() +"s' workout routine.");
+        commentTextArea.setPromptText("Insert here your comment for "+ requestBean.getAthleteBean().getUsername() +"s' workout routine.");
     }
 
     @Override

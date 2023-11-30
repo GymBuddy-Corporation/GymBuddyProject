@@ -36,7 +36,7 @@ public class AthleteListCellFactory implements Callback<ListView<AthleteBean>, L
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(requestBean.getUsernameBean());
+                    itemNameLabel.setText(requestBean.getUsername());
 
                     setGraphic(parentNode);
                 }

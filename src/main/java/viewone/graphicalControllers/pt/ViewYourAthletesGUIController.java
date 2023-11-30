@@ -44,7 +44,7 @@ public class ViewYourAthletesGUIController implements Initializable{
     public void setInfoBox(AthleteBean selectedSubscriber) {
         labelName.setText(" Name: " + selectedSubscriber.getPersonalInfo().getName());
         labelSurname.setText(" Surname: " + selectedSubscriber.getPersonalInfo().getSurname());
-        labelUserame.setText(" Username: " + selectedSubscriber.getUsernameBean());
+        labelUserame.setText(" Username: " + selectedSubscriber.getUsername());
         labelBirthDate.setText(" Birth: " + selectedSubscriber.getPersonalInfo().getDateOfBirth());
         labelEmail.setText(" Email: " + selectedSubscriber.getCredentials().getEmail());
         labelFiscalCode.setText(" FiscalCode: " + selectedSubscriber.getPersonalInfo().getFc());

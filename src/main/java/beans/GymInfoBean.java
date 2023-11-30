@@ -10,7 +10,7 @@ public class GymInfoBean {
 
     private final String address;
     private final LocalDate city;
-    private final String iban; /*fc = fiscal code*/
+    private final String iban;
 
     public GymInfoBean(String name, String surname, LocalDate dateOfBirth, String iban) {
         /*This is a constructor without syntax check and is used by controller*/

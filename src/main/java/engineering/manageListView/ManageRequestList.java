@@ -41,6 +41,7 @@ public class ManageRequestList {
                 " pesantissima che mi hanno appena lasciato? Sono disposto a venire in palestra 7/7", athlete3, "XDCLCU00P01D612J");
         requestList.getItems().addAll(r1, r2, r3);
         requestList.setCellFactory(new RequestListCellFactory());
+
         /*updateList(requestList, satisfyWorkoutRequestsController);*/
     }
 

@@ -12,31 +12,7 @@ public class PersonBean extends UserBean{
         this.personalInfo = personalInfo;
     }
 
-    public String getUsernameBean() {
-        return this.username;
-    }
-
-    public CredentialsBean getCredentials() {
-        return this.credentials;
-    }
-
     public PersonalInfoBean getPersonalInfo(){
         return this.personalInfo;
-    }
-
-    public void setUsername(String username) {
-        if(isValidLength(username)){
-            this.username = username;
-        }else {
-            System.out.println("ERRORE CAMPO USERNAME");
-        }
-    }
-
-    private boolean isValidLength(String str) {
-        return str.length() <= 20;
-    }
-
-    public String getName() {
-        return this.getPersonalInfo().getName();
     }
 }
