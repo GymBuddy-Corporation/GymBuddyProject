@@ -63,7 +63,7 @@ public class SatisfyWorkoutRequestsController {
         // Additional code if needed
     }
 
-    public void setExerciseStatus(){
+    public void setExerciseStatus(ExerciseBean exercise){
         //TODO
     }
 
@@ -85,8 +85,23 @@ public class SatisfyWorkoutRequestsController {
             }
         }
     }
-
     public List<ExerciseBean> searchExercise(SearchBean searchBean) {
+        System.out.println(searchBean.getName());
+        List<Exercise> allExercises = exerciseList; // Get all exercises from wherever you store them
+        List<Exercise> filteredExercises = new ArrayList<>();
+
+        for (Exercise exercise : allExercises) {
+            if (exercise.getName().toLowerCase().contains(searchBean.getName().toLowerCase())) {
+                filteredExercises.add(exercise);
+            }
+        }
+
+        return getExerciseBeanList(filteredExercises);
+    }
+
+
+
+    /*public List<ExerciseBean> searchExercise(SearchBean searchBean) {
         System.out.println(searchBean.getName());
         List<Exercise> exerciseList = new ArrayList<>();
         for(Exercise exercise: exerciseList) {
@@ -96,7 +111,7 @@ public class SatisfyWorkoutRequestsController {
             }
         }
         return getExerciseBeanList(exerciseList);
-    }
+    }*/
 
     @NotNull
     public List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList) {

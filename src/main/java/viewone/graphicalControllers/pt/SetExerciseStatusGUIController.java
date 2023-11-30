@@ -42,8 +42,7 @@ public class SetExerciseStatusGUIController implements Initializable{
         SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
         Objects.requireNonNull(controller).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap);
     }
-    @FXML
-    public void searchExercise(){
+    @FXML public void searchExercise(){
         //TODO controlla se funziona
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
