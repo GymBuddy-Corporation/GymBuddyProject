@@ -12,19 +12,16 @@ public class PersonalInfoBean {
     private final String fc; /*fc = fiscal code*/
     private final char gender;
 
-    private final String birhplace;
-
-    public PersonalInfoBean(String name, String surname, LocalDate dateOfBirth, String fc, char gender,String birthplace) {
+    public PersonalInfoBean(String name, String surname, LocalDate dateOfBirth, String fc, char gender) {
         /*This is a constructor without syntax check and is used by controller*/
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         this.fc = fc;
         this.gender = gender;
-        this.birhplace=birthplace;
     }
 
-    public PersonalInfoBean(String name, String surname, String dateOfBirth, String fc, char gender,String birthplace)/* throws InvalidUserInfoException, InvalidFiscalCodeException, EmptyFieldsException, InvalidBirthException*/ {
+    public PersonalInfoBean(String name, String surname, String dateOfBirth, String fc, char gender)/* throws InvalidUserInfoException, InvalidFiscalCodeException, EmptyFieldsException, InvalidBirthException*/ {
         /*This is a constructor with syntax check and is used by view*/
         checkValue(name, surname, fc);
         this.name = name;
@@ -32,7 +29,6 @@ public class PersonalInfoBean {
         this.dateOfBirth = checkBirth(dateOfBirth);
         this.fc = fc;
         this.gender = gender;
-        this.birhplace=birthplace;
     }
 
     private void checkValue(String name, String surname, String fiscalCode) /*throws InvalidUserInfoException, InvalidFiscalCodeException, EmptyFieldsException*/ {
