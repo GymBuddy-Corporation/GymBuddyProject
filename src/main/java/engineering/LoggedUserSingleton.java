@@ -4,28 +4,26 @@ import beans.*;
 import controllers.LoginController;
 
 import model.Person;
-import model.Trainer;
 import model.User;
 import model.Athlete;
-import java.time.YearMonth;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 public class LoggedUserSingleton {
 
-    private static String fc;
+    private static String athleteUsername;
+    private static String trainerUsername;
+    private static String gymUsername;
+
     //private static UserInfoCarrier userInfoCarrier;
     private static final LoginController loginController = new LoginController();
 
     private LoggedUserSingleton() {}
 
-    public static String getFc() {
-        return fc;
+    public static String getAthleteUsername() {
+        return athleteUsername;
     }
 
-    public static void setFc(String fc) {
-        LoggedUserSingleton.fc = fc;
+    public static void setAthleteUsername(String athleteUsername) {
+        LoggedUserSingleton.athleteUsername = athleteUsername;
     }
 
     /*public static List<UserBean> getAthleteAndTrainer() *//*throws DBUnreachableException, SQLException, NoCardInsertedException*//* {
@@ -67,42 +65,17 @@ public class LoggedUserSingleton {
 
     public static UserBean getUserBean(User usr){
         if (usr instanceof Athlete) {
-            /*try {*/
-                return new AthleteBean(
-                        usr.getUsername(),
-                        new PersonalInfoBean(
-                                ((Person) usr).getName(),
-                                ((Person) usr).getSurname(),
-                                ((Person) usr).getDateOfBirth(),
-                                ((Person) usr).getFC(),
-                                ((Person) usr).getGender()
-                        ),
-                        CredentialsBean.ctorWithoutSyntaxCheck(
-                                usr.getEmail(),
-                                usr.getPassword()
-                        )/*,
-                        new CardInfoBean(
-                                ((Athlete) usr).getCardNumber(),
-                                ((Athlete) usr).getCardExpirationDate()
-                        )*/);
-            /*} catch (NoCardInsertedException e) {
-                return new AthleteBean(
-                        usr.getUsername(),
-                        new PersonalInfoBean(
-                                usr.getName(),
-                                usr.getSurname(),
-                                usr.getDateOfBirth(),
-                                usr.getFiscalCode(),
-                                usr.getGender()
-                        ),
-                        CredentialsBean.ctorWithoutSyntaxCheck(
-                                usr.getEmail(),
-                                usr.getPassword()
-                        ),
-                        new CardInfoBean(
-                                null, (YearMonth) null
-                        ));
-            }*/
+            return new AthleteBean(
+                    usr.getUsername(),
+                    new PersonalInfoBean(
+                            ((Person) usr).getName(),
+                            ((Person) usr).getSurname(),
+                            ((Person) usr).getDateOfBirth(),
+                            ((Person) usr).getFC(),
+                            ((Person) usr).getGender()),
+                    CredentialsBean.ctorWithoutSyntaxCheck(
+                            usr.getEmail(),
+                            usr.getPassword()));
         } else {
             return new TrainerBean(
                     usr.getUsername(),
@@ -111,16 +84,30 @@ public class LoggedUserSingleton {
                             ((Person) usr).getSurname(),
                             ((Person) usr).getDateOfBirth(),
                             ((Person) usr).getFC(),
-                            ((Person) usr).getGender()
-                    ),
+                            ((Person) usr).getGender()),
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             usr.getEmail(),
-                            usr.getPassword()
-                    ));
+                            usr.getPassword()));
         }
     }
 
-   /* public static UserBean getInstance() *//*throws DBUnreachableException*//*{
+    public static String getTrainerUsername() {
+        return trainerUsername;
+    }
+
+    public static void setTrainerUsername(String trainerUsername) {
+        LoggedUserSingleton.trainerUsername = trainerUsername;
+    }
+
+    public static String getGymUsername() {
+        return gymUsername;
+    }
+
+    public static void setGymUsername(String gymUsername) {
+        LoggedUserSingleton.gymUsername = gymUsername;
+    }
+
+    /* public static UserBean getInstance() *//*throws DBUnreachableException*//*{
         try{
             User usr = loginController.getLoggedUser();
             return getUserBean(usr);

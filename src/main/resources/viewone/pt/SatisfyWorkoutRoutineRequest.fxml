@@ -108,7 +108,7 @@
             </stops>
          </LinearGradient>
       </fill></Text>
-   <Text fx:id="athletesNameRoutineText" layoutX="315.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Athletes' Routine" textAlignment="CENTER" wrappingWidth="182.4000000000001">
+   <Text fx:id="athletesNameRoutineText" layoutX="161.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Athletes' Routine" textAlignment="CENTER" wrappingWidth="312.40001525878915">
       <font>
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>

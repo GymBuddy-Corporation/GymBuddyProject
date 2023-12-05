@@ -6,9 +6,8 @@ import model.record.PersonalInfo;
 import java.io.Serializable;
 
 public class Trainer extends Person implements Serializable {
-    private String iban;
 
-    public Trainer(String username, PersonalInfo personalInfo, Credentials credentials){
-        super(username, credentials, personalInfo);
+    public Trainer(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym){
+        super(username, credentials, personalInfo, gym);
     }
 }

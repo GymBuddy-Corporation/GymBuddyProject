@@ -7,12 +7,13 @@ import java.time.LocalDate;
 
 public abstract class Person extends User{
 
-    private PersonalInfo personalInfo;
-    protected Person() {}
+    private final PersonalInfo personalInfo;
+    private final Gym gym;
 
-    protected Person(String username, Credentials credentials,PersonalInfo personalInfo ){
+    protected Person(String username, Credentials credentials,PersonalInfo personalInfo, Gym gym){
         super (username, credentials);
         this.personalInfo = personalInfo;
+        this.gym = gym;
     }
 
     public PersonalInfo getPersonalInfo() {
@@ -33,5 +34,9 @@ public abstract class Person extends User{
     }
     public char getGender() {
         return personalInfo.gender();
+    }
+
+    public Gym getGym() {
+        return gym;
     }
 }

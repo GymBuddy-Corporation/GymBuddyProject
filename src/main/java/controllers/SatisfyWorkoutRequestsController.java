@@ -1,11 +1,9 @@
 package controllers;
 
 import beans.*;
+import engineering.ExerciseInventory;
 import javafx.scene.control.ListView;
-import model.Athlete;
-import model.Exercise;
-import model.Request;
-import model.Trainer;
+import model.*;
 import model.record.Credentials;
 import model.record.PersonalInfo;
 import org.jetbrains.annotations.NotNull;
@@ -20,28 +18,33 @@ public class SatisfyWorkoutRequestsController {
 
     private final WorkoutRoutineBean workoutRoutine;
     private final Trainer trainer;
-    private final List<Exercise> exerciseList;
+    private final ExerciseInventory exerciseList;
 
     public List<ExerciseBean> getGymExerciseBean() {
         System.out.println(exerciseList);
-        return getExerciseBeanList(exerciseList);
+        return getExerciseBeanList(exerciseList, null);
     }
 
-    public SatisfyWorkoutRequestsController() {
+    /*public SatisfyWorkoutRequestsController() {
         this.workoutRoutine = new WorkoutRoutineBean();
-
+        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "forzanapule1926"))
-        /*(Trainer) new LoginController().getLoggedUser()*/;
+                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1)
+        *//*(Trainer) new LoginController().getLoggedUser()*//*;
         System.out.println(this.trainer.getName() + this.trainer.getEmail());
-        this.exerciseList = new ArrayList<>();
-    }
+        //TODO organizza exercises
+        this.exerciseList = new ExerciseInventory(null);
+    }*/
 
-    public SatisfyWorkoutRequestsController(Trainer trainer, List<Exercise> exerciseList) {
+    public SatisfyWorkoutRequestsController(Trainer trainer, ExerciseInventory exerciseList) {
         this.workoutRoutine = new WorkoutRoutineBean();
         this.trainer = trainer;
         this.exerciseList = exerciseList;
+        for (Exercise exercise : exerciseList.getExerciseList()) {
+            System.out.println(exercise.getName());
+        }
     }
 
     public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, ListView<ExerciseForWorkoutRoutineBean> RoutineExerciselist)  {
@@ -87,40 +90,40 @@ public class SatisfyWorkoutRequestsController {
     }
     public List<ExerciseBean> searchExercise(SearchBean searchBean) {
         System.out.println(searchBean.getName());
-        List<Exercise> allExercises = exerciseList; // Get all exercises from wherever you store them
-        List<Exercise> filteredExercises = new ArrayList<>();
 
-        for (Exercise exercise : allExercises) {
+        List<Exercise> filteredExercises = new ArrayList<>();
+        for (Exercise exercise : exerciseList.getExerciseList()) {
+            System.out.println(exercise.getName());
+        }
+
+        for (Exercise exercise : exerciseList.getExerciseList()) {
             if (exercise.getName().toLowerCase().contains(searchBean.getName().toLowerCase())) {
                 filteredExercises.add(exercise);
             }
         }
-
-        return getExerciseBeanList(filteredExercises);
+        return getExerciseBeanList(null, filteredExercises);
     }
 
-
-
-    /*public List<ExerciseBean> searchExercise(SearchBean searchBean) {
-        System.out.println(searchBean.getName());
-        List<Exercise> exerciseList = new ArrayList<>();
-        for(Exercise exercise: exerciseList) {
-            System.out.println(exercise.getName());
-            if((exercise.getName().toLowerCase()).contains(searchBean.getName().toLowerCase())) {
-                exerciseList.add(exercise);
-            }
-        }
-        return getExerciseBeanList(exerciseList);
-    }*/
-
     @NotNull
-    public List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList) {
+    public List<ExerciseBean> getExerciseBeanList(ExerciseInventory exerciseList, List<Exercise> exList) {
         List<ExerciseBean> exerciseBeanList = new ArrayList<>();
-        for(Exercise exercise: exerciseList){
-            ExerciseStatusBean ex = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
-            exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex));
+        if (exList!=null){
+            for(Exercise exercise: exList){
+                ExerciseStatusBean ex = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
+                exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex));
+            }
+            return exerciseBeanList;
+        } else if(exerciseList.getExerciseList()!=null){
+            for(Exercise exercise: exerciseList.getExerciseList()){
+                ExerciseStatusBean ex = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
+                exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex));
+            }
+            return exerciseBeanList;
+        } else {
+            //throw Exception campi entrambi nulli o entrambi pieni
+            System.out.println("campi entrambi nulli o entrambi pieni");
+            return null;
         }
-        return exerciseBeanList;
     }
 
     public static ExerciseStatusBean getExerciseStatusBeanFromExercise(Exercise exercise) {

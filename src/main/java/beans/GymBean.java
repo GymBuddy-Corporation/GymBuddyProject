@@ -20,10 +20,6 @@ public class GymBean extends UserBean {
         this.credentials = CredentialsBean.ctorWithSyntaxCheck(credentials.getEmail(), credentials.getPassword());
     }
 
-    private boolean isValidLength(String str) {
-        return str.length() <= 20;
-    }
-
     @Override
     public CredentialsBean getCredentials() {
         return credentials;

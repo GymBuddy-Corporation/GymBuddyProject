@@ -7,18 +7,25 @@ import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import engineering.manageListView.ManageExerciseList;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import model.Exercise;
+import model.ExerciseStatus;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.ExerciseStatusButtonController;
+import engineering.Observer;
+import beans.ExerciseStatusBean;
 
 import java.net.URL;
 import java.util.*;
+
+import static beans.ExerciseStatusBean.ACTIVE;
 
 public class SetExerciseStatusGUIController implements Initializable{
 
@@ -97,4 +104,12 @@ public class SetExerciseStatusGUIController implements Initializable{
         }
         satisfyWorkoutRequestsController.setStatus(selectedExercise, selectedStatus);
     }
+
+    /*private ExerciseStatusBean getStatusBean(ExerciseStatus status){
+        if (status){
+            return ACTIVE;
+        }
+    }*/
+
+
 }

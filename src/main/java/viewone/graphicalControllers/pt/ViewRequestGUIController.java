@@ -1,7 +1,9 @@
 package viewone.graphicalControllers.pt;
 
+import beans.ExerciseBean;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import engineering.ExerciseInventory;
 import engineering.manageListView.ManageRequestList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -39,7 +41,7 @@ public class ViewRequestGUIController implements Initializable {
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
     public ViewRequestGUIController() {
-        List<Exercise>exerciseList = new ArrayList<>();
+        List<Exercise> exList = new ArrayList<>();
 
 
         //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
@@ -59,13 +61,17 @@ public class ViewRequestGUIController implements Initializable {
         ex3.setStatus(ExerciseStatus.SUSPENDED);
         ex4.setStatus(ExerciseStatus.SUSPENDED);
 
-        exerciseList.add(ex1);
-        exerciseList.add(ex2);
-        exerciseList.add(ex3);
-        exerciseList.add(ex4);
+        exList.add(ex1);
+        exList.add(ex2);
+        exList.add(ex3);
+        exList.add(ex4);
+        ExerciseInventory exerciseList = new ExerciseInventory(exList);
+        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com",
+                "forzanapule1926"),
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "forzanapule1926"));
+                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1);
         satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController(trainer, exerciseList);
     }
 
