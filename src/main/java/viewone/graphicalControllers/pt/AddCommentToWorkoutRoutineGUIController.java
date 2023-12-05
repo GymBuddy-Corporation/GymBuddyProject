@@ -22,7 +22,7 @@ public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
     }
     @FXML
     public void submitRoutine() throws Exception{
-            popUpCreate("Vuoi cofermare la creazione?","Conferma","Cancella");
+            popUpCreate("Vuoi cofermare la creazione?","Submit","Back");
     }
     @FXML
     public void goBack() throws Exception{

@@ -1,54 +1,25 @@
 package viewtwo.popups;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.stage.Popup;
-import utils.MainStage;
-import utils.SwitchPage;
 import viewtwo.popups.abstracts.LoginPopUpInterface;
-import viewtwo.popups.controllers.LoginPopUpController;
+import viewtwo.popups.abstracts.PopupBaseInterface;
 
 import java.io.IOException;
 
-public class LoginPopUp {
+public class LoginPopUp extends PopupBaseClass{
 
-    LoginPopUpInterface caller;
-
-    private Popup popupReference;
-    protected static LoginPopUp me;
-
-
-    private LoginPopUp(LoginPopUpInterface instanceOfParent) throws IOException {
-        this.caller=instanceOfParent;
-        String path=SwitchPage.getpath("loginPopUp.fxml","popups",2);
-        FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
-        Parent load = null;
-        load = fxmlLoader.load();
-        popupReference =new Popup();
-        popupReference.getContent().add(load);
-        ((LoginPopUpController)fxmlLoader.getController()).setCaller(this);
-        popupReference.show(MainStage.getStage());
-        popupReference.setAutoHide(true);
-        popupReference.setOnAutoHide(handler->{clearSingleton();});
+    LoginPopUpInterface castedInterface;
+    protected LoginPopUp(PopupBaseInterface instanceOfParent, String file, String folder, int view) throws IOException {
+        super(instanceOfParent, file, folder, view);
+        castedInterface=(LoginPopUpInterface) this.caller;
     }
-
-
-    public  static LoginPopUp getLoginPopup(LoginPopUpInterface caller) throws IOException {
-            if(LoginPopUp.me==null){
-                LoginPopUp.me=new LoginPopUp(caller);
-            }
-            return LoginPopUp.me;
+    public  static PopupBaseClass getLoginPopup(LoginPopUpInterface caller,String file,String folder,int view) throws IOException {
+        if(PopupBaseClass.popupReference==null){
+            PopupBaseClass.popupReference=new LoginPopUp(caller,file,folder,view);
+        }
+        return PopupBaseClass.popupReference;
     }
-    private static void clearSingleton(){
-        me.caller=null;
-        me=null;
-    }
-    public void hidePopUp(){
-        popupReference.hide();
-    }
-    public void doLogin(String email,String password) throws IOException {
-        caller.loginCredentialInserted(email,password,true);
+    public void doLogin(String email, String password) throws IOException {
+        castedInterface.loginCredentialInserted(email,password,true);
         hidePopUp();
-        LoginPopUp.clearSingleton();
     }
 }

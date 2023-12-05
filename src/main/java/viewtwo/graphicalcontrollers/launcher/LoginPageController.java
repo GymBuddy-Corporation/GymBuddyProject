@@ -18,7 +18,7 @@ import java.io.IOException;
 public class LoginPageController implements LoginPopUpInterface {
     @Override
     public void invokePopUp() throws IOException {
-        LoginPopUp.getLoginPopup(this);
+        LoginPopUp.getLoginPopup(this,"loginPopUp.fxml","popups",2);
     }
     @FXML
     Label errorLabel;

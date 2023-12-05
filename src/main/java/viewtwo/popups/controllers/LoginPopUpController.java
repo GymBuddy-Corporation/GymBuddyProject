@@ -5,18 +5,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import viewtwo.popups.LoginPopUp;
+import viewtwo.popups.PopupBaseClass;
 
 import java.io.IOException;
 
-public class LoginPopUpController {
+public class LoginPopUpController extends PopupBaseController{
     LoginPopUp caller;
     @FXML
     TextField inputEmail;
     @FXML
     PasswordField inputPassword;
-
-    public void setCaller(LoginPopUp caller) {
-        this.caller = caller;
+    @Override
+    public void setCaller(PopupBaseClass caller) {
+        this.caller =(LoginPopUp) caller;
     }
     @FXML
     public void actionLogin() throws IOException {
