@@ -15,6 +15,9 @@ public class LoginPopUpController extends PopupBaseController{
     TextField inputEmail;
     @FXML
     PasswordField inputPassword;
+
+
+
     @Override
     public void setCaller(PopupBaseClass caller) {
         this.caller =(LoginPopUp) caller;

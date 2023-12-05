@@ -11,22 +11,23 @@ import utils.SwitchPage;
 import viewtwo.engegnering.MainMenuSingleton;
 import viewtwo.graphicalcontrollers.home.MainMenuController;
 import viewtwo.popups.LoginPopUp;
+import viewtwo.popups.UserRegistrationPopup;
 import viewtwo.popups.abstracts.LoginPopUpInterface;
+import viewtwo.popups.abstracts.UserRegistrationPopupInterface;
 
 import java.io.IOException;
 
-public class LoginPageController implements LoginPopUpInterface {
-    @Override
-    public void invokePopUp() throws IOException {
-        LoginPopUp.getLoginPopup(this,"loginPopUp.fxml","popups",2);
-    }
-    @FXML
+public class LoginPageController implements LoginPopUpInterface,UserRegistrationPopupInterface{
+
+
     Label errorLabel;
     @FXML
-    public void createPopUp() throws IOException {
-        this.invokePopUp();
+    public void createLoginPopup() throws IOException {
+        LoginPopUp.getLoginPopup(this,"loginPopUp.fxml","popups",2);
     }
-
+    public void createUserRegistrationPopup() throws IOException {
+        UserRegistrationPopup.getRegistrationPopup(this,"userRegistrationPopUP.fxml","popups",2);
+    }
     private void setErrorText(String error){
         errorLabel.setText(error);
     }

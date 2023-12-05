@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
    <children>
-      <Button layoutX="437.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#createPopUp" prefHeight="67.0" prefWidth="191.0" text="Login">
+      <Button layoutX="442.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#createLoginPopup" prefHeight="67.0" prefWidth="191.0" text="Login">
          <font>
             <Font size="29.0" />
          </font>
@@ -54,5 +57,10 @@
          </center>
       </BorderPane>
       <Label fx:id="errorLabel" layoutX="519.0" layoutY="119.0" />
+      <Button layoutX="442.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#createUserRegistrationPopup" prefHeight="67.0" prefWidth="191.0" text="Register">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
