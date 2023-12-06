@@ -41,38 +41,13 @@ public class ViewRequestGUIController implements Initializable {
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
     public ViewRequestGUIController() {
-        List<Exercise> exList = new ArrayList<>();
-
-
-        //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
-        // SISTEMA BENE
-        Gym gym1 = new Gym("Palestra1",
-                new Credentials("gym1@gmail.com", "forzanapule1926"),
-                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71");
-        /*Gym gym2 = new Gym("Palestra2");
-        Gym gym3 = new Gym("Palestra3");,
-        Gym gym4 = new Gym("Palestra4");*/
-
-        Exercise ex1 = new Exercise("Tricep Pushdown", gym1);
-        Exercise ex2 = new Exercise("Shoulder Press", gym1);
-        Exercise ex3 = new Exercise("Squat", gym1);
-        Exercise ex4 = new Exercise("Dips", gym1);
-
-        ex3.setStatus(ExerciseStatus.SUSPENDED);
-        ex4.setStatus(ExerciseStatus.SUSPENDED);
-
-        exList.add(ex1);
-        exList.add(ex2);
-        exList.add(ex3);
-        exList.add(ex4);
-        ExerciseInventory exerciseList = new ExerciseInventory(exList);
         Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com",
                 "forzanapule1926"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
                 new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1);
-        satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController(trainer, exerciseList);
+        satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
     }
 
     @FXML
@@ -93,6 +68,16 @@ public class ViewRequestGUIController implements Initializable {
             createNewRoutine();
         }
     }
+
+
+
+
+
+
+
+    //TODO ATTENZIONE DEVI SISTEMARE STA COSA QUA PRIMA DI TUTTO
+
+
 
     public void createNewRoutine() throws Exception {
         SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(), "SatisfyWorkoutRoutineRequest.fxml", "pt", 1);

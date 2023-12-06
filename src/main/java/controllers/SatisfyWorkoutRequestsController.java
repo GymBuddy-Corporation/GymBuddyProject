@@ -25,18 +25,43 @@ public class SatisfyWorkoutRequestsController {
         return getExerciseBeanList(exerciseList, null);
     }
 
-    /*public SatisfyWorkoutRequestsController() {
+    public SatisfyWorkoutRequestsController() {
         this.workoutRoutine = new WorkoutRoutineBean();
         Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
                 new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1)
-        *//*(Trainer) new LoginController().getLoggedUser()*//*;
+        /*(Trainer) new LoginController().getLoggedUser()*/;
         System.out.println(this.trainer.getName() + this.trainer.getEmail());
         //TODO organizza exercises
-        this.exerciseList = new ExerciseInventory(null);
-    }*/
+
+         List<Exercise> exList = new ArrayList<>();
+
+
+        //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
+        // SISTEMA BENE
+        Gym gym1 = new Gym("Palestra1",
+                new Credentials("gym1@gmail.com", "forzanapule1926"),
+                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71");
+        /*Gym gym2 = new Gym("Palestra2");
+        Gym gym3 = new Gym("Palestra3");
+        Gym gym4 = new Gym("Palestra4");*/
+
+        Exercise ex1 = new Exercise("Tricep Pushdown", gym1);
+        Exercise ex2 = new Exercise("Shoulder Press", gym1);
+        Exercise ex3 = new Exercise("Squat", gym1);
+        Exercise ex4 = new Exercise("Dips", gym1);
+
+        ex3.setStatus(ExerciseStatus.SUSPENDED);
+        ex4.setStatus(ExerciseStatus.SUSPENDED);
+
+        exList.add(ex1);
+        exList.add(ex2);
+        exList.add(ex3);
+        exList.add(ex4);
+        this.exerciseList = new ExerciseInventory(exList);
+    }
 
     public SatisfyWorkoutRequestsController(Trainer trainer, ExerciseInventory exerciseList) {
         this.workoutRoutine = new WorkoutRoutineBean();
