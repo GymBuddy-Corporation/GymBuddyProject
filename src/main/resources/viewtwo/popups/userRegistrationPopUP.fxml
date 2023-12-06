@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="442.0" prefWidth="620.0" style="-fx-background-color: f9b700;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.popups.controllers.UserRegistrationPopupController">
    <children>
-      <TextField fx:id="nameFIeld" layoutX="38.0" layoutY="111.0" prefHeight="34.0" prefWidth="179.0" promptText="name" />
+      <TextField fx:id="nameField" layoutX="38.0" layoutY="111.0" prefHeight="34.0" prefWidth="179.0" promptText="name" />
       <TextField fx:id="surnameField" layoutX="237.0" layoutY="111.0" prefHeight="34.0" prefWidth="179.0" promptText="surname" />
       <DatePicker fx:id="dateField" layoutX="283.0" layoutY="253.0" prefHeight="34.0" prefWidth="138.0" promptText="xx/xx/xxxx" />
       <PasswordField fx:id="passwordField" layoutX="237.0" layoutY="183.0" prefHeight="34.0" prefWidth="179.0" promptText="********" />
@@ -60,7 +60,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="registrationButton" layoutX="247.0" layoutY="374.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="154.0" text="Confirm" />
+      <Button fx:id="registrationButton" layoutX="247.0" layoutY="374.0" mnemonicParsing="false" onMouseClicked="#userRegistration" prefHeight="46.0" prefWidth="154.0" text="Confirm" />
       <Label layoutX="194.0" layoutY="24.0" prefHeight="46.0" prefWidth="316.0" text="Registration form" textFill="#931701">
          <font>
             <Font size="24.0" />

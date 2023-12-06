@@ -1,5 +1,6 @@
 package viewtwo.graphicalcontrollers.launcher;
 
+import beans.AthleteBean;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import utils.EmailValdator;
@@ -19,7 +20,7 @@ import java.io.IOException;
 
 public class LoginPageController implements LoginPopUpInterface,UserRegistrationPopupInterface{
 
-
+    @FXML
     Label errorLabel;
     @FXML
     public void createLoginPopup() throws IOException {
@@ -41,5 +42,10 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
         MainMenuController a=(MainMenuController)SwitchPage.setStage(MainStage.getStage(),"mainMenu.fxml","home",2);
         MainMenuSingleton.createMainMenu(a);
         MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml","gym");
+    }
+
+    @Override
+    public void userRegistration(AthleteBean bean) {
+        setErrorText("Registrazione effettuata con successo, effettuare login");
     }
 }

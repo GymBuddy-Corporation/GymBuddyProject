@@ -1,5 +1,8 @@
 package viewtwo.popups;
 
+import beans.AthleteBean;
+import beans.PersonBean;
+import beans.UserBean;
 import viewtwo.popups.abstracts.LoginPopUpInterface;
 import viewtwo.popups.abstracts.PopupBaseInterface;
 import viewtwo.popups.abstracts.UserRegistrationPopupInterface;
@@ -16,5 +19,11 @@ public class UserRegistrationPopup extends PopupBaseClass{
         }
         return PopupBaseClass.popupReference;
     }
+
+    public void userRegistration(AthleteBean bean){
+        ((UserRegistrationPopupInterface)caller).userRegistration(bean);
+    }
+
+
 
 }

@@ -1,5 +1,9 @@
 package viewtwo.popups.controllers;
 
+import beans.AthleteBean;
+import beans.CredentialsBean;
+import beans.PersonBean;
+import beans.PersonalInfoBean;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -7,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import viewtwo.popups.PopupBaseClass;
+import viewtwo.popups.UserRegistrationPopup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,9 +36,10 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
     @FXML
     ChoiceBox genderField;
 
+    UserRegistrationPopup caller;
     @Override
     public void setCaller(PopupBaseClass caller) {
-
+        this.caller=(UserRegistrationPopup) caller;
     }
 
     @Override
@@ -41,5 +47,25 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
                 genderField.getItems().add("Male");
                 genderField.getItems().add("Female");
                 genderField.getItems().add("Not specified");
+    }
+    private char getGenderFromChoice(){
+        switch (genderField.getValue().toString()){
+            case "Male":
+                return 'm';
+            case "Female":
+                return 'f';
+            default:
+                return 'o';
+
+        }
+    }
+    public void userRegistration(){
+
+        caller.userRegistration(
+                new AthleteBean(usernameField.getText()
+                ,new PersonalInfoBean( nameField.getText(),surnameField.getText(),dateField.getValue(), fiscalcodeField.getText(),getGenderFromChoice())
+                ,CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()))
+        );
+        caller.hidePopUp();
     }
 }

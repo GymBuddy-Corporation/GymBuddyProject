@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public  class PopupBaseClass extends Popup{
 
-    PopupBaseInterface caller;
+    protected PopupBaseInterface caller;
 
     protected static PopupBaseClass popupReference;
 
