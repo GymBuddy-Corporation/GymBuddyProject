@@ -1,9 +1,12 @@
 package controllers;
 
 import beans.*;
+import database.dao_classes.ExerciseDAO;
+import database.dao_classes.RequestDAO;
 import engineering.ExerciseInventory;
 import javafx.scene.control.ListView;
 import model.*;
+import database.dao_classes.ExerciseDAO;
 import model.record.Credentials;
 import model.record.PersonalInfo;
 import org.jetbrains.annotations.NotNull;
@@ -35,32 +38,7 @@ public class SatisfyWorkoutRequestsController {
         /*(Trainer) new LoginController().getLoggedUser()*/;
         System.out.println(this.trainer.getName() + this.trainer.getEmail());
         //TODO organizza exercises
-
-         List<Exercise> exList = new ArrayList<>();
-
-
-        //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
-        // SISTEMA BENE
-        Gym gym1 = new Gym("Palestra1",
-                new Credentials("gym1@gmail.com", "forzanapule1926"),
-                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71");
-        /*Gym gym2 = new Gym("Palestra2");
-        Gym gym3 = new Gym("Palestra3");
-        Gym gym4 = new Gym("Palestra4");*/
-
-        Exercise ex1 = new Exercise("Tricep Pushdown", gym1);
-        Exercise ex2 = new Exercise("Shoulder Press", gym1);
-        Exercise ex3 = new Exercise("Squat", gym1);
-        Exercise ex4 = new Exercise("Dips", gym1);
-
-        ex3.setStatus(ExerciseStatus.SUSPENDED);
-        ex4.setStatus(ExerciseStatus.SUSPENDED);
-
-        exList.add(ex1);
-        exList.add(ex2);
-        exList.add(ex3);
-        exList.add(ex4);
-        this.exerciseList = new ExerciseInventory(exList);
+        this.exerciseList = new ExerciseInventory(new ArrayList<>(new ExerciseDAO().loadDBExercises()));
     }
 
     public SatisfyWorkoutRequestsController(Trainer trainer, ExerciseInventory exerciseList) {
@@ -201,7 +179,7 @@ public class SatisfyWorkoutRequestsController {
     }
 
     public List<RequestBean> getTrainerRequests() /*throws SQLException, DBUnreachableException*/ {
-        List<Request> requestList = new ArrayList<>()/*new RequestDAO().loadTrainerRequests(trainer)*/;
+        List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(trainer));
 
         List<RequestBean> requestBeanList = new ArrayList<>();
         for(Request request: requestList) {

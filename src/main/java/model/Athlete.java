@@ -14,14 +14,14 @@ public class Athlete extends Person implements Serializable {
     // i metodi get e set gia ci sono nel caso, vedi tu come volertela gestire
 
     private WorkoutRoutine workoutRoutine;
-    private final String trainer;
+    private final Trainer trainer;
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym, String trainer) {
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym, Trainer trainer) {
         super(username, credentials, personalInfo, gym);
         this.trainer = trainer;
     }
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Gym gym, String trainer) /*throws ExpiredCardException*/ {
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Gym gym, Trainer trainer) /*throws ExpiredCardException*/ {
         //costruttore con inizializzazione della carta
         super(username, credentials, personalInfo, gym);
         checkCardExpirationDate(card.cardExpirationDate());
@@ -76,7 +76,7 @@ public class Athlete extends Person implements Serializable {
         }
     }
 
-    public String getTrainer() {
+    public Trainer getTrainer() {
         return trainer;
     }
 }
