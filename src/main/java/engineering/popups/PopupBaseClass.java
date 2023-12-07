@@ -1,12 +1,10 @@
-package viewtwo.popups;
+package engineering.popups;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Popup;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewtwo.popups.abstracts.PopupBaseInterface;
-import viewtwo.popups.controllers.PopupBaseController;
 
 import java.io.IOException;
 

@@ -1,11 +1,12 @@
 package viewtwo.popups;
 
+import engineering.popups.PopupBaseClass;
 import viewtwo.popups.abstracts.LoginPopUpInterface;
-import viewtwo.popups.abstracts.PopupBaseInterface;
+import engineering.popups.PopupBaseInterface;
 
 import java.io.IOException;
 
-public class LoginPopUp extends PopupBaseClass{
+public class LoginPopUp extends PopupBaseClass {
 
     LoginPopUpInterface castedInterface;
     protected LoginPopUp(PopupBaseInterface instanceOfParent, String file, String folder, int view) throws IOException {
