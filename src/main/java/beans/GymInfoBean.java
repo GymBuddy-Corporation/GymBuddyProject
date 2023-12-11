@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 public class GymInfoBean {
     private final String name;
-
     private final String address;
     private final LocalDate city;
     private final String iban;

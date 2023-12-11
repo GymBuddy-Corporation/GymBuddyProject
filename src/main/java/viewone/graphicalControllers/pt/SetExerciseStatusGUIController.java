@@ -96,13 +96,13 @@ public class SetExerciseStatusGUIController implements Initializable{
 
     @FXML public void setStatus() {
         ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
-        String selectedStatus;
+        ExerciseStatusBean selectedStatus;
         if(activeStatusButton.isPressed()){
-            selectedStatus = "active";
+            selectedStatus = ExerciseStatusBean.ACTIVE;
         } else {
-            selectedStatus = "suspended";
+            selectedStatus = ExerciseStatusBean.SUSPENDED;
         }
-        satisfyWorkoutRequestsController.setStatus(selectedExercise, selectedStatus);
+        satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
     }
 
     /*private ExerciseStatusBean getStatusBean(ExerciseStatus status){

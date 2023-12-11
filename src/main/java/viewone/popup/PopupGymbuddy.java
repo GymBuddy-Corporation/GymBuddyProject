@@ -36,15 +36,6 @@ public class PopupGymbuddy {
         popupReference.setOnAutoHide(handler->{clearSingleton();});
     }
 
-    public static PopupGymbuddy startPopUp(PopupAbstract a, String testo, String conferma, String rifiuto, int fontSize) throws IOException {
-        if(PopupGymbuddy.me==null){
-            PopupGymbuddy.me=new PopupGymbuddy(a,testo,conferma,rifiuto);
-        }
-        Text messageText = new Text(conferma);
-        messageText.setStyle("-fx-font-size: " + fontSize + ";");
-        return me;
-    }
-
     public static PopupGymbuddy startPopUp(PopupAbstract a, String testo, String conferma, String rifiuto) throws IOException {
         if(PopupGymbuddy.me==null){
             PopupGymbuddy.me=new PopupGymbuddy(a,testo,conferma,rifiuto);
@@ -66,10 +57,10 @@ public class PopupGymbuddy {
         me.caller=null;
         me=null;
     }
-    public void popUpConfirm(){
+    public void popUpConfirm()  throws IOException{
         caller.popUpConfirm();
     }
-    public void popUpDelete(){
+    public void popUpDelete() {
         caller.popUpDelete();
     }
 }

@@ -1,9 +1,7 @@
 package viewone.graphicalControllers.pt;
 
-import beans.ExerciseBean;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
-import engineering.ExerciseInventory;
 import engineering.manageListView.ManageRequestList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import model.Exercise;
-import model.ExerciseStatus;
 import model.Gym;
 import model.Trainer;
 import model.record.Credentials;
@@ -36,7 +32,7 @@ public class ViewRequestGUIController implements Initializable {
     private Text usernameRequestText;
 
     private RequestBean selectedRequest;
-    private Trainer trainer; //poi gestisci con loggedUser (vedi todo)
+    private final Trainer trainer; //poi gestisci con loggedUser (vedi todo)
 
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
@@ -69,16 +65,6 @@ public class ViewRequestGUIController implements Initializable {
         }
     }
 
-
-
-
-
-
-
-    //TODO ATTENZIONE DEVI SISTEMARE STA COSA QUA PRIMA DI TUTTO
-
-
-
     public void createNewRoutine() throws Exception {
         SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(), "SatisfyWorkoutRoutineRequest.fxml", "pt", 1);
         Objects.requireNonNull(controller).setValue(selectedRequest, satisfyWorkoutRequestsController);
@@ -88,7 +74,6 @@ public class ViewRequestGUIController implements Initializable {
     public void rejectRequest() {
         //TODO gestisci la cancellazione di una richiesta
         satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
-
     }
 
     @Override

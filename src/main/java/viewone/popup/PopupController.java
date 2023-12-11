@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class PopupController {
     @FXML
     private Text testo;
@@ -14,13 +16,13 @@ public class PopupController {
     private Button bottoneRifiuta;
 
     @FXML
-    public void conferma(ActionEvent e){
+    public void conferma() throws IOException {
         PopupGymbuddy.getPopUp().popUpConfirm();
         PopupGymbuddy.getPopUp().hidePopUp();
         PopupGymbuddy.clearSingleton();
     }
     @FXML
-    public void rifiuta(ActionEvent e){
+    public void rifiuta() throws IOException{
         PopupGymbuddy.getPopUp().popUpDelete();
         PopupGymbuddy.clearSingleton();
     }

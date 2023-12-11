@@ -4,6 +4,7 @@ package database.dao_classes;
 import database.queries.ExerciseQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;*/
+import beans.ExerciseStatusBean;
 import model.Exercise;
 import model.ExerciseStatus;
 import model.Gym;
@@ -50,6 +51,10 @@ public class ExerciseDAO {
         exList.add(ex3);
         exList.add(ex4);
         return exList;
+    }
+
+    public void changeExerciseStatus(Exercise exerciseToEdit, ExerciseStatus status){
+
     }
 
     public void insertExerciseInWorkoutDay(Exercise exercise, int workoutDayId) /*throws SQLException, DBUnreachableException*/ {

@@ -12,6 +12,6 @@ public abstract class PopupAbstract {
     protected void popUpCreate(String testo) throws IOException {
        this.temp= PopupGymbuddy.startPopUp(this,testo);
     }
-    public abstract void popUpConfirm();
+    public abstract void popUpConfirm() throws IOException;
     public abstract void popUpDelete();
 }
