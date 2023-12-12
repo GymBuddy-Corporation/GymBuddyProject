@@ -3,8 +3,9 @@ package beans;
 /*import exceptions.invalid_data_exception.EmptyFieldsException;
 import exceptions.invalid_data_exception.InvalidCredentialsException;*/
 
-import exceptions.dataException.EmailFIeldException;
-import exceptions.dataException.PasswordFieldException;
+import exceptions.dataException.DataFieldException;
+import exceptions.dataException.TyperEnumerations.FieldsEnum;
+import exceptions.dataException.TyperEnumerations.ProblemEnum;
 
 import java.util.regex.Pattern;
 
@@ -14,7 +15,7 @@ public class CredentialsBean {
 
     private CredentialsBean() {}
 
-    public static CredentialsBean ctorWithSyntaxCheck(String email, String password) throws EmailFIeldException, PasswordFieldException /*throws InvalidCredentialsException, EmptyFieldsException*/ {
+    public static CredentialsBean ctorWithSyntaxCheck(String email, String password) throws DataFieldException/*throws InvalidCredentialsException, EmptyFieldsException*/ {
         /*This is a constructor with syntax check and is used by view*/
         CredentialsBean credentialsBean = new CredentialsBean();
         credentialsBean.setEmail(email);
@@ -36,14 +37,14 @@ public class CredentialsBean {
         return email;
     }
 
-    public void setEmail(String email) throws EmailFIeldException {
+    public void setEmail(String email) throws DataFieldException {
 
         if(email.isEmpty()){
-            throw new EmailFIeldException("is empty!");
+            throw new DataFieldException(FieldsEnum.email, ProblemEnum.empty);
         } else if(isValidEmail(email)){
             this.email = email;
         } else {
-            throw new EmailFIeldException("is not valid!");
+            throw new DataFieldException(FieldsEnum.email, ProblemEnum.notValid);
         }
     }
 
@@ -57,18 +58,22 @@ public class CredentialsBean {
         return password;
     }
 
-    public void setPassword(String password) throws PasswordFieldException {
-        if(password == null || password.isEmpty()){
-            throw new PasswordFieldException("is empty!");
+    public void setPassword(String password) throws DataFieldException {
+        if(password == null){
+            throw new DataFieldException(FieldsEnum.password,ProblemEnum.isNull);
+        }else if (password.isEmpty()){
+            throw new DataFieldException(FieldsEnum.password,ProblemEnum.empty);
         } else if(isValidPassword(password)){
             this.password = password;
         } else{
-            throw new PasswordFieldException("is not valid!");
+            throw new DataFieldException(FieldsEnum.password,ProblemEnum.notValid);
         }
     }
 
 
     private boolean isValidPassword(String password) {
-        return Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).{8,45}$",password);
+        //TODO rivedere questa regex
+        return true;
+        //return Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).{8,45}$",password);
     }
 }

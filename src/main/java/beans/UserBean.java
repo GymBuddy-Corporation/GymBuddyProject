@@ -2,6 +2,8 @@ package beans;
 
 /*import java.time.LocalDate;*/
 
+import exceptions.dataException.DataFieldException;
+
 public class UserBean {
 
     //Ho tolto il campo 'tipo' perchè poi gestiremo questa cosa direttmente con istance of
@@ -14,7 +16,7 @@ public class UserBean {
         this.credentials = CredentialsBean.ctorWithoutSyntaxCheck(credentials.getEmail(), credentials.getPassword());
     }
 
-    public UserBean(String username, CredentialsBean credentials) /*throws InvalidUserInfoException, InvalidFiscalCodeException, InvalidCredentialsException, InvalidBirthException, EmptyFieldsException*/ {
+    public UserBean(String username, CredentialsBean credentials) throws DataFieldException {
         /*This is a constructor with syntax check and is used by view*/
         setUsername(username);
         //TODO capire come usare questo costruttore (è da qui che nascono i nullpointer)

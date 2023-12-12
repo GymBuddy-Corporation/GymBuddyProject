@@ -4,6 +4,7 @@ import beans.AthleteBean;
 import beans.CredentialsBean;
 import beans.PersonalInfoBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -38,7 +39,7 @@ public class ManageAthletesList {
         athleteBeanListView.setItems(athleteBeanObservableList);
     }
 
-    public static void setAthletesList(ListView<AthleteBean> athletesList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
+    public static void setAthletesList(ListView<AthleteBean> athletesList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException {
         PersonalInfoBean pi1 = new PersonalInfoBean("Luca", "Martorelli", LocalDate.of(2000, 9, 1), "MRTLCU00P01D612J", 'm');
         PersonalInfoBean pi2 = new PersonalInfoBean("Mario", "Regine", LocalDate.of(2002, 9, 23), "MHTLCU00P01D612J", 'm');
         PersonalInfoBean pi3 = new PersonalInfoBean("Edoardo", "Manenti", LocalDate.of(2007, 9, 6), "NRTLCU00P01D612J", 'm');

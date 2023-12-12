@@ -1,5 +1,7 @@
 package beans;
 
+import exceptions.dataException.DataFieldException;
+
 public class GymBean extends UserBean {
     private final GymInfoBean gymInfo;
     private final CredentialsBean credentials;
@@ -11,7 +13,7 @@ public class GymBean extends UserBean {
         this.credentials = credentials;
     }
 
-    public GymBean(String username, GymInfoBean gymInfo, CredentialsBean credentials) /*throws InvalidUserInfoException, InvalidFiscalCodeException, InvalidCredentialsException, InvalidBirthException, EmptyFieldsException*/ {
+    public GymBean(String username, GymInfoBean gymInfo, CredentialsBean credentials) throws DataFieldException /*throws InvalidUserInfoException, InvalidFiscalCodeException, InvalidCredentialsException, InvalidBirthException, EmptyFieldsException*/ {
         /*This is a constructor with syntax check and is used by view*/
         super(username, credentials);
         setUsername(username);

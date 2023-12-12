@@ -4,8 +4,7 @@ import beans.AthleteBean;
 import beans.CredentialsBean;
 import beans.PersonalInfoBean;
 import engineering.popups.PopupBaseController;
-import exceptions.dataException.EmailFIeldException;
-import exceptions.dataException.PasswordFieldException;
+import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -61,7 +60,7 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
 
         }
     }
-    public void userRegistration() throws EmailFIeldException, PasswordFieldException {
+    public void userRegistration() throws DataFieldException {
 
         caller.userRegistration(
                 new AthleteBean(usernameField.getText()

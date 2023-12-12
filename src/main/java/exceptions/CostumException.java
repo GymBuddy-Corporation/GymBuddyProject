@@ -8,9 +8,7 @@ public class CostumException extends Exception{
     public CostumException(String message){
         super(message);
     }
-    public CostumException(Throwable invocationCause){
-        super(invocationCause);
-    }
+
     public CostumException(String message,Throwable invocationCause){
         super(message,invocationCause);
     }

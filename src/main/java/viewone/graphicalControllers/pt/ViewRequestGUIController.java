@@ -3,6 +3,7 @@ package viewone.graphicalControllers.pt;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.ManageRequestList;
+import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import model.record.PersonalInfo;
 import utils.MainStage;
 import utils.SwitchPage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -78,24 +80,28 @@ public class ViewRequestGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /* try {*/
-        ManageRequestList.setRequestList(requestList, satisfyWorkoutRequestsController);
-        requestList.getSelectionModel().selectedItemProperty().
-                addListener(new ChangeListener<>() {
-                    @Override public void changed(ObservableValue<? extends RequestBean> observableValue, RequestBean oldItem, RequestBean newItem) {
-                        if(newItem != null){
-                            textUsersRequest.setText(newItem.getInfo());
-                            selectedRequest = newItem;
-                            usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
-                            System.out.println("Username:" + selectedRequest.getAthleteBean().getUsername() +
-                                    "data" + selectedRequest.getRequestDate() + "trainer" + selectedRequest.getTrainerFc());
+        try {
+            ManageRequestList.setRequestList(requestList, satisfyWorkoutRequestsController);
+            requestList.getSelectionModel().selectedItemProperty().
+                    addListener(new ChangeListener<>() {
+                        @Override
+                        public void changed(ObservableValue<? extends RequestBean> observableValue, RequestBean oldItem, RequestBean newItem) {
+                            if (newItem != null) {
+                                textUsersRequest.setText(newItem.getInfo());
+                                selectedRequest = newItem;
+                                usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
+                                System.out.println("Username:" + selectedRequest.getAthleteBean().getUsername() +
+                                        "data" + selectedRequest.getRequestDate() + "trainer" + selectedRequest.getTrainerFc());
+                            }
                         }
-                    }
-                });
-
-/*        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
+                    });
+        }catch (DataFieldException e) {
+            try {
+                e.callMe(1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
 
     }
 }

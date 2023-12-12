@@ -4,6 +4,7 @@ import beans.AthleteBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.listCells.AthleteListCellFactory;
 import engineering.manageListView.ManageAthletesList;
+import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import utils.MainStage;
 import utils.SwitchPage;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -53,7 +55,15 @@ public class ViewYourAthletesGUIController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ManageAthletesList.setAthletesList(athletesList, satisfyWorkoutRequestsController);
+        try {
+            ManageAthletesList.setAthletesList(athletesList, satisfyWorkoutRequestsController);
+        } catch (DataFieldException e) {
+            try {
+                e.callMe(1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
 
         athletesList.setCellFactory(new AthleteListCellFactory());
         ManageAthletesList.setListenerAthletes(athletesList, /*metti il controller applicativo, */this);

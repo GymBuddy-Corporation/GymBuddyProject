@@ -4,6 +4,7 @@ import beans.*;
 import database.dao_classes.ExerciseDAO;
 import database.dao_classes.RequestDAO;
 import engineering.ExerciseInventory;
+import exceptions.dataException.DataFieldException;
 import javafx.scene.control.ListView;
 import model.*;
 import model.record.Credentials;
@@ -29,11 +30,11 @@ public class SatisfyWorkoutRequestsController {
 
     public SatisfyWorkoutRequestsController() {
         this.workoutRoutine = new WorkoutRoutine();
-        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
+        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "F@orzanapule1926"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1)
+                new Credentials("alecortix@gmail.com", "F@orzanapule1926"), palestra1)
         /*(Trainer) new LoginController().getLoggedUser()*/;
         System.out.println(this.trainer.getName() + this.trainer.getEmail());
         //TODO organizza exercises
@@ -244,7 +245,7 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    public List<RequestBean> getTrainerRequests() /*throws SQLException, DBUnreachableException*/ {
+    public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(trainer));
 
         List<RequestBean> requestBeanList = new ArrayList<>();

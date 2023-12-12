@@ -3,6 +3,7 @@ package viewone.graphicalControllers.pt;
 import beans.*;
 import engineering.manageListView.listCells.ExerciseForWOListCellFactory;
 import engineering.manageListView.listCells.ExerciseListCellFactory;
+import exceptions.InvalidExerciseFeaturesException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -179,7 +180,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                         routineExerciselist.getItems().add(newExercise);
                         dayExercisesMap.computeIfAbsent(newExercise.getDay(), k -> new ArrayList<>()).add(newExercise);
                     } else {
-                        throw new InvalidExerciseFeaturesException();
+                        throw new InvalidExerciseFeaturesException("??");
                     }
                 }
                 resetSelection(1);

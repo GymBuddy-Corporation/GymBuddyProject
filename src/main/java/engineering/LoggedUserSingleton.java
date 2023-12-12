@@ -3,6 +3,7 @@ package engineering;
 import beans.*;
 import controllers.LoginController;
 
+import exceptions.dataException.DataFieldException;
 import model.Person;
 import model.User;
 import model.Athlete;
@@ -63,7 +64,7 @@ public class LoggedUserSingleton {
         return Arrays.asList(athleteBean, trainerBean);
     }*/
 
-    public static UserBean getUserBean(User usr){
+    public static UserBean getUserBean(User usr) throws DataFieldException {
         if (usr instanceof Athlete) {
             return new AthleteBean(
                     usr.getUsername(),
