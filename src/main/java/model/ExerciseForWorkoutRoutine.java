@@ -1,7 +1,6 @@
 package model;
 
 import beans.ExerciseBean;
-import exceptions.InvalidExerciseFeaturesException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
