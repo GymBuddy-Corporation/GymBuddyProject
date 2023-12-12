@@ -7,25 +7,19 @@ import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import engineering.manageListView.ManageExerciseList;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import model.Exercise;
-import model.ExerciseStatus;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.ExerciseStatusButtonController;
-import engineering.Observer;
 import beans.ExerciseStatusBean;
 
 import java.net.URL;
 import java.util.*;
-
-import static beans.ExerciseStatusBean.ACTIVE;
 
 public class SetExerciseStatusGUIController implements Initializable{
 
@@ -35,19 +29,15 @@ public class SetExerciseStatusGUIController implements Initializable{
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private Button suspendStatusButton;
     @FXML private Button activeStatusButton;
+    Button selectedButton;
     @FXML private TextField searchExerciseText;
     @FXML private Button setStatusButton;
     private final ExerciseStatusButtonController exerciseStatusButtonController = new ExerciseStatusButtonController();;
-
+    private SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController;
 
     @FXML
-    public void logout() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
-    }
-    @FXML
-    public void turnBackToRoutine() throws Exception{
-        SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
-        Objects.requireNonNull(controller).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap);
+    public void logout() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
     }
     @FXML public void searchExercise(){
         //TODO controlla se funziona
@@ -66,7 +56,8 @@ public class SetExerciseStatusGUIController implements Initializable{
         setStatusButton.setVisible(bool);
     }
 
-    public void setValue(RequestBean requestBean, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap) {
+    public void setValue(RequestBean requestBean, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+        this.satisfyWorkoutRoutineRequestGUIController = satisfyWorkoutRoutineRequestGUIController;
         this.dayExercisesMap=dayExercisesMap;
         this.requestBean= requestBean;
         this.satisfyWorkoutRequestsController=satisfyWorkoutRequestsController;
@@ -77,7 +68,7 @@ public class SetExerciseStatusGUIController implements Initializable{
 
     @FXML
     public void changeStatus(ActionEvent event) {
-        exerciseStatusButtonController.statusButtonAction(event);
+        selectedButton = exerciseStatusButtonController.statusButtonAction(event);
     }
 
     @Override
@@ -94,15 +85,23 @@ public class SetExerciseStatusGUIController implements Initializable{
         }
     }
 
-    @FXML public void setStatus() {
+    @FXML public void setButtonStatus() throws Exception{
         ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
-        ExerciseStatusBean selectedStatus;
-        if(activeStatusButton.isPressed()){
+        ExerciseStatusBean selectedStatus = null;
+        if(selectedButton == activeStatusButton){
             selectedStatus = ExerciseStatusBean.ACTIVE;
-        } else {
+            System.out.println("Premuto active");
+        } else if (selectedButton == suspendStatusButton){
             selectedStatus = ExerciseStatusBean.SUSPENDED;
+            System.out.println("Premuto suspended");
+        } else {
+            System.out.println("Premuto niente");
         }
+
         satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
+        satisfyWorkoutRoutineRequestGUIController.updateLists();
+        satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
+        Objects.requireNonNull(satisfyWorkoutRoutineRequestGUIController).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap);
     }
 
     /*private ExerciseStatusBean getStatusBean(ExerciseStatus status){

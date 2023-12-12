@@ -1,10 +1,10 @@
 package beans;
 
 public class ExerciseBean {
-    private final String name;
-    private ExerciseStatusBean statusExercise;
+    protected final String name;
+    protected ExerciseStatusBean statusExercise;
 
-    private final String gym;
+    protected final String gym;
 
     public ExerciseBean(String name, ExerciseStatusBean statusExercise, String gym) {
         this.name = name;

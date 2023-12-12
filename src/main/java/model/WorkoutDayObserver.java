@@ -24,29 +24,22 @@ public class WorkoutDayObserver extends WorkoutDay implements Observer {
         this.workoutRoutine = workoutRoutine;
     }
 
-    private void detachFromObservables() {
-        //TODO gestisci il detach
-        /*for (Exercise exercise : exerciseList) {
-            exercise.removeObserver(this);
-        }*/
+    public void findAndUpdate(Exercise changedExercise, ExerciseStatus status){
+        for (int i = exerciseList.size() - 1; i >= 0; i--) {
+            ExerciseForWorkoutRoutine exercise = exerciseList.get(i);
+            if (exercise.getName().equals(changedExercise.getName())) {
+                exercise.setStatus(status);
+            }
+        }
     }
+
 
     @Override
     public void update(Exercise changedExercise) {
         if (changedExercise.getStatus() == ExerciseStatus.SUSPENDED) {
-            // Remove ExerciseForWorkoutRoutine instances for exercises with SUSPENDED status
-            for (int i = exerciseList.size() - 1; i >= 0; i--) {
-                String exercise = exerciseList.get(i).getExercise().getName();
-                if (exercise.equals(changedExercise.getName())) {
-                    exerciseList.remove(i);
-                }
-            }
-
-            // If no exercises are left, detach from observables and remove the WorkoutDay
-            if (exerciseList.isEmpty()) {
-                detachFromObservables();
-                workoutRoutine.removeWorkoutDay(this);
-            }
+            findAndUpdate(changedExercise, ExerciseStatus.SUSPENDED);
+        } else if (changedExercise.getStatus() == ExerciseStatus.ACTIVE) {
+            findAndUpdate(changedExercise, ExerciseStatus.ACTIVE);
         }
     }
 }

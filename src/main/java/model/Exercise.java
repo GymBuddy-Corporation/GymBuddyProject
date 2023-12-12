@@ -5,9 +5,9 @@ import engineering.Observable;
 import java.io.Serializable;
 
 public class Exercise extends Observable implements Serializable  {
-    private final String name;
-    private final Gym gym;
-    private ExerciseStatus status;
+    protected final String name;
+    protected final Gym gym;
+    protected ExerciseStatus status;
 
     public Exercise(String name, Gym gym, ExerciseStatus status){
         //ideato SOLO per passare ora i parametri (che non ho il DB)

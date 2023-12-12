@@ -83,7 +83,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML
     public void setExerciseStatus() throws Exception{
         SetExerciseStatusGUIController controller = (SetExerciseStatusGUIController) SwitchPage.setStage(MainStage.getStage(),"SetExerciseStatus.fxml","pt",1);
-        Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap);
+        Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap, this);
     }
     @FXML
     public void deleteChanges() throws Exception{
@@ -121,6 +121,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
+        ManageExerciseList.updateListFilteredDB(routineExerciselist, exerciseBeanList);
         mondayButton.fire();
         athletesNameRoutineText.setText(requestBean.getAthleteBean().getUsername() + "s' Routine");
     }
@@ -129,7 +130,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
         /*WorkoutDayBean workoutDayBean = satisfyWorkoutRequestsController.getWorkoutDayBean(new DayBeanA(exerciseForWorkoutRoutineBean.getDay()));*/
         for (ExerciseForWorkoutRoutineBean exercise : routineExerciselist.getItems()/*workoutDayBean.getExerciseBeanList()*/) {
             /*Il commento serve perchè poi scorreremo tutto il giorno e vedremo se c'è SOLO per quel giorno*/
-            if (Objects.equals(exercise.getExercise(), exerciseForWorkoutRoutineBean.getExercise())) {
+            if (Objects.equals(exercise.getName(), exerciseForWorkoutRoutineBean.getName())) {
                 System.out.println("Esercizio già inserito nella tua scheda\n");
                 return true;
             }
@@ -159,7 +160,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 String rest = restTimeComboBox.getValue();
                 boolean test = true;
 
-                ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(selectedDay, selectedExercise);
+                ExerciseForWorkoutRoutineBean newExercise =
+                        new ExerciseForWorkoutRoutineBean(selectedExercise.getName(),
+                        selectedExercise.getStatusExercise(),
+                        selectedExercise.getGym(),
+                        selectedDay);
 
                 if (!checkAlreadyAdded(newExercise) && sets != 0 && repetitions != 0) {
                     newExercise.setRepetitions(repetitions);
@@ -192,12 +197,12 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     public void cancelExercise() {
         ExerciseForWorkoutRoutineBean selectedExercise = routineExerciselist.getSelectionModel().getSelectedItem();
         if (selectedExercise != null) {
-            satisfyWorkoutRequestsController.removeExerciseToWorkoutDay(selectedExercise.getExercise(), routineExerciselist, dayExercisesMap);
+            satisfyWorkoutRequestsController.removeExerciseToWorkoutDay(selectedExercise, routineExerciselist, dayExercisesMap);
 
             // Remove the exercise from the dayExercisesMap
             List<ExerciseForWorkoutRoutineBean> dayExercises = dayExercisesMap.get(selectedExercise.getDay());
             if (dayExercises != null) {
-                dayExercises.removeIf(dayExercise -> dayExercise.getExercise().getName().equals(selectedExercise.getExercise().getName()));
+                dayExercises.removeIf(dayExercise -> dayExercise.getName().equals(selectedExercise.getName()));
             }
         }
         setVisibleLabel(false);

@@ -59,12 +59,14 @@ public class SatisfyWorkoutRequestsController {
                 WorkoutDayBean workoutDayBean = new WorkoutDayBean(workoutDay.getDay());
                 for(ExerciseForWorkoutRoutine exercise: workoutDay.getExerciseList()){
                     workoutDayBean.addExerciseBean(new ExerciseForWorkoutRoutineBean(
+                            exercise.getName(),
+                            convertToExerciseStatusBean(exercise.getStatus()),
+                            trainer.getGym().getEmail(),
                             exercise.getDay(),
-                            convertFromExercise(exercise.getExercise(), trainer.getGym().getEmail()),
                             exercise.getRepetitions(),
                             exercise.getSets(),
-                            exercise.getRest())
-                    );
+                            exercise.getRest()
+                    ));
                 }
                 return workoutDayBean;
             }
@@ -101,8 +103,6 @@ public class SatisfyWorkoutRequestsController {
         return null;
     }
 
-
-
     public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, List<ExerciseForWorkoutRoutineBean> RoutineExerciselist)  {
         WorkoutDay workoutDay = getWorkoutDay(exercise.getDay());
         if(workoutDay == null) {
@@ -114,8 +114,10 @@ public class SatisfyWorkoutRequestsController {
             workoutRoutine.addWorkoutDay(workoutDay);
         }
         workoutDay.addExercise(new ExerciseForWorkoutRoutine(
+                exercise.getName(),
+                trainer.getGym(),
+                convertFromExerciseStatusBean(exercise.getStatusExercise()),
                 exercise.getDay(),
-                convertFromExerciseBean(exercise.getExercise(), trainer.getGym()),
                 exercise.getRepetitions(),
                 exercise.getSets(),
                 exercise.getRest(),
@@ -130,12 +132,23 @@ public class SatisfyWorkoutRequestsController {
                 exercise.getName(),
                 trainer.getGym(),
                 convertFromExerciseStatusBean(exercise.getStatusExercise()));
-        new ExerciseDAO().changeExerciseStatus(exerciseToEdit, convertFromExerciseStatusBean(status));
-        //insert here my request
+        ExerciseStatus statusToSet = convertFromExerciseStatusBean(status);
+        new ExerciseDAO().changeExerciseStatus(exerciseToEdit, statusToSet);
 
-        /*exerciseList.getExerciseList();
-        exerciseCatalogue.removeExercise(exerciseToEdit);*/
+        // Update the status in the exerciseBean
         exercise.setStatusExercise(status);
+
+        // Notify observers or perform any other necessary actions
+        //exerciseToEdit.setStatus(statusToSet);
+        findExerciseByName(exercise.getName(), statusToSet);
+    }
+
+    private void findExerciseByName(String exerciseName, ExerciseStatus status) {
+        for (Exercise exercise : exerciseList.getExerciseList()) {
+            if (exercise.getName().equals(exerciseName)) {
+                exercise.setStatus(status);
+            }
+        }
     }
 
     public void submitRoutine(RequestBean request) {
@@ -149,7 +162,7 @@ public class SatisfyWorkoutRequestsController {
 
             // Iterate through each ExerciseForWorkoutRoutineBean in the WorkoutDayBean
             for (ExerciseForWorkoutRoutine exercisePrint : workoutDay.getExerciseList()) {
-                Exercise exerciseName = exercisePrint.getExercise();
+                String exerciseName = exercisePrint.getName();
                 int repetitionsP = exercisePrint.getRepetitions();
                 int setsP = exercisePrint.getSets();
                 String restP = exercisePrint.getRest();
@@ -220,7 +233,7 @@ public class SatisfyWorkoutRequestsController {
         List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(routineExerciselist.getItems());
 
         for (ExerciseForWorkoutRoutineBean item : copyList) {
-            if (selectedExercise.equals(item.getExercise())) {
+            if (selectedExercise.getName().equals(item.getName())) {
                 routineExerciselist.getItems().remove(item);
 
                 // Remove the exercise from the dayExercisesMap

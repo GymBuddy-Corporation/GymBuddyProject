@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,22 +12,14 @@ import java.util.Objects;
 public class ExerciseStatusButtonController {
 
     private Button previousButton;
-    private final List<String> buttonNameList = new ArrayList<>(Arrays.asList(
+    private final List<Button> buttonList = new ArrayList<>();
+    private final List<String> buttonNameList = Arrays.asList(
             "Active",
             "Suspended"
-    ));
+    );
 
-    public String getDay() {
-        for(int i = 0; i < 2; i++){
-            if(Objects.equals(previousButton.getId(), buttonNameList.get(i))) {
-                return DayOfWeek.of(i+1).name();
-            }
-        }
-        return null;
-    }
-
-    private void colorShift(Button button){
-        if(previousButton!=null){
+    private void colorShift(Button button) {
+        if (previousButton != null) {
             previousButton.setStyle(null);
         }
         button.setStyle("-fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" +
@@ -37,15 +28,20 @@ public class ExerciseStatusButtonController {
         previousButton = button;
     }
 
-    public String statusButtonAction(ActionEvent event) {
-        String sourceId = ((Node) event.getSource()).getId();
-        colorShift((Button) event.getSource());
-        for(int i = 0; i < 2; i++){
-            if(Objects.equals(sourceId, buttonNameList.get(i))) {
-                return DayOfWeek.of(i+1).name();
-            }
+    public Button statusButtonAction(ActionEvent event) {
+        Button sourceButton = (Button) event.getSource();
+        colorShift(sourceButton);
+
+        // Store the button in the list if it's not already present
+        if (!buttonList.contains(sourceButton)) {
+            buttonList.add(sourceButton);
         }
-        return null;
+
+        return sourceButton;
     }
 
+    // You can also provide a method to get the list of buttons that had color shift
+    public List<Button> getButtonList() {
+        return buttonList;
+    }
 }

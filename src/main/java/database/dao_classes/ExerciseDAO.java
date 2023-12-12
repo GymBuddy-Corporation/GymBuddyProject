@@ -54,8 +54,11 @@ public class ExerciseDAO {
     }
 
     public void changeExerciseStatus(Exercise exerciseToEdit, ExerciseStatus status){
-
+        exerciseToEdit.setStatus(status);
+        System.out.println(exerciseToEdit.getName() + " ha lo stato " + status);
+        // Add logic to update the exercise status in your data store (e.g., database)
     }
+
 
     public void insertExerciseInWorkoutDay(Exercise exercise, int workoutDayId) /*throws SQLException, DBUnreachableException*/ {
         /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(

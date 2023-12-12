@@ -6,26 +6,25 @@ import exceptions.InvalidExerciseFeaturesException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ExerciseForWorkoutRoutine {
-    protected final String day;
-    protected final String workoutRoutineName;
+public class ExerciseForWorkoutRoutine extends Exercise{
+    private final String day;
+    private final String workoutRoutineName;
     private int repetitions;
     private int sets;
     private String rest;
-    protected final Exercise exercise;
 
-    public ExerciseForWorkoutRoutine(String day, Exercise exercise, int repetitions, int sets, String rest, String workoutRoutineName) {
+    public ExerciseForWorkoutRoutine(String name, Gym gym, ExerciseStatus status, String day, int repetitions, int sets, String rest, String workoutRoutineName) {
+        super(name, gym, status);
         this.day = day;
-        this.exercise = exercise;
         this.rest = rest;
         this.sets = sets;
         this.repetitions = repetitions;
         this.workoutRoutineName = workoutRoutineName;
     }
 
-    public ExerciseForWorkoutRoutine(String day, Exercise exercise, String workoutRoutineName) {
+    public ExerciseForWorkoutRoutine(String name, Gym gym, ExerciseStatus status, String day, String workoutRoutineName) {
+        super(name, gym, status);
         this.day = day;
-        this.exercise = exercise;
         this.workoutRoutineName = workoutRoutineName;
     }
 
@@ -33,9 +32,6 @@ public class ExerciseForWorkoutRoutine {
         return day;
     }
 
-    public Exercise getExercise() {
-        return exercise;
-    }
 
     public int getRepetitions() {return repetitions;}
 
@@ -48,4 +44,8 @@ public class ExerciseForWorkoutRoutine {
     }
     public void setRepetitions(int reps) {this.repetitions = reps;}
     public void setSets(int sets) {this.sets = sets;}
+
+    public String getWorkoutRoutineName() {
+        return workoutRoutineName;
+    }
 }
