@@ -1,18 +1,20 @@
 package model;
 
+import beans.ExerciseForWorkoutRoutineBean;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class WorkoutDay implements Serializable {
-    protected Integer id;
+    private String workoutRoutine;
     protected String day;
-    protected transient List<Exercise> exerciseList;
+    protected transient List<ExerciseForWorkoutRoutine> exerciseList;
 
-    public WorkoutDay(int id, String day, List<Exercise> exerciseList){
-        this(day);
-        this.id = id;
+    public WorkoutDay(String day, List<ExerciseForWorkoutRoutine> exerciseList, String workoutRoutine){
+        this.day = day;
+        this.workoutRoutine = workoutRoutine;
         addAllExercise(exerciseList);
     }
 
@@ -21,24 +23,20 @@ public class WorkoutDay implements Serializable {
         this.day = day;
     }
 
-    private WorkoutDay() {
+    public WorkoutDay() {
         exerciseList = new ArrayList<>();
     }
 
-    public List<Exercise> getExerciseList(){
+    public List<ExerciseForWorkoutRoutine> getExerciseList(){
         return exerciseList;
     }
 
-    public void addExercise(Exercise exercise){
-        exerciseList.add(exercise);
+    public void addExercise(ExerciseForWorkoutRoutine exercise) {
+        this.exerciseList.add(exercise);
     }
 
-    public void addAllExercise(List<Exercise> exerciseList){
+    public void addAllExercise(List<ExerciseForWorkoutRoutine> exerciseList){
         this.exerciseList = exerciseList;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getDay() {

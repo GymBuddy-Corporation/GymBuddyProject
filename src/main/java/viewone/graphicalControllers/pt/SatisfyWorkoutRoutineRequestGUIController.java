@@ -9,8 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import engineering.manageListView.ManageExerciseList;
+import model.Exercise;
+import model.ExerciseForWorkoutRoutine;
+import model.WorkoutDay;
 import utils.MainStage;
 import utils.SwitchPage;
+import viewone.DayBeanA;
 import viewone.DaysOfTheWeekButtonController;
 import controllers.SatisfyWorkoutRequestsController;
 
@@ -159,14 +163,15 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
                 if (!checkAlreadyAdded(newExercise) && sets != 0 && repetitions != 0) {
                     newExercise.setRepetitions(repetitions);
                     newExercise.setSets(sets);
-
                     if (!newExercise.setRest(rest)) {
                         test = false;
                     }
-
                     if (test) {
-                        satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, routineExerciselist);
+                        List<ExerciseForWorkoutRoutineBean> workoutDay= new ArrayList<>();
+                        workoutDay.addAll(routineExerciselist.getItems());
+                        satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, workoutDay);
                         // Update the map with the new exercise
+                        routineExerciselist.getItems().add(newExercise);
                         dayExercisesMap.computeIfAbsent(newExercise.getDay(), k -> new ArrayList<>()).add(newExercise);
                     } else {
                         throw new InvalidExerciseFeaturesException();
@@ -203,6 +208,9 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
 
     @FXML
     void dayButtonAction(ActionEvent event) {
+        setVisibleLabel(false);
+        setVisibleCancel(false);
+        setVisibleAdd(false);
         selectedDay = daysController.dayButtonAction(event);
 
         // If exercises for the selected day are not loaded, load them
@@ -223,6 +231,25 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     @FXML public void searchButtonAction() {
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
+    }
+
+    public void updateLists() /*throws DBUnreachableException, SQLException*/ {
+        updateExerciseList();
+        updateSelectedExerciseList();
+    }
+
+    public void updateSelectedExerciseList() {
+        WorkoutDayBean workoutDayBean = satisfyWorkoutRequestsController.getWorkoutDayBean(new DayBeanA(daysController.getDay()));
+        ManageExerciseList.updateRoutineList(
+                routineExerciselist,
+                workoutDayBean.getExerciseBeanList());
+    }
+
+    public void updateExerciseList() /*throws SQLException, DBUnreachableException*/ {
+        ManageExerciseList.updateList(
+                exerciseDBList,
+                satisfyWorkoutRequestsController.getGymExerciseBean()
+        );
     }
 
     @Override

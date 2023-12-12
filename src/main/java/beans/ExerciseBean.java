@@ -4,9 +4,12 @@ public class ExerciseBean {
     private final String name;
     private ExerciseStatusBean statusExercise;
 
-    public ExerciseBean(String name, ExerciseStatusBean statusExercise) {
+    private final String gym;
+
+    public ExerciseBean(String name, ExerciseStatusBean statusExercise, String gym) {
         this.name = name;
         this.statusExercise = statusExercise;
+        this.gym = gym;
     }
 
     public String getName() {
@@ -21,8 +24,7 @@ public class ExerciseBean {
         this.statusExercise = statusExercise;
     }
 
-    // New method to get ExerciseStatusBean from ExerciseBean
-    public ExerciseStatusBean getExerciseStatusBean() {
-        return statusExercise;
+    public String getGym() {
+        return gym;
     }
 }

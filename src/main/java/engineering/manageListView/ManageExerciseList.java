@@ -45,6 +45,11 @@ public class ManageExerciseList {
         exerciseBeanListView.setItems(exerciseBeanObservableList);
     }
 
+    public static void updateRoutineList(ListView<ExerciseForWorkoutRoutineBean> exerciseBeanListView, List<ExerciseForWorkoutRoutineBean> exerciseBeanList) {
+        ObservableList<ExerciseForWorkoutRoutineBean> exerciseBeanObservableList = FXCollections.observableList(exerciseBeanList);
+        exerciseBeanListView.setItems(exerciseBeanObservableList);
+    }
+
     public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
         // Filter out exercises with status other than ACTIVE
         List<ExerciseBean> filteredList = exerciseBeanList.stream()

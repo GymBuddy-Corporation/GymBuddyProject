@@ -28,7 +28,7 @@ public class ExerciseInventory implements Observer{
     }
 
     @Override
-    public void update(Exercise exercise, ExerciseStatus status) {
+    public void update(Exercise exercise) {
         /*ExerciseStatusBean statusBean = getStatusBean(status);
         ObservableList<ExerciseBean> items = exerciseDBList.getItems();
 

@@ -31,6 +31,10 @@ public class WorkoutDayBean {
         return null;
     }*/
 
+    public List<ExerciseForWorkoutRoutineBean> getExerciseBeanList() {
+        return exerciseBeanList;
+    }
+
     public void addExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) {
         exerciseBeanList.add(exerciseBean);
     }

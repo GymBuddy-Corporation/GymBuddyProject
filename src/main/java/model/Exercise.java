@@ -1,8 +1,10 @@
 package model;
 
+import engineering.Observable;
+
 import java.io.Serializable;
 
-public class Exercise implements Serializable {
+public class Exercise extends Observable implements Serializable  {
     private final String name;
     private final Gym gym;
     private ExerciseStatus status;
@@ -34,5 +36,6 @@ public class Exercise implements Serializable {
 
     public void setStatus(ExerciseStatus status) {
         this.status = status;
+        super.notifyObservers(this);
     }
 }

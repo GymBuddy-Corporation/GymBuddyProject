@@ -60,4 +60,7 @@ public class WorkoutRoutine {
         workoutDayList.remove(workoutDay);
     }
 
+    public String getName() {
+        return name;
+    }
 }

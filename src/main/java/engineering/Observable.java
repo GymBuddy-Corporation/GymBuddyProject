@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Observable {
+
+    //ogni esercizio ha N observer
     private final List<Observer> observers = new ArrayList<>();
 
     public void addObserver(Observer observer) {
@@ -17,9 +19,9 @@ public abstract class Observable {
         this.observers.remove(observer);
     }
 
-    /*public synchronized void notifyObservers(Exercise exercise, ExerciseStatus status){
+    public synchronized void notifyObservers(Exercise exercise){
         for (Observer observer : this.observers) {
-            observer.update(exercise, status);
+            observer.update(exercise);
         }
-    }*/
+    }
 }

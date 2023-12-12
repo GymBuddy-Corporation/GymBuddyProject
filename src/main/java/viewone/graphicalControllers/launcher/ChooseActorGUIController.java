@@ -73,12 +73,12 @@ public class ChooseActorGUIController implements Initializable {
             Objects.requireNonNull(controller).setValue(user);
         } else if (scelta==Selezione.PT) {
             this.user = "trainer";
-            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avanti senza DB
             LoginGUIController controller = (LoginGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
             Objects.requireNonNull(controller).setValue(user);
         } else if(scelta==Selezione.ATHLETE) {
             this.user = "athlete";
-            path = "AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
             LoginGUIController controller = (LoginGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
             Objects.requireNonNull(controller).setValue(user);
         }else{

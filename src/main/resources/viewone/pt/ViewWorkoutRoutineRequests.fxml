@@ -92,7 +92,7 @@
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
 
-   <Text fx:id="usernameText11" layoutX="49.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Routine Requests" textAlignment="CENTER" wrappingWidth="274.4">
+   <Text layoutX="49.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Routine Requests" textAlignment="CENTER" wrappingWidth="274.4">
       <font>
          <Font name="Allerta Stencil Regular" size="20.0" />
       </font>

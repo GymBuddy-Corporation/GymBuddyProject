@@ -29,7 +29,8 @@ public class RequestDAO {
     public static final String INFO = "Info";
     public static final String ATHLETE = "Athlete";
 
-    public void deleteRequest(int idRequest) /*throws SQLException, DBUnreachableException*/ {
+    public void deleteRequest(LocalDateTime requestDate, String athleteEmail) /*throws SQLException, DBUnreachableException*/ {
+
         /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
                 RequestQueries.DELETE_REQUEST_QUERY)){
             RequestQueries.deleteRequest(preparedStatement, idRequest);
