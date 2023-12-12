@@ -3,7 +3,6 @@ package viewone.graphicalControllers.pt;
 import beans.*;
 import engineering.manageListView.listCells.ExerciseForWOListCellFactory;
 import engineering.manageListView.listCells.ExerciseListCellFactory;
-import exceptions.InvalidExerciseFeaturesException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

@@ -2,15 +2,17 @@ package viewtwo.popups.controllers;
 
 import beans.AthleteBean;
 import beans.CredentialsBean;
-import beans.PersonBean;
 import beans.PersonalInfoBean;
+import engineering.popups.PopupBaseController;
+import exceptions.dataException.EmailFIeldException;
+import exceptions.dataException.PasswordFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import viewtwo.popups.PopupBaseClass;
+import engineering.popups.PopupBaseClass;
 import viewtwo.popups.UserRegistrationPopup;
 
 import java.net.URL;
@@ -59,7 +61,7 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
 
         }
     }
-    public void userRegistration(){
+    public void userRegistration() throws EmailFIeldException, PasswordFieldException {
 
         caller.userRegistration(
                 new AthleteBean(usernameField.getText()

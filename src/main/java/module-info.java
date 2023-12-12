@@ -36,5 +36,7 @@ module start {
     exports engineering.manageListView.listCells;
     opens engineering.manageListView.listCells;
     opens utils;
+    exports exceptions.dataException;
+    opens engineering.popups to javafx.fxml;
 
 }
