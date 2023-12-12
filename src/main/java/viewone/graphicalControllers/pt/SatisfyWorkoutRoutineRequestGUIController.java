@@ -82,6 +82,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable 
     }
     @FXML
     public void setExerciseStatus() throws Exception{
+        SwitchPage.saveElement("SatisfyWorkoutRoutineRequest.fxml","pt",labelRest.getScene(),this);
         SetExerciseStatusGUIController controller = (SetExerciseStatusGUIController) SwitchPage.setStage(MainStage.getStage(),"SetExerciseStatus.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap, this);
     }
