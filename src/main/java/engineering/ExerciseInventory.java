@@ -5,7 +5,7 @@ import model.ExerciseStatus;
 
 import java.util.List;
 
-public class ExerciseInventory implements Observer{
+public class ExerciseInventory {
 
     private final List<Exercise> exerciseList;
 
@@ -25,18 +25,5 @@ public class ExerciseInventory implements Observer{
 
     public List<Exercise> getExerciseList() {
         return exerciseList;
-    }
-
-    @Override
-    public void update(Exercise exercise) {
-        /*ExerciseStatusBean statusBean = getStatusBean(status);
-        ObservableList<ExerciseBean> items = exerciseDBList.getItems();
-
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getName().equals(exercise.getName())) {
-                items.get(i).setStatusExercise(status);
-                break;
-            }
-        }*/
     }
 }

@@ -19,7 +19,7 @@ public abstract class Observable {
         this.observers.remove(observer);
     }
 
-    public synchronized void notifyObservers(Exercise exercise){
+    public synchronized void notifyObservers(String exercise){
         for (Observer observer : this.observers) {
             observer.update(exercise);
         }

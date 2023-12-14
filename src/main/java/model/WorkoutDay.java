@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class WorkoutDay implements Serializable {
+public class WorkoutDay {
     private String workoutRoutine;
     protected String day;
     protected transient List<ExerciseForWorkoutRoutine> exerciseList;
@@ -31,7 +31,7 @@ public class WorkoutDay implements Serializable {
         return exerciseList;
     }
 
-    public void addExercise(ExerciseForWorkoutRoutine exercise) {
+    public void addExercise(ExerciseForWorkoutRoutine exercise){
         this.exerciseList.add(exercise);
     }
 
@@ -41,6 +41,10 @@ public class WorkoutDay implements Serializable {
 
     public String getDay() {
         return day;
+    }
+
+    public String getWorkoutRoutine() {
+        return workoutRoutine;
     }
 
    /* public void removeExercise(String name, String info) {

@@ -23,8 +23,8 @@ import java.util.*;
 
 public class SetExerciseStatusGUIController implements Initializable{
 
-    private Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap;
-    private RequestBean requestBean;
+    /*private Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap;
+    private RequestBean requestBean;*/
     private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private Button suspendStatusButton;
@@ -58,8 +58,8 @@ public class SetExerciseStatusGUIController implements Initializable{
 
     public void setValue(RequestBean requestBean, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
         this.satisfyWorkoutRoutineRequestGUIController = satisfyWorkoutRoutineRequestGUIController;
-        this.dayExercisesMap=dayExercisesMap;
-        this.requestBean= requestBean;
+        /*this.dayExercisesMap=dayExercisesMap;
+        this.requestBean= requestBean;*/
         this.satisfyWorkoutRequestsController=satisfyWorkoutRequestsController;
         ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
@@ -88,20 +88,26 @@ public class SetExerciseStatusGUIController implements Initializable{
     @FXML public void setButtonStatus() throws Exception{
         ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
         ExerciseStatusBean selectedStatus = null;
+        String newStatus;
         if(selectedButton == activeStatusButton){
             selectedStatus = ExerciseStatusBean.ACTIVE;
+            newStatus = "Active";
             System.out.println("Premuto active");
         } else if (selectedButton == suspendStatusButton){
             selectedStatus = ExerciseStatusBean.SUSPENDED;
+            newStatus = "Suspended";
             System.out.println("Premuto suspended");
         } else {
             System.out.println("Premuto niente");
+            newStatus = "";
+            //TODO then throw exception
         }
 
         satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
-        satisfyWorkoutRoutineRequestGUIController.updateLists();
         satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
-        Objects.requireNonNull(satisfyWorkoutRoutineRequestGUIController).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap);
+
+        //satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.getController("SatisfyWorkoutRoutineRequest.fxml","pt");
+        //Objects.requireNonNull(satisfyWorkoutRoutineRequestGUIController).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap, newStatus);
     }
 
     /*private ExerciseStatusBean getStatusBean(ExerciseStatus status){

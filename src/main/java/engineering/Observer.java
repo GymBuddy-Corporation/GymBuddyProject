@@ -4,5 +4,5 @@ import model.Exercise;
 import model.ExerciseStatus;
 
 public interface Observer {
-    void update(Exercise exercise);
+    void update(String exerciseName);
 }

@@ -4,31 +4,45 @@ import beans.*;
 import controllers.LoginController;
 
 import exceptions.dataException.DataFieldException;
-import model.Person;
-import model.User;
-import model.Athlete;
+import model.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LoggedUserSingleton {
 
-    private static String athleteUsername;
-    private static String trainerUsername;
-    private static String gymUsername;
 
+
+    private  User user;
+    private static String tipo_utente;
+    private static LoggedUserSingleton me;
     //private static UserInfoCarrier userInfoCarrier;
     private static final LoginController loginController = new LoginController();
 
-    private LoggedUserSingleton() {}
-
-    public static String getAthleteUsername() {
-        return athleteUsername;
+    private LoggedUserSingleton(User temp) {
+        user=temp;
     }
 
-    public static void setAthleteUsername(String athleteUsername) {
-        LoggedUserSingleton.athleteUsername = athleteUsername;
+    public static User getUser() {
+        if(me==null)return null;
+        return me.user;
     }
 
-    /*public static List<UserBean> getAthleteAndTrainer() *//*throws DBUnreachableException, SQLException, NoCardInsertedException*//* {
-        Athlete usr = new Athlete("provaAtleta", , )*//*(Athlete) loginController.getLoggedUser()*//*;
+    public static LoggedUserSingleton getUserSingleton(User temp){
+        if(me.user==null){
+            new LoggedUserSingleton(temp);
+        }
+        return me;
+    }
+
+    public  String getAthleteUsername() {
+        return user.getUsername();
+    }
+
+
+
+    public  List<PersonBean> getAthleteAndTrainer() throws DataFieldException /*throws DBUnreachableException, SQLException, NoCardInsertedException*/ {
+        Athlete usr = (Athlete) loginController.getLoggedUser();
         Trainer trainer = usr.getTrainer();
         AthleteBean athleteBean = new AthleteBean(
                 usr.getUsername(),
@@ -36,33 +50,33 @@ public class LoggedUserSingleton {
                         usr.getName(),
                         usr.getSurname(),
                         usr.getDateOfBirth(),
-                        usr.getFiscalCode(),
+                        usr.getFC(),
                         usr.getGender()
                 ),
                 CredentialsBean.ctorWithoutSyntaxCheck(
                         usr.getEmail(),
                         usr.getPassword()
-                )*//*,
+                )/*,
                 new CardInfoBean(
                         usr.getCardNumber(),
                         usr.getCardExpirationDate()
-                )*//*);
+                )*/);
         TrainerBean trainerBean = new TrainerBean(
                 trainer.getUsername(),
                 new PersonalInfoBean(
                         trainer.getName(),
                         trainer.getSurname(),
                         trainer.getDateOfBirth(),
-                        trainer.getFiscalCode(),
+                        trainer.getFC(),
                         trainer.getGender()
                 ),
                 CredentialsBean.ctorWithoutSyntaxCheck(
                         trainer.getEmail(),
                         trainer.getPassword()
-                )*//*,
-                trainer.getIban()*//*);
+                )/*,
+                trainer.getIban()*/);
         return Arrays.asList(athleteBean, trainerBean);
-    }*/
+    }
 
     public static UserBean getUserBean(User usr) throws DataFieldException {
         if (usr instanceof Athlete) {
@@ -90,22 +104,6 @@ public class LoggedUserSingleton {
                             usr.getEmail(),
                             usr.getPassword()));
         }
-    }
-
-    public static String getTrainerUsername() {
-        return trainerUsername;
-    }
-
-    public static void setTrainerUsername(String trainerUsername) {
-        LoggedUserSingleton.trainerUsername = trainerUsername;
-    }
-
-    public static String getGymUsername() {
-        return gymUsername;
-    }
-
-    public static void setGymUsername(String gymUsername) {
-        LoggedUserSingleton.gymUsername = gymUsername;
     }
 
     /* public static UserBean getInstance() *//*throws DBUnreachableException*//*{

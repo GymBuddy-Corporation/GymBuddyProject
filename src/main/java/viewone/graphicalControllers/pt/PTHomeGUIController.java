@@ -1,16 +1,21 @@
 package viewone.graphicalControllers.pt;
 
+import javafx.fxml.Initializable;
+import javafx.scene.text.Text;
 import model.Trainer;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
 
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 
-public class PTHomeGUIController {
+public class PTHomeGUIController implements Initializable {
 
-    private String loggedTrainer;
+    private Trainer loggedTrainer;
+    @FXML private Text usernameText;
     @FXML
     public void sendCommunication() throws Exception{
         SendPTCommunicationGUIController controller = (SendPTCommunicationGUIController) SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
@@ -19,7 +24,8 @@ public class PTHomeGUIController {
     }
     @FXML
     public void yourAthletes() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"ViewYourAthletes.fxml","pt",1);
+        ViewRequestGUIController controller = (ViewRequestGUIController)SwitchPage.setStage(MainStage.getStage(),"ViewYourAthletes.fxml","pt",1);
+        Objects.requireNonNull(controller).setValue(loggedTrainer);
     }
     @FXML
     public void logout() throws Exception {
@@ -36,10 +42,15 @@ public class PTHomeGUIController {
         SwitchPage.setStage(MainStage.getStage(), "ManageCourse.fxml", "pt", 1);
     }
 
-    public void setValue(String trainer) {
+    public void setValue(Trainer trainer) {
         //TODO poi quando avremo un DB possiamo toglierla
         // e finire il tutto
         this.loggedTrainer = trainer;
+        usernameText.setText(loggedTrainer.getUsername());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 }

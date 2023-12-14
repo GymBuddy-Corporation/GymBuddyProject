@@ -34,17 +34,11 @@ public class ViewRequestGUIController implements Initializable {
     private Text usernameRequestText;
 
     private RequestBean selectedRequest;
-    private final Trainer trainer; //poi gestisci con loggedUser (vedi todo)
+    private Trainer trainer; //poi gestisci con loggedUser (vedi todo)
 
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
     public ViewRequestGUIController() {
-        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com",
-                "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
-        this.trainer = new Trainer("AleCortix",
-                new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1);
         satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
     }
 
@@ -103,5 +97,9 @@ public class ViewRequestGUIController implements Initializable {
             }
         }
 
+    }
+
+    public void setValue(Trainer loggedTrainer) {
+        this.trainer = loggedTrainer;
     }
 }

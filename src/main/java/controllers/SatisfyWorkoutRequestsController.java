@@ -23,22 +23,22 @@ public class SatisfyWorkoutRequestsController {
     private final Trainer trainer;
     private final ExerciseInventory exerciseList;
 
-    public List<ExerciseBean> getGymExerciseBean() {
-        System.out.println(exerciseList);
-        return getExerciseBeanList(exerciseList, null);
-    }
-
     public SatisfyWorkoutRequestsController() {
         this.workoutRoutine = new WorkoutRoutine();
         Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "F@orzanapule1926"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "F@orzanapule1926"), palestra1)
-        /*(Trainer) new LoginController().getLoggedUser()*/;
-        System.out.println(this.trainer.getName() + this.trainer.getEmail());
+                new Credentials("alecortix@gmail.com", "F@orzanapule1926"), palestra1);
+        /*(Trainer) new LoginController().getLoggedUser()*//*;
+        System.out.println(this.trainer.getName() + this.trainer.getEmail());*/
         //TODO organizza exercises
         this.exerciseList = new ExerciseInventory(new ArrayList<>(new ExerciseDAO().loadDBExercises()));
+    }
+
+    public List<ExerciseBean> getGymExerciseBean() {
+        List<Exercise> exerciseList = new ArrayList<>(new ExerciseDAO().loadDBExercises());
+        return getExerciseBeanList(exerciseList, null);
     }
 
     public static ExerciseBean convertFromExercise(Exercise exercise, String gym) {
@@ -108,10 +108,10 @@ public class SatisfyWorkoutRequestsController {
         WorkoutDay workoutDay = getWorkoutDay(exercise.getDay());
         if(workoutDay == null) {
             List<ExerciseForWorkoutRoutine> newList= new ArrayList<>();
-            workoutDay = new WorkoutDayObserver(
+            workoutDay = new WorkoutDay(
                     exercise.getDay(),
                     newList,
-                    workoutRoutine);
+                    workoutRoutine.getName());
             workoutRoutine.addWorkoutDay(workoutDay);
         }
         workoutDay.addExercise(new ExerciseForWorkoutRoutine(
@@ -134,20 +134,29 @@ public class SatisfyWorkoutRequestsController {
                 trainer.getGym(),
                 convertFromExerciseStatusBean(exercise.getStatusExercise()));
         ExerciseStatus statusToSet = convertFromExerciseStatusBean(status);
-        new ExerciseDAO().changeExerciseStatus(exerciseToEdit, statusToSet);
 
         // Update the status in the exerciseBean
         exercise.setStatusExercise(status);
 
         // Notify observers or perform any other necessary actions
-        //exerciseToEdit.setStatus(statusToSet);
         findExerciseByName(exercise.getName(), statusToSet);
+        new ExerciseDAO().changeExerciseStatus(exerciseToEdit, statusToSet);
     }
 
     private void findExerciseByName(String exerciseName, ExerciseStatus status) {
         for (Exercise exercise : exerciseList.getExerciseList()) {
             if (exercise.getName().equals(exerciseName)) {
                 exercise.setStatus(status);
+                System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatus());
+            }
+        }
+
+        for (WorkoutDay day : workoutRoutine.getWorkoutDayList()) {
+            for (ExerciseForWorkoutRoutine exe : day.getExerciseList()){
+                if (exe.getName().equals(exerciseName)) {
+                    exe.setStatus(status);
+                    System.out.println(exe.getName() + " ha lo stato " + exe.getStatus());
+                }
             }
         }
     }
@@ -178,13 +187,12 @@ public class SatisfyWorkoutRequestsController {
     }
     public List<ExerciseBean> searchExercise(SearchBean searchBean) {
         System.out.println(searchBean.getName());
-
         List<Exercise> filteredExercises = new ArrayList<>();
-        for (Exercise exercise : exerciseList.getExerciseList()) {
+        for (Exercise exercise : this.exerciseList.getExerciseList()) {
             System.out.println(exercise.getName());
         }
 
-        for (Exercise exercise : exerciseList.getExerciseList()) {
+        for (Exercise exercise : this.exerciseList.getExerciseList()) {
             if (exercise.getName().toLowerCase().contains(searchBean.getName().toLowerCase())) {
                 filteredExercises.add(exercise);
             }
@@ -193,7 +201,7 @@ public class SatisfyWorkoutRequestsController {
     }
 
     @NotNull
-    public List<ExerciseBean> getExerciseBeanList(ExerciseInventory exerciseList, List<Exercise> exList) {
+    public List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList, List<Exercise> exList) {
         List<ExerciseBean> exerciseBeanList = new ArrayList<>();
         if (exList!=null){
             for(Exercise exercise: exList){
@@ -201,8 +209,8 @@ public class SatisfyWorkoutRequestsController {
                 exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex, exercise.getGym().getEmail()));
             }
             return exerciseBeanList;
-        } else if(exerciseList.getExerciseList()!=null){
-            for(Exercise exercise: exerciseList.getExerciseList()){
+        } else if(exerciseList!=null){
+            for(Exercise exercise: exerciseList){
                 ExerciseStatusBean ex = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
                 exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex, exercise.getGym().getEmail()));
             }

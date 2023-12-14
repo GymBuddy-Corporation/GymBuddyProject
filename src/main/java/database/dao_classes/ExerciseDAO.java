@@ -54,8 +54,7 @@ public class ExerciseDAO {
     }
 
     public void changeExerciseStatus(Exercise exerciseToEdit, ExerciseStatus status){
-        exerciseToEdit.setStatus(status);
-        System.out.println(exerciseToEdit.getName() + " ha lo stato " + status);
+        //exerciseToEdit.setStatus(status);
         // Add logic to update the exercise status in your data store (e.g., database)
     }
 
