@@ -90,6 +90,8 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     }
     @FXML
     public void deleteChanges() throws Exception{
+        SwitchPage.deleteElement("SatisfyWorkoutRoutineRequest.fxml","pt");
+
         //TODO gestisci la cancellazione della scheda
         SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
     }

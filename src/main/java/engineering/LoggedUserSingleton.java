@@ -1,8 +1,9 @@
 package engineering;
 
 import beans.*;
-import controllers.LoginController;
 
+import exceptions.AlreadyLoggedUserException;
+import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 
@@ -13,27 +14,32 @@ public class LoggedUserSingleton {
 
 
 
-    private  User user;
-    private static String tipo_utente;
-    private static LoggedUserSingleton me;
-    //private static UserInfoCarrier userInfoCarrier;
-    private static final LoginController loginController = new LoginController();
+    private final User user;
+    private  UserTypes userType;
+    private  static LoggedUserSingleton me;
 
     private LoggedUserSingleton(User temp) {
+        if(temp instanceof Gym)userType=UserTypes.gym;
+        else if (temp instanceof Athlete)userType=UserTypes.athlete;
+        else if (temp instanceof Trainer)userType=UserTypes.pt;
         user=temp;
     }
+
+
 
     public static User getUser() {
         if(me==null)return null;
         return me.user;
     }
 
-    public static LoggedUserSingleton getUserSingleton(User temp){
+    public static LoggedUserSingleton createUserSingleton(User temp) throws AlreadyLoggedUserException {
         if(me.user==null){
             new LoggedUserSingleton(temp);
         }
-        return me;
+        throw new AlreadyLoggedUserException();
     }
+
+
 
     public  String getAthleteUsername() {
         return user.getUsername();
@@ -41,44 +47,7 @@ public class LoggedUserSingleton {
 
 
 
-    public  List<PersonBean> getAthleteAndTrainer() throws DataFieldException /*throws DBUnreachableException, SQLException, NoCardInsertedException*/ {
-        Athlete usr = (Athlete) loginController.getLoggedUser();
-        Trainer trainer = usr.getTrainer();
-        AthleteBean athleteBean = new AthleteBean(
-                usr.getUsername(),
-                new PersonalInfoBean(
-                        usr.getName(),
-                        usr.getSurname(),
-                        usr.getDateOfBirth(),
-                        usr.getFC(),
-                        usr.getGender()
-                ),
-                CredentialsBean.ctorWithoutSyntaxCheck(
-                        usr.getEmail(),
-                        usr.getPassword()
-                )/*,
-                new CardInfoBean(
-                        usr.getCardNumber(),
-                        usr.getCardExpirationDate()
-                )*/);
-        TrainerBean trainerBean = new TrainerBean(
-                trainer.getUsername(),
-                new PersonalInfoBean(
-                        trainer.getName(),
-                        trainer.getSurname(),
-                        trainer.getDateOfBirth(),
-                        trainer.getFC(),
-                        trainer.getGender()
-                ),
-                CredentialsBean.ctorWithoutSyntaxCheck(
-                        trainer.getEmail(),
-                        trainer.getPassword()
-                )/*,
-                trainer.getIban()*/);
-        return Arrays.asList(athleteBean, trainerBean);
-    }
-
-    public static UserBean getUserBean(User usr) throws DataFieldException {
+    public static UserBean getUserBean(User usr) throws DataFieldException, UserCastException {
         if (usr instanceof Athlete) {
             return new AthleteBean(
                     usr.getUsername(),
@@ -91,7 +60,7 @@ public class LoggedUserSingleton {
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             usr.getEmail(),
                             usr.getPassword()));
-        } else {
+        } else if (usr instanceof Trainer) {
             return new TrainerBean(
                     usr.getUsername(),
                     new PersonalInfoBean(
@@ -103,20 +72,17 @@ public class LoggedUserSingleton {
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             usr.getEmail(),
                             usr.getPassword()));
+        }else if (usr instanceof  Gym) {
+            return  new GymBean(usr.getUsername(),CredentialsBean.ctorWithoutSyntaxCheck(usr.getEmail(),usr.getPassword()),new GymInfoBean(((Gym) usr).getGymName(), ((Gym) usr).getAddress(), ((Gym) usr).getCity(), ((Gym) usr).getGymName()));
         }
+        throw new UserCastException();
+        }
+
+        public UserBean geyMyBean() throws DataFieldException, UserCastException {
+        return getUserBean(user);
+        }
+
+    public UserTypes getUserType() {
+        return userType;
     }
-
-    /* public static UserBean getInstance() *//*throws DBUnreachableException*//*{
-        try{
-            User usr = loginController.getLoggedUser();
-            return getUserBean(usr);
-        } catch (SQLException e){
-            e.printStackTrace();
-            throw new FatalErrorException();
-        }
-    }*/
-
-    /*public static void resetUserInfo() {
-        userInfoCarrier = null;
-    }*/
 }

@@ -39,5 +39,6 @@ module start {
     exports exceptions.dataException;
     opens engineering.popups to javafx.fxml;
     exports exceptions.dataException.TyperEnumerations;
+    exports exceptions;
 
 }

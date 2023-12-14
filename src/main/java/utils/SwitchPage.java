@@ -53,6 +53,17 @@ public class SwitchPage {
         if(me.remembered_scenes.get(name+folder)!=null)me.remembered_scenes.remove(name+folder);
         me.remembered_scenes.put(name+folder,new Old_scene(scene,controller));
     }
+
+    public static void deleteElement(String name,String folder){
+        if(me==null) {
+            me = new SwitchPage();
+        }
+        if(me.remembered_scenes.get(name+folder)!=null)me.remembered_scenes.remove(name+folder);
+    }
+
+
+
+
     public static Object getController(String name,String folder){
         if(me==null){
             return  null;

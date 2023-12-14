@@ -7,9 +7,17 @@ import exceptions.DBUnreachableException;
 import exceptions.UserNotFoundException;
 import exceptions.runtime_exception.IsNeitherATrainerNorAnAthleteException;*/
 import model.Athlete;
+import model.Gym;
 import model.Trainer;
 import model.User;
+import model.record.Credentials;
+import model.record.PersonalInfo;
 import org.jetbrains.annotations.NotNull;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /*import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,19 +26,19 @@ import java.sql.SQLException;*/
 public class UserDAO {
 
     public User loadUser(String email, String password) /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                UserQueries.LOAD_USER_1_QUERY); ResultSet rs = UserQueries.loadUser(preparedStatement, email, password)){
-            if(rs.next()) {
-                return getUser(rs.getString("FC"));
-            } else {
-                throw new UserNotFoundException();
-            }
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
+        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic");
+        Trainer trainer= new Trainer("AleCortix",
+                new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
+                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1);
+        Athlete athlete= new Athlete("AleCortix",
+                new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
+                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1,trainer);
 
-        //dopo togli sto null
+        List<User> listUsers=new ArrayList<>();
+        listUsers.add(palestra1);listUsers.add(trainer);listUsers.add(athlete);
+        listUsers.removeIf(p->p.getEmail()!=email&&p)
+
         return null;
     }
 
