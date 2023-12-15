@@ -1,4 +1,4 @@
-package database.dao_classes;
+package database.dao;
 
 /*import database.DatabaseConnectionSingleton;
 import database.queries.TrainerQueries;
@@ -8,8 +8,6 @@ import exceptions.DBUnreachableException;
 import exceptions.runtime_exception.ResultSetIsNullException;*/
 import model.Athlete;
 import model.Trainer;
-import model.record.Credentials;
-import model.record.PersonalInfo;
 
 /*import java.sql.PreparedStatement;
 import java.sql.ResultSet;

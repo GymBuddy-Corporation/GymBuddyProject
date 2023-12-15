@@ -1,17 +1,12 @@
-package database.dao_classes;
+package database.dao;
 
 /*import database.DatabaseConnectionSingleton;
 import database.queries.RequestQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;*/
 
-import engineering.ExerciseInventory;
 import model.*;
-import model.record.Credentials;
-import model.record.PersonalInfo;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

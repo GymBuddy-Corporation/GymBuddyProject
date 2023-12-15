@@ -7,6 +7,7 @@ import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import engineering.manageListView.ManageExerciseList;
+import exceptions.UserCastException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,7 +40,7 @@ public class SetExerciseStatusGUIController implements Initializable{
     public void logout() throws Exception {
         SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
     }
-    @FXML public void searchExercise(){
+    @FXML public void searchExercise() throws UserCastException{
         //TODO controlla se funziona
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
@@ -56,10 +57,8 @@ public class SetExerciseStatusGUIController implements Initializable{
         setStatusButton.setVisible(bool);
     }
 
-    public void setValue(RequestBean requestBean, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public void setValue(RequestBean requestBean, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
         this.satisfyWorkoutRoutineRequestGUIController = satisfyWorkoutRoutineRequestGUIController;
-        /*this.dayExercisesMap=dayExercisesMap;
-        this.requestBean= requestBean;*/
         this.satisfyWorkoutRequestsController=satisfyWorkoutRequestsController;
         ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();

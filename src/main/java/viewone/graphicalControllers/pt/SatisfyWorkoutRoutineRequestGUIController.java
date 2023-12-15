@@ -1,7 +1,6 @@
 package viewone.graphicalControllers.pt;
 
 import beans.*;
-import engineering.ExerciseInventory;
 import engineering.LoggedUserSingleton;
 import engineering.Observer;
 import engineering.manageListView.listCells.ExerciseForWOListCellFactory;
@@ -20,6 +19,7 @@ import viewone.DayBeanA;
 import viewone.DaysOfTheWeekButtonController;
 import controllers.SatisfyWorkoutRequestsController;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -120,15 +120,28 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
         //setStuff(satisfyWorkoutRequestsController);
     }
 
-    public void setStuff(SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws UserCastException {
+    public void setStuff(SatisfyWorkoutRequestsController satisfyWorkoutRequestsController){
+        List<ExerciseBean> exerciseBeanList;
+        List<Exercise> observedList;
+        try{
+             exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
+             observedList= LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
+
+        }catch (UserCastException exception1){ //TODO valuta exception UserCastException
+            try {
+                exception1.callMe(1);
+            }catch(IOException exception2){
+                return ;
+            }
+            return;
+        }
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
-        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
+
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
         ManageExerciseList.updateListFilteredDB(routineExerciselist, exerciseBeanList);
         mondayButton.fire();
         athletesNameRoutineText.setText(requestBean.getAthleteBean().getUsername() + "s' Routine");
-        List<Exercise> observedList= LoggedUserSingleton.getSingleton().getExcerciseList();
         if (observedList != null){
             for (Exercise ex : observedList) {
                 ex.addObserver(this);
@@ -137,7 +150,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     }
 
     public boolean checkAlreadyAdded(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean) {
-        /*WorkoutDayBean workoutDayBean = satisfyWorkoutRequestsController.getWorkoutDayBean(new DayBeanA(exerciseForWorkoutRoutineBean.getDay()));*/
         for (ExerciseForWorkoutRoutineBean exercise : routineExerciselist.getItems()/*workoutDayBean.getExerciseBeanList()*/) {
             /*Il commento serve perchè poi scorreremo tutto il giorno e vedremo se c'è SOLO per quel giorno*/
             if (Objects.equals(exercise.getName(), exerciseForWorkoutRoutineBean.getName())) {
@@ -243,7 +255,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
         spinnerSets.getValueFactory().setValue(0);
     }
 
-    @FXML public void searchButtonAction() {
+    @FXML public void searchButtonAction() throws UserCastException {
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
     }
@@ -255,11 +267,15 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
                 workoutDayBean.getExerciseBeanList());
     }
 
-    public void updateExerciseList() /*throws SQLException, DBUnreachableException*/ {
-        ManageExerciseList.updateListFiltered(
-                exerciseDBList,
-                satisfyWorkoutRequestsController.getGymExerciseBean()
-        );
+    public void updateExerciseList() {
+        try {
+            ManageExerciseList.updateListFiltered(
+                    exerciseDBList,
+                    satisfyWorkoutRequestsController.getGymExerciseBean()
+            );
+        } catch(UserCastException e){
+            return;
+        }
     }
 
     @Override

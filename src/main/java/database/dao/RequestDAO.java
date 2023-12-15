@@ -1,4 +1,4 @@
-package database.dao_classes;
+package database.dao;
 
 /*import database.DatabaseConnectionSingleton;
 import database.queries.RequestQueries;

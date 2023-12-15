@@ -7,10 +7,6 @@ import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.LongFunction;
-
 public class LoggedUserSingleton {
 
 
@@ -97,10 +93,10 @@ public class LoggedUserSingleton {
         return userType;
     }
 
-    public List<Exercise> getExcerciseList() throws UserCastException {
+    public ExerciseInventory getExcerciseInventory() throws UserCastException {
         if(userType!=UserTypes.pt && userType!=UserTypes.gym)throw new UserCastException();
-        //return ((Trainer)user).getGym(
-        return null;
+        return ((Trainer)user).getGym().getGymExercises();
+
     }
 
 }

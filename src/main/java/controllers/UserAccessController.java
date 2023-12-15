@@ -2,18 +2,13 @@ package controllers;
 
 import beans.CredentialsBean;
 import beans.UserBean;
-import database.dao_classes.AthleteDAO;
-import database.dao_classes.TrainerDAO;
-import database.dao_classes.UserDAO;
+import database.dao.UserDAO;
 import exceptions.AlreadyLoggedUserException;
-import exceptions.CostumException;
 import exceptions.NoUserFoundException;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.User;
 import engineering.LoggedUserSingleton;
-
-import java.util.List;
 
 
 public class UserAccessController {

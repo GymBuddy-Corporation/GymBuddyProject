@@ -1,9 +1,11 @@
 package controllers;
 
 import beans.*;
-import database.dao_classes.ExerciseDAO;
-import database.dao_classes.RequestDAO;
+import database.dao.ExerciseDAO;
+import database.dao.RequestDAO;
 import engineering.ExerciseInventory;
+import engineering.LoggedUserSingleton;
+import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import javafx.scene.control.ListView;
 import model.*;
@@ -39,8 +41,8 @@ public class SatisfyWorkoutRequestsController {
         this.exerciseList = new ExerciseInventory(new ArrayList<>(new ExerciseDAO().loadDBExercises()));
     }
 
-    public List<ExerciseBean> getGymExerciseBean() {
-        List<Exercise> exerciseList = new ArrayList<>(new ExerciseDAO().loadDBExercises());
+    public List<ExerciseBean> getGymExerciseBean() throws UserCastException {
+        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
         return getExerciseBeanList(exerciseList, null);
     }
 
@@ -185,7 +187,7 @@ public class SatisfyWorkoutRequestsController {
             }
         }
     }
-    public List<ExerciseBean> searchExercise(SearchBean searchBean) {
+    public List<ExerciseBean> searchExercise(SearchBean searchBean) throws UserCastException{
         System.out.println(searchBean.getName());
         List<Exercise> filteredExercises = new ArrayList<>();
         for (Exercise exercise : this.exerciseList.getExerciseList()) {

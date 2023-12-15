@@ -1,4 +1,4 @@
-package database.dao_classes;
+package database.dao;
 
 /*import database.DatabaseConnectionSingleton;
 import database.queries.AthleteQueries;
@@ -9,15 +9,12 @@ import exceptions.invalid_data_exception.ExpiredCardException;
 import exceptions.runtime_exception.ResultSetIsNullException;*/
 import model.Athlete;
 import model.record.Card;
-import model.record.Credentials;
-import model.record.PersonalInfo;
 import org.jetbrains.annotations.Nullable;
 
 /*import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;*/
-import java.time.YearMonth;
 
 public class AthleteDAO {
 

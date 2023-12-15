@@ -1,11 +1,10 @@
-package database.dao_classes;
+package database.dao;
 
 /*import database.DatabaseConnectionSingleton;
 import database.queries.WorkoutDayQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;
 import exceptions.runtime_exception.NoGeneratedKeyException;*/
-import model.Exercise;
 import model.Trainer;
 import model.WorkoutDay;
 import model.WorkoutRoutine;
@@ -14,7 +13,6 @@ import model.WorkoutRoutine;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;*/
-import java.util.ArrayList;
 import java.util.List;
 
 public class WorkoutDayDAO {
