@@ -10,7 +10,7 @@ public class GymFirstGUIController {
 
     @FXML
     protected void login() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymLogin.fxml",launcher,1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml",launcher,1);
     }
 
     public void setValue(String user){

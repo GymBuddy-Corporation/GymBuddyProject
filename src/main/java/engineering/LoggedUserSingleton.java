@@ -33,12 +33,14 @@ public class LoggedUserSingleton {
     }
 
     public static LoggedUserSingleton createUserSingleton(User temp) throws AlreadyLoggedUserException {
-        if(me.user==null){
+        if(me==null){
             new LoggedUserSingleton(temp);
         }
         throw new AlreadyLoggedUserException();
     }
-
+    public static void clearSingleton(){
+        me=null;
+    }
 
 
     public  String getAthleteUsername() {

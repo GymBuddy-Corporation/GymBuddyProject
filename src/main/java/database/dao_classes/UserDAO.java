@@ -6,6 +6,7 @@ import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;
 import exceptions.UserNotFoundException;
 import exceptions.runtime_exception.IsNeitherATrainerNorAnAthleteException;*/
+import exceptions.CostumException;
 import model.Athlete;
 import model.Gym;
 import model.Trainer;
@@ -25,7 +26,7 @@ import java.sql.SQLException;*/
 
 public class UserDAO {
 
-    public User loadUser(String email, String password) /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
+    public User loadUser(String email, String password) throws CostumException /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
         Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic");
         Trainer trainer= new Trainer("AleCortix",
@@ -37,9 +38,9 @@ public class UserDAO {
 
         List<User> listUsers=new ArrayList<>();
         listUsers.add(palestra1);listUsers.add(trainer);listUsers.add(athlete);
-        listUsers.removeIf(p->p.getEmail()!=email&&p)
-
-        return null;
+        listUsers.removeIf(p-> !Objects.equals(p.getEmail(), email));
+        if(listUsers.isEmpty())throw new CostumException("nessun dato");
+        return listUsers.getFirst();
     }
 
     public User loadUser(String fc) /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {

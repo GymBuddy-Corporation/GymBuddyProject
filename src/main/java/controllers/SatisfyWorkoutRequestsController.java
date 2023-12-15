@@ -26,7 +26,7 @@ public class SatisfyWorkoutRequestsController {
     public SatisfyWorkoutRequestsController() {
         this.workoutRoutine = new WorkoutRoutine();
         Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "F@orzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11") ;
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","bo") ;
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
                 new Credentials("alecortix@gmail.com", "F@orzanapule1926"), palestra1);

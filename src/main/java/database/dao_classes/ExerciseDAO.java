@@ -33,7 +33,7 @@ public class ExerciseDAO {
         // SISTEMA BENE
         Gym gym1 = new Gym("Palestra1",
                 new Credentials("gym1@gmail.com", "forzanapule1926"),
-                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71");
+                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71","nome");
         /*Gym gym2 = new Gym("Palestra2");
         Gym gym3 = new Gym("Palestra3");
         Gym gym4 = new Gym("Palestra4");*/
