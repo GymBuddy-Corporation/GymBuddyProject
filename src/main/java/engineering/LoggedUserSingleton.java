@@ -47,32 +47,44 @@ public class LoggedUserSingleton {
 
 
     public static UserBean getUserBean(User usr) throws DataFieldException, UserCastException {
-        if (usr instanceof Athlete) {
+        if (usr instanceof Athlete athlete) {
             return new AthleteBean(
                     usr.getUsername(),
                     new PersonalInfoBean(
-                            ((Person) usr).getName(),
-                            ((Person) usr).getSurname(),
-                            ((Person) usr).getDateOfBirth(),
-                            ((Person) usr).getFC(),
-                            ((Person) usr).getGender()),
+                            athlete.getName(),
+                            athlete.getSurname(),
+                            athlete.getDateOfBirth(),
+                            athlete.getFC(),
+                            athlete.getGender()),
                     CredentialsBean.ctorWithoutSyntaxCheck(
-                            usr.getEmail(),
-                            usr.getPassword()));
-        } else if (usr instanceof Trainer) {
+                            athlete.getEmail(),
+                            athlete.getPassword()));
+        } else if (usr instanceof Trainer trainer) {
             return new TrainerBean(
                     usr.getUsername(),
                     new PersonalInfoBean(
-                            ((Person) usr).getName(),
-                            ((Person) usr).getSurname(),
-                            ((Person) usr).getDateOfBirth(),
-                            ((Person) usr).getFC(),
-                            ((Person) usr).getGender()),
+                            trainer.getName(),
+                            trainer.getSurname(),
+                            trainer.getDateOfBirth(),
+                            trainer.getFC(),
+                            trainer.getGender()),
                     CredentialsBean.ctorWithoutSyntaxCheck(
-                            usr.getEmail(),
-                            usr.getPassword()));
-        }else if (usr instanceof  Gym) {
-            return  new GymBean(usr.getUsername(),CredentialsBean.ctorWithoutSyntaxCheck(usr.getEmail(),usr.getPassword()),new GymInfoBean(((Gym) usr).getGymName(), ((Gym) usr).getAddress(), ((Gym) usr).getCity(), ((Gym) usr).getGymName()));
+                            trainer.getEmail(),
+                            trainer.getPassword()));
+        }else if (usr instanceof  Gym gym) {
+            return  new GymBean(
+                    usr.getUsername(),
+                    CredentialsBean.ctorWithoutSyntaxCheck(
+                            gym.getEmail(),
+                            gym.getPassword()
+                    ),
+                    new GymInfoBean(
+                            gym.getGymName(),
+                            gym.getAddress(),
+                            gym.getCity(),
+                            gym.getGymName()
+                    )
+            );
         }
         throw new UserCastException();
         }
