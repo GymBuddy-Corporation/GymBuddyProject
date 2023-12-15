@@ -4,10 +4,7 @@ package database.dao_classes;
 import database.queries.RequestQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;*/
-import beans.AthleteBean;
-import beans.CredentialsBean;
-import beans.PersonalInfoBean;
-import beans.RequestBean;
+import engineering.ExerciseInventory;
 import model.Athlete;
 import model.Gym;
 import model.Request;
@@ -51,7 +48,7 @@ public class RequestDAO {
 
 
         Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","NOME");
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","NOME", new ExerciseInventory(new ArrayList<>()));
 
         Credentials credentials1 = new Credentials("lucam0109@gmail.com", "LAZINESS1900");
         Credentials credentials2 = new Credentials("accroccoman@gmail.com", "megliololiodiItri");

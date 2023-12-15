@@ -64,7 +64,7 @@ public class LoginGUIController {
 
         } else if (userBean instanceof TrainerBean) {
             SwitchPage.setStage(MainStage.getStage(), "PTHome.fxml", "pt", 1);
-           // Objects.requireNonNull(controller).setValue(trainer);
+            // Objects.requireNonNull(controller).setValue(trainer);
         } else if(userBean instanceof GymBean) {
             SwitchPage.setStage(MainStage.getStage(), "GymHome.fxml", "gym", 1);
         }

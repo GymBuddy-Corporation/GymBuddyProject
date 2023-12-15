@@ -25,11 +25,14 @@ public class SatisfyWorkoutRequestsController {
 
     public SatisfyWorkoutRequestsController() {
         this.workoutRoutine = new WorkoutRoutine();
-        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "F@orzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","bo") ;
+        ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
+        Gym gym1 = new Gym("Palestra1",
+                new Credentials("gym1@gmail.com", "forzanapule1926"),
+                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71","nome", exList);
+
         this.trainer = new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "F@orzanapule1926"), palestra1);
+                new Credentials("alecortix@gmail.com", "F@orzanapule1926"), gym1);
         /*(Trainer) new LoginController().getLoggedUser()*//*;
         System.out.println(this.trainer.getName() + this.trainer.getEmail());*/
         //TODO organizza exercises
@@ -43,7 +46,7 @@ public class SatisfyWorkoutRequestsController {
 
     public static ExerciseBean convertFromExercise(Exercise exercise, String gym) {
         ExerciseStatusBean statusBean = convertToExerciseStatusBean(exercise.getStatus());
-        return new ExerciseBean(exercise.getName(), statusBean, gym);
+        return new ExerciseBean(exercise.getName(), statusBean);
     }
 
     public static ExerciseStatusBean convertToExerciseStatusBean(ExerciseStatus status) {
@@ -62,7 +65,6 @@ public class SatisfyWorkoutRequestsController {
                     workoutDayBean.addExerciseBean(new ExerciseForWorkoutRoutineBean(
                             exercise.getName(),
                             convertToExerciseStatusBean(exercise.getStatus()),
-                            trainer.getGym().getEmail(),
                             exercise.getDay(),
                             exercise.getRepetitions(),
                             exercise.getSets(),
@@ -85,7 +87,7 @@ public class SatisfyWorkoutRequestsController {
     }
     public static Exercise convertFromExerciseBean(ExerciseBean exerciseBean, Gym gym) {
         ExerciseStatus status = convertFromExerciseStatusBean(exerciseBean.getStatusExercise());
-        return new Exercise(exerciseBean.getName(), gym, status);
+        return new Exercise(exerciseBean.getName(), status);
     }
 
     public static ExerciseStatus convertFromExerciseStatusBean(ExerciseStatusBean statusBean) {
@@ -116,7 +118,6 @@ public class SatisfyWorkoutRequestsController {
         }
         workoutDay.addExercise(new ExerciseForWorkoutRoutine(
                 exercise.getName(),
-                trainer.getGym(),
                 convertFromExerciseStatusBean(exercise.getStatusExercise()),
                 exercise.getDay(),
                 exercise.getRepetitions(),
@@ -131,7 +132,6 @@ public class SatisfyWorkoutRequestsController {
         //TODO
         Exercise exerciseToEdit = new Exercise(
                 exercise.getName(),
-                trainer.getGym(),
                 convertFromExerciseStatusBean(exercise.getStatusExercise()));
         ExerciseStatus statusToSet = convertFromExerciseStatusBean(status);
 
@@ -205,14 +205,14 @@ public class SatisfyWorkoutRequestsController {
         List<ExerciseBean> exerciseBeanList = new ArrayList<>();
         if (exList!=null){
             for(Exercise exercise: exList){
-                ExerciseStatusBean ex = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
-                exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex, exercise.getGym().getEmail()));
+                ExerciseStatusBean status = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
+                exerciseBeanList.add(new ExerciseBean(exercise.getName(), status));
             }
             return exerciseBeanList;
         } else if(exerciseList!=null){
             for(Exercise exercise: exerciseList){
-                ExerciseStatusBean ex = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
-                exerciseBeanList.add(new ExerciseBean(exercise.getName(), ex, exercise.getGym().getEmail()));
+                ExerciseStatusBean status = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
+                exerciseBeanList.add(new ExerciseBean(exercise.getName(), status));
             }
             return exerciseBeanList;
         } else {
@@ -261,19 +261,19 @@ public class SatisfyWorkoutRequestsController {
             Athlete usr = request.getAthlete();
             AthleteBean athleteBean;
             /*try {*/
-                athleteBean = new AthleteBean(
-                        usr.getUsername(),
-                        new PersonalInfoBean(
-                                usr.getName(),
-                                usr.getSurname(),
-                                usr.getDateOfBirth(),
-                                usr.getFC(),
-                                usr.getGender()
-                        ),
-                        CredentialsBean.ctorWithoutSyntaxCheck(
-                                usr.getEmail(),
-                                usr.getPassword()
-                        ));
+            athleteBean = new AthleteBean(
+                    usr.getUsername(),
+                    new PersonalInfoBean(
+                            usr.getName(),
+                            usr.getSurname(),
+                            usr.getDateOfBirth(),
+                            usr.getFC(),
+                            usr.getGender()
+                    ),
+                    CredentialsBean.ctorWithoutSyntaxCheck(
+                            usr.getEmail(),
+                            usr.getPassword()
+                    ));
            /* } catch (NoCardInsertedException e) {
                 athleteBean = new AthleteBean(
                         usr.getUsername(),

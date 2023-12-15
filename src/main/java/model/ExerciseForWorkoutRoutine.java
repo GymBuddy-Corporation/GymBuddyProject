@@ -12,8 +12,8 @@ public class ExerciseForWorkoutRoutine extends Exercise{
     private int sets;
     private String rest;
 
-    public ExerciseForWorkoutRoutine(String name, Gym gym, ExerciseStatus status, String day, int repetitions, int sets, String rest, String workoutRoutineName) {
-        super(name, gym, status);
+    public ExerciseForWorkoutRoutine(String name, ExerciseStatus status, String day, int repetitions, int sets, String rest, String workoutRoutineName) {
+        super(name, status);
         this.day = day;
         this.rest = rest;
         this.sets = sets;
@@ -21,8 +21,8 @@ public class ExerciseForWorkoutRoutine extends Exercise{
         this.workoutRoutineName = workoutRoutineName;
     }
 
-    public ExerciseForWorkoutRoutine(String name, Gym gym, ExerciseStatus status, String day, String workoutRoutineName) {
-        super(name, gym, status);
+    public ExerciseForWorkoutRoutine(String name, ExerciseStatus status, String day, String workoutRoutineName) {
+        super(name, status);
         this.day = day;
         this.workoutRoutineName = workoutRoutineName;
     }

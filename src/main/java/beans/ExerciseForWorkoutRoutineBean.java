@@ -13,16 +13,16 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
     private int sets;
     private String rest;
 
-    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatusBean statusExercise, String gym, String day, int repetitions, int sets, String rest) {
-        super(name, statusExercise, gym);
+    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatusBean statusExercise, String day, int repetitions, int sets, String rest) {
+        super(name, statusExercise);
         this.day = day;
         this.rest = rest;
         this.sets = sets;
         this.repetitions = repetitions;
     }
 
-    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatusBean statusExercise, String gym, String day) {
-        super(name, statusExercise, gym);
+    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatusBean statusExercise, String day) {
+        super(name, statusExercise);
         this.day = day;
     }
 

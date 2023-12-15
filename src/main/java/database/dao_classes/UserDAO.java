@@ -6,16 +6,12 @@ import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;
 import exceptions.UserNotFoundException;
 import exceptions.runtime_exception.IsNeitherATrainerNorAnAthleteException;*/
-import exceptions.CostumException;
+import engineering.ExerciseInventory;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
-import model.Athlete;
-import model.Gym;
-import model.Trainer;
-import model.User;
+import model.*;
 import model.record.Credentials;
 import model.record.PersonalInfo;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,8 +25,22 @@ import java.sql.SQLException;*/
 public class UserDAO {
 
     public User loadUser(String email, String password) throws NoUserFoundException, DataFieldException /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
+        ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
+
+        Exercise ex1 = new Exercise("Tricep Pushdown");
+        Exercise ex2 = new Exercise("Shoulder Press");
+        Exercise ex3 = new Exercise("Squat");
+        Exercise ex4 = new Exercise("Dips");
+
+        ex3.setStatus(ExerciseStatus.SUSPENDED);
+        ex4.setStatus(ExerciseStatus.SUSPENDED);
+
+        exList.getExerciseList().add(ex1);
+        exList.getExerciseList().add(ex2);
+        exList.getExerciseList().add(ex3);
+        exList.getExerciseList().add(ex4);
         Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic");
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic", exList);
         Trainer trainer= new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
                 new Credentials("pt@gmail.com", "forzanapule1926"), palestra1);

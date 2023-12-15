@@ -5,29 +5,26 @@ import engineering.Observable;
 import java.io.Serializable;
 
 public class Exercise extends Observable implements Serializable  {
-    protected final String name;
-    protected final Gym gym;
+    protected String name;
     protected ExerciseStatus status;
 
-    public Exercise(String name, Gym gym, ExerciseStatus status){
+    public Exercise(String name, ExerciseStatus status){
         //ideato SOLO per passare ora i parametri (che non ho il DB)
         this.name = name;
-        this.gym = gym;
         this.status = status;
     }
 
-    public Exercise(String name, Gym gym){
+    public Exercise(String name){
         //ideato per essere usato alla creazione di un esercizio
         this.name = name;
-        this.gym = gym;
         this.status=ExerciseStatus.ACTIVE;
+    }
+
+    public Exercise(){
     }
 
     public String getName() {
         return name;
-    }
-    public Gym getGym() {
-        return gym;
     }
 
     public ExerciseStatus getStatus() {

@@ -4,7 +4,7 @@ package database.dao_classes;
 import database.queries.ExerciseQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;*/
-import beans.ExerciseStatusBean;
+import engineering.ExerciseInventory;
 import model.Exercise;
 import model.ExerciseStatus;
 import model.Gym;
@@ -26,31 +26,24 @@ public class ExerciseDAO {
     private static final String IDEXERCISE = "idExercise";
 
     public List<Exercise> loadDBExercises(){
-        List<Exercise> exList = new ArrayList<>();
+        ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
 
-
-        //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
-        // SISTEMA BENE
-        Gym gym1 = new Gym("Palestra1",
-                new Credentials("gym1@gmail.com", "forzanapule1926"),
-                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71","nome");
-        /*Gym gym2 = new Gym("Palestra2");
-        Gym gym3 = new Gym("Palestra3");
-        Gym gym4 = new Gym("Palestra4");*/
-
-        Exercise ex1 = new Exercise("Tricep Pushdown", gym1);
-        Exercise ex2 = new Exercise("Shoulder Press", gym1);
-        Exercise ex3 = new Exercise("Squat", gym1);
-        Exercise ex4 = new Exercise("Dips", gym1);
+        Exercise ex1 = new Exercise("Tricep Pushdown");
+        Exercise ex2 = new Exercise("Shoulder Press");
+        Exercise ex3 = new Exercise("Squat");
+        Exercise ex4 = new Exercise("Dips");
 
         ex3.setStatus(ExerciseStatus.SUSPENDED);
         ex4.setStatus(ExerciseStatus.SUSPENDED);
 
-        exList.add(ex1);
-        exList.add(ex2);
-        exList.add(ex3);
-        exList.add(ex4);
-        return exList;
+        exList.getExerciseList().add(ex1);
+        exList.getExerciseList().add(ex2);
+        exList.getExerciseList().add(ex3);
+        exList.getExerciseList().add(ex4);
+        Gym gym1 = new Gym("Palestra1",
+                new Credentials("gym1@gmail.com", "forzanapule1926"),
+                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71","nome", exList);
+        return exList.getExerciseList();
     }
 
     public void changeExerciseStatus(Exercise exerciseToEdit, ExerciseStatus status){

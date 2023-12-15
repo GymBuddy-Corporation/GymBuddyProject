@@ -12,20 +12,19 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class PTHomeGUIController implements Initializable {
+public class PTHomeGUIController {
 
     private Trainer loggedTrainer;
     @FXML private Text usernameText;
     @FXML
     public void sendCommunication() throws Exception{
-        SendPTCommunicationGUIController controller = (SendPTCommunicationGUIController) SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
+        SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
         //TODO caso d'uso
         //Objects.requireNonNull(controller).setValue(loggedTrainer, sendCommunicationController);
     }
     @FXML
     public void yourAthletes() throws Exception{
-        ViewRequestGUIController controller = (ViewRequestGUIController)SwitchPage.setStage(MainStage.getStage(),"ViewYourAthletes.fxml","pt",1);
-        Objects.requireNonNull(controller).setValue(loggedTrainer);
+        SwitchPage.setStage(MainStage.getStage(),"ViewYourAthletes.fxml","pt",1);
     }
     @FXML
     public void logout() throws Exception {
@@ -47,10 +46,5 @@ public class PTHomeGUIController implements Initializable {
         // e finire il tutto
         this.loggedTrainer = trainer;
         usernameText.setText(loggedTrainer.getUsername());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

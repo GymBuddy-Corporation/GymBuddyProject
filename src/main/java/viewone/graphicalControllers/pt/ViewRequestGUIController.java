@@ -3,6 +3,7 @@ package viewone.graphicalControllers.pt;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.ManageRequestList;
+import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,7 +35,6 @@ public class ViewRequestGUIController implements Initializable {
     private Text usernameRequestText;
 
     private RequestBean selectedRequest;
-    private Trainer trainer; //poi gestisci con loggedUser (vedi todo)
 
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
@@ -61,7 +61,7 @@ public class ViewRequestGUIController implements Initializable {
         }
     }
 
-    public void createNewRoutine() throws Exception {
+    public void createNewRoutine() throws UserCastException, IOException {
         SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(), "SatisfyWorkoutRoutineRequest.fxml", "pt", 1);
         Objects.requireNonNull(controller).setValue(selectedRequest, satisfyWorkoutRequestsController);
     }
@@ -84,8 +84,8 @@ public class ViewRequestGUIController implements Initializable {
                                 textUsersRequest.setText(newItem.getInfo());
                                 selectedRequest = newItem;
                                 usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
-                                System.out.println("Username:" + selectedRequest.getAthleteBean().getUsername() +
-                                        "data" + selectedRequest.getRequestDate() + "trainer" + selectedRequest.getTrainerFc());
+                                /*System.out.println("Username:" + selectedRequest.getAthleteBean().getUsername() +
+                                        "data" + selectedRequest.getRequestDate() + "trainer" + selectedRequest.getTrainerFc());*/
                             }
                         }
                     });
@@ -96,10 +96,5 @@ public class ViewRequestGUIController implements Initializable {
                 throw new RuntimeException(ex);
             }
         }
-
-    }
-
-    public void setValue(Trainer loggedTrainer) {
-        this.trainer = loggedTrainer;
     }
 }

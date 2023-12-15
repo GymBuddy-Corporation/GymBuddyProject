@@ -19,10 +19,10 @@ public class AthleteListCellFactory implements Callback<ListView<AthleteBean>, L
             private Parent parentNode = null;
 
             @Override
-            protected void updateItem(AthleteBean requestBean, boolean empty) {
-                super.updateItem(requestBean, empty);
+            protected void updateItem(AthleteBean athleteBean, boolean empty) {
+                super.updateItem(athleteBean, empty);
 
-                if (empty || requestBean == null) {
+                if (empty || athleteBean == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
@@ -36,7 +36,7 @@ public class AthleteListCellFactory implements Callback<ListView<AthleteBean>, L
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(requestBean.getUsername());
+                    itemNameLabel.setText(athleteBean.getUsername());
 
                     setGraphic(parentNode);
                 }
