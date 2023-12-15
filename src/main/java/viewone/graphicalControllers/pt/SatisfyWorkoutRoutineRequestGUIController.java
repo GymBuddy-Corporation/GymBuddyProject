@@ -26,9 +26,6 @@ import java.util.*;
 public class SatisfyWorkoutRoutineRequestGUIController implements Initializable, Observer {
 
     @FXML private Button mondayButton;
-    //@FXML private TextField searchExerciseText;
-    private ExerciseInventory exerciseList = new ExerciseInventory(new ArrayList<>());
-
     private Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap = new HashMap<>();
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
 
