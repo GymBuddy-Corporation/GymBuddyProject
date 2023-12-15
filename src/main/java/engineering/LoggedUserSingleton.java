@@ -9,8 +9,6 @@ import model.*;
 
 public class LoggedUserSingleton {
 
-
-
     private final User user;
     private  UserTypes userType;
     private  static LoggedUserSingleton me=null;
@@ -22,8 +20,13 @@ public class LoggedUserSingleton {
         user=temp;
     }
 
-
-
+    public <T extends User> T getSpecificUser(Class<T> userType) {
+        if (userType.isInstance(user)) {
+            return userType.cast(user);
+        } else {
+            throw new IllegalArgumentException("Requested user type does not match the actual user type.");
+        }
+    }
     public static LoggedUserSingleton getSingleton() {
         if(me==null)return null;
         return me;
@@ -85,7 +88,7 @@ public class LoggedUserSingleton {
         throw new UserCastException();
         }
 
-        public UserBean geyMyBean() throws DataFieldException, UserCastException {
+        public UserBean getMyBean() throws DataFieldException, UserCastException {
         return getUserBean(user);
         }
 

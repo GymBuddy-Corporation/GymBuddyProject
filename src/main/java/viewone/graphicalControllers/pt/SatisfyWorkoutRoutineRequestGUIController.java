@@ -28,10 +28,9 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     @FXML private Button mondayButton;
     private Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap = new HashMap<>();
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
-
     private RequestBean requestBean;
     private String selectedDay;
-    private String statusToUpdate;
+    private String statusToUpdate= "";
 
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist;
@@ -110,22 +109,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws UserCastException {
         this.requestBean = request;
         this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
-        setStuff(satisfyWorkoutRequestsController);
-    }
-
-    public void setBackValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap, String newStatus) {
-        this.requestBean = request;
-        this.statusToUpdate = newStatus;
-        this.dayExercisesMap=dayExercisesMap;
-        //setStuff(satisfyWorkoutRequestsController);
-    }
-
-    public void setStuff(SatisfyWorkoutRequestsController satisfyWorkoutRequestsController){
         List<ExerciseBean> exerciseBeanList;
         List<Exercise> observedList;
         try{
-             exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
-             observedList= LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
+            exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
+            observedList= LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
 
         }catch (UserCastException exception1){ //TODO valuta exception UserCastException
             try {
@@ -149,16 +137,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
         }
     }
 
-    public boolean checkAlreadyAdded(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean) {
-        for (ExerciseForWorkoutRoutineBean exercise : routineExerciselist.getItems()/*workoutDayBean.getExerciseBeanList()*/) {
-            /*Il commento serve perchè poi scorreremo tutto il giorno e vedremo se c'è SOLO per quel giorno*/
-            if (Objects.equals(exercise.getName(), exerciseForWorkoutRoutineBean.getName())) {
-                System.out.println("Esercizio già inserito nella tua scheda\n");
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     public void setExerciseDetails(int repetitions, int sets, String rest){
         repetLabelExerciseInserted.setText(Integer.toString(repetitions));
@@ -168,50 +147,41 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
 
     @FXML
     public void addExercise() {
-        //TODO sistema il lancio dell'eccezione (non so come farlo, e questo schifo che ho fatto non funziona)
-        /*try {*/
-        ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
-
+        final ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
         if (selectedExercise != null && selectedDay != null) {
-
             setVisibleLabel(false);
             setVisibleAdd(false);
 
             int repetitions = spinnerRepetitions.getValue();
             int sets = spinnerSets.getValue();
             String rest = restTimeComboBox.getValue();
-            boolean test = true;
+            boolean inserted = true;
 
             ExerciseForWorkoutRoutineBean newExercise =
                     new ExerciseForWorkoutRoutineBean(selectedExercise.getName(),
                             selectedExercise.getStatusExercise(),
                             selectedDay);
-
-            if (!checkAlreadyAdded(newExercise) && sets != 0 && repetitions != 0) {
-                newExercise.setRepetitions(repetitions);
-                newExercise.setSets(sets);
-                if (!newExercise.setRest(rest)) {
-                    test = false;
-                }
-                if (test) {
-                    List<ExerciseForWorkoutRoutineBean> workoutDay= new ArrayList<>();
-                    workoutDay.addAll(routineExerciselist.getItems());
-                    satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, workoutDay);
-                    // Update the map with the new exercise
-                    routineExerciselist.getItems().add(newExercise);
-                    dayExercisesMap.computeIfAbsent(newExercise.getDay(), k -> new ArrayList<>()).add(newExercise);
-                } /*else {
-                        throw new InvalidExerciseFeaturesException("??");
-                    }*/
+            newExercise.setRepetitions(repetitions);
+            newExercise.setSets(sets);
+            if (!newExercise.setRest(rest)) {
+                inserted = false;
             }
+            List<ExerciseForWorkoutRoutineBean> workoutDay= new ArrayList<>();
+            workoutDay.addAll(routineExerciselist.getItems());
+            inserted = satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, workoutDay);
+            if (inserted) {
+                //workoutDay.add(newExercise);
+                // Update the map with the new exercise
+                routineExerciselist.getItems().add(newExercise);
+                dayExercisesMap.computeIfAbsent(newExercise.getDay(), k -> new ArrayList<>()).add(newExercise);
+            }else {
+                System.out.println("Exercise was not added successfully.");
+            }
+
             resetSelection(1);
             exerciseDBList.getSelectionModel().clearSelection();
             routineExerciselist.getSelectionModel().clearSelection();
         }
-        /*} catch (InvalidExerciseFeaturesException e) {
-            // Handle the exception, e.g., show an alert or log the error
-            e.printStackTrace();
-        }*/
     }
 
     @FXML

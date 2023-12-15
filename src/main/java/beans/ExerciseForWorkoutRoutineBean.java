@@ -40,7 +40,6 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
         if(isValidTime(timeString)) {
             this.rest = timeString;
             return true;
-            //poi gestisci le eccezioni
         } else {
             //TODO EXCEPTION throw new InvalidExerciseFeaturesException();
         }

@@ -21,7 +21,7 @@ public class UserAccessController {
         //User in verita è un istanza di gym/athlete/pt
         if(LoggedUserSingleton.getSingleton()!=null)throw new AlreadyLoggedUserException();
         User user = new UserDAO().loadUser(credentials.getEmail(), credentials.getPassword());
-        return LoggedUserSingleton.createUserSingleton(user).geyMyBean();
+        return LoggedUserSingleton.createUserSingleton(user).getMyBean();
     }
 
 

@@ -9,21 +9,12 @@ import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import model.Athlete;
-import model.Gym;
-import model.Trainer;
-import model.User;
-import model.record.Credentials;
-import model.record.PersonalInfo;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import viewone.graphicalControllers.pt.PTHomeGUIController;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Objects;
 
 public class LoginGUIController {
 
@@ -47,7 +38,7 @@ public class LoginGUIController {
             userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()));
         }catch(AlreadyLoggedUserException e){
             try {
-                userBean = LoggedUserSingleton.getSingleton().geyMyBean();
+                userBean = LoggedUserSingleton.getSingleton().getMyBean();
             }catch(UserCastException|DataFieldException e2){
                 e2.callMe(1);
                 return;
