@@ -7,6 +7,8 @@ import exceptions.DBUnreachableException;
 import exceptions.UserNotFoundException;
 import exceptions.runtime_exception.IsNeitherATrainerNorAnAthleteException;*/
 import exceptions.CostumException;
+import exceptions.NoUserFoundException;
+import exceptions.dataException.DataFieldException;
 import model.Athlete;
 import model.Gym;
 import model.Trainer;
@@ -26,20 +28,21 @@ import java.sql.SQLException;*/
 
 public class UserDAO {
 
-    public User loadUser(String email, String password) throws CostumException /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
-        Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
+    public User loadUser(String email, String password) throws NoUserFoundException, DataFieldException /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
+        Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic");
         Trainer trainer= new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1);
+                new Credentials("pt@gmail.com", "forzanapule1926"), palestra1);
         Athlete athlete= new Athlete("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("alecortix@gmail.com", "forzanapule1926"), palestra1,trainer);
+                new Credentials("athlete@gmail.com", "forzanapule1926"), palestra1,trainer);
 
         List<User> listUsers=new ArrayList<>();
         listUsers.add(palestra1);listUsers.add(trainer);listUsers.add(athlete);
+
         listUsers.removeIf(p-> !Objects.equals(p.getEmail(), email));
-        if(listUsers.isEmpty())throw new CostumException("nessun dato");
+        if(listUsers.isEmpty())throw new NoUserFoundException();
         return listUsers.getFirst();
     }
 

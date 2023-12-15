@@ -9,6 +9,7 @@ import model.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.LongFunction;
 
 public class LoggedUserSingleton {
 
@@ -16,7 +17,7 @@ public class LoggedUserSingleton {
 
     private final User user;
     private  UserTypes userType;
-    private  static LoggedUserSingleton me;
+    private  static LoggedUserSingleton me=null;
 
     private LoggedUserSingleton(User temp) {
         if(temp instanceof Gym)userType=UserTypes.gym;
@@ -27,26 +28,22 @@ public class LoggedUserSingleton {
 
 
 
-    public static User getUser() {
+    public static LoggedUserSingleton getSingleton() {
         if(me==null)return null;
-        return me.user;
+        return me;
     }
 
     public static LoggedUserSingleton createUserSingleton(User temp) throws AlreadyLoggedUserException {
         if(me==null){
-            new LoggedUserSingleton(temp);
+            LoggedUserSingleton.me= new LoggedUserSingleton(temp);
+            return LoggedUserSingleton.me;
+        }else {
+            throw new AlreadyLoggedUserException();
         }
-        throw new AlreadyLoggedUserException();
     }
     public static void clearSingleton(){
         me=null;
     }
-
-
-    public  String getAthleteUsername() {
-        return user.getUsername();
-    }
-
 
 
     public static UserBean getUserBean(User usr) throws DataFieldException, UserCastException {
@@ -87,4 +84,11 @@ public class LoggedUserSingleton {
     public UserTypes getUserType() {
         return userType;
     }
+
+    public List<Exercise> getExcerciseList() throws UserCastException {
+        if(userType!=UserTypes.pt && userType!=UserTypes.gym)throw new UserCastException();
+        //return ((Trainer)user).getGym(
+        return null;
+    }
+
 }
