@@ -9,7 +9,6 @@ public class WorkoutDayBean {
 
     List<ExerciseForWorkoutRoutineBean> exerciseBeanList;
 
-
     public WorkoutDayBean(String name){
         this.name = name;
         this.exerciseBeanList = new ArrayList<>();
@@ -27,10 +26,6 @@ public class WorkoutDayBean {
         return this.name;
     }
 
-    /*public ExerciseForWorkoutRoutineBean getExerciseForWorkoutRoutine(){
-        return null;
-    }*/
-
     public List<ExerciseForWorkoutRoutineBean> getExerciseBeanList() {
         return exerciseBeanList;
     }
@@ -39,4 +34,7 @@ public class WorkoutDayBean {
         exerciseBeanList.add(exerciseBean);
     }
 
+    public void removeExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) {
+        exerciseBeanList.remove(exerciseBean);
+    }
 }

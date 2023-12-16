@@ -33,7 +33,14 @@ public class WorkoutRoutineBean {
         workoutDayList.add(workoutDayBean);
     }
 
-
+    public WorkoutDayBean getWorkoutDay(String workoutDayName) {
+        for (WorkoutDayBean day: workoutDayList){
+             if(day.getName().equals(workoutDayName)){
+                return day;
+            }
+        }
+        return null;
+    }
     public String getName() {return name;}
 
     public void setName(String name) {this.name = name;}

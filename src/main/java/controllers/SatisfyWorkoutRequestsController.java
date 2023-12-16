@@ -1,7 +1,6 @@
 package controllers;
 
 import beans.*;
-import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
 import engineering.ExerciseInventory;
 import engineering.LoggedUserSingleton;
@@ -10,10 +9,8 @@ import exceptions.dataException.DataFieldException;
 import javafx.scene.control.ListView;
 import model.*;
 import model.record.Credentials;
-import model.record.PersonalInfo;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalDate;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
@@ -22,7 +19,6 @@ public class SatisfyWorkoutRequestsController {
     // deve scambiare i dati da bean a model
 
     private final WorkoutRoutine workoutRoutine;
-    //private final Trainer trainer;
 
     public SatisfyWorkoutRequestsController() {
         this.workoutRoutine = new WorkoutRoutine();
@@ -124,9 +120,9 @@ public class SatisfyWorkoutRequestsController {
 
     public void setExerciseStatus(ExerciseBean exercise, ExerciseStatusBean status) throws UserCastException {
         //TODO
-        Exercise exerciseToEdit = new Exercise(
+       /* Exercise exerciseToEdit = new Exercise(
                 exercise.getName(),
-                convertFromExerciseStatusBean(exercise.getStatusExercise()));
+                convertFromExerciseStatusBean(exercise.getStatusExercise()));*/
         ExerciseStatus statusToSet = convertFromExerciseStatusBean(status);
 
         // Update the status in the exerciseBean
@@ -134,7 +130,13 @@ public class SatisfyWorkoutRequestsController {
 
         // Notify observers or perform any other necessary actions
         findExerciseByName(exercise.getName(), statusToSet);
-        new ExerciseDAO().changeExerciseStatus(exerciseToEdit, statusToSet);
+        for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList()){
+            if(ex.getName().equals(exercise.getName())){
+                ex.setStatus(statusToSet);
+                /*ex.notifyObservers(ex.getName()); Gia lo notifico nella riga sopra*/
+            }
+        }
+        //new ExerciseDAO().changeExerciseStatus(exerciseToEdit, statusToSet);
     }
 
     private void findExerciseByName(String exerciseName, ExerciseStatus status) throws UserCastException {
@@ -227,12 +229,12 @@ public class SatisfyWorkoutRequestsController {
         };
     }
 
-    public void removeExerciseFromDayExercisesMap(ExerciseForWorkoutRoutineBean exercise, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap) {
+    public void removeExerciseFromDWorkoutRoutineBean (ExerciseForWorkoutRoutineBean exercise, WorkoutRoutineBean workoutRoutine) {
         // Iterate through the map and remove the exercise for the corresponding day
-        dayExercisesMap.forEach((day, exercises) -> exercises.removeIf(e -> e.equals(exercise)));
+        workoutRoutine.getWorkoutDay(exercise.getDay()).removeExerciseBean(exercise);
     }
 
-    public void removeExerciseToWorkoutDay(ExerciseBean selectedExercise, ListView<ExerciseForWorkoutRoutineBean> routineExerciselist, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap) {
+    public void removeExerciseToWorkoutDay(ExerciseBean selectedExercise, ListView<ExerciseForWorkoutRoutineBean> routineExerciselist, WorkoutRoutineBean workoutRoutine) {
         // Create a copy of the routineExerciselist items to avoid ConcurrentModificationException
         List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(routineExerciselist.getItems());
 
@@ -241,7 +243,7 @@ public class SatisfyWorkoutRequestsController {
                 routineExerciselist.getItems().remove(item);
 
                 // Remove the exercise from the dayExercisesMap
-                removeExerciseFromDayExercisesMap(item, dayExercisesMap);
+                removeExerciseFromDWorkoutRoutineBean(item, workoutRoutine);
 
                 break; // Exit the loop once the item is removed
             }

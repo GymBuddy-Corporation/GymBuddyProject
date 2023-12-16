@@ -61,9 +61,6 @@ public class SwitchPage {
         if(me.remembered_scenes.get(name+folder)!=null)me.remembered_scenes.remove(name+folder);
     }
 
-
-
-
     public static Object getController(String name,String folder){
         if(me==null){
             return  null;

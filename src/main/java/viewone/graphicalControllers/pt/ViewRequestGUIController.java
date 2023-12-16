@@ -63,7 +63,7 @@ public class ViewRequestGUIController implements Initializable {
 
     public void createNewRoutine() throws UserCastException, IOException {
         SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(), "SatisfyWorkoutRoutineRequest.fxml", "pt", 1);
-        Objects.requireNonNull(controller).setValue(selectedRequest, satisfyWorkoutRequestsController);
+        Objects.requireNonNull(controller).setValue(selectedRequest);
     }
 
     @FXML

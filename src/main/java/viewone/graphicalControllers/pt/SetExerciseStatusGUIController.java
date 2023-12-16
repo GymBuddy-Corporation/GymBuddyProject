@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import model.Exercise;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.ExerciseStatusButtonController;
@@ -24,9 +25,6 @@ import java.util.*;
 
 public class SetExerciseStatusGUIController implements Initializable{
 
-    /*private Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap;
-    private RequestBean requestBean;*/
-    private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private Button suspendStatusButton;
     @FXML private Button activeStatusButton;
@@ -42,6 +40,7 @@ public class SetExerciseStatusGUIController implements Initializable{
     }
     @FXML public void searchExercise() throws UserCastException{
         //TODO controlla se funziona
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
         ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
@@ -57,9 +56,9 @@ public class SetExerciseStatusGUIController implements Initializable{
         setStatusButton.setVisible(bool);
     }
 
-    public void setValue(RequestBean requestBean, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, Map<String, List<ExerciseForWorkoutRoutineBean>> dayExercisesMap, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
+    public void setValue(SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
         this.satisfyWorkoutRoutineRequestGUIController = satisfyWorkoutRoutineRequestGUIController;
-        this.satisfyWorkoutRequestsController=satisfyWorkoutRequestsController;
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController= new SatisfyWorkoutRequestsController();
         ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
         ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
@@ -87,23 +86,27 @@ public class SetExerciseStatusGUIController implements Initializable{
     @FXML public void setButtonStatus() throws Exception{
         ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
         ExerciseStatusBean selectedStatus = null;
-        String newStatus;
+
         if(selectedButton == activeStatusButton){
             selectedStatus = ExerciseStatusBean.ACTIVE;
-            newStatus = "Active";
             System.out.println("Premuto active");
+
         } else if (selectedButton == suspendStatusButton){
             selectedStatus = ExerciseStatusBean.SUSPENDED;
-            newStatus = "Suspended";
             System.out.println("Premuto suspended");
+
         } else {
             System.out.println("Premuto niente");
-            newStatus = "";
             //TODO then throw exception
         }
 
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
-        satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
+        satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.getController("SatisfyWorkoutRoutineRequest.fxml","pt");
+
+        //TODO non puoi chiamare update qui, gestisci le chiamate dell'observer
+
+        SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
 
         //satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.getController("SatisfyWorkoutRoutineRequest.fxml","pt");
         //Objects.requireNonNull(satisfyWorkoutRoutineRequestGUIController).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap, newStatus);
