@@ -6,6 +6,7 @@ module start {
 
     opens start to javafx.fxml;
     exports start;
+    exports model.record;
     exports model;
     opens model;
     exports viewone.graphicalControllers.pt;

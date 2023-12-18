@@ -45,7 +45,7 @@ public class LoggedUserSingleton {
     }
 
 
-    public static UserBean getUserBean(User usr) throws DataFieldException, UserCastException {
+    public static UserBean getUserBean(User usr) throws DataFieldException{
         if (usr instanceof Athlete athlete) {
             return new AthleteBean(
                     usr.getUsername(),
@@ -85,10 +85,10 @@ public class LoggedUserSingleton {
                     )
             );
         }
-        throw new UserCastException();
-        }
+        return null;
+    }
 
-        public UserBean getMyBean() throws DataFieldException, UserCastException {
+        public UserBean getMyBean() throws DataFieldException {
         return getUserBean(user);
         }
 
@@ -96,8 +96,7 @@ public class LoggedUserSingleton {
         return userType;
     }
 
-    public ExerciseInventory getExcerciseInventory() throws UserCastException {
-        if(userType!=UserTypes.pt && userType!=UserTypes.gym)throw new UserCastException();
+    public ExerciseInventory getExcerciseInventory() {
         return ((Trainer)user).getGym().getGymExercises();
 
     }

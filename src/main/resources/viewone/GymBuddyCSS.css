@@ -5,8 +5,9 @@
 
 .Label{
     -fx-font-family: "Allerta Stencil";
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-text-background-color: transparent; /* Add this line */
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+
 }
 
 

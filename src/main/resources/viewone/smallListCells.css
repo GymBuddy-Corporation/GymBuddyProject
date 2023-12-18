@@ -6,9 +6,9 @@
 
 
 .list-view .list-cell:filled:hover, .list-view .list-cell:filled:selected{
+    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-font-size: 10px;
     -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
     -fx-background-radius: 5em;
     -fx-font-family: "Allerta Stencil";
     -fx-cursor: hand;

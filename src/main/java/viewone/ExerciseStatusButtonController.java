@@ -39,9 +39,4 @@ public class ExerciseStatusButtonController {
 
         return sourceButton;
     }
-
-    // You can also provide a method to get the list of buttons that had color shift
-    public List<Button> getButtonList() {
-        return buttonList;
-    }
 }

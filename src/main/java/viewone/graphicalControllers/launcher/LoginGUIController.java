@@ -5,7 +5,7 @@ import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
 import exceptions.CostumException;
-import exceptions.UserCastException;
+import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -31,23 +31,14 @@ public class LoginGUIController {
 
 
     @FXML
-    public void goForward() throws IOException {
+    public void goForward() throws IOException, DataFieldException, NoUserFoundException {
         UserAccessController controller=new UserAccessController();
         UserBean userBean=null;
         try {
             userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()));
         }catch(AlreadyLoggedUserException e){
-            try {
-                userBean = LoggedUserSingleton.getSingleton().getMyBean();
-            }catch(UserCastException|DataFieldException e2){
-                e2.callMe(1);
-                return;
-            }
-        }catch (CostumException e) {
-            e.callMe(1);
-            return;
+            userBean = LoggedUserSingleton.getSingleton().getMyBean();
         }
-
         if (userBean instanceof AthleteBean) {
 
             SwitchPage.setStage(MainStage.getStage(), "AthleteHome.fxml", "athlete", 1);

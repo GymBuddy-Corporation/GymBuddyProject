@@ -22,7 +22,7 @@ public class SatisfyWorkoutRequestsController {
 
     public SatisfyWorkoutRequestsController() {}
 
-    public List<ExerciseBean> getGymExerciseBean() throws UserCastException {
+    public List<ExerciseBean> getGymExerciseBean() {
         List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
         return getExerciseBeanList(exerciseList, null);
     }
@@ -126,7 +126,7 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    private void findExerciseByName(String exerciseName, ExerciseStatus status) throws UserCastException {
+    private void findExerciseByName(String exerciseName, ExerciseStatus status) {
         List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
         for (Exercise exercise : exerciseList) {
             if (exercise.getName().equals(exerciseName)) {

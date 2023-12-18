@@ -13,17 +13,14 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import engineering.manageListView.ManageExerciseList;
 import model.Exercise;
-import model.WorkoutDay;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewone.DayBeanA;
 import viewone.DaysOfTheWeekButtonController;
 import controllers.SatisfyWorkoutRequestsController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SatisfyWorkoutRoutineRequestGUIController implements Initializable, Observer {
 
@@ -106,23 +103,13 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
 
     }
 
-    public void setValue(RequestBean request) throws UserCastException {
+    public void setValue(RequestBean request){
         this.requestBean = request;
         List<ExerciseBean> exerciseBeanList;
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        try{
-            exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
-            for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList()) {
-                ex.addObserver(this);
-            }
-
-        }catch (UserCastException exception1){ //TODO valuta se togliere UserCastException
-            try {
-                exception1.callMe(1);
-            }catch(IOException exception2){
-                return ;
-            }
-            return;
+        exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
+        for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList()) {
+            ex.addObserver(this);
         }
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
         ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
@@ -246,11 +233,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     }
 
     public void updateSelectedExerciseList() {
-        /*for (WorkoutDayBean workoutDayBean : workoutRoutine.getWorkoutDayList()){
-            ManageExerciseList.updateRoutineList(
-                    routineExerciselist,
-                    workoutDayBean.getExerciseBeanList());
-        }*/
         for (WorkoutDayBean workoutDayBean : workoutRoutine.getWorkoutDayList()){
             List<ExerciseForWorkoutRoutineBean> list =  workoutDayBean.getExerciseList();
             for(ExerciseForWorkoutRoutineBean exe: list){
@@ -265,21 +247,14 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
         ManageExerciseList.updateListFilteredDB(
                 routineExerciselist,
                 exerciseDBList.getItems());
-        /*SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        WorkoutDayBean workoutDayBean = satisfyWorkoutRequestsController.getWorkoutDayBean(new DayBeanA(daysController.getDay()));*/
-
     }
 
     public void updateExerciseList() {
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        try {
-            ManageExerciseList.updateListFiltered(
-                    exerciseDBList,
-                    satisfyWorkoutRequestsController.getGymExerciseBean()
-            );
-        } catch(UserCastException e){
-            return;
-        }
+        ManageExerciseList.updateListFiltered(
+                exerciseDBList,
+                satisfyWorkoutRequestsController.getGymExerciseBean()
+        );
     }
 
     @Override
@@ -298,7 +273,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
             }
         }
 
-        // Refresh the routineExerciselist
+        //TODO Refresh the routineExerciselist
         updateSelectedExerciseList();
     }
 
