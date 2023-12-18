@@ -1,11 +1,14 @@
-import beans.*;
+import beans.ExerciseForWorkoutRoutineBean;
+import beans.ExerciseStatusBean;
+import beans.WorkoutDayBean;
+import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestRemoveExercise {
+public class TestAddExercise {
 
-    ExerciseForWorkoutRoutineBean exerciseToRemove = new ExerciseForWorkoutRoutineBean("Tricep Pushdown", ExerciseStatusBean.ACTIVE, "monday", 10, 4, "01:30");
+    ExerciseForWorkoutRoutineBean exerciseToAdd = new ExerciseForWorkoutRoutineBean("Tricep Pushdown", ExerciseStatusBean.ACTIVE, "monday", 10, 4, "01:30");
     ExerciseForWorkoutRoutineBean ex2 = new ExerciseForWorkoutRoutineBean("Dips", ExerciseStatusBean.ACTIVE, "tuesday", 8, 5, "03:00");
     ExerciseForWorkoutRoutineBean ex3 = new ExerciseForWorkoutRoutineBean("Trazioni", ExerciseStatusBean.ACTIVE, "monday", 15, 2, "02:00");
     ExerciseForWorkoutRoutineBean ex4 = new ExerciseForWorkoutRoutineBean("Bench Press", ExerciseStatusBean.ACTIVE, "monday", 3, 6, "04:00");
@@ -14,10 +17,9 @@ public class TestRemoveExercise {
     WorkoutRoutineBean workoutRoutineBean = new WorkoutRoutineBean();
 
     @org.junit.jupiter.api.Test
-    public void TestRemoveExerciseToWorkoutDay() {
+    public void TestAddExerciseToWorkoutDay() {
         SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
 
-        monday.getExerciseList().add(exerciseToRemove);
         tuesday.getExerciseList().add(ex2);
         monday.getExerciseList().add(ex3);
         monday.getExerciseList().add(ex4);
@@ -25,15 +27,20 @@ public class TestRemoveExercise {
         workoutRoutineBean.addWorkoutDayBean(monday);
         workoutRoutineBean.addWorkoutDayBean(tuesday);
 
-        controller.removeExerciseToWorkoutDay(exerciseToRemove, workoutRoutineBean);
-        boolean flag = true;
+        controller.addExerciseToWorkoutDay(exerciseToAdd, workoutRoutineBean);
+        boolean flag = false;
+        int ver = 0;
         for(WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()){
             for (ExerciseForWorkoutRoutineBean exe : workoutDay.getExerciseBeanList()){
-                if (exe.getName().equals(exerciseToRemove.getName())){
-                     flag=false;
-                     break;
+                System.out.println(exe.getName());
+                if (exe.getName().equals(exerciseToAdd.getName())){
+                     flag=true;
+                     ver++;
                  }
             }
+        }
+        if(ver!=1){
+            flag = false;
         }
         assertTrue(flag);
     }

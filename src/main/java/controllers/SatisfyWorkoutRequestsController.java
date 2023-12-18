@@ -6,6 +6,7 @@ import engineering.ExerciseInventory;
 import engineering.LoggedUserSingleton;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
+import javafx.application.Platform;
 import javafx.scene.control.ListView;
 import model.*;
 import model.record.Credentials;
@@ -17,8 +18,6 @@ public class SatisfyWorkoutRequestsController {
 
     //TODO da risistemare; occhio che da un punto di vista di svolgimento di codice questa classe
     // deve scambiare i dati da bean a model
-
-    private WorkoutRoutine workoutRoutine = new WorkoutRoutine();
 
     public SatisfyWorkoutRequestsController() {}
 
@@ -35,41 +34,12 @@ public class SatisfyWorkoutRequestsController {
         };
     }
 
-    public WorkoutDayBean getWorkoutDayBean(DayBean dayBean) {
-        for (WorkoutDay workoutDay : workoutRoutine.getWorkoutDayList()) {
-            if (Objects.equals(workoutDay.getDay(), dayBean.getDay())) {
-                WorkoutDayBean workoutDayBean = new WorkoutDayBean(workoutDay.getDay());
-                for (ExerciseForWorkoutRoutine exercise : workoutDay.getExerciseList()) {
-                    workoutDayBean.addExerciseBean(new ExerciseForWorkoutRoutineBean(
-                            exercise.getName(),
-                            convertToExerciseStatusBean(exercise.getStatus()),
-                            exercise.getDay(),
-                            exercise.getRepetitions(),
-                            exercise.getSets(),
-                            exercise.getRest()
-                    ));
-                }
-                return workoutDayBean;
-            }
-        }
-        return new WorkoutDayBean(dayBean.getDay());
-    }
-
     public static ExerciseStatus convertFromExerciseStatusBean(ExerciseStatusBean statusBean) {
         return switch (statusBean) {
             case ACTIVE -> ExerciseStatus.ACTIVE;
             case SUSPENDED -> ExerciseStatus.SUSPENDED;
             default -> null;  // Handle other cases or throw an exception
         };
-    }
-    private WorkoutDay getWorkoutDay(String day) {
-        for(WorkoutDay workoutDay: workoutRoutine.getWorkoutDayList()){
-            if(Objects.equals(workoutDay.getDay(), day)) {
-                return workoutDay;
-            }
-        }
-        //todo throw nullPointerException
-        return null;
     }
 
     public boolean checkAlreadyAdded(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean, List<ExerciseForWorkoutRoutineBean> routineExerciselist) {
@@ -80,32 +50,6 @@ public class SatisfyWorkoutRequestsController {
             }
         }
         return false;
-    }
-
-    public boolean addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, List<ExerciseForWorkoutRoutineBean> routineExerciselist)  {
-        if (!checkAlreadyAdded(exercise, routineExerciselist) && exercise.getSets() == 0 && exercise.getRepetitions() == 0) {
-            return false;
-        }
-        WorkoutDay workoutDay = getWorkoutDay(exercise.getDay());
-        if(workoutDay == null) {
-            List<ExerciseForWorkoutRoutine> newList= new ArrayList<>();
-            workoutDay = new WorkoutDay(
-                    exercise.getDay(),
-                    newList,
-                    workoutRoutine.getName());
-            workoutRoutine.addWorkoutDay(workoutDay);
-        } else {
-            workoutDay.addExercise(new ExerciseForWorkoutRoutine(
-                    exercise.getName(),
-                    convertFromExerciseStatusBean(exercise.getStatusExercise()),
-                    exercise.getDay(),
-                    exercise.getRepetitions(),
-                    exercise.getSets(),
-                    exercise.getRest(),
-                    workoutRoutine.getName()
-            ));
-        }
-        return true;
     }
 
     public void setExerciseStatus(ExerciseBean exercise, ExerciseStatusBean status) throws UserCastException {
@@ -255,15 +199,39 @@ public class SatisfyWorkoutRequestsController {
         for (ExerciseForWorkoutRoutineBean item : copyList) {
             if (selectedExercise.getName().equals(item.getName())) {
                 //routineExerciselist.remove(item);
-
-                // Remove the exercise from the dayExercisesMap
                 removeExerciseFromDWorkoutRoutineBean(item, workoutRoutine);
-
                 break;
             }
         }
     }
 
+    public void addExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean exercise, WorkoutRoutineBean workoutRoutine) {
+
+        if (exercise.getSets() == 0 || exercise.getRepetitions() == 0) {
+            System.out.println("Sets and repetitions must be greater than 0.");
+            return;
+        }
+
+        WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(exercise.getDay());
+
+        // If the workout day doesn't exist, create it
+        if (workoutDay == null) {
+            workoutDay = new WorkoutDayBean(exercise.getDay());
+            workoutRoutine.addWorkoutDayBean(workoutDay);
+        }
+
+        // Check if the exercise is already added to the workout day
+        for (ExerciseForWorkoutRoutineBean existingExercise : workoutDay.getExerciseList()) {
+            if (existingExercise.getName().equals(exercise.getName())) {
+                System.out.println("Exercise '" + exercise.getName() + "' is already added to the workout day.");
+                return; // Don't add the exercise if it's already in the workout day
+            }
+        }
+
+        // Add the exercise to the workout day
+        workoutDay.addExerciseBean(exercise);
+
+    }
 
     public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedUserSingleton.getSingleton().getSpecificUser(Trainer.class)));

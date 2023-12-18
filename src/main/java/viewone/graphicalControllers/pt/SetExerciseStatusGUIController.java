@@ -8,6 +8,7 @@ import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import engineering.manageListView.ManageExerciseList;
 import exceptions.UserCastException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

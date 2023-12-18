@@ -6,6 +6,7 @@ import engineering.Observer;
 import engineering.manageListView.listCells.ExerciseForWOListCellFactory;
 import engineering.manageListView.listCells.ExerciseListCellFactory;
 import exceptions.UserCastException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -138,7 +139,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
             int repetitions = spinnerRepetitions.getValue();
             int sets = spinnerSets.getValue();
             String rest = restTimeComboBox.getValue();
-            boolean added = true;
+            boolean toAdd = true;
 
             ExerciseForWorkoutRoutineBean newExercise =
                     new ExerciseForWorkoutRoutineBean(selectedExercise.getName(),
@@ -147,25 +148,17 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
             newExercise.setRepetitions(repetitions);
             newExercise.setSets(sets);
             if (!newExercise.setRest(rest)) {
-                added = false;
-            }
-            List<ExerciseForWorkoutRoutineBean> workoutDay= new ArrayList<>();
-            workoutDay.addAll(routineExerciselist.getItems());
-            added = satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, workoutDay);
-            if (added) {
-                routineExerciselist.getItems().add(newExercise);
-                if(this.workoutRoutine.getWorkoutDay(newExercise.getDay()) != null){
-                    this.workoutRoutine.getWorkoutDay(newExercise.getDay()).addExerciseBean(newExercise);
-                } else {
-                    this.workoutRoutine.addWorkoutDayBean(new WorkoutDayBean(newExercise.getDay()));
-                    this.workoutRoutine.getWorkoutDay(newExercise.getDay()).addExerciseBean(newExercise);
-                    /*//TODO giorno nullo
-                    System.out.println("Exercise was not added successfully, because the day returned was null.");*/
-                }
-            }else {
+                toAdd = false;
+                //TODO gestisci sta cosa
+            } if (toAdd) {
+                satisfyWorkoutRequestsController.addExerciseToWorkoutDay(newExercise, workoutRoutine);
+                Platform.runLater(() -> {
+                    routineExerciselist.getItems().setAll(workoutRoutine.getWorkoutDay(selectedDay).getExerciseList());
+                });
+            } else {
+                //TODO gestisci il non inserimento
                 System.out.println("Exercise was not added successfully.");
             }
-
             resetSelection(1);
             exerciseDBList.getSelectionModel().clearSelection();
             routineExerciselist.getSelectionModel().clearSelection();
@@ -176,11 +169,9 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     public void cancelExercise() {
         ExerciseForWorkoutRoutineBean selectedExercise = routineExerciselist.getSelectionModel().getSelectedItem();
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-
         if (selectedExercise != null) {
             satisfyWorkoutRequestsController.removeExerciseToWorkoutDay(selectedExercise, workoutRoutine);
         }
-
         setVisibleLabel(false);
         setVisibleCancel(false);
         resetSelection(2);
@@ -240,7 +231,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
                 }
 
             }
+
         }
+        Platform.runLater(() -> {
+            routineExerciselist.getItems().setAll(workoutRoutine.getWorkoutDay(selectedDay).getExerciseList());
+        });
         ManageExerciseList.updateListFilteredDB(
                 routineExerciselist,
                 exerciseDBList.getItems());
@@ -256,7 +251,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
 
     @Override
     public void update(String exercise) {
-
         updateExerciseList();
 
         // Update the status of the corresponding exercise in routineExerciselist
