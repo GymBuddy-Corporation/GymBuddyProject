@@ -43,7 +43,7 @@ public class SetExerciseStatusGUIController implements Initializable{
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
-        ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
+        ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
     }
 
     public ListView<ExerciseBean> getExerciseDBList() {

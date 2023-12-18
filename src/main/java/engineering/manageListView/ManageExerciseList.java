@@ -41,6 +41,8 @@ public class ManageExerciseList {
     }
 
     public static void updateList(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
+        //this is used only for the ListView so to set the status of exercises
+        //and we needed all the exercise to show.
         ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(exerciseBeanList);
         exerciseBeanListView.setItems(exerciseBeanObservableList);
     }

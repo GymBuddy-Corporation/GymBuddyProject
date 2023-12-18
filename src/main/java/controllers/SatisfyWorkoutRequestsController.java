@@ -18,19 +18,9 @@ public class SatisfyWorkoutRequestsController {
     //TODO da risistemare; occhio che da un punto di vista di svolgimento di codice questa classe
     // deve scambiare i dati da bean a model
 
-    private final WorkoutRoutine workoutRoutine;
+    private WorkoutRoutine workoutRoutine = new WorkoutRoutine();
 
-    public SatisfyWorkoutRequestsController() {
-        this.workoutRoutine = new WorkoutRoutine();
-        ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
-        Gym gym1 = new Gym("Palestra1",
-                new Credentials("gym1@gmail.com", "forzanapule1926"),
-                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71","nome", exList);
-
-        /*(Trainer) new LoginController().getLoggedUser()*//*;
-        System.out.println(this.trainer.getName() + this.trainer.getEmail());*/
-        //TODO organizza exercises
-    }
+    public SatisfyWorkoutRequestsController() {}
 
     public List<ExerciseBean> getGymExerciseBean() throws UserCastException {
         List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
@@ -120,23 +110,20 @@ public class SatisfyWorkoutRequestsController {
 
     public void setExerciseStatus(ExerciseBean exercise, ExerciseStatusBean status) throws UserCastException {
         //TODO
-       /* Exercise exerciseToEdit = new Exercise(
-                exercise.getName(),
-                convertFromExerciseStatusBean(exercise.getStatusExercise()));*/
         ExerciseStatus statusToSet = convertFromExerciseStatusBean(status);
 
         // Update the status in the exerciseBean
         exercise.setStatusExercise(status);
 
         // Notify observers or perform any other necessary actions
-        findExerciseByName(exercise.getName(), statusToSet);
+        //findExerciseByName(exercise.getName(), statusToSet);
         for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList()){
             if(ex.getName().equals(exercise.getName())){
                 ex.setStatus(statusToSet);
+                System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatusExercise());
                 /*ex.notifyObservers(ex.getName()); Gia lo notifico nella riga sopra*/
             }
         }
-        //new ExerciseDAO().changeExerciseStatus(exerciseToEdit, statusToSet);
     }
 
     private void findExerciseByName(String exerciseName, ExerciseStatus status) throws UserCastException {
@@ -144,36 +131,65 @@ public class SatisfyWorkoutRequestsController {
         for (Exercise exercise : exerciseList) {
             if (exercise.getName().equals(exerciseName)) {
                 exercise.setStatus(status);
-                System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatus());
-            }
-        }
 
-        for (WorkoutDay day : workoutRoutine.getWorkoutDayList()) {
-            for (ExerciseForWorkoutRoutine exe : day.getExerciseList()){
-                if (exe.getName().equals(exerciseName)) {
-                    exe.setStatus(status);
-                    System.out.println(exe.getName() + " ha lo stato " + exe.getStatus());
-                }
             }
         }
     }
 
-    public void submitRoutine(RequestBean request) {
+    public void submitRoutine(RequestBean request, WorkoutRoutineBean workoutRoutineBean) {
         //TODO sistema poi il metodo con atleta in questione e invio scheda
         //Archivia la scheda vecchia
         //salva la nuova scheda
         //elimina la richiesta
-        //notifica l'atleta
-        for (WorkoutDay workoutDay : workoutRoutine.getWorkoutDayList()) {
-            String dayName = workoutDay.getDay();
+        //notifica l'atletaWorkoutRoutine
+
+        WorkoutRoutine workoutRoutineModel = new WorkoutRoutine();
+
+        // Iterate through each WorkoutDayBean in the WorkoutRoutineBean
+        for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
+            // Create a new WorkoutDay in the WorkoutRoutineModel
+            WorkoutDay newWorkoutDay = new WorkoutDay(workoutDay.getName());
 
             // Iterate through each ExerciseForWorkoutRoutineBean in the WorkoutDayBean
-            for (ExerciseForWorkoutRoutine exercisePrint : workoutDay.getExerciseList()) {
-                String exerciseName = exercisePrint.getName();
-                int repetitionsP = exercisePrint.getRepetitions();
-                int setsP = exercisePrint.getSets();
-                String restP = exercisePrint.getRest();
-                System.out.println("Giorno: " + dayName);
+            for (ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean : workoutDay.getExerciseList()) {
+                // Convert ExerciseForWorkoutRoutineBean to ExerciseForWorkoutRoutine
+                ExerciseForWorkoutRoutine exerciseForWorkoutRoutine = convertToExerciseForWorkoutRoutine(exerciseForWorkoutRoutineBean, workoutRoutineModel);
+
+                // Add ExerciseForWorkoutRoutine to the new WorkoutDay
+                newWorkoutDay.addExercise(exerciseForWorkoutRoutine);
+            }
+
+            // Add the new WorkoutDay to the WorkoutRoutineModel
+            workoutRoutineModel.addWorkoutDay(newWorkoutDay);
+        }
+
+        printWorkoutRoutineDetails(workoutRoutineModel);
+        //TODO sistema la requestBean, gestisci che deve succedere
+    }
+
+    // Helper method to convert ExerciseForWorkoutRoutineBean to ExerciseForWorkoutRoutine
+    private ExerciseForWorkoutRoutine convertToExerciseForWorkoutRoutine(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean, WorkoutRoutine workoutRoutineModel) {
+        ExerciseForWorkoutRoutine exerciseForWorkoutRoutine = new ExerciseForWorkoutRoutine(exerciseForWorkoutRoutineBean.getName(), convertFromExerciseStatusBean(exerciseForWorkoutRoutineBean.getStatusExercise()), exerciseForWorkoutRoutineBean.getDay(), workoutRoutineModel.getName());
+        exerciseForWorkoutRoutine.setRepetitions(exerciseForWorkoutRoutineBean.getRepetitions());
+        exerciseForWorkoutRoutine.setSets(exerciseForWorkoutRoutineBean.getSets());
+        exerciseForWorkoutRoutine.setRest(exerciseForWorkoutRoutineBean.getRest());
+        // Set other properties as needed
+
+        return exerciseForWorkoutRoutine;
+    }
+
+    // Helper method to print details of the WorkoutRoutineModel
+    private void printWorkoutRoutineDetails(WorkoutRoutine workoutRoutineModel) {
+        for (WorkoutDay workoutDay : workoutRoutineModel.getWorkoutDayList()) {
+            String dayName = workoutDay.getDay();
+            System.out.println("Giorno: " + dayName);
+
+            for (ExerciseForWorkoutRoutine exercise : workoutDay.getExerciseList()) {
+                String exerciseName = exercise.getName();
+                int repetitionsP = exercise.getRepetitions();
+                int setsP = exercise.getSets();
+                String restP = exercise.getRest();
+
                 System.out.println("Esercizio: " + exerciseName);
                 System.out.println("Ripetizioni: " + repetitionsP);
                 System.out.println("Sets:: " + setsP);
@@ -182,6 +198,7 @@ public class SatisfyWorkoutRequestsController {
             }
         }
     }
+
     public List<ExerciseBean> searchExercise(SearchBean searchBean) throws UserCastException{
         List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
         List<Exercise> filteredExercises = new ArrayList<>();
