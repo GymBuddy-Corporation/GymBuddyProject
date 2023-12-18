@@ -176,21 +176,18 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     public void cancelExercise() {
         ExerciseForWorkoutRoutineBean selectedExercise = routineExerciselist.getSelectionModel().getSelectedItem();
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        if (selectedExercise != null) {
-            satisfyWorkoutRequestsController.removeExerciseToWorkoutDay(selectedExercise, routineExerciselist, workoutRoutine);
 
-            // Remove the exercise from the dayExercisesMap
-            List<ExerciseForWorkoutRoutineBean> dayExercises = workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseBeanList();
-            if (dayExercises != null) {
-                dayExercises.removeIf(dayExercise -> dayExercise.getName().equals(selectedExercise.getName()));
-            }
+        if (selectedExercise != null) {
+            satisfyWorkoutRequestsController.removeExerciseToWorkoutDay(selectedExercise, workoutRoutine);
         }
+
         setVisibleLabel(false);
         setVisibleCancel(false);
         resetSelection(2);
         exerciseDBList.getSelectionModel().clearSelection();
         routineExerciselist.getSelectionModel().clearSelection();
     }
+
 
     @FXML
     void dayButtonAction(ActionEvent event) {

@@ -1,7 +1,6 @@
 import beans.CredentialsBean;
 import beans.ExerciseBean;
 import beans.SearchBean;
-import beans.UserBean;
 import controllers.SatisfyWorkoutRequestsController;
 import controllers.UserAccessController;
 import engineering.ExerciseInventory;
@@ -11,11 +10,8 @@ import exceptions.NoUserFoundException;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
-import model.record.Credentials;
-import model.record.PersonalInfo;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +23,7 @@ public class TestSearch {
     @Test
     public void TestSearchExercise() throws DataFieldException, NoUserFoundException, UserCastException {
         SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
-        UserAccessController controller1=new UserAccessController();
+        UserAccessController controller1 = new UserAccessController();
 
         ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
 
@@ -43,7 +39,11 @@ public class TestSearch {
         try {
             controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","forzanapule1926"));
         }catch(AlreadyLoggedUserException e){
-            //LoggedUserSingleton.getSingleton().getMyBean();
+            try{
+                Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
+            } catch (NullPointerException exc){
+                exc.printStackTrace();
+            }
         }
         SearchBean searchBean = new SearchBean(exerciseToSearch.getName());
         List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);

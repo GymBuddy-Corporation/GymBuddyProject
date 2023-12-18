@@ -202,9 +202,6 @@ public class SatisfyWorkoutRequestsController {
     public List<ExerciseBean> searchExercise(SearchBean searchBean) throws UserCastException{
         List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
         List<Exercise> filteredExercises = new ArrayList<>();
-        for (Exercise exercise : exerciseList) {
-            System.out.println(exercise.getName());
-        }
 
         for (Exercise exercise : exerciseList) {
             if (exercise.getName().toLowerCase().contains(searchBean.getName().toLowerCase())) {
@@ -251,21 +248,22 @@ public class SatisfyWorkoutRequestsController {
         workoutRoutine.getWorkoutDay(exercise.getDay()).removeExerciseBean(exercise);
     }
 
-    public void removeExerciseToWorkoutDay(ExerciseBean selectedExercise, ListView<ExerciseForWorkoutRoutineBean> routineExerciselist, WorkoutRoutineBean workoutRoutine) {
+    public void removeExerciseToWorkoutDay(ExerciseForWorkoutRoutineBean selectedExercise, WorkoutRoutineBean workoutRoutine) {
         // Create a copy of the routineExerciselist items to avoid ConcurrentModificationException
-        List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(routineExerciselist.getItems());
+        List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseList());
 
         for (ExerciseForWorkoutRoutineBean item : copyList) {
             if (selectedExercise.getName().equals(item.getName())) {
-                routineExerciselist.getItems().remove(item);
+                //routineExerciselist.remove(item);
 
                 // Remove the exercise from the dayExercisesMap
                 removeExerciseFromDWorkoutRoutineBean(item, workoutRoutine);
 
-                break; // Exit the loop once the item is removed
+                break;
             }
         }
     }
+
 
     public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedUserSingleton.getSingleton().getSpecificUser(Trainer.class)));
