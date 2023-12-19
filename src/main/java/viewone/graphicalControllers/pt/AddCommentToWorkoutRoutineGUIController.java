@@ -1,21 +1,20 @@
 package viewone.graphicalControllers.pt;
 
-import beans.RequestBean;
+import viewone.RequestBean1;
 import controllers.SatisfyWorkoutRequestsController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
+import viewone.WorkoutRoutineBean1;
 import viewone.popup.PopupAbstract;
-import viewone.popup.PopupGymbuddy;
 
 import java.io.IOException;
 
 public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
-
-    SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
-    RequestBean requestBean;
+    WorkoutRoutineBean1 workoutRoutine;
+    RequestBean1 requestBean;
 
     @FXML TextArea commentTextArea;
     @FXML TextArea nameRoutineTextArea;
@@ -33,16 +32,19 @@ public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
     public void goBack() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml.fxml","pt",1);
     }
-    public void setValue(RequestBean request, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) {
+    public void setValue(RequestBean1 request, WorkoutRoutineBean1 workoutRoutine) {
         this.requestBean = request;
-        this.satisfyWorkoutRequestsController = satisfyWorkoutRequestsController;
+        this.workoutRoutine = workoutRoutine;
         commentTextArea.setPromptText("Insert here your comment for "+ requestBean.getAthleteBean().getUsername() +"s' workout routine.");
         nameRoutineTextArea.setPromptText("Insert here the Workout Routines' name");
     }
 
     @Override
     public void popUpConfirm() throws IOException {
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        satisfyWorkoutRequestsController.submitRoutine(requestBean, this.workoutRoutine);
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
+
     }
 
     @Override

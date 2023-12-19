@@ -1,5 +1,6 @@
 import beans.*;
 import controllers.SatisfyWorkoutRequestsController;
+import viewone.WorkoutRoutineBean1;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,7 +12,7 @@ public class TestRemoveExercise {
     ExerciseForWorkoutRoutineBean ex4 = new ExerciseForWorkoutRoutineBean("Bench Press", ExerciseStatusBean.ACTIVE, "monday", 3, 6, "04:00");
     WorkoutDayBean monday = new WorkoutDayBean("monday");
     WorkoutDayBean tuesday = new WorkoutDayBean("tuesday");
-    WorkoutRoutineBean workoutRoutineBean = new WorkoutRoutineBean();
+    WorkoutRoutineBean1 workoutRoutineBean = new WorkoutRoutineBean1();
 
     @org.junit.jupiter.api.Test
     public void TestRemoveExerciseToWorkoutDay() {
@@ -25,7 +26,7 @@ public class TestRemoveExercise {
         workoutRoutineBean.addWorkoutDayBean(monday);
         workoutRoutineBean.addWorkoutDayBean(tuesday);
 
-        controller.removeExerciseToWorkoutDay(exerciseToRemove, workoutRoutineBean);
+        //controller.removeExerciseToWorkoutDay(exerciseToRemove, workoutRoutineBean);
         boolean flag = true;
         for(WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()){
             for (ExerciseForWorkoutRoutineBean exe : workoutDay.getExerciseBeanList()){

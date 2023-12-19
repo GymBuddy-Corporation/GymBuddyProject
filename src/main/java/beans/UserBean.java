@@ -5,8 +5,6 @@ package beans;
 import exceptions.dataException.DataFieldException;
 
 public class UserBean {
-
-    //Ho tolto il campo 'tipo' perchè poi gestiremo questa cosa direttmente con istance of
     private String username;
     private final CredentialsBean credentials;
 

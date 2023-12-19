@@ -1,21 +1,17 @@
 package viewone.graphicalControllers.pt;
 
 import beans.ExerciseBean;
-import beans.ExerciseForWorkoutRoutineBean;
-import beans.RequestBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import engineering.manageListView.ManageExerciseList;
 import exceptions.UserCastException;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import model.Exercise;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.ExerciseStatusButtonController;
@@ -105,12 +101,8 @@ public class SetExerciseStatusGUIController implements Initializable{
         satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
         satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.getController("SatisfyWorkoutRoutineRequest.fxml","pt");
 
-        //TODO non puoi chiamare update qui, gestisci le chiamate dell'observer
 
         SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
-
-        //satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.getController("SatisfyWorkoutRoutineRequest.fxml","pt");
-        //Objects.requireNonNull(satisfyWorkoutRoutineRequestGUIController).setBackValue(requestBean, satisfyWorkoutRequestsController, dayExercisesMap, newStatus);
     }
 
     /*private ExerciseStatusBean getStatusBean(ExerciseStatus status){

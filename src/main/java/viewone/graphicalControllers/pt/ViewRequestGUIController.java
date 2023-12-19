@@ -1,6 +1,6 @@
 package viewone.graphicalControllers.pt;
 
-import beans.RequestBean;
+import viewone.RequestBean1;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.ManageRequestList;
 import exceptions.UserCastException;
@@ -11,22 +11,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import model.Gym;
-import model.Trainer;
-import model.record.Credentials;
-import model.record.PersonalInfo;
 import utils.MainStage;
 import utils.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.*;
 
 public class ViewRequestGUIController implements Initializable {
 
     @FXML
-    private ListView<RequestBean> requestList;
+    private ListView<RequestBean1> requestList;
 
     @FXML
     private Text textUsersRequest;
@@ -34,7 +29,7 @@ public class ViewRequestGUIController implements Initializable {
     @FXML
     private Text usernameRequestText;
 
-    private RequestBean selectedRequest;
+    private RequestBean1 selectedRequest;
 
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
@@ -79,7 +74,7 @@ public class ViewRequestGUIController implements Initializable {
             requestList.getSelectionModel().selectedItemProperty().
                     addListener(new ChangeListener<>() {
                         @Override
-                        public void changed(ObservableValue<? extends RequestBean> observableValue, RequestBean oldItem, RequestBean newItem) {
+                        public void changed(ObservableValue<? extends RequestBean1> observableValue, RequestBean1 oldItem, RequestBean1 newItem) {
                             if (newItem != null) {
                                 textUsersRequest.setText(newItem.getInfo());
                                 selectedRequest = newItem;
