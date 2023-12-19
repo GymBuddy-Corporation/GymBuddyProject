@@ -33,6 +33,6 @@ public class Exercise extends Observable implements Serializable  {
 
     public void setStatus(ExerciseStatus status) {
         this.status = status;
-        super.notifyObservers(this.getName());
+        super.notifyObservers(this.getName(), status);
     }
 }

@@ -1,13 +1,13 @@
 package viewone.graphicalControllers.pt;
 
-import viewone.RequestBean1;
+import beans.RequestBean1;
 import controllers.SatisfyWorkoutRequestsController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewone.WorkoutRoutineBean1;
+import viewone.beans.WorkoutRoutineBean1;
 import viewone.popup.PopupAbstract;
 
 import java.io.IOException;

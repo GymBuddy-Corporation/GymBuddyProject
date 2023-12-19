@@ -1,7 +1,7 @@
 package engineering.manageListView.listCells;
 
 
-import viewone.RequestBean1;
+import beans.RequestBean1;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;

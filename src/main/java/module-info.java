@@ -41,5 +41,8 @@ module start {
     opens engineering.popups to javafx.fxml;
     exports exceptions.dataException.TyperEnumerations;
     exports exceptions;
+    exports viewone.beans;
+    opens viewone.beans to javafx.fxml;
+    opens beans to javafx.fxml;
 
 }

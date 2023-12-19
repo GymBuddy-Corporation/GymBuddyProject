@@ -1,6 +1,6 @@
 import beans.*;
 import controllers.SatisfyWorkoutRequestsController;
-import viewone.WorkoutRoutineBean1;
+import viewone.beans.WorkoutRoutineBean1;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

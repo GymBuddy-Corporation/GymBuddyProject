@@ -1,6 +1,6 @@
 package viewone.graphicalControllers.pt;
 
-import viewone.RequestBean1;
+import beans.RequestBean1;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.ManageRequestList;
 import exceptions.UserCastException;

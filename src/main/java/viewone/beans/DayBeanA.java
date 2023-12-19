@@ -1,4 +1,4 @@
-package viewone;
+package viewone.beans;
 
 import beans.DayBean;
 

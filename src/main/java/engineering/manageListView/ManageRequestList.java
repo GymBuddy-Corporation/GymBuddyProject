@@ -1,6 +1,6 @@
 package engineering.manageListView;
 
-import viewone.RequestBean1;
+import beans.RequestBean1;
 import controllers.SatisfyWorkoutRequestsController;
 /*
 import exceptions.DBUnreachableException;

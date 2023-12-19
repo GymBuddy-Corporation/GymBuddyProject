@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutDayObserver extends WorkoutDay implements Observer, Serializable {
+public class WorkoutDayObserver extends WorkoutDay {
     /*private final List<ExerciseForWorkoutRoutine> exercises;
     protected WorkoutRoutine workoutRoutine;
 
@@ -35,19 +35,4 @@ public class WorkoutDayObserver extends WorkoutDay implements Observer, Serializ
             addExercise(exercise);
         }
     }*/
-
-    @Override
-    public void update(String changedExerciseName) {
-        /*for (int i = exerciseList.size() - 1; i >= 0; i--) {
-            ExerciseForWorkoutRoutine exercise = exerciseList.get(i);
-            if (exercise.getName().equals(changedExerciseName)) {
-                //TODO exercise.setStatus(status);
-            }
-        }*/
-        /*if (changedExerciseName.getStatus() == ExerciseStatus.SUSPENDED) {
-            findAndUpdate(changedExerciseName, ExerciseStatus.SUSPENDED);
-        } else if (changedExerciseName.getStatus() == ExerciseStatus.ACTIVE) {
-            findAndUpdate(changedExerciseName, ExerciseStatus.ACTIVE);
-        }*/
-    }
 }

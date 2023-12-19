@@ -7,7 +7,7 @@ import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 import org.jetbrains.annotations.NotNull;
-import viewone.RequestBean1;
+import beans.RequestBean1;
 
 import java.util.*;
 
@@ -23,14 +23,6 @@ public class SatisfyWorkoutRequestsController {
         return getExerciseBeanList(exerciseList);
     }
 
-    public static ExerciseStatusBean convertToExerciseStatusBean(ExerciseStatus status) {
-        return switch (status) {
-            case ACTIVE -> ExerciseStatusBean.ACTIVE;
-            case SUSPENDED -> ExerciseStatusBean.SUSPENDED;
-            default -> null;  // Handle other cases or throw an exception
-        };
-    }
-
     public static ExerciseStatus convertFromExerciseStatusBean(ExerciseStatusBean statusBean) {
         return switch (statusBean) {
             case ACTIVE -> ExerciseStatus.ACTIVE;
@@ -38,8 +30,6 @@ public class SatisfyWorkoutRequestsController {
             default -> null;  // Handle other cases or throw an exception
         };
     }
-
-
 
     public void setExerciseStatus(ExerciseBean exercise, ExerciseStatusBean status) throws UserCastException {
         //TODO
@@ -59,17 +49,7 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    private void findExerciseByName(String exerciseName, ExerciseStatus status) {
-        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
-        for (Exercise exercise : exerciseList) {
-            if (exercise.getName().equals(exerciseName)) {
-                exercise.setStatus(status);
-
-            }
-        }
-    }
-
-    public void submitRoutine(RequestBean request, WorkoutRoutineBean workoutRoutineBean) {
+    public void submitRoutine(RequestBean1 request, WorkoutRoutineBean workoutRoutineBean) {
         //TODO sistema poi il metodo con atleta in questione e invio scheda
         //Archivia la scheda vecchia
         //salva la nuova scheda

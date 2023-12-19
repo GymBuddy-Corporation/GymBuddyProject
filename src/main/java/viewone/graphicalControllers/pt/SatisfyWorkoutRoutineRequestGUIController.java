@@ -13,12 +13,13 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import engineering.manageListView.ManageExerciseList;
 import model.Exercise;
+import model.ExerciseStatus;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
 import controllers.SatisfyWorkoutRequestsController;
-import viewone.RequestBean1;
-import viewone.WorkoutRoutineBean1;
+import beans.RequestBean1;
+import viewone.beans.WorkoutRoutineBean1;
 
 import java.net.URL;
 import java.util.*;
@@ -268,7 +269,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     }
 
     public void updateSelectedExerciseList() {
-        //senza questa, quando risetto active, non me li mostra nel nella routine
+        /*//senza questa, quando risetto active, non me li mostra nel nella routine
         for (WorkoutDayBean workoutDayBean : workoutRoutine.getWorkoutDayList()){
             List<ExerciseForWorkoutRoutineBean> list =  workoutDayBean.getExerciseList();
             for(ExerciseForWorkoutRoutineBean exe: list){
@@ -278,7 +279,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
                     }
                 }
             }
-        }
+        }*/
 
         List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
         for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(selectedDay).getExerciseBeanList()) {
@@ -300,7 +301,7 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     }
 
     @Override
-    public void update(String exercise) {
+    public void update(String exercise, ExerciseStatus status) {
         updateExerciseList();
 
         // Update the status of the corresponding exercises in routineExerciselist
@@ -309,7 +310,11 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
 
             for (ExerciseForWorkoutRoutineBean ex : exerciseList) {
                 if (ex.getName().equals(exercise)) {
-                    ex.setStatusExercise(ExerciseStatusBean.SUSPENDED);
+                    if (status.equals(ExerciseStatus.ACTIVE)){
+                        ex.setStatusExercise(ExerciseStatusBean.ACTIVE);
+                    } else if (status.equals(ExerciseStatus.SUSPENDED)){
+                        ex.setStatusExercise(ExerciseStatusBean.SUSPENDED);
+                    }
                 }
             }
         }
