@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import utils.SwitchPage;
 import viewone.graphicalControllers.launcher.gym.GymFirstGUIController;
-import viewone.graphicalControllers.pt.SatisfyWorkoutRoutineRequestGUIController;
 
 import java.net.URL;
 import java.util.Objects;

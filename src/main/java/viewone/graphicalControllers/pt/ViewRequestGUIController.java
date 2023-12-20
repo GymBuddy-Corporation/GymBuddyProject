@@ -46,7 +46,7 @@ public class ViewRequestGUIController implements Initializable {
     }
     @FXML
     public void askClarification() throws Exception {
-        //TODO sistema la nuova grafica SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
+        //TODO sistema la nuova grafica SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml","pt",1);
     }
 
     @FXML
@@ -57,7 +57,7 @@ public class ViewRequestGUIController implements Initializable {
     }
 
     public void createNewRoutine() throws UserCastException, IOException {
-        SatisfyWorkoutRoutineRequestGUIController controller = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.setStage(MainStage.getStage(), "SatisfyWorkoutRoutineRequest.fxml", "pt", 1);
+        CreateNewWorkoutRoutineGUIController controller = (CreateNewWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(), "CreateNewWorkoutRoutine.fxml", "pt", 1);
         Objects.requireNonNull(controller).setValue(selectedRequest);
     }
 

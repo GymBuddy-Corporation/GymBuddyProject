@@ -9,7 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import viewone.graphicalControllers.pt.SatisfyWorkoutRoutineRequestGUIController;
+import viewone.graphicalControllers.pt.CreateNewWorkoutRoutineGUIController;
 import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
 
 
@@ -20,7 +20,7 @@ public class ManageExerciseList {
 
     private ManageExerciseList() {}
 
-    public static void setListenerDB(ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerDB(ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -30,7 +30,7 @@ public class ManageExerciseList {
                 });
     }
 
-    private static void listEventDB(ExerciseBean newItem, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    private static void listEventDB(ExerciseBean newItem, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
             if(newItem != null){
                 satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);
                 satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(true);
@@ -73,7 +73,7 @@ public class ManageExerciseList {
     }
 
 
-    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -83,7 +83,7 @@ public class ManageExerciseList {
                 });
     }
 
-    private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) {
+    private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         if(newItem != null){
             satisfyWorkoutRoutineRequestGUIController.setExerciseDetails(newItem.getRepetitions(), newItem.getSets(), newItem.getRest());
             satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);

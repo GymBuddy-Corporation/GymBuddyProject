@@ -15,10 +15,6 @@ public abstract class Observable {
         this.observers.add(observer);
     }
 
-    public void removeObserver(Observer observer) {
-        this.observers.remove(observer);
-    }
-
     public synchronized void notifyObservers(String exercise, ExerciseStatus status){
         for (Observer observer : this.observers) {
             observer.update(exercise, status);

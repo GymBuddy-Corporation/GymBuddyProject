@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.pt.SatisfyWorkoutRoutineRequestGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.pt.CreateNewWorkoutRoutineGUIController">
    <Text layoutX="408.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Change it" textAlignment="CENTER" wrappingWidth="63.20003051757817">
       <font>
          <Font name="Allerta Stencil Regular" size="14.0" />

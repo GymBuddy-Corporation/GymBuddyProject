@@ -30,7 +30,7 @@ public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
     }
     @FXML
     public void goBack() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml.fxml","pt",1);
+        SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml.fxml","pt",1);
     }
     public void setValue(RequestBean1 request, WorkoutRoutineBean1 workoutRoutine) {
         this.requestBean = request;

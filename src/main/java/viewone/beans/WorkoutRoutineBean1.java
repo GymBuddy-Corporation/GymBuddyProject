@@ -12,21 +12,12 @@ public class WorkoutRoutineBean1 implements WorkoutRoutineBean {
     private AthleteBean athlete;
     private String name;
     private String comment;
-    private List<WorkoutDayBean> workoutDayList;
-
-    public WorkoutRoutineBean1(AthleteBean athlete) {
-        this.athlete = athlete;
-        this.workoutDayList = new ArrayList<>();
-    }
+    private final List<WorkoutDayBean> workoutDayList;
 
     public WorkoutRoutineBean1() {
         this.workoutDayList = new ArrayList<>();
     }
     public List<WorkoutDayBean> getWorkoutDayList() {return workoutDayList;}
-
-    public void setWorkoutDayList(List<WorkoutDayBean> workoutDayList) {
-        this.workoutDayList = workoutDayList;
-    }
 
     public AthleteBean getAthlete() {
         return athlete;
@@ -54,5 +45,9 @@ public class WorkoutRoutineBean1 implements WorkoutRoutineBean {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public void setAthlete(AthleteBean athlete) {
+        this.athlete = athlete;
     }
 }

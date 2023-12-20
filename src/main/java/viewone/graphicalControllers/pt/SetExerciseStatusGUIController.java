@@ -29,7 +29,7 @@ public class SetExerciseStatusGUIController implements Initializable{
     @FXML private TextField searchExerciseText;
     @FXML private Button setStatusButton;
     private final ExerciseStatusButtonController exerciseStatusButtonController = new ExerciseStatusButtonController();;
-    private SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController;
+    private CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController;
 
     @FXML
     public void logout() throws Exception {
@@ -53,7 +53,7 @@ public class SetExerciseStatusGUIController implements Initializable{
         setStatusButton.setVisible(bool);
     }
 
-    public void setValue(SatisfyWorkoutRoutineRequestGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
+    public void setValue(CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
         this.satisfyWorkoutRoutineRequestGUIController = satisfyWorkoutRoutineRequestGUIController;
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController= new SatisfyWorkoutRequestsController();
         ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
@@ -99,10 +99,10 @@ public class SetExerciseStatusGUIController implements Initializable{
 
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
-        satisfyWorkoutRoutineRequestGUIController = (SatisfyWorkoutRoutineRequestGUIController) SwitchPage.getController("SatisfyWorkoutRoutineRequest.fxml","pt");
+        satisfyWorkoutRoutineRequestGUIController = (CreateNewWorkoutRoutineGUIController) SwitchPage.getController("CreateNewWorkoutRoutine.fxml","pt");
 
 
-        SwitchPage.setStage(MainStage.getStage(),"SatisfyWorkoutRoutineRequest.fxml","pt",1);
+        SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml","pt",1);
     }
 
     /*private ExerciseStatusBean getStatusBean(ExerciseStatus status){

@@ -24,7 +24,7 @@ import viewone.beans.WorkoutRoutineBean1;
 import java.net.URL;
 import java.util.*;
 
-public class SatisfyWorkoutRoutineRequestGUIController implements Initializable, Observer {
+public class CreateNewWorkoutRoutineGUIController implements Initializable, Observer {
 
     @FXML private Button mondayButton;
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
@@ -79,13 +79,13 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     }
     @FXML
     public void setExerciseStatus() throws Exception{
-        SwitchPage.saveElement("SatisfyWorkoutRoutineRequest.fxml","pt",labelRest.getScene(),this);
+        SwitchPage.saveElement("CreateNewWorkoutRoutine.fxml","pt",labelRest.getScene(),this);
         SetExerciseStatusGUIController controller = (SetExerciseStatusGUIController) SwitchPage.setStage(MainStage.getStage(),"SetExerciseStatus.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(this);
     }
     @FXML
     public void deleteChanges() throws Exception{
-        SwitchPage.deleteElement("SatisfyWorkoutRoutineRequest.fxml","pt");
+        SwitchPage.deleteElement("CreateNewWorkoutRoutine.fxml","pt");
 
         //TODO gestisci la cancellazione della scheda
         SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
@@ -269,18 +269,6 @@ public class SatisfyWorkoutRoutineRequestGUIController implements Initializable,
     }
 
     public void updateSelectedExerciseList() {
-        /*//senza questa, quando risetto active, non me li mostra nel nella routine
-        for (WorkoutDayBean workoutDayBean : workoutRoutine.getWorkoutDayList()){
-            List<ExerciseForWorkoutRoutineBean> list =  workoutDayBean.getExerciseList();
-            for(ExerciseForWorkoutRoutineBean exe: list){
-                for(ExerciseBean exerciseDBListExercise : exerciseDBList.getItems()){
-                    if (exe.getName().equals(exerciseDBListExercise.getName())){
-                        exe.setStatusExercise(exerciseDBListExercise.getStatusExercise());
-                    }
-                }
-            }
-        }*/
-
         List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
         for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(selectedDay).getExerciseBeanList()) {
             if (exercise.getStatusExercise() == ExerciseStatusBean.ACTIVE) {
