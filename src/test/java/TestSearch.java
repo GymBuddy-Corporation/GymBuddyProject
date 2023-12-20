@@ -49,9 +49,7 @@ public class TestSearch {
         List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);
 
         boolean flag = exerciseBeanList.get(0).getName().equals(exerciseToSearch.getName()) ;
-        if(!Objects.equals(exerciseBeanList.get(0).getName(), exerciseToSearch.getName())) {
-            flag = false;
-        }
+        if(!Objects.equals(exerciseBeanList.get(0).getName(), exerciseToSearch.getName())) flag = false;
 
         assertTrue(flag);
     }

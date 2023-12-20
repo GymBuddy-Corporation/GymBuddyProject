@@ -72,7 +72,7 @@ public class LoggedUserSingleton {
                             trainer.getPassword()));
         }else if (usr instanceof  Gym gym) {
             return  new GymBean(
-                    usr.getUsername(),
+                    gym.getUsername(),
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             gym.getEmail(),
                             gym.getPassword()
