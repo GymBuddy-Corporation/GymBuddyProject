@@ -98,7 +98,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
         // gestisci l'aggiunta di un esercizio nella scheda DB
-        AddCommentToWorkoutRoutineGUIController controller = (AddCommentToWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"AddCommentToWorkoutRoutine.fxml","pt",1);
+        PersonalizeWorkoutRoutineGUIController controller = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"PersonalizeWorkoutRoutine.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, this.workoutRoutine);
 
     }

@@ -12,7 +12,7 @@ import viewone.popup.PopupAbstract;
 
 import java.io.IOException;
 
-public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
+public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     WorkoutRoutineBean1 workoutRoutine;
     RequestBean1 requestBean;
 
@@ -42,6 +42,7 @@ public class AddCommentToWorkoutRoutineGUIController extends PopupAbstract {
     @Override
     public void popUpConfirm() throws IOException {
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        //TODO qua fare la scrittura su DB
         satisfyWorkoutRequestsController.submitRoutine(requestBean, this.workoutRoutine);
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
 
