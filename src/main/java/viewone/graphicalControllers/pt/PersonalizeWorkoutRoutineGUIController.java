@@ -1,6 +1,6 @@
 package viewone.graphicalControllers.pt;
 
-import beans.RequestBean1;
+import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     WorkoutRoutineBean1 workoutRoutine;
-    RequestBean1 requestBean;
+    RequestBean requestBean;
 
     @FXML TextArea commentTextArea;
     @FXML TextArea nameRoutineTextArea;
@@ -32,7 +32,7 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     public void goBack() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml.fxml","pt",1);
     }
-    public void setValue(RequestBean1 request, WorkoutRoutineBean1 workoutRoutine) {
+    public void setValue(RequestBean request, WorkoutRoutineBean1 workoutRoutine) {
         this.requestBean = request;
         this.workoutRoutine = workoutRoutine;
         commentTextArea.setPromptText("Insert here your comment for "+ requestBean.getAthleteBean().getUsername() +"s' workout routine.");
@@ -43,7 +43,7 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     public void popUpConfirm() throws IOException {
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         //TODO qua fare la scrittura su DB
-        satisfyWorkoutRequestsController.submitRoutine(requestBean, this.workoutRoutine);
+        satisfyWorkoutRequestsController.sendWorkoutRoutine(requestBean, this.workoutRoutine);
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
 
     }

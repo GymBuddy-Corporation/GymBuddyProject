@@ -1,11 +1,14 @@
 package viewone.graphicalControllers.pt;
 
 import beans.ExerciseBean;
+import beans.RequestBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import engineering.manageListView.ManageExerciseList;
 import exceptions.UserCastException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,22 +56,30 @@ public class SetExerciseStatusGUIController implements Initializable{
         setStatusButton.setVisible(bool);
     }
 
-    public void setValue(CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
+    /*public void setValue(CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
         this.satisfyWorkoutRoutineRequestGUIController = satisfyWorkoutRoutineRequestGUIController;
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController= new SatisfyWorkoutRequestsController();
         ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
-        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
+        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
         ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
-    }
+    }*/
 
     @FXML
     public void changeStatus(ActionEvent event) {
         selectedButton = exerciseStatusButtonController.statusButtonAction(event);
     }
 
+    public void showExerciseDBList(ListView<ExerciseBean> exerciseDBList,SatisfyWorkoutRequestsController satisfyWorkoutRequestsController){
+        ObservableList<ExerciseBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getLoggedTrainerGymExercises());
+        exerciseDBList.setItems(FXCollections.observableList(requestBeanObservableList));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         exerciseDBList.setCellFactory(new ExerciseListCellFactoryForStatus());
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        showExerciseDBList(exerciseDBList, satisfyWorkoutRequestsController);
+        ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
         setVisibleButtons(false);
     }
 

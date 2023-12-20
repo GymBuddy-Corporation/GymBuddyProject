@@ -18,7 +18,7 @@ import utils.MainStage;
 import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
 import controllers.SatisfyWorkoutRequestsController;
-import beans.RequestBean1;
+import beans.RequestBean;
 import viewone.beans.WorkoutRoutineBean1;
 
 import java.net.URL;
@@ -28,7 +28,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
 
     @FXML private Button mondayButton;
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
-    private RequestBean1 requestBean;
+    private RequestBean requestBean;
     private String selectedDay;
     private final WorkoutRoutineBean1 workoutRoutine = new WorkoutRoutineBean1(); //TODO replace hash map with this
 
@@ -80,13 +80,12 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     @FXML
     public void setExerciseStatus() throws Exception{
         SwitchPage.saveElement("CreateNewWorkoutRoutine.fxml","pt",labelRest.getScene(),this);
-        SetExerciseStatusGUIController controller = (SetExerciseStatusGUIController) SwitchPage.setStage(MainStage.getStage(),"SetExerciseStatus.fxml","pt",1);
-        Objects.requireNonNull(controller).setValue(this);
+        SwitchPage.setStage(MainStage.getStage(),"SetExerciseStatus.fxml","pt",1);
+        //Objects.requireNonNull(controller).setValue(this);
     }
     @FXML
     public void deleteChanges() throws Exception{
         SwitchPage.deleteElement("CreateNewWorkoutRoutine.fxml","pt");
-
         //TODO gestisci la cancellazione della scheda
         SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
     }
@@ -100,14 +99,13 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         // gestisci l'aggiunta di un esercizio nella scheda DB
         PersonalizeWorkoutRoutineGUIController controller = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"PersonalizeWorkoutRoutine.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, this.workoutRoutine);
-
     }
 
-    public void setValue(RequestBean1 request){
+    public void setValue(RequestBean request){
         this.requestBean = request;
         List<ExerciseBean> exerciseBeanList;
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        exerciseBeanList = satisfyWorkoutRequestsController.getGymExerciseBean();
+        exerciseBeanList = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
         for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList()) {
             ex.addObserver(this);
         }
@@ -270,9 +268,14 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
 
     public void updateSelectedExerciseList() {
         List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
-        for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(selectedDay).getExerciseBeanList()) {
-            if (exercise.getStatusExercise() == ExerciseStatusBean.ACTIVE) {
-                activeExercises.add(exercise);
+
+        // Check if the WorkoutDayBean is present
+        WorkoutDayBean selectedWorkoutDay = workoutRoutine.getWorkoutDay(selectedDay);
+        if (selectedWorkoutDay != null) {
+            for (ExerciseForWorkoutRoutineBean exercise : selectedWorkoutDay.getExerciseBeanList()) {
+                if (exercise.getStatusExercise() == ExerciseStatusBean.ACTIVE) {
+                    activeExercises.add(exercise);
+                }
             }
         }
 
@@ -280,11 +283,12 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         routineExerciselist.getItems().setAll(activeExercises);
     }
 
+
     public void updateExerciseList() {
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         ManageExerciseList.updateListFiltered(
                 exerciseDBList,
-                satisfyWorkoutRequestsController.getGymExerciseBean()
+                satisfyWorkoutRequestsController.getLoggedTrainerGymExercises()
         );
     }
 
@@ -306,7 +310,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
                 }
             }
         }
-
         updateSelectedExerciseList();
     }
 

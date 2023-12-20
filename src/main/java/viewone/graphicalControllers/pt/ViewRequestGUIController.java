@@ -1,6 +1,6 @@
 package viewone.graphicalControllers.pt;
 
-import beans.RequestBean1;
+import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.manageListView.ManageRequestList;
 import exceptions.UserCastException;
@@ -21,7 +21,7 @@ import java.util.*;
 public class ViewRequestGUIController implements Initializable {
 
     @FXML
-    private ListView<RequestBean1> requestList;
+    private ListView<RequestBean> requestList;
 
     @FXML
     private Text textUsersRequest;
@@ -29,13 +29,13 @@ public class ViewRequestGUIController implements Initializable {
     @FXML
     private Text usernameRequestText;
 
-    private RequestBean1 selectedRequest;
+    private RequestBean selectedRequest;
 
     private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
     public ViewRequestGUIController() {
         satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-    }
+    } //TODO sistema questo
 
     @FXML
     public void goBack() throws Exception {
@@ -74,14 +74,12 @@ public class ViewRequestGUIController implements Initializable {
             requestList.getSelectionModel().selectedItemProperty().
                     addListener(new ChangeListener<>() {
                         @Override
-                        public void changed(ObservableValue<? extends RequestBean1> observableValue, RequestBean1 oldItem, RequestBean1 newItem) {
+                        public void changed(ObservableValue<? extends RequestBean> observableValue, RequestBean oldItem, RequestBean newItem) {
                             if (newItem != null) {
                                 textUsersRequest.setText(newItem.getInfo());
                                 selectedRequest = newItem;
                                 usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
-                                /*System.out.println("Username:" + selectedRequest.getAthleteBean().getUsername() +
-                                        "data" + selectedRequest.getRequestDate() + "trainer" + selectedRequest.getTrainerFc());*/
-                            }
+                                }
                         }
                     });
         }catch (DataFieldException e) {

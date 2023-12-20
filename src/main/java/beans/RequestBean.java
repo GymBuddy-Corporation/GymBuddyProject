@@ -2,14 +2,14 @@ package beans;
 
 import java.time.LocalDateTime;
 
-public class RequestBean1 {
+public class RequestBean {
     private int id;  /*TODO Da chiarire a cosa mi può servire l'id?*/
     private final LocalDateTime requestDate;
     private String info;
     private final AthleteBean athleteBean;
     private final String trainerFc;
 
-    public RequestBean1(int id, LocalDateTime requestDate, String info, AthleteBean athleteBean, String trainer) {
+    public RequestBean(int id, LocalDateTime requestDate, String info, AthleteBean athleteBean, String trainer) {
         this.id = id;
         this.requestDate = requestDate;
         this.info = info;
@@ -17,7 +17,7 @@ public class RequestBean1 {
         this.trainerFc = trainer;
     }
 
-    public RequestBean1(String info, AthleteBean athleteBean, String trainerFc) {
+    public RequestBean(String info, AthleteBean athleteBean, String trainerFc) {
         this.requestDate = LocalDateTime.now();
         setInfo(info);
         this.athleteBean = athleteBean;

@@ -1,6 +1,6 @@
 package engineering.manageListView;
 
-import beans.RequestBean1;
+import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 /*
 import exceptions.DBUnreachableException;
@@ -15,7 +15,7 @@ import javafx.scene.control.ListView;
 
 public class ManageRequestList {
 
-    public static void setRequestList(ListView<RequestBean1> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException/* throws SQLException, DBUnreachableException */{
+    public static void setRequestList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException/* throws SQLException, DBUnreachableException */{
         requestList.setCellFactory(new RequestListCellFactory());
         updateList(requestList, satisfyWorkoutRequestsController);
     }
@@ -23,8 +23,8 @@ public class ManageRequestList {
     //TODO chiarisci perchè cazzo mi mostra le richieste senz update, mentre non me le mostra se ho update
     //TODO sistema password null bug
 
-    public static void updateList(ListView<RequestBean1> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException /*throws SQLException, DBUnreachableException */{
-        ObservableList<RequestBean1> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getTrainerRequests());
+    public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException /*throws SQLException, DBUnreachableException */{
+        ObservableList<RequestBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getTrainerRequests());
         requestList.setItems(FXCollections.observableList(requestBeanObservableList));
     }
 }

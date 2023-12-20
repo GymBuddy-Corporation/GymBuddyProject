@@ -7,18 +7,19 @@ import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 import org.jetbrains.annotations.NotNull;
-import beans.RequestBean1;
+import beans.RequestBean;
 
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
 
-    //TODO da risistemare; occhio che da un punto di vista di svolgimento di codice questa classe
-    // deve scambiare i dati da bean a model
+    //TODO da risistemare; occhio che da un punto di 
+    // vista di svolgimento di codice questa classe
+    // deve scambiare i dati da bean a model e viceversa
 
     public SatisfyWorkoutRequestsController() {}
 
-    public List<ExerciseBean> getGymExerciseBean() {
+    public List<ExerciseBean> getLoggedTrainerGymExercises() {
         List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
         return getExerciseBeanList(exerciseList);
     }
@@ -49,9 +50,8 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    public void submitRoutine(RequestBean1 request, WorkoutRoutineBean workoutRoutineBean) {
+    public void sendWorkoutRoutine(RequestBean request, WorkoutRoutineBean workoutRoutineBean) {
         //TODO sistema poi il metodo con atleta in questione e invio scheda
-        //Archivia la scheda vecchia
         //salva la nuova scheda
         //elimina la richiesta
         //notifica l'atletaWorkoutRoutine
@@ -144,10 +144,10 @@ public class SatisfyWorkoutRequestsController {
         };
     }
 
-    public List<RequestBean1> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
+    public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedUserSingleton.getSingleton().getSpecificUser(Trainer.class)));
 
-        List<RequestBean1> requestBeanList = new ArrayList<>();
+        List<RequestBean> requestBeanList = new ArrayList<>();
         for(Request request: requestList) {
             Athlete usr = request.getAthlete();
             AthleteBean athleteBean;
@@ -184,7 +184,7 @@ public class SatisfyWorkoutRequestsController {
                                 (YearMonth) null
                         ));
             }*/
-            requestBeanList.add(new RequestBean1(
+            requestBeanList.add(new RequestBean(
                     request.getId(),
                     request.getRequestDate(),
                     request.getInfo(),
@@ -196,7 +196,7 @@ public class SatisfyWorkoutRequestsController {
         return requestBeanList;
     }
 
-    public void rejectRequest(RequestBean1 selectedRequest) {
+    public void rejectRequest(RequestBean selectedRequest) {
         new RequestDAO().deleteRequest(selectedRequest.getRequestDate(),
                 selectedRequest.getAthleteBean().getCredentials().getEmail());
         //notificationsController.sendRejectRequestNotification(selectedRequest.getAthleteBean().getFiscalCode());
