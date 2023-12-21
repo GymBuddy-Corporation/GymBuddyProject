@@ -47,7 +47,7 @@ public class Gym extends User implements Serializable {
     //caricare gli esercizi solo nel momento effettivo del utilizzo
     private void lazyLoadExercises() {
         if (this.gymExercises == null) {
-            this.gymExercises = ExerciseInventory.loadExcercise(this.credentials);
+            this.gymExercises = ExerciseInventory.loadExcercise(this.gymName);
         }
     }
 

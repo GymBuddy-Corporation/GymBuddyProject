@@ -22,7 +22,7 @@ public class GymDAO {
 
 
 
-    public List<Exercise> loadDBExercises(Credentials credentail){
+    public List<Exercise> loadDBExercises(String gymName){
         List<Exercise> exList = new ArrayList<>();
 
         //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
