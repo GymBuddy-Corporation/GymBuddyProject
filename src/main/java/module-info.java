@@ -46,4 +46,7 @@ module start {
     opens beans to javafx.fxml;
     opens model.record;
 
+    opens database.dao;
+    exports database.dao;
+
 }

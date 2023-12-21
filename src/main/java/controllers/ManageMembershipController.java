@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class ManageMembershipController {
 
-    GymDAO dao;
+    protected GymDAO dao;
     public ManageMembershipController(){
         dao=new GymDAO();
     }

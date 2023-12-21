@@ -10,7 +10,9 @@ public abstract class User {
     protected Credentials credentials;
 
     protected User() {}
-
+    protected User(String username){
+        this.username=username;
+    }
     protected User(String username, Credentials credentials){
         this.username = username;
         this.credentials = credentials;

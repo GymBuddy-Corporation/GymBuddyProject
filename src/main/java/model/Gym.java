@@ -20,6 +20,12 @@ public class Gym extends User implements Serializable {
         this.gymExercises = null;
     }
 
+    public Gym(String username,String iban, String city, String address, String country, String gymName){
+        super(username);
+        this.iban = iban;
+        this.location = new Location(city, address, country);
+        this.gymName = gymName;
+    }
     public String getIban() {
         return iban;
     }

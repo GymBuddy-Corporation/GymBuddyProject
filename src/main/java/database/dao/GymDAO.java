@@ -5,6 +5,7 @@ import database.queries.RequestQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;*/
 
+import exceptions.NoUserFoundException;
 import model.*;
 import model.record.Credentials;
 
@@ -43,6 +44,16 @@ public class GymDAO {
         return exList;
     }
     List<Gym> loadedgyms;
+
+    public Gym getGymByName(String gymName) throws NoUserFoundException {
+        loadAllGyms();
+        for (Gym gym : loadedgyms) {
+            if (gym.getGymName().equals(gymName)) {
+                return gym;
+            }
+        }
+        throw new NoUserFoundException();
+    }
     public List<Gym> loadAllGyms(){
         if(loadedgyms!=null)return loadedgyms;
         List<Gym> gyms = new ArrayList<>();
