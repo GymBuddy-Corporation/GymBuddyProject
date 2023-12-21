@@ -6,8 +6,8 @@ import model.record.PersonalInfo;
 import java.time.LocalDate;
 
 public abstract class User {
-    private String username;
-    private Credentials credentials;
+    protected String username;
+    protected Credentials credentials;
 
     protected User() {}
 

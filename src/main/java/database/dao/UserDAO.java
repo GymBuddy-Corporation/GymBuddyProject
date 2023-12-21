@@ -25,22 +25,9 @@ import java.sql.SQLException;*/
 public class UserDAO {
 
     public User loadUser(String email, String password) throws NoUserFoundException, DataFieldException /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
-        ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
 
-        Exercise ex1 = new Exercise("Tricep Pushdown");
-        Exercise ex2 = new Exercise("Shoulder Press");
-        Exercise ex3 = new Exercise("Squat");
-        Exercise ex4 = new Exercise("Dips");
-
-        ex3.setStatus(ExerciseStatus.SUSPENDED);
-        ex4.setStatus(ExerciseStatus.SUSPENDED);
-
-        exList.getExerciseList().add(ex1);
-        exList.getExerciseList().add(ex2);
-        exList.getExerciseList().add(ex3);
-        exList.getExerciseList().add(ex4);
         Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic", exList);
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic","italy");
         Trainer trainer= new Trainer("AleCortix",
                 new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
                 new Credentials("pt@gmail.com", "forzanapule1926"), palestra1);

@@ -1,7 +1,9 @@
 package engineering;
 
+import database.dao.GymDAO;
 import model.Exercise;
 import model.ExerciseStatus;
+import model.record.Credentials;
 
 import java.util.List;
 
@@ -16,4 +18,13 @@ public class ExerciseInventory {
     public List<Exercise> getExerciseList() {
         return exerciseList;
     }
+
+    public void addExercise(Exercise exercise){
+        this.exerciseList.add(exercise);
+    }
+    public static ExerciseInventory loadExcercise(Credentials gymCredentials){
+        GymDAO gymdao=new GymDAO();
+        return new ExerciseInventory(gymdao.loadDBExercises(gymCredentials));
+    }
+
 }

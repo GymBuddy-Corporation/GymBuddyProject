@@ -48,7 +48,7 @@ public class RequestDAO {
 
 
         Gym palestra1 = new Gym("palestra1", new Credentials("alecortix@gmail.com", "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","NOME", new ExerciseInventory(new ArrayList<>()));
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","NOME", "italy");
 
         Credentials credentials1 = new Credentials("lucam0109@gmail.com", "LAZINESS1900");
         Credentials credentials2 = new Credentials("accroccoman@gmail.com", "megliololiodiItri");

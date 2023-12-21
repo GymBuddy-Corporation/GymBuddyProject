@@ -26,24 +26,7 @@ public class ExerciseDAO {
     private static final String IDEXERCISE = "idExercise";
 
     public List<Exercise> loadDBExercises(){
-        ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
-
-        Exercise ex1 = new Exercise("Tricep Pushdown");
-        Exercise ex2 = new Exercise("Shoulder Press");
-        Exercise ex3 = new Exercise("Squat");
-        Exercise ex4 = new Exercise("Dips");
-
-        ex3.setStatus(ExerciseStatus.SUSPENDED);
-        ex4.setStatus(ExerciseStatus.SUSPENDED);
-
-        exList.getExerciseList().add(ex1);
-        exList.getExerciseList().add(ex2);
-        exList.getExerciseList().add(ex3);
-        exList.getExerciseList().add(ex4);
-        Gym gym1 = new Gym("Palestra1",
-                new Credentials("gym1@gmail.com", "forzanapule1926"),
-                "IBAN1112223334444", "Napoli", "Via largo Maradroga, 71","nome", exList);
-        return exList.getExerciseList();
+        return null;
     }
 
     public void changeExerciseStatus(Exercise exerciseToEdit, ExerciseStatus status){

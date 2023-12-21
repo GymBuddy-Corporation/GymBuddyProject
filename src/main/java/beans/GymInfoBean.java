@@ -10,13 +10,16 @@ public class GymInfoBean {
     private final String address;
     private final String city;
     private final String iban;
+    private final String country;
 
-    public GymInfoBean(String name, String address, String city, String iban) {
+
+    public GymInfoBean(String name, String address, String city, String iban, String country) {
         /*This is a constructor without syntax check and is used by controller*/
         this.name = name;
         this.address = address;
         this.city = city;
         this.iban = iban;
+        this.country = country;
     }
     private void checkName(String name) /*throws InvalidUserInfoException, EmptyFieldsException*/ {
         if(name.isEmpty()){
@@ -30,33 +33,6 @@ public class GymInfoBean {
 
     private boolean isNotValidLength(String str) {
         return str.length() > 45;
-    }
-
-
-    private boolean isValidFc(String fc) {
-        return Pattern.matches("^([A-Z]{6}[\\dLMNPQRSTUV]{2}[ABCDEHLMPRST][\\dLMNPQRSTUV]{2}[A-Z][\\dLMNPQRSTUV]{3}[A-Z])$|(\\d{11})$",fc);
-    }
-
-    private void checkSurname(String surname) /*throws InvalidUserInfoException, EmptyFieldsException*/ {
-        if(surname.isEmpty()){
-            /*throw new EmptyFieldsException();*/
-            System.out.println("Surname field empty.");
-        } else if(isNotValidLength(surname)){
-            /*throw new InvalidUserInfoException();*/
-            System.out.println("Surname field invalid.");
-        }
-    }
-
-    private static boolean isValidBirth(String value) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        try {
-            LocalDate ld = LocalDate.parse(value, formatter);
-            String result = ld.format(formatter);
-            return result.equals(value);
-        } catch (DateTimeParseException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 
     public String getName() {
@@ -74,5 +50,9 @@ public class GymInfoBean {
     public String getIban() {
         return this.iban;
     }
+    public String getCountry() {
+        return country;
+    }
+
 
 }

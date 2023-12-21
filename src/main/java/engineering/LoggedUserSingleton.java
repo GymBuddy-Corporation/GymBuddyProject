@@ -28,7 +28,7 @@ public class LoggedUserSingleton {
         }
     }
     public static LoggedUserSingleton getSingleton() {
-        if(me==null)return null;
+        if(me==null)return null;//TODO mettere eccezzione non loggato
         return me;
     }
 
@@ -81,7 +81,8 @@ public class LoggedUserSingleton {
                             gym.getGymName(),
                             gym.getAddress(),
                             gym.getCity(),
-                            gym.getGymName()
+                            gym.getGymName(),
+                            gym.getCountry()
                     )
             );
         }

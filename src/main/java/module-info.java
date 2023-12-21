@@ -44,5 +44,6 @@ module start {
     exports viewone.beans;
     opens viewone.beans to javafx.fxml;
     opens beans to javafx.fxml;
+    opens model.record;
 
 }
