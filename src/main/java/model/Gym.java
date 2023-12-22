@@ -10,7 +10,13 @@ public class Gym extends User implements Serializable {
     private final String iban;
     private final String gymName;
     private ExerciseInventory gymExercises;
-    private final Location location;
+    private Location location;
+
+    public Gym(String username, Credentials credentials, String iban, String gymName) {
+        super(username, credentials);
+        this.iban = iban;
+        this.gymName= gymName;
+    }
 
     public Gym(String username, Credentials credentials, String iban, String city, String address, String country, String gymName) {
         super(username, credentials);
@@ -20,10 +26,10 @@ public class Gym extends User implements Serializable {
         this.gymExercises = null;
     }
 
-    public Gym(String username,String iban, String city, String address, String country, String gymName){
+    public Gym(String username,String iban, String city, String address, String gymName){
         super(username);
         this.iban = iban;
-        this.location = new Location(city, address, country);
+        this.location = new Location(city, address, "noCountry");
         this.gymName = gymName;
     }
     public String getIban() {

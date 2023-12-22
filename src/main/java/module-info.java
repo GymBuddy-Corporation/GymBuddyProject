@@ -3,6 +3,8 @@ module start {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.jetbrains.annotations;
+    requires java.sql;
+    requires mysql.connector.j;
 
     opens start to javafx.fxml;
     exports start;

@@ -54,7 +54,7 @@ public class AthleteDAO {
         }*/
     }
 
-    public Athlete loadAthlete(String fc) /*throws SQLException, DBUnreachableException*/ {
+    public Athlete loadAthlete(String username) /*throws SQLException, DBUnreachableException*/ {
         /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
                 UserQueries.LOAD_USER_2_QUERY); ResultSet rs = UserQueries.loadUser(fc, preparedStatement)) {
             if (rs.next()) {

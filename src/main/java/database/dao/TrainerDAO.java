@@ -6,22 +6,31 @@ import database.queries.UserQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;
 import exceptions.runtime_exception.ResultSetIsNullException;*/
+import database.SingletonConnection;
 import model.Athlete;
+import model.Gym;
 import model.Trainer;
+import database.query.Queries;
+import model.record.Credentials;
+import model.record.PersonalInfo;
 
 /*import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;*/
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrainerDAO {
 
     private static final String NAME = "Name";
+
     private static final String SURNAME = "Surname";
     private static final String USERNAME = "Username";
     private static final String BIRTH = "Birth";
+    private static final String GYM = "gymName";
     private static final String FC = "FC";
+    private static final String IBAN = "iban";
     private static final String GENDER = "Gender";
     private static final String EMAIL = "Email";
     private static final String PASSWORD = "Password";
@@ -36,45 +45,6 @@ public class TrainerDAO {
             e.deleteDatabaseConn();
             throw new DBUnreachableException();
         }*/
-    }
-
-    public Trainer loadTrainer(String fc) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                UserQueries.LOAD_USER_2_QUERY); ResultSet rs = UserQueries.loadUser(fc, preparedStatement)) {
-            if (rs.next()) {
-                Trainer trainer = new Trainer(
-                        rs.getString(USERNAME),
-                        new PersonalInfo(
-                                rs.getString(NAME),
-                                rs.getString(SURNAME),
-                                rs.getDate(BIRTH).toLocalDate(),
-                                rs.getString(FC),
-                                rs.getString(GENDER).charAt(0)
-                        ),
-                        new Credentials(
-                                rs.getString(EMAIL),
-                                rs.getString(PASSWORD)
-                        )
-                );
-                try(PreparedStatement preparedStatement1 = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                        TrainerQueries.LOAD_TRAINER_QUERY); ResultSet rs1 = TrainerQueries.loadTrainer(fc, preparedStatement1)) {
-                    if (rs1.next()) {
-                        trainer.setIban(rs1.getString("Iban"));
-                        return trainer;
-                    } else {
-                        throw new ResultSetIsNullException();
-                    }
-                }
-            } else {
-                return null;
-            }
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
-
-        //dopo togli sto null
-        return null;
     }
 
     public int getNumberOfSubscribers(String trainerFc) /*throws SQLException, DBUnreachableException*/ {
@@ -105,51 +75,65 @@ public class TrainerDAO {
 
     private List<Trainer> getTrainersList(/*ResultSet rs*/) /*throws SQLException, DBUnreachableException*/ {
         List<Trainer> trainerList = new ArrayList<>();
-        /*while(rs.next()){
-            Trainer newTrainer = loadTrainer(rs.getString("User"));
-            trainerList.add(newTrainer);
-        }*/
         return trainerList;
     }
 
     public List<Trainer> searchTrainers(String name) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                TrainerQueries.SEARCH_TRAINER_QUERY); ResultSet rs = TrainerQueries.searchTrainer(preparedStatement, name) ){
-            return getTrainersList(rs);
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
-
         //dopo togli sto null
         return null;
     }
 
     public List<Trainer> loadAllTrainers() /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                TrainerQueries.LOAD_ALL_TRAINERS_QUERY); ResultSet rs = TrainerQueries.loadAllTrainers(preparedStatement)){
-            return getTrainersList(rs);
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
 
         //dopo togli sto null
         return null;
     }
 
     public List<Athlete> loadAllTrainerSubscribers(String trainerFc) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                TrainerQueries.LOAD_ALL_TRAINER_SUBSCRIBERS_QUERY); ResultSet rs = TrainerQueries.countOrLoadAllTrainerSubscribers(preparedStatement, trainerFc)){
-            return getSubscribersList(rs);
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
 
         //dopo togli sto null
         return null;
     }
+
+    public Trainer loadTrainer(String email) throws SQLException {
+        try(
+             PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().
+                  prepareStatement(Queries.LOAD_USER_2_QUERY);
+             ResultSet rs = Queries.loadUser(email, preparedStatement)) {
+            if (rs.next()) {
+                PersonalInfo personalInfo = new PersonalInfo(
+                        rs.getString("namePerson"),
+                        rs.getString("surnamePerson"),
+                        rs.getDate("dateOfBirth").toLocalDate(),
+                        rs.getString("fc"),
+                        rs.getString("gender").charAt(0)
+                );
+                Credentials credentialsTrainer = new Credentials(
+                        rs.getString("trainerEmail"),
+                        rs.getString("password")
+                );
+                Gym gym = new Gym(
+                        "GymUserName",
+                        rs.getString("iban"),
+                        rs.getString("city"),
+                        rs.getString("address"),
+                        rs.getString("nameGym"));
+                return new Trainer(
+                        rs.getString("username"),
+                        personalInfo,
+                        credentialsTrainer,
+                        gym
+                );
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            System.out.println("Unreachable DB Exception.");
+            return null;
+        }
+    }
+
 
     public void updateIban(String iban, Trainer trainer) /*throws SQLException, DBUnreachableException*/ {
         /*trainer.setIban(iban);

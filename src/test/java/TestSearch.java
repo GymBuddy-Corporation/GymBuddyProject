@@ -12,6 +12,7 @@ import exceptions.dataException.DataFieldException;
 import model.*;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -44,6 +45,8 @@ public class TestSearch {
             } catch (NullPointerException exc){
                 exc.printStackTrace();
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         SearchBean searchBean = new SearchBean(exerciseToSearch.getName());
         List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);

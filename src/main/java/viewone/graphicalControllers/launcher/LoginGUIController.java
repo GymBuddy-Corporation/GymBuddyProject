@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginGUIController {
 
@@ -38,6 +39,8 @@ public class LoginGUIController {
             userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()));
         }catch(AlreadyLoggedUserException e){
             userBean = LoggedUserSingleton.getSingleton().getMyBean();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         if (userBean instanceof AthleteBean) {
 

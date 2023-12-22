@@ -7,6 +7,8 @@ import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 
+import java.sql.SQLException;
+
 public class LoggedUserSingleton {
 
     private final User user;
@@ -32,11 +34,11 @@ public class LoggedUserSingleton {
         return me;
     }
 
-    public static LoggedUserSingleton createUserSingleton(User temp) throws AlreadyLoggedUserException {
-        if(me==null){
-            LoggedUserSingleton.me= new LoggedUserSingleton(temp);
+    public static LoggedUserSingleton createUserSingleton(User temp) throws AlreadyLoggedUserException, SQLException {
+        if (me == null) {
+            LoggedUserSingleton.me = new LoggedUserSingleton(temp);
             return LoggedUserSingleton.me;
-        }else {
+        } else {
             throw new AlreadyLoggedUserException();
         }
     }
