@@ -52,7 +52,9 @@ public abstract class Cupon implements MembershipInterface {
         checkIfBaseExists();
         return component.getDuration();
     };
-
+    public int getPointsPrice() {
+        return pointsPrice;
+    }
     @Override
     public String getName(){
         return this.name;
@@ -65,4 +67,5 @@ public abstract class Cupon implements MembershipInterface {
     public boolean isOnlyForNewUsers(){
         return this.onlyForNewMembers;
     }
+
 }

@@ -15,4 +15,9 @@ public class PercentageDiscountCoupon extends Cupon{
         float price = super.getPrice();
         return price*discountPercentage/100f;
     }
+
+    @Override
+    public int getPoints() throws DecoratorNoBaseComponentException {
+        return super.getPoints()-this.getPointsPrice();
+    }
 }

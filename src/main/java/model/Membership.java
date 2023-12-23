@@ -12,7 +12,7 @@ public class Membership implements MembershipInterface {
     private final int durationInDays;
     private final int pointsAwardedOnBuy;
 
-    Membership(String name,String description,float price,int duration,int points){
+    public Membership(String name,String description,float price,int duration,int points){
         this.name=name;
         this.description=description;
         this.durationInDays=duration;

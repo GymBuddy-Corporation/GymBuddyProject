@@ -21,6 +21,14 @@ public class GymInfoBean {
         this.iban = iban;
         this.country = country;
     }
+    public GymInfoBean(String name){
+        //used only for searching gym stuff knowing his name;
+        this.name=name;
+        this.address = null;
+        this.city = null;
+        this.iban = null;
+        this.country = null;
+    }
     private void checkName(String name) /*throws InvalidUserInfoException, EmptyFieldsException*/ {
         if(name.isEmpty()){
             System.out.println("Name field empty.");

@@ -18,4 +18,9 @@ public class DirectDiscountCupon extends Cupon {
         float priceAfterDiscount = price - discountValue;
         return priceAfterDiscount > MIN_PRICE ? priceAfterDiscount : MIN_PRICE;
     }
+
+    @Override
+    public int getPoints() throws DecoratorNoBaseComponentException {
+        return super.getPoints()-this.getPointsPrice();
+    }
 }
