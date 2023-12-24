@@ -55,17 +55,17 @@ public class RequestDAO {
         Credentials credentials3 = new Credentials("edoman00@gmail.com", "cyber");
         /**/
         Athlete athlete1 = new Athlete("LuX71", pi1,
-                credentials1, palestra1, trainer);
+                credentials1, palestra1);
         Request r1 = new Request(1, LocalDateTime.of(2023, 11, 20,
                 15, 30, 0), "Ciao, vorrei una nuova scheda che" +
                 " aiutasse a crescere principalmente di spalle", athlete1, trainer);
         Athlete athlete2 = new Athlete( "accroccoman", pi2,
-                credentials2, palestra1, trainer);
+                credentials2, palestra1);
         Request r2 = new Request(2, LocalDateTime.of(2023, 11, 20,
                 15, 30, 0),"Ei vorrei un piano che mi" +
                 " aiutasse a sviluppare il petto", athlete2, trainer);
         Athlete athlete3 = new Athlete("EdoMan00", pi3,
-                credentials3, palestra1, trainer);
+                credentials3, palestra1);
         Request r3 = new Request(3, LocalDateTime.of(2023, 11, 20,
                 15, 30, 0),"Ciao, potresti organizzarmi una scheda" +
                 " pesantissima che mi hanno appena lasciato? Sono disposto a venire in palestra 7/7", athlete3, trainer);

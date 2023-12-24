@@ -12,6 +12,34 @@ public class Queries {
     public static final String LOAD_TRAINER_QUERY = "SELECT * " +
             "FROM gymbuddy.Trainer " +
             "WHERE User = ?";
+    public static final String LOAD_USER_1_QUERY = "SELECT\n" +
+            "    u.username as athleteUsername,\n" +
+            "    u.password as athletePassword,\n" +
+            "    pia.surname as athleteSurname,\n" +
+            "    pia.dateofBirth as athleteDateofBirth,\n" +
+            "    pia.birthplace as athleteBirthplace,\n" +
+            "    pia.gender as athelteGender,\n" +
+            "    pia.namePerson as athleteName,\n" +
+            "    a.user_email AS athleteEmail,\n" +
+            "    a.fc AS athleteFC,\n" +
+            "    t.nameGym AS nameGym,\n" +
+            "    pit.namePerson AS trainerName,\n" +
+            "    pit.surname AS trainerSurname,\n" +
+            "    pit.fc AS trainerFC,\n" +
+            "    pit.dateofBirth AS traineDateOfBirth,\n" +
+            "    pit.birthplace AS trainerBirthplace,\n" +
+            "    pit.gender AS trainerGender,\n" +
+            "    gi.iban AS gymIban,\n" +
+            "    gi.city AS gymCity,\n" +
+            "    gi.address AS gymAddress,\n" +
+            "    gi.nameGym\n" +
+            "FROM gymbuddy.athlete a\n" +
+            "JOIN gymbuddy.personalInfo pia ON a.fc = pia.fc\n" +
+            "JOIN gymbuddy.trainers t ON a.trainersFC = t.fc\n" +
+            "JOIN gymbuddy.personalinfo pit ON t.fc = pit.fc\n" +
+            "JOIN gymbuddy.gymlinfo gi ON t.nameGym = gi.nameGym\n" +
+            "JOIN gymbuddy.user u ON a.user_email = u.email\n" +
+            "WHERE u.email = ?;";
 
     public static ResultSet loadTrainer(String email, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, email);

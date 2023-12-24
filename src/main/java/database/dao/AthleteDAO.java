@@ -7,9 +7,19 @@ import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;
 import exceptions.invalid_data_exception.ExpiredCardException;
 import exceptions.runtime_exception.ResultSetIsNullException;*/
+import database.SingletonConnection;
+import database.query.Queries;
 import model.Athlete;
+import model.Gym;
+import model.Trainer;
 import model.record.Card;
+import model.record.Credentials;
+import model.record.PersonalInfo;
 import org.jetbrains.annotations.Nullable;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /*import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,9 +29,9 @@ import java.sql.SQLException;*/
 public class AthleteDAO {
 
     public static final String TRAINER = "Trainer";
-    private static final String NAME = "Name";
+    private static final String NAME = "namePerson";
     private static final String SURNAME = "Surname";
-    private static final String USERNAME = "Username";
+    private static final String USERNAME = "username";
     private static final String BIRTH = "Birth";
     private static final String FC = "FC";
     private static final String GENDER = "Gender";
@@ -54,34 +64,59 @@ public class AthleteDAO {
         }*/
     }
 
-    public Athlete loadAthlete(String username) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                UserQueries.LOAD_USER_2_QUERY); ResultSet rs = UserQueries.loadUser(fc, preparedStatement)) {
+    public Athlete loadAthlete(String email) throws SQLException /*throws SQLException, DBUnreachableException*/ {
+        try(
+                PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().
+                        prepareStatement(Queries.LOAD_USER_1_QUERY);
+                ResultSet rs = Queries.loadUser(email, preparedStatement)) {
             if (rs.next()) {
-                Athlete athlete = new Athlete(
-                        rs.getString(USERNAME),
-                        new PersonalInfo(
-                                rs.getString(NAME),
-                                rs.getString(SURNAME),
-                                rs.getDate(BIRTH).toLocalDate(),
-                                rs.getString(FC),
-                                rs.getString(GENDER).charAt(0)
-                        ),
-                        new Credentials(
-                                rs.getString(EMAIL),
-                                rs.getString(PASSWORD)
-                        )
+                PersonalInfo personalInfoAthlete = new PersonalInfo(
+                        rs.getString("trainerName"),
+                        rs.getString("trainerSurname"),
+                        rs.getDate("traineDateOfBirth").toLocalDate(),
+                        rs.getString("athleteFC"),
+                        rs.getString("athelteGender").charAt(0)
                 );
-                return completeAthleteInfo(fc, athlete);
+                PersonalInfo personalInfoTrainer = new PersonalInfo(
+                        rs.getString("athleteName"),
+                        rs.getString("athleteSurname"),
+                        rs.getDate("athleteDateofBirth").toLocalDate(),
+                        rs.getString("trainerFC"),
+                        rs.getString("trainerGender").charAt(0)
+                );
+                Credentials credentialsAthlete = new Credentials(
+                        rs.getString("athleteEmail"),
+                        rs.getString("athletePassword")
+                );
+                Credentials credentialsTrainer = new Credentials( //this is done for a security reason
+                        "noEmail",
+                        "noPassword"
+                );
+                Gym gym = new Gym(
+                        "noUsername", //did for a security reason
+                        rs.getString("gymIban"),
+                        rs.getString("gymCity"),
+                        rs.getString("gymAddress"),
+                        rs.getString("nameGym"));
+                Trainer trainer = new Trainer(
+                        "noUsername",
+                        personalInfoTrainer,
+                        credentialsTrainer,
+                        gym);
+                return new Athlete(
+                        rs.getString("athleteUsername"),
+                        personalInfoAthlete,
+                        credentialsAthlete,
+                        gym,
+                        trainer);
             } else {
                 return null;
             }
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
-        //dopo togli sto null
-        return null;
+        } catch (SQLException e) {
+            SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            System.out.println("Unreachable DB Exception.");
+            return null;
+        }
     }
 
     @Nullable

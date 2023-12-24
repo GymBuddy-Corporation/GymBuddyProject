@@ -14,7 +14,11 @@ public class Athlete extends Person implements Serializable {
     // i metodi get e set gia ci sono nel caso, vedi tu come volertela gestire
 
     private WorkoutRoutine workoutRoutine;
-    private final Trainer trainer;
+    private Trainer trainer;
+
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym) {
+        super(username, credentials, personalInfo, gym);
+    }
 
     public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym, Trainer trainer) {
         super(username, credentials, personalInfo, gym);
