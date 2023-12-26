@@ -6,11 +6,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.athlete.AthletesRoutineGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.athlete.AskNewRoutineGUIController">
 
    <Button layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#askForNewRoutine" prefHeight="55.0" prefWidth="156.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-background-radius: 5em; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);            -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-
-   <Button layoutX="60.0" layoutY="127.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
 
 
    <Text layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">
@@ -121,7 +119,7 @@
       <Image url="@../images/LogoAdd96.png" />
    </ImageView>
 
-   <Text layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workout Routine's Name" textAlignment="CENTER" wrappingWidth="356.5999710083008">
+   <Text layoutX="192.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a comment for your new Workout Routine" textAlignment="CENTER" wrappingWidth="416.5999710083008">
       <font>
          <Font name="Allerta Stencil Regular" size="27.0" />
       </font>
@@ -146,49 +144,13 @@
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <ListView fx:id="athletesList" editable="true" layoutX="85.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../GymBuddyCSS.css" />
-   <Text layoutX="303.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active since:" textAlignment="CENTER" wrappingWidth="121.5999755859375">
-      <font>
-         <Font name="Allerta Stencil Regular" size="18.0" />
-      </font>
-      <fill>
-         <LinearGradient endY="0.3977272420218496">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color green="0.8941176533699036" blue="0.686274528503418" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
-                  </color>
-               </Stop>
-            </stops>
-         </LinearGradient>
-      </fill>
-   </Text>
-   <Text layoutX="425.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="107.99990386962895">
-      <font>
-         <Font name="Allerta Stencil Regular" size="18.0" />
-      </font>
-      <fill>
-         <LinearGradient endY="0.3977272420218496">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color green="0.8941176533699036" blue="0.686274528503418" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
-                  </color>
-               </Stop>
-            </stops>
-         </LinearGradient>
-      </fill>
-   </Text>
+   <VBox alignment="CENTER" layoutX="163.0" layoutY="154.0" prefHeight="263.0" prefWidth="474.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;" />
+   <TextArea layoutX="181.0" layoutY="172.0" prefHeight="227.0" prefWidth="436.0" promptText="Add here your comment. Please try to be as clear as possible to avoid misunderstandings, explaining well what your reasons are for changing the tab and what you would like to find in the new tab." />
+   <ImageView fx:id="askRequestImage" fitHeight="50.0" fitWidth="50.0" layoutX="735.0" layoutY="436.0" onMouseClicked="#askRequest" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LogoNextPage96.png" />
+      </image>
+   </ImageView>
 
 
 
