@@ -83,8 +83,17 @@ public class Queries {
             "WHERE " +
             "    u.email = ?";
 
+    private static final  String GYM_BASIC_INFO=
+                            " g.email AS gymEmail," +
+                            "gi.nameGym AS gymName ," +
+                            "gi.address AS gymAddress," +
+                            "gi.city AS gymCity," +
+                            "gi.iban AS gymIban ," +
+                                    "gi.country AS gymCountry, "+
+                            "u.username AS gymUsername ";
+    private static final String GYM_TABLES=" gymbuddy.gym AS g JOIN gymbuddy.gymlinfo AS gi ON g.nameGym=gi.nameGym JOIN gymbuddy.user AS u ON u.email=g.email ";
 
-
+    public static final String LOAD_USER_3_QUERY="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE u.email=?";
     protected Queries() {}
 
 }

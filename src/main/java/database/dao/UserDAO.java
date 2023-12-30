@@ -36,59 +36,33 @@ public class UserDAO {
 
     // Constructor accepting a Connection
 
-    private @NotNull User getUser(String username) throws SQLException/*, DBUnreachableException*/ {
+    private @NotNull User getUser(String username) throws SQLException, NoUserFoundException {
         AthleteDAO aDao = new AthleteDAO();
         Athlete ret = aDao.loadAthlete(username);
-        if (ret != null) {
-            return ret;
-        } else {
-            TrainerDAO tDao = new TrainerDAO();
-            Trainer ret1 = tDao.loadTrainer(username);
-            if(ret1 != null) {
-                System.out.println("UTENTE CORRETTAMENTE LOGGATO: " + ret1.getUsername());
-                return ret1;
-            }
-            System.out.println("INFORMAZIONI CERCATE, NON TROVATE");
-            return null; //null
-            /*throw new IsNeitherATrainerNorAnAthleteException();*/
-        }
+        if (ret != null)return ret;
+        TrainerDAO tDao = new TrainerDAO();
+        Trainer ret1 = tDao.loadTrainer(username);
+        if(ret1 != null)return ret1;
+        GymDAO gDao=new GymDAO();
+        //aggiungere l'eccezione alle altre e circondarle da un try catch
+        return gDao.loadGym(username);
     }
 
-    public User loadUser(String email, String password) throws NoUserFoundException, DataFieldException, SQLException /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
-
-        /*Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","Gym fantastic","italy");
-        Trainer trainer= new Trainer("AleCortix",
-                new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("pt@gmail.com", "forzanapule1926"), palestra1);
-        Athlete athlete= new Athlete("AleCortix",
-                new PersonalInfo("Alessandro", "Cortese", LocalDate.now(), "CRTLSN99T24H501R", 'm'),
-                new Credentials("athlete@gmail.com", "forzanapule1926"), palestra1,trainer);
-
-        List<User> listUsers=new ArrayList<>();
-        listUsers.add(palestra1);listUsers.add(trainer);listUsers.add(athlete);
-
-        listUsers.removeIf(p-> !Objects.equals(p.getEmail(), email));
-        if(listUsers.isEmpty())throw new NoUserFoundException();
-        return listUsers.getFirst();*/
-
+    public User loadUser(String email, String password) throws SQLException,NoUserFoundException  {
         Connection connection = SingletonConnection.getInstance().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM gymbuddy.user WHERE email = ? AND password = ?")) {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return getUser(resultSet.getString("email")); //null
+                    return getUser(resultSet.getString("email")); //null //???
                 } else {
-                    System.out.println();
-                    // Handle the case where the user is not found
-                    System.out.println("UTENTE NON TROVATO");
-                    return null;  // or throw a NoUserFoundException
+                    throw new NoUserFoundException();
                 }
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            // Handle the SQL exception
+            // Handle the SQL exception, throware una nuova eccezioen dedicata per sql
             return null;
         }
 
@@ -112,28 +86,5 @@ public class UserDAO {
         return null;
     }
 
-    /*private @NotNull User getUser(String fc) throws SQLException, DBUnreachableException {
-        AthleteDAO aDao = new AthleteDAO();
-        Athlete ret = aDao.loadAthlete(fc);
-        if (ret != null) {
-            return ret;
-        } else {
-            TrainerDAO tDao = new TrainerDAO();
-            Trainer ret1 = tDao.loadTrainer(fc);
-            if(ret1 != null) {
-                return ret1;
-            }
-            throw new IsNeitherATrainerNorAnAthleteException();
-        }
-    }*/
 
-    public void deleteUser(User user) /*throws SQLException, DBUnreachableException*/ {
-       /* try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                UserQueries.DELETE_USER_QUERY)) {
-            UserQueries.deleteUser(preparedStatement, user.getFiscalCode());
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
-    }
 }

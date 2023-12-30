@@ -5,20 +5,27 @@ import database.queries.RequestQueries;
 import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;*/
 
+import database.SingletonConnection;
+import database.query.Queries;
 import exceptions.NoUserFoundException;
 import model.*;
 import model.record.Credentials;
+import model.record.PersonalInfo;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GymDAO {
-    private static final String NAME = "Name";
-    private static final String ADDRESS = "Address";
-    private static final String USERNAME = "Username";
-    private static final String CITY = "City";
-    private static final String IBAN = "Iban";
-    private static final String EMAIL = "Email";
+    private static final String NAME = "gymName";
+    private static final String ADDRESS = "gymAddress";
+    private static final String USERNAME = "gymUsername";
+    private static final String CITY = "gymCity";
+    private static final String COUNTRY="gymCountry";
+    private static final String IBAN = "gymIban";
+    private static final String EMAIL = "gymEmail";
     private static final String PASSWORD = "Password";
 
 
@@ -79,6 +86,27 @@ public class GymDAO {
         gyms.add(palestra5);
         loadedgyms=gyms;
         return gyms;
+    }
+
+    public Gym loadGym(String email) throws SQLException, NoUserFoundException {
+
+                PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_3_QUERY);
+                ResultSet rs = Queries.loadUser(email, preparedStatement);
+            if (rs.next()) {
+                return new Gym(
+                        rs.getString(USERNAME),
+                        new Credentials(rs.getString(EMAIL),""),
+                        rs.getString(IBAN),
+                        rs.getString(CITY),
+                        rs.getString(ADDRESS),
+                        rs.getString(COUNTRY),
+                        rs.getString(NAME)
+                );
+
+            } else {
+                throw new NoUserFoundException();
+            }
+
     }
 
 }
