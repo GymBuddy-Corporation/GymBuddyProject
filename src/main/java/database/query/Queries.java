@@ -89,7 +89,7 @@ public class Queries {
                             "gi.address AS gymAddress," +
                             "gi.city AS gymCity," +
                             "gi.iban AS gymIban ," +
-                                    "gi.country AS gymCountry, "+
+                            "gi.country AS gymCountry, "+
                             "u.username AS gymUsername ";
     private static final String GYM_TABLES=" gymbuddy.gym AS g JOIN gymbuddy.gymlinfo AS gi ON g.nameGym=gi.nameGym JOIN gymbuddy.user AS u ON u.email=g.email ";
 
