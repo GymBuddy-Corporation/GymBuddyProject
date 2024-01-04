@@ -32,8 +32,9 @@ public class LoggedUserSingleton {
             throw new IllegalArgumentException("Requested user type does not match the actual user type.");
         }
     }
-    public static LoggedUserSingleton getSingleton() throws NoLoggedUserException {
-        if(me==null)throw new NoLoggedUserException();//TODO mettere eccezzione non loggato
+    public static LoggedUserSingleton getSingleton() //throws NoLoggedUserException
+     {
+        if(me==null)return null;//throw new NoLoggedUserException();//TODO mettere eccezzione non loggato
         return me;
     }
 
@@ -50,7 +51,8 @@ public class LoggedUserSingleton {
     }
 
 
-    public UserBean getUserBean(User usr) throws DataFieldException, NoUserFoundException {
+    public UserBean getUserBean(User usr) throws DataFieldException//, NoUserFoundException
+     {
         if (usr instanceof Athlete athlete) {
             return new AthleteBean(
                     usr.getUsername(),
@@ -91,10 +93,11 @@ public class LoggedUserSingleton {
                     )
             );
         }
-        throw new NoUserFoundException();
-    }
+        //throw new NoUserFoundException();
+        return null;
+     }
 
-        public  static UserBean getMyBean() throws DataFieldException, NoUserFoundException {
+        public  static UserBean getMyBean() throws DataFieldException {
         return getSingleton().getUserBean(getSingleton().user);
         }
 
