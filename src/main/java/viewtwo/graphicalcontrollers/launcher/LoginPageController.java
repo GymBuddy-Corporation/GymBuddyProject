@@ -1,8 +1,18 @@
 package viewtwo.graphicalcontrollers.launcher;
 
 import beans.AthleteBean;
+import beans.CredentialsBean;
+import controllers.UserAccessController;
+import database.SingletonConnection;
+import engineering.LoggedUserSingleton;
+import engineering.UserTypes;
+import exceptions.AlreadyLoggedUserException;
+import exceptions.NoLoggedUserException;
+import exceptions.NoUserFoundException;
+import exceptions.dataException.DataFieldException;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import utils.EmailValdator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +27,7 @@ import viewtwo.popups.abstracts.LoginPopUpInterface;
 import viewtwo.popups.abstracts.UserRegistrationPopupInterface;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginPageController implements LoginPopUpInterface,UserRegistrationPopupInterface{
 
@@ -34,14 +45,37 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
     }
     @Override
     public void loginCredentialInserted(String email, String password, boolean remember) throws IOException {
-        if(EmailValdator.isEmailValid(email)!=true){
+        if (EmailValdator.isEmailValid(email) != true) {
             setErrorText("Email non valida");
         }
-                //TODO: effettuare la verifica effettiva delle credenziali
-        //capire quale tipologia di utente sta effettuando il logni e inserire nel manel del menu la home giusta, per ora faro semplicemente attraverso l'email utilizzando i nomi gym,user e pt
-        MainMenuController a=(MainMenuController)SwitchPage.setStage(MainStage.getStage(),"mainMenu.fxml","home",2);
+        UserAccessController controller = new UserAccessController();
+        try {
+            controller.login(CredentialsBean.ctorWithSyntaxCheck(email, password));
+        } catch (DataFieldException | NoUserFoundException e) {
+            e.callMe(2);
+            return;
+        } catch (SQLException e) {
+            return;
+        } catch (AlreadyLoggedUserException e) {
+            e.callMe(2);
+        }
+        UserTypes type;
+        try {
+            type = LoggedUserSingleton.getSingleton().getUserType();
+        } catch (NoLoggedUserException e) {
+            e.callMe(2);
+            return;
+        }
+
+        MainMenuController a = (MainMenuController) SwitchPage.setStage(MainStage.getStage(), "mainMenu.fxml", "home", 2);
         MainMenuSingleton.createMainMenu(a);
-        MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml","gym");
+        switch (type) {
+            case pt ->        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+            case gym ->         MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml", "gym");
+            case athlete ->          MainMenuSingleton.getMainMenu().setActivity("atheleteHome.fxml", "athlete");
+            case null, default ->  MainStage.getStage().close();
+
+        }
     }
 
     @Override
