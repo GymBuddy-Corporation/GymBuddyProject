@@ -3,11 +3,14 @@ package engineering;
 import beans.*;
 
 import exceptions.AlreadyLoggedUserException;
+import exceptions.NoLoggedUserException;
+import exceptions.NoUserFoundException;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class LoggedUserSingleton {
 
@@ -29,8 +32,8 @@ public class LoggedUserSingleton {
             throw new IllegalArgumentException("Requested user type does not match the actual user type.");
         }
     }
-    public static LoggedUserSingleton getSingleton() {
-        if(me==null)return null;//TODO mettere eccezzione non loggato
+    public static LoggedUserSingleton getSingleton() throws NoLoggedUserException {
+        if(me==null)throw new NoLoggedUserException();//TODO mettere eccezzione non loggato
         return me;
     }
 
@@ -42,12 +45,12 @@ public class LoggedUserSingleton {
             throw new AlreadyLoggedUserException();
         }
     }
-    public static void clearSingleton(){
+    public  void clearSingleton(){
         me=null;
     }
 
 
-    public static UserBean getUserBean(User usr) throws DataFieldException{
+    public UserBean getUserBean(User usr) throws DataFieldException, NoUserFoundException {
         if (usr instanceof Athlete athlete) {
             return new AthleteBean(
                     usr.getUsername(),
@@ -88,11 +91,11 @@ public class LoggedUserSingleton {
                     )
             );
         }
-        return null;
+        throw new NoUserFoundException();
     }
 
-        public UserBean getMyBean() throws DataFieldException {
-        return getUserBean(user);
+        public  static UserBean getMyBean() throws DataFieldException, NoUserFoundException {
+        return getSingleton().getUserBean(getSingleton().user);
         }
 
     public UserTypes getUserType() {
@@ -102,6 +105,9 @@ public class LoggedUserSingleton {
     public ExerciseInventory getExcerciseInventory() {
         return ((Trainer)user).getGym().getGymExercises();
 
+    }
+    public List<Exercise> getExcerciseList(){
+       return  ((Trainer)user).getGym().getGymExercises().getExerciseList();
     }
 
 }
