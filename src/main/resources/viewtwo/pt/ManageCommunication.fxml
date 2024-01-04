@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.ManageCommunicationsGUIController2">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="87.0" prefHeight="291.0" prefWidth="359.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;" AnchorPane.topAnchor="87.0">
+         <children>
+            <Text fill="#911701" layoutX="84.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gym Communications" textAlignment="CENTER" wrappingWidth="168.0">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <ListView layoutX="6.0" layoutY="51.0" prefHeight="206.0" prefWidth="348.0" stylesheets="@../GymBuddyCSS2.css" />
+         </children></AnchorPane>
+      <Label layoutX="287.0" layoutY="32.0" text="Manage Communications" textFill="#911701" AnchorPane.leftAnchor="287.0" AnchorPane.topAnchor="32.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="paneCommunicationsLabel" layoutX="426.0" layoutY="87.0" prefHeight="225.0" prefWidth="359.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
+         <children>
+            <Label fx:id="CommunicationsLabel" layoutX="27.0" layoutY="11.0" prefHeight="202.0" prefWidth="307.0" textFill="#911701" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="buttonSendCommunicationAthlete" layoutX="511.0" layoutY="330.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="189.0" stylesheets="@../GymBuddyCSS2.css" text="Send Communication to Athlete" textFill="#911701" />
+      <Button fx:id="unselectCommunication" layoutX="511.0" layoutY="330.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="189.0" stylesheets="@../GymBuddyCSS2.css" text="Unselect Communication" textFill="#911701" />
+      <ImageView fx:id="backButton" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/LogoBack.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

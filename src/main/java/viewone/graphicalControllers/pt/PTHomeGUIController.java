@@ -17,7 +17,7 @@ public class PTHomeGUIController {
     @FXML private Text usernameText;
     @FXML
     public void sendCommunication() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
+        SwitchPage.setStage(MainStage.getStage(),"ManageCommunication.fxml","pt",1);
         //TODO caso d'uso
         //Objects.requireNonNull(controller).setValue(loggedTrainer, sendCommunicationController);
     }

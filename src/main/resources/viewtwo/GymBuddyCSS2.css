@@ -1,7 +1,25 @@
 .Label{
     -fx-text-background-color: transparent;
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: #911701;
 
+}
+
+.radio-button {
+    -fx-text-fill: #911701;
+}
+
+.radio-button .dot {
+    -fx-background-color: #911701;
+}
+
+.radio-button .radio{
+    -fx-background-color: transparent;
+    -fx-border-color: #911701;
+    -fx-border-radius: 5em;
+}
+
+.vbox{
+    -fx-spacing: 10px;
 }
 
 
@@ -55,6 +73,7 @@
     -fx-background-color: transparent;
     -fx-font-size: 15px;
     -fx-cursor: text;
+    -fx-prompt-text-fill: #b34b0c;
 }
 
 .text-area .scroll-bar{
@@ -76,8 +95,10 @@
 }
 
 .text-field {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-color: rgba(255, 255, 255, 0.3);
     -fx-background-radius: 5em;
+    -fx-prompt-text-fill: #911701;
+    -fx-text-fill: #911701;
     -fx-cursor: text;
 }
 
@@ -145,39 +166,39 @@
 .combo-box{
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-border-color: transparent;
-    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-prompt-text-fill: #911701;
     -fx-border-radius: 5em;
     -fx-background-radius: 5em;
     -fx-cursor: none;
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: #911701;
 }
 
 .combo-box .arrow-button {
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: #911701;
     -fx-background-color: transparent;
     -fx-cursor: hand;
 }
 
 .combo-box .arrow{
     -fx-background-radius: 50;
-    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: #911701;
     -fx-cursor: hand;
 }
 
 .combo-box-base .text-field {
-    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-prompt-text-fill: #911701;
+    -fx-text-fill: #911701;
     -fx-background-color: transparent;
 }
 .combo-box-base .text-field:focused {
-    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-prompt-text-fill: #911701;
+    -fx-text-fill: #911701;
     -fx-background-color: transparent;
 }
 
 .combo-box .menu-item {
     -fx-font-size: 12px;
-    -fx-text-fill: linear-gradient(to bottom, #00c99e, #4969b3);
+    -fx-text-fill: #911701;
     -fx-cursor: hand;
 }
 
@@ -186,7 +207,7 @@
     -fx-background-radius: 10;
     -fx-border-color: transparent;
     -fx-border-radius: 5em;
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: #911701;
     -fx-cursor: hand;
 
 }
@@ -194,13 +215,13 @@
     -fx-background-color: #511065;
     -fx-background-radius:  5em;
     -fx-border-radius:  5em;
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: #911701;
     -fx-cursor: hand;
 }
 
 
 .combo-box-popup .list-view .list-cell:selected{
-    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: #911701;
     -fx-background-radius:  5em;
     -fx-border-color:  #2D043D;
     -fx-border-radius:  5em;
@@ -214,11 +235,11 @@
 .date-picker {
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-border-color: transparent;
-    -fx-prompt-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-prompt-text-fill: #911701;
     -fx-border-radius: 5em;
     -fx-background-radius: 5em;
     -fx-cursor: none;
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: #911701;
 }
 .date-picker-popup {
     -fx-background-color: transparent;
@@ -238,7 +259,7 @@
 }
 .date-picker-popup .day-cell:focused{
     -fx-background-color: rgba(45, 4, 61, 1);
-    -fx-text-fill: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-text-fill: #911701;
 }
 .date-picker-popup .week-number-cell{
     -fx-text-fill: rgba(45, 4, 61, 1);
@@ -250,6 +271,6 @@
 /* Change the color of the arrow (optional) */
 .date-picker .arrow-button .arrow {
     -fx-background-radius: 50;
-    -fx-background-color: linear-gradient(to bottom, #00e4af, #5d7cf3);
+    -fx-background-color: #911701;
     -fx-cursor: hand;
 }

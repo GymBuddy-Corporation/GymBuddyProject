@@ -8,8 +8,7 @@ import utils.SwitchPage;
 public class PTHomeGUIController2 {
     @FXML
     public void manageCommunication() throws Exception{
-        MainMenuSingleton.getMainMenu().setActivity("SendPTCommunication.fxml","pt");
-        SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
+        MainMenuSingleton.getMainMenu().setActivity("ManageCommunication.fxml","pt");
     }
     @FXML
     public void yourAthletes() throws Exception{
