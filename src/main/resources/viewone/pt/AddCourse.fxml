@@ -43,7 +43,7 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <TextField fx:id="email" layoutX="322.0" layoutY="191.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS.css" />
+   <TextField fx:id="email" layoutX="322.0" layoutY="191.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@../GymBuddyCSS1.css" />
    <Label fx:id="Email" layoutX="322.0" layoutY="167.0" prefHeight="23.0" prefWidth="84.0" text="Name">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
@@ -57,7 +57,7 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <Label fx:id="Registration" layoutX="175.0" layoutY="125.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../GymBuddyCSS.css" text="Add your course">
+   <Label fx:id="Registration" layoutX="175.0" layoutY="125.0" prefHeight="4.0" prefWidth="312.0" stylesheets="@../GymBuddyCSS1.css" text="Add your course">
       <textFill>
          <LinearGradient endX="0.5" endY="1.0">
             <stops>
@@ -97,7 +97,7 @@
          <Font name="Arial Rounded MT Bold" size="16.0" />
       </font>
    </Label>
-   <ComboBox fx:id="myComboBox" editable="true" layoutX="483.0" layoutY="191.0" prefHeight="27.0" prefWidth="150.0" promptText="Click on the arrow" stylesheets="@../GymBuddyCSS.css">
+   <ComboBox fx:id="myComboBox" editable="true" layoutX="483.0" layoutY="191.0" prefHeight="27.0" prefWidth="150.0" promptText="Click on the arrow" stylesheets="@../GymBuddyCSS1.css">
       <!-- Your items -->
       <items>
          <FXCollections fx:factory="observableArrayList">
@@ -108,5 +108,5 @@
          </FXCollections>
       </items>
    </ComboBox>
-   <TextArea layoutX="321.0" layoutY="256.0" prefHeight="173.0" prefWidth="312.0" style="-fx-background-color: transparent; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 30;" stylesheets="@../GymBuddyCSS.css" />
+   <TextArea layoutX="321.0" layoutY="256.0" prefHeight="173.0" prefWidth="312.0" style="-fx-background-color: transparent; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 30;" stylesheets="@../GymBuddyCSS1.css" />
 </AnchorPane>

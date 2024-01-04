@@ -42,7 +42,7 @@
          </LinearGradient>
       </textFill>
    </Label>
-   <Label fx:id="itemName1111" layoutX="255.0" layoutY="28.0" prefHeight="18.0" prefWidth="162.5" stylesheets="@../GymBuddyCSS.css" text="Initial Date">
+   <Label fx:id="itemName1111" layoutX="255.0" layoutY="28.0" prefHeight="18.0" prefWidth="162.5" stylesheets="@../GymBuddyCSS1.css" text="Initial Date">
       <font>
          <Font name="Allerta Stencil Regular" size="15.0" />
       </font>
@@ -68,7 +68,7 @@
          </LinearGradient>
       </textFill>
    </Label>
-   <Label fx:id="itemName11111" prefHeight="18.0" prefWidth="162.5" stylesheets="@../GymBuddyCSS.css" text="Expired Date">
+   <Label fx:id="itemName11111" prefHeight="18.0" prefWidth="162.5" stylesheets="@../GymBuddyCSS1.css" text="Expired Date">
       <font>
          <Font name="Allerta Stencil Regular" size="15.0" />
       </font>

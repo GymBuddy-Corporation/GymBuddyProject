@@ -14,11 +14,10 @@ import java.util.ResourceBundle;
 
 public class PTHomeGUIController {
 
-    private Trainer loggedTrainer;
     @FXML private Text usernameText;
     @FXML
     public void sendCommunication() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
+        SwitchPage.setStage(MainStage.getStage(),"ManageCommunication.fxml","pt",1);
         //TODO caso d'uso
         //Objects.requireNonNull(controller).setValue(loggedTrainer, sendCommunicationController);
     }
@@ -41,10 +40,10 @@ public class PTHomeGUIController {
         SwitchPage.setStage(MainStage.getStage(), "ManageCourse.fxml", "pt", 1);
     }
 
-    public void setValue(Trainer trainer) {
+    public void setValue() {
         //TODO poi quando avremo un DB possiamo toglierla
         // e finire il tutto
-        this.loggedTrainer = trainer;
-        usernameText.setText(loggedTrainer.getUsername());
+        /*this.loggedTrainer = trainer;
+        usernameText.setText(loggedTrainer.getUsername());*/
     }
 }
