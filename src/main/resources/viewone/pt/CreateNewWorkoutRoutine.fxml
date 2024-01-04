@@ -154,14 +154,14 @@
       </fill>
    </Text>
    <ListView fx:id="exerciseDBList" editable="true" layoutX="532.0" layoutY="134.0" prefHeight="105.0" prefWidth="191.0" stylesheets="@../smallListCells.css" />
-   <TextField fx:id="searchExerciseText" layoutX="542.0" layoutY="82.0" prefHeight="26.0" prefWidth="170.0" promptText="Exercise Name" stylesheets="@../GymBuddyCSS.css" />
+   <TextField fx:id="searchExerciseText" layoutX="542.0" layoutY="82.0" prefHeight="26.0" prefWidth="170.0" promptText="Exercise Name" stylesheets="@../GymBuddyCSS1.css" />
    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="685.0" layoutY="82.0" onMouseClicked="#searchButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
       <Image url="@../images/LogoSearch96.png" />
    </ImageView>
    <VBox alignment="CENTER" layoutX="54.0" layoutY="127.0" prefHeight="246.0" prefWidth="78.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;">
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
          <children>
-            <Button fx:id="mondayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS.css" text="Mon" textAlignment="CENTER">
+            <Button fx:id="mondayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS1.css" text="Mon" textAlignment="CENTER">
                <textFill>
                   <LinearGradient>
                      <stops>
@@ -185,7 +185,7 @@
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button fx:id="tuesdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS.css" text="Tue" textAlignment="CENTER">
+         <Button fx:id="tuesdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS1.css" text="Tue" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -208,7 +208,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button fx:id="wednesdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS.css" text="Wed" textAlignment="CENTER">
+         <Button fx:id="wednesdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS1.css" text="Wed" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -231,7 +231,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button fx:id="thursdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS.css" text="Thu" textAlignment="CENTER">
+         <Button fx:id="thursdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS1.css" text="Thu" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -254,7 +254,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button fx:id="fridayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS.css" text="Fri" textAlignment="CENTER">
+         <Button fx:id="fridayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS1.css" text="Fri" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -277,7 +277,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button fx:id="saturdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS.css" text="Sat" textAlignment="CENTER">
+         <Button fx:id="saturdayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS1.css" text="Sat" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -300,7 +300,7 @@
          </Button>
       </HBox>
       <HBox alignment="CENTER" prefHeight="23.0" prefWidth="77.0">
-         <Button fx:id="sundayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS.css" text="Sun" textAlignment="CENTER">
+         <Button fx:id="sundayButton" mnemonicParsing="false" onAction="#dayButtonAction" prefHeight="27.0" prefWidth="46.0" stylesheets="@../GymBuddyCSS1.css" text="Sun" textAlignment="CENTER">
             <textFill>
                <LinearGradient>
                   <stops>
@@ -386,9 +386,9 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Spinner fx:id="spinnerSets" editable="true" initialValue="0" layoutX="638.0" layoutY="295.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../GymBuddyCSS.css" />
-   <Spinner fx:id="spinnerRepetitions" editable="true" initialValue="0" layoutX="638.0" layoutY="262.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../GymBuddyCSS.css" />
-   <ComboBox fx:id="restTimeComboBox" editable="true" layoutX="620.0" layoutY="327.0" prefHeight="27.0" prefWidth="77.0" promptText="00:00" stylesheets="@../GymBuddyCSS.css">
+   <Spinner fx:id="spinnerSets" editable="true" initialValue="0" layoutX="638.0" layoutY="295.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../GymBuddyCSS1.css" />
+   <Spinner fx:id="spinnerRepetitions" editable="true" initialValue="0" layoutX="638.0" layoutY="262.0" max="100" min="0" prefHeight="26.0" prefWidth="55.0" stylesheets="@../GymBuddyCSS1.css" />
+   <ComboBox fx:id="restTimeComboBox" editable="true" layoutX="620.0" layoutY="327.0" prefHeight="27.0" prefWidth="77.0" promptText="00:00" stylesheets="@../GymBuddyCSS1.css">
       <items>
          <FXCollections fx:factory="observableArrayList">
             <String fx:value="00:30" />
@@ -495,7 +495,7 @@
       </font>
    </Button>
    <VBox alignment="CENTER" layoutX="150.0" layoutY="119.0" prefHeight="300.0" prefWidth="335.0" spacing="9.0" style="-fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em; -fx-padding: 20 0 20 0;" />
-   <ListView fx:id="routineExerciselist" editable="true" layoutX="176.0" layoutY="134.0" prefHeight="270.0" prefWidth="285.0" stylesheets="@../GymBuddyCSS.css" />
+   <ListView fx:id="routineExerciselist" editable="true" layoutX="176.0" layoutY="134.0" prefHeight="270.0" prefWidth="285.0" stylesheets="@../GymBuddyCSS1.css" />
    <Button fx:id="cancelExerciseButton" layoutX="582.0" layoutY="367.0" mnemonicParsing="false" onAction="#cancelExercise" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em; -fx-cursor: hand;" text="Delete" textAlignment="CENTER">
       <textFill>
          <LinearGradient>

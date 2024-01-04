@@ -6,13 +6,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.launcher.gym.GymFirstGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.launcher.gym.GymFirstGUIController">
 
    <prefHeight>500.0</prefHeight>
    <ImageView fx:id="GymBuddy" fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <Label fx:id="Login" layoutX="375.0" layoutY="167.0" prefHeight="44.0" prefWidth="104.0" stylesheets="@../GymBuddyCSS.css" text="LOGIN" textAlignment="CENTER">
+   <Label fx:id="Login" layoutX="375.0" layoutY="167.0" prefHeight="44.0" prefWidth="104.0" stylesheets="@../GymBuddyCSS1.css" text="LOGIN" textAlignment="CENTER">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>
@@ -25,7 +25,7 @@
          <Font name="Allerta Stencil Regular" size="33.0" />
       </font>
    </Label>
-   <Label fx:id="Registration" layoutX="308.0" layoutY="288.0" prefHeight="44.0" prefWidth="238.0" stylesheets="@../GymBuddyCSS.css" text="REGISTRATION" textAlignment="CENTER">
+   <Label fx:id="Registration" layoutX="308.0" layoutY="288.0" prefHeight="44.0" prefWidth="238.0" stylesheets="@../GymBuddyCSS1.css" text="REGISTRATION" textAlignment="CENTER">
       <textFill>
          <LinearGradient endX="0.5">
             <stops>

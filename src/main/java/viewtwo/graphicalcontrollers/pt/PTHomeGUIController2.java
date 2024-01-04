@@ -1,25 +1,15 @@
-package viewone.graphicalControllers.pt;
+package viewtwo.graphicalcontrollers.pt;
 
-import javafx.fxml.Initializable;
-import javafx.scene.text.Text;
-import model.Trainer;
+import viewtwo.engegnering.MainMenuSingleton;
+import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
-import javafx.fxml.FXML;
 
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
-
-
-public class PTHomeGUIController {
-
-    @FXML private Text usernameText;
+public class PTHomeGUIController2 {
     @FXML
-    public void sendCommunication() throws Exception{
+    public void manageCommunication() throws Exception{
+        MainMenuSingleton.getMainMenu().setActivity("SendPTCommunication.fxml","pt");
         SwitchPage.setStage(MainStage.getStage(),"SendPTCommunication.fxml","pt",1);
-        //TODO caso d'uso
-        //Objects.requireNonNull(controller).setValue(loggedTrainer, sendCommunicationController);
     }
     @FXML
     public void yourAthletes() throws Exception{
@@ -38,12 +28,5 @@ public class PTHomeGUIController {
     @FXML
     public void manageCourse() throws Exception{
         SwitchPage.setStage(MainStage.getStage(), "ManageCourse.fxml", "pt", 1);
-    }
-
-    public void setValue() {
-        //TODO poi quando avremo un DB possiamo toglierla
-        // e finire il tutto
-        /*this.loggedTrainer = trainer;
-        usernameText.setText(loggedTrainer.getUsername());*/
     }
 }

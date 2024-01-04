@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.gym.GymPTGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.gym.GymPTGUIController">
 
    <Text layoutX="657.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete PT" textAlignment="CENTER" wrappingWidth="70.99990386962895">
       <font>
@@ -146,7 +146,7 @@
    <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="436.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
-   <ListView fx:id="athletesList" editable="true" layoutX="75.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../GymBuddyCSS.css">
+   <ListView fx:id="athletesList" editable="true" layoutX="75.0" layoutY="142.0" prefHeight="270.0" prefWidth="650.0" style="-fx-background-color: transparent" stylesheets="@../GymBuddyCSS1.css">
    </ListView>
 
    <Text layoutX="222.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Personal Trainers" textAlignment="CENTER" wrappingWidth="356.5999710083008">

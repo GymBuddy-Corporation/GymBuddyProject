@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.home.MainMenuController">
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.PTHomeGUIController2">
    <children>
       <AnchorPane layoutX="14.0" layoutY="102.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
          <children>
@@ -13,14 +13,14 @@
                   <Font size="17.0" />
                </font>
             </Text>
-            <ListView layoutX="3.0" layoutY="44.0" prefHeight="205.0" prefWidth="497.0" stylesheets="@../GymBuddyCSS2.css" />
          </children></AnchorPane>
       <Label layoutX="426.0" layoutY="44.0" text="Home" textFill="#911701" AnchorPane.leftAnchor="372.8">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="578.0" layoutY="177.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Communications" textFill="#911701" />
-      <Button layoutX="578.0" layoutY="266.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Courses" textFill="#911701" />
+      <Button layoutX="578.0" layoutY="145.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" stylesheets="@../GymBuddyCSS2.css" text="View Gym Communications" textFill="#911701" />
+      <Button layoutX="578.0" layoutY="224.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Send A Communication" textFill="#911701" />
+      <Button layoutX="578.0" layoutY="303.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Courses" textFill="#911701" />
    </children>
 </AnchorPane>
