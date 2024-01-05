@@ -185,8 +185,6 @@ public class SatisfyWorkoutRequestsController {
                         ));
             }*/
             requestBeanList.add(new RequestBean(
-                    request.getId(),
-                    request.getRequestDate(),
                     request.getInfo(),
                     athleteBean,
                     request.getTrainer().getFC()

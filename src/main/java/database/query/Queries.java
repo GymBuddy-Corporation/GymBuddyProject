@@ -98,6 +98,18 @@ public class Queries {
             "    FROM gymbuddy.exercise e" +
             "    WHERE  e.nameGym = ?";
 
+
+    public static final  String LOAD_TRAINER_REQUESTS_QUERY= "SELECT r.info, a.user_email as athleteEmail\n" +
+            "    FROM gymbuddy.request r\n" +
+            "    JOIN gymbuddy.trainers t ON r.trainersFC = t.fc\n" +
+            "    JOIN gymbuddy.athlete a ON r.athleteFC = a.fc\n" +
+            "    WHERE r.status = 'yes' AND t.fc = ?";
+
+    public static ResultSet loadTrainerRequests(String trainerFc, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setString(1, trainerFc);
+        return preparedStatement.executeQuery();
+    }
+
     public static ResultSet loadTrainerExercises(String trainerFc, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, trainerFc);
         return preparedStatement.executeQuery();

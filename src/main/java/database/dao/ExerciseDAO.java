@@ -72,19 +72,6 @@ public class ExerciseDAO {
         return null;
     }
 
-    public List<Exercise> loadTrainerExercises(Trainer trainer) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                ExerciseQueries.LOAD_TRAINER_EXERCISES_QUERY); ResultSet rs = ExerciseQueries.loadTrainerExercises(trainer.getFiscalCode(), preparedStatement)){
-            return getExercises(trainer, rs);
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
-
-        //dopo togli sto null
-        return null;
-    }
-
     @NotNull
     private ArrayList<Exercise> getExercises(Trainer trainer/*, ResultSet rs*/) /*throws SQLException*/ {
         ArrayList<Exercise> exerciseList = new ArrayList<>();

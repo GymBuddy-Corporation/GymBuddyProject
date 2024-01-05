@@ -31,12 +31,6 @@ public class ViewRequestGUIController implements Initializable {
 
     private RequestBean selectedRequest;
 
-    private final SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
-
-    public ViewRequestGUIController() {
-        satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-    } //TODO sistema questo
-
     @FXML
     public void goBack() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
@@ -64,11 +58,13 @@ public class ViewRequestGUIController implements Initializable {
     @FXML
     public void rejectRequest() {
         //TODO gestisci la cancellazione di una richiesta
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         try {
             ManageRequestList.setRequestList(requestList, satisfyWorkoutRequestsController);
             requestList.getSelectionModel().selectedItemProperty().
