@@ -2,7 +2,8 @@ package viewone.graphicalControllers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
-import engineering.manageListView.ManageRequestList;
+import engineering.LoggedUserSingleton;
+import viewone.manageListView.ManageRequestList;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
@@ -35,12 +36,13 @@ public class ViewRequestGUIController implements Initializable {
     public void goBack() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
-    public void logout() throws Exception {
+    @FXML public void logout() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
-    public void askClarification() throws Exception {
-        //TODO sistema la nuova grafica SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml","pt",1);
+    public void askClarification() throws IOException{
+        EmailSystemGUIController controller = (EmailSystemGUIController) SwitchPage.setStage(MainStage.getStage(),"EmailSystem.fxml","pt",1);
+        Objects.requireNonNull(controller).setValue(selectedRequest);
     }
 
     @FXML
@@ -60,6 +62,15 @@ public class ViewRequestGUIController implements Initializable {
         //TODO gestisci la cancellazione di una richiesta
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
+        try{
+            ManageRequestList.updateList(requestList, satisfyWorkoutRequestsController);
+        } catch (DataFieldException e) {
+            try {
+                e.callMe(1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 
     @Override

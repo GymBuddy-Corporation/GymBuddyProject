@@ -1,11 +1,10 @@
 package viewone.graphicalControllers.pt;
 
 import beans.ExerciseBean;
-import beans.RequestBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
-import engineering.manageListView.listCells.ExerciseListCellFactoryForStatus;
-import engineering.manageListView.ManageExerciseList;
+import viewone.manageListView.listCells.ExerciseListCellFactoryForStatus;
+import viewone.manageListView.ManageExerciseList;
 import exceptions.UserCastException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -2,8 +2,8 @@ package viewone.graphicalControllers.pt;
 
 import beans.AthleteBean;
 import controllers.SatisfyWorkoutRequestsController;
-import engineering.manageListView.listCells.AthleteListCellFactory;
-import engineering.manageListView.ManageAthletesList;
+import viewone.manageListView.listCells.AthleteListCellFactory;
+import viewone.manageListView.ManageAthletesList;
 import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,7 +56,8 @@ public class ViewYourAthletesGUIController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            ManageAthletesList.setAthletesList(athletesList, satisfyWorkoutRequestsController);
+            //todo con db
+            ManageAthletesList.setAthletesList(athletesList);
         } catch (DataFieldException e) {
             try {
                 e.callMe(1);
@@ -66,6 +67,6 @@ public class ViewYourAthletesGUIController implements Initializable{
         }
 
         athletesList.setCellFactory(new AthleteListCellFactory());
-        ManageAthletesList.setListenerAthletes(athletesList, /*metti il controller applicativo, */this);
+        ManageAthletesList.setListenerAthletes(athletesList, this);
     }
 }

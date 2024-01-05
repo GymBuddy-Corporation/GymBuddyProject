@@ -1,7 +1,7 @@
-package engineering.manageListView.listCells;
+package viewone.manageListView.listCells;
 
 
-import beans.RequestBean;
+import beans.AthleteBean;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -11,24 +11,24 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class RequestListCellFactory implements Callback<ListView<RequestBean>, ListCell<RequestBean>> {
+public class GymCommunicationListCellFactory implements Callback<ListView<String>, ListCell<String>> {
 
     @Override
-    public ListCell<RequestBean> call(ListView<RequestBean> param) {
-        return new ListCell<RequestBean>() {
+    public ListCell<String> call(ListView<String> param) {
+        return new ListCell<String>() {
             private Parent parentNode = null;
 
             @Override
-            protected void updateItem(RequestBean requestBean, boolean empty) {
-                super.updateItem(requestBean, empty);
+            protected void updateItem(String info, boolean empty) {
+                super.updateItem(info, empty);
 
-                if (empty || requestBean == null) {
+                if (empty || info == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
                     if (parentNode == null) {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListAthlete.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListGymCommunication.fxml"));
                             parentNode = loader.load();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -36,7 +36,7 @@ public class RequestListCellFactory implements Callback<ListView<RequestBean>, L
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(requestBean.getAthleteBean().getUsername());
+                    itemNameLabel.setText(info);
 
                     setGraphic(parentNode);
                 }

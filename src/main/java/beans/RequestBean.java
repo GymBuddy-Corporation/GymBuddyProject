@@ -35,11 +35,6 @@ public class RequestBean {
     public AthleteBean getAthleteBean() {
         return athleteBean;
     }
-
-    public String getTrainerFc() {
-        return trainerFc;
-    }
-
     public String getInfo() {
         return info;
     }
@@ -56,4 +51,7 @@ public class RequestBean {
         this.info = info;
     }
 
+    public String getTrainerFc() {
+        return trainerFc;
+    }
 }

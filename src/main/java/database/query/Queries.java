@@ -103,11 +103,18 @@ public class Queries {
             "    FROM gymbuddy.request r\n" +
             "    JOIN gymbuddy.trainers t ON r.trainersFC = t.fc\n" +
             "    JOIN gymbuddy.athlete a ON r.athleteFC = a.fc\n" +
-            "    WHERE r.status = 'yes' AND t.fc = ?";
+            "    WHERE t.fc = ?";
 
     public static ResultSet loadTrainerRequests(String trainerFc, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, trainerFc);
         return preparedStatement.executeQuery();
+    }
+    public static final String DELETE_REQUEST_QUERY = "DELETE FROM gymbuddy.request " +
+            "WHERE athleteFC = ? AND trainersFC = ?";
+    public static void deleteRequest(PreparedStatement preparedStatement, String athleteFC, String trainersFC) throws SQLException {
+        preparedStatement.setString(1, athleteFC);
+        preparedStatement.setString(2, trainersFC);
+        preparedStatement.executeUpdate();
     }
 
     public static ResultSet loadTrainerExercises(String trainerFc, PreparedStatement preparedStatement) throws SQLException {

@@ -29,30 +29,26 @@ public class RequestDAO {
     public static final String INFO = "info";
     public static final String ATHLETEMAIL = "athleteEmail";
 
-    public void deleteRequest(LocalDateTime requestDate, String athleteEmail) /*throws SQLException, DBUnreachableException*/ {
-
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                RequestQueries.DELETE_REQUEST_QUERY)){
-            RequestQueries.deleteRequest(preparedStatement, idRequest);
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
+    public void deleteRequest(String athleteFC, String trainersFC)  {
+        System.out.println(athleteFC + "    " + trainersFC);
+        try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
+                Queries.DELETE_REQUEST_QUERY)){
+            Queries.deleteRequest(preparedStatement, athleteFC, trainersFC);
+        } catch (SQLException e) {
+            //todo handle excpetion
+        }
     }
 
     public List<Request> loadTrainerRequests(Trainer trainer){
-        System.out.println("!!!!!!!!!");
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.LOAD_TRAINER_REQUESTS_QUERY); ResultSet rs = Queries.loadTrainerRequests(trainer.getFC(), preparedStatement)){
             List<Request> myList = new ArrayList<>();
-            System.out.println("111111111111");
             while(rs.next()) {
                 myList.add(new Request(
                         rs.getString(INFO),
                         new AthleteDAO().loadAthlete(rs.getString(ATHLETEMAIL)),
                         trainer));
             }
-            System.out.println("2222222222");
             return myList;
         } catch (SQLException e) {
            //TODO handle exception

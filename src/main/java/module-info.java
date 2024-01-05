@@ -5,6 +5,7 @@ module start {
     requires org.jetbrains.annotations;
     requires java.sql;
     requires mysql.connector.j;
+    requires java.desktop;
 
     opens start to javafx.fxml;
     exports start;
@@ -34,10 +35,10 @@ module start {
     opens viewone.graphicalControllers.athlete;
     exports engineering;
     opens engineering;
-    exports engineering.manageListView;
-    opens engineering.manageListView;
-    exports engineering.manageListView.listCells;
-    opens engineering.manageListView.listCells;
+    exports viewone.manageListView;
+    opens viewone.manageListView;
+    exports viewone.manageListView.listCells;
+    opens viewone.manageListView.listCells;
     opens utils;
     exports exceptions.dataException;
     opens engineering.popups to javafx.fxml;

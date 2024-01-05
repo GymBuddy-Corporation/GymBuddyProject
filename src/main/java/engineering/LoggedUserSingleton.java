@@ -97,9 +97,9 @@ public class LoggedUserSingleton {
         return null;
      }
 
-        public  static UserBean getMyBean() throws DataFieldException {
+     public  static UserBean getMyBean() throws DataFieldException {
         return getSingleton().getUserBean(getSingleton().user);
-        }
+    }
 
     public UserTypes getUserType() {
         return userType;

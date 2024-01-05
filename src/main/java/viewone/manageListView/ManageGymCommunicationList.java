@@ -1,24 +1,28 @@
-package engineering.manageListView;
+package viewone.manageListView;
 
-import beans.ExerciseBean;
-import beans.ExerciseForWorkoutRoutineBean;
-import beans.ExerciseStatusBean;
+import beans.*;
 import controllers.SatisfyWorkoutRequestsController;
+import controllers.SeeCommunications;
+import engineering.LoggedUserSingleton;
+import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import model.Exercise;
 import viewone.graphicalControllers.pt.CreateNewWorkoutRoutineGUIController;
+import viewone.graphicalControllers.pt.PTHomeGUIController;
 import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
+import viewone.graphicalControllers.pt.ViewYourAthletesGUIController;
 
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ManageExerciseList {
+public class ManageGymCommunicationList {
 
-    private ManageExerciseList() {}
+    private ManageGymCommunicationList() {}
 
     public static void setListenerDB(ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
@@ -40,11 +44,11 @@ public class ManageExerciseList {
             }
     }
 
-    public static void updateList(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
-        //this is used only for the ListView so to set the status of exercises
-        //and we needed all the exercise to show ACTIVE and SUSPENDED.
-        ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(exerciseBeanList);
-        exerciseBeanListView.setItems(exerciseBeanObservableList);
+    public static void setCommunicationList(ListView<String> communicationList) throws DataFieldException {
+        SeeCommunications seeCommunications = new SeeCommunications();
+        List<String> comList;
+        comList = seeCommunications.getGymCommunications();
+        communicationList.getItems().addAll();
     }
 
     public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
@@ -114,4 +118,18 @@ public class ManageExerciseList {
             }
         }
     }
+
+    /*public static void setListenerCommunication(ListView<String> communicationList, PTHomeGUIController ptHomeGUIController) {
+        communicationList.getSelectionModel().selectedItemProperty().
+                addListener(new ChangeListener<>() {
+                    @Override
+                    public void changed(ObservableValue<? extends AthleteBean> observableValue, AthleteBean oldItem, AthleteBean newItem) {
+                        listEventCommunications(newItem, ptHomeGUIController);
+                    }
+                });
+    }*/
+
+/*    private static void listEventCommunications(String newItem,  PTHomeGUIController ptHomeGUIController) {
+        ptHomeGUIController.setInfoBox(newItem);
+    }*/
 }

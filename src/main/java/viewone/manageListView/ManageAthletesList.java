@@ -1,4 +1,4 @@
-package engineering.manageListView;
+package viewone.manageListView;
 
 import beans.AthleteBean;
 import beans.CredentialsBean;
@@ -19,7 +19,7 @@ public class ManageAthletesList {
 
     private ManageAthletesList() {}
 
-    public static void setListenerAthletes(ListView<AthleteBean> athletesList,/*TODO metti poi un controller applicativo, forse*/ ViewYourAthletesGUIController viewYourAthletesGUIController) {
+    public static void setListenerAthletes(ListView<AthleteBean> athletesList, ViewYourAthletesGUIController viewYourAthletesGUIController) {
         athletesList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -33,13 +33,7 @@ public class ManageAthletesList {
         viewYourAthletesGUIController.setInfoBox(newItem);
     }
 
-    //forse sto update è inutile
-    public static void updateList(ListView<AthleteBean> athleteBeanListView, List<AthleteBean> athleteBeanList) {
-        ObservableList<AthleteBean> athleteBeanObservableList = FXCollections.observableList(athleteBeanList);
-        athleteBeanListView.setItems(athleteBeanObservableList);
-    }
-
-    public static void setAthletesList(ListView<AthleteBean> athletesList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException {
+    public static void setAthletesList(ListView<AthleteBean> athletesList) throws DataFieldException {
         PersonalInfoBean pi1 = new PersonalInfoBean("Luca", "Martorelli", LocalDate.of(2000, 9, 1), "MRTLCU00P01D612J", 'm');
         PersonalInfoBean pi2 = new PersonalInfoBean("Mario", "Regine", LocalDate.of(2002, 9, 23), "MHTLCU00P01D612J", 'm');
         PersonalInfoBean pi3 = new PersonalInfoBean("Edoardo", "Manenti", LocalDate.of(2007, 9, 6), "NRTLCU00P01D612J", 'm');

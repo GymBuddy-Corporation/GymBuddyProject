@@ -1,18 +1,19 @@
 package model;
 
+import database.dao.GymDAO;
 import engineering.ExerciseInventory;
 import model.record.Credentials;
 import model.record.Location;
 
 import java.io.Serializable;
-import java.sql.SQLException;
+import java.util.List;
 
 public class Gym extends User implements Serializable {
     private final String iban;
     private final String gymName;
     private ExerciseInventory gymExercises;
     private Location location;
-
+    private List<String> gymCommunication;
     public Gym(String username, Credentials credentials, String iban, String gymName) {
         super(username, credentials);
         this.iban = iban;
@@ -67,5 +68,16 @@ public class Gym extends User implements Serializable {
     public void addGymExercise(Exercise exerciseToAdd) {
         lazyLoadExercises();
         this.gymExercises.addExercise(exerciseToAdd);
+    }
+    public static List<String> loadComm(String gymName) {
+        GymDAO gymdao=new GymDAO();
+        return null;
+    }
+
+    public List<String> getGymCommunication() {
+        if (this.gymExercises == null) {
+            return (List<String>) (this.gymCommunication = loadComm(this.gymName));
+        }
+        return gymCommunication;
     }
 }

@@ -1,17 +1,13 @@
-package engineering.manageListView;
+package viewone.manageListView;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
-/*
-import exceptions.DBUnreachableException;
-*/
-import engineering.manageListView.listCells.RequestListCellFactory;
+import viewone.manageListView.listCells.RequestListCellFactory;
 import exceptions.dataException.DataFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 
-/*import java.sql.SQLException;*/
 
 public class ManageRequestList {
 
@@ -20,7 +16,6 @@ public class ManageRequestList {
         updateList(requestList, satisfyWorkoutRequestsController);
     }
 
-    //TODO chiarisci perchè cazzo mi mostra le richieste senz update, mentre non me le mostra se ho update
     //TODO sistema password null bug
 
     public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException /*throws SQLException, DBUnreachableException */{

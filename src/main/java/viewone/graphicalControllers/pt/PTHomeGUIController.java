@@ -1,20 +1,27 @@
 package viewone.graphicalControllers.pt;
 
+import exceptions.dataException.DataFieldException;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import model.Trainer;
+import viewone.manageListView.ManageGymCommunicationList;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
+import viewone.manageListView.ManageAthletesList;
+import viewone.manageListView.listCells.AthleteListCellFactory;
+import viewone.manageListView.listCells.GymCommunicationListCellFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class PTHomeGUIController {
+public class PTHomeGUIController implements Initializable{
 
     @FXML private Text usernameText;
+    @FXML private ListView<String> communicationList;
     @FXML
     public void sendCommunication() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"ManageCommunication.fxml","pt",1);
@@ -45,5 +52,21 @@ public class PTHomeGUIController {
         // e finire il tutto
         /*this.loggedTrainer = trainer;
         usernameText.setText(loggedTrainer.getUsername());*/
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            //todo con db
+            ManageGymCommunicationList.setCommunicationList(communicationList);
+        } catch (DataFieldException e) {
+            try {
+                e.callMe(1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        communicationList.setCellFactory(new GymCommunicationListCellFactory());
+        //ManageGymCommunicationList.setListenerCommunication(communicationList, this);
     }
 }

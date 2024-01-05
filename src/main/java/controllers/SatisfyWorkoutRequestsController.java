@@ -1,6 +1,7 @@
 package controllers;
 
 import beans.*;
+import boundaries.EmailSystemBoundary;
 import database.dao.RequestDAO;
 import engineering.LoggedUserSingleton;
 import exceptions.UserCastException;
@@ -9,6 +10,10 @@ import model.*;
 import org.jetbrains.annotations.NotNull;
 import beans.RequestBean;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
@@ -28,24 +33,19 @@ public class SatisfyWorkoutRequestsController {
         return switch (statusBean) {
             case ACTIVE -> ExerciseStatus.ACTIVE;
             case SUSPENDED -> ExerciseStatus.SUSPENDED;
-            default -> null;  // Handle other cases or throw an exception
+            default -> null;
         };
     }
 
     public void setExerciseStatus(ExerciseBean exercise, ExerciseStatusBean status) throws UserCastException {
-        //TODO
         ExerciseStatus statusToSet = convertFromExerciseStatusBean(status);
 
-        // Update the status in the exerciseBean
         exercise.setStatusExercise(status);
 
-        // Notify observers or perform any other necessary actions
-        //findExerciseByName(exercise.getName(), statusToSet);
         for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseList()){
             if(ex.getName().equals(exercise.getName())){
                 ex.setStatus(statusToSet);
                 System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatusExercise());
-                /*ex.notifyObservers(ex.getName()); Gia lo notifico nella riga sopra*/
             }
         }
     }
@@ -144,6 +144,16 @@ public class SatisfyWorkoutRequestsController {
         };
     }
 
+    public void sendClarificationEmail(UserBean sender, UserBean receiver, String object, String content) throws URISyntaxException, IOException{
+        new EmailSystemBoundary().sendEmail(new EmailBean(
+                sender,
+                receiver,
+                object,
+                content
+        ));
+        System.out.println("Sender: " + sender + " Receiver: " + receiver + " object: " + object + " content: " + content);
+    }
+
     public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedUserSingleton.getSingleton().getSpecificUser(Trainer.class)));
 
@@ -165,25 +175,6 @@ public class SatisfyWorkoutRequestsController {
                             usr.getEmail(),
                             usr.getPassword()
                     ));
-           /* } catch (NoCardInsertedException e) {
-                athleteBean = new AthleteBean(
-                        usr.getUsername(),
-                        new PersonalInfoBean(
-                                usr.getName(),
-                                usr.getSurname(),
-                                usr.getDateOfBirth(),
-                                usr.getFiscalCode(),
-                                usr.getGender()
-                        ),
-                        CredentialsBean.ctorWithoutSyntaxCheck(
-                                usr.getEmail(),
-                                usr.getPassword()
-                        ),
-                        new CardInfoBean(
-                                null,
-                                (YearMonth) null
-                        ));
-            }*/
             requestBeanList.add(new RequestBean(
                     request.getInfo(),
                     athleteBean,
@@ -195,8 +186,8 @@ public class SatisfyWorkoutRequestsController {
     }
 
     public void rejectRequest(RequestBean selectedRequest) {
-        new RequestDAO().deleteRequest(selectedRequest.getRequestDate(),
-                selectedRequest.getAthleteBean().getCredentials().getEmail());
+        new RequestDAO().deleteRequest(selectedRequest.getAthleteBean().getPersonalInfo().getFc(),
+                selectedRequest.getTrainerFc());
         //notificationsController.sendRejectRequestNotification(selectedRequest.getAthleteBean().getFiscalCode());
         //create new model Request
         //get the dao request equal to the selected request
