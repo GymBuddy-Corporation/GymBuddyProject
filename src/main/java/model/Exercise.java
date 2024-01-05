@@ -8,6 +8,7 @@ public class Exercise extends Observable implements Serializable  {
     protected String name;
     protected ExerciseStatus status;
 
+
     public Exercise(String name, ExerciseStatus status){
         //ideato SOLO per passare ora i parametri (che non ho il DB)
         this.name = name;

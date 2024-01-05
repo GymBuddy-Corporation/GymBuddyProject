@@ -47,6 +47,7 @@ module start {
     opens viewone.beans to javafx.fxml;
     opens beans to javafx.fxml;
     opens model.record;
+    exports viewtwo.graphicalcontrollers.pt;
 
     opens database.dao;
     exports database.dao;

@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.PTHomeGUIController2">
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.PersonalizeWorkoutRoutine2">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="102.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
+      <AnchorPane layoutX="102.0" layoutY="141.0" prefHeight="262.0" prefWidth="614.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
          <children>
-            <Text fill="#911701" layoutX="192.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Requests" textAlignment="CENTER" wrappingWidth="120.0">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Text>
-            <ListView layoutX="3.0" layoutY="44.0" prefHeight="205.0" prefWidth="497.0" stylesheets="@../GymBuddyCSS2.css" />
+            <TextArea layoutX="20.0" layoutY="14.0" prefHeight="234.0" prefWidth="572.0" promptText="Insert here a comment that helps the athlete with the workout routine" stylesheets="@../GymBuddyCSS2.css" />
          </children></AnchorPane>
-      <Label layoutX="373.0" layoutY="37.0" text="Home" textFill="#911701" AnchorPane.leftAnchor="373.0" AnchorPane.topAnchor="32.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="301.0" layoutY="42.0" prefHeight="30.0" prefWidth="217.0" text="Users' Request" textAlignment="CENTER" textFill="#911701">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="578.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#manageCommunication" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Communications" textFill="#911701" />
-      <Button layoutX="578.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#manageCourse" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Courses" textFill="#911701" />
+      <AnchorPane layoutX="187.0" layoutY="81.0" prefHeight="6.0" prefWidth="444.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
+         <children>
+            <TextArea layoutX="12.0" layoutY="2.0" prefHeight="39.0" prefWidth="420.0" promptText="Insert here the workout routines' title" stylesheets="@../GymBuddyCSS2.css" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="48.0" fitWidth="60.0" layoutX="732.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="14.0">
+         <image>
+            <Image url="@../images/LogoForward.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="48.0" fitWidth="60.0" layoutX="24.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0">
+         <image>
+            <Image url="@../images/LogoBack.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

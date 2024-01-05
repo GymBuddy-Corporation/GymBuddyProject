@@ -5,6 +5,7 @@ import model.record.Credentials;
 import model.record.Location;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 public class Gym extends User implements Serializable {
     private final String iban;

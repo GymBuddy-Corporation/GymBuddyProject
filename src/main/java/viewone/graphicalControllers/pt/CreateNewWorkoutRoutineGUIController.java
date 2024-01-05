@@ -97,7 +97,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     public void submitRoutine() throws Exception{
         //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
         // gestisci l'aggiunta di un esercizio nella scheda DB
-        PersonalizeWorkoutRoutineGUIController controller = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"PersonalizeWorkoutRoutine.fxml","pt",1);
+        PersonalizeWorkoutRoutineGUIController controller = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"ptHome.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, this.workoutRoutine);
     }
 
@@ -106,7 +106,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         List<ExerciseBean> exerciseBeanList;
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         exerciseBeanList = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
-        for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList()) {
+        for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseList()) {
             ex.addObserver(this);
         }
         ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);

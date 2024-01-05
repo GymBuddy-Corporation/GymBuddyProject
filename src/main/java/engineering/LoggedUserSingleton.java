@@ -105,10 +105,6 @@ public class LoggedUserSingleton {
         return userType;
     }
 
-    public ExerciseInventory getExcerciseInventory() {
-        return ((Trainer)user).getGym().getGymExercises();
-
-    }
     public List<Exercise> getExcerciseList(){
        return  ((Trainer)user).getGym().getGymExercises().getExerciseList();
     }

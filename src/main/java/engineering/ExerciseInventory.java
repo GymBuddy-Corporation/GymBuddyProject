@@ -5,6 +5,7 @@ import model.Exercise;
 import model.ExerciseStatus;
 import model.record.Credentials;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ExerciseInventory {
@@ -22,7 +23,7 @@ public class ExerciseInventory {
     public void addExercise(Exercise exercise){
         this.exerciseList.add(exercise);
     }
-    public static ExerciseInventory loadExcercise(String gymName){
+    public static ExerciseInventory loadExcercise(String gymName) {
         GymDAO gymdao=new GymDAO();
         return new ExerciseInventory(gymdao.loadDBExercises(gymName));
     }

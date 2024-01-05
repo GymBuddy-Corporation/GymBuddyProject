@@ -60,12 +60,12 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
             e.callMe(2);
         }
         UserTypes type;
-        try {
+        /*try {*/
             type = LoggedUserSingleton.getSingleton().getUserType();
-        } catch (NoLoggedUserException e) {
+       /* } catch (NoLoggedUserException e) {
             e.callMe(2);
             return;
-        }
+        }*/
 
         MainMenuController a = (MainMenuController) SwitchPage.setStage(MainStage.getStage(), "mainMenu.fxml", "home", 2);
         MainMenuSingleton.createMainMenu(a);

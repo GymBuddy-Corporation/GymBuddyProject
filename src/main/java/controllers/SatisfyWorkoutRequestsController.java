@@ -20,7 +20,7 @@ public class SatisfyWorkoutRequestsController {
     public SatisfyWorkoutRequestsController() {}
 
     public List<ExerciseBean> getLoggedTrainerGymExercises() {
-        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
+        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseList();
         return getExerciseBeanList(exerciseList);
     }
 
@@ -41,7 +41,7 @@ public class SatisfyWorkoutRequestsController {
 
         // Notify observers or perform any other necessary actions
         //findExerciseByName(exercise.getName(), statusToSet);
-        for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList()){
+        for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseList()){
             if(ex.getName().equals(exercise.getName())){
                 ex.setStatus(statusToSet);
                 System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatusExercise());
@@ -113,7 +113,7 @@ public class SatisfyWorkoutRequestsController {
     }
 
     public List<ExerciseBean> searchExercise(SearchBean searchBean) throws UserCastException{
-        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseInventory().getExerciseList();
+        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseList();
         List<Exercise> filteredExercises = new ArrayList<>();
 
         for (Exercise exercise : exerciseList) {

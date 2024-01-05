@@ -11,6 +11,7 @@ import exceptions.NoUserFoundException;
 import model.*;
 import model.record.Credentials;
 import model.record.PersonalInfo;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,11 +31,18 @@ public class GymDAO {
 
 
 
-    public List<Exercise> loadDBExercises(String gymName){
-        List<Exercise> exList = new ArrayList<>();
+    public List<Exercise> loadDBExercises(String gymName) {
+        try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
+                Queries.LOAD_GYM_EXERCISES); ResultSet rs = Queries.loadTrainerExercises(gymName, preparedStatement)){
+            return getExercises(rs);
+        } catch (SQLException e) {
+            //TODO handle exception
+            return null;
+        }
+
+        /*List<Exercise> exList = new ArrayList<>();
 
         //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
-        // SISTEMA BENE
 
         Exercise ex1 = new Exercise("Tricep Pushdown");
         Exercise ex2 = new Exercise("Shoulder Press");
@@ -48,8 +56,32 @@ public class GymDAO {
         exList.add(ex2);
         exList.add(ex3);
         exList.add(ex4);
-        return exList;
+        return exList;*/
     }
+
+    private ArrayList<Exercise> getExercises(ResultSet rs) throws SQLException {
+        ArrayList<Exercise> exerciseList = new ArrayList<>();
+        while (rs.next()) {
+            String name = rs.getString("nameEx");
+            String statusString = rs.getString("status");
+            // Assuming you have a method to convert a string to ExerciseStatus enum
+            ExerciseStatus status = convertStringToExerciseStatus(statusString);
+            exerciseList.add(new Exercise(name, status));
+        }
+        return exerciseList;
+    }
+
+    // Example method to convert string to ExerciseStatus enum
+    private ExerciseStatus convertStringToExerciseStatus(String statusString) {
+        if ("ACTIVE".equals(statusString)) {
+            return ExerciseStatus.ACTIVE;
+        } else if ("SUSPENDED".equals(statusString)) {
+            return ExerciseStatus.SUSPENDED;
+        } else {
+            throw new IllegalArgumentException("Invalid ExerciseStatus: " + statusString);
+        }
+    }
+
     List<Gym> loadedgyms;
 
     public Gym getGymByName(String gymName) throws NoUserFoundException {
