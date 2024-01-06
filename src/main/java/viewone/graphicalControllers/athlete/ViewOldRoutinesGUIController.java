@@ -1,5 +1,6 @@
 package viewone.graphicalControllers.athlete;
 
+import controllers.UserAccessController;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import utils.MainStage;
@@ -13,7 +14,9 @@ public class ViewOldRoutinesGUIController {
 
     @FXML
     public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+        UserAccessController controller=new UserAccessController();
+        controller.logout(1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     public void logout() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"AthleteLogin.fxml","launcher",1);

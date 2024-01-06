@@ -1,5 +1,6 @@
 package viewone.graphicalControllers.gym;
 
+import controllers.UserAccessController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -39,7 +40,9 @@ public class SendGymCommunicationGUIController implements Initializable {
 
     @FXML
     public void logout() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
+        UserAccessController controller=new UserAccessController();
+        controller.logout(1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
     public void setBottonept()throws  Exception{

@@ -4,8 +4,20 @@ package database.query;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Queries {
+
+    public static final String INSERT_REQUEST_QUERY = "INSERT INTO gymbuddy.request" +
+            "(trainersFC, athleteFC, info, dateRequest) " +
+            "VALUES (?, ?, ?, CURDATE())";
+    public static void insertRequest(PreparedStatement preparedStatement, String info, String athleteFc, String trainerFc) throws SQLException {
+        preparedStatement.setString(1, trainerFc);
+        preparedStatement.setString(2, athleteFc);
+        preparedStatement.setString(3, info);
+        preparedStatement.executeUpdate();
+    }
 
     public static final String INSERT_EXERCISE_IN_WORKOUT_DAY_QUERY = "INSERT INTO " +
             "gymbuddy.workoutexercise (sets, rest, repetitions, workoutDayName, " +

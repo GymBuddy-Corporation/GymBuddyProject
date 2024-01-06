@@ -1,6 +1,7 @@
 package viewone.graphicalControllers.pt;
 
 import beans.*;
+import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import engineering.Observer;
 import viewone.manageListView.listCells.ExerciseForWOListCellFactory;
@@ -75,6 +76,8 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
     @FXML
     public void logout() throws Exception{
+        UserAccessController controller=new UserAccessController();
+        controller.logout(1);
         SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML

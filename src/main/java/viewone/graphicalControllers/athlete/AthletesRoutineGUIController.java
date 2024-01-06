@@ -2,6 +2,7 @@ package viewone.graphicalControllers.athlete;
 
 
 import controllers.CreateRequestController;
+import controllers.UserAccessController;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
@@ -23,15 +24,17 @@ public class AthletesRoutineGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
     }
     public void logout() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"AthleteLogin.fxml","launcher",1);
+        UserAccessController controller=new UserAccessController();
+        controller.logout(1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
-    public void askForNewRoutine() {
-
+    public void askForNewRoutine() throws Exception {
+        SwitchPage.setStage(MainStage.getStage(),"AskNewRoutine.fxml","athlete",1);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //imposta la scheda associata a lui
+        //todo imposta la scheda associata a lui
     }
 }

@@ -5,6 +5,7 @@ import beans.UserBean;
 import database.SingletonConnection;
 import database.dao.UserDAO;
 import exceptions.AlreadyLoggedUserException;
+import exceptions.NoLoggedUserException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
 import model.User;
@@ -15,6 +16,10 @@ import java.sql.SQLException;
 
 
 public class UserAccessController {
+
+    public void logout(int view) throws NoLoggedUserException {
+        LoggedUserSingleton.getSingleton().clearSingleton();
+    }
 
     public UserBean login(CredentialsBean credentials) throws DataFieldException, NoUserFoundException, AlreadyLoggedUserException, SQLException {
         // User in verita è un istanza di gym/athlete/pt

@@ -6,11 +6,11 @@ import database.dao.RequestDAO;
 
 public class CreateRequestController {
     public void askForNewWorkoutRoutine(RequestBean requestBean){
-        /*new RequestDAO().saveRequest(
+        new RequestDAO().saveRequest(
                 requestBean.getRequestDate(),
                 requestBean.getInfo(),
-                requestBean.getAthleteBean().getFiscalCode(),
+                requestBean.getAthleteBean().getPersonalInfo().getFc(),
                 requestBean.getTrainerFc()
-        );*/
+        );
     }
 }

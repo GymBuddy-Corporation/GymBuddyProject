@@ -1,26 +1,14 @@
 package database.dao;
 
-/*import database.DatabaseConnectionSingleton;
-import database.queries.RequestQueries;
-import exceptions.DBConnectionFailedException;
-import exceptions.DBUnreachableException;*/
+
 import database.SingletonConnection;
 import database.query.Queries;
-import engineering.ExerciseInventory;
-import model.Athlete;
-import model.Gym;
 import model.Request;
 import model.Trainer;
-import model.record.Credentials;
-import model.record.PersonalInfo;
 
-/*import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;*/
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +23,7 @@ public class RequestDAO {
                 Queries.DELETE_REQUEST_QUERY)){
             Queries.deleteRequest(preparedStatement, athleteFC, trainersFC);
         } catch (SQLException e) {
-            //todo handle excpetion
+            e.printStackTrace();
         }
     }
 
@@ -51,18 +39,17 @@ public class RequestDAO {
             }
             return myList;
         } catch (SQLException e) {
-           //TODO handle exception
+            e.printStackTrace();
             return null;
         }
     }
 
-    public void saveRequest(LocalDateTime requestDate, String info, String athleteFc, String trainer) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                RequestQueries.INSERT_REQUEST_QUERY)){
-            RequestQueries.insertRequest(preparedStatement, requestDate, info, athleteFc, trainer);
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
+    public void saveRequest(LocalDateTime requestDate, String info, String athleteFc, String trainerfc) /*throws SQLException, DBUnreachableException*/ {
+        try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
+                Queries.INSERT_REQUEST_QUERY)){
+            Queries.insertRequest(preparedStatement, info, athleteFc, trainerfc);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

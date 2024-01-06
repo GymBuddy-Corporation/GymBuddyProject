@@ -1,5 +1,6 @@
 package viewone.graphicalControllers.athlete;
 
+import controllers.UserAccessController;
 import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
@@ -15,7 +16,9 @@ public class AthletesPTCommunicationsGUIController {
     @FXML
     public void openCommunication() throws Exception{
         //TODO apri la schermata con la comunicazione
-        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml",athlete,1);
+        UserAccessController controller=new UserAccessController();
+        controller.logout(1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
 
     @FXML

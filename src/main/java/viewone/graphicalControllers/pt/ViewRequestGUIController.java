@@ -64,6 +64,7 @@ public class ViewRequestGUIController implements Initializable {
         satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
         try{
             ManageRequestList.updateList(requestList, satisfyWorkoutRequestsController);
+            textUsersRequest.setText("");
         } catch (DataFieldException e) {
             try {
                 e.callMe(1);

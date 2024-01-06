@@ -1,5 +1,6 @@
 package viewone.graphicalControllers.gym;
 
+import controllers.UserAccessController;
 import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
@@ -12,7 +13,9 @@ public class ProfileGymGUIController {
     }
     @FXML
     public void logout() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
+        UserAccessController controller=new UserAccessController();
+        controller.logout(1);
+        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
     public void deleteAccount() throws Exception {
