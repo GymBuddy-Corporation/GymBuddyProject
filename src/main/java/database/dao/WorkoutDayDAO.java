@@ -1,40 +1,30 @@
 package database.dao;
 
-/*import database.DatabaseConnectionSingleton;
-import database.queries.WorkoutDayQueries;
-import exceptions.DBConnectionFailedException;
-import exceptions.DBUnreachableException;
-import exceptions.runtime_exception.NoGeneratedKeyException;*/
-import model.Trainer;
-import model.WorkoutDay;
-import model.WorkoutRoutine;
 
-/*import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import database.SingletonConnection;
+import model.*;
+
 import java.sql.SQLException;
-import java.sql.Statement;*/
+import java.sql.Statement;
 import java.util.List;
+import database.query.Queries;
+import java.sql.PreparedStatement;
 
 public class WorkoutDayDAO {
 
-    public void saveWorkoutDay(WorkoutDay workoutDay, int idWorkoutPlan) /*throws SQLException, DBUnreachableException*/ {
-        int idWorkoutDay;
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                WorkoutDayQueries.INSERT_WORKOUT_DAY_QUERY,
-                Statement.RETURN_GENERATED_KEYS); ResultSet generatedKeys = WorkoutDayQueries.insertWorkoutDay(preparedStatement, idWorkoutPlan, workoutDay.getDay())) {
-            if (generatedKeys.next()) {
-                idWorkoutDay = generatedKeys.getInt(1);
-            } else {
-                throw new NoGeneratedKeyException();
-            }
-            for (Exercise exercise : workoutDay.getExerciseList()){
-                new ExerciseDAO().insertExerciseInWorkoutDay(exercise, idWorkoutDay);
-            }
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
+    public void saveWorkoutDay(WorkoutDay workoutDay, String athleteFC)  {
+        try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
+                Queries.INSERT_WORKOUT_DAY_QUERY,
+                Statement.RETURN_GENERATED_KEYS)){
+                Queries.insertWorkoutDay(preparedStatement, workoutDay.getDay(), athleteFC);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //todo handle exception
+        }
 
+        for (ExerciseForWorkoutRoutine exercise : workoutDay.getExerciseList()){
+            new ExerciseDAO().insertExerciseInWorkoutDay(workoutDay, exercise, athleteFC);
+        }
     }
 
     public List<WorkoutDay> loadAllWorkoutDays(WorkoutRoutine workoutPlan, Trainer trainer) /*throws SQLException, DBUnreachableException*/ {
@@ -58,5 +48,8 @@ public class WorkoutDayDAO {
 
         //dopo togli sto null
         return null;
+    }
+
+    public void saveWorkoutRoutineDays() {
     }
 }

@@ -1,20 +1,16 @@
 package model;
 
-import beans.ExerciseForWorkoutRoutineBean;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class WorkoutDay {
-    private String workoutRoutine;
+    private String workoutRoutineName;
     protected String day;
     protected transient List<ExerciseForWorkoutRoutine> exerciseList;
 
     public WorkoutDay(String day, List<ExerciseForWorkoutRoutine> exerciseList, String workoutRoutine){
         this.day = day;
-        this.workoutRoutine = workoutRoutine;
+        this.workoutRoutineName = workoutRoutine;
         addAllExercise(exerciseList);
     }
 
@@ -43,8 +39,8 @@ public class WorkoutDay {
         return day;
     }
 
-    public String getWorkoutRoutine() {
-        return workoutRoutine;
+    public String getWorkoutRoutineName() {
+        return workoutRoutineName;
     }
 
    /* public void removeExercise(String name, String info) {

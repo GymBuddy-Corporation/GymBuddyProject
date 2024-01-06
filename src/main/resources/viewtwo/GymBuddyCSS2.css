@@ -122,10 +122,10 @@
 }
 
 .button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-color: rgba(0, 0, 0, 0.10);
     -fx-background-radius:  5em;
     -fx-border-radius:  5em;
-    -fx-border-color: #f5bc43;
+    -fx-border-color: #911701;
 }
 
 
@@ -164,13 +164,13 @@
 
 
 .combo-box{
-    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-color: rgba(255, 255, 255, 0.3);
     -fx-border-color: transparent;
     -fx-prompt-text-fill: #911701;
+    -fx-text-fill: #911701;
     -fx-border-radius: 5em;
     -fx-background-radius: 5em;
     -fx-cursor: none;
-    -fx-text-fill: #911701;
 }
 
 .combo-box .arrow-button {
@@ -200,10 +200,11 @@
     -fx-font-size: 12px;
     -fx-text-fill: #911701;
     -fx-cursor: hand;
+
 }
 
 .combo-box-popup .list-view, .combo-box-popup .list-view.list-cell{
-    -fx-background-color: #2D043D;
+    -fx-background-color: rgb(255, 200, 78);
     -fx-background-radius: 10;
     -fx-border-color: transparent;
     -fx-border-radius: 5em;
@@ -212,7 +213,7 @@
 
 }
 .combo-box-popup .list-view .list-cell:hover{
-    -fx-background-color: #511065;
+    -fx-background-color: rgb(255, 187, 27);
     -fx-background-radius:  5em;
     -fx-border-radius:  5em;
     -fx-text-fill: #911701;
@@ -221,11 +222,11 @@
 
 
 .combo-box-popup .list-view .list-cell:selected{
-    -fx-background-color: #911701;
+    -fx-background-color: rgba(255, 255, 255, 0.3);
     -fx-background-radius:  5em;
-    -fx-border-color:  #2D043D;
+    -fx-border-color:  rgba(255, 255, 255, 0.1);
     -fx-border-radius:  5em;
-    -fx-text-fill: #2D043D;
+    -fx-text-fill: rgba(255, 255, 255, 0.1);
     -fx-cursor: hand;
 }
 
@@ -255,17 +256,17 @@
     -fx-cursor: hand;
 }
 .date-picker-popup .day-cell:hover{
-    -fx-background-color: rgba(45, 4, 61, 0.7);
+    -fx-background-color: rgb(255, 189, 25);
 }
 .date-picker-popup .day-cell:focused{
-    -fx-background-color: rgba(45, 4, 61, 1);
+    -fx-background-color: rgb(255, 189, 25);
     -fx-text-fill: #911701;
 }
 .date-picker-popup .week-number-cell{
-    -fx-text-fill: rgba(45, 4, 61, 1);
+    -fx-text-fill: #911701;
 }
 .date-picker-popup .today{
-    -fx-cell-focus-inner-border: rgba(45, 4, 61, 1);
+    -fx-cell-focus-inner-border: rgb(255, 189, 25);
 }
 
 /* Change the color of the arrow (optional) */

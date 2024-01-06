@@ -7,10 +7,7 @@ import engineering.popups.PopupBaseController;
 import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import engineering.popups.PopupBaseClass;
 import viewtwo.popups.UserRegistrationPopup;
 
@@ -35,7 +32,7 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
     @FXML
     DatePicker dateField;
     @FXML
-    ChoiceBox genderField;
+    ComboBox genderField;
 
     UserRegistrationPopup caller;
     @Override

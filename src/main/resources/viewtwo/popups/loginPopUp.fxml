@@ -14,8 +14,8 @@
    <center>
       <AnchorPane prefHeight="334.0" prefWidth="256.0" BorderPane.alignment="CENTER">
          <children>
-            <PasswordField fx:id="inputPassword" layoutX="42.0" layoutY="156.0" prefHeight="35.0" prefWidth="163.0" promptText="********" />
-            <TextField fx:id="inputEmail" layoutX="42.0" layoutY="83.0" prefHeight="35.0" prefWidth="163.0" promptText="example@gmail.eu" />
+            <PasswordField fx:id="inputPassword" layoutX="42.0" layoutY="156.0" prefHeight="35.0" prefWidth="163.0" promptText="********" stylesheets="@../GymBuddyCSS2.css" />
+            <TextField fx:id="inputEmail" layoutX="42.0" layoutY="83.0" prefHeight="35.0" prefWidth="163.0" promptText="example@gmail.eu" stylesheets="@../GymBuddyCSS2.css" />
             <Label layoutX="42.0" layoutY="61.0" text="Email" textFill="#931701">
                <font>
                   <Font size="15.0" />
@@ -26,7 +26,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="88.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#actionLogin" prefHeight="38.0" prefWidth="72.0" text="Login" />
+            <Button layoutX="88.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#actionLogin" prefHeight="38.0" prefWidth="72.0" stylesheets="@../GymBuddyCSS2.css" text="Login" />
          </children>
       </AnchorPane>
    </center>

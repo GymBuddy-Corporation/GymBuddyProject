@@ -4,10 +4,50 @@ package database.query;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
 
 public class Queries {
+
+    public static final String INSERT_EXERCISE_IN_WORKOUT_DAY_QUERY = "INSERT INTO " +
+            "gymbuddy.workoutexercise (sets, rest, repetitions, workoutDayName, " +
+            "workoutRoutineInitDate, athleteFc, nameEx, exerciseStatus) " +
+            "VALUES (?, ?, ?, ?, CURDATE(), ?, ?, ?)";
+    public static void insertExerciseInWorkoutDay(PreparedStatement preparedStatement,
+            int sets, String rest, int repetitions, String workoutDayName, String athleteFC,
+            String nameEx, String exerciseStatus) throws SQLException {
+        preparedStatement.setInt(1, sets);
+        preparedStatement.setString(2, rest);
+        preparedStatement.setInt(3, repetitions);
+        preparedStatement.setString(4, workoutDayName);
+        preparedStatement.setString(5, athleteFC);
+        preparedStatement.setString(6, nameEx);
+        preparedStatement.setString(7, exerciseStatus);
+        preparedStatement.executeUpdate();
+    }
+    public static final String INSERT_WORKOUT_ROUTINE_QUERY = "INSERT INTO `gymbuddy`.`workoutroutines` (nameWR, comment, fc, initDate)" +
+            "VALUES (?, ?, ?, CURDATE())";
+    public static final String INSERT_WORKOUT_DAY_QUERY = "INSERT INTO gymbuddy.workoutday (nameWD, workoutRoutineInitDate, athleteFC) VALUES (?, CURDATE(), ?)";
+    public static ResultSet insertWorkoutDay(PreparedStatement preparedStatement, String day, String athleteFC) throws SQLException {
+        preparedStatement.setString(1, day);
+        preparedStatement.setString(2, athleteFC);
+        preparedStatement.executeUpdate();
+        return preparedStatement.getGeneratedKeys();
+    }
+
+
+    public static void insertWorkoutRoutine(PreparedStatement preparedStatement, String name, String comment, String athleteFc) throws SQLException {
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, comment);
+        preparedStatement.setString(3, athleteFc);
+        preparedStatement.executeUpdate();
+    }
+
+    public static final String REMOVE_WORKOUT_ROUTINE_QUERY = "DELETE FROM gymbuddy.workoutroutines " +
+            "WHERE fc = ?";
+    public static void removeWorkoutRoutine(PreparedStatement preparedStatement, String athleteFC) throws SQLException {
+        preparedStatement.setString(1, athleteFC);
+        preparedStatement.executeUpdate();
+    }
+
 
     public static final String LOAD_TRAINER_QUERY = "SELECT * " +
             "FROM gymbuddy.Trainer " +
@@ -43,20 +83,6 @@ public class Queries {
 
     public static ResultSet loadTrainer(String email, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, email);
-        return preparedStatement.executeQuery();
-    }
-
-    public static ResultSet selectUserByCredentials(PreparedStatement preparedStatement, String userEmail, String password) throws SQLException {
-        String query = "SELECT * FROM User WHERE email = ? AND password = ?";
-        preparedStatement.setString(1, userEmail);
-        preparedStatement.setString(2, password);
-        return preparedStatement.executeQuery();
-    }
-
-
-    public static ResultSet loadUser(PreparedStatement preparedStatement, String email, String password) throws SQLException {
-        preparedStatement.setString(1, email);
-        preparedStatement.setString(2, password);
         return preparedStatement.executeQuery();
     }
 

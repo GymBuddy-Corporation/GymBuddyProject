@@ -32,7 +32,7 @@ public class AthleteDAO {
     private static final String WORKOUT_PLAN = "WorkoutPlan";
 
 
-    public Athlete loadAthlete(String email) throws SQLException /*throws SQLException, DBUnreachableException*/ {
+    public Athlete loadAthlete(String email) {
         try(
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().
                         prepareStatement(Queries.LOAD_USER_1_QUERY);
@@ -84,6 +84,18 @@ public class AthleteDAO {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
             System.out.println("Unreachable DB Exception.");
             return null;
+            //todo handle exception
+        }
+    }
+
+    public void removeWorkoutPlan(String athleteFC) {
+        try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
+                Queries.REMOVE_WORKOUT_ROUTINE_QUERY)) {
+            Queries.removeWorkoutRoutine(preparedStatement, athleteFC);
+        } catch (SQLException e) {
+            SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            System.out.println("Unreachable DB Exception.");
+            //todo handle exception
         }
     }
 

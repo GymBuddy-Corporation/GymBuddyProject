@@ -34,6 +34,7 @@ public class EmailSystemGUIController {
         }
         //TODO Alex controlla se l'eccezione è gestita bene e BASTA QUESTO PER LE EMAIL
         // O BISOGNA FARE ALTRO
+        //TODO gestisci infine la scrittura su db e il passaggio della richiesta in toClarify
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
 

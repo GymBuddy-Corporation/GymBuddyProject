@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="442.0" prefWidth="620.0" style="-fx-background-color: f9b700;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.popups.controllers.UserRegistrationPopupController">
+<AnchorPane prefHeight="442.0" prefWidth="620.0" style="-fx-background-color: f9b700;" stylesheets="@../GymBuddyCSS2.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.popups.controllers.UserRegistrationPopupController">
    <children>
       <TextField fx:id="nameField" layoutX="38.0" layoutY="111.0" prefHeight="34.0" prefWidth="179.0" promptText="name" />
       <TextField fx:id="surnameField" layoutX="237.0" layoutY="111.0" prefHeight="34.0" prefWidth="179.0" promptText="surname" />
@@ -13,7 +13,6 @@
       <TextField fx:id="usernameField" layoutX="38.0" layoutY="183.0" prefHeight="34.0" prefWidth="179.0" promptText="username" />
       <TextField fx:id="emailField" layoutX="38.0" layoutY="253.0" prefHeight="34.0" prefWidth="231.0" promptText="example@gymbuddy.it" />
       <TextField fx:id="fiscalcodeField" layoutX="38.0" layoutY="324.0" prefHeight="34.0" prefWidth="390.0" promptText="MRYWLM80A01H501H" />
-      <ChoiceBox fx:id="genderField" layoutX="440.0" layoutY="111.0" prefHeight="34.0" prefWidth="126.0" />
       <TextField fx:id="cityField" layoutX="447.0" layoutY="253.0" prefHeight="34.0" prefWidth="126.0" promptText="city" />
       <Label layoutX="38.0" layoutY="85.0" text="Name" textFill="#931701">
          <font>
@@ -66,5 +65,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <ComboBox fx:id="genderField" layoutX="447.0" layoutY="116.0" prefHeight="27.0" prefWidth="126.0" />
    </children>
 </AnchorPane>

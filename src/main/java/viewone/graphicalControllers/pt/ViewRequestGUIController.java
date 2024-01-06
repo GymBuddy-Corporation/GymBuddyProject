@@ -41,8 +41,10 @@ public class ViewRequestGUIController implements Initializable {
     }
     @FXML
     public void askClarification() throws IOException{
-        EmailSystemGUIController controller = (EmailSystemGUIController) SwitchPage.setStage(MainStage.getStage(),"EmailSystem.fxml","pt",1);
-        Objects.requireNonNull(controller).setValue(selectedRequest);
+        if (!requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
+            EmailSystemGUIController controller = (EmailSystemGUIController) SwitchPage.setStage(MainStage.getStage(),"EmailSystem.fxml","pt",1);
+            Objects.requireNonNull(controller).setValue(selectedRequest);
+        }
     }
 
     @FXML

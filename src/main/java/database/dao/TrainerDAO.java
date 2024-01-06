@@ -107,6 +107,7 @@ public class TrainerDAO {
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
             System.out.println("Unreachable DB Exception.");
+            //todo handle exception
             return null;
         }
     }

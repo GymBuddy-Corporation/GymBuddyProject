@@ -2,18 +2,21 @@ package controllers;
 
 import beans.*;
 import boundaries.EmailSystemBoundary;
+import database.dao.AthleteDAO;
 import database.dao.RequestDAO;
+import database.dao.WorkoutDayDAO;
+import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedUserSingleton;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 import org.jetbrains.annotations.NotNull;
 import beans.RequestBean;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
@@ -50,49 +53,52 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    public void sendWorkoutRoutine(RequestBean request, WorkoutRoutineBean workoutRoutineBean) {
+    public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean){
         //TODO sistema poi il metodo con atleta in questione e invio scheda
         //salva la nuova scheda
         //elimina la richiesta
         //notifica l'atletaWorkoutRoutine
 
-        WorkoutRoutine workoutRoutineModel = new WorkoutRoutine();
+        //todo gestisci sta cazzo di inizializzazione della scheda
+        WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
 
-        // Iterate through each WorkoutDayBean in the WorkoutRoutineBean
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
-            // Create a new WorkoutDay in the WorkoutRoutineModel
             WorkoutDay newWorkoutDay = new WorkoutDay(workoutDay.getName());
-
-            // Iterate through each ExerciseForWorkoutRoutineBean in the WorkoutDayBean
             for (ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean : workoutDay.getExerciseList()) {
-                // Convert ExerciseForWorkoutRoutineBean to ExerciseForWorkoutRoutine
                 ExerciseForWorkoutRoutine exerciseForWorkoutRoutine = convertToExerciseForWorkoutRoutine(exerciseForWorkoutRoutineBean, workoutRoutineModel);
-
-                // Add ExerciseForWorkoutRoutine to the new WorkoutDay
                 newWorkoutDay.addExercise(exerciseForWorkoutRoutine);
             }
 
-            // Add the new WorkoutDay to the WorkoutRoutineModel
             workoutRoutineModel.addWorkoutDay(newWorkoutDay);
         }
+        System.out.println("comment: " + workoutRoutineBean);
 
         printWorkoutRoutineDetails(workoutRoutineModel);
         //TODO sistema la requestBean, gestisci che deve succedere
+
+        Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
+        if(receiver.getWorkoutRoutine() != null){
+            new AthleteDAO().removeWorkoutPlan(receiver.getFC());
+        }
+        new WorkoutRoutineDAO().saveWorkoutRoutine(
+                workoutRoutineModel,
+                requestBean.getAthleteBean().getPersonalInfo().getFc()
+
+        );
+        new RequestDAO().deleteRequest(requestBean.getAthleteBean().getPersonalInfo().getFc(), requestBean.getTrainerFc());
     }
 
-    // Helper method to convert ExerciseForWorkoutRoutineBean to ExerciseForWorkoutRoutine
     private ExerciseForWorkoutRoutine convertToExerciseForWorkoutRoutine(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean, WorkoutRoutine workoutRoutineModel) {
         ExerciseForWorkoutRoutine exerciseForWorkoutRoutine = new ExerciseForWorkoutRoutine(exerciseForWorkoutRoutineBean.getName(), convertFromExerciseStatusBean(exerciseForWorkoutRoutineBean.getStatusExercise()), exerciseForWorkoutRoutineBean.getDay(), workoutRoutineModel.getName());
         exerciseForWorkoutRoutine.setRepetitions(exerciseForWorkoutRoutineBean.getRepetitions());
         exerciseForWorkoutRoutine.setSets(exerciseForWorkoutRoutineBean.getSets());
         exerciseForWorkoutRoutine.setRest(exerciseForWorkoutRoutineBean.getRest());
-        // Set other properties as needed
 
         return exerciseForWorkoutRoutine;
     }
 
-    // Helper method to print details of the WorkoutRoutineModel
     private void printWorkoutRoutineDetails(WorkoutRoutine workoutRoutineModel) {
+        //TODO togli poi
         for (WorkoutDay workoutDay : workoutRoutineModel.getWorkoutDayList()) {
             String dayName = workoutDay.getDay();
             System.out.println("Giorno: " + dayName);

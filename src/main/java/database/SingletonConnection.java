@@ -33,7 +33,7 @@ public class SingletonConnection {
 
     }
 
-    public Connection getConnection() throws SQLException {
+    public Connection getConnection() {
         return this.conn;
     }
 

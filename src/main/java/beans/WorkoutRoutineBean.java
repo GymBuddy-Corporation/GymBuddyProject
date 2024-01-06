@@ -6,4 +6,5 @@ public interface WorkoutRoutineBean {
     List<WorkoutDayBean> getWorkoutDayList();
     AthleteBean getAthlete();
     String getName();
+    String getComment();
 }
