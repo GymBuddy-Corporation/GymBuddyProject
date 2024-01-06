@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.PTHomeGUIController2">
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.PTSingleRequestGUIController2">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="102.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
-         <children>
-            <Label fx:id="requestLabel" layoutX="6.0" layoutY="36.0" prefHeight="215.0" prefWidth="492.0" textFill="#911701" />
-         </children></AnchorPane>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="32.0" prefHeight="30.0" prefWidth="217.0" text="Users' Request" textAlignment="CENTER" textFill="#911701" AnchorPane.leftAnchor="291.0" AnchorPane.topAnchor="32.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonSatisfyRequest" layoutX="578.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#manageCommunication" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Satisfy Request" textFill="#911701" AnchorPane.topAnchor="162.0" />
-      <Button fx:id="buttonRejectRequest" layoutX="578.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#manageCourse" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Reject Request" textFill="#911701" AnchorPane.topAnchor="286.0" />
-      <Button fx:id="buttonAskClarification" layoutX="578.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#manageCommunication" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Ask Clarification" textFill="#911701" AnchorPane.topAnchor="224.0" />
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;">
+      <AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;">
          <children>
             <AnchorPane layoutX="14.0" layoutY="87.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;" AnchorPane.topAnchor="87.0">
                <children>
@@ -33,10 +19,10 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="buttonSatisfyRequest1" layoutX="578.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#manageCommunication" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Satisfy Request" textFill="#911701" AnchorPane.topAnchor="147.0" />
-            <Button fx:id="buttonRejectRequest1" layoutX="578.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#manageCourse" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Reject Request" textFill="#911701" AnchorPane.leftAnchor="578.0" AnchorPane.topAnchor="271.0" />
-            <Button fx:id="buttonAskClarification1" layoutX="578.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#manageCommunication" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Ask Clarification" textFill="#911701" AnchorPane.topAnchor="209.0" />
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="buttonSatisfyRequest" layoutX="578.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#satisfyRequest" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Satisfy Request" textFill="#911701" AnchorPane.topAnchor="147.0" />
+            <Button fx:id="buttonRejectRequest" layoutX="578.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#rejectRequest" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Reject Request" textFill="#911701" AnchorPane.leftAnchor="578.0" AnchorPane.topAnchor="271.0" />
+            <Button fx:id="buttonAskClarification" layoutX="578.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#askClarification" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Ask Clarification" textFill="#911701" AnchorPane.topAnchor="209.0" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="386.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/LogoBack.png" />
                </image>

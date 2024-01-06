@@ -56,7 +56,6 @@ public class ViewYourAthletesGUIController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            //todo con db
             ManageAthletesList.setAthletesList(athletesList);
         } catch (DataFieldException e) {
             try {

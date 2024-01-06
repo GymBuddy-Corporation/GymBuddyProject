@@ -2,9 +2,7 @@ package viewone.graphicalControllers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
-import engineering.LoggedUserSingleton;
 import viewone.manageListView.ManageRequestList;
-import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -54,7 +52,7 @@ public class ViewRequestGUIController implements Initializable {
         }
     }
 
-    public void createNewRoutine() throws UserCastException, IOException {
+    public void createNewRoutine() throws IOException {
         CreateNewWorkoutRoutineGUIController controller = (CreateNewWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(), "CreateNewWorkoutRoutine.fxml", "pt", 1);
         Objects.requireNonNull(controller).setValue(selectedRequest);
     }

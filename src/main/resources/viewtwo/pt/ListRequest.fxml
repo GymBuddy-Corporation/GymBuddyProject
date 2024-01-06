@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" spacing="10.0" style="-fx-background-radius: 50; -fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <Label fx:id="itemName1" layoutX="36.0" layoutY="28.0" prefHeight="22.0" prefWidth="163.0" text="Username" textFill="#911701">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+</HBox>

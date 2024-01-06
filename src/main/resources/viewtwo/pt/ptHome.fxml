@@ -6,21 +6,21 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.PTHomeGUIController2">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="102.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
+      <AnchorPane layoutX="14.0" layoutY="87.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
          <children>
             <Text fill="#911701" layoutX="192.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Requests" textAlignment="CENTER" wrappingWidth="120.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <ListView layoutX="3.0" layoutY="44.0" prefHeight="205.0" prefWidth="497.0" stylesheets="@../GymBuddyCSS2.css" />
+            <ListView fx:id="requestList" layoutX="3.0" layoutY="44.0" prefHeight="205.0" prefWidth="497.0" stylesheets="@../GymBuddyCSS2.css" />
          </children></AnchorPane>
       <Label layoutX="373.0" layoutY="37.0" text="Home" textFill="#911701" AnchorPane.leftAnchor="373.0" AnchorPane.topAnchor="32.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="578.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#manageCommunication" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Communications" textFill="#911701" />
-      <Button layoutX="578.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#manageCourse" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Courses" textFill="#911701" />
+      <Button layoutX="578.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#manageCommunication" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Communications" textFill="#911701" />
+      <Button layoutX="578.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#manageCourse" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Manage Courses" textFill="#911701" />
    </children>
 </AnchorPane>

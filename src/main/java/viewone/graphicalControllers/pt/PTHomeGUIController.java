@@ -8,13 +8,10 @@ import viewone.manageListView.ManageGymCommunicationList;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
-import viewone.manageListView.ManageAthletesList;
-import viewone.manageListView.listCells.AthleteListCellFactory;
 import viewone.manageListView.listCells.GymCommunicationListCellFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 

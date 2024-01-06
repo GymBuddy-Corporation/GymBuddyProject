@@ -1,18 +1,18 @@
-package viewone.manageListView;
+package viewtwo.manageListView;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
-import viewone.manageListView.listCells.RequestListCellFactory;
 import exceptions.dataException.DataFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import viewtwo.manageListView.listCells.RequestListCellFactory2;
 
 
-public class ManageRequestList {
+public class ManageRequestList2 {
 
     public static void setRequestList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException/* throws SQLException, DBUnreachableException */{
-        requestList.setCellFactory(new RequestListCellFactory());
+        requestList.setCellFactory(new RequestListCellFactory2());
         updateList(requestList, satisfyWorkoutRequestsController);
     }
 
