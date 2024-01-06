@@ -8,6 +8,10 @@ public class AthleteBean extends PersonBean{
         super(username, personalInfo, credentialsBean);
         this.trainerFC = trainerFC;
     }
+
+    public AthleteBean(String username, PersonalInfoBean personalInfo, CredentialsBean credentialsBean) throws DataFieldException {
+        super(username, personalInfo, credentialsBean);
+    }
     public String getTrainerFC() {
         return trainerFC;
     }
