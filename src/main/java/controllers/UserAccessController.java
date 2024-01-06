@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class UserAccessController {
 
-    public void logout(int view) throws NoLoggedUserException {
+    public void logout() throws NoLoggedUserException {
         LoggedUserSingleton.getSingleton().clearSingleton();
     }
 

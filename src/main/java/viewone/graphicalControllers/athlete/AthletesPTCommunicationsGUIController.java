@@ -17,7 +17,7 @@ public class AthletesPTCommunicationsGUIController {
     public void openCommunication() throws Exception{
         //TODO apri la schermata con la comunicazione
         UserAccessController controller=new UserAccessController();
-        controller.logout(1);
+        controller.logout();
         SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
 

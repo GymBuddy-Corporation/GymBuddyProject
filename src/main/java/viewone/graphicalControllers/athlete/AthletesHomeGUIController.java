@@ -26,7 +26,7 @@ public class AthletesHomeGUIController {
     @FXML
     public void logout() throws Exception{
         UserAccessController controller=new UserAccessController();
-        controller.logout(1);
+        controller.logout();
         SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
 

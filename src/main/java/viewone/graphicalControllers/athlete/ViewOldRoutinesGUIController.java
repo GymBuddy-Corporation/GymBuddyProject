@@ -15,7 +15,7 @@ public class ViewOldRoutinesGUIController {
     @FXML
     public void goBack() throws Exception {
         UserAccessController controller=new UserAccessController();
-        controller.logout(1);
+        controller.logout();
         SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     public void logout() throws Exception {
