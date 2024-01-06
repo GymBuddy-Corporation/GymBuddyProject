@@ -35,43 +35,6 @@ public class TrainerDAO {
     private static final String EMAIL = "Email";
     private static final String PASSWORD = "Password";
 
-    public void saveTrainer(Trainer trainer) /*throws SQLException, DBUnreachableException */{
-    }
-
-    public int getNumberOfSubscribers(String trainerFc) /*throws SQLException, DBUnreachableException*/ {
-
-        //dopo togli sto 0
-        return 0;
-    }
-
-    private List<Athlete> getSubscribersList(/*ResultSet rs*/) /*throws SQLException, DBUnreachableException*/ {
-        List<Athlete> subscriberList = new ArrayList<>();
-
-        return subscriberList;
-    }
-
-    private List<Trainer> getTrainersList(/*ResultSet rs*/) /*throws SQLException, DBUnreachableException*/ {
-        List<Trainer> trainerList = new ArrayList<>();
-        return trainerList;
-    }
-
-    public List<Trainer> searchTrainers(String name) /*throws SQLException, DBUnreachableException*/ {
-        //dopo togli sto null
-        return null;
-    }
-
-    public List<Trainer> loadAllTrainers() /*throws SQLException, DBUnreachableException*/ {
-
-        //dopo togli sto null
-        return null;
-    }
-
-    public List<Athlete> loadAllTrainerSubscribers(String trainerFc) /*throws SQLException, DBUnreachableException*/ {
-
-        //dopo togli sto null
-        return null;
-    }
-
     public Trainer loadTrainer(String email) throws SQLException {
         try(
              PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().
@@ -110,9 +73,5 @@ public class TrainerDAO {
             //todo handle exception
             return null;
         }
-    }
-
-
-    public void updateIban(String iban, Trainer trainer) /*throws SQLException, DBUnreachableException*/ {
     }
 }

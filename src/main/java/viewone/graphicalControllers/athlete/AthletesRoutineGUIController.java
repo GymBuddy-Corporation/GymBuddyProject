@@ -1,6 +1,7 @@
 package viewone.graphicalControllers.athlete;
 
 
+import controllers.CreateRequestController;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
@@ -26,7 +27,7 @@ public class AthletesRoutineGUIController implements Initializable {
     }
     @FXML
     public void askForNewRoutine() {
-        //TODO gestisci la rischiesta di una nuova scheda
+
     }
 
     @Override

@@ -39,24 +39,6 @@ public class GymDAO {
             //TODO handle exception
             return null;
         }
-
-        /*List<Exercise> exList = new ArrayList<>();
-
-        //TODO ATTENZIONE RICORDA LA VIEW NON COMUNICA CON I MODEL
-
-        Exercise ex1 = new Exercise("Tricep Pushdown");
-        Exercise ex2 = new Exercise("Shoulder Press");
-        Exercise ex3 = new Exercise("Squat");
-        Exercise ex4 = new Exercise("Dips");
-
-        ex3.setStatus(ExerciseStatus.SUSPENDED);
-        ex4.setStatus(ExerciseStatus.SUSPENDED);
-
-        exList.add(ex1);
-        exList.add(ex2);
-        exList.add(ex3);
-        exList.add(ex4);
-        return exList;*/
     }
 
     private ArrayList<Exercise> getExercises(ResultSet rs) throws SQLException {
@@ -71,7 +53,6 @@ public class GymDAO {
         return exerciseList;
     }
 
-    // Example method to convert string to ExerciseStatus enum
     private ExerciseStatus convertStringToExerciseStatus(String statusString) {
         if ("ACTIVE".equals(statusString)) {
             return ExerciseStatus.ACTIVE;
@@ -96,7 +77,7 @@ public class GymDAO {
     public List<Gym> loadAllGyms(){
         if(loadedgyms!=null)return loadedgyms;
         List<Gym> gyms = new ArrayList<>();
-
+        //todo gestisci tutto questo
         Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11", "Gym fantastic","italy");
         gyms.add(palestra1);

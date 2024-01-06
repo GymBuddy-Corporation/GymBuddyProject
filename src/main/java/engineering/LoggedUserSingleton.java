@@ -64,7 +64,8 @@ public class LoggedUserSingleton {
                             athlete.getGender()),
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             athlete.getEmail(),
-                            athlete.getPassword()));
+                            athlete.getPassword()),
+                    athlete.getTrainer().getFC());
         } else if (usr instanceof Trainer trainer) {
             return new TrainerBean(
                     usr.getUsername(),
@@ -97,7 +98,7 @@ public class LoggedUserSingleton {
         return null;
      }
 
-     public  static UserBean getMyBean() throws DataFieldException {
+     public static UserBean getMyBean() throws DataFieldException {
         return getSingleton().getUserBean(getSingleton().user);
     }
 

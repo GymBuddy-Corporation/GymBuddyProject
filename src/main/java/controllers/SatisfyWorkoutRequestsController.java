@@ -58,8 +58,6 @@ public class SatisfyWorkoutRequestsController {
         //salva la nuova scheda
         //elimina la richiesta
         //notifica l'atletaWorkoutRoutine
-
-        //todo gestisci sta cazzo di inizializzazione della scheda
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
 
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
@@ -167,7 +165,6 @@ public class SatisfyWorkoutRequestsController {
         for(Request request: requestList) {
             Athlete usr = request.getAthlete();
             AthleteBean athleteBean;
-            /*try {*/
             athleteBean = new AthleteBean(
                     usr.getUsername(),
                     new PersonalInfoBean(
@@ -179,8 +176,8 @@ public class SatisfyWorkoutRequestsController {
                     ),
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             usr.getEmail(),
-                            usr.getPassword()
-                    ));
+                            usr.getPassword()),
+                    usr.getTrainer().getFC());
             requestBeanList.add(new RequestBean(
                     request.getInfo(),
                     athleteBean,

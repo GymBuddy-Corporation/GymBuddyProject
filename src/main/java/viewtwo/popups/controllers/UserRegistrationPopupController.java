@@ -58,11 +58,13 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
         }
     }
     public void userRegistration() throws DataFieldException {
-
+        //todo ALEX mi raccomando sistema sto piccolo problema:
+        // quando un cliente viene registrato, qualcuno deve asseganrgli un trainer, o comunque in
+        // qualche modo deve avvenire
         caller.userRegistration(
                 new AthleteBean(usernameField.getText()
                 ,new PersonalInfoBean( nameField.getText(),surnameField.getText(),dateField.getValue(), fiscalcodeField.getText(),getGenderFromChoice())
-                ,CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()))
+                ,CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()), "GESTISCI L'ASSEGNAZIONE DEL PT")
         );
         caller.hidePopUp();
     }

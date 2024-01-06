@@ -15,11 +15,6 @@ import database.query.Queries;
 
 public class ExerciseDAO {
 
-    private static final String NAME = "Name";
-    private static final String INFO = "Info";
-    private static final String IDEXERCISE = "idExercise";
-
-
     public void insertExerciseInWorkoutDay(WorkoutDay workoutDay, ExerciseForWorkoutRoutine exercise, String athleteFC) {
         String statusString = exercise.getStatus().toString();
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
@@ -32,28 +27,5 @@ public class ExerciseDAO {
             e.printStackTrace();
             //todo handle exception
         }
-    }
-
-    @NotNull
-    private ArrayList<Exercise> getExercises(Trainer trainer/*, ResultSet rs*/) /*throws SQLException*/ {
-        ArrayList<Exercise> exerciseList = new ArrayList<>();
-       /* while(rs.next()){
-            exerciseList.add(new Exercise(
-                    rs.getInt(IDEXERCISE),
-                    rs.getString(NAME),
-                    rs.getString(INFO),
-                    trainer));
-        }*/
-        return exerciseList;
-    }
-
-    public void removeExercise(Exercise exercise) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                ExerciseQueries.DELETE_EXERCISE_QUERY)){
-            ExerciseQueries.deleteExercise(preparedStatement, exercise.getId());
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
     }
 }

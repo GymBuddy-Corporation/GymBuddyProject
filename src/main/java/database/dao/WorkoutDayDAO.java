@@ -26,30 +26,4 @@ public class WorkoutDayDAO {
             new ExerciseDAO().insertExerciseInWorkoutDay(workoutDay, exercise, athleteFC);
         }
     }
-
-    public List<WorkoutDay> loadAllWorkoutDays(WorkoutRoutine workoutPlan, Trainer trainer) /*throws SQLException, DBUnreachableException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                WorkoutDayQueries.LOAD_ALL_WORKOUT_DAYS_QUERY); ResultSet rs = WorkoutDayQueries.loadAllWorkoutDays(preparedStatement, workoutPlan.getId())){
-            List<WorkoutDay> myList = new ArrayList<>();
-            while(rs.next()){
-                WorkoutDay workoutDay = new WorkoutDay(
-                        rs.getInt("idWorkoutDay"),
-                        rs.getString("Day"),
-                        new ExerciseDAO().loadExerciseInWorkoutPlan(rs.getInt("idWorkoutDay"), trainer)
-                );
-                myList.add(workoutDay);
-            }
-            return myList;
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
-
-
-        //dopo togli sto null
-        return null;
-    }
-
-    public void saveWorkoutRoutineDays() {
-    }
 }

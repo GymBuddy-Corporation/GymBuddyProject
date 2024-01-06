@@ -67,24 +67,4 @@ public class UserDAO {
         }
 
     }
-
-
-    public User loadUser(String fc) /*throws SQLException, DBUnreachableException, UserNotFoundException*/ {
-        /*try(PreparedStatement preparedStatement = DatabaseConnectionSingleton.getInstance().getConn().prepareStatement(
-                UserQueries.LOAD_USER_2_QUERY); ResultSet rs = UserQueries.loadUser(fc, preparedStatement)){
-            if(rs.next()) {
-                return getUser(rs.getString("FC"));
-            } else {
-                throw new UserNotFoundException();
-            }
-        } catch (DBConnectionFailedException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }*/
-
-        //dopo togli sto null
-        return null;
-    }
-
-
 }

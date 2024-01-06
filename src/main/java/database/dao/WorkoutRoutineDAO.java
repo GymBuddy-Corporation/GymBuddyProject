@@ -23,16 +23,3 @@ public class WorkoutRoutineDAO {
         }
     }
 }
-
-
-
-
-
-
-
-/*
-        } catch (SQLException e) {
-            e.deleteDatabaseConn();
-            throw new DBUnreachableException();
-        }
-    }*/
