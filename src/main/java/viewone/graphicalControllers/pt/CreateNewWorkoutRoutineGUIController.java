@@ -20,7 +20,6 @@ import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
 import controllers.SatisfyWorkoutRequestsController;
 import beans.RequestBean;
-import viewone.beans.WorkoutRoutineBean1;
 
 import java.net.URL;
 import java.util.*;
@@ -31,7 +30,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
     private RequestBean requestBean;
     private String selectedDay;
-    private final WorkoutRoutineBean1 workoutRoutine = new WorkoutRoutineBean1(); //TODO replace hash map with this
+    private final WorkoutRoutineBean workoutRoutine = new WorkoutRoutineBean(); //TODO replace hash map with this
 
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist;

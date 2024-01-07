@@ -62,6 +62,9 @@ public class ViewRequestGUIController implements Initializable {
         //TODO gestisci la cancellazione di una richiesta
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
+        if (requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
+            return;
+        }
         try{
             ManageRequestList.updateList(requestList, satisfyWorkoutRequestsController);
             textUsersRequest.setText("");

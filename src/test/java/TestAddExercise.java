@@ -1,7 +1,7 @@
 import beans.ExerciseForWorkoutRoutineBean;
 import beans.ExerciseStatusBean;
 import beans.WorkoutDayBean;
-import viewone.beans.WorkoutRoutineBean1;
+import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,7 +14,7 @@ public class TestAddExercise {
     ExerciseForWorkoutRoutineBean ex4 = new ExerciseForWorkoutRoutineBean("Bench Press", ExerciseStatusBean.ACTIVE, "monday", 3, 6, "04:00");
     WorkoutDayBean monday = new WorkoutDayBean("monday");
     WorkoutDayBean tuesday = new WorkoutDayBean("tuesday");
-    WorkoutRoutineBean1 workoutRoutineBean = new WorkoutRoutineBean1();
+    WorkoutRoutineBean workoutRoutineBean = new WorkoutRoutineBean();
 
     @org.junit.jupiter.api.Test
     public void TestAddExerciseToWorkoutDay() {

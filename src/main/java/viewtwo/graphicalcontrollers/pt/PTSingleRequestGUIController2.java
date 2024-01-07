@@ -1,14 +1,34 @@
 package viewtwo.graphicalcontrollers.pt;
 
+import beans.RequestBean;
+import controllers.SatisfyWorkoutRequestsController;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import utils.MainStage;
 import utils.SwitchPage;
+import viewone.graphicalControllers.pt.EmailSystemGUIController;
 import viewtwo.engegnering.MainMenuSingleton;
 
-public class PTSingleRequestGUIController2 {
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
+public class PTSingleRequestGUIController2 implements Initializable {
+    @FXML private Label requestLabel;
+    @FXML private Label nameAthleteLabel;
+    private RequestBean requestBean;
+    public void setStuff(RequestBean requestBean){
+        this.requestBean = requestBean;
+        requestLabel.setText(requestBean.getInfo());
+        nameAthleteLabel.setText(requestBean.getAthleteBean().getUsername());
+    }
     @FXML
     public void satisfyRequest() throws Exception {
-        MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
+
+        /*PTSingleRequestGUIController2 PTSingleRequestGUIController2 = (PTSingleRequestGUIController2) */MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
+        //Objects.requireNonNull(controller).setValue(selectedRequest);
     }
     @FXML
     public void goBack() throws Exception {
@@ -16,11 +36,32 @@ public class PTSingleRequestGUIController2 {
     }
     @FXML
     public void rejectRequest() throws Exception {
-        MainMenuSingleton.getMainMenu().setActivity("ManageCommunication.fxml", "pt");
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        //satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
+        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+        /*try{
+
+            //fai la cancellazione della richiesta sul db e cambia page
+        } catch (DataFieldException e) {
+            try {
+                e.callMe(1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }*/
+
+
     }
 
     @FXML
     public void askClarification() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(), "ViewYourAthletes.fxml", "pt", 1);
+        //EmailSystemGUIController controller = (EmailSystemGUIController) SwitchPage.setStage(MainStage.getStage(),"EmailSystem.fxml","pt",1);
+        //Objects.requireNonNull(controller).setValue(selectedRequest);
+        //todo da fare grafica MainMenuSingleton.getMainMenu().setActivity("ManageCommunication.fxml", "pt");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
     }
 }

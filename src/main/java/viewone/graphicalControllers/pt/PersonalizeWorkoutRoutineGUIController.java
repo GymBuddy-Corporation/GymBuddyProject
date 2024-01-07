@@ -1,19 +1,19 @@
 package viewone.graphicalControllers.pt;
 
 import beans.RequestBean;
+import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewone.beans.WorkoutRoutineBean1;
 import viewone.popup.PopupAbstract;
 
 import java.io.IOException;
 
 public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
-    WorkoutRoutineBean1 workoutRoutine;
+    WorkoutRoutineBean workoutRoutine;
     RequestBean requestBean;
 
     @FXML TextArea commentTextArea;
@@ -32,7 +32,7 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     public void goBack() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml.fxml","pt",1);
     }
-    public void setValue(RequestBean request, WorkoutRoutineBean1 workoutRoutine) {
+    public void setValue(RequestBean request, WorkoutRoutineBean workoutRoutine) {
         this.requestBean = request;
         this.workoutRoutine = workoutRoutine;
         commentTextArea.setPromptText("Insert here your comment for "+ requestBean.getAthleteBean().getUsername() +"s' workout routine.");

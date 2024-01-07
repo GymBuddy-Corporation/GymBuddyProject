@@ -2,7 +2,7 @@ package viewone.graphicalControllers.athlete;
 
 import beans.AthleteBean;
 import beans.RequestBean;
-import beans.UserBean;
+import beans.WorkoutRoutineBean;
 import controllers.CreateRequestController;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class AskNewRoutineGUIController implements Initializable {
     @FXML
     private TextArea infoCommentTextArea;
+    private WorkoutRoutineBean workoutRoutineBean;
 
     @FXML
     public void goBack() throws Exception {
@@ -55,6 +56,7 @@ public class AskNewRoutineGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //imposta la scheda associata a lui
+        //this.workoutRoutineBean = ;
+    //imposta la scheda associata a lui
     }
 }
