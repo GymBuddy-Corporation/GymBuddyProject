@@ -3,8 +3,8 @@ package controllers;
 import beans.*;
 import boundaries.EmailSystemBoundary;
 import database.dao.AthleteDAO;
+import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
-import database.dao.WorkoutDayDAO;
 import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedUserSingleton;
 import exceptions.UserCastException;
@@ -12,11 +12,9 @@ import exceptions.dataException.DataFieldException;
 import model.*;
 import org.jetbrains.annotations.NotNull;
 import beans.RequestBean;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.sql.SQLException;
 import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
@@ -48,6 +46,7 @@ public class SatisfyWorkoutRequestsController {
         for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseList()){
             if(ex.getName().equals(exercise.getName())){
                 ex.setStatus(statusToSet);
+                //todo set status on DB new ExerciseDAO();
                 System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatusExercise());
             }
         }
@@ -71,7 +70,6 @@ public class SatisfyWorkoutRequestsController {
         }
         System.out.println("comment: " + workoutRoutineBean);
 
-        printWorkoutRoutineDetails(workoutRoutineModel);
         //TODO sistema la requestBean, gestisci che deve succedere
 
         Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
@@ -93,27 +91,6 @@ public class SatisfyWorkoutRequestsController {
         exerciseForWorkoutRoutine.setRest(exerciseForWorkoutRoutineBean.getRest());
 
         return exerciseForWorkoutRoutine;
-    }
-
-    private void printWorkoutRoutineDetails(WorkoutRoutine workoutRoutineModel) {
-        //TODO togli poi
-        for (WorkoutDay workoutDay : workoutRoutineModel.getWorkoutDayList()) {
-            String dayName = workoutDay.getDay();
-            System.out.println("Giorno: " + dayName);
-
-            for (ExerciseForWorkoutRoutine exercise : workoutDay.getExerciseList()) {
-                String exerciseName = exercise.getName();
-                int repetitionsP = exercise.getRepetitions();
-                int setsP = exercise.getSets();
-                String restP = exercise.getRest();
-
-                System.out.println("Esercizio: " + exerciseName);
-                System.out.println("Ripetizioni: " + repetitionsP);
-                System.out.println("Sets:: " + setsP);
-                System.out.println("Rest: " + restP);
-                System.out.println("\n");
-            }
-        }
     }
 
     public List<ExerciseBean> searchExercise(SearchBean searchBean) throws UserCastException{
@@ -142,9 +119,7 @@ public class SatisfyWorkoutRequestsController {
         return switch (exercise.getStatus()) {
             case ACTIVE -> ExerciseStatusBean.ACTIVE;
             case SUSPENDED -> ExerciseStatusBean.SUSPENDED;
-            default ->
-                // Handle other cases or throw an exception
-                    null;
+            default -> null;
         };
     }
 

@@ -11,6 +11,13 @@ public class WorkoutRoutine {
     private String comment;
     private List<WorkoutDay> workoutDayList;
 
+    public WorkoutRoutine(String name, String comment, LocalDateTime activateDate){
+        this.activateDate = activateDate;
+        this.comment = comment;
+        this.name = name;
+        this.workoutDayList = new ArrayList<>();
+    }
+
     public WorkoutRoutine(String name, String comment){
         this();
         this.comment = comment;
@@ -28,7 +35,6 @@ public class WorkoutRoutine {
     public LocalDateTime getActivateDate() {
         return activateDate;
     }
-
     public void addAllWorkoutDays(List<WorkoutDay> workoutDayList) {
         this.workoutDayList = new ArrayList<>();
         for (WorkoutDay workoutDay : workoutDayList) {

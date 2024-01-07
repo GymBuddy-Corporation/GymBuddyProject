@@ -8,7 +8,7 @@ public class WorkoutDay {
     protected String day;
     protected transient List<ExerciseForWorkoutRoutine> exerciseList;
 
-    public WorkoutDay(String day, List<ExerciseForWorkoutRoutine> exerciseList, String workoutRoutine){
+    public WorkoutDay(String day, String workoutRoutine, List<ExerciseForWorkoutRoutine> exerciseList){
         this.day = day;
         this.workoutRoutineName = workoutRoutine;
         addAllExercise(exerciseList);

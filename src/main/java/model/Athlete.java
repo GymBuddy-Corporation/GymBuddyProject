@@ -33,9 +33,9 @@ public class Athlete extends Person implements Serializable {
         this.trainer = trainer;
     }
 
-    public String getCardNumber() /*throws NoCardInsertedException*/ {
+    public String getCardNumber() {
+        //todo se non usata cancella
         if(card.cardNumber()==null) {
-            /*throw new NoCardInsertedException();*/
             System.out.println("Carta non inserita");
             return null;
         }else{
@@ -43,14 +43,13 @@ public class Athlete extends Person implements Serializable {
         }
     }
 
-    public void setCard(Card card) /*throws ExpiredCardException*/ {
+    public void setCard(Card card) {
         checkCardExpirationDate(card.cardExpirationDate());
         this.card = card;
     }
 
-    public YearMonth getCardExpirationDate() /*throws NoCardInsertedException */{
+    public YearMonth getCardExpirationDate() {
         if (card.cardExpirationDate() == null) {
-            /*throw new NoCardInsertedException();*/
             System.out.println("Carta non inserita");
             return null;
         } else {
@@ -58,7 +57,7 @@ public class Athlete extends Person implements Serializable {
         }
     }
 
-    public void checkCardExpirationDate(YearMonth cardExpirationDate) /*throws ExpiredCardException*/ {
+    public void checkCardExpirationDate(YearMonth cardExpirationDate) {
         if ((cardExpirationDate != null) && !((cardExpirationDate.getYear() > LocalDate.now().getYear()) ||
                 ((cardExpirationDate.getYear() == LocalDate.now().getYear()) &&
                         (cardExpirationDate.getMonthValue() > LocalDate.now().getMonthValue())))) {

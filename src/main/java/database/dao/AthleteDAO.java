@@ -18,20 +18,6 @@ import java.sql.SQLException;
 
 public class AthleteDAO {
 
-    public static final String TRAINER = "Trainer";
-    private static final String NAME = "namePerson";
-    private static final String SURNAME = "Surname";
-    private static final String USERNAME = "username";
-    private static final String BIRTH = "Birth";
-    private static final String FC = "FC";
-    private static final String GENDER = "Gender";
-    private static final String EMAIL = "Email";
-    private static final String PASSWORD = "Password";
-    private static final String CARD_NUMBER = "CardNumber";
-    private static final String CARD_EXPIRATION_DATE = "CardExpirationDate";
-    private static final String WORKOUT_PLAN = "WorkoutPlan";
-
-
     public Athlete loadAthlete(String email) {
         try(
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().

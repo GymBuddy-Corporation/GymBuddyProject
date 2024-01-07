@@ -9,6 +9,57 @@ import java.time.LocalDateTime;
 
 public class Queries {
 
+    public static final String LOAD_WORKOUT_ROUTINE_QUERY =
+            "SELECT wr.nameWR, wr.comment, wr.initDate" +
+            "FROM gymbuddy.workoutRoutines wr" +
+            "WHERE wr.fc = ?" +
+            "ORDER BY wr.initDate DESC" +
+            "LIMIT 1;";
+    public static ResultSet loadWorkoutRoutine(PreparedStatement preparedStatement, String athleteFC) throws SQLException{
+        preparedStatement.setString(1, athleteFC);
+        return preparedStatement.executeQuery();
+    }
+
+    public static final String LOAD_ALL_EXERCISE_IN_WORKOUT_DAYS_QUERY =
+            "SELECT we.nameEx, we.sets, we.rest, we.repetitions, we.exerciseStatus" +
+                    "FROM `gymbuddy`.workoutexercise we" +
+                    "WHERE we.athleteFC = ?" +
+                    "AND we.workoutDayName = ?" +
+                    "AND we.workoutRoutineInitDate = ?";
+
+    public static ResultSet loadAllExerciseInWorkoutDays(PreparedStatement preparedStatement,
+                                                         String athleteFC, String workoutDayName,
+                                                         LocalDateTime initDate) throws SQLException {
+        preparedStatement.setString(1, athleteFC);
+        preparedStatement.setString(2, workoutDayName);
+        Timestamp timestamp = Timestamp.valueOf(initDate);
+        preparedStatement.setTimestamp(3, timestamp);
+        return preparedStatement.executeQuery();
+    }
+
+    public static final String LOAD_ALL_WORKOUT_DAYS_QUERY = "SELECT wd.*\n" +
+            "FROM gymbuddy.workoutDay wd\n" +
+            "JOIN gymbuddy.workoutRoutines wr ON wd.athleteFC = wr.fc AND" +
+            "wd.workoutRoutineInitDate = wr.initDate\n" +
+            "WHERE wd.athleteFC = ?\n" +
+            "  AND wd.workoutRoutineInitDate = ?;";
+
+    public static ResultSet loadAllWorkoutDays(PreparedStatement preparedStatement, String athleteFC, LocalDateTime date) throws SQLException {
+        preparedStatement.setString(1, athleteFC);
+        Timestamp timestamp = Timestamp.valueOf(date);
+        preparedStatement.setTimestamp(2, timestamp);
+        return preparedStatement.executeQuery();
+    }
+
+
+    /*public static final String LOAD_ALL_EXERCISE_IN_WORKOUT_DAYS_QUERY = "SELECT Exercise.* " +
+            "FROM mydb.Contains join mydb.Exercise on Contains.Exercise = Exercise.idExercise " +
+            "WHERE Contains.WorkoutDay = ?";
+    public static ResultSet loadAllExerciseInWorkoutDays(PreparedStatement preparedStatement, int idWorkoutDay) throws SQLException {
+        preparedStatement.setInt(1, idWorkoutDay);
+        return preparedStatement.executeQuery();
+    }*/
+
     public static final String INSERT_REQUEST_QUERY = "INSERT INTO gymbuddy.request" +
             "(trainersFC, athleteFC, info, dateRequest) " +
             "VALUES (?, ?, ?, CURDATE())";

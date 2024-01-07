@@ -2,15 +2,16 @@ package database.dao;
 
 import database.SingletonConnection;
 import engineering.LoggedUserSingleton;
-import model.Exercise;
-import model.ExerciseForWorkoutRoutine;
-import model.Trainer;
-import model.WorkoutDay;
+import model.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+
 import database.query.Queries;
 
 public class ExerciseDAO {
@@ -28,4 +29,45 @@ public class ExerciseDAO {
             //todo handle exception
         }
     }
+
+    public List<ExerciseForWorkoutRoutine> loadExerciseInWorkoutRoutine(String athleteFC, String workoutDayName, WorkoutRoutine workoutRoutine) {
+        try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
+                Queries.LOAD_ALL_EXERCISE_IN_WORKOUT_DAYS_QUERY);
+                ResultSet rs = Queries.loadAllExerciseInWorkoutDays(preparedStatement, athleteFC,
+                        workoutDayName, workoutRoutine.getActivateDate())){
+            return getExercises(workoutDayName, rs, workoutRoutine.getName());
+        } catch (SQLException e) {
+            SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            e.printStackTrace();
+            return null;
+            //todo handle null
+        }
+    }
+
+    @NotNull
+    private ArrayList<ExerciseForWorkoutRoutine> getExercises(String workoutDayName, ResultSet rs, String workoutRoutineName) throws SQLException {
+        ArrayList<ExerciseForWorkoutRoutine> exerciseList = new ArrayList<>();
+        while(rs.next()){
+            exerciseList.add(new ExerciseForWorkoutRoutine(
+                    rs.getString("nameEx"),
+                    convertStatus(rs.getString("exerciseStatus")),
+                    workoutDayName,
+                    rs.getInt("repetitions"),
+                    rs.getInt("sets"),
+                    rs.getString("rest"),
+                    workoutRoutineName));
+        }
+        return exerciseList;
+    }
+
+    private ExerciseStatus convertStatus(String statusString){
+        if(statusString.equals("ACTIVE")){
+            return ExerciseStatus.ACTIVE;
+        } else if(statusString.equals("SUSPENDED")){
+            return ExerciseStatus.SUSPENDED;
+        } else {
+            throw new NullPointerException();
+        }
+    }
+
 }
