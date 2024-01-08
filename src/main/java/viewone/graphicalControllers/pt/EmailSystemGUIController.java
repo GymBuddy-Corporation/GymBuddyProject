@@ -22,13 +22,7 @@ public class EmailSystemGUIController {
     @FXML public void sendEmail() throws IOException{
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         try {
-            satisfyWorkoutRequestsController.sendClarificationEmail(LoggedUserSingleton.getMyBean(), selectedRequest.getAthleteBean(), objectTextArea.getText(), contentTextArea.getText());
-        } catch (DataFieldException e) {
-            try {
-                e.callMe(1);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            satisfyWorkoutRequestsController.sendClarificationEmail(LoggedUserSingleton.getSingleton().getMyBean(), selectedRequest.getAthleteBean(), objectTextArea.getText(), contentTextArea.getText());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

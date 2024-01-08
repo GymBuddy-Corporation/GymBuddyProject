@@ -170,7 +170,7 @@
       <font>
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font></Button>
-   <Text layoutX="69.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="37.60000152587895">
+   <Text fx:id="userText" layoutX="69.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="37.60000152587895">
       <font>
          <Font name="Allerta Stencil Regular" size="15.0" />
       </font>

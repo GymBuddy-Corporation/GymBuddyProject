@@ -38,7 +38,7 @@ public class LoginGUIController {
         try {
             userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()));
         }catch(AlreadyLoggedUserException e){
-            userBean = LoggedUserSingleton.getMyBean();
+            userBean = LoggedUserSingleton.getSingleton().getMyBean();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

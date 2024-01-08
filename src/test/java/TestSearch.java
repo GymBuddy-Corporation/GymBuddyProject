@@ -6,6 +6,7 @@ import controllers.UserAccessController;
 import engineering.ExerciseInventory;
 import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
+import exceptions.NoLoggedUserException;
 import exceptions.NoUserFoundException;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
@@ -42,7 +43,7 @@ public class TestSearch {
         }catch(AlreadyLoggedUserException e){
             try{
                 Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
-            } catch (NullPointerException exc){
+            } catch (NullPointerException | NoLoggedUserException exc){
                 exc.printStackTrace();
             }
         } catch (SQLException e) {

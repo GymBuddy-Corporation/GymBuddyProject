@@ -5,6 +5,7 @@ import beans.RequestBean;
 import beans.WorkoutRoutineBean;
 import controllers.CreateRequestController;
 import controllers.UserAccessController;
+import engineering.LoggedAthleteSingleton;
 import engineering.LoggedUserSingleton;
 import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
@@ -35,21 +36,14 @@ public class AskNewRoutineGUIController implements Initializable {
     @FXML
     public void askRequest() throws Exception{
         CreateRequestController createRequestController = new CreateRequestController();
-        try {
-            if(infoCommentTextArea.getText()==null){
+        if(infoCommentTextArea.getText()==null){
                 return;
-            }
-            AthleteBean athleteBean= (AthleteBean) LoggedUserSingleton.getMyBean();
-            RequestBean requestBean = new RequestBean(infoCommentTextArea.getText(), athleteBean, athleteBean.getTrainerFC());
-            createRequestController.askForNewWorkoutRoutine(requestBean);
-            SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
-        } catch (DataFieldException e) {
-            try {
-                e.callMe(1);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
         }
+        AthleteBean athleteBean= LoggedAthleteSingleton.getSingleton().getMyBean();
+        RequestBean requestBean = new RequestBean(infoCommentTextArea.getText(), athleteBean, athleteBean.getTrainerFC());
+        createRequestController.askForNewWorkoutRoutine(requestBean);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+
 
         //TODO gestisci la rischiesta di una nuova scheda
     }

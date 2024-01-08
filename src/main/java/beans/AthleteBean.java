@@ -4,12 +4,12 @@ import exceptions.dataException.DataFieldException;
 
 public class AthleteBean extends PersonBean{
     private String trainerFC;
-    public AthleteBean(String username, PersonalInfoBean personalInfo, CredentialsBean credentialsBean, String trainerFC) throws DataFieldException {
+    public AthleteBean(String username, PersonalInfoBean personalInfo, CredentialsBean credentialsBean, String trainerFC) {
         super(username, personalInfo, credentialsBean);
         this.trainerFC = trainerFC;
     }
 
-    public AthleteBean(String username, PersonalInfoBean personalInfo, CredentialsBean credentialsBean) throws DataFieldException {
+    public AthleteBean(String username, PersonalInfoBean personalInfo, CredentialsBean credentialsBean)  {
         super(username, personalInfo, credentialsBean);
     }
     public String getTrainerFC() {

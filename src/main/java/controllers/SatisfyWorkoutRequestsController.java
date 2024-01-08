@@ -6,6 +6,7 @@ import database.dao.AthleteDAO;
 import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
+import engineering.LoggedTrainerSingleton;
 import engineering.LoggedUserSingleton;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
@@ -26,7 +27,7 @@ public class SatisfyWorkoutRequestsController {
     public SatisfyWorkoutRequestsController() {}
 
     public List<ExerciseBean> getLoggedTrainerGymExercises() {
-        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseList();
+        List<Exercise> exerciseList = LoggedTrainerSingleton.getSingleton().getExcerciseList();
         return getExerciseBeanList(exerciseList);
     }
 
@@ -43,7 +44,7 @@ public class SatisfyWorkoutRequestsController {
 
         exercise.setStatusExercise(status);
 
-        for (Exercise ex : LoggedUserSingleton.getSingleton().getExcerciseList()){
+        for (Exercise ex : LoggedTrainerSingleton.getSingleton().getExcerciseList()){
             if(ex.getName().equals(exercise.getName())){
                 ex.setStatus(statusToSet);
                 //todo set status on DB new ExerciseDAO();
@@ -93,8 +94,8 @@ public class SatisfyWorkoutRequestsController {
         return exerciseForWorkoutRoutine;
     }
 
-    public List<ExerciseBean> searchExercise(SearchBean searchBean) throws UserCastException{
-        List<Exercise> exerciseList = LoggedUserSingleton.getSingleton().getExcerciseList();
+    public List<ExerciseBean> searchExercise(SearchBean searchBean) {
+        List<Exercise> exerciseList = LoggedTrainerSingleton.getSingleton().getExcerciseList();
         List<Exercise> filteredExercises = new ArrayList<>();
 
         for (Exercise exercise : exerciseList) {
@@ -134,7 +135,7 @@ public class SatisfyWorkoutRequestsController {
     }
 
     public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
-        List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedUserSingleton.getSingleton().getSpecificUser(Trainer.class)));
+        List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedTrainerSingleton.getSingleton().getUser()));
 
         List<RequestBean> requestBeanList = new ArrayList<>();
         for(Request request: requestList) {
