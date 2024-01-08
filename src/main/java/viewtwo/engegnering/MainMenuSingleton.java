@@ -21,9 +21,10 @@ public class MainMenuSingleton {
         return me;
     }
 
-    public void setActivity(String name,String folder) throws IOException {
+    public Object setActivity(String name,String folder) throws IOException {
         FXMLLoader fx=new FXMLLoader(SwitchPage.class.getResource(SwitchPage.getpath(name,folder,2)));
         controller.setActivity(fx.load());
+        return fx.getController();
     }
 
 }

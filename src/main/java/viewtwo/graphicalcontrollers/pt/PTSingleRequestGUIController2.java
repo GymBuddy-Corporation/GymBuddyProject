@@ -27,7 +27,7 @@ public class PTSingleRequestGUIController2 implements Initializable {
     @FXML
     public void satisfyRequest() throws Exception {
 
-        /*PTSingleRequestGUIController2 PTSingleRequestGUIController2 = (PTSingleRequestGUIController2) */MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
+        PTSingleRequestGUIController2 controller = (PTSingleRequestGUIController2) MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
         //Objects.requireNonNull(controller).setValue(selectedRequest);
     }
     @FXML
