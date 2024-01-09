@@ -7,8 +7,8 @@ public class DirectDiscountCupon extends Cupon {
     private static final float MIN_PRICE = 0;
     private final float discountValue;
 
-    DirectDiscountCupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountValue) {
-        super(name, description, pointsPrice, forNewMembers, isCoumulable);
+    public DirectDiscountCupon(int code,String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountValue) {
+        super(code,name, description, pointsPrice, forNewMembers, isCoumulable);
         this.discountValue = discountValue;
     }
 
@@ -16,11 +16,22 @@ public class DirectDiscountCupon extends Cupon {
     public float getPrice() throws DecoratorNoBaseComponentException {
         float price = super.getPrice();
         float priceAfterDiscount = price - discountValue;
-        return priceAfterDiscount > MIN_PRICE ? priceAfterDiscount : MIN_PRICE;
+        return Math.max(priceAfterDiscount, MIN_PRICE);
     }
 
     @Override
     public int getPoints() throws DecoratorNoBaseComponentException {
         return super.getPoints()-this.getPointsPrice();
     }
+
+    @Override
+    public String getType() {
+        return "Direct Discount";
+    }
+
+    @Override
+    public String getCouponsValue() {
+        return String.valueOf(discountValue);
+    }
+
 }

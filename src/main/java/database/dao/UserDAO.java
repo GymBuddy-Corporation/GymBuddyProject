@@ -48,11 +48,11 @@ public class UserDAO {
         return gDao.loadGym(username);
     }
 
-    public User loadUser(String email, String password) throws SQLException,NoUserFoundException  {
+    public User loadUser(Credentials obj) throws SQLException,NoUserFoundException  {
         Connection connection = SingletonConnection.getInstance().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM gymbuddy.user WHERE email = ? AND password = ?")) {
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, obj.email());
+            preparedStatement.setString(2, obj.password());
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return getUser(resultSet.getString("email")); //null //???

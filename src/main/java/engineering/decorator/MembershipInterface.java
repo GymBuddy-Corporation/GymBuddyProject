@@ -8,4 +8,5 @@ public interface MembershipInterface {
     int getDuration() throws DecoratorNoBaseComponentException;
     String getName();
     String getDescription();
+    boolean isForNewUsers() throws DecoratorNoBaseComponentException;
 }

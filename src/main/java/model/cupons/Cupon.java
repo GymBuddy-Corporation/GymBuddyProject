@@ -7,13 +7,22 @@ import model.Membership;
 
 
 public abstract class Cupon implements MembershipInterface {
+
+
+    private final int code;
     private final int pointsPrice;
     protected MembershipInterface component;
     private final String name;
     private final String description;
     private final boolean onlyForNewMembers;
+
+    public boolean isCumulative() {
+        return isCumulative;
+    }
+
     private final boolean isCumulative;
-    Cupon(String name,String description,int pointsPrice,boolean forNewMembers,boolean isComulative){
+    Cupon(int code, String name, String description, int pointsPrice, boolean forNewMembers, boolean isComulative){
+        this.code = code;
         this.name=name;
         this.description=description;
         this.pointsPrice=pointsPrice;
@@ -26,6 +35,12 @@ public abstract class Cupon implements MembershipInterface {
                 this.component=membership;
             }else{
                 throw new CouponNotCumulativeException();
+            }
+        }
+        if(component instanceof Cupon cupon){
+            if(cupon.isCumulative){
+                throw new CouponNotCumulativeException();
+
             }
         }
         this.component=component;
@@ -44,6 +59,7 @@ public abstract class Cupon implements MembershipInterface {
     @Override
     public int getPoints() throws DecoratorNoBaseComponentException {
         checkIfBaseExists();
+        if(this.component instanceof Membership )return 0; //In caso si utilizzino i coupon non si puo ottenere pure i punti del abbonamento
         return this.component.getPoints();
     };
 
@@ -64,8 +80,18 @@ public abstract class Cupon implements MembershipInterface {
     public String getDescription(){
         return this.description;
     }
-    public boolean isOnlyForNewUsers(){
+    public boolean getOnlyForNewUsers(){
         return this.onlyForNewMembers;
     }
 
+    public int getCode() {
+        return code;
+    }
+    @Override
+    public boolean isForNewUsers() throws DecoratorNoBaseComponentException {
+        checkIfBaseExists();
+        return onlyForNewMembers || this.component.isForNewUsers();
+    }
+    public abstract String getType();
+    public abstract String getCouponsValue();
 }

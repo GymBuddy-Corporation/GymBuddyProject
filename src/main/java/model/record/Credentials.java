@@ -1,3 +1,5 @@
 package model.record;
 
-public record Credentials(String email, String password) {}
+import java.io.Serializable;
+
+public record Credentials(String email, String password) implements Serializable {}

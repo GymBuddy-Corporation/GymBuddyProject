@@ -5,8 +5,8 @@ import exceptions.DecoratorNoBaseComponentException;
 public class PercentageDiscountCoupon extends Cupon{
     private final float discountPercentage;
 
-    PercentageDiscountCoupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountPecentage) {
-        super(name, description, pointsPrice, forNewMembers, isCoumulable);
+    public PercentageDiscountCoupon(int code,String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountPecentage) {
+        super(code,name, description, pointsPrice, forNewMembers, isCoumulable);
         this.discountPercentage=discountPecentage;
     }
 
@@ -19,5 +19,15 @@ public class PercentageDiscountCoupon extends Cupon{
     @Override
     public int getPoints() throws DecoratorNoBaseComponentException {
         return super.getPoints()-this.getPointsPrice();
+    }
+
+    @Override
+    public String getType() {
+        return "Percentage Discount";
+    }
+
+    @Override
+    public String getCouponsValue() {
+        return String.valueOf(discountPercentage);
     }
 }

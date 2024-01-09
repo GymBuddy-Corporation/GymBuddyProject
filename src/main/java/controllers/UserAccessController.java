@@ -17,7 +17,9 @@ import model.Gym;
 import model.Trainer;
 import model.User;
 import engineering.LoggedUserSingleton;
+import model.record.Credentials;
 
+import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -28,6 +30,8 @@ public class UserAccessController {
     }
 
     public void logout() throws NoLoggedUserException {
+        File myObj = new File("credentials.ser");
+        myObj.delete();
         LoggedUserSingleton.clearSingleton();
     }
 
@@ -35,7 +39,42 @@ public class UserAccessController {
         // User in verita è un istanza di gym/athlete/pt
         if (LoggedUserSingleton.getSingleton() != null) throw new AlreadyLoggedUserException();
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.loadUser(credentials.getEmail(), credentials.getPassword());
+        Credentials credentialsObj=new Credentials(credentials.getEmail(), credentials.getPassword());
+        return loginCall(credentialsObj);
+    }
+
+    public UserBean loginDerserialization() throws NoUserFoundException, SQLException, AlreadyLoggedUserException {
+            Credentials credentials;
+        try {
+            FileInputStream fileIn = new FileInputStream("credentials.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            credentials = (Credentials) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+           // i.printStackTrace();
+            throw new NoUserFoundException();
+        } catch (ClassNotFoundException c) {
+            throw new NoUserFoundException();
+        }
+        return loginCall(credentials);
+    }
+
+    private  UserBean loginCall(Credentials credentials) throws SQLException, NoUserFoundException, AlreadyLoggedUserException {
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.loadUser(credentials);
+        try {
+            File myObj = new File("credentials.ser");
+            myObj.delete();
+            FileOutputStream fileOut = new FileOutputStream("credentials.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(credentials);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
         if(user instanceof Gym gym){
             return LoggedGymSingleton.createGymSingleton(gym).getMyBean();
         } else if (user instanceof Athlete athlete) {

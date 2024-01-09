@@ -1,6 +1,10 @@
 package beans;
 
 public class MembershipBean {
+    public String getGymName() {
+        return gymName;
+    }
+    private final int code;
     private final String gymName;
     private final String name;
     private final String description;
@@ -8,7 +12,8 @@ public class MembershipBean {
     private final int durationInDays;
     private final int pointsAwardedOnBuy;
 
-    public MembershipBean(String gymName,String name, String description, float price, int durationInDays, int pointsAwardedOnBuy){
+    public MembershipBean(int code, String gymName, String name, String description, float price, int durationInDays, int pointsAwardedOnBuy){
+        this.code = code;
         this.gymName=gymName;
         this.name = name;
         this.description = description;

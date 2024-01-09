@@ -50,7 +50,8 @@ module start {
     opens model.record;
     exports viewtwo.graphicalcontrollers.pt;
     opens viewtwo.graphicalcontrollers.pt;
-
+exports model.cupons;
+exports engineering.decorator;
     opens database.dao;
     exports database.dao;
 

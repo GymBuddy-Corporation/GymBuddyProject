@@ -7,6 +7,7 @@ import exceptions.AlreadyLoggedUserException;
 import exceptions.CostumException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import utils.MainStage;
@@ -15,7 +16,10 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class LoginGUIController {
 
@@ -32,30 +36,33 @@ public class LoginGUIController {
 
 
     @FXML
-    public void goForward() throws IOException, DataFieldException, NoUserFoundException {
+    public void goForward() throws IOException  {
         UserAccessController controller=new UserAccessController();
         UserBean userBean=null;
         try {
-            userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()));
+            try {
+                userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()));
+            } catch (DataFieldException|NoUserFoundException e) {
+                e.callMe(1);
+                return;
+            }
         }catch(AlreadyLoggedUserException e){
             userBean = LoggedUserSingleton.getSingleton().getMyBean();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+       changePage(userBean);
+
+    }
+    private void changePage(UserBean userBean) throws IOException {
         if (userBean instanceof AthleteBean) {
-
             SwitchPage.setStage(MainStage.getStage(), "AthleteHome.fxml", "athlete", 1);
-            //mettice loggedSingleton user
-
         } else if (userBean instanceof TrainerBean) {
             SwitchPage.setStage(MainStage.getStage(), "PTHome.fxml", "pt", 1);
-            // Objects.requireNonNull(controller).setValue(trainer);
         } else if(userBean instanceof GymBean) {
             SwitchPage.setStage(MainStage.getStage(), "GymHome.fxml", "gym", 1);
         }
-
     }
-
     @FXML
     public void goBack() throws Exception {
         SwitchPage.setStage(MainStage.getStage(), "ChooseActor.fxml", "launcher", 1);
@@ -68,4 +75,6 @@ public class LoginGUIController {
     public void getInfo(MouseEvent event) {
         //TODO Connected with the LogoInfoButton
     }
+
+
 }

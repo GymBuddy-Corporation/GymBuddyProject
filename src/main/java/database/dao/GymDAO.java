@@ -65,15 +65,7 @@ public class GymDAO {
 
     List<Gym> loadedgyms;
 
-    public Gym getGymByName(String gymName) throws NoUserFoundException {
-        loadAllGyms();
-        for (Gym gym : loadedgyms) {
-            if (gym.getGymName().equals(gymName)) {
-                return gym;
-            }
-        }
-        throw new NoUserFoundException();
-    }
+
     public List<Gym> loadAllGyms(){
         if(loadedgyms!=null)return loadedgyms;
         List<Gym> gyms = new ArrayList<>();
@@ -103,23 +95,33 @@ public class GymDAO {
 
     public Gym loadGym(String email) throws SQLException, NoUserFoundException {
 
-                PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_3_QUERY);
-                ResultSet rs = Queries.loadUser(email, preparedStatement);
-            if (rs.next()) {
-                return new Gym(
-                        rs.getString(USERNAME),
-                        new Credentials(rs.getString(EMAIL),""),
-                        rs.getString(IBAN),
-                        rs.getString(CITY),
-                        rs.getString(ADDRESS),
-                        rs.getString(COUNTRY),
-                        rs.getString(NAME)
-                );
+                PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_EMAIL_QUERY);
+                return getGym(email, preparedStatement);
 
-            } else {
-                throw new NoUserFoundException();
-            }
+    }
 
+    @NotNull
+    private Gym getGym(String email, PreparedStatement preparedStatement) throws SQLException, NoUserFoundException {
+        ResultSet rs = Queries.loadUser(email, preparedStatement);
+        if (rs.next()) {
+            return new Gym(
+                    rs.getString(USERNAME),
+                    new Credentials(rs.getString(EMAIL),""),
+                    rs.getString(IBAN),
+                    rs.getString(CITY),
+                    rs.getString(ADDRESS),
+                    rs.getString(COUNTRY),
+                    rs.getString(NAME)
+            );
+
+        } else {
+            throw new NoUserFoundException();
+        }
+    }
+
+    public Gym getGymByName(String name) throws SQLException, NoUserFoundException {
+        PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_NAME_QUERRT);
+        return getGym(name, preparedStatement);
     }
 
 }

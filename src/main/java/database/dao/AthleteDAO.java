@@ -85,5 +85,9 @@ public class AthleteDAO {
         }
     }
 
+    public int loadAthletePoints(String email){
+        return 10000;
+    }
+
 
 }

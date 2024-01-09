@@ -1,4 +1,12 @@
 package viewone.graphicalControllers.launcher;
+import beans.AthleteBean;
+import beans.GymBean;
+import beans.TrainerBean;
+import beans.UserBean;
+import controllers.UserAccessController;
+import engineering.LoggedUserSingleton;
+import exceptions.AlreadyLoggedUserException;
+import exceptions.NoUserFoundException;
 import utils.MainStage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,7 +15,9 @@ import javafx.scene.image.ImageView;
 import utils.SwitchPage;
 import viewone.graphicalControllers.launcher.gym.GymFirstGUIController;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -20,13 +30,11 @@ public class ChooseActorGUIController implements Initializable {
     private String user;
 //TODO: devo trovare una soluzione per i radio button, li posso lasciare cosi oppure creare una classe che gli gestisce
     //Sono Luca e ho copiato qesto codice nei send communication
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
             empty=new Image(ChooseActorGUIController.class.getResourceAsStream("/viewone/images/LogoEmptyButton96.png"),20,20,false,true);
             full=new Image(ChooseActorGUIController.class.getResourceAsStream("/viewone/images/LogoFullButton96.png"),20,20,false,true);
-
-
     }
 
     enum Selezione{

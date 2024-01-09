@@ -210,7 +210,8 @@ public class Queries {
         preparedStatement.setString(1, trainerFc);
         return preparedStatement.executeQuery();
     }
-    public static final String LOAD_USER_3_QUERY="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE u.email=?";
+    public static final String LOAD_USER_GYM_BY_EMAIL_QUERY="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE u.email=?";
+    public static final String LOAD_USER_GYM_BY_NAME_QUERRT="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE g.nameGym=?";
     protected Queries() {}
 
 }
