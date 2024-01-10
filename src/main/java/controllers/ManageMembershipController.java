@@ -7,6 +7,9 @@ import beans.SearchGymBean;
 import database.dao.CouponsDAO;
 import database.dao.GymDAO;
 import database.dao.MembershipDAO;
+import engineering.decorator.MembershipInterface;
+import exceptions.CouponNotCumulativeException;
+import exceptions.MembershipCouponNotFoundException;
 import model.Gym;
 import model.Membership;
 import model.cupons.Cupon;
@@ -24,8 +27,7 @@ public class ManageMembershipController {
     }
 
     public List<MembershipBean> getMembershipList(GymInfoBean onlyGymNameBean) {
-        MembershipDAO membershipDAO=new MembershipDAO();
-        List<Membership> listOfMemberships = membershipDAO.getMembership(onlyGymNameBean.getName());
+        List<Membership> listOfMemberships = loadMemberships(onlyGymNameBean);
         List<MembershipBean> beanList = new ArrayList<>();
         for (Membership membership : listOfMemberships) {
             beanList.add(new MembershipBean(
@@ -39,11 +41,50 @@ public class ManageMembershipController {
         }
         return beanList;
     }
-
-    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym){
+    private List<Membership> loadMemberships(GymInfoBean onlyGymNameBean){
+        MembershipDAO membershipDAO=new MembershipDAO();
+        return membershipDAO.getMembership(onlyGymNameBean.getName());
+    }
+    private List<Cupon> loadCoupons(GymInfoBean onlyGymNameBean){
         CouponsDAO couponsDAO=new CouponsDAO();
-        List<Cupon> listOfCoupons;
-        listOfCoupons=couponsDAO.getCoupons(onlyNameGym.getName());
+        return couponsDAO.getCoupons(onlyGymNameBean.getName());
+    }
+
+    private void applyCouponsToMembership(GymInfoBean onlyName,MembershipBean selectedMembership,List<CuponsBean> selectedCoupons) throws MembershipCouponNotFoundException {
+            List<Membership> membershipsList=loadMemberships(onlyName);
+            List<Cupon> cuponsList=loadCoupons(onlyName);
+            Membership membership=null;
+            for(Membership temp:membershipsList){
+                if(selectedMembership.getCode()==temp.getCode()){
+                    membership=temp;
+                    break;
+                }
+            }
+            if(membership==null)throw new MembershipCouponNotFoundException();
+        List<Cupon> couponsToApply=loadCoupons(onlyName);
+        for(Cupon temp:cuponsList){
+                for (CuponsBean temp2:selectedCoupons){
+                    if(temp2.getCode()==temp.getCode()){
+                        couponsToApply.add(temp);
+                        cuponsList.remove(temp);
+                        selectedCoupons.remove(temp2);
+                        break;
+                    }
+                }
+            }
+        if(!cuponsList.isEmpty())throw new MembershipCouponNotFoundException();
+        MembershipInterface finalMembership=membership;
+        for(Cupon temp:couponsToApply){
+            try {
+                finalMembership=temp.setComponent(finalMembership);
+            } catch (CouponNotCumulativeException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym){
+        List<Cupon> listOfCoupons=loadCoupons(onlyNameGym);
         List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
         for(Cupon cupon: listOfCoupons ){
             listOfCouponsBeans.add(new CuponsBean(cupon.getCode(),

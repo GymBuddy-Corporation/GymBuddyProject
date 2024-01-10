@@ -47,6 +47,11 @@ public class Membership implements MembershipInterface {
     }
 
     @Override
+    public String getBuildedName() {
+        return getName();
+    }
+
+    @Override
     public final String getDescription() {
         return name;
     }

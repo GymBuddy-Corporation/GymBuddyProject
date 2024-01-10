@@ -4,6 +4,11 @@ public class MembershipBean {
     public String getGymName() {
         return gymName;
     }
+
+    public int getCode() {
+        return code;
+    }
+
     private final int code;
     private final String gymName;
     private final String name;

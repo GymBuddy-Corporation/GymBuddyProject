@@ -29,7 +29,7 @@ public abstract class Cupon implements MembershipInterface {
         this.onlyForNewMembers=forNewMembers;
         this.isCumulative=isComulative;
     }
-    public void setComponent(MembershipInterface component) throws CouponNotCumulativeException {
+    public Cupon setComponent(MembershipInterface component) throws CouponNotCumulativeException {
         if(this.isCumulative){
             if(component instanceof Membership membership){
                 this.component=membership;
@@ -44,6 +44,7 @@ public abstract class Cupon implements MembershipInterface {
             }
         }
         this.component=component;
+        return this;
     }
     private void checkIfBaseExists() throws DecoratorNoBaseComponentException {
         if(this.component==null){
@@ -54,6 +55,10 @@ public abstract class Cupon implements MembershipInterface {
     public float getPrice() throws DecoratorNoBaseComponentException {
         checkIfBaseExists();
         return this.component.getPrice();
+    }
+    @Override
+    public String getName(){
+        return name;
     }
 
     @Override
@@ -72,8 +77,9 @@ public abstract class Cupon implements MembershipInterface {
         return pointsPrice;
     }
     @Override
-    public String getName(){
-        return this.name;
+    public String getBuildedName() throws DecoratorNoBaseComponentException {
+        checkIfBaseExists();
+        return this.component.getName()+"+"+this.name;
     }
 
     @Override
