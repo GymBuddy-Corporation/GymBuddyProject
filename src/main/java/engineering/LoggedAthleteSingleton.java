@@ -2,6 +2,7 @@ package engineering;
 
 import beans.AthleteBean;
 import beans.TrainerBean;
+import engineering.decorator.MembershipInterface;
 import exceptions.AlreadyLoggedUserException;
 import model.Athlete;
 import model.Exercise;
@@ -12,6 +13,23 @@ import java.util.List;
 public class LoggedAthleteSingleton extends LoggedUserSingleton{
     protected LoggedAthleteSingleton(Athlete temp) {
         super(temp);
+    }
+
+
+    private MembershipInterface membership;
+    private String gymToSubscribe;
+
+    public String getGymToSubscribe() {
+        return gymToSubscribe;
+    }
+
+    public MembershipInterface getMembership() {
+        return membership;
+    }
+
+    public void setMembership(MembershipInterface membership,String name) {
+        this.gymToSubscribe=name;
+        this.membership = membership;
     }
 
     @Override

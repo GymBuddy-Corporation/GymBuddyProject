@@ -43,7 +43,7 @@ public class Membership implements MembershipInterface {
 
     @Override
     public final String getName() {
-        return description;
+        return name;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Membership implements MembershipInterface {
 
     @Override
     public final String getDescription() {
-        return name;
+        return description;
     }
 
     @Override

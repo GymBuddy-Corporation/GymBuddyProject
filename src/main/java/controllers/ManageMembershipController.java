@@ -1,14 +1,14 @@
 package controllers;
 
-import beans.CuponsBean;
-import beans.GymInfoBean;
-import beans.MembershipBean;
-import beans.SearchGymBean;
+import beans.*;
 import database.dao.CouponsDAO;
 import database.dao.GymDAO;
 import database.dao.MembershipDAO;
+import engineering.LoggedAthleteSingleton;
 import engineering.decorator.MembershipInterface;
 import exceptions.CouponNotCumulativeException;
+import exceptions.CouponNotFullyAppliedException;
+import exceptions.DecoratorNoBaseComponentException;
 import exceptions.MembershipCouponNotFoundException;
 import model.Gym;
 import model.Membership;
@@ -16,6 +16,7 @@ import model.cupons.Cupon;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -50,7 +51,7 @@ public class ManageMembershipController {
         return couponsDAO.getCoupons(onlyGymNameBean.getName());
     }
 
-    private void applyCouponsToMembership(GymInfoBean onlyName,MembershipBean selectedMembership,List<CuponsBean> selectedCoupons) throws MembershipCouponNotFoundException {
+    public MembershipBean applyCouponsToMembership(GymInfoBean onlyName,MembershipBean selectedMembership,List<CuponsBean> selectedCoupons) throws MembershipCouponNotFoundException, DecoratorNoBaseComponentException, CouponNotFullyAppliedException {
             List<Membership> membershipsList=loadMemberships(onlyName);
             List<Cupon> cuponsList=loadCoupons(onlyName);
             Membership membership=null;
@@ -61,28 +62,46 @@ public class ManageMembershipController {
                 }
             }
             if(membership==null)throw new MembershipCouponNotFoundException();
-        List<Cupon> couponsToApply=loadCoupons(onlyName);
-        for(Cupon temp:cuponsList){
-                for (CuponsBean temp2:selectedCoupons){
-                    if(temp2.getCode()==temp.getCode()){
-                        couponsToApply.add(temp);
-                        cuponsList.remove(temp);
-                        selectedCoupons.remove(temp2);
+            List<Cupon> couponsToApply=loadCoupons(onlyName);
+            Iterator<Cupon> couponIterator= cuponsList.iterator();
+            while(couponIterator.hasNext()){
+                Cupon couponTemp=couponIterator.next();
+                Iterator<CuponsBean> couponBeanIterator= selectedCoupons.iterator();
+                while (couponBeanIterator.hasNext()){
+                    CuponsBean couponBeanTemp=couponBeanIterator.next();
+                    if(couponBeanTemp.getCode()==couponTemp.getCode()){
+                        couponsToApply.add(couponTemp);
+                        couponBeanIterator.remove();
+                        couponIterator.remove();
                         break;
                     }
                 }
             }
         if(!cuponsList.isEmpty())throw new MembershipCouponNotFoundException();
+        MembershipInterface finalMembership = null;
+        try {
+            finalMembership = decoratorBuilder(membership, couponsToApply);
+        } catch (CouponNotCumulativeException e) {
+            LoggedAthleteSingleton.getSingleton().setMembership(e.getMembership(),onlyName.getName());
+            throw new CouponNotFullyAppliedException(e,onlyName.getName());
+        }
+        LoggedAthleteSingleton.getSingleton().setMembership(finalMembership,onlyName.getName());
+        return new MembershipBean(onlyName.getName(),finalMembership.getName(),finalMembership.getPrice(),finalMembership.getDuration(), finalMembership.getPoints());
+    }
+
+    protected MembershipInterface decoratorBuilder(Membership membership,List<Cupon> coupons) throws CouponNotCumulativeException {
         MembershipInterface finalMembership=membership;
-        for(Cupon temp:couponsToApply){
+        boolean wasExceptionTriggered=false;
+        for(Cupon temp:coupons){
             try {
                 finalMembership=temp.setComponent(finalMembership);
             } catch (CouponNotCumulativeException e) {
-                throw new RuntimeException(e);
+                wasExceptionTriggered=true;
             }
         }
-
-    }
+        if(wasExceptionTriggered)throw new CouponNotCumulativeException(finalMembership);
+        return finalMembership;
+       }
     public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym){
         List<Cupon> listOfCoupons=loadCoupons(onlyNameGym);
         List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
@@ -97,6 +116,19 @@ public class ManageMembershipController {
                     cupon.getCouponsValue()));
         }
         return listOfCouponsBeans;
+    }
+
+    public PaymentConfirmationBean payNewMembership(GymInfoBean onlyNameGym,MembershipBean membershipBean){
+                return null;
+    }
+
+    public PaymentConfirmationBean payNewMebership(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean,boolean rememberCard){
+        return null;
+    }
+
+    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean){
+
+        return null;
     }
 
     private boolean stringExistsInText(String toBeSearched, String text) {

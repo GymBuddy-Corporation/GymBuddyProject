@@ -13,7 +13,7 @@ public class PercentageDiscountCoupon extends Cupon{
     @Override
     public float getPrice() throws DecoratorNoBaseComponentException {
         float price = super.getPrice();
-        return price*discountPercentage/100f;
+        return price-price*discountPercentage/100f;
     }
 
     @Override
