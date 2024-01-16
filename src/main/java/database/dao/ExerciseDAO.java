@@ -70,4 +70,16 @@ public class ExerciseDAO {
         }
     }
 
+    public void setExerciseStatus(Exercise exercise, String nameGym){
+        String statusString = exercise.getStatus().toString();
+        try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
+                Queries.SET_EXERCISE_STATUS)) {
+            Queries.setExerciseStatus(preparedStatement, exercise.getName(), nameGym, statusString);
+        } catch (SQLException e) {
+            SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            e.printStackTrace();
+            //todo handle exception
+        }
+    }
+
 }

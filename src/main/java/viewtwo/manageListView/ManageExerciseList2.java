@@ -2,13 +2,12 @@ package viewtwo.manageListView;
 
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
-import beans.ExerciseStatusBean;
 import controllers.SatisfyWorkoutRequestsController;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import model.ExerciseStatus;
 import viewone.graphicalControllers.pt.CreateNewWorkoutRoutineGUIController;
 import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
 
@@ -38,7 +37,7 @@ public class ManageExerciseList2 {
 
     public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
         ObservableList<ExerciseBean> filteredList = exerciseBeanList.stream()
-                .filter(exerciseBean -> ExerciseStatusBean.ACTIVE.equals(exerciseBean.getStatusExercise()))
+                .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise()))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableList));
 
         exerciseBeanListView.setItems(filteredList);
@@ -48,7 +47,7 @@ public class ManageExerciseList2 {
         ObservableList<ExerciseForWorkoutRoutineBean> filteredList = exerciseBeanListView.getItems().stream()
                 .filter(exerciseForWorkoutRoutineBean -> exerciseForWorkoutRoutineBean != null &&
                         exerciseBeanList.contains(exerciseForWorkoutRoutineBean) &&
-                        ExerciseStatusBean.ACTIVE.equals(exerciseForWorkoutRoutineBean.getStatusExercise()))
+                        ExerciseStatus.ACTIVE.equals(exerciseForWorkoutRoutineBean.getStatusExercise()))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableList));
 
         exerciseBeanListView.setItems(filteredList);
@@ -80,7 +79,7 @@ public class ManageExerciseList2 {
         if (newItem != null) {
             setExerciseStatusGUIController.setVisibleButtons(true);
             ExerciseBean selectedExercise = setExerciseStatusGUIController.getExerciseDBList().getSelectionModel().getSelectedItem();
-            setExerciseStatusGUIController.setFireBotton(selectedExercise.getStatusExercise() == ExerciseStatusBean.ACTIVE ? 1 : 2);
+            setExerciseStatusGUIController.setFireBotton(selectedExercise.getStatusExercise() == ExerciseStatus.ACTIVE ? 1 : 2);
         }
     }
 }

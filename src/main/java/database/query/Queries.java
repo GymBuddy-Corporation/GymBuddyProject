@@ -15,6 +15,16 @@ public class Queries {
             "WHERE wr.fc = ?" +
             "ORDER BY wr.initDate DESC" +
             "LIMIT 1;";
+    public static final String SET_EXERCISE_STATUS = "UPDATE gymbuddy.exercise " +
+            "SET status = ?" +
+            "WHERE nameEx = ? AND nameGym = ?";
+    public static void setExerciseStatus(PreparedStatement preparedStatement, String name, String nameGym, String statusString) throws SQLException {
+        preparedStatement.setString(1, statusString);
+        preparedStatement.setString(2, name);
+        preparedStatement.setString(3, nameGym);
+        preparedStatement.executeUpdate();
+    }
+
     public static ResultSet loadWorkoutRoutine(PreparedStatement preparedStatement, String athleteFC) throws SQLException{
         preparedStatement.setString(1, athleteFC);
         return preparedStatement.executeQuery();
@@ -50,15 +60,6 @@ public class Queries {
         preparedStatement.setTimestamp(2, timestamp);
         return preparedStatement.executeQuery();
     }
-
-
-    /*public static final String LOAD_ALL_EXERCISE_IN_WORKOUT_DAYS_QUERY = "SELECT Exercise.* " +
-            "FROM mydb.Contains join mydb.Exercise on Contains.Exercise = Exercise.idExercise " +
-            "WHERE Contains.WorkoutDay = ?";
-    public static ResultSet loadAllExerciseInWorkoutDays(PreparedStatement preparedStatement, int idWorkoutDay) throws SQLException {
-        preparedStatement.setInt(1, idWorkoutDay);
-        return preparedStatement.executeQuery();
-    }*/
 
     public static final String INSERT_REQUEST_QUERY = "INSERT INTO gymbuddy.request" +
             "(trainersFC, athleteFC, info, dateRequest) " +
@@ -110,7 +111,6 @@ public class Queries {
         preparedStatement.setString(1, athleteFC);
         preparedStatement.executeUpdate();
     }
-
 
     public static final String LOAD_TRAINER_QUERY = "SELECT * " +
             "FROM gymbuddy.Trainer " +
@@ -213,5 +213,4 @@ public class Queries {
     public static final String LOAD_USER_GYM_BY_EMAIL_QUERY="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE u.email=?";
     public static final String LOAD_USER_GYM_BY_NAME_QUERRT="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE g.nameGym=?";
     protected Queries() {}
-
 }

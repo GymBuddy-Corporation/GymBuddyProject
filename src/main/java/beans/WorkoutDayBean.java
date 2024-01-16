@@ -14,6 +14,10 @@ public class WorkoutDayBean {
         this.exerciseBeanList = new ArrayList<>();
     }
 
+    public WorkoutDayBean(String name, List<ExerciseForWorkoutRoutineBean> exerciseBeanList){
+        this.name = name;
+        this.exerciseBeanList = exerciseBeanList;
+    }
     public List<ExerciseForWorkoutRoutineBean> getExerciseList() {
         return exerciseBeanList;
     }

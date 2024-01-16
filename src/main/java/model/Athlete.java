@@ -15,6 +15,7 @@ public class Athlete extends Person implements Serializable {
 
     private WorkoutRoutine workoutRoutine;
     private Trainer trainer;
+    //todo richiesta
 
     public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym) {
         super(username, credentials, personalInfo, gym);

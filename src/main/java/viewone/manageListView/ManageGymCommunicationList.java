@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import model.Exercise;
+import model.ExerciseStatus;
 import viewone.graphicalControllers.pt.CreateNewWorkoutRoutineGUIController;
 import viewone.graphicalControllers.pt.PTHomeGUIController;
 import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
@@ -54,7 +55,7 @@ public class ManageGymCommunicationList {
     public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
         // Filter out exercises with status other than ACTIVE
         List<ExerciseBean> filteredList = exerciseBeanList.stream()
-                .filter(exerciseBean -> ExerciseStatusBean.ACTIVE.equals(exerciseBean.getStatusExercise()))
+                .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise()))
                 .collect(Collectors.toList());
 
         ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(filteredList);
@@ -68,7 +69,7 @@ public class ManageGymCommunicationList {
                 .filter(exerciseForWorkoutRoutineBean -> {
                     return exerciseForWorkoutRoutineBean != null &&
                             exerciseBeanList.contains(exerciseForWorkoutRoutineBean) &&
-                            ExerciseStatusBean.ACTIVE.equals(exerciseForWorkoutRoutineBean.getStatusExercise());
+                            ExerciseStatus.ACTIVE.equals(exerciseForWorkoutRoutineBean.getStatusExercise());
                 })
                 .collect(Collectors.toList());
 
@@ -111,25 +112,11 @@ public class ManageGymCommunicationList {
         if(newItem != null){
             setExerciseStatusGUIController.setVisibleButtons(true);
             ExerciseBean selectedExercise = setExerciseStatusGUIController.getExerciseDBList().getSelectionModel().getSelectedItem();
-            if(selectedExercise.getStatusExercise() == ExerciseStatusBean.ACTIVE){
+            if(selectedExercise.getStatusExercise() == ExerciseStatus.ACTIVE){
                 setExerciseStatusGUIController.setFireBotton(1);
             } else {
                 setExerciseStatusGUIController.setFireBotton(2);
             }
         }
     }
-
-    /*public static void setListenerCommunication(ListView<String> communicationList, PTHomeGUIController ptHomeGUIController) {
-        communicationList.getSelectionModel().selectedItemProperty().
-                addListener(new ChangeListener<>() {
-                    @Override
-                    public void changed(ObservableValue<? extends AthleteBean> observableValue, AthleteBean oldItem, AthleteBean newItem) {
-                        listEventCommunications(newItem, ptHomeGUIController);
-                    }
-                });
-    }*/
-
-/*    private static void listEventCommunications(String newItem,  PTHomeGUIController ptHomeGUIController) {
-        ptHomeGUIController.setInfoBox(newItem);
-    }*/
 }

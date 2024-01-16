@@ -34,6 +34,10 @@ public class LoggedTrainerSingleton extends LoggedUserSingleton{
         return (LoggedTrainerSingleton) me;
     }
 
+    public String getGym(){
+        return  ((Trainer)user).getGym().getGymName();
+    }
+
     public List<Exercise> getExcerciseList(){
         return  ((Trainer)user).getGym().getGymExercises().getExerciseList();
     }

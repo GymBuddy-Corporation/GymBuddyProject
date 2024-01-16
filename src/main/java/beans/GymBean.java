@@ -13,15 +13,6 @@ public class GymBean extends UserBean {
         this.credentials = credentials;
     }
 
-    public GymBean(String username, GymInfoBean gymInfo, CredentialsBean credentials) throws DataFieldException /*throws InvalidUserInfoException, InvalidFiscalCodeException, InvalidCredentialsException, InvalidBirthException, EmptyFieldsException*/ {
-        /*This is a constructor with syntax check and is used by view*/
-        super(username, credentials);
-        setUsername(username);
-        this.gymInfo = gymInfo;
-        //TODO capire come usare questo costruttore (è da qui che nascono i nullpointer)
-        this.credentials = CredentialsBean.ctorWithSyntaxCheck(credentials.getEmail(), credentials.getPassword());
-    }
-
     @Override
     public CredentialsBean getCredentials() {
         return credentials;

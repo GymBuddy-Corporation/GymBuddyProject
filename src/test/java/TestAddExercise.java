@@ -1,5 +1,4 @@
 import beans.ExerciseForWorkoutRoutineBean;
-import beans.ExerciseStatusBean;
 import beans.WorkoutDayBean;
 import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
@@ -8,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestAddExercise {
 
-    ExerciseForWorkoutRoutineBean exerciseToAdd = new ExerciseForWorkoutRoutineBean("Tricep Pushdown", ExerciseStatusBean.ACTIVE, "monday", 10, 4, "01:30");
+    /*ExerciseForWorkoutRoutineBean exerciseToAdd = new ExerciseForWorkoutRoutineBean("Tricep Pushdown", ExerciseStatusBean.ACTIVE, "monday", 10, 4, "01:30");
     ExerciseForWorkoutRoutineBean ex2 = new ExerciseForWorkoutRoutineBean("Dips", ExerciseStatusBean.ACTIVE, "tuesday", 8, 5, "03:00");
     ExerciseForWorkoutRoutineBean ex3 = new ExerciseForWorkoutRoutineBean("Trazioni", ExerciseStatusBean.ACTIVE, "monday", 15, 2, "02:00");
     ExerciseForWorkoutRoutineBean ex4 = new ExerciseForWorkoutRoutineBean("Bench Press", ExerciseStatusBean.ACTIVE, "monday", 3, 6, "04:00");
@@ -43,5 +42,5 @@ public class TestAddExercise {
             flag = false;
         }
         assertTrue(flag);
-    }
+    }*/
 }

@@ -90,11 +90,11 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     @FXML
     public void deleteChanges() throws Exception{
         SwitchPage.deleteElement("CreateNewWorkoutRoutine.fxml","pt");
-        //TODO gestisci la cancellazione della scheda
         SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
     }
     @FXML
     public void goHome() throws Exception{
+        SwitchPage.deleteElement("CreateNewWorkoutRoutine.fxml","pt");
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     @FXML
@@ -176,7 +176,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
                 workoutDay.addExerciseBean(newExercise);
                 List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
                 for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(newExercise.getDay()).getExerciseBeanList()) {
-                    if (exercise.getStatusExercise() == ExerciseStatusBean.ACTIVE) {
+                    if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
                         activeExercises.add(exercise);
                     }
                 }
@@ -216,7 +216,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         }
         List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
         for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseBeanList()) {
-            if (exercise.getStatusExercise() == ExerciseStatusBean.ACTIVE) {
+            if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
                 activeExercises.add(exercise);
             }
         }
@@ -243,7 +243,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
 
         if (selectedWorkoutDay != null) {
             for(ExerciseForWorkoutRoutineBean exe : selectedWorkoutDay.getExerciseList()){
-                if(exe.getStatusExercise().equals(ExerciseStatusBean.ACTIVE)){
+                if(exe.getStatusExercise().equals(ExerciseStatus.ACTIVE)){
                     exercisesToShow.add(exe);
                 }
             }
@@ -278,7 +278,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         WorkoutDayBean selectedWorkoutDay = workoutRoutine.getWorkoutDay(selectedDay);
         if (selectedWorkoutDay != null) {
             for (ExerciseForWorkoutRoutineBean exercise : selectedWorkoutDay.getExerciseBeanList()) {
-                if (exercise.getStatusExercise() == ExerciseStatusBean.ACTIVE) {
+                if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
                     activeExercises.add(exercise);
                 }
             }
@@ -309,9 +309,9 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
             for (ExerciseForWorkoutRoutineBean ex : exerciseList) {
                 if (ex.getName().equals(exercise)) {
                     if (status.equals(ExerciseStatus.ACTIVE)){
-                        ex.setStatusExercise(ExerciseStatusBean.ACTIVE);
+                        ex.setStatusExercise(ExerciseStatus.ACTIVE);
                     } else if (status.equals(ExerciseStatus.SUSPENDED)){
-                        ex.setStatusExercise(ExerciseStatusBean.SUSPENDED);
+                        ex.setStatusExercise(ExerciseStatus.SUSPENDED);
                     }
                 }
             }

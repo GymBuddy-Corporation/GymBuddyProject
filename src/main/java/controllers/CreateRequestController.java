@@ -1,11 +1,14 @@
 package controllers;
 
-import beans.AthleteBean;
-import beans.RequestBean;
-import beans.WorkoutRoutineBean;
+import beans.*;
 import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
+import model.ExerciseForWorkoutRoutine;
+import model.WorkoutDay;
 import model.WorkoutRoutine;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateRequestController {
     public void askForNewWorkoutRoutine(RequestBean requestBean){
@@ -18,10 +21,26 @@ public class CreateRequestController {
     }
 
     public WorkoutRoutineBean loadWorkoutRoutine(AthleteBean athleteBean){
+        //todo verifica se funziona
         WorkoutRoutine workoutRoutine = new WorkoutRoutineDAO().loadWorkoutRoutine(athleteBean.getPersonalInfo().getFc()) ;
         return convertWorkoutRoutineBean(workoutRoutine);
     }
     public WorkoutRoutineBean convertWorkoutRoutineBean(WorkoutRoutine workoutRoutine){
-        return new WorkoutRoutineBean();
+        WorkoutRoutineBean workoutRoutineBean = new WorkoutRoutineBean();
+        for(WorkoutDay workoutDay : workoutRoutine.getWorkoutDayList()){
+            workoutRoutineBean.addWorkoutDayBean(new WorkoutDayBean(workoutDay.getDay(), getListExerciseBean(workoutDay)));
+        }
+        return workoutRoutineBean;
+    }
+
+    public List<ExerciseForWorkoutRoutineBean> getListExerciseBean(WorkoutDay workoutDay){
+        List<ExerciseForWorkoutRoutineBean> listExercise = new ArrayList<>();
+        for(ExerciseForWorkoutRoutine exercise : workoutDay.getExerciseList()){
+            ExerciseForWorkoutRoutineBean exe = new ExerciseForWorkoutRoutineBean(
+                    exercise.getName(), exercise.getStatus(), exercise.getDay(),
+                    exercise.getRepetitions(), exercise.getSets(), exercise.getRest());
+            listExercise.add(exe);
+        }
+        return listExercise;
     }
 }

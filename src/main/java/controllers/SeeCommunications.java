@@ -1,13 +1,5 @@
 package controllers;
 
-import beans.ExerciseBean;
-import beans.ExerciseStatusBean;
-import engineering.LoggedUserSingleton;
-import model.Exercise;
-import model.Trainer;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class SeeCommunications {

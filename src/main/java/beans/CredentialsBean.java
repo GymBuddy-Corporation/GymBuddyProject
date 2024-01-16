@@ -72,7 +72,6 @@ public class CredentialsBean {
 
 
     private boolean isValidPassword(String password) {
-        //TODO rivedere questa regex
         return true;
         //return Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).{8,45}$",password);
     }

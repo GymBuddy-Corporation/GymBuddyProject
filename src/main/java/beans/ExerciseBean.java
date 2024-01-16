@@ -1,10 +1,12 @@
 package beans;
 
+import model.ExerciseStatus;
+
 public class ExerciseBean {
     protected final String name;
-    protected ExerciseStatusBean statusExercise;
+    protected ExerciseStatus statusExercise;
 
-    public ExerciseBean(String name, ExerciseStatusBean statusExercise) {
+    public ExerciseBean(String name, ExerciseStatus statusExercise) {
         this.name = name;
         this.statusExercise = statusExercise;
     }
@@ -13,11 +15,11 @@ public class ExerciseBean {
         return name;
     }
 
-    public ExerciseStatusBean getStatusExercise() {
+    public ExerciseStatus getStatusExercise() {
         return statusExercise;
     }
 
-    public void setStatusExercise(ExerciseStatusBean statusExercise) {
+    public void setStatusExercise(ExerciseStatus statusExercise) {
         this.statusExercise = statusExercise;
     }
 }

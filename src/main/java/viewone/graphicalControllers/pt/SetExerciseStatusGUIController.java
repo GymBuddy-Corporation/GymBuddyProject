@@ -3,6 +3,7 @@ package viewone.graphicalControllers.pt;
 import beans.ExerciseBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
+import model.ExerciseStatus;
 import viewone.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import viewone.manageListView.ManageExerciseList;
 import exceptions.UserCastException;
@@ -17,7 +18,6 @@ import javafx.scene.control.TextField;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.ExerciseStatusButtonController;
-import beans.ExerciseStatusBean;
 
 import java.net.URL;
 import java.util.*;
@@ -31,13 +31,12 @@ public class SetExerciseStatusGUIController implements Initializable{
     @FXML private TextField searchExerciseText;
     @FXML private Button setStatusButton;
     private final ExerciseStatusButtonController exerciseStatusButtonController = new ExerciseStatusButtonController();;
-    private CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController;
 
     @FXML
     public void logout() throws Exception {
         SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
     }
-    @FXML public void searchExercise() throws UserCastException{
+    @FXML public void searchExercise(){
         //TODO controlla se funziona
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
@@ -54,14 +53,6 @@ public class SetExerciseStatusGUIController implements Initializable{
         suspendStatusButton.setVisible(bool);
         setStatusButton.setVisible(bool);
     }
-
-    /*public void setValue(CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) throws UserCastException {
-        this.satisfyWorkoutRoutineRequestGUIController = satisfyWorkoutRoutineRequestGUIController;
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController= new SatisfyWorkoutRequestsController();
-        ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
-        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
-        ManageExerciseList.updateList(exerciseDBList, exerciseBeanList);
-    }*/
 
     @FXML
     public void changeStatus(ActionEvent event) {
@@ -92,15 +83,13 @@ public class SetExerciseStatusGUIController implements Initializable{
 
     @FXML public void setButtonStatus() throws Exception{
         ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
-        ExerciseStatusBean selectedStatus = null;
+        ExerciseStatus selectedStatus = null;
 
         if(selectedButton == activeStatusButton){
-            selectedStatus = ExerciseStatusBean.ACTIVE;
-            System.out.println("Premuto active");
+            selectedStatus = ExerciseStatus.ACTIVE;
 
         } else if (selectedButton == suspendStatusButton){
-            selectedStatus = ExerciseStatusBean.SUSPENDED;
-            System.out.println("Premuto suspended");
+            selectedStatus = ExerciseStatus.SUSPENDED;
 
         } else {
             System.out.println("Premuto niente");
@@ -109,17 +98,9 @@ public class SetExerciseStatusGUIController implements Initializable{
 
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
-        satisfyWorkoutRoutineRequestGUIController = (CreateNewWorkoutRoutineGUIController) SwitchPage.getController("CreateNewWorkoutRoutine.fxml","pt");
+        SwitchPage.getController("CreateNewWorkoutRoutine.fxml","pt");
 
 
         SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml","pt",1);
     }
-
-    /*private ExerciseStatusBean getStatusBean(ExerciseStatus status){
-        if (status){
-            return ACTIVE;
-        }
-    }*/
-
-
 }

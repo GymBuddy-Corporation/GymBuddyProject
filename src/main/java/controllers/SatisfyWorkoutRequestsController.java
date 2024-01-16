@@ -20,10 +20,6 @@ import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
 
-    //TODO da risistemare; occhio che da un punto di 
-    // vista di svolgimento di codice questa classe
-    // deve scambiare i dati da bean a model e viceversa
-
     public SatisfyWorkoutRequestsController() {}
 
     public List<ExerciseBean> getLoggedTrainerGymExercises() {
@@ -31,23 +27,15 @@ public class SatisfyWorkoutRequestsController {
         return getExerciseBeanList(exerciseList);
     }
 
-    public static ExerciseStatus convertFromExerciseStatusBean(ExerciseStatusBean statusBean) {
-        return switch (statusBean) {
-            case ACTIVE -> ExerciseStatus.ACTIVE;
-            case SUSPENDED -> ExerciseStatus.SUSPENDED;
-            default -> null;
-        };
-    }
-
-    public void setExerciseStatus(ExerciseBean exercise, ExerciseStatusBean status) throws UserCastException {
-        ExerciseStatus statusToSet = convertFromExerciseStatusBean(status);
+    public void setExerciseStatus(ExerciseBean exercise, ExerciseStatus status) throws UserCastException {
 
         exercise.setStatusExercise(status);
 
         for (Exercise ex : LoggedTrainerSingleton.getSingleton().getExcerciseList()){
             if(ex.getName().equals(exercise.getName())){
-                ex.setStatus(statusToSet);
+                ex.setStatus(status);
                 //todo set status on DB new ExerciseDAO();
+                new ExerciseDAO().setExerciseStatus(ex, LoggedTrainerSingleton.getSingleton().getGym());
                 System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatusExercise());
             }
         }
@@ -57,7 +45,7 @@ public class SatisfyWorkoutRequestsController {
         //TODO sistema poi il metodo con atleta in questione e invio scheda
         //salva la nuova scheda
         //elimina la richiesta
-        //notifica l'atletaWorkoutRoutine
+        //notifica l'atleta
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
 
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
@@ -69,9 +57,6 @@ public class SatisfyWorkoutRequestsController {
 
             workoutRoutineModel.addWorkoutDay(newWorkoutDay);
         }
-        System.out.println("comment: " + workoutRoutineBean);
-
-        //TODO sistema la requestBean, gestisci che deve succedere
 
         Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
         if(receiver.getWorkoutRoutine() != null){
@@ -86,7 +71,7 @@ public class SatisfyWorkoutRequestsController {
     }
 
     private ExerciseForWorkoutRoutine convertToExerciseForWorkoutRoutine(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean, WorkoutRoutine workoutRoutineModel) {
-        ExerciseForWorkoutRoutine exerciseForWorkoutRoutine = new ExerciseForWorkoutRoutine(exerciseForWorkoutRoutineBean.getName(), convertFromExerciseStatusBean(exerciseForWorkoutRoutineBean.getStatusExercise()), exerciseForWorkoutRoutineBean.getDay(), workoutRoutineModel.getName());
+        ExerciseForWorkoutRoutine exerciseForWorkoutRoutine = new ExerciseForWorkoutRoutine(exerciseForWorkoutRoutineBean.getName(), exerciseForWorkoutRoutineBean.getStatusExercise(), exerciseForWorkoutRoutineBean.getDay(), workoutRoutineModel.getName());
         exerciseForWorkoutRoutine.setRepetitions(exerciseForWorkoutRoutineBean.getRepetitions());
         exerciseForWorkoutRoutine.setSets(exerciseForWorkoutRoutineBean.getSets());
         exerciseForWorkoutRoutine.setRest(exerciseForWorkoutRoutineBean.getRest());
@@ -110,18 +95,10 @@ public class SatisfyWorkoutRequestsController {
     public List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList) {
         List<ExerciseBean> exerciseBeanList = new ArrayList<>();
         for(Exercise exercise: exerciseList){
-            ExerciseStatusBean status = SatisfyWorkoutRequestsController.getExerciseStatusBeanFromExercise(exercise);
+            ExerciseStatus status = exercise.getStatus();
             exerciseBeanList.add(new ExerciseBean(exercise.getName(), status));
         }
         return exerciseBeanList;
-    }
-
-    public static ExerciseStatusBean getExerciseStatusBeanFromExercise(Exercise exercise) {
-        return switch (exercise.getStatus()) {
-            case ACTIVE -> ExerciseStatusBean.ACTIVE;
-            case SUSPENDED -> ExerciseStatusBean.SUSPENDED;
-            default -> null;
-        };
     }
 
     public void sendClarificationEmail(UserBean sender, UserBean receiver, String object, String content) throws URISyntaxException, IOException{
@@ -167,9 +144,6 @@ public class SatisfyWorkoutRequestsController {
     public void rejectRequest(RequestBean selectedRequest) {
         new RequestDAO().deleteRequest(selectedRequest.getAthleteBean().getPersonalInfo().getFc(),
                 selectedRequest.getTrainerFc());
-        //notificationsController.sendRejectRequestNotification(selectedRequest.getAthleteBean().getFiscalCode());
-        //create new model Request
-        //get the dao request equal to the selected request
-        //delete it
+
     }
 }

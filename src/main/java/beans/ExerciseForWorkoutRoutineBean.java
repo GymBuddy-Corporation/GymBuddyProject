@@ -1,6 +1,8 @@
 package beans;
 
 
+import model.ExerciseStatus;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +15,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
     private int sets;
     private String rest;
 
-    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatusBean statusExercise, String day, int repetitions, int sets, String rest) {
+    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatus statusExercise, String day, int repetitions, int sets, String rest) {
         super(name, statusExercise);
         this.day = day;
         this.rest = rest;
@@ -21,7 +23,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
         this.repetitions = repetitions;
     }
 
-    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatusBean statusExercise, String day) {
+    public ExerciseForWorkoutRoutineBean(String name, ExerciseStatus statusExercise, String day) {
         super(name, statusExercise);
         this.day = day;
     }
