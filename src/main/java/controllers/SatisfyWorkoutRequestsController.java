@@ -7,12 +7,12 @@ import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedTrainerSingleton;
-import engineering.LoggedUserSingleton;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
 import org.jetbrains.annotations.NotNull;
 import beans.RequestBean;
+import viewtwo.beans.DayBeanB;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -144,6 +144,5 @@ public class SatisfyWorkoutRequestsController {
     public void rejectRequest(RequestBean selectedRequest) {
         new RequestDAO().deleteRequest(selectedRequest.getAthleteBean().getPersonalInfo().getFc(),
                 selectedRequest.getTrainerFc());
-
     }
 }

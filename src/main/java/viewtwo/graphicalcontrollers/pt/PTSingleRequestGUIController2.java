@@ -4,6 +4,7 @@ import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import utils.MainStage;
@@ -18,6 +19,9 @@ import java.util.ResourceBundle;
 public class PTSingleRequestGUIController2 implements Initializable {
     @FXML private Label requestLabel;
     @FXML private Label nameAthleteLabel;
+    @FXML private Button buttonSatisfyRequest;
+    @FXML private Button buttonAskClarification;
+    @FXML private Button buttonRejectRequest;
     private RequestBean requestBean;
     public void setStuff(RequestBean requestBean){
         this.requestBean = requestBean;
@@ -26,9 +30,8 @@ public class PTSingleRequestGUIController2 implements Initializable {
     }
     @FXML
     public void satisfyRequest() throws Exception {
-
-        PTSingleRequestGUIController2 controller = (PTSingleRequestGUIController2) MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
-        //Objects.requireNonNull(controller).setValue(selectedRequest);
+        CreateNewWorkoutRoutineGUIController2 controller = (CreateNewWorkoutRoutineGUIController2) MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
+        Objects.requireNonNull(controller).setValue(requestBean);
     }
     @FXML
     public void goBack() throws Exception {

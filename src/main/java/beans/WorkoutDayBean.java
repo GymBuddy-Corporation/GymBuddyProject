@@ -5,9 +5,13 @@ import java.util.List;
 
 public class WorkoutDayBean {
 
-    private final String name;
+    private String name;
 
     List<ExerciseForWorkoutRoutineBean> exerciseBeanList;
+
+    public WorkoutDayBean(){
+        this.exerciseBeanList = new ArrayList<>();
+    }
 
     public WorkoutDayBean(String name){
         this.name = name;

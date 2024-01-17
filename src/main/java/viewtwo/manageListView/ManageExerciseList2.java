@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import model.ExerciseStatus;
 import viewone.graphicalControllers.pt.CreateNewWorkoutRoutineGUIController;
 import viewone.graphicalControllers.pt.SetExerciseStatusGUIController;
+import viewtwo.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController2;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,67 +20,77 @@ public class ManageExerciseList2 {
     private ManageExerciseList2() {
     }
 
-    public static void setListenerDB(ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerDB(ListView<ExerciseBean> exerciseList, CreateNewWorkoutRoutineGUIController2 controller) {
         exerciseList.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends ExerciseBean> observableValue, ExerciseBean oldItem, ExerciseBean newItem) -> listEventDB(newItem, satisfyWorkoutRoutineRequestGUIController)
+                (ObservableValue<? extends ExerciseBean> observableValue, ExerciseBean oldItem, ExerciseBean newItem) ->
+                        listEventDB(newItem, controller)
         );
     }
 
-    private static void listEventDB(ExerciseBean newItem, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    private static void listEventDB(ExerciseBean newItem, CreateNewWorkoutRoutineGUIController2 controller) {
         if (newItem != null) {
-            satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);
-            satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(true);
-            satisfyWorkoutRoutineRequestGUIController.setVisibleCancel(false);
-            satisfyWorkoutRoutineRequestGUIController.resetInputCollectors();
-            satisfyWorkoutRoutineRequestGUIController.resetSelection(1);
+            controller.setVisibleLabel(true);
+            controller.setVisibleAdd(true);
+            controller.setVisibleCancel(false);
+            //controller.resetInputCollectors();
+            controller.resetSelection(1);
         }
     }
 
-    public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
-        ObservableList<ExerciseBean> filteredList = exerciseBeanList.stream()
+    public static void updateListFiltered(ListView<ExerciseBean> exerciseListView, List<ExerciseBean> exerciseList) {
+        List<ExerciseBean> filteredList = exerciseList.stream()
                 .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise()))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableList));
+                .collect(Collectors.toList());
 
-        exerciseBeanListView.setItems(filteredList);
+        ObservableList<ExerciseBean> filteredObservableList = FXCollections.observableList(filteredList);
+        exerciseListView.setItems(filteredObservableList);
     }
 
-    public static void updateListFilteredDB(ListView<ExerciseForWorkoutRoutineBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
-        ObservableList<ExerciseForWorkoutRoutineBean> filteredList = exerciseBeanListView.getItems().stream()
-                .filter(exerciseForWorkoutRoutineBean -> exerciseForWorkoutRoutineBean != null &&
-                        exerciseBeanList.contains(exerciseForWorkoutRoutineBean) &&
-                        ExerciseStatus.ACTIVE.equals(exerciseForWorkoutRoutineBean.getStatusExercise()))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableList));
+    public static void updateListFilteredDB(ListView<ExerciseForWorkoutRoutineBean> exerciseListView, List<ExerciseBean> exerciseList) {
+        List<ExerciseForWorkoutRoutineBean> filteredList = exerciseListView.getItems().stream()
+                .filter(exerciseForWorkoutRoutineBean ->
+                        exerciseForWorkoutRoutineBean != null &&
+                                exerciseList.contains(exerciseForWorkoutRoutineBean) &&
+                                ExerciseStatus.ACTIVE.equals(exerciseForWorkoutRoutineBean.getStatusExercise()))
+                .collect(Collectors.toList());
 
-        exerciseBeanListView.setItems(filteredList);
+        ObservableList<ExerciseForWorkoutRoutineBean> filteredObservableList = FXCollections.observableList(filteredList);
+        exerciseListView.setItems(filteredObservableList);
     }
 
-    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, CreateNewWorkoutRoutineGUIController2 controller) {
         exerciseList.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends ExerciseForWorkoutRoutineBean> observableValue, ExerciseForWorkoutRoutineBean oldItem, ExerciseForWorkoutRoutineBean newItem) -> listEventRoutineWorkout(newItem, satisfyWorkoutRoutineRequestGUIController)
+                (ObservableValue<? extends ExerciseForWorkoutRoutineBean> observableValue, ExerciseForWorkoutRoutineBean oldItem, ExerciseForWorkoutRoutineBean newItem) ->
+                        listEventRoutineWorkout(newItem, controller)
         );
     }
 
-    private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, CreateNewWorkoutRoutineGUIController2 controller) {
         if (newItem != null) {
-            satisfyWorkoutRoutineRequestGUIController.setExerciseDetails(newItem.getRepetitions(), newItem.getSets(), newItem.getRest());
-            satisfyWorkoutRoutineRequestGUIController.setVisibleLabel(true);
-            satisfyWorkoutRoutineRequestGUIController.setVisibleAdd(false);
-            satisfyWorkoutRoutineRequestGUIController.setVisibleCancel(true);
-            satisfyWorkoutRoutineRequestGUIController.resetSelection(2);
+            //controller.setExerciseDetails(newItem.getRepetitions(), newItem.getSets(), newItem.getRest());
+            controller.setVisibleLabel(true);
+            controller.setVisibleAdd(false);
+            controller.setVisibleCancel(true);
+            controller.resetSelection(2);
         }
     }
 
-    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SetExerciseStatusGUIController setExerciseStatusGUIController) {
+    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SetExerciseStatusGUIController setController) {
         exerciseDBList.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends ExerciseBean> observableValue, ExerciseBean oldItem, ExerciseBean newItem) -> listEventDBSet(newItem, setExerciseStatusGUIController)
+                (ObservableValue<? extends ExerciseBean> observableValue, ExerciseBean oldItem, ExerciseBean newItem) ->
+                        listEventDBSet(newItem, setController)
         );
     }
 
-    private static void listEventDBSet(ExerciseBean newItem, SetExerciseStatusGUIController setExerciseStatusGUIController) {
+    private static void listEventDBSet(ExerciseBean newItem, SetExerciseStatusGUIController setController) {
         if (newItem != null) {
-            setExerciseStatusGUIController.setVisibleButtons(true);
-            ExerciseBean selectedExercise = setExerciseStatusGUIController.getExerciseDBList().getSelectionModel().getSelectedItem();
-            setExerciseStatusGUIController.setFireBotton(selectedExercise.getStatusExercise() == ExerciseStatus.ACTIVE ? 1 : 2);
+            setController.setVisibleButtons(true);
+            ExerciseBean selectedExercise = setController.getExerciseDBList().getSelectionModel().getSelectedItem();
+            if (selectedExercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
+                //.setFireButton(1);
+            } else {
+                //setController.setFireButton(2);
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ public class ManageExerciseList {
 
     private ManageExerciseList() {}
 
-    public static void setListenerDB(ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerDB(ListView<ExerciseBean> exerciseList, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -41,7 +41,6 @@ public class ManageExerciseList {
     }
 
     public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
-        // Filter out exercises with status other than ACTIVE
         List<ExerciseBean> filteredList = exerciseBeanList.stream()
                 .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise()))
                 .collect(Collectors.toList());
@@ -66,7 +65,7 @@ public class ManageExerciseList {
     }
 
 
-    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override

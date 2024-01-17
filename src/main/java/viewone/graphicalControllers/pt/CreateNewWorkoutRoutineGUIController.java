@@ -3,11 +3,9 @@ package viewone.graphicalControllers.pt;
 import beans.*;
 import controllers.UserAccessController;
 import engineering.LoggedTrainerSingleton;
-import engineering.LoggedUserSingleton;
 import engineering.Observer;
 import viewone.manageListView.listCells.ExerciseForWOListCellFactory;
 import viewone.manageListView.listCells.ExerciseListCellFactory;
-import exceptions.NoLoggedUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +30,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
     private RequestBean requestBean;
     private String selectedDay;
-    private final WorkoutRoutineBean workoutRoutine = new WorkoutRoutineBean(); //TODO replace hash map with this
+    private final WorkoutRoutineBean workoutRoutine = new WorkoutRoutineBean();
 
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist;
@@ -44,7 +42,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     @FXML private Text labelRest;
     @FXML private Button addExerciseButton;
     @FXML private Button cancelExerciseButton;
-    @FXML private Label repetLabelExerciseInserted;
+    @FXML private Label repeatLabelExerciseInserted;
     @FXML private Label setLabelExerciseInserted;
     @FXML private Label restLabelExerciseInserted;
     @FXML private Text athletesNameRoutineText;
@@ -58,7 +56,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
     public void setVisibleCancel(Boolean bool) {
         cancelExerciseButton.setVisible(bool);
-        repetLabelExerciseInserted.setVisible(bool);
+        repeatLabelExerciseInserted.setVisible(bool);
         setLabelExerciseInserted.setVisible(bool);
         restLabelExerciseInserted.setVisible(bool);
     }
@@ -113,8 +111,8 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         for (Exercise ex : LoggedTrainerSingleton.getSingleton().getExcerciseList()) {
             ex.addObserver(this);
         }
-        ManageExerciseList.setListenerDB(exerciseDBList, satisfyWorkoutRequestsController, this);
-        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, satisfyWorkoutRequestsController, this);
+        ManageExerciseList.setListenerDB(exerciseDBList, this);
+        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, this);
 
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
         ManageExerciseList.updateListFilteredDB(routineExerciselist, exerciseBeanList);
@@ -124,7 +122,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
 
     public void setExerciseDetails(int repetitions, int sets, String rest){
-        repetLabelExerciseInserted.setText(Integer.toString(repetitions));
+        repeatLabelExerciseInserted.setText(Integer.toString(repetitions));
         setLabelExerciseInserted.setText(Integer.toString(sets));
         restLabelExerciseInserted.setText(rest);
     }
@@ -158,13 +156,10 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
 
                 WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
 
-                // If the workout day doesn't exist, create it
                 if (workoutDay == null) {
                     workoutDay = new WorkoutDayBean(newExercise.getDay());
                     workoutRoutine.addWorkoutDayBean(workoutDay);
                 }
-
-                // Check if the exercise is already added to the workout day
                 for (ExerciseForWorkoutRoutineBean existingExercise : workoutDay.getExerciseList()) {
                     if (existingExercise.getName().equals(newExercise.getName())) {
                         System.out.println("Exercise '" + newExercise.getName() + "' is already added to the workout day.");
@@ -172,7 +167,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
                     }
                 }
 
-                // Add the exercise to the workout day
                 workoutDay.addExerciseBean(newExercise);
                 List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
                 for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(newExercise.getDay()).getExerciseBeanList()) {
@@ -181,7 +175,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
                     }
                 }
 
-                // Set the filtered list in the ListView
                 routineExerciselist.getItems().setAll(activeExercises);
                 } else {
                 //TODO gestisci il non inserimento
@@ -194,7 +187,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
 
     public void removeExerciseFromDWorkoutRoutineBean (ExerciseForWorkoutRoutineBean exercise) {
-        // Iterate through the map and remove the exercise for the corresponding day
         workoutRoutine.getWorkoutDay(exercise.getDay()).removeExerciseBean(exercise);
     }
 
@@ -203,12 +195,10 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         ExerciseForWorkoutRoutineBean selectedExercise = routineExerciselist.getSelectionModel().getSelectedItem();
         SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         if (selectedExercise != null) {
-            // Create a copy of the routineExerciselist items to avoid ConcurrentModificationException
             List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseList());
 
             for (ExerciseForWorkoutRoutineBean item : copyList) {
                 if (selectedExercise.getName().equals(item.getName())) {
-                    //routineExerciselist.remove(item);
                     removeExerciseFromDWorkoutRoutineBean(item);
                     break;
                 }
@@ -221,7 +211,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
             }
         }
 
-        // Set the filtered list in the ListView
         routineExerciselist.getItems().setAll(activeExercises);
         setVisibleLabel(false);
         setVisibleCancel(false);
@@ -274,7 +263,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     public void updateSelectedExerciseList() {
         List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
 
-        // Check if the WorkoutDayBean is present
         WorkoutDayBean selectedWorkoutDay = workoutRoutine.getWorkoutDay(selectedDay);
         if (selectedWorkoutDay != null) {
             for (ExerciseForWorkoutRoutineBean exercise : selectedWorkoutDay.getExerciseBeanList()) {
@@ -308,11 +296,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
 
             for (ExerciseForWorkoutRoutineBean ex : exerciseList) {
                 if (ex.getName().equals(exercise)) {
-                    if (status.equals(ExerciseStatus.ACTIVE)){
-                        ex.setStatusExercise(ExerciseStatus.ACTIVE);
-                    } else if (status.equals(ExerciseStatus.SUSPENDED)){
-                        ex.setStatusExercise(ExerciseStatus.SUSPENDED);
-                    }
+                    ex.setStatusExercise(status);
                 }
             }
         }

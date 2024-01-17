@@ -23,19 +23,19 @@
             <Label fx:id="RestLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="317.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
             <VBox id="vbox" alignment="CENTER_LEFT" layoutX="685.0" layoutY="126.0" prefHeight="89.0" prefWidth="50.0" style="-fx-padding: 20 0 20 0; -fx-border-color: #911701; -fx-border-radius: 5em; -fx-spacing: 7;" stylesheets="@../GymBuddyCSS2.css" AnchorPane.rightAnchor="64.60000000000002">
                <children>
-                  <RadioButton mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Mon" textFill="#911701" />
-                  <RadioButton mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Tue" textFill="#911701" />
-                  <RadioButton mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Wed" textFill="#911701" />
-                  <RadioButton mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Thu" textFill="#911701" />
-                  <RadioButton mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Fri" textFill="#911701" />
-                  <RadioButton mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Sat" textFill="#911701" />
-                  <RadioButton mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Sun" textFill="#911701" />
+                  <RadioButton fx:id="mondayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Mon" textFill="#911701" />
+                  <RadioButton fx:id="tuesdayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Tue" textFill="#911701" />
+                  <RadioButton fx:id="wednesdayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Wed" textFill="#911701" />
+                  <RadioButton fx:id="thursdayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Thu" textFill="#911701" />
+                  <RadioButton fx:id="fridayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Fri" textFill="#911701" />
+                  <RadioButton fx:id="saturdayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Sat" textFill="#911701" />
+                  <RadioButton fx:id="sundayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Sun" textFill="#911701" />
                </children>
             </VBox>
             <AnchorPane layoutX="64.0" layoutY="87.0" prefHeight="170.0" prefWidth="260.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="87.0">
                <children>
-                  <ListView layoutX="5.0" layoutY="38.0" prefHeight="95.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" AnchorPane.leftAnchor="5.0" />
-                  <TextField layoutX="28.0" layoutY="10.0" prefHeight="26.0" prefWidth="205.0" promptText="Find an exercise" stylesheets="@../GymBuddyCSS2.css" />
+                  <ListView fx:id="exerciseDBList2" layoutX="5.0" layoutY="38.0" prefHeight="95.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" AnchorPane.leftAnchor="5.0" />
+                  <TextField layoutX="28.0" layoutY="10.0" prefHeight="26.0" prefWidth="205.0" promptText="Find an exercise" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="10.0" />
                   <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="208.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/LogoSearch.png" />
@@ -43,7 +43,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="32.0" prefHeight="30.0" prefWidth="217.0" text="Users' Request" textAlignment="CENTER" textFill="#911701" AnchorPane.leftAnchor="291.0" AnchorPane.topAnchor="32.0">
+            <Label fx:id="labelUser" alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="32.0" prefHeight="30.0" prefWidth="217.0" text="Users' Request" textAlignment="CENTER" textFill="#911701" AnchorPane.leftAnchor="291.0" AnchorPane.topAnchor="32.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -53,10 +53,10 @@
                   <Image url="@../images/LogoBack.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="345.0" layoutY="87.0" prefHeight="291.0" prefWidth="322.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
+            <AnchorPane layoutX="345.0" layoutY="87.0" prefHeight="291.0" prefWidth="322.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;" AnchorPane.topAnchor="87.0">
                <children>
-                  <ListView layoutX="5.0" layoutY="38.0" prefHeight="215.0" prefWidth="313.0" stylesheets="@../GymBuddyCSS2.css" />
-                  <Label fx:id="requestLabel1" alignment="CENTER" layoutX="52.0" layoutY="7.0" prefHeight="30.0" prefWidth="218.0" text="Workout Routine" textFill="#911701" />
+                  <ListView fx:id="routineExerciselist2" layoutX="5.0" layoutY="38.0" prefHeight="215.0" prefWidth="313.0" stylesheets="@../GymBuddyCSS2.css" />
+                  <Label fx:id="requestLabel1" alignment="CENTER" layoutX="52.0" layoutY="7.0" prefHeight="30.0" prefWidth="218.0" text="Workout Routine" textFill="#911701" AnchorPane.topAnchor="7.0" />
                </children>
             </AnchorPane>
             <Label fx:id="repetitionLabel" alignment="CENTER" layoutX="130.0" layoutY="261.0" prefHeight="30.0" prefWidth="76.0" text="Repetitions" textFill="#911701" />
@@ -72,7 +72,7 @@
             <Label fx:id="SetsLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="290.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
             <Button fx:id="addButton" layoutX="175.0" layoutY="352.0" mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Add" textFill="#911701" />
             <Button fx:id="removeButton" layoutX="164.0" layoutY="352.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="62.0" stylesheets="@../GymBuddyCSS2.css" text="Remove" textFill="#911701" />
-            <Button fx:id="removeButton1" layoutX="381.0" layoutY="395.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" text="Want to change the status of an exercise?" textFill="#911701" />
+            <Button fx:id="removeButton1" layoutX="381.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" text="Want to change the status of an exercise?" textFill="#911701" />
          </children>
       </AnchorPane>
    </children>
