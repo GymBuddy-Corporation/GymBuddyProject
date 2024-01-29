@@ -38,7 +38,6 @@ public class CredentialsBean {
     }
 
     public void setEmail(String email) throws DataFieldException {
-
         if(email.isEmpty()){
             throw new DataFieldException(FieldsEnum.email, ProblemEnum.empty);
         } else if(isValidEmail(email)){

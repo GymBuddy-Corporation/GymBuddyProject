@@ -3,6 +3,7 @@ package viewone.graphicalControllers.pt;
 import beans.RequestBean;
 import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.NoLoggedUserException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -41,11 +42,21 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
 
     @Override
     public void popUpConfirm() throws IOException {
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
         //TODO qua fare la scrittura su DB
         this.workoutRoutine.setComment(commentTextArea.getText());
         this.workoutRoutine.setName(nameRoutineTextArea.getText());
-        satisfyWorkoutRequestsController.sendWorkoutRoutine(requestBean, this.workoutRoutine);
+        controller.sendWorkoutRoutine(requestBean, this.workoutRoutine);
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
 
     }

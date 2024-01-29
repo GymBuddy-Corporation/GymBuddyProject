@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.EmailSystemGUIController2">
+   <children>
+      <Label layoutX="351.0" layoutY="56.0" text="Email Form" textFill="#911701" AnchorPane.leftAnchor="351.0" AnchorPane.topAnchor="56.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonSendCommunicationAthlete" layoutX="305.0" layoutY="362.0" mnemonicParsing="false" onAction="#sendEmail" prefHeight="48.0" prefWidth="189.0" stylesheets="@../GymBuddyCSS2.css" text="Send Email" textFill="#911701" />
+      <ImageView fx:id="backButton" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/LogoBack.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="objectTextField" alignment="TOP_CENTER" layoutX="136.0" layoutY="105.0" prefHeight="48.0" prefWidth="526.0" promptText="Insert the Email's object" stylesheets="@../GymBuddyCSS2.css" />
+      <TextField fx:id="contentTextField" alignment="TOP_CENTER" layoutX="82.0" layoutY="166.0" prefHeight="178.0" prefWidth="634.0" promptText="Insert here the Email's content" stylesheets="@../GymBuddyCSS2.css" />
+   </children>
+</AnchorPane>

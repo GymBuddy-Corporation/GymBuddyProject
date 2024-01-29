@@ -2,6 +2,7 @@ package viewtwo.graphicalcontrollers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -27,9 +28,19 @@ public class PTHomeGUIController2 implements Initializable {
     }
 
     private void initializeRequestList() {
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
         try {
-            ManageRequestList2.setRequestList(requestList, satisfyWorkoutRequestsController);
+            ManageRequestList2.setRequestList(requestList, controller);
 
             requestList.getSelectionModel().selectedItemProperty().addListener(
                     (ObservableValue<? extends RequestBean> observable, RequestBean oldItem, RequestBean newItem) -> {
@@ -45,8 +56,9 @@ public class PTHomeGUIController2 implements Initializable {
 
     private void handleSelectedRequest(RequestBean newItem) {
         try {
-            //todo passa la richiesta alla pagina successiva
-            MainMenuSingleton.getMainMenu().setActivity("ptSingleRequest.fxml", "pt");
+            PTSingleRequestGUIController2 controller = (PTSingleRequestGUIController2) MainMenuSingleton.getMainMenu().setActivity("ptSingleRequest.fxml", "pt");
+            controller.setStuff(newItem);
+        //todo passa la richiesta alla pagina successiva
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

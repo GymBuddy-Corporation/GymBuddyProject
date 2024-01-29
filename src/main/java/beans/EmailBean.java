@@ -1,16 +1,34 @@
 package beans;
 
+import exceptions.EmailFormException;
+import exceptions.dataException.DataFieldException;
+import exceptions.dataException.TyperEnumerations.FieldsEnum;
+import exceptions.dataException.TyperEnumerations.ProblemEnum;
+
 public class EmailBean {
     private final UserBean sender;
     private final UserBean receiver;
-    private final String object;
-    private final String body;
+    private String object;
+    private String body;
 
-    public EmailBean(UserBean sender, UserBean receiver, String object, String text) {
+
+    public EmailBean(UserBean sender, UserBean receiver) throws EmailFormException{
         this.sender = sender;
         this.receiver = receiver;
-        this.object = object;
-        this.body = text;
+    }
+    public void setObject(String object) throws EmailFormException {
+        if(object.isEmpty()){
+                throw new EmailFormException("Email object field empty");
+        } else {
+            this.object = object;
+        }
+    }
+    public void setBody(String body) throws EmailFormException {
+        if(body.isEmpty()){
+            throw new EmailFormException("Email content field empty");
+        } else {
+            this.body = body;
+        }
     }
 
 

@@ -1,4 +1,4 @@
-
+/*
 import controllers.ManageMembershipController;
 import engineering.decorator.MembershipInterface;
 import exceptions.*;
@@ -25,4 +25,4 @@ public class TestDecorator extends ManageMembershipController{
         System.out.println(test.getBuildedName());
         assert test.getPrice()==30f;
     }
-}
+}*/

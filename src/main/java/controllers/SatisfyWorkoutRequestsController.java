@@ -7,6 +7,8 @@ import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedTrainerSingleton;
+import exceptions.EmailFormException;
+import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
 import model.*;
@@ -20,7 +22,11 @@ import java.util.*;
 
 public class SatisfyWorkoutRequestsController {
 
-    public SatisfyWorkoutRequestsController() {}
+    public SatisfyWorkoutRequestsController() throws NoLoggedUserException{
+        if(LoggedTrainerSingleton.getSingleton() == null){
+            throw new NoLoggedUserException();
+        }
+    }
 
     public List<ExerciseBean> getLoggedTrainerGymExercises() {
         List<Exercise> exerciseList = LoggedTrainerSingleton.getSingleton().getExcerciseList();
@@ -42,10 +48,6 @@ public class SatisfyWorkoutRequestsController {
     }
 
     public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean){
-        //TODO sistema poi il metodo con atleta in questione e invio scheda
-        //salva la nuova scheda
-        //elimina la richiesta
-        //notifica l'atleta
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
 
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
@@ -101,13 +103,11 @@ public class SatisfyWorkoutRequestsController {
         return exerciseBeanList;
     }
 
-    public void sendClarificationEmail(UserBean sender, UserBean receiver, String object, String content) throws URISyntaxException, IOException{
-        new EmailSystemBoundary().sendEmail(new EmailBean(
-                sender,
-                receiver,
-                object,
-                content
-        ));
+    public void sendClarificationEmail(UserBean sender, UserBean receiver, String object, String content) throws URISyntaxException, IOException, EmailFormException {
+        EmailBean emailBean = new EmailBean(sender, receiver);
+        emailBean.setObject(object);
+        emailBean.setBody(content);
+        new EmailSystemBoundary().sendEmail(emailBean);
         System.out.println("Sender: " + sender + " Receiver: " + receiver + " object: " + object + " content: " + content);
     }
 

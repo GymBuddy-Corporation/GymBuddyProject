@@ -2,6 +2,7 @@ package viewtwo.graphicalcontrollers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.NoLoggedUserException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,21 +13,19 @@ import utils.SwitchPage;
 import viewone.graphicalControllers.pt.EmailSystemGUIController;
 import viewtwo.engegnering.MainMenuSingleton;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class PTSingleRequestGUIController2 implements Initializable {
+public class PTSingleRequestGUIController2 {
     @FXML private Label requestLabel;
     @FXML private Label nameAthleteLabel;
-    @FXML private Button buttonSatisfyRequest;
-    @FXML private Button buttonAskClarification;
-    @FXML private Button buttonRejectRequest;
     private RequestBean requestBean;
     public void setStuff(RequestBean requestBean){
         this.requestBean = requestBean;
         requestLabel.setText(requestBean.getInfo());
-        nameAthleteLabel.setText(requestBean.getAthleteBean().getUsername());
+        nameAthleteLabel.setText(requestBean.getAthleteBean().getUsername() + "'s request");
     }
     @FXML
     public void satisfyRequest() throws Exception {
@@ -39,8 +38,18 @@ public class PTSingleRequestGUIController2 implements Initializable {
     }
     @FXML
     public void rejectRequest() throws Exception {
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        //satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        controller.rejectRequest(requestBean);
         MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
         /*try{
 
@@ -52,19 +61,12 @@ public class PTSingleRequestGUIController2 implements Initializable {
                 throw new RuntimeException(ex);
             }
         }*/
-
-
     }
 
     @FXML
     public void askClarification() throws Exception {
-        //EmailSystemGUIController controller = (EmailSystemGUIController) SwitchPage.setStage(MainStage.getStage(),"EmailSystem.fxml","pt",1);
-        //Objects.requireNonNull(controller).setValue(selectedRequest);
+        EmailSystemGUIController2 controller = (EmailSystemGUIController2) MainMenuSingleton.getMainMenu().setActivity("EmailSystem2.fxml","pt");
+        Objects.requireNonNull(controller).setValue(requestBean);
         //todo da fare grafica MainMenuSingleton.getMainMenu().setActivity("ManageCommunication.fxml", "pt");
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
     }
 }
