@@ -1,26 +1,14 @@
 package database.dao;
 
-/*import database.DatabaseConnectionSingleton;
-import database.queries.TrainerQueries;
-import database.queries.UserQueries;
-import exceptions.DBConnectionFailedException;
-import exceptions.DBUnreachableException;
-import exceptions.runtime_exception.ResultSetIsNullException;*/
+
 import database.SingletonConnection;
-import exceptions.NoUserFoundException;
-import model.Athlete;
+
 import model.Gym;
 import model.Trainer;
 import database.query.Queries;
 import model.record.Credentials;
 import model.record.PersonalInfo;
-
-/*import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;*/
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class TrainerDAO {

@@ -1,10 +1,8 @@
 package engineering;
 
-import beans.GymBean;
 import beans.TrainerBean;
 import exceptions.AlreadyLoggedUserException;
 import model.Exercise;
-import model.Gym;
 import model.Trainer;
 
 import java.util.List;

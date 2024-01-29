@@ -12,24 +12,25 @@ public class GymInfoBean {
     private final String iban;
     private final String country;
 
+    /*This is a constructor without syntax check and is used by controller*/
 
     public GymInfoBean(String name, String address, String city, String iban, String country) {
-        /*This is a constructor without syntax check and is used by controller*/
         this.name = name;
         this.address = address;
         this.city = city;
         this.iban = iban;
         this.country = country;
     }
+    //used only for searching gym stuff knowing his name;
+
     public GymInfoBean(String name){
-        //used only for searching gym stuff knowing his name;
         this.name=name;
         this.address = null;
         this.city = null;
         this.iban = null;
         this.country = null;
     }
-    private void checkName(String name) /*throws InvalidUserInfoException, EmptyFieldsException*/ {
+    private void checkName(String name) {
         if(name.isEmpty()){
             System.out.println("Name field empty.");
             /*throw new EmptyFieldsException();*/

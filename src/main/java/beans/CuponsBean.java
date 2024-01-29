@@ -1,6 +1,5 @@
 package beans;
 
-import engineering.decorator.MembershipInterface;
 
 public class CuponsBean {
     private final int code;

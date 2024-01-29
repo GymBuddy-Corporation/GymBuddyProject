@@ -1,6 +1,5 @@
 package viewone.manageListView.listCells;
 
-import beans.AthleteBean;
 import beans.GymInfoBean;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

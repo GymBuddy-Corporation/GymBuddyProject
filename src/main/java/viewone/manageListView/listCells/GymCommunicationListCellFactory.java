@@ -1,7 +1,6 @@
 package viewone.manageListView.listCells;
 
 
-import beans.AthleteBean;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;

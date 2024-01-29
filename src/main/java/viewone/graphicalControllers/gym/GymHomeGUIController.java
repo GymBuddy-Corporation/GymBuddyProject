@@ -2,16 +2,11 @@ package viewone.graphicalControllers.gym;
 
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
-import exceptions.CostumException;
-import exceptions.NoUserFoundException;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 

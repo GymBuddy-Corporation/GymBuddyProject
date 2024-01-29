@@ -1,6 +1,5 @@
 package beans;
 
-import exceptions.dataException.DataFieldException;
 
 public class AthleteBean extends PersonBean{
     private String trainerFC;

@@ -3,11 +3,9 @@ package viewone.graphicalControllers.pt;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.LoggedUserSingleton;
-import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
 

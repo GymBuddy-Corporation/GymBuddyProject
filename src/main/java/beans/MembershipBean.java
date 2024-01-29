@@ -26,7 +26,6 @@ public class MembershipBean {
         this.durationInDays = durationInDays;
         this.pointsAwardedOnBuy = pointsAwardedOnBuy;
     }
-    //Used for final Membership
     public MembershipBean(String gymName, String name, float price, int durationInDays, int pointsAwardedOnBuy){
         this.code = 0;
         this.gymName=gymName;

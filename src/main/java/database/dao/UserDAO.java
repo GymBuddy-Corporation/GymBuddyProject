@@ -1,29 +1,17 @@
 package database.dao;
 
-/*import database.DatabaseConnectionSingleton;
-import database.queries.UserQueries;
-import exceptions.DBConnectionFailedException;
-import exceptions.DBUnreachableException;
-import exceptions.UserNotFoundException;
-import exceptions.runtime_exception.IsNeitherATrainerNorAnAthleteException;*/
 import database.SingletonConnection;
 import exceptions.NoUserFoundException;
-import exceptions.dataException.DataFieldException;
+
 import model.*;
 import model.record.Credentials;
-import model.record.PersonalInfo;
-import database.query.Queries;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-/*import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;*/
+
+
 
 public class UserDAO {
 
@@ -34,7 +22,6 @@ public class UserDAO {
     private static final Integer TRAINER_TYPE = 1 ;
     private static final Integer ATHLETE_TYPE = 2 ;
 
-    // Constructor accepting a Connection
 
     private @NotNull User getUser(String username) throws SQLException, NoUserFoundException {
         AthleteDAO aDao = new AthleteDAO();

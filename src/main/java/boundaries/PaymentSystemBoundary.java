@@ -4,7 +4,6 @@ import beans.PaymentBean;
 import beans.PaymentConfirmationBean;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class PaymentSystemBoundary {
 

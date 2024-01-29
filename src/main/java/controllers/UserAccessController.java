@@ -2,7 +2,6 @@ package controllers;
 
 import beans.CredentialsBean;
 import beans.UserBean;
-import database.SingletonConnection;
 import database.dao.UserDAO;
 import engineering.LoggedAthleteSingleton;
 import engineering.LoggedGymSingleton;
@@ -20,7 +19,6 @@ import engineering.LoggedUserSingleton;
 import model.record.Credentials;
 
 import java.io.*;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 

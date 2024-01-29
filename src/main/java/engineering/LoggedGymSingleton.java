@@ -1,14 +1,9 @@
 package engineering;
 
 import beans.GymBean;
-import beans.UserBean;
-import com.mysql.cj.log.Log;
 import exceptions.AlreadyLoggedUserException;
-import exceptions.dataException.DataFieldException;
 import model.Exercise;
 import model.Gym;
-import model.Trainer;
-import model.User;
 
 import java.util.List;
 

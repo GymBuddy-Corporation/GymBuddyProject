@@ -1,7 +1,6 @@
 package database.dao;
 
 import database.SingletonConnection;
-import model.Gym;
 import model.WorkoutDay;
 import model.WorkoutRoutine;
 

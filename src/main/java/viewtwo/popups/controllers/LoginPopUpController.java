@@ -1,7 +1,6 @@
 package viewtwo.popups.controllers;
 
 import engineering.popups.PopupBaseController;
-import exceptions.CostumException;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;

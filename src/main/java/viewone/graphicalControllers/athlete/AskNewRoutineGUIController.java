@@ -6,15 +6,11 @@ import beans.WorkoutRoutineBean;
 import controllers.CreateRequestController;
 import controllers.UserAccessController;
 import engineering.LoggedAthleteSingleton;
-import engineering.LoggedUserSingleton;
-import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import utils.MainStage;
 import utils.SwitchPage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 

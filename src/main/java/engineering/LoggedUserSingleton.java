@@ -2,11 +2,7 @@ package engineering;
 
 import beans.*;
 
-import exceptions.AlreadyLoggedUserException;
-import exceptions.NoLoggedUserException;
-import exceptions.dataException.DataFieldException;
 import model.*;
-import java.util.List;
 
 public class LoggedUserSingleton {
 

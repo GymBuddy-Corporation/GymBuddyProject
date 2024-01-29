@@ -1,12 +1,5 @@
 package viewone.graphicalControllers.launcher;
-import beans.AthleteBean;
-import beans.GymBean;
-import beans.TrainerBean;
-import beans.UserBean;
-import controllers.UserAccessController;
-import engineering.LoggedUserSingleton;
-import exceptions.AlreadyLoggedUserException;
-import exceptions.NoUserFoundException;
+
 import utils.MainStage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,9 +8,8 @@ import javafx.scene.image.ImageView;
 import utils.SwitchPage;
 import viewone.graphicalControllers.launcher.gym.GymFirstGUIController;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
+
 import java.util.Objects;
 import java.util.ResourceBundle;
 

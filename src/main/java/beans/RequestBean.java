@@ -26,7 +26,7 @@ public class RequestBean {
         return info;
     }
 
-    public void setInfo(String info) /*throws TextOutOfBoundException, EmptyFieldsException*/ {
+    public void setInfo(String info)  {
         if(info.isEmpty()) {
             //throw new EmptyFieldsException();
             System.out.println("Campo vuoto\n\n");

@@ -1,16 +1,12 @@
 package database.dao;
 
-/*import database.DatabaseConnectionSingleton;
-import database.queries.RequestQueries;
-import exceptions.DBConnectionFailedException;
-import exceptions.DBUnreachableException;*/
+
 
 import database.SingletonConnection;
 import database.query.Queries;
 import exceptions.NoUserFoundException;
 import model.*;
 import model.record.Credentials;
-import model.record.PersonalInfo;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;

@@ -3,17 +3,12 @@ package viewone.manageListView;
 import beans.AthleteBean;
 import beans.CredentialsBean;
 import beans.PersonalInfoBean;
-import controllers.SatisfyWorkoutRequestsController;
 import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import viewone.graphicalControllers.pt.ViewYourAthletesGUIController;
-
 import java.time.LocalDate;
-import java.util.List;
 
 public class ManageAthletesList {
 

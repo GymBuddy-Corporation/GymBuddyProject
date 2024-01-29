@@ -21,14 +21,6 @@ class Old_scene{
 public class SwitchPage {
 
 
-
-    public static void logOff() {
-        try {
-            SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     static int x=800;
     static int y=500;
 

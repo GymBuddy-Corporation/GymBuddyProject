@@ -1,6 +1,5 @@
 package engineering;
 
-import model.Exercise;
 import model.ExerciseStatus;
 
 import java.util.ArrayList;

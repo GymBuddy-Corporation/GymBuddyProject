@@ -4,10 +4,8 @@ import beans.*;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
-import exceptions.CostumException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import utils.MainStage;
@@ -16,10 +14,9 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.net.URL;
+
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+
 
 public class LoginGUIController {
 

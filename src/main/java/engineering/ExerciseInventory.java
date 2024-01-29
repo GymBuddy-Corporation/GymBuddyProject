@@ -1,11 +1,6 @@
 package engineering;
 
-import database.dao.GymDAO;
 import model.Exercise;
-import model.ExerciseStatus;
-import model.record.Credentials;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class ExerciseInventory {

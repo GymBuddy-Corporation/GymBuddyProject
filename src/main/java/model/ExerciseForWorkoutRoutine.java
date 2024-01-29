@@ -1,9 +1,5 @@
 package model;
 
-import beans.ExerciseBean;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ExerciseForWorkoutRoutine extends Exercise{
     private final String day;

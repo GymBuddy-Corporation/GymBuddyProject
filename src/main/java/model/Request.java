@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class Request implements Serializable {
     private final String info;

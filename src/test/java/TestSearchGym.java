@@ -2,25 +2,17 @@ import beans.CredentialsBean;
 import beans.GymInfoBean;
 import beans.SearchGymBean;
 import controllers.UserAccessController;
-import database.dao.GymDAO;
 import engineering.LoggedAthleteSingleton;
 import exceptions.AlreadyLoggedUserException;
 import exceptions.NoLoggedUserException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
-import model.Gym;
-import model.record.Credentials;
 import org.junit.jupiter.api.Test;
 import controllers.ManageMembershipController;
-import org.mockito.Mockito;
-
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
 
 class TestSearchGym {
 

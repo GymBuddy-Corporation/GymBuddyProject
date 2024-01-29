@@ -6,7 +6,6 @@ import controllers.SatisfyWorkoutRequestsController;
 import model.ExerciseStatus;
 import viewone.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import viewone.manageListView.ManageExerciseList;
-import exceptions.UserCastException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

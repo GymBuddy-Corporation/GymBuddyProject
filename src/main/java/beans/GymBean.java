@@ -1,6 +1,5 @@
 package beans;
 
-import exceptions.dataException.DataFieldException;
 
 public class GymBean extends UserBean {
     private final GymInfoBean gymInfo;

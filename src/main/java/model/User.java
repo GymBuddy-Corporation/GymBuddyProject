@@ -1,9 +1,6 @@
 package model;
 
 import model.record.Credentials;
-import model.record.PersonalInfo;
-
-import java.time.LocalDate;
 
 public abstract class User {
     protected String username;

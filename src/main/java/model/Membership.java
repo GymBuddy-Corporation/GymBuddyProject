@@ -2,9 +2,6 @@ package model;
 
 import engineering.decorator.MembershipInterface;
 import exceptions.DecoratorNoBaseComponentException;
-
-import java.lang.reflect.Member;
-
 public class Membership implements MembershipInterface {
     public int getCode() {
         return code;
