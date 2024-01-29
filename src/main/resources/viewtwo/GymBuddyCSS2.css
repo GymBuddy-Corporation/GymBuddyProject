@@ -4,18 +4,17 @@
 
 }
 
-.radio-button {
-    -fx-text-fill: #911701;
-}
+
 
 .radio-button .dot {
-    -fx-background-color: #911701;
+    -fx-color: #ff4501;
 }
 
 .radio-button .radio{
     -fx-background-color: transparent;
     -fx-border-color: #911701;
-    -fx-border-radius: 5em;
+    -fx-border-radius: 20;
+    -fx-cursor: hand;
 }
 
 .vbox{

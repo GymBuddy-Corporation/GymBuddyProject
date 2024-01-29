@@ -39,11 +39,11 @@ public class TestSearch {
         exList.getExerciseList().add(ex3);
         exList.getExerciseList().add(ex4);
         try {
-            controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","forzanapule1926"));
+            controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","napule"));
         }catch(AlreadyLoggedUserException e){
             try{
                 Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
-            } catch (NullPointerException | NoLoggedUserException exc){
+            } catch (NullPointerException exc){
                 exc.printStackTrace();
             }
         } catch (SQLException e) {
@@ -51,10 +51,7 @@ public class TestSearch {
         }
         SearchBean searchBean = new SearchBean(exerciseToSearch.getName());
         List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);
-
-        boolean flag = exerciseBeanList.get(0).getName().equals(exerciseToSearch.getName()) ;
-        if(!Objects.equals(exerciseBeanList.get(0).getName(), exerciseToSearch.getName())) flag = false;
-
+        boolean flag = Objects.equals(exerciseBeanList.getFirst().getName(), exerciseToSearch.getName().toLowerCase());
         assertTrue(flag);
     }
 }
