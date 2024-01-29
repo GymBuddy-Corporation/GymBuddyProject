@@ -1,5 +1,6 @@
 package viewone.graphicalControllers.pt;
 
+import controllers.UserAccessController;
 import exceptions.dataException.DataFieldException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -31,6 +32,8 @@ public class PTHomeGUIController implements Initializable{
     }
     @FXML
     public void logout() throws Exception {
+        UserAccessController controller=new UserAccessController();
+        controller.logout();
         SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
     }
 

@@ -69,23 +69,23 @@ public class GymDAO {
         List<Gym> gyms = new ArrayList<>();
         //todo gestisci tutto questo
         Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11", "Gym fantastic","italy");
+                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","italy", "GymTASTIC");
         gyms.add(palestra1);
 
         Gym palestra2 = new Gym("palestra2", new Credentials("gym2@gmail.com", "password2"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "milan", "Address 2", "Gym 2","italy");
+                "BBBBBBBBBBBBBBBBBBBBBB", "milan", "Address 2", "Napoli","Gym da luca");
         gyms.add(palestra2);
 
         Gym palestra3 = new Gym("palestra3", new Credentials("gym3@gmail.com", "password3"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "florence", "Addresscam 3", "Gym 3","italy");
+                "BBBBBBBBBBBBBBBBBBBBBB", "florence", "Addresscam 3","Romania" ,"Allenatoio");
         gyms.add(palestra3);
 
         Gym palestra4 = new Gym("palestra4", new Credentials("gym4@gmail.com", "password4"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "naples", "Addresscam 4", "Gym 4","italy");
+                "BBBBBBBBBBBBBBBBBBBBBB", "naples", "Addresscam 4","italy", "Er colosseo");
         gyms.add(palestra4);
 
         Gym palestra5 = new Gym("palestra5", new Credentials("gym5@gmail.com", "password5"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "turin", "Addresscam 5", "Gym 5","italy");
+                "BBBBBBBBBBBBBBBBBBBBBB", "turin", "Addresscam 5", "italy","Erbaccia");
         gyms.add(palestra5);
         return gyms;
     }

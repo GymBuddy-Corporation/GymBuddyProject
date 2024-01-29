@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
 
+import java.io.IOException;
+
 public class AthletesHomeGUIController {
     private final String athlete = "athlete";
 
@@ -30,6 +32,10 @@ public class AthletesHomeGUIController {
         SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
 
+    @FXML
+    public void membership() throws IOException {
+        SwitchPage.setStage(MainStage.getStage(),"ManageMembershipSearchGym.fxml",athlete,1);
+    }
     @FXML
     public void openProfile() throws Exception{
         SwitchPage.setStage(MainStage.getStage(),"ProfileAthlete.fxml",athlete,1);

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="296.0" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="gymLabel" prefHeight="27.0" prefWidth="155.0" text="Label">
+         <font>
+            <Font name="Allerta Stencil Regular" size="20.0" />
+         </font>
+         <textFill>
+            <LinearGradient endY="0.3977272420218496">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <Label fx:id="cityLabel" prefHeight="28.0" prefWidth="101.0" text="Label">
+         <font>
+            <Font name="Allerta Stencil Regular" size="17.0" />
+         </font>
+         <textFill>
+            <LinearGradient endY="0.3977272420218496">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+   </children>
+</HBox>

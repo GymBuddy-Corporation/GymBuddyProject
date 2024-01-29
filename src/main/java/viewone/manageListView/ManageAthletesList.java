@@ -41,15 +41,15 @@ public class ManageAthletesList {
         PersonalInfoBean pi5 = new PersonalInfoBean("Alessandro", "Cortese", LocalDate.of(1999, 6, 1), "MFCUCU00P01D612J", 'm');
 
 
-        /*AthleteBean athlete1 = new AthleteBean("LuX71", pi1,
+        AthleteBean athlete1 = new AthleteBean("LuX71", pi1,
                 CredentialsBean.ctorWithSyntaxCheck("lucam0109@gmail.com", "SSLAZIO1900"));
         AthleteBean athlete2 = new AthleteBean("accroccoman", pi2,
                 CredentialsBean.ctorWithSyntaxCheck("accroccoman@gmail.com", "megliololiodiItri"));
         AthleteBean athlete4 = new AthleteBean("EdoMan00", pi3,
                 CredentialsBean.ctorWithSyntaxCheck("edoman00@gmail.com", "cyber"));
         AthleteBean athlete3 = new AthleteBean("AlexNazi", pi4,
-                CredentialsBean.ctorWithSyntaxCheck("gigachad2002@gmail.com", "gigachad"));*/
+                CredentialsBean.ctorWithSyntaxCheck("gigachad2002@gmail.com", "gigachad"));
 
-        //athletesList.getItems().addAll(athlete1, athlete2, athlete3, athlete4);
+        athletesList.getItems().addAll(athlete1, athlete2, athlete3, athlete4);
     }
 }
