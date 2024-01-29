@@ -52,7 +52,7 @@ public class LoggedUserSingleton {
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             athlete.getEmail(),
                             athlete.getPassword()),
-                    athlete.getTrainer().getFC());
+                    athlete.getTrainerFc());
         } else if (usr instanceof Trainer trainer) {
             return new TrainerBean(
                     usr.getUsername(),

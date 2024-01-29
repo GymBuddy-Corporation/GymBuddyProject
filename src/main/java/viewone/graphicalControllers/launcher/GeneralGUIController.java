@@ -39,7 +39,7 @@ public class GeneralGUIController {
             } catch (IOException e) {
 
             }
-        } catch (NoUserFoundException | SQLException e) {
+        } catch (NoUserFoundException | SQLException ignored) {
 
         } catch (AlreadyLoggedUserException e) {
             try {

@@ -1,34 +1,35 @@
 package controllers;
 
 import beans.*;
-import database.dao.CouponsDAO;
+import boundaries.PaymentSystemBoundary;
 import database.dao.GymDAO;
 import database.dao.MembershipDAO;
 import engineering.LoggedAthleteSingleton;
 import engineering.decorator.MembershipInterface;
-import exceptions.CouponNotCumulativeException;
-import exceptions.CouponNotFullyAppliedException;
-import exceptions.DecoratorNoBaseComponentException;
-import exceptions.MembershipCouponNotFoundException;
+import exceptions.*;
+import model.Athlete;
 import model.Gym;
 import model.Membership;
 import model.cupons.Cupon;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class ManageMembershipController {
-    protected GymDAO gymDao;
-
-    public ManageMembershipController() {
+    protected final GymDAO gymDao;
+    private static Gym selectedGym;
+    LoggedAthleteSingleton singletonInstance;
+    public ManageMembershipController() throws NoLoggedUserException {
+        singletonInstance =LoggedAthleteSingleton.getSingleton();
+        if(singletonInstance==null)throw new NoLoggedUserException();
         gymDao = new GymDAO();
+        selectedGym=null;
     }
 
-    public List<MembershipBean> getMembershipList(GymInfoBean onlyGymNameBean) {
-        List<Membership> listOfMemberships = loadMemberships(onlyGymNameBean);
+    public List<MembershipBean> getMembershipList(GymInfoBean onlyGymNameBean) throws SQLException, NoUserFoundException {
+        loadSelectedGym(onlyGymNameBean);
+        List<Membership> listOfMemberships = selectedGym.getMemberships();
         List<MembershipBean> beanList = new ArrayList<>();
         for (Membership membership : listOfMemberships) {
             beanList.add(new MembershipBean(
@@ -42,18 +43,41 @@ public class ManageMembershipController {
         }
         return beanList;
     }
-    private List<Membership> loadMemberships(GymInfoBean onlyGymNameBean){
-        MembershipDAO membershipDAO=new MembershipDAO();
-        return membershipDAO.getMembership(onlyGymNameBean.getName());
-    }
-    private List<Cupon> loadCoupons(GymInfoBean onlyGymNameBean){
-        CouponsDAO couponsDAO=new CouponsDAO();
-        return couponsDAO.getCoupons(onlyGymNameBean.getName());
+
+    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym) throws SQLException, NoUserFoundException {
+        loadSelectedGym(onlyNameGym);
+        List<Cupon> listOfCoupons=selectedGym.getCoupons();
+        List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
+        for(Cupon cupon: listOfCoupons ){
+            listOfCouponsBeans.add(new CuponsBean(cupon.getCode(),
+                    cupon.getPointsPrice(),
+                    cupon.getName(),
+                    cupon.getDescription(),
+                    cupon.getOnlyForNewUsers(),
+                    cupon.isCumulative(),
+                    cupon.getType(),
+                    cupon.getCouponsValue()));
+        }
+        return listOfCouponsBeans;
     }
 
-    public MembershipBean applyCouponsToMembership(GymInfoBean onlyName,MembershipBean selectedMembership,List<CuponsBean> selectedCoupons) throws MembershipCouponNotFoundException, DecoratorNoBaseComponentException, CouponNotFullyAppliedException {
-            List<Membership> membershipsList=loadMemberships(onlyName);
-            List<Cupon> cuponsList=loadCoupons(onlyName);
+    private void loadSelectedGym(GymInfoBean name) throws  NoUserFoundException {
+            if(selectedGym!=null && Objects.equals(selectedGym.getGymName(), name.getName()))return;
+        try {
+            selectedGym=gymDao.getGymByName(name.getName());
+        } catch (SQLException e) {
+            throw new NoUserFoundException();
+        }
+        MembershipDAO memDao=new MembershipDAO();
+            selectedGym.setMemberships(memDao.getMembership(selectedGym.getGymName()));
+            selectedGym.setCoupons(memDao.getCoupons(selectedGym.getGymName()));
+    }
+
+    public MembershipBean applyCouponsToMembership(GymInfoBean onlyName,MembershipBean selectedMembership,List<CuponsBean> selectedCoupons) throws MembershipCouponNotFoundException, DecoratorNoBaseComponentException, CouponNotFullyAppliedException, NoUserFoundException {
+            loadSelectedGym(onlyName);
+            List<Membership> membershipsList=selectedGym.getMemberships();
+            List<Cupon> cuponsList=selectedGym.getCoupons();
+
             Membership membership=null;
             for(Membership temp:membershipsList){
                 if(selectedMembership.getCode()==temp.getCode()){
@@ -62,7 +86,8 @@ public class ManageMembershipController {
                 }
             }
             if(membership==null)throw new MembershipCouponNotFoundException();
-            List<Cupon> couponsToApply=loadCoupons(onlyName);
+
+            List<Cupon> couponsToApply=new ArrayList<>();
             Iterator<Cupon> couponIterator= cuponsList.iterator();
             while(couponIterator.hasNext()){
                 Cupon couponTemp=couponIterator.next();
@@ -77,16 +102,17 @@ public class ManageMembershipController {
                     }
                 }
             }
-        if(!cuponsList.isEmpty())throw new MembershipCouponNotFoundException();
-        MembershipInterface finalMembership = null;
-        try {
-            finalMembership = decoratorBuilder(membership, couponsToApply);
-        } catch (CouponNotCumulativeException e) {
-            LoggedAthleteSingleton.getSingleton().setMembership(e.getMembership(),onlyName.getName());
-            throw new CouponNotFullyAppliedException(e,onlyName.getName());
-        }
-        LoggedAthleteSingleton.getSingleton().setMembership(finalMembership,onlyName.getName());
-        return new MembershipBean(onlyName.getName(),finalMembership.getName(),finalMembership.getPrice(),finalMembership.getDuration(), finalMembership.getPoints());
+            if(!cuponsList.isEmpty())throw new MembershipCouponNotFoundException();
+
+            MembershipInterface finalMembership = null;
+            try {
+                finalMembership = decoratorBuilder(membership, couponsToApply);
+            }catch (CouponNotCumulativeException e) {
+                LoggedAthleteSingleton.getSingleton().setMembership(e.getMembership(),onlyName.getName());
+                throw new CouponNotFullyAppliedException(e,onlyName.getName());
+            }
+            LoggedAthleteSingleton.getSingleton().setMembership(finalMembership,onlyName.getName());
+            return new MembershipBean(onlyName.getName(),finalMembership.getName(),finalMembership.getPrice(),finalMembership.getDuration(), finalMembership.getPoints());
     }
 
     protected MembershipInterface decoratorBuilder(Membership membership,List<Cupon> coupons) throws CouponNotCumulativeException {
@@ -102,23 +128,10 @@ public class ManageMembershipController {
         if(wasExceptionTriggered)throw new CouponNotCumulativeException(finalMembership);
         return finalMembership;
        }
-    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym){
-        List<Cupon> listOfCoupons=loadCoupons(onlyNameGym);
-        List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
-        for(Cupon cupon: listOfCoupons ){
-            listOfCouponsBeans.add(new CuponsBean(cupon.getCode(),
-                    cupon.getPointsPrice(),
-                    cupon.getName(),
-                    cupon.getDescription(),
-                    cupon.getOnlyForNewUsers(),
-                    cupon.isCumulative(),
-                    cupon.getType(),
-                    cupon.getCouponsValue()));
-        }
-        return listOfCouponsBeans;
-    }
+
 
     public PaymentConfirmationBean payNewMembership(GymInfoBean onlyNameGym,MembershipBean membershipBean){
+
                 return null;
     }
 
@@ -126,10 +139,42 @@ public class ManageMembershipController {
         return null;
     }
 
-    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean){
-
-        return null;
+    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean) throws PaymentFailedException {
+        PaymentBean paymentBean=makePaymentBean(onlyNameGym,membershipBean);
+        PaymentSystemBoundary boundary=new PaymentSystemBoundary(paymentBean);
+        PaymentConfirmationBean paymentConfirmationBean=boundary.pay();
+        //fare i controlli sui valori e decidere se fare il refund o altro
+        return paymentConfirmationBean;
     }
+
+    private PaymentBean makePaymentBean(GymInfoBean onlyNameGym,MembershipBean membershipBean) throws PaymentFailedException {
+        if(!Objects.equals(onlyNameGym.getName(), singletonInstance.getGymToSubscribe())){
+            throw new PaymentFailedException();
+        }
+        if(!Objects.equals(selectedGym.getGymName(),onlyNameGym.getName()))throw new PaymentFailedException();
+        try {
+            if(!Objects.equals(membershipBean.getName(), singletonInstance.getMembership().getBuildedName())) {
+                throw new PaymentFailedException();
+            }
+        } catch (DecoratorNoBaseComponentException e) {
+            throw new PaymentFailedException();
+        }
+        Athlete athlete=singletonInstance.getUser();
+        PaymentBean paymentBean=new PaymentBean(
+                selectedGym.getIban(),
+                selectedGym.getGymName(),
+                membershipBean.getName(),
+                membershipBean.getPrice(),
+                new CardInfoBean(
+                        athlete.getCardNumber(),
+                        athlete.getCardExpirationMonth(),
+                        athlete.getCardExpirationYear(),
+                        athlete.getName(),
+                        athlete.getSurname()),
+                athlete.getEmail());
+        return paymentBean;
+    }
+
 
     private boolean stringExistsInText(String toBeSearched, String text) {
         return Pattern.compile(Pattern.quote(toBeSearched), Pattern.CASE_INSENSITIVE).matcher(text).find();

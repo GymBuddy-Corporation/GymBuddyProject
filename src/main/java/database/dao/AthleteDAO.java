@@ -3,10 +3,12 @@ package database.dao;
 
 import database.SingletonConnection;
 import database.query.Queries;
+import exceptions.NoUserFoundException;
 import model.Athlete;
 import model.Gym;
 import model.Trainer;
 
+import model.Wallet;
 import model.record.Credentials;
 import model.record.PersonalInfo;
 
@@ -14,6 +16,10 @@ import model.record.PersonalInfo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class AthleteDAO {
@@ -31,38 +37,14 @@ public class AthleteDAO {
                         rs.getString("athleteFC"),
                         rs.getString("athelteGender").charAt(0)
                 );
-                PersonalInfo personalInfoTrainer = new PersonalInfo(
-                        rs.getString("athleteName"),
-                        rs.getString("athleteSurname"),
-                        rs.getDate("athleteDateofBirth").toLocalDate(),
-                        rs.getString("trainerFC"),
-                        rs.getString("trainerGender").charAt(0)
-                );
                 Credentials credentialsAthlete = new Credentials(
                         rs.getString("athleteEmail"),
-                        rs.getString("athletePassword")
+                        ""
                 );
-                Credentials credentialsTrainer = new Credentials( //this is done for a security reason
-                        "noEmail",
-                        "noPassword"
-                );
-                Gym gym = new Gym(
-                        "noUsername", //did for a security reason
-                        rs.getString("gymIban"),
-                        rs.getString("gymCity"),
-                        rs.getString("gymAddress"),
-                        rs.getString("nameGym"));
-                Trainer trainer = new Trainer(
-                        "noUsername",
-                        personalInfoTrainer,
-                        credentialsTrainer,
-                        gym);
                 return new Athlete(
                         rs.getString("athleteUsername"),
                         personalInfoAthlete,
-                        credentialsAthlete,
-                        gym,
-                        trainer);
+                        credentialsAthlete);
             } else {
                 return null;
             }
@@ -85,9 +67,36 @@ public class AthleteDAO {
         }
     }
 
-    public int loadAthletePoints(String email){
-        return 10000;
+    public void loadAthleteWallet(Athlete athlete){
+        try(
+                PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_WALLET);
+                ResultSet result=Queries.loadAndExecuteOneString(athlete.getFC(), preparedStatement);
+            ) {
+            Wallet wallet = null;
+            if (result.next()) {
+                // DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                Date dataInizio = result.getDate("starDateMembership");
+                Date dataFine = result.getDate("endDateMembership");
+                GymDAO dao = new GymDAO();
+                Gym gym = dao.getGymByName(result.getString("nameGym"));
+                int point = result.getInt("points");
+                String membershipName = result.getString("membershipName");
+                float membershipPrice = result.getFloat("membershipPrice");
+                TrainerDAO daoT = new TrainerDAO();
+                Trainer trainer = daoT.loadTrainer(result.getString("trainers_fc"), "fc");
+                wallet = new Wallet(dataInizio, dataFine, gym, point, membershipName, membershipPrice, trainer);
+            }
+            athlete.setWallet(wallet);
+        } catch (SQLException e) {
+            SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            //throw e;
+            //return null;
+        } catch (NoUserFoundException e) {
+            //return  null;
+        }
     }
+
+
 
 
 }

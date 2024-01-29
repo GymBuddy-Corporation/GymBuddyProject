@@ -15,7 +15,7 @@ public class PaymentSystemBoundary {
 
     public PaymentConfirmationBean pay(){
         if(Objects.equals(bean.getBeneficiary(), "testGym")){
-            return new PaymentConfirmationBean("1",bean.getValue(), bean.getIban(),"fallito perche è un test");
+            return new PaymentConfirmationBean("-1",bean.getValue(), bean.getIban(),"fallito perche è un test");
         }
         return new PaymentConfirmationBean("1", bean.getValue(), bean.getIban());
     }

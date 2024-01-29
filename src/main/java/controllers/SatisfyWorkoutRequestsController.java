@@ -130,7 +130,7 @@ public class SatisfyWorkoutRequestsController {
                     CredentialsBean.ctorWithoutSyntaxCheck(
                             usr.getEmail(),
                             usr.getPassword()),
-                    usr.getTrainer().getFC());
+                    usr.getTrainerFc());
             requestBeanList.add(new RequestBean(
                     request.getInfo(),
                     athleteBean,

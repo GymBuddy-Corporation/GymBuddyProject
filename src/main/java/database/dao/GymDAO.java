@@ -63,11 +63,9 @@ public class GymDAO {
         }
     }
 
-    List<Gym> loadedgyms;
 
 
     public List<Gym> loadAllGyms(){
-        if(loadedgyms!=null)return loadedgyms;
         List<Gym> gyms = new ArrayList<>();
         //todo gestisci tutto questo
         Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
@@ -89,12 +87,10 @@ public class GymDAO {
         Gym palestra5 = new Gym("palestra5", new Credentials("gym5@gmail.com", "password5"),
                 "BBBBBBBBBBBBBBBBBBBBBB", "turin", "Addresscam 5", "Gym 5","italy");
         gyms.add(palestra5);
-        loadedgyms=gyms;
         return gyms;
     }
 
     public Gym loadGym(String email) throws SQLException, NoUserFoundException {
-
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_EMAIL_QUERY);
                 return getGym(email, preparedStatement);
 
@@ -117,6 +113,19 @@ public class GymDAO {
         } else {
             throw new NoUserFoundException();
         }
+    }
+
+    public Gym loadGymByTrainerFc(String fc) throws SQLException {
+        PreparedStatement statement=SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_GYM_BY_TRAINER_FC);
+        ResultSet rs=Queries.loadAndExecuteOneString(fc,statement);
+        rs.next();
+        String email=rs.getString(EMAIL);
+        Gym gym=null;
+        try {
+            gym = loadGym(email);
+        } catch (NoUserFoundException ignore) {
+        }
+        return gym;
     }
 
     public Gym getGymByName(String name) throws SQLException, NoUserFoundException {

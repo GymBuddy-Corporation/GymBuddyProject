@@ -2,6 +2,7 @@ package model;
 
 import database.dao.GymDAO;
 import engineering.ExerciseInventory;
+import model.cupons.Cupon;
 import model.record.Credentials;
 import model.record.Location;
 
@@ -13,11 +14,34 @@ public class Gym extends User implements Serializable {
     private final String gymName;
     private ExerciseInventory gymExercises;
     private Location location;
+
+    public List<Cupon> getCoupons() {
+        return coupons;
+    }
+
+    public void setCoupons(List<Cupon> coupons) {
+        this.coupons = coupons;
+    }
+
     private List<String> gymCommunication;
+
+    public List<Membership> getMemberships() {
+        return memberships;
+    }
+
+    public void setMemberships(List<Membership> memberships) {
+        this.memberships = memberships;
+    }
+
+    private List<Membership> memberships;
+    private List<Cupon> coupons;
     public Gym(String username, Credentials credentials, String iban, String gymName) {
         super(username, credentials);
         this.iban = iban;
         this.gymName= gymName;
+        this.gymExercises = null;
+        this.coupons=null;
+        this.memberships=null;
     }
 
     public Gym(String username, Credentials credentials, String iban, String city, String address, String country, String gymName) {
@@ -26,6 +50,8 @@ public class Gym extends User implements Serializable {
         this.location = new Location(city, address, country);
         this.gymName = gymName;
         this.gymExercises = null;
+        this.coupons=null;
+        this.memberships=null;
     }
 
     public Gym(String username,String iban, String city, String address, String gymName){
@@ -33,6 +59,9 @@ public class Gym extends User implements Serializable {
         this.iban = iban;
         this.location = new Location(city, address, "noCountry");
         this.gymName = gymName;
+        this.gymExercises = null;
+        this.coupons=null;
+        this.memberships=null;
     }
     public String getIban() {
         return iban;
@@ -55,20 +84,17 @@ public class Gym extends User implements Serializable {
     }
 
     public ExerciseInventory getGymExercises() {
-        lazyLoadExercises();
         return this.gymExercises;
-    }
-    //caricare gli esercizi solo nel momento effettivo del utilizzo
-    private void lazyLoadExercises() {
-        if (this.gymExercises == null) {
-            this.gymExercises = ExerciseInventory.loadExcercise(this.gymName);
-        }
     }
 
     public void addGymExercise(Exercise exerciseToAdd) {
-        lazyLoadExercises();
         this.gymExercises.addExercise(exerciseToAdd);
     }
+
+    public void setGymExercises(List<Exercise> gymExercises) {
+        this.gymExercises = new ExerciseInventory(gymExercises);
+    }
+
     public static List<String> loadComm(String gymName) {
         GymDAO gymdao=new GymDAO();
         return null;

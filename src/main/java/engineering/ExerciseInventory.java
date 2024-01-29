@@ -23,9 +23,6 @@ public class ExerciseInventory {
     public void addExercise(Exercise exercise){
         this.exerciseList.add(exercise);
     }
-    public static ExerciseInventory loadExcercise(String gymName) {
-        GymDAO gymdao=new GymDAO();
-        return new ExerciseInventory(gymdao.loadDBExercises(gymName));
-    }
+
 
 }

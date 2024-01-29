@@ -17,11 +17,12 @@ public class LoggedAthleteSingleton extends LoggedUserSingleton{
 
 
     private MembershipInterface membership;
-    private String gymToSubscribe;
 
     public String getGymToSubscribe() {
         return gymToSubscribe;
     }
+
+    private String gymToSubscribe;
 
     public MembershipInterface getMembership() {
         return membership;

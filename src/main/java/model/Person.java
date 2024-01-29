@@ -8,12 +8,10 @@ import java.time.LocalDate;
 public abstract class Person extends User{
 
     private final PersonalInfo personalInfo;
-    private final Gym gym;
 
-    protected Person(String username, Credentials credentials,PersonalInfo personalInfo, Gym gym){
+    protected Person(String username, Credentials credentials,PersonalInfo personalInfo){
         super (username, credentials);
         this.personalInfo = personalInfo;
-        this.gym = gym;
     }
 
     public PersonalInfo getPersonalInfo() {
@@ -36,7 +34,4 @@ public abstract class Person extends User{
         return personalInfo.gender();
     }
 
-    public Gym getGym() {
-        return gym;
-    }
 }

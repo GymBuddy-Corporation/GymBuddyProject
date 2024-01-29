@@ -41,7 +41,7 @@ public class UserDAO {
         Athlete ret = aDao.loadAthlete(username);
         if (ret != null)return ret;
         TrainerDAO tDao = new TrainerDAO();
-        Trainer ret1 = tDao.loadTrainer(username);
+        Trainer ret1 = tDao.loadTrainerWithAgregations(username);
         if(ret1 != null)return ret1;
         GymDAO gDao=new GymDAO();
         //aggiungere l'eccezione alle altre e circondarle da un try catch

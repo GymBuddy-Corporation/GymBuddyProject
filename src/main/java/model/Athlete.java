@@ -10,32 +10,31 @@ import java.time.YearMonth;
 
 public class Athlete extends Person implements Serializable {
     private Card card;
-    //TODO Alex vedi come gestire le carte, che potrebbe essere comodo metterle qui
-    // i metodi get e set gia ci sono nel caso, vedi tu come volertela gestire
-
     private WorkoutRoutine workoutRoutine;
-    private Trainer trainer;
-    //todo richiesta
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym) {
-        super(username, credentials, personalInfo, gym);
+    public Wallet getWallet() {
+        return wallet;
     }
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Gym gym, Trainer trainer) {
-        super(username, credentials, personalInfo, gym);
-        this.trainer = trainer;
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Gym gym, Trainer trainer) /*throws ExpiredCardException*/ {
+    private Wallet wallet;
+
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials) {
+        super(username, credentials, personalInfo);
+    }
+
+
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Trainer trainer) /*throws ExpiredCardException*/ {
         //costruttore con inizializzazione della carta
-        super(username, credentials, personalInfo, gym);
+        super(username, credentials, personalInfo);
         checkCardExpirationDate(card.cardExpirationDate());
         this.card = card;
-        this.trainer = trainer;
     }
 
     public String getCardNumber() {
-        //todo se non usata cancella
         if(card.cardNumber()==null) {
             System.out.println("Carta non inserita");
             return null;
@@ -50,13 +49,16 @@ public class Athlete extends Person implements Serializable {
     }
 
     public YearMonth getCardExpirationDate() {
-        if (card.cardExpirationDate() == null) {
-            System.out.println("Carta non inserita");
-            return null;
-        } else {
             return card.cardExpirationDate();
-        }
     }
+
+    public String getCardExpirationYear(){
+            return String.valueOf(card.cardExpirationDate().getYear());
+    }
+    public String getCardExpirationMonth(){
+            return String.valueOf(card.cardExpirationDate().getMonthValue());
+    }
+
 
     public void checkCardExpirationDate(YearMonth cardExpirationDate) {
         if ((cardExpirationDate != null) && !((cardExpirationDate.getYear() > LocalDate.now().getYear()) ||
@@ -80,7 +82,9 @@ public class Athlete extends Person implements Serializable {
         }
     }
 
-    public Trainer getTrainer() {
-        return trainer;
+    public String getTrainerFc() {
+        if(wallet==null || wallet.getTrainer()==null)return "";
+        return wallet.getTrainer().getFC();
     }
+
 }

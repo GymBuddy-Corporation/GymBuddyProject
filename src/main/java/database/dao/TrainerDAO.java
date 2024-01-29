@@ -7,6 +7,7 @@ import exceptions.DBConnectionFailedException;
 import exceptions.DBUnreachableException;
 import exceptions.runtime_exception.ResultSetIsNullException;*/
 import database.SingletonConnection;
+import exceptions.NoUserFoundException;
 import model.Athlete;
 import model.Gym;
 import model.Trainer;
@@ -20,26 +21,27 @@ import java.sql.SQLException;*/
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TrainerDAO {
 
     private static final String NAME = "namePerson";
 
     private static final String SURNAME = "surnamePerson";
-    private static final String USERNAME = "Username";
+    private static final String USERNAME = "username";
     private static final String BIRTH = "dateOfBirth";
-    private static final String GYM = "gymName";
+    private static final String GYM = "nameGym";
     private static final String FC = "fc";
     private static final String IBAN = "iban";
     private static final String GENDER = "gender";
-    private static final String EMAIL = "Email";
-    private static final String PASSWORD = "Password";
+    private static final String EMAIL = "trainerEmail";
+    private static final String PASSWORD = "password";
 
-    public Trainer loadTrainer(String email) throws SQLException {
+    public Trainer loadTrainer(String string,String type) throws SQLException {
+        String query= Objects.equals(type, "fc") ?Queries.LOAD_TRAINER_BY_FC:Queries.LOAD_TRAINER_BY_EMAIL;
         try(
-             PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().
-                  prepareStatement(Queries.LOAD_USER_2_QUERY);
-             ResultSet rs = Queries.loadUser(email, preparedStatement)) {
+             PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(query);
+             ResultSet rs = Queries.loadUser(string, preparedStatement)) {
             if (rs.next()) {
                 PersonalInfo personalInfo = new PersonalInfo(
                         rs.getString(NAME),
@@ -49,29 +51,34 @@ public class TrainerDAO {
                         rs.getString(GENDER).charAt(0)
                 );
                 Credentials credentialsTrainer = new Credentials(
-                        rs.getString("trainerEmail"),
-                        rs.getString("password")
+                        rs.getString(EMAIL),
+                        ""
                 );
-                Gym gym = new Gym(
-                        "GymUserName",
-                        rs.getString("iban"),
-                        rs.getString("city"),
-                        rs.getString("address"),
-                        rs.getString("nameGym"));
+
                 return new Trainer(
-                        rs.getString("username"),
+                        rs.getString(USERNAME),
                         personalInfo,
-                        credentialsTrainer,
-                        gym
+                        credentialsTrainer
                 );
             } else {
                 return null;
             }
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
-            System.out.println("Unreachable DB Exception.");
+            System.out.println(e.getErrorCode());
             //todo handle exception
             return null;
         }
     }
+
+    public Trainer loadTrainerWithAgregations(String email) throws SQLException {
+                Trainer trainer=loadTrainer(email,"email");
+                GymDAO dao=new GymDAO();
+                Gym gym=dao.loadGymByTrainerFc(trainer.getFC());
+                gym.setGymExercises(dao.loadDBExercises(gym.getGymName()));
+                trainer.setGym(gym);
+                return  trainer;
+    }
+
+
 }
