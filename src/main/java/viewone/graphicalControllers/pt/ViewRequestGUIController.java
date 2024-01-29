@@ -2,6 +2,7 @@ package viewone.graphicalControllers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.NoLoggedUserException;
 import viewone.manageListView.ManageRequestList;
 import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
@@ -60,13 +61,23 @@ public class ViewRequestGUIController implements Initializable {
     @FXML
     public void rejectRequest() {
         //TODO gestisci la cancellazione di una richiesta
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        satisfyWorkoutRequestsController.rejectRequest(selectedRequest);
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        controller.rejectRequest(selectedRequest);
         if (requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
             return;
         }
         try{
-            ManageRequestList.updateList(requestList, satisfyWorkoutRequestsController);
+            ManageRequestList.updateList(requestList, controller);
             textUsersRequest.setText("");
         } catch (DataFieldException e) {
             try {
@@ -79,9 +90,19 @@ public class ViewRequestGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
         try {
-            ManageRequestList.setRequestList(requestList, satisfyWorkoutRequestsController);
+            ManageRequestList.setRequestList(requestList, controller);
             requestList.getSelectionModel().selectedItemProperty().
                     addListener(new ChangeListener<>() {
                         @Override

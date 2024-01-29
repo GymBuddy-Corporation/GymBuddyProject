@@ -2,6 +2,7 @@ package viewtwo.graphicalcontrollers.pt;
 
 import beans.*;
 import exceptions.NoDayIsSelectedException;
+import exceptions.NoLoggedUserException;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -122,8 +123,18 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
 
     public void setValue(RequestBean request){
         this.requestBean = request;
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        List<ExerciseBean> exerciseBeanList = controller.getLoggedTrainerGymExercises();
         for (Exercise exer : LoggedTrainerSingleton.getSingleton().getExcerciseList()) {
             exer.addObserver(this);
         }

@@ -11,7 +11,7 @@
          <children>
             <AnchorPane layoutX="14.0" layoutY="87.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;" AnchorPane.topAnchor="87.0">
                <children>
-                  <Label fx:id="requestLabel" layoutX="6.0" layoutY="36.0" prefHeight="215.0" prefWidth="492.0" textFill="#911701" />
+                  <Label fx:id="requestLabel" alignment="TOP_LEFT" layoutX="6.0" layoutY="36.0" prefHeight="215.0" prefWidth="492.0" textFill="#911701" />
                </children>
             </AnchorPane>
             <Label fx:id="nameAthleteLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="32.0" prefHeight="30.0" prefWidth="217.0" text="Users' Request" textAlignment="CENTER" textFill="#911701" AnchorPane.leftAnchor="291.0" AnchorPane.topAnchor="32.0">

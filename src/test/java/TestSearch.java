@@ -13,6 +13,7 @@ import exceptions.dataException.DataFieldException;
 import model.*;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,6 @@ public class TestSearch {
 
     @Test
     public void TestSearchExercise() throws DataFieldException, NoUserFoundException, UserCastException {
-        SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
-        UserAccessController controller1 = new UserAccessController();
-
         ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
 
         Exercise ex1 = new Exercise("Tricep Pushdown");
@@ -38,6 +36,8 @@ public class TestSearch {
         exList.getExerciseList().add(exerciseToSearch);
         exList.getExerciseList().add(ex3);
         exList.getExerciseList().add(ex4);
+
+        UserAccessController controller1 = new UserAccessController();
         try {
             controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","napule"));
         }catch(AlreadyLoggedUserException e){
@@ -49,6 +49,19 @@ public class TestSearch {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
         SearchBean searchBean = new SearchBean(exerciseToSearch.getName());
         List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);
         boolean flag = Objects.equals(exerciseBeanList.getFirst().getName(), exerciseToSearch.getName().toLowerCase());

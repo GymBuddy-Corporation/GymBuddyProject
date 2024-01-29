@@ -3,6 +3,7 @@ package viewone.graphicalControllers.pt;
 import beans.ExerciseBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.NoLoggedUserException;
 import model.ExerciseStatus;
 import viewone.manageListView.listCells.ExerciseListCellFactoryForStatus;
 import viewone.manageListView.ManageExerciseList;
@@ -18,6 +19,7 @@ import utils.MainStage;
 import utils.SwitchPage;
 import viewone.ExerciseStatusButtonController;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -37,8 +39,18 @@ public class SetExerciseStatusGUIController implements Initializable{
     }
     @FXML public void searchExercise(){
         //TODO controlla se funziona
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        List<ExerciseBean> exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        List<ExerciseBean> exerciseBeanList = controller.searchExercise(new SearchBean(searchExerciseText.getText()));
         System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
     }
@@ -66,9 +78,19 @@ public class SetExerciseStatusGUIController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         exerciseDBList.setCellFactory(new ExerciseListCellFactoryForStatus());
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        showExerciseDBList(exerciseDBList, satisfyWorkoutRequestsController);
-        ManageExerciseList.setListenerDBSet(exerciseDBList, satisfyWorkoutRequestsController, this);
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        showExerciseDBList(exerciseDBList, controller);
+        ManageExerciseList.setListenerDBSet(exerciseDBList, controller, this);
         setVisibleButtons(false);
     }
 
@@ -95,11 +117,19 @@ public class SetExerciseStatusGUIController implements Initializable{
             //TODO then throw exception
         }
 
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-        satisfyWorkoutRequestsController.setExerciseStatus(selectedExercise, selectedStatus);
+        SatisfyWorkoutRequestsController controller;
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+                return;
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        controller.setExerciseStatus(selectedExercise, selectedStatus);
         SwitchPage.getController("CreateNewWorkoutRoutine.fxml","pt");
-
-
         SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml","pt",1);
     }
 }

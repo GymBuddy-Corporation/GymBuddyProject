@@ -3,7 +3,9 @@ package viewone.graphicalControllers.pt;
 import beans.*;
 import controllers.UserAccessController;
 import engineering.LoggedTrainerSingleton;
+import engineering.LoggedUserSingleton;
 import engineering.Observer;
+import exceptions.NoLoggedUserException;
 import viewone.manageListView.listCells.ExerciseForWOListCellFactory;
 import viewone.manageListView.listCells.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
@@ -29,6 +31,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     @FXML private Button mondayButton;
     public final DaysOfTheWeekButtonController daysController = new DaysOfTheWeekButtonController();
     private RequestBean requestBean;
+    private SatisfyWorkoutRequestsController controller;
     private String selectedDay;
     private final WorkoutRoutineBean workoutRoutine = new WorkoutRoutineBean();
 
@@ -106,7 +109,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     public void setValue(RequestBean request){
         this.requestBean = request;
         List<ExerciseBean> exerciseBeanList;
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = controller;
         exerciseBeanList = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
         for (Exercise ex : LoggedTrainerSingleton.getSingleton().getExcerciseList()) {
             ex.addObserver(this);
@@ -193,7 +196,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     @FXML
     public void cancelExercise() {
         ExerciseForWorkoutRoutineBean selectedExercise = routineExerciselist.getSelectionModel().getSelectedItem();
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
         if (selectedExercise != null) {
             List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseList());
 
@@ -253,8 +255,8 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         spinnerSets.getValueFactory().setValue(0);
     }
 
-    @FXML public void searchButtonAction() throws IOException {
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+    @FXML public void searchButtonAction() {
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = controller;
         List<ExerciseBean> exerciseBeanList;
         exerciseBeanList = satisfyWorkoutRequestsController.searchExercise(new SearchBean(searchExerciseText.getText()));
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
@@ -278,7 +280,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
 
 
     public void updateExerciseList() {
-        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+        SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = controller;
         List<ExerciseBean> listBean;
         listBean=satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
         ManageExerciseList.updateListFiltered(
@@ -306,6 +308,16 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try{
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e){
+            try {
+                e.callMe(1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
         setVisibleAdd(false);
         setVisibleLabel(false);
         setVisibleCancel(false);
