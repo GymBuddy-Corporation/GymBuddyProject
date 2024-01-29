@@ -2,15 +2,10 @@ package viewtwo.graphicalcontrollers.pt;
 
 import beans.*;
 import exceptions.NoDayIsSelectedException;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
-import model.ExerciseForWorkoutRoutine;
-import viewone.graphicalControllers.pt.CreateNewWorkoutRoutineGUIController;
-import viewtwo.beans.DayBeanB;
-import com.mysql.cj.PreparedQuery;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.LoggedTrainerSingleton;
 import engineering.Observer;
@@ -19,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import model.Exercise;
 import model.ExerciseStatus;
-import viewone.manageListView.ManageExerciseList;
 import viewtwo.manageListView.ManageExerciseList2;
 import viewtwo.manageListView.listCells.ExerciseForWOListCellFactory2;
 import viewtwo.manageListView.listCells.ExerciseListCellFactory2;
@@ -139,7 +133,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
 
         ManageExerciseList2.updateListFiltered(exerciseDBList2, exerciseBeanList);
         ManageExerciseList2.updateListFilteredDB(routineExerciselist2, exerciseBeanList);
-        radioButtonList.get(0).fire();
     }
 
     /*public void setVisibleLabel(Boolean bool) {
@@ -185,6 +178,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         setVisibleCancel(false);
         exerciseDBList2.setCellFactory(new ExerciseListCellFactory2());
         routineExerciselist2.setCellFactory(new ExerciseForWOListCellFactory2());
+
         radioButtonList = Arrays.asList(
                 mondayRadioButton,
                 tuesdayRadioButton,
@@ -194,9 +188,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
                 saturdayRadioButton,
                 sundayRadioButton
         );
-        for(int i = 1; i <= 7; i++) {
-            dayList.add(DayOfWeek.of(i).name());
-        }
+
         ToggleGroup group = new ToggleGroup();
         mondayRadioButton.setToggleGroup(group);
         tuesdayRadioButton.setToggleGroup(group);
@@ -205,7 +197,13 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         fridayRadioButton.setToggleGroup(group);
         saturdayRadioButton.setToggleGroup(group);
         sundayRadioButton.setToggleGroup(group);
-        //mondayRadioButton.fire();
+
+        mondayRadioButton.fire();
+
+
+        for(int i = 1; i <= 7; i++) {
+            dayList.add(DayOfWeek.of(i).name());
+        }
 
     }
 
