@@ -18,4 +18,12 @@ public class PaymentSystemBoundary {
         }
         return new PaymentConfirmationBean("1", bean.getValue(), bean.getIban());
     }
+
+    public PaymentConfirmationBean refund(PaymentConfirmationBean bean){
+        PaymentConfirmationBean confBean=new PaymentConfirmationBean(bean.getPaymentId(), bean.getValueTransfered(), bean.getIbanOfBenefeicary());
+        confBean.setValueTransfered(0);
+        confBean.setSuccessOfTransation(false);
+        confBean.setErrorMessage("Transation revoked");
+        return confBean;
+    }
 }

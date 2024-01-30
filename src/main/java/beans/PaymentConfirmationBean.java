@@ -1,7 +1,19 @@
 package beans;
 
 public class PaymentConfirmationBean {
+    public void setValueTransfered(float valueTransfered) {
+        this.valueTransfered = valueTransfered;
+    }
+
     private String paymentId;
+
+    public void setSuccessOfTransation(boolean successOfTransation) {
+        this.successOfTransation = successOfTransation;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     private float valueTransfered;
     private String ibanOfBenefeicary;
@@ -38,5 +50,9 @@ public class PaymentConfirmationBean {
 
     public String getErrorMessage() {
         return errorMessage;
+    }
+
+    public float getValueTransfered() {
+        return valueTransfered;
     }
 }

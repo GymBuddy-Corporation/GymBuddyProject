@@ -11,6 +11,7 @@ import model.Athlete;
 import model.Gym;
 import model.Membership;
 import model.cupons.Cupon;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -24,10 +25,18 @@ public class ManageMembershipController {
         singletonInstance =LoggedAthleteSingleton.getSingleton();
         if(singletonInstance==null)throw new NoLoggedUserException();
         gymDao = new GymDAO();
+        resetSelectedGym();
+    }
+
+    private static void resetSelectedGym(){
         selectedGym=null;
     }
 
-    public List<MembershipBean> getMembershipList(GymInfoBean onlyGymNameBean) throws SQLException, NoUserFoundException {
+    private static void setSelectedGym(Gym gym){
+        selectedGym=gym;
+    }
+
+    public List<MembershipBean> getMembershipList(GymInfoBean onlyGymNameBean) throws  NoUserFoundException {
         loadSelectedGym(onlyGymNameBean);
         List<Membership> listOfMemberships = selectedGym.getMemberships();
         List<MembershipBean> beanList = new ArrayList<>();
@@ -44,7 +53,7 @@ public class ManageMembershipController {
         return beanList;
     }
 
-    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym) throws SQLException, NoUserFoundException {
+    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym) throws NoUserFoundException {
         loadSelectedGym(onlyNameGym);
         List<Cupon> listOfCoupons=selectedGym.getCoupons();
         List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
@@ -64,7 +73,7 @@ public class ManageMembershipController {
     private void loadSelectedGym(GymInfoBean name) throws  NoUserFoundException {
             if(selectedGym!=null && Objects.equals(selectedGym.getGymName(), name.getName()))return;
         try {
-            selectedGym=gymDao.getGymByName(name.getName());
+            setSelectedGym(gymDao.getGymByName(name.getName()));
         } catch (SQLException e) {
             throw new NoUserFoundException();
         }
@@ -77,7 +86,6 @@ public class ManageMembershipController {
             loadSelectedGym(onlyName);
             List<Membership> membershipsList=selectedGym.getMemberships();
             List<Cupon> cuponsList=selectedGym.getCoupons();
-
             Membership membership=null;
             for(Membership temp:membershipsList){
                 if(selectedMembership.getCode()==temp.getCode()){
@@ -139,12 +147,21 @@ public class ManageMembershipController {
         return null;
     }
 
-    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean) throws PaymentFailedException {
+    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean) throws PaymentFailedException, FailedToSaveNewMembership {
         PaymentBean paymentBean=makePaymentBean(onlyNameGym,membershipBean);
         PaymentSystemBoundary boundary=new PaymentSystemBoundary(paymentBean);
         PaymentConfirmationBean paymentConfirmationBean=boundary.pay();
-        //fare i controlli sui valori e decidere se fare il refund o altro
+        try{
+            saveNewMemberShipToPersistence(paymentConfirmationBean,onlyNameGym,membershipBean);
+        }catch (FailedToSaveNewMembership e){
+            boundary.refund(paymentConfirmationBean);
+            throw new FailedToSaveNewMembership();
+        }
         return paymentConfirmationBean;
+    }
+
+    private void saveNewMemberShipToPersistence(PaymentConfirmationBean paymentConfirmationBean,GymInfoBean onlyNameGym,MembershipBean membershipBean) throws FailedToSaveNewMembership {
+        throw new FailedToSaveNewMembership();
     }
 
     private PaymentBean makePaymentBean(GymInfoBean onlyNameGym,MembershipBean membershipBean) throws PaymentFailedException {
@@ -159,6 +176,11 @@ public class ManageMembershipController {
         } catch (DecoratorNoBaseComponentException e) {
             throw new PaymentFailedException();
         }
+        return getPaymentBean(membershipBean);
+    }
+
+    @NotNull
+    private PaymentBean getPaymentBean(MembershipBean membershipBean) {
         Athlete athlete=singletonInstance.getUser();
         PaymentBean paymentBean=new PaymentBean(
                 selectedGym.getIban(),

@@ -1,9 +1,6 @@
 package beans;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.regex.Pattern;
+
 
 public class GymInfoBean {
     private final String name;
@@ -13,7 +10,6 @@ public class GymInfoBean {
     private final String country;
 
     /*This is a constructor without syntax check and is used by controller*/
-
     public GymInfoBean(String name, String address, String city, String iban, String country) {
         this.name = name;
         this.address = address;
@@ -21,27 +17,14 @@ public class GymInfoBean {
         this.iban = iban;
         this.country = country;
     }
-    //used only for searching gym stuff knowing his name;
 
+    //used only for searching gym stuff knowing his name;
     public GymInfoBean(String name){
         this.name=name;
         this.address = null;
         this.city = null;
         this.iban = null;
         this.country = null;
-    }
-    private void checkName(String name) {
-        if(name.isEmpty()){
-            System.out.println("Name field empty.");
-            /*throw new EmptyFieldsException();*/
-        } else if(isNotValidLength(name)) {
-            System.out.println("Name field invalid length.");
-            /*throw new InvalidUserInfoException();*/
-        }
-    }
-
-    private boolean isNotValidLength(String str) {
-        return str.length() > 45;
     }
 
     public String getName() {
