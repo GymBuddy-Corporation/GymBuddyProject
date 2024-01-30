@@ -4,7 +4,7 @@ import engineering.Observable;
 
 import java.io.Serializable;
 
-public class Exercise extends Observable implements Serializable  {
+public class Exercise extends Observable   {
     protected String name;
     protected ExerciseStatus status;
 

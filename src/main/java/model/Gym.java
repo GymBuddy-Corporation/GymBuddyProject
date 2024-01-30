@@ -7,9 +7,10 @@ import model.record.Credentials;
 import model.record.Location;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
-public class Gym extends User implements Serializable {
+public class Gym extends User  {
     private final String iban;
     private final String gymName;
     private ExerciseInventory gymExercises;
@@ -97,12 +98,13 @@ public class Gym extends User implements Serializable {
 
     public static List<String> loadComm(String gymName) {
         GymDAO gymdao=new GymDAO();
-        return null;
+
+        return Collections.emptyList();
     }
 
     public List<String> getGymCommunication() {
         if (this.gymExercises == null) {
-            return (List<String>) (this.gymCommunication = loadComm(this.gymName));
+            this.gymCommunication = loadComm(this.gymName);
         }
         return gymCommunication;
     }

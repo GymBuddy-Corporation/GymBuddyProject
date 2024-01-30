@@ -7,6 +7,7 @@ import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedTrainerSingleton;
+import exceptions.DBUnrreachableException;
 import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
@@ -46,7 +47,7 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean){
+    public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean) throws DBUnrreachableException {
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
 
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
@@ -59,7 +60,12 @@ public class SatisfyWorkoutRequestsController {
             workoutRoutineModel.addWorkoutDay(newWorkoutDay);
         }
 
-        Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
+        Athlete receiver = null;
+        try {
+            receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
+        } catch (DBUnrreachableException e) {
+            throw e;
+        }
         if(receiver.getWorkoutRoutine() != null){
             new AthleteDAO().removeWorkoutPlan(receiver.getFC());
         }

@@ -5,7 +5,7 @@ import model.record.PersonalInfo;
 
 import java.io.Serializable;
 
-public class Trainer extends Person implements Serializable {
+public class Trainer extends Person {
     public Gym getGym() {
         return gym;
     }

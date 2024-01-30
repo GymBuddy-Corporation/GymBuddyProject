@@ -3,6 +3,7 @@ package database.dao;
 
 import database.SingletonConnection;
 import database.query.Queries;
+import exceptions.DBUnrreachableException;
 import model.Request;
 import model.Trainer;
 
@@ -32,10 +33,13 @@ public class RequestDAO {
                 Queries.LOAD_TRAINER_REQUESTS_QUERY); ResultSet rs = Queries.loadTrainerRequests(trainer.getFC(), preparedStatement)){
             List<Request> myList = new ArrayList<>();
             while(rs.next()) {
-                myList.add(new Request(
-                        rs.getString(INFO),
-                        new AthleteDAO().loadAthlete(rs.getString(ATHLETEMAIL)),
-                        trainer));
+                try {
+                    myList.add(new Request(
+                            rs.getString(INFO),
+                            new AthleteDAO().loadAthlete(rs.getString(ATHLETEMAIL)),
+                            trainer));
+                } catch (DBUnrreachableException ignore) {
+                }
             }
             return myList;
         } catch (SQLException e) {

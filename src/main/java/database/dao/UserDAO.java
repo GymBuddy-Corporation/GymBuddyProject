@@ -1,6 +1,7 @@
 package database.dao;
 
 import database.SingletonConnection;
+import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 
 import model.*;
@@ -26,7 +27,7 @@ public class UserDAO {
     private static String  fileForCredentials="credentials.ser";
 
 
-    private @NotNull User getUser(String username) throws SQLException, NoUserFoundException {
+    private @NotNull User getUser(String username) throws SQLException, NoUserFoundException, DBUnrreachableException {
         AthleteDAO aDao = new AthleteDAO();
         Athlete ret = aDao.loadAthlete(username);
         if (ret != null)return ret;
@@ -38,7 +39,7 @@ public class UserDAO {
         return gDao.loadGym(username);
     }
 
-    public User loadUser(Credentials obj) throws SQLException,NoUserFoundException  {
+    public User loadUser(Credentials obj) throws NoUserFoundException  {
         Connection connection = SingletonConnection.getInstance().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM gymbuddy.user WHERE email = ? AND password = ?")) {
             preparedStatement.setString(1, obj.email());
@@ -50,7 +51,7 @@ public class UserDAO {
                     throw new NoUserFoundException();
                 }
             }
-        } catch (SQLException sqlException) {
+        } catch (SQLException | DBUnrreachableException sqlException) {
             sqlException.printStackTrace();
             // Handle the SQL exception, throware una nuova eccezioen dedicata per sql
             return null;

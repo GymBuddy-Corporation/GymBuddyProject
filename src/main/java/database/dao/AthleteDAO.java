@@ -3,6 +3,7 @@ package database.dao;
 
 import database.SingletonConnection;
 import database.query.Queries;
+import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import model.Athlete;
 import model.Gym;
@@ -21,7 +22,7 @@ import java.util.Date;
 
 public class AthleteDAO {
 
-    public Athlete loadAthlete(String email) {
+    public Athlete loadAthlete(String email) throws DBUnrreachableException {
         try(
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().
                         prepareStatement(Queries.LOAD_USER_1_QUERY);
@@ -47,9 +48,7 @@ public class AthleteDAO {
             }
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
-            System.out.println("Unreachable DB Exception.");
-            return null;
-            //todo handle exception
+            throw new DBUnrreachableException();
         }
     }
 

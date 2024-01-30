@@ -19,10 +19,9 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private ImageView gym;
     @FXML private ImageView pt;
     @FXML private ImageView athlete;
-    private String user;
-//TODO: devo trovare una soluzione per i radio button, li posso lasciare cosi oppure creare una classe che gli gestisce
-    //Sono Luca e ho copiato qesto codice nei send communication
 
+    public static String launcherFolder="launcher";
+    private String user;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             empty=new Image(ChooseActorGUIController.class.getResourceAsStream("/viewone/images/LogoEmptyButton96.png"),20,20,false,true);
@@ -68,26 +67,19 @@ public class ChooseActorGUIController implements Initializable {
         if(scelta==Selezione.GYM) {
             path = "GymFirst.fxml";
             this.user = "gym";
-            GymFirstGUIController controller = (GymFirstGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
+            GymFirstGUIController controller = (GymFirstGUIController) SwitchPage.setStage(MainStage.getStage(),path,launcherFolder,1);
             Objects.requireNonNull(controller).setValue(user);
         } else if (scelta==Selezione.PT) {
             this.user = "trainer";
-            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avanti senza DB
-            LoginGUIController controller = (LoginGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
+            path = "Login.fxml";
+           SwitchPage.setStage(MainStage.getStage(),path,launcherFolder,1);
 
         } else if(scelta==Selezione.ATHLETE) {
             this.user = "athlete";
-            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
-            LoginGUIController controller = (LoginGUIController) SwitchPage.setStage(MainStage.getStage(),path,"launcher",1);
-        }else{
-            return;
+            path = "Login.fxml";
+            SwitchPage.setStage(MainStage.getStage(),path,launcherFolder,1);
         }
     }
-
-    public void changeLanguage() {
-        //TODO gestisci il bottone con il pop sulla scelta della lingua (il cambio è dummy)
-    }
-
 
 }
 
