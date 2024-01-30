@@ -45,7 +45,7 @@ public class UserAccessController {
         return loginCall(UserDAO.deserializeSavedCredentials(),true);
     }
 
-    private  UserBean loginCall(Credentials credentials,boolean saveCredential) throws SQLException, NoUserFoundException, AlreadyLoggedUserException {
+    private  UserBean loginCall(Credentials credentials,boolean saveCredential) throws  NoUserFoundException, AlreadyLoggedUserException {
         UserDAO userDAO = new UserDAO();
         User user = userDAO.loadUser(credentials);
         if(saveCredential)UserDAO.serializeSavedCredential(credentials);

@@ -3,9 +3,6 @@ package model;
 import model.record.Card;
 import model.record.Credentials;
 import model.record.PersonalInfo;
-
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.YearMonth;
 
 public class Athlete extends Person  {

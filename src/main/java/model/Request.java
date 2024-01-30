@@ -1,6 +1,5 @@
 package model;
 
-import java.io.Serializable;
 
 public class Request  {
     private final String info;

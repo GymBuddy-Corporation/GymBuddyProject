@@ -61,11 +61,7 @@ public class SatisfyWorkoutRequestsController {
         }
 
         Athlete receiver = null;
-        try {
-            receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
-        } catch (DBUnrreachableException e) {
-            throw e;
-        }
+        receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
         if(receiver.getWorkoutRoutine() != null){
             new AthleteDAO().removeWorkoutPlan(receiver.getFC());
         }

@@ -1,6 +1,5 @@
 package exceptions;
 
-import java.util.Collections;
 
 public class DBUnrreachableException extends CostumException
 {

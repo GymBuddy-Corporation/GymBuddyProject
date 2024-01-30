@@ -6,7 +6,6 @@ import model.cupons.Cupon;
 import model.record.Credentials;
 import model.record.Location;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 

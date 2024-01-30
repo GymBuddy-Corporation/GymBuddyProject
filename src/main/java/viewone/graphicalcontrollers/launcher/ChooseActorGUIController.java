@@ -20,7 +20,7 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private ImageView pt;
     @FXML private ImageView athlete;
 
-    public static String launcherFolder="launcher";
+    public static final String launcherFolder="launcher";
     private String user;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
