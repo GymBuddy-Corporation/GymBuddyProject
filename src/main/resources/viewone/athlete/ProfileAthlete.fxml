@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalControllers.athlete.ProfileAthleteGUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalcontrollers.athlete.ProfileAthleteGUIController">
    <Text layoutX="631.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Account" textAlignment="CENTER" wrappingWidth="106.39990234375" AnchorPane.topAnchor="436.845947265625">
       <font>
          <Font name="Allerta Stencil Regular" size="17.75" />
