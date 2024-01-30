@@ -7,6 +7,7 @@ import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import viewtwo.engegnering.MainMenuSingleton;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -44,7 +45,7 @@ public class EmailSystemGUIController2 {
             e.callMe(2);
             return;
         }
-        //todo switch view2 SwitchPage.setStage(MainStage.getStage(), "PTHome.fxml", "pt", 1);
+        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
     }
 
     public void setValue(RequestBean selectedRequest) {

@@ -3,6 +3,7 @@ package viewtwo.graphicalcontrollers.pt;
 import beans.*;
 import exceptions.NoDayIsSelectedException;
 import exceptions.NoLoggedUserException;
+import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,9 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     @FXML private Label restLabel;
     @FXML private Button removeButton;
     @FXML private Button addButton;
+    @FXML private TextField restTextField;
+    @FXML private TextField repTextField;
+    @FXML private TextField setsTextField;
     private String selectedDay;
     private final List<String> dayList = new ArrayList<>();
     @FXML private RequestBean requestBean;
@@ -53,6 +57,9 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
 
     public void setVisibleAdd(boolean bool){
         addButton.setVisible(bool);
+        setsTextField.setVisible(bool);
+        restTextField.setVisible(bool);
+        repTextField.setVisible(bool);
     }
     public void setVisibleLabel(boolean bool){
         repetitionLabel.setVisible(bool);
@@ -139,8 +146,9 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             exer.addObserver(this);
         }
 
+        /* TODO METTI LISTNER CHE TI APRONO UN ALTRA SCHERMATA E TI PERMETTONO DI GESTIRE I DATI
         ManageExerciseList2.setListenerDB(exerciseDBList2, this);
-        ManageExerciseList2.setListenerRoutineWorkout(routineExerciselist2, this);
+        ManageExerciseList2.setListenerRoutineWorkout(routineExerciselist2, this);*/
 
         ManageExerciseList2.updateListFiltered(exerciseDBList2, exerciseBeanList);
         ManageExerciseList2.updateListFilteredDB(routineExerciselist2, exerciseBeanList);
@@ -180,6 +188,105 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         }
     }
 
+    @FXML
+    public void addExercise() {
+        ExerciseBean selectedExercise = exerciseDBList2.getSelectionModel().getSelectedItem();
+
+        if (selectedExercise == null || selectedDay == null) {
+            cleanGuiAfterAdd();
+            return;
+        }
+
+        setVisibleLabel(false);
+        setVisibleAdd(false);
+
+        ExerciseForWorkoutRoutineBean newExercise = createExercise(selectedExercise);
+
+        if (newExercise == null) {
+            cleanGuiAfterAdd();
+            return;
+        }
+
+        WorkoutDayBean workoutDay = getOrCreateWorkoutDay(newExercise);
+
+        try {
+            workoutDay.addExerciseBean(newExercise);
+        } catch (DataFieldException e) {
+            cleanGuiAfterAdd();
+            try {
+                e.callMe(1);
+            } catch (IOException ignore) {}
+        }
+
+        List<ExerciseForWorkoutRoutineBean> activeExercises = getActiveExercises(newExercise.getDay());
+        routineExerciselist2.getItems().setAll(activeExercises);
+
+        cleanGuiAfterAdd();
+    }
+
+    private ExerciseForWorkoutRoutineBean createExercise(ExerciseBean selectedExercise) {
+        //todo mostra ad alex come gestire le TUTTE eccezioni
+        ExerciseForWorkoutRoutineBean newExercise = new ExerciseForWorkoutRoutineBean(
+                selectedExercise.getName(),
+                selectedExercise.getStatusExercise(),
+                selectedDay
+        );
+
+        String repsString = repTextField.getText();
+        String setsString = setsTextField.getText();
+        String rest = restTextField.getText();
+        try {
+            int repetitions = Integer.parseInt(repsString);
+            int sets = Integer.parseInt(setsString);
+            try {
+                newExercise.setRepetitions(repetitions);
+                newExercise.setSets(sets);
+                newExercise.setRest(rest);
+                return newExercise;
+            } catch (DataFieldException e) {
+                try {
+                    e.callMe(1);
+                    return null;
+                } catch (IOException ignore) {
+                    return null;
+                }
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private WorkoutDayBean getOrCreateWorkoutDay(ExerciseForWorkoutRoutineBean newExercise) {
+        WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
+        if (workoutDay == null) {
+            workoutDay = new WorkoutDayBean(newExercise.getDay());
+            workoutRoutine.addWorkoutDayBean(workoutDay);
+        }
+        return workoutDay;
+    }
+
+    private List<ExerciseForWorkoutRoutineBean> getActiveExercises(String day) {
+        List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
+        WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(day);
+
+        if (workoutDay != null) {
+            for (ExerciseForWorkoutRoutineBean exercise : workoutDay.getExerciseBeanList()) {
+                if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
+                    activeExercises.add(exercise);
+                }
+            }
+        }
+        return activeExercises;
+    }
+
+    private void cleanGuiAfterAdd() {
+        resetSelection(1);
+        exerciseDBList2.getSelectionModel().clearSelection();
+        routineExerciselist2.getSelectionModel().clearSelection();
+        setVisibleLabel(false);
+        setVisibleAdd(false);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

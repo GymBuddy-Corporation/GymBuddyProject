@@ -6,6 +6,8 @@ public class ProblemGetter {
             case ProblemEnum.Empty -> "empty field is not valid";
             case ProblemEnum.IsNull-> "null filed is not valid";
             case ProblemEnum.NotValid -> "this value is not valid";
+            case ProblemEnum.IsAlreadyAdded -> "this value is is already added";
+
             default -> "error";
         };
     }

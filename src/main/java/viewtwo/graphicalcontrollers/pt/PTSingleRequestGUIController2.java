@@ -4,15 +4,11 @@ import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.NoLoggedUserException;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import viewtwo.engegnering.MainMenuSingleton;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class PTSingleRequestGUIController2 {
     @FXML private Label requestLabel;
@@ -63,6 +59,5 @@ public class PTSingleRequestGUIController2 {
     public void askClarification() throws Exception {
         EmailSystemGUIController2 controller = (EmailSystemGUIController2) MainMenuSingleton.getMainMenu().setActivity("EmailSystem2.fxml","pt");
         Objects.requireNonNull(controller).setValue(requestBean);
-        //todo da fare grafica MainMenuSingleton.getMainMenu().setActivity("ManageCommunication.fxml", "pt");
     }
 }

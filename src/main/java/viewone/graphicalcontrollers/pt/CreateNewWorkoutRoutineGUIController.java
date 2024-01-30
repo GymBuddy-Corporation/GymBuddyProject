@@ -5,6 +5,7 @@ import controllers.UserAccessController;
 import engineering.LoggedTrainerSingleton;
 import engineering.Observer;
 import exceptions.NoLoggedUserException;
+import exceptions.dataException.DataFieldException;
 import viewone.managelistview.listCells.ExerciseForWOListCellFactory;
 import viewone.managelistview.listCells.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
@@ -98,8 +99,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
     @FXML
     public void submitRoutine() throws Exception{
-        //TODO gestisci il submit di una nuova scheda, con l'aggiunta di un eventuale commento.
-        // gestisci l'aggiunta di un esercizio nella scheda DB
         PersonalizeWorkoutRoutineGUIController controller = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"PersonalizeWorkoutRoutine.fxml","pt",1);
         Objects.requireNonNull(controller).setValue(requestBean, this.workoutRoutine);
     }
@@ -112,9 +111,8 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
             ex.addObserver(this);
         }
         ManageExerciseList.setListenerDB(exerciseDBList, this);
-        ManageExerciseList.setListenerRoutineWorkout(routineExerciselist, this);
+        ManageExerciseList.setListenerRoutineWorkoutTrainer(routineExerciselist, this);
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
-        ManageExerciseList.updateListFilteredDB(routineExerciselist, exerciseBeanList);
         mondayButton.fire();
         athletesNameRoutineText.setText(requestBean.getAthleteBean().getUsername() + "s' Routine");
 
@@ -136,53 +134,51 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
             int repetitions = spinnerRepetitions.getValue();
             int sets = spinnerSets.getValue();
             String rest = restTimeComboBox.getValue();
-            boolean toAdd = true;
 
             ExerciseForWorkoutRoutineBean newExercise =
                     new ExerciseForWorkoutRoutineBean(selectedExercise.getName(),
                             selectedExercise.getStatusExercise(),
                             selectedDay);
-            newExercise.setRepetitions(repetitions);
-            newExercise.setSets(sets);
-            if (!newExercise.setRest(rest)) {
-                toAdd = false;
-                //TODO gestisci sta cosa
-            } if (toAdd) {
-                if (newExercise.getSets() == 0 || newExercise.getRepetitions() == 0) {
-                    System.out.println("Sets and repetitions must be greater than 0.");
+            try{
+                newExercise.setRepetitions(repetitions);
+                newExercise.setSets(sets);
+                newExercise.setRest(rest);
+            } catch ( DataFieldException e){
+                cleanGuiAfterAdd();
+                try {
+                    e.callMe(1);
                     return;
-                }
-
-                WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
-
-                if (workoutDay == null) {
-                    workoutDay = new WorkoutDayBean(newExercise.getDay());
-                    workoutRoutine.addWorkoutDayBean(workoutDay);
-                }
-                for (ExerciseForWorkoutRoutineBean existingExercise : workoutDay.getExerciseList()) {
-                    if (existingExercise.getName().equals(newExercise.getName())) {
-                        System.out.println("Exercise '" + newExercise.getName() + "' is already added to the workout day.");
-                        return; // Don't add the exercise if it's already in the workout day
-                    }
-                }
-
-                workoutDay.addExerciseBean(newExercise);
-                List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
-                for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(newExercise.getDay()).getExerciseBeanList()) {
-                    if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
-                        activeExercises.add(exercise);
-                    }
-                }
-
-                routineExerciselist.getItems().setAll(activeExercises);
-                } else {
-                //TODO gestisci il non inserimento
-                System.out.println("Exercise was not added successfully.");
+                } catch (IOException ignore) {}
             }
-            resetSelection(1);
-            exerciseDBList.getSelectionModel().clearSelection();
-            routineExerciselist.getSelectionModel().clearSelection();
+            WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
+            if (workoutDay == null) {
+                workoutDay = new WorkoutDayBean(newExercise.getDay());
+                workoutRoutine.addWorkoutDayBean(workoutDay);
+            }
+            try{
+                workoutDay.addExerciseBean(newExercise);
+            } catch (DataFieldException e){
+                cleanGuiAfterAdd();
+                try {
+                    e.callMe(1);
+                    return;
+                } catch (IOException ignore) {}
+            }
+            List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
+            for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(newExercise.getDay()).getExerciseBeanList()) {
+                if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
+                    activeExercises.add(exercise);
+                }
+            }
+            routineExerciselist.getItems().setAll(activeExercises);
         }
+        cleanGuiAfterAdd();
+    }
+
+    void cleanGuiAfterAdd(){
+        resetSelection(1);
+        exerciseDBList.getSelectionModel().clearSelection();
+        routineExerciselist.getSelectionModel().clearSelection();
     }
 
     public void removeExerciseFromDWorkoutRoutineBean (ExerciseForWorkoutRoutineBean exercise) {
@@ -192,23 +188,19 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     @FXML
     public void cancelExercise() {
         ExerciseForWorkoutRoutineBean selectedExercise = routineExerciselist.getSelectionModel().getSelectedItem();
-        if (selectedExercise != null) {
-            List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseList());
-
-            for (ExerciseForWorkoutRoutineBean item : copyList) {
-                if (selectedExercise.getName().equals(item.getName())) {
-                    removeExerciseFromDWorkoutRoutineBean(item);
-                    break;
-                }
+        List<ExerciseForWorkoutRoutineBean> copyList = new ArrayList<>(workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseList());
+        for (ExerciseForWorkoutRoutineBean item : copyList) {
+            if (selectedExercise.getName().equals(item.getName())) {
+                removeExerciseFromDWorkoutRoutineBean(item);
+                break;
             }
         }
         List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
         for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(selectedExercise.getDay()).getExerciseBeanList()) {
             if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
                 activeExercises.add(exercise);
-            }
+                }
         }
-
         routineExerciselist.getItems().setAll(activeExercises);
         setVisibleLabel(false);
         setVisibleCancel(false);
@@ -234,13 +226,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
                     exercisesToShow.add(exe);
                 }
             }
-        } else{
-            System.out.println("Il giorno della scheda è vuoto e quindi non esiste.");
-        }
-
-        System.out.println("Scheda del giorno:");
-        for (ExerciseForWorkoutRoutineBean ex : exercisesToShow) {
-            System.out.println(ex.getName() + " con stato: " + ex.getStatusExercise());
         }
         routineExerciselist.getItems().setAll(exercisesToShow);
     }

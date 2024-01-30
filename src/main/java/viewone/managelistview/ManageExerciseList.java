@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import model.ExerciseStatus;
+import viewone.graphicalcontrollers.athlete.AthletesRoutineGUIController;
 import viewone.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController;
 import viewone.graphicalcontrollers.pt.SetExerciseStatusGUIController;
 
@@ -51,7 +52,6 @@ public class ManageExerciseList {
 
 
     public static void updateListFilteredDB(ListView<ExerciseForWorkoutRoutineBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
-        // Filter out ExerciseForWorkoutRoutineBean with associated ExerciseBean having status other than ACTIVE
         List<ExerciseForWorkoutRoutineBean> filteredList = exerciseBeanListView.getItems().stream()
                 .filter(exerciseForWorkoutRoutineBean -> {
                     return exerciseForWorkoutRoutineBean != null &&
@@ -65,7 +65,7 @@ public class ManageExerciseList {
     }
 
 
-    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerRoutineWorkoutTrainer(ListView<ExerciseForWorkoutRoutineBean> exerciseList, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override

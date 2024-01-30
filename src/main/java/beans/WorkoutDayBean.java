@@ -1,5 +1,9 @@
 package beans;
 
+import exceptions.dataException.DataFieldException;
+import exceptions.dataException.TyperEnumerations.FieldsEnum;
+import exceptions.dataException.TyperEnumerations.ProblemEnum;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +42,13 @@ public class WorkoutDayBean {
         return exerciseBeanList;
     }
 
-    public void addExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) {
-        exerciseBeanList.add(exerciseBean);
+    public void addExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) throws DataFieldException{
+        for (ExerciseForWorkoutRoutineBean existingExercise : this.getExerciseList()) {
+            if (existingExercise.getName().equals(exerciseBean.getName())) {
+                throw new DataFieldException(FieldsEnum.Exercise, ProblemEnum.IsAlreadyAdded);
+            }
+        }
+        this.exerciseBeanList.add(exerciseBean);
     }
 
     public void removeExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) {
