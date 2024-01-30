@@ -4,6 +4,8 @@ import engineering.popups.PopupBaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import viewtwo.popups.LoginPopUp;
 import engineering.popups.PopupBaseClass;
 
@@ -15,7 +17,8 @@ public class LoginPopUpController extends PopupBaseController {
     TextField inputEmail;
     @FXML
     PasswordField inputPassword;
-
+    @FXML
+    ToggleButton yesToggle;
 
 
     @Override
@@ -24,6 +27,6 @@ public class LoginPopUpController extends PopupBaseController {
     }
     @FXML
     public void actionLogin() throws IOException {
-        caller.doLogin(inputEmail.getText(),inputPassword.getText());
+        caller.doLogin(inputEmail.getText(),inputPassword.getText(),yesToggle.isSelected());
     }
 }

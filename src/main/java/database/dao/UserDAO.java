@@ -8,6 +8,7 @@ import model.record.Credentials;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.sql.*;
 
 
@@ -21,6 +22,8 @@ public class UserDAO {
     private static final Integer GYM_TYPE = 0 ;
     private static final Integer TRAINER_TYPE = 1 ;
     private static final Integer ATHLETE_TYPE = 2 ;
+
+    private static String  fileForCredentials="credentials.ser";
 
 
     private @NotNull User getUser(String username) throws SQLException, NoUserFoundException {
@@ -53,5 +56,48 @@ public class UserDAO {
             return null;
         }
 
+
+
+
     }
+
+
+    public static Credentials deserializeSavedCredentials() throws NoUserFoundException {
+        Credentials credentials;
+        try {
+            FileInputStream fileIn = new FileInputStream(fileForCredentials);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            credentials = (Credentials) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            throw new NoUserFoundException();
+        } catch (ClassNotFoundException c) {
+            throw new NoUserFoundException();
+        }
+        return credentials;
+    }
+
+    public static void serializeSavedCredential(Credentials credentials){
+        try {
+            eliminateSavedCredentials();
+            FileOutputStream fileOut = new FileOutputStream(fileForCredentials);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(credentials);
+            out.close();
+            fileOut.close();
+        } catch (IOException ignore) {
+        }
+    }
+
+    public  static void eliminateSavedCredentials(){
+        File myObj = new File(fileForCredentials);
+        myObj.delete();
+    }
+
+
+
+
+
+
 }

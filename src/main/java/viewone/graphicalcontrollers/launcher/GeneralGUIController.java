@@ -32,7 +32,7 @@ public class GeneralGUIController {
         UserAccessController controller=new UserAccessController();
         UserBean bean;
         try {
-            bean=controller.loginDerserialization();
+            bean=controller.loginDeserialization();
             try {
                 changePage(bean);
                 return;

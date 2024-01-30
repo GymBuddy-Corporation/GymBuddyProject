@@ -39,12 +39,9 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
     }
     @Override
     public void loginCredentialInserted(String email, String password, boolean remember) throws IOException {
-        if (EmailValdator.isEmailValid(email) != true) {
-            setErrorText("Email non valida");
-        }
         UserAccessController controller = new UserAccessController();
         try {
-            controller.login(CredentialsBean.ctorWithSyntaxCheck(email, password));
+            controller.login(CredentialsBean.ctorWithSyntaxCheck(email, password),remember);
         } catch (DataFieldException | NoUserFoundException e) {
             e.callMe(2);
             return;
@@ -53,17 +50,9 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
         } catch (AlreadyLoggedUserException e) {
             e.callMe(2);
         }
-        UserTypes type;
-        /*try {*/
-            type = LoggedUserSingleton.getSingleton().getUserType();
-       /* } catch (NoLoggedUserException e) {
-            e.callMe(2);
-            return;
-        }*/
-
         MainMenuController a = (MainMenuController) SwitchPage.setStage(MainStage.getStage(), "mainMenu.fxml", "home", 2);
         MainMenuSingleton.createMainMenu(a);
-        switch (type) {
+        switch (LoggedUserSingleton.getSingleton().getUserType()) {
             case pt ->        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
             case gym ->         MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml", "gym");
             case athlete ->          MainMenuSingleton.getMainMenu().setActivity("atheleteHome.fxml", "athlete");

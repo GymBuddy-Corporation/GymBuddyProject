@@ -23,56 +23,32 @@ import java.sql.SQLException;
 
 
 public class UserAccessController {
-    public UserBean getUser() throws DataFieldException, NoUserFoundException {
+
+
+    public UserBean getUser(){
         return LoggedUserSingleton.getSingleton().getMyBean();
     }
 
     public void logout() throws NoLoggedUserException {
-        File myObj = new File("credentials.ser");
-        myObj.delete();
+        UserDAO.eliminateSavedCredentials();
         LoggedUserSingleton.clearSingleton();
     }
 
-    public UserBean login(CredentialsBean credentials) throws DataFieldException, NoUserFoundException, AlreadyLoggedUserException, SQLException {
-        // User in verita è un istanza di gym/athlete/pt
+    public UserBean login(CredentialsBean credentials,boolean saveCredentials) throws DataFieldException, NoUserFoundException, AlreadyLoggedUserException, SQLException {
         if (LoggedUserSingleton.getSingleton() != null) throw new AlreadyLoggedUserException();
         UserDAO userDAO = new UserDAO();
         Credentials credentialsObj=new Credentials(credentials.getEmail(), credentials.getPassword());
-        return loginCall(credentialsObj);
+        return loginCall(credentialsObj,saveCredentials);
     }
 
-    public UserBean loginDerserialization() throws NoUserFoundException, SQLException, AlreadyLoggedUserException {
-            Credentials credentials;
-        try {
-            FileInputStream fileIn = new FileInputStream("credentials.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            credentials = (Credentials) in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException i) {
-           // i.printStackTrace();
-            throw new NoUserFoundException();
-        } catch (ClassNotFoundException c) {
-            throw new NoUserFoundException();
-        }
-        return loginCall(credentials);
+    public UserBean loginDeserialization() throws NoUserFoundException, SQLException, AlreadyLoggedUserException {
+        return loginCall(UserDAO.deserializeSavedCredentials(),true);
     }
 
-    private  UserBean loginCall(Credentials credentials) throws SQLException, NoUserFoundException, AlreadyLoggedUserException {
+    private  UserBean loginCall(Credentials credentials,boolean saveCredential) throws SQLException, NoUserFoundException, AlreadyLoggedUserException {
         UserDAO userDAO = new UserDAO();
         User user = userDAO.loadUser(credentials);
-        try {
-            File myObj = new File("credentials.ser");
-            myObj.delete();
-            FileOutputStream fileOut = new FileOutputStream("credentials.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(credentials);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved in /tmp/employee.ser");
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
+        if(saveCredential)UserDAO.serializeSavedCredential(credentials);
         if(user instanceof Gym gym){
             return LoggedGymSingleton.createGymSingleton(gym).getMyBean();
         } else if (user instanceof Athlete athlete) {

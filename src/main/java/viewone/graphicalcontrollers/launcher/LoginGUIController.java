@@ -13,6 +13,7 @@ import utils.SwitchPage;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
 import java.io.IOException;
 
 import java.sql.SQLException;
@@ -21,16 +22,29 @@ import java.sql.SQLException;
 public class LoginGUIController {
 
 
-    @FXML
-    private Button submitButton;
+
     @FXML
     private TextField emailField;
     @FXML
-    private TextField passwField;
-    @FXML
     private TextField passwordField;
-    private String typeUser;
+    @FXML
+    private Button saveButton;
+    private static String color1="45065D";
+    private static String color2="AE10EC";
 
+    @FXML
+    public void changeStatus(){
+        if(saveCredentials) {
+            saveButton.setStyle("-fx-background-color: "+color1);
+            saveCredentials=false;
+        }else {
+            saveButton.setStyle("-fx-background-color:"+color2);
+            saveCredentials=true;
+        }
+    }
+
+
+    private boolean saveCredentials=false;
 
     @FXML
     public void goForward() throws IOException  {
@@ -38,7 +52,7 @@ public class LoginGUIController {
         UserBean userBean=null;
         try {
             try {
-                userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()));
+                userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()),saveCredentials);
             } catch (DataFieldException|NoUserFoundException e) {
                 e.callMe(1);
                 return;
@@ -65,13 +79,7 @@ public class LoginGUIController {
         SwitchPage.setStage(MainStage.getStage(), "ChooseActor.fxml", "launcher", 1);
     }
 
-    public void setValue(String user) {
-        this.typeUser = user;
-    }
 
-    public void getInfo(MouseEvent event) {
-        //TODO Connected with the LogoInfoButton
-    }
 
 
 }
