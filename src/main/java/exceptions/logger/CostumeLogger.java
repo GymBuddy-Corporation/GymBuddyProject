@@ -30,13 +30,13 @@ public class CostumeLogger {
         me=new CostumeLogger();
         return me;
     }
-    public static void reset(){
+    private static void reset(){
         if(me!=null && me.fileHandler!=null) {
             me.logger.removeHandler(me.fileHandler);
             me=null;
         }
     }
-    public void logError(String message){
-        if(fileHandler!=null) logger.log(Level.WARNING,message);
+    public void logError(Exception error){
+        if(fileHandler!=null) logger.log(Level.WARNING,error.getStackTrace().toString());
     }
 }

@@ -54,5 +54,6 @@ exports model.cupons;
 exports engineering.decorator;
     opens database.dao;
     exports database.dao;
+    exports  exceptions.logger;
 
 }

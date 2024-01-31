@@ -1,9 +1,11 @@
 package viewtwo.graphicalcontrollers.pt;
 
 import beans.*;
+import exceptions.CostumException;
 import exceptions.NoDayIsSelectedException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,9 +31,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Observer {
-    @FXML private Label RepetitionsLabelNumber;
-    @FXML private Label SetsLabelNumber;
-    @FXML private Label RestLabelNumber;
+    @FXML private Label repetitionsLabelNumber;
+    @FXML private Label setsLabelNumber;
+    @FXML private Label restLabelNumber;
     @FXML private Label repetitionLabel;
     @FXML private Label setsLabel;
     @FXML private Label restLabel;
@@ -75,9 +77,9 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     }
     public void setVisibleCancel(boolean bool) {
         removeButton.setVisible(bool);
-        RepetitionsLabelNumber.setVisible(bool);
-        SetsLabelNumber.setVisible(bool);
-        RestLabelNumber.setVisible(bool);
+        repetitionsLabelNumber.setVisible(bool);
+        setsLabelNumber.setVisible(bool);
+        restLabelNumber.setVisible(bool);
     }
 
     private int getIntDay() {
@@ -173,7 +175,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             try {
                 e.callMe(1);
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(ex);
             }
         }
     }
@@ -184,7 +186,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             ObservableList<ExerciseForWorkoutRoutineBean> exerciseBeanObservableList = FXCollections.observableList(workoutDayBean.getExerciseBeanList());
             routineExerciselist2.setItems(exerciseBeanObservableList);
         } catch (NullPointerException e){
-            System.out.println("Il giorno della scheda è vuoto e quindi non esiste.");
+            CostumeLogger.getInstance().logError(e);
         }
     }
 
@@ -238,22 +240,21 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         try {
             int repetitions = Integer.parseInt(repsString);
             int sets = Integer.parseInt(setsString);
-            try {
-                newExercise.setRepetitions(repetitions);
-                newExercise.setSets(sets);
-                newExercise.setRest(rest);
-                return newExercise;
-            } catch (DataFieldException e) {
-                try {
-                    e.callMe(1);
-                    return null;
-                } catch (IOException ignore) {
-                    return null;
-                }
-            }
+            newExercise.setRepetitions(repetitions);
+            newExercise.setSets(sets);
+            newExercise.setRest(rest);
+            return newExercise;
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
             return null;
+        }catch (DataFieldException e){
+            try {
+                e.callMe(1);
+                return null;
+            } catch (IOException ex) {
+                CostumeLogger.getInstance().logError(ex);
+                return null;
+            }
         }
     }
 

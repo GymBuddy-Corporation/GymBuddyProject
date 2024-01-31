@@ -226,6 +226,7 @@ public class Queries {
         return preparedStatement.executeQuery();
     }
     public static final String LOAD_USER_GYM_BY_EMAIL_QUERY="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE u.email=?";
+    public static  final String LOAD_ALL_GYMS="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES;
     public static final String LOAD_USER_GYM_BY_NAME_QUERRT="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE g.nameGym=?";
 
     public static final String LOAD_GYM_BY_TRAINER_FC="SELECT g.email AS gymEmail FROM "+GYM_TABLES+"JOIN gymbuddy.trainers AS t ON t.nameGym=g.nameGym WHERE t.fc=?";

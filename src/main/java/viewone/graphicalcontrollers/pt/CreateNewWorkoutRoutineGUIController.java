@@ -282,7 +282,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
             try {
                 e.callMe(1);
             } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(ex.getMessage());
+                CostumeLogger.getInstance().logError(ex);
             }
         }
 

@@ -4,7 +4,9 @@ import beans.GymInfoBean;
 import beans.SearchGymBean;
 import controllers.ManageMembershipController;
 import controllers.UserAccessController;
+import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,6 +21,7 @@ import viewone.managelistview.listCells.GymListCellFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -68,15 +71,15 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Gy
         ManageMembershipController controller=null;
         try {
             controller = new ManageMembershipController();
-        } catch (NoLoggedUserException e) {
+            return  controller.searchGym(filter);
+        } catch (NoLoggedUserException | DBUnrreachableException e) {
             try {
                 e.callMe(1);
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(ex);
             }
         }
-        return  controller.searchGym(filter);
-
+        return Collections.emptyList();
     }
 
     public void searchGyms(){

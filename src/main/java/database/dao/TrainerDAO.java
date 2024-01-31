@@ -3,6 +3,7 @@ package database.dao;
 
 import database.SingletonConnection;
 
+import exceptions.DBUnrreachableException;
 import model.Gym;
 import model.Trainer;
 import database.query.Queries;
@@ -59,7 +60,7 @@ public class TrainerDAO {
         }
     }
 
-    public Trainer loadTrainerWithAgregations(String email) throws SQLException {
+    public Trainer loadTrainerWithAgregations(String email) throws SQLException, DBUnrreachableException {
                 Trainer trainer=loadTrainer(email,"email");
                 if(trainer==null)return null;
                 GymDAO dao=new GymDAO();

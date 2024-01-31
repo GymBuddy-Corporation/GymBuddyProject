@@ -201,8 +201,13 @@ public class ManageMembershipController {
         return Pattern.compile(Pattern.quote(toBeSearched), Pattern.CASE_INSENSITIVE).matcher(text).find();
     }
 
-    public List<GymInfoBean> searchGym(SearchGymBean searchBean) {
-        List<Gym> gyms = gymDao.loadAllGyms();
+    public List<GymInfoBean> searchGym(SearchGymBean searchBean) throws DBUnrreachableException {
+        List<Gym> gyms = Collections.emptyList();
+        try {
+            gyms = gymDao.loadAllGyms();
+        } catch (SQLException e) {
+            throw new DBUnrreachableException();
+        }
         List<GymInfoBean> beanList = new ArrayList<>();
         for (Gym gym : gyms) {
             boolean isNameValid = (searchBean.getName() == null) || stringExistsInText(searchBean.getName(), gym.getGymName());

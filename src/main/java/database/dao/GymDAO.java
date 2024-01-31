@@ -4,6 +4,7 @@ package database.dao;
 
 import database.SingletonConnection;
 import database.query.Queries;
+import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import model.*;
 import model.record.Credentials;
@@ -27,13 +28,12 @@ public class GymDAO {
 
 
 
-    public List<Exercise> loadDBExercises(String gymName) {
+    public List<Exercise> loadDBExercises(String gymName) throws DBUnrreachableException {
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.LOAD_GYM_EXERCISES); ResultSet rs = Queries.loadTrainerExercises(gymName, preparedStatement)){
             return getExercises(rs);
         } catch (SQLException e) {
-            //TODO handle exception
-            return null;
+            throw new DBUnrreachableException();
         }
     }
 
@@ -61,28 +61,21 @@ public class GymDAO {
 
 
 
-    public List<Gym> loadAllGyms(){
+    public List<Gym> loadAllGyms() throws SQLException {
         List<Gym> gyms = new ArrayList<>();
-        //todo gestisci tutto questo
-        Gym palestra1 = new Gym("palestra1", new Credentials("gym@gmail.com", "forzanapule1926"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "roma", "Piazza dei Consoli, 11","italy", "GymTASTIC");
-        gyms.add(palestra1);
-
-        Gym palestra2 = new Gym("palestra2", new Credentials("gym2@gmail.com", "password2"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "milan", "Address 2", "Napoli","Gym da luca");
-        gyms.add(palestra2);
-
-        Gym palestra3 = new Gym("palestra3", new Credentials("gym3@gmail.com", "password3"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "florence", "Addresscam 3","Romania" ,"Allenatoio");
-        gyms.add(palestra3);
-
-        Gym palestra4 = new Gym("palestra4", new Credentials("gym4@gmail.com", "password4"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "naples", "Addresscam 4","italy", "Er colosseo");
-        gyms.add(palestra4);
-
-        Gym palestra5 = new Gym("palestra5", new Credentials("gym5@gmail.com", "password5"),
-                "BBBBBBBBBBBBBBBBBBBBBB", "turin", "Addresscam 5", "italy","Erbaccia");
-        gyms.add(palestra5);
+        PreparedStatement preparedStatement=SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_ALL_GYMS);
+        ResultSet resultSet=preparedStatement.executeQuery();
+        while(resultSet.next()){
+            gyms.add( new Gym(
+                    resultSet.getString(USERNAME),
+                    new Credentials(resultSet.getString(EMAIL),""),
+                    resultSet.getString(IBAN),
+                    resultSet.getString(CITY),
+                    resultSet.getString(ADDRESS),
+                    resultSet.getString(COUNTRY),
+                    resultSet.getString(NAME)
+            ));
+        }
         return gyms;
     }
 

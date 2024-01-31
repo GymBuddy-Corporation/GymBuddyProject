@@ -20,7 +20,7 @@
          <children>
             <TextField fx:id="setsTextField" alignment="CENTER" layoutX="206.0" layoutY="292.0" prefHeight="0.0" prefWidth="50.0" promptText="0" stylesheets="@../GymBuddyCSS2.css" />
             <TextField fx:id="restTextField" alignment="CENTER" layoutX="206.0" layoutY="320.0" prefHeight="0.0" prefWidth="50.0" promptText="00:00" stylesheets="@../GymBuddyCSS2.css" />
-            <Label fx:id="RestLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="317.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
+            <Label fx:id="restLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="317.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
             <VBox id="vbox" alignment="CENTER_LEFT" layoutX="685.0" layoutY="126.0" prefHeight="89.0" prefWidth="50.0" style="-fx-padding: 20 0 20 0; -fx-border-color: #911701; -fx-border-radius: 5em; -fx-spacing: 7;" stylesheets="@../GymBuddyCSS2.css" AnchorPane.rightAnchor="64.60000000000002">
                <children>
                   <RadioButton fx:id="mondayRadioButton" mnemonicParsing="false" onAction="#dayButtonAction" stylesheets="@../GymBuddyCSS2.css" text="Mon" textFill="#911701" />
@@ -68,8 +68,8 @@
                   <Image url="@../images/LogoForward.png" />
                </image>
             </ImageView>
-            <Label fx:id="RepetitionsLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="261.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
-            <Label fx:id="SetsLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="290.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
+            <Label fx:id="repetitionsLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="261.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
+            <Label fx:id="setsLabelNumber" alignment="CENTER" layoutX="206.0" layoutY="290.0" prefHeight="30.0" prefWidth="49.0" textFill="#911701" />
             <Button fx:id="addButton" layoutX="175.0" layoutY="352.0" mnemonicParsing="false" onAction="#addExercise" stylesheets="@../GymBuddyCSS2.css" text="Add" textFill="#911701" />
             <Button fx:id="removeButton" layoutX="164.0" layoutY="352.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="62.0" stylesheets="@../GymBuddyCSS2.css" text="Remove" textFill="#911701" />
             <Button fx:id="removeButton1" layoutX="381.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" text="Want to change the status of an exercise?" textFill="#911701" />
