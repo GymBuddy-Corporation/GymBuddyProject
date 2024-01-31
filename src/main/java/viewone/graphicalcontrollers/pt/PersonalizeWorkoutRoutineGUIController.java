@@ -3,6 +3,7 @@ package viewone.graphicalcontrollers.pt;
 import beans.RequestBean;
 import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -56,7 +57,12 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
         //TODO qua fare la scrittura su DB
         this.workoutRoutine.setComment(commentTextArea.getText());
         this.workoutRoutine.setName(nameRoutineTextArea.getText());
-        controller.sendWorkoutRoutine(requestBean, this.workoutRoutine);
+        try {
+            controller.sendWorkoutRoutine(requestBean, this.workoutRoutine);
+        } catch (DBUnrreachableException e) {
+                    e.callMe(1);
+                    return;
+        }
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
 
     }

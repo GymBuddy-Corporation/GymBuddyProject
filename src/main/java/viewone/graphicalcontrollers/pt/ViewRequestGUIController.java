@@ -2,6 +2,8 @@ package viewone.graphicalcontrollers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.CostumException;
+import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import viewone.managelistview.ManageRequestList;
 import exceptions.dataException.DataFieldException;
@@ -59,64 +61,42 @@ public class ViewRequestGUIController implements Initializable {
     }
 
     @FXML
-    public void rejectRequest() {
+    public void rejectRequest() throws IOException {
         //TODO gestisci la cancellazione di una richiesta
-        SatisfyWorkoutRequestsController controller;
-        try{
-            controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
-            try {
-                e.callMe(1);
+
+        try {
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            controller.rejectRequest(selectedRequest);
+            if (requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
                 return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
             }
-        }
-        controller.rejectRequest(selectedRequest);
-        if (requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
-            return;
-        }
-        try{
             ManageRequestList.updateList(requestList, controller);
             textUsersRequest.setText("");
-        } catch (DataFieldException e) {
-            try {
-                e.callMe(1);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+        }catch (CostumException e){
+            e.callMe(1);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SatisfyWorkoutRequestsController controller;
-        try{
-            controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
-            try {
-                e.callMe(1);
-                return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
+
         try {
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             ManageRequestList.setRequestList(requestList, controller);
-            requestList.getSelectionModel().selectedItemProperty().
-                    addListener(new ChangeListener<>() {
-                        @Override
-                        public void changed(ObservableValue<? extends RequestBean> observableValue, RequestBean oldItem, RequestBean newItem) {
-                            if (newItem != null) {
-                                textUsersRequest.setText(newItem.getInfo());
-                                selectedRequest = newItem;
-                                usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
-                                }
-                        }
-                    });
-        }catch (DataFieldException e) {
+            requestList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<>() {
+                @Override
+                public void changed(ObservableValue<? extends RequestBean> observableValue, RequestBean oldItem, RequestBean newItem) {
+                    if (newItem != null) {
+                        textUsersRequest.setText(newItem.getInfo());
+                        selectedRequest = newItem;
+                        usernameRequestText.setText(selectedRequest.getAthleteBean().getUsername() + " Request");
+                    }
+                }
+            });
+        }catch (CostumException e){
             try {
                 e.callMe(1);
+                throw new RuntimeException(e);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

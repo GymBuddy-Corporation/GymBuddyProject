@@ -19,8 +19,8 @@ public class LoginPopUp extends PopupBaseClass {
         }
         return PopupBaseClass.popupReference;
     }
-    public void doLogin(String email, String password) throws IOException {
-        castedInterface.loginCredentialInserted(email,password,true);
+    public void doLogin(String email, String password,boolean remember) throws IOException {
+        castedInterface.loginCredentialInserted(email,password,remember);
         hidePopUp();
     }
 }

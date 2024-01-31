@@ -120,6 +120,16 @@
     -fx-cursor: hand;
 }
 
+.toggle-button{
+    -fx-background-color:#826000  ;
+    -fx-border-color: #911701;
+    -fx-cursor: hand;
+}
+.toggle-button:selected{
+    -fx-background-color:#f9b700;
+}
+
+
 .button:hover {
     -fx-background-color: rgba(0, 0, 0, 0.10);
     -fx-background-radius:  5em;

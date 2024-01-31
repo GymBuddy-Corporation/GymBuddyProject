@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class GeneralGUIController {
 
@@ -28,28 +29,18 @@ public class GeneralGUIController {
             SwitchPage.setStage(MainStage.getStage(), "GymHome.fxml", "gym", 1);
         }
     }
-    @FXML protected void goForward(ActionEvent event) throws IOException {
+    @FXML protected void goForward() throws IOException {
         UserAccessController controller=new UserAccessController();
         UserBean bean;
         try {
-            bean=controller.loginDerserialization();
-            try {
-                changePage(bean);
-                return;
-            } catch (IOException e) {
-
-            }
-        } catch (NoUserFoundException | SQLException ignored) {
-
+            bean=controller.loginDeserialization();
+            changePage(bean);
+        } catch (NoUserFoundException e) {
+            SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml","launcher",1);
         } catch (AlreadyLoggedUserException e) {
-            try {
                 changePage(LoggedUserSingleton.getSingleton().getMyBean());
-                return;
-            } catch (IOException ex) {
-            }
         }
 
-        SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml","launcher",1);
     }
 
 }

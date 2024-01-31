@@ -3,12 +3,9 @@ package model;
 import model.record.Card;
 import model.record.Credentials;
 import model.record.PersonalInfo;
-
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.YearMonth;
 
-public class Athlete extends Person implements Serializable {
+public class Athlete extends Person  {
     private Card card;
     private WorkoutRoutine workoutRoutine;
 
@@ -30,13 +27,11 @@ public class Athlete extends Person implements Serializable {
     public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Trainer trainer) /*throws ExpiredCardException*/ {
         //costruttore con inizializzazione della carta
         super(username, credentials, personalInfo);
-        checkCardExpirationDate(card.cardExpirationDate());
         this.card = card;
     }
 
     public String getCardNumber() {
-        if(card.cardNumber()==null) {
-            System.out.println("Carta non inserita");
+        if(card==null) {
             return null;
         }else{
             return card.cardNumber();
@@ -44,7 +39,6 @@ public class Athlete extends Person implements Serializable {
     }
 
     public void setCard(Card card) {
-        checkCardExpirationDate(card.cardExpirationDate());
         this.card = card;
     }
 
@@ -57,16 +51,6 @@ public class Athlete extends Person implements Serializable {
     }
     public String getCardExpirationMonth(){
             return String.valueOf(card.cardExpirationDate().getMonthValue());
-    }
-
-
-    public void checkCardExpirationDate(YearMonth cardExpirationDate) {
-        if ((cardExpirationDate != null) && !((cardExpirationDate.getYear() > LocalDate.now().getYear()) ||
-                ((cardExpirationDate.getYear() == LocalDate.now().getYear()) &&
-                        (cardExpirationDate.getMonthValue() > LocalDate.now().getMonthValue())))) {
-            System.out.println("Carta scaduta");
-            /*throw new ExpiredCardException();*/
-        }
     }
 
     public WorkoutRoutine getWorkoutRoutine() {

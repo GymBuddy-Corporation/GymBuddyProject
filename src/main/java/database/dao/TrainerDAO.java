@@ -61,6 +61,7 @@ public class TrainerDAO {
 
     public Trainer loadTrainerWithAgregations(String email) throws SQLException {
                 Trainer trainer=loadTrainer(email,"email");
+                if(trainer==null)return null;
                 GymDAO dao=new GymDAO();
                 Gym gym=dao.loadGymByTrainerFc(trainer.getFC());
                 gym.setGymExercises(dao.loadDBExercises(gym.getGymName()));

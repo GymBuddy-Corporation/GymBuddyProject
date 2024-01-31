@@ -182,7 +182,7 @@ public class ManageMembershipController {
     @NotNull
     private PaymentBean getPaymentBean(MembershipBean membershipBean) {
         Athlete athlete=singletonInstance.getUser();
-        PaymentBean paymentBean=new PaymentBean(
+       return new PaymentBean(
                 selectedGym.getIban(),
                 selectedGym.getGymName(),
                 membershipBean.getName(),
@@ -194,7 +194,6 @@ public class ManageMembershipController {
                         athlete.getName(),
                         athlete.getSurname()),
                 athlete.getEmail());
-        return paymentBean;
     }
 
 

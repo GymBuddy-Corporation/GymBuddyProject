@@ -7,6 +7,7 @@ import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedTrainerSingleton;
+import exceptions.DBUnrreachableException;
 import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
@@ -46,7 +47,7 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean){
+    public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean) throws DBUnrreachableException {
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
 
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
@@ -59,7 +60,8 @@ public class SatisfyWorkoutRequestsController {
             workoutRoutineModel.addWorkoutDay(newWorkoutDay);
         }
 
-        Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
+        Athlete receiver = null;
+        receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
         if(receiver.getWorkoutRoutine() != null){
             new AthleteDAO().removeWorkoutPlan(receiver.getFC());
         }
@@ -110,7 +112,7 @@ public class SatisfyWorkoutRequestsController {
         System.out.println("Sender: " + sender + " Receiver: " + receiver + " object: " + object + " content: " + content);
     }
 
-    public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
+    public List<RequestBean> getTrainerRequests() throws DBUnrreachableException  {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedTrainerSingleton.getSingleton().getUser()));
 
         List<RequestBean> requestBeanList = new ArrayList<>();
