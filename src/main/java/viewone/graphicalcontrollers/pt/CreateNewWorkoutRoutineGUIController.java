@@ -6,6 +6,7 @@ import engineering.LoggedTrainerSingleton;
 import engineering.Observer;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import viewone.managelistview.listCells.ExerciseForWOListCellFactory;
 import viewone.managelistview.listCells.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
@@ -281,7 +282,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
             try {
                 e.callMe(1);
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(ex.getMessage());
             }
         }
 
