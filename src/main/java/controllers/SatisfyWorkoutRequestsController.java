@@ -112,7 +112,7 @@ public class SatisfyWorkoutRequestsController {
         System.out.println("Sender: " + sender + " Receiver: " + receiver + " object: " + object + " content: " + content);
     }
 
-    public List<RequestBean> getTrainerRequests() throws DataFieldException /*throws SQLException, DBUnreachableException*/ {
+    public List<RequestBean> getTrainerRequests() throws DBUnrreachableException  {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedTrainerSingleton.getSingleton().getUser()));
 
         List<RequestBean> requestBeanList = new ArrayList<>();

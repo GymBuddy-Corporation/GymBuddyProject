@@ -20,7 +20,7 @@ public class ChooseActorGUIController implements Initializable {
     @FXML private ImageView pt;
     @FXML private ImageView athlete;
 
-    public static final String launcherFolder="launcher";
+    public static final String LAUNCHER_FOLDER ="launcher";
     private String user;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,17 +67,17 @@ public class ChooseActorGUIController implements Initializable {
         if(scelta==Selezione.GYM) {
             path = "GymFirst.fxml";
             this.user = "gym";
-            GymFirstGUIController controller = (GymFirstGUIController) SwitchPage.setStage(MainStage.getStage(),path,launcherFolder,1);
+            GymFirstGUIController controller = (GymFirstGUIController) SwitchPage.setStage(MainStage.getStage(),path, LAUNCHER_FOLDER,1);
             Objects.requireNonNull(controller).setValue(user);
         } else if (scelta==Selezione.PT) {
             this.user = "trainer";
             path = "Login.fxml";
-           SwitchPage.setStage(MainStage.getStage(),path,launcherFolder,1);
+           SwitchPage.setStage(MainStage.getStage(),path, LAUNCHER_FOLDER,1);
 
         } else if(scelta==Selezione.ATHLETE) {
             this.user = "athlete";
             path = "Login.fxml";
-            SwitchPage.setStage(MainStage.getStage(),path,launcherFolder,1);
+            SwitchPage.setStage(MainStage.getStage(),path, LAUNCHER_FOLDER,1);
         }
     }
 

@@ -41,7 +41,7 @@ public class UserAccessController {
         return loginCall(credentialsObj,saveCredentials);
     }
 
-    public UserBean loginDeserialization() throws NoUserFoundException, SQLException, AlreadyLoggedUserException {
+    public UserBean loginDeserialization() throws NoUserFoundException, AlreadyLoggedUserException {
         return loginCall(UserDAO.deserializeSavedCredentials(),true);
     }
 

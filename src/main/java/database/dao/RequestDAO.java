@@ -28,26 +28,20 @@ public class RequestDAO {
         }
     }
 
-    public List<Request> loadTrainerRequests(Trainer trainer){
+    public List<Request> loadTrainerRequests(Trainer trainer) throws DBUnrreachableException {
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.LOAD_TRAINER_REQUESTS_QUERY); ResultSet rs = Queries.loadTrainerRequests(trainer.getFC(), preparedStatement)){
             List<Request> myList = new ArrayList<>();
-            extractRequests(trainer, rs, myList);
+            while(rs.next()) {
+                    myList.add(new Request(
+                            rs.getString(INFO),
+                            new AthleteDAO().loadAthlete(rs.getString(ATHLETEMAIL)),
+                            trainer));
+
+            }
             return myList;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private static void extractRequests(Trainer trainer, ResultSet rs, List<Request> myList) throws SQLException {
-        while(rs.next()) {
-            try {
-                myList.add(new Request(
-                        rs.getString(INFO),
-                        new AthleteDAO().loadAthlete(rs.getString(ATHLETEMAIL)),
-                        trainer));
-            } catch (DBUnrreachableException ignore){}
+            throw new DBUnrreachableException();
         }
     }
 
