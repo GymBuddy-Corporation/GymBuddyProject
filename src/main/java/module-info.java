@@ -55,5 +55,6 @@ exports engineering.decorator;
     opens database.dao;
     exports database.dao;
     exports  exceptions.logger;
+    opens viewtwo.popups to javafx.fxml;
 
 }

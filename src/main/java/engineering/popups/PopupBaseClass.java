@@ -14,6 +14,11 @@ public  class PopupBaseClass extends Popup{
 
     protected static PopupBaseClass popupReference;
 
+    public PopupBaseController getPopupController() {
+        return popupController;
+    }
+
+    protected PopupBaseController popupController;
 
     protected PopupBaseClass(PopupBaseInterface instanceOfParent,String file,String folder,int view) throws IOException {
         super();
@@ -24,6 +29,7 @@ public  class PopupBaseClass extends Popup{
         load = fxmlLoader.load();
         this.getContent().add(load);
         ((PopupBaseController)fxmlLoader.getController()).setCaller(this);
+        popupController=fxmlLoader.getController();
         this.show(MainStage.getStage());
         this.setAutoHide(true);
         this.setOnAutoHide(handler->{clearSingleton();});
