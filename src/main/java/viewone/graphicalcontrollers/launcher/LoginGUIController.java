@@ -30,7 +30,7 @@ public class LoginGUIController {
     @FXML
     private Button saveButton;
     private static String color1="45065D";
-    private static String color2="AE10EC";
+    private static String color2="linear-gradient(to bottom, #00e4af, #5d7cf3)";
 
     @FXML
     public void changeStatus(){
