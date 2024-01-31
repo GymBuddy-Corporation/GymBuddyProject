@@ -34,9 +34,8 @@ public class UserAccessController {
         LoggedUserSingleton.clearSingleton();
     }
 
-    public UserBean login(CredentialsBean credentials,boolean saveCredentials) throws DataFieldException, NoUserFoundException, AlreadyLoggedUserException, SQLException {
+    public UserBean login(CredentialsBean credentials,boolean saveCredentials) throws DataFieldException, NoUserFoundException, AlreadyLoggedUserException {
         if (LoggedUserSingleton.getSingleton() != null) throw new AlreadyLoggedUserException();
-        UserDAO userDAO = new UserDAO();
         Credentials credentialsObj=new Credentials(credentials.getEmail(), credentials.getPassword());
         return loginCall(credentialsObj,saveCredentials);
     }

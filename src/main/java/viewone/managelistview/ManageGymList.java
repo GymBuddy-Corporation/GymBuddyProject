@@ -17,6 +17,7 @@ public class ManageGymList {
                 addListener(new ChangeListener<>() {
                     @Override
                     public void changed(ObservableValue<? extends GymInfoBean> observableValue, GymInfoBean oldItem, GymInfoBean newItem) {
+                        if(newItem==null)return;
                         interfaceToGUI.setInfo(newItem);
                     }
                 });

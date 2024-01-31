@@ -37,11 +37,11 @@ public class CredentialsBean {
 
     public void setEmail(String email) throws DataFieldException {
         if(email.isEmpty()){
-            throw new DataFieldException(FieldsEnum.Email, ProblemEnum.Empty);
+            throw new DataFieldException(FieldsEnum.EMAIL, ProblemEnum.EMPTY);
         } else if(isValidEmail(email)){
             this.email = email;
         } else {
-            throw new DataFieldException(FieldsEnum.Email, ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.EMAIL, ProblemEnum.NOT_VALID);
         }
     }
 
@@ -57,13 +57,13 @@ public class CredentialsBean {
 
     public void setPassword(String password) throws DataFieldException {
         if(password == null){
-            throw new DataFieldException(FieldsEnum.Password,ProblemEnum.IsNull);
+            throw new DataFieldException(FieldsEnum.PASSWORD,ProblemEnum.IS_NULL);
         }else if (password.isEmpty()){
-            throw new DataFieldException(FieldsEnum.Password,ProblemEnum.Empty);
+            throw new DataFieldException(FieldsEnum.PASSWORD,ProblemEnum.EMPTY);
         } else if(isValidPassword(password)){
             this.password = password;
         } else{
-            throw new DataFieldException(FieldsEnum.Password,ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.PASSWORD,ProblemEnum.NOT_VALID);
         }
     }
 

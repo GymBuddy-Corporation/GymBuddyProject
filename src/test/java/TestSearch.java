@@ -39,15 +39,13 @@ public class TestSearch {
 
         UserAccessController controller1 = new UserAccessController();
         try {
-            controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","napule"));
+            controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","napule"),false);
         }catch(AlreadyLoggedUserException e){
             try{
                 Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
             } catch (NullPointerException exc){
                 exc.printStackTrace();
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
 
         SatisfyWorkoutRequestsController controller;

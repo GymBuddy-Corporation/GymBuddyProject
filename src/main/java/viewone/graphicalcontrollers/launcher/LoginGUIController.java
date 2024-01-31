@@ -59,10 +59,8 @@ public class LoginGUIController {
             }
         }catch(AlreadyLoggedUserException e){
             userBean = LoggedUserSingleton.getSingleton().getMyBean();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-       changePage(userBean);
+        changePage(userBean);
 
     }
     private void changePage(UserBean userBean) throws IOException {

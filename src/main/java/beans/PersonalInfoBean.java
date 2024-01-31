@@ -43,19 +43,19 @@ public class PersonalInfoBean {
 
     private void checkName(String name) throws DataFieldException  {
         if(name.isEmpty()){
-            throw new DataFieldException(FieldsEnum.Password, ProblemEnum.Empty);
+            throw new DataFieldException(FieldsEnum.PASSWORD, ProblemEnum.EMPTY);
         } else if(isNotValidLength(name)) {
-            throw new DataFieldException(FieldsEnum.Password,ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.PASSWORD,ProblemEnum.NOT_VALID);
         }
     }
 
     private LocalDate checkBirth(String birth) throws DataFieldException{
         if(birth.isEmpty()){
-            throw new DataFieldException(FieldsEnum.Date,ProblemEnum.Empty);
+            throw new DataFieldException(FieldsEnum.DATE,ProblemEnum.EMPTY);
         } else if(isValidBirth(birth)) {
             return LocalDate.parse(birth, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }else {
-            throw new DataFieldException(FieldsEnum.Date,ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.DATE,ProblemEnum.NOT_VALID);
         }
     }
 
@@ -65,9 +65,9 @@ public class PersonalInfoBean {
 
     private void checkFc(String fc) throws DataFieldException {
         if(fc.isEmpty()){
-            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.Empty);
+            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.EMPTY);
         } else if(!isValidFc(fc)) {
-            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.NOT_VALID);
         }
     }
 
@@ -78,9 +78,9 @@ public class PersonalInfoBean {
 
     private void checkSurname(String surname) throws DataFieldException {
         if(surname.isEmpty()){
-            throw new DataFieldException(FieldsEnum.Name,ProblemEnum.Empty);
+            throw new DataFieldException(FieldsEnum.NAME,ProblemEnum.EMPTY);
         } else if(isNotValidLength(surname)){
-            throw new DataFieldException(FieldsEnum.Name,ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.NAME,ProblemEnum.NOT_VALID);
         }
     }
 
@@ -91,7 +91,7 @@ public class PersonalInfoBean {
             String result = ld.format(formatter);
             return result.equals(value);
         } catch (DateTimeParseException e) {
-            throw new DataFieldException(FieldsEnum.Date,ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.DATE,ProblemEnum.NOT_VALID);
         }
     }
 

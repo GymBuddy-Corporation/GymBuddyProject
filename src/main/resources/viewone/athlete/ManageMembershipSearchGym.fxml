@@ -153,7 +153,7 @@
       <children>
          <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="114.19994659423833">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="49.39995880126958">
                   <font>
                      <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
@@ -177,9 +177,9 @@
                      <Insets top="20.0" />
                   </HBox.margin>
                </Text>
-               <Text fx:id="selectedNameLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.19994659423833">
+               <Text fx:id="selectedNameLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="175.79997570514684">
                   <font>
-                     <Font name="Allerta Stencil Regular" size="19.0" />
+                     <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
                   <fill>
                      <LinearGradient endY="0.3977272420218496">
@@ -205,7 +205,7 @@
          </HBox>
          <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="111.79992218017583">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="69.39995880126958">
                   <font>
                      <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
@@ -229,9 +229,9 @@
                      <Insets top="20.0" />
                   </HBox.margin>
                </Text>
-               <Text fx:id="selectedAddressLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.19994659423833">
+               <Text fx:id="selectedAddressLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.3998901367188">
                   <font>
-                     <Font name="Allerta Stencil Regular" size="19.0" />
+                     <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
                   <fill>
                      <LinearGradient endY="0.3977272420218496">
@@ -257,7 +257,7 @@
          </HBox>
          <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City:" wrappingWidth="114.19994659423833">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City:" wrappingWidth="41.39995880126958">
                   <font>
                      <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
@@ -281,9 +281,9 @@
                      <Insets top="20.0" />
                   </HBox.margin>
                </Text>
-               <Text fx:id="selectedCityLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.19994659423833">
+               <Text fx:id="selectedCityLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="177.4000122070313">
                   <font>
-                     <Font name="Allerta Stencil Regular" size="19.0" />
+                     <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
                   <fill>
                      <LinearGradient endY="0.3977272420218496">
@@ -309,7 +309,7 @@
          </HBox>
          <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Country:" wrappingWidth="114.19994659423833">
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Country:" wrappingWidth="68.59997100830083">
                   <font>
                      <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
@@ -333,9 +333,9 @@
                      <Insets top="20.0" />
                   </HBox.margin>
                </Text>
-               <Text fx:id="selectedCountryLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.19994659423833">
+               <Text fx:id="selectedCountryLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="147.79992218017583">
                   <font>
-                     <Font name="Allerta Stencil Regular" size="19.0" />
+                     <Font name="Allerta Stencil Regular" size="15.0" />
                   </font>
                   <fill>
                      <LinearGradient endY="0.3977272420218496">

@@ -29,7 +29,7 @@ public class UserBean {
         if(isValidLength(username)){
             this.username = username;
         }else {
-           throw new DataFieldException(FieldsEnum.Username, ProblemEnum.NotValid);
+           throw new DataFieldException(FieldsEnum.USERNAME, ProblemEnum.NOT_VALID);
         }
     }
 

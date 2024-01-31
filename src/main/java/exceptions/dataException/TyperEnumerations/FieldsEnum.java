@@ -1,5 +1,5 @@
 package exceptions.dataException.TyperEnumerations;
 
 public enum FieldsEnum {
-    Email,Password,Date,FC,Name, ExerciseRest, ExerciseSets, ExerciseReps, Exercise,Username
+    EMAIL, PASSWORD, DATE,FC, NAME, EXERCISE_REST, EXERCISE_SETS, EXERCISE_REPS, EXERCISE, USERNAME
 }

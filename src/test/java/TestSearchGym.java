@@ -4,6 +4,7 @@ import beans.SearchGymBean;
 import controllers.UserAccessController;
 import engineering.LoggedAthleteSingleton;
 import exceptions.AlreadyLoggedUserException;
+import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
@@ -41,9 +42,9 @@ class TestSearchGym {
 //
 //    }
     @Test
-    public void testSearchAllGyms() throws DataFieldException, NoUserFoundException, SQLException, AlreadyLoggedUserException, NoLoggedUserException {
+    public void testSearchAllGyms() throws DataFieldException, NoUserFoundException, SQLException, AlreadyLoggedUserException, NoLoggedUserException, DBUnrreachableException {
         UserAccessController accessController = new UserAccessController();
-        accessController.login(CredentialsBean.ctorWithoutSyntaxCheck("lux@gmail.com", "lux"));
+        accessController.login(CredentialsBean.ctorWithoutSyntaxCheck("lux@gmail.com", "lux"),false);
         System.out.println(LoggedAthleteSingleton.getSingleton().getUser().getName());
         ManageMembershipController controller = new ManageMembershipController();
         List<GymInfoBean> lista = controller.searchGym(new SearchGymBean("", "", "", ""));

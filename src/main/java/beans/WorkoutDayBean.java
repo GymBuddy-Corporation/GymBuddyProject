@@ -45,7 +45,7 @@ public class WorkoutDayBean {
     public void addExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) throws DataFieldException{
         for (ExerciseForWorkoutRoutineBean existingExercise : this.getExerciseList()) {
             if (existingExercise.getName().equals(exerciseBean.getName())) {
-                throw new DataFieldException(FieldsEnum.Exercise, ProblemEnum.IsAlreadyAdded);
+                throw new DataFieldException(FieldsEnum.EXERCISE, ProblemEnum.IS_ALREADY_ADDED);
             }
         }
         this.exerciseBeanList.add(exerciseBean);

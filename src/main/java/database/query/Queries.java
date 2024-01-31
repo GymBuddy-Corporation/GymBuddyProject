@@ -7,6 +7,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Queries {
+    public static final String FROM=" FROM ";
+    public static final String SELECT="SELECT ";
 
     public static final String LOAD_WORKOUT_ROUTINE_QUERY =
             "SELECT wr.nameWR, wr.comment, wr.initDate" +
@@ -225,9 +227,9 @@ public class Queries {
         preparedStatement.setString(1, trainerFc);
         return preparedStatement.executeQuery();
     }
-    public static final String LOAD_USER_GYM_BY_EMAIL_QUERY="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE u.email=?";
-    public static  final String LOAD_ALL_GYMS="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES;
-    public static final String LOAD_USER_GYM_BY_NAME_QUERRT="SELECT "+GYM_BASIC_INFO+" FROM "+GYM_TABLES+"WHERE g.nameGym=?";
+    public static final String LOAD_USER_GYM_BY_EMAIL_QUERY=SELECT+GYM_BASIC_INFO+FROM+GYM_TABLES+"WHERE u.email=?";
+    public static  final String LOAD_ALL_GYMS=SELECT+GYM_BASIC_INFO+FROM+GYM_TABLES;
+    public static final String LOAD_USER_GYM_BY_NAME_QUERRT=SELECT+GYM_BASIC_INFO+FROM+GYM_TABLES+"WHERE g.nameGym=?";
 
     public static final String LOAD_GYM_BY_TRAINER_FC="SELECT g.email AS gymEmail FROM "+GYM_TABLES+"JOIN gymbuddy.trainers AS t ON t.nameGym=g.nameGym WHERE t.fc=?";
     public static final String LOAD_USER_WALLET="SELECT c.athleteFC,c.starDatetMembership,c.nameGym,c.endDateMembership,c.points,c.membershipPrice FROM gymbuddy.currentmembership as  c JOIN  gymbuddy.athlete AS a ON a.fc = c.athleteFC where a.fc=?";

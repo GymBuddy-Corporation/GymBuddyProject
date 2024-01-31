@@ -45,8 +45,6 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
         } catch (DataFieldException | NoUserFoundException e) {
             e.callMe(2);
             return;
-        } catch (SQLException e) {
-            return;
         } catch (AlreadyLoggedUserException e) {
             e.callMe(2);
         }

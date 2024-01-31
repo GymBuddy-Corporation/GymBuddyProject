@@ -9,11 +9,11 @@ import java.util.logging.SimpleFormatter;
 public class CostumeLogger {
     private final  Logger logger = Logger.getLogger(CostumeLogger.class.getName());
     private  FileHandler fileHandler = null;
-
+    public static final String LOGGINGFILE="logFile.log";
     private static CostumeLogger me;
     protected  CostumeLogger(){
         try {
-            fileHandler=new FileHandler("loggerExample.log", false);
+            fileHandler=new FileHandler(LOGGINGFILE, true);
         } catch (SecurityException | IOException e) {
             return;
         }
@@ -30,13 +30,13 @@ public class CostumeLogger {
         me=new CostumeLogger();
         return me;
     }
-    private static void reset(){
+    public static void reset(){
         if(me!=null && me.fileHandler!=null) {
             me.logger.removeHandler(me.fileHandler);
             me=null;
         }
     }
     public void logError(Exception error){
-        if(fileHandler!=null) logger.log(Level.WARNING,error.getStackTrace().toString());
+        if(fileHandler!=null) logger.log(Level.WARNING,()->error.getStackTrace().toString());
     }
 }

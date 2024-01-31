@@ -42,9 +42,9 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
         if(isValidTime(timeString)) {
             this.rest = timeString;
         } else if (!timeString.equals("00:00")){
-            throw new DataFieldException(FieldsEnum.ExerciseRest, ProblemEnum.IsNull);
+            throw new DataFieldException(FieldsEnum.EXERCISE_REST, ProblemEnum.IS_NULL);
         }else {
-            throw new DataFieldException(FieldsEnum.ExerciseRest, ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.EXERCISE_REST, ProblemEnum.NOT_VALID);
         }
     }
 
@@ -52,18 +52,18 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
         if(reps>0){
             this.repetitions = reps;
         } else if (reps == 0){
-            throw new DataFieldException(FieldsEnum.ExerciseReps, ProblemEnum.IsNull);
+            throw new DataFieldException(FieldsEnum.EXERCISE_REPS, ProblemEnum.IS_NULL);
         } else {
-            throw new DataFieldException(FieldsEnum.ExerciseReps, ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.EXERCISE_REPS, ProblemEnum.NOT_VALID);
         }
     }
     public void setSets(int sets) throws DataFieldException{
         if(sets>0){
             this.sets = sets;
         } else if (sets == 0){
-            throw new DataFieldException(FieldsEnum.ExerciseSets, ProblemEnum.IsNull);
+            throw new DataFieldException(FieldsEnum.EXERCISE_SETS, ProblemEnum.IS_NULL);
         } else {
-            throw new DataFieldException(FieldsEnum.ExerciseSets, ProblemEnum.NotValid);
+            throw new DataFieldException(FieldsEnum.EXERCISE_SETS, ProblemEnum.NOT_VALID);
         }
     }
 

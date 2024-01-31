@@ -1,5 +1,5 @@
 package exceptions.dataException.TyperEnumerations;
 
 public enum ProblemEnum {
-    Empty,NotValid,IsNull,IsAlreadyAdded;
+    EMPTY, NOT_VALID, IS_NULL, IS_ALREADY_ADDED;
 }
