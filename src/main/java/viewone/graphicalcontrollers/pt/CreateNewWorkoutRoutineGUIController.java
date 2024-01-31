@@ -34,7 +34,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     private SatisfyWorkoutRequestsController controller;
     private String selectedDay;
     private final WorkoutRoutineBean workoutRoutine = new WorkoutRoutineBean();
-    private static final String myXmlFile="CreateNewWorkoutRoutine.fxml";
+    private static final String MY_XML_FILE ="CreateNewWorkoutRoutine.fxml";
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist;
     @FXML private Spinner<Integer> spinnerRepetitions;
@@ -84,23 +84,23 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
     @FXML
     public void setExerciseStatus() throws Exception{
-        SwitchPage.saveElement(myXmlFile,"pt",labelRest.getScene(),this);
+        SwitchPage.saveElement(MY_XML_FILE,"pt",labelRest.getScene(),this);
         SwitchPage.setStage(MainStage.getStage(),"SetExerciseStatus.fxml","pt",1);
     }
     @FXML
     public void deleteChanges() throws Exception{
-        SwitchPage.deleteElement(myXmlFile,"pt");
+        SwitchPage.deleteElement(MY_XML_FILE,"pt");
         SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
     }
     @FXML
     public void goHome() throws Exception{
-        SwitchPage.deleteElement(myXmlFile,"pt");
+        SwitchPage.deleteElement(MY_XML_FILE,"pt");
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     @FXML
-    public void submitRoutine() throws Exception{
-        PersonalizeWorkoutRoutineGUIController controller = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"PersonalizeWorkoutRoutine.fxml","pt",1);
-        Objects.requireNonNull(controller).setValue(requestBean, this.workoutRoutine);
+    public void submitRoutine() throws IOException {
+        PersonalizeWorkoutRoutineGUIController specializedController = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"PersonalizeWorkoutRoutine.fxml","pt",1);
+        Objects.requireNonNull(specializedController).setValue(requestBean, this.workoutRoutine);
     }
 
     public void setValue(RequestBean request){
@@ -125,7 +125,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
 
     @FXML
-    public void addExercise() {
+    public void addExercise() throws IOException {
         final ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
         if (selectedExercise != null && selectedDay != null) {
             setVisibleLabel(false);
@@ -143,26 +143,16 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
                 newExercise.setRepetitions(repetitions);
                 newExercise.setSets(sets);
                 newExercise.setRest(rest);
-            } catch ( DataFieldException e){
-                cleanGuiAfterAdd();
-                try {
-                    e.callMe(1);
-                    return;
-                } catch (IOException ignore) {}
-            }
-            WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
-            if (workoutDay == null) {
-                workoutDay = new WorkoutDayBean(newExercise.getDay());
-                workoutRoutine.addWorkoutDayBean(workoutDay);
-            }
-            try{
+                WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
+                if (workoutDay == null) {
+                    workoutDay = new WorkoutDayBean(newExercise.getDay());
+                    workoutRoutine.addWorkoutDayBean(workoutDay);
+                }
                 workoutDay.addExerciseBean(newExercise);
             } catch (DataFieldException e){
                 cleanGuiAfterAdd();
-                try {
-                    e.callMe(1);
-                    return;
-                } catch (IOException ignore) {}
+                e.callMe(1);
+                return;
             }
             List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
             for (ExerciseForWorkoutRoutineBean exercise : workoutRoutine.getWorkoutDay(newExercise.getDay()).getExerciseBeanList()) {
