@@ -1,6 +1,7 @@
 package viewtwo.manageListView.listCells;
 
 import beans.ExerciseBean;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -18,12 +19,11 @@ public class ExerciseListCellFactory2 implements Callback<ListView<ExerciseBean>
 
             {
                 try {
-                    // TODO: Adjust the path based on your project structure
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewtwo/pt/ListExerciseWorkoutRoutine2.fxml"));
                     loader.load();
                     itemNameLabel = (Label) loader.getNamespace().get("itemName1");
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    CostumeLogger.getInstance().logError(e);
                 }
             }
 

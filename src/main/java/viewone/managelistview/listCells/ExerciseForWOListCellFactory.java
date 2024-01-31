@@ -2,6 +2,7 @@ package viewone.managelistview.listCells;
 
 
 import beans.ExerciseForWorkoutRoutineBean;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -21,18 +22,16 @@ public class ExerciseForWOListCellFactory implements Callback<ListView<ExerciseF
             @Override
             protected void updateItem(ExerciseForWorkoutRoutineBean exerciseBean, boolean empty) {
                 super.updateItem(exerciseBean, empty);
-
                 if (empty || exerciseBean == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
                     if (parentNode == null) {
                         try {
-                            //TODO sistema: non ci deve essere viewone, deve essere corretto per entrambe le view
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListExerciseWorkoutRoutine.fxml"));
                             parentNode = loader.load();
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            CostumeLogger.getInstance().logError(e);
                         }
                     }
 

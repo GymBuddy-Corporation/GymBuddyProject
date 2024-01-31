@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="268.0" style="-fx-background-color: f9b700; -fx-border-color: black; -fx-border-radius: 4;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.popups.controllers.AddExercisePopUpController">
+   <top>
+      <Label text="Insert exercise to workout" textFill="#931701" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+   </top>
+   <center>
+      <AnchorPane prefHeight="275.0" prefWidth="266.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="setsTextField" alignment="CENTER" layoutX="159.0" layoutY="99.0" prefHeight="0.0" prefWidth="50.0" promptText="0" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="99.0" />
+            <TextField fx:id="restTextField" alignment="CENTER" layoutX="159.0" layoutY="144.0" prefHeight="0.0" prefWidth="50.0" promptText="00:00" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="144.0" />
+            <Label fx:id="repetitionLabel" alignment="CENTER" layoutX="51.0" layoutY="53.0" prefHeight="30.0" prefWidth="76.0" text="Repetitions" textFill="#911701" AnchorPane.topAnchor="53.0" />
+            <Label fx:id="setsLabel" alignment="CENTER" layoutX="51.0" layoutY="143.0" prefHeight="30.0" prefWidth="76.0" text="Sets" textFill="#911701" AnchorPane.topAnchor="100.0" />
+            <Label fx:id="restLabel" alignment="CENTER" layoutX="51.0" layoutY="98.0" prefHeight="30.0" prefWidth="76.0" text="Rest" textFill="#911701" AnchorPane.topAnchor="143.0" />
+            <TextField fx:id="repTextField" alignment="CENTER" layoutX="159.0" layoutY="55.0" prefHeight="0.0" prefWidth="50.0" promptText="0" stylesheets="@../GymBuddyCSS2.css" />
+            <Button fx:id="addButton" layoutX="92.0" layoutY="208.0" mnemonicParsing="false" onAction="#addExercise" prefHeight="38.0" prefWidth="70.0" stylesheets="@../GymBuddyCSS2.css" text="Add" textFill="#911701" />
+            <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="9.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0">
+               <image>
+                  <Image url="@../images/LogoBack.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="repetitionLabel1" alignment="CENTER" layoutX="30.0" layoutY="14.0" prefHeight="30.0" prefWidth="205.0" text="Name Exercise" textFill="#911701">
+               <font>
+                  <Font size="13.5" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

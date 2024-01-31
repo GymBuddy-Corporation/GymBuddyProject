@@ -1,6 +1,7 @@
 package viewone.managelistview.listCells;
 
 import beans.ExerciseBean;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -30,7 +31,7 @@ public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>,
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListExerciseWorkoutRoutine.fxml"));
                             parentNode = loader.load();
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            CostumeLogger.getInstance().logError(e);
                         }
                     }
 

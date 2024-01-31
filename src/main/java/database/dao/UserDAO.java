@@ -4,6 +4,7 @@ import database.SingletonConnection;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 
+import exceptions.logger.CostumeLogger;
 import model.*;
 import model.record.Credentials;
 
@@ -71,9 +72,7 @@ public class UserDAO {
             credentials = (Credentials) in.readObject();
             in.close();
             fileIn.close();
-        } catch (IOException i) {
-            throw new NoUserFoundException();
-        } catch (ClassNotFoundException c) {
+        } catch (IOException | ClassNotFoundException i) {
             throw new NoUserFoundException();
         }
         return credentials;
@@ -87,7 +86,8 @@ public class UserDAO {
             out.writeObject(credentials);
             out.close();
             fileOut.close();
-        } catch (IOException ignore) {
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
         }
     }
 

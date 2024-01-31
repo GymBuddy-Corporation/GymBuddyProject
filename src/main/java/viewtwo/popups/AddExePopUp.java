@@ -15,16 +15,17 @@ public class AddExePopUp extends PopupBaseClass {
         super(instanceOfParent, file, folder, view);
         castedInterface=(AddExeInterface) this.caller;
     }
-    public  static PopupBaseClass getLoginPopup(AddExeInterface caller,String nameExercise ,String file, String folder, int view) throws IOException {
+    public static PopupBaseClass getAddExePopup(AddExeInterface caller,String nameExercise, String day,String file, String folder, int view) throws IOException {
         if(PopupBaseClass.popupReference==null){
             PopupBaseClass.popupReference=new AddExePopUp(caller,file,folder,view);
-            ((AddExercisePopUpController)popupReference.getPopupController()).setExeName(nameExercise);
+            ((AddExercisePopUpController)popupReference.getPopupController()).setExeName(nameExercise, day);
         }
         return PopupBaseClass.popupReference;
     }
 
     public void addExcercise(ExerciseForWorkoutRoutineBean bean){
         castedInterface.addExercise(bean);
+        hidePopUp();
     }
 
 }

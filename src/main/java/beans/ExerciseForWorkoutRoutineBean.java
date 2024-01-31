@@ -28,6 +28,11 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
         this.day = day;
     }
 
+    public ExerciseForWorkoutRoutineBean(String name, String day) {
+        super(name);
+        this.day = day;
+    }
+
     public String getDay() {
         return day;
     }

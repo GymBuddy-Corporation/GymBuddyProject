@@ -2,6 +2,7 @@ package viewone.graphicalcontrollers.pt;
 
 import beans.AthleteBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.logger.CostumeLogger;
 import viewone.managelistview.listCells.AthleteListCellFactory;
 import viewone.managelistview.ManageAthletesList;
 import exceptions.dataException.DataFieldException;
@@ -61,7 +62,8 @@ public class ViewYourAthletesGUIController implements Initializable{
             try {
                 e.callMe(1);
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(e);
+                return;
             }
         }
 

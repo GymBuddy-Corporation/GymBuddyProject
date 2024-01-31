@@ -5,6 +5,7 @@ import controllers.SatisfyWorkoutRequestsController;
 import engineering.LoggedUserSingleton;
 import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import utils.MainStage;
@@ -26,7 +27,8 @@ public class EmailSystemGUIController {
                 e.callMe(1);
                 return;
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(e);
+                return;
             }
         }
         try {

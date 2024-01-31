@@ -11,6 +11,11 @@ public class ExerciseBean {
         this.statusExercise = statusExercise;
     }
 
+    public ExerciseBean(String name) {
+        this.name = name;
+        setStatusExercise(ExerciseStatus.ACTIVE);
+    }
+
     public String getName() {
         return name;
     }

@@ -4,6 +4,7 @@ import beans.ExerciseBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.NoLoggedUserException;
+import exceptions.logger.CostumeLogger;
 import model.ExerciseStatus;
 import viewone.managelistview.listCells.ExerciseListCellFactoryForStatus;
 import viewone.managelistview.ManageExerciseList;
@@ -125,7 +126,8 @@ public class SetExerciseStatusGUIController implements Initializable{
                 e.callMe(1);
                 return;
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(e);
+                return;
             }
         }
         controller.setExerciseStatus(selectedExercise, selectedStatus);

@@ -2,6 +2,7 @@ package viewtwo.manageListView;
 
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
+import exceptions.logger.CostumeLogger;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +10,11 @@ import javafx.scene.control.ListView;
 import model.ExerciseStatus;
 import viewone.graphicalcontrollers.pt.SetExerciseStatusGUIController;
 import viewtwo.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController2;
+import viewtwo.popups.AddExePopUp;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class ManageExerciseList2 {
@@ -27,10 +31,17 @@ public class ManageExerciseList2 {
 
     private static void listEventDB(ExerciseBean newItem, CreateNewWorkoutRoutineGUIController2 controller) {
         if (newItem != null) {
-            controller.setVisibleLabel(true);
-            controller.setVisibleAdd(true);
-            controller.setVisibleCancel(false);
-            //controller.resetInputCollectors();
+            try{
+                String day = controller.getSelectedDay();
+                System.out.println(newItem.getName() + " giorno: " + day);
+                AddExePopUp.getAddExePopup(controller, newItem.getName(), day, "AddExercisePopUp.fxml", "popups", 2);
+            } catch (IOException e){
+                CostumeLogger.getInstance().logError(e);
+            }
+            /*todo togli sti schifi e gestisci la merda di queste funzioni fxml sotto
+                controller.setVisibleLabel(true);
+                controller.setVisibleAdd(true);
+                controller.setVisibleCancel(false);*/
             controller.resetSelection(1);
         }
     }

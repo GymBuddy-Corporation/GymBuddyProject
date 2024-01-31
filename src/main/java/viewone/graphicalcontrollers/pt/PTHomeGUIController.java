@@ -2,6 +2,7 @@ package viewone.graphicalcontrollers.pt;
 
 import controllers.UserAccessController;
 import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
@@ -63,7 +64,7 @@ public class PTHomeGUIController implements Initializable{
             try {
                 e.callMe(1);
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(e);
             }
         }
         communicationList.setCellFactory(new GymCommunicationListCellFactory());

@@ -13,7 +13,7 @@ public class LoginPopUp extends PopupBaseClass {
         super(instanceOfParent, file, folder, view);
         castedInterface=(LoginPopUpInterface) this.caller;
     }
-    public  static PopupBaseClass getLoginPopup(LoginPopUpInterface caller,String file,String folder,int view) throws IOException {
+    public static PopupBaseClass getLoginPopup(LoginPopUpInterface caller,String file,String folder,int view) throws IOException {
         if(PopupBaseClass.popupReference==null){
             PopupBaseClass.popupReference=new LoginPopUp(caller,file,folder,view);
         }

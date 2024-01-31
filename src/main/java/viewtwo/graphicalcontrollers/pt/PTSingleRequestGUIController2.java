@@ -3,6 +3,7 @@ package viewtwo.graphicalcontrollers.pt;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.NoLoggedUserException;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import viewtwo.engegnering.MainMenuSingleton;
@@ -38,7 +39,8 @@ public class PTSingleRequestGUIController2 {
                 e.callMe(1);
                 return;
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                CostumeLogger.getInstance().logError(e);
+                return;
             }
         }
         controller.rejectRequest(requestBean);

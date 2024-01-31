@@ -15,6 +15,7 @@ public class CostumeLogger {
         try {
             fileHandler=new FileHandler(LOGGINGFILE, true);
         } catch (SecurityException | IOException e) {
+            CostumeLogger.getInstance().logError(e);
             return;
         }
         Logger l = Logger.getLogger("");
