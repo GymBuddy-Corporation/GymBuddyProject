@@ -67,7 +67,7 @@ public class PersonalInfoBean {
         if(fc.isEmpty()){
             throw new DataFieldException(FieldsEnum.FC,ProblemEnum.Empty);
         } else if(!isValidFc(fc)) {
-            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.Empty);
+            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.NotValid);
         }
     }
 

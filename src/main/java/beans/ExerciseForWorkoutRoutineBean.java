@@ -72,7 +72,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
             return false;  // or handle the null case differently
         }
 
-        String timeRegex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+        String timeRegex = "([01]?\\d|2[0-3]):[0-5]\\d";
         Pattern pattern = Pattern.compile(timeRegex);
         Matcher matcher = pattern.matcher(timeString);
         return matcher.matches();

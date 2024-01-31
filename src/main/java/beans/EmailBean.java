@@ -1,9 +1,6 @@
 package beans;
 
 import exceptions.EmailFormException;
-import exceptions.dataException.DataFieldException;
-import exceptions.dataException.TyperEnumerations.FieldsEnum;
-import exceptions.dataException.TyperEnumerations.ProblemEnum;
 
 public class EmailBean {
     private final UserBean sender;
@@ -12,7 +9,7 @@ public class EmailBean {
     private String body;
 
 
-    public EmailBean(UserBean sender, UserBean receiver) throws EmailFormException{
+    public EmailBean(UserBean sender, UserBean receiver) {
         this.sender = sender;
         this.receiver = receiver;
     }

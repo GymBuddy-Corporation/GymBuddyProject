@@ -2,6 +2,8 @@ package beans;
 
 
 import exceptions.dataException.DataFieldException;
+import exceptions.dataException.TyperEnumerations.FieldsEnum;
+import exceptions.dataException.TyperEnumerations.ProblemEnum;
 
 public class UserBean {
     private String username;
@@ -16,7 +18,6 @@ public class UserBean {
     public UserBean(String username, CredentialsBean credentials) throws DataFieldException {
         /*This is a constructor with syntax check and is used by view*/
         setUsername(username);
-        //TODO capire come usare questo costruttore (è da qui che nascono i nullpointer)
         this.credentials = CredentialsBean.ctorWithSyntaxCheck(credentials.getEmail(), credentials.getPassword());
     }
 
@@ -24,11 +25,11 @@ public class UserBean {
         return this.credentials;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username) throws DataFieldException {
         if(isValidLength(username)){
             this.username = username;
         }else {
-            System.out.println("ERRORE CAMPO USERNAME");
+           throw new DataFieldException(FieldsEnum.Username, ProblemEnum.NotValid);
         }
     }
 

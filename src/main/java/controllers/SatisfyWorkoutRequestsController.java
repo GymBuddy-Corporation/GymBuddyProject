@@ -11,7 +11,6 @@ import exceptions.DBUnrreachableException;
 import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
-import exceptions.dataException.DataFieldException;
 import model.*;
 import org.jetbrains.annotations.NotNull;
 import beans.RequestBean;

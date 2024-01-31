@@ -12,6 +12,7 @@ public class FieldGetter {
             case FieldsEnum.ExerciseReps -> "exercise repetitions";
             case FieldsEnum.ExerciseSets -> "exercise sets";
             case FieldsEnum.Exercise -> "exercise";
+            case Username -> "username";
             default -> "error";
         };
     }

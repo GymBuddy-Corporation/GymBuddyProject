@@ -58,14 +58,15 @@ public class ManageMembershipController {
         List<Cupon> listOfCoupons=selectedGym.getCoupons();
         List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
         for(Cupon cupon: listOfCoupons ){
-            listOfCouponsBeans.add(new CuponsBean(cupon.getCode(),
+            CuponsBean temp=new CuponsBean(cupon.getCode(),
                     cupon.getPointsPrice(),
                     cupon.getName(),
-                    cupon.getDescription(),
                     cupon.getOnlyForNewUsers(),
                     cupon.isCumulative(),
                     cupon.getType(),
-                    cupon.getCouponsValue()));
+                    cupon.getCouponsValue());
+            if(!Objects.equals(cupon.getDescription(), ""))temp.setDescription(cupon.getDescription());
+            listOfCouponsBeans.add(temp);
         }
         return listOfCouponsBeans;
     }
