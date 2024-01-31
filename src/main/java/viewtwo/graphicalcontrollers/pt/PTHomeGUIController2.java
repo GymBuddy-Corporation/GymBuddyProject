@@ -2,6 +2,7 @@ package viewtwo.graphicalcontrollers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.CostumException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ObservableValue;
@@ -28,20 +29,9 @@ public class PTHomeGUIController2 implements Initializable {
     }
 
     private void initializeRequestList() {
-        SatisfyWorkoutRequestsController controller;
-        try{
-            controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
-            try {
-                e.callMe(1);
-                return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
         try {
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             ManageRequestList2.setRequestList(requestList, controller);
-
             requestList.getSelectionModel().selectedItemProperty().addListener(
                     (ObservableValue<? extends RequestBean> observable, RequestBean oldItem, RequestBean newItem) -> {
                         if (newItem != null) {
@@ -49,8 +39,13 @@ public class PTHomeGUIController2 implements Initializable {
                         }
                     }
             );
-        } catch (DataFieldException e) {
-            handleDataFieldException(e);
+        }catch (CostumException e){
+            try {
+                e.callMe(2);
+                throw new RuntimeException(e);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 
@@ -64,13 +59,7 @@ public class PTHomeGUIController2 implements Initializable {
         }
     }
 
-    private void handleDataFieldException(DataFieldException e) {
-        try {
-            e.callMe(1);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
+
 
     @FXML
     public void manageCommunication() throws Exception {
