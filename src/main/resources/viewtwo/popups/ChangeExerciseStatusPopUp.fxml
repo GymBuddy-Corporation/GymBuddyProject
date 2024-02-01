@@ -16,9 +16,9 @@
       <AnchorPane prefHeight="275.0" prefWidth="266.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="changeButton" layoutX="97.0" layoutY="257.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="38.0" prefWidth="70.0" stylesheets="@../GymBuddyCSS2.css" text="Change" textFill="#911701" />
-            <HBox fx:id="hboxButtons" layoutX="36.0" layoutY="211.0" prefHeight="30.0" prefWidth="196.0" style="-fx-padding: 4.5 20 0 20; -fx-spacing: 15; -fx-border-color: #911701; -fx-border-radius: 5em;">
+            <HBox fx:id="hboxButtons" layoutX="28.0" layoutY="211.0" prefHeight="30.0" prefWidth="210.0" style="-fx-padding: 4.5 20 0 20; -fx-spacing: 15; -fx-border-color: #911701; -fx-border-radius: 5em;">
                <children>
-                  <RadioButton fx:id="activeRadioButton" mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Active" textFill="#911701" />
+                  <RadioButton fx:id="activeRadioButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="71.0" stylesheets="@../GymBuddyCSS2.css" text="Active" textFill="#911701" />
                   <RadioButton fx:id="suspendedRadioButton" mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Suspended" textFill="#911701" />
                </children>
             </HBox>

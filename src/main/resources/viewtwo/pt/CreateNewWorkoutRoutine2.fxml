@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController2">
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController2">
    <children>
       <AnchorPane layoutX="14.0" layoutY="102.0" prefHeight="291.0" prefWidth="503.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;">
          <children>
@@ -51,7 +45,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0">
+            <ImageView fx:id="goBack" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0">
                <image>
                   <Image url="@../images/LogoBack.png" />
                </image>
@@ -62,17 +56,22 @@
                   <Label fx:id="requestLabel1" alignment="CENTER" layoutX="52.0" layoutY="7.0" prefHeight="30.0" prefWidth="218.0" text="Workout Routine" textFill="#911701" AnchorPane.topAnchor="7.0" />
                </children>
             </AnchorPane>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.2" layoutY="384.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.399999999999977" AnchorPane.rightAnchor="14.0">
+            <ImageView fx:id="goForward" fitHeight="50.0" fitWidth="50.0" layoutX="735.2" layoutY="384.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.399999999999977" AnchorPane.rightAnchor="14.0">
                <image>
                   <Image url="@../images/LogoForward.png" />
                </image>
             </ImageView>
             <Button fx:id="removeButton1" layoutX="381.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" text="Want to change the status of an exercise?" textFill="#911701" />
-            <Label fx:id="updateLabel" alignment="CENTER" layoutX="68.0" layoutY="393.0" prefHeight="30.0" prefWidth="250.0" text="You have just set this exercise active/suspended" textFill="#911701">
+            <Label fx:id="updateLabel" alignment="CENTER" layoutX="69.0" layoutY="393.0" prefHeight="30.0" prefWidth="250.0" text="You have just set this exercise active/suspended" textFill="#911701">
                <font>
                   <Font size="11.5" />
                </font>
             </Label>
+            <ImageView fx:id="correctSetUp" fitHeight="30.0" fitWidth="30.0" layoutX="320.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/LogoParty.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

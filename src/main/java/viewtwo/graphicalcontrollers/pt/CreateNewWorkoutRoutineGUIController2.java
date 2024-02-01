@@ -15,6 +15,7 @@ import engineering.Observer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import model.Exercise;
 import model.ExerciseStatus;
@@ -53,6 +54,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     @FXML private RadioButton fridayRadioButton;
     @FXML private RadioButton saturdayRadioButton;
     @FXML private RadioButton sundayRadioButton;
+    @FXML private ImageView correctSetUp;
     private WorkoutRoutineBean workoutRoutine;
 
     //todo capire perchè stampa lancia bene solo l'eccezione sul REST sbagliato/nullo, ma non
@@ -177,6 +179,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         this.workoutRoutine = new WorkoutRoutineBean();
         exerciseDBList2.setCellFactory(new ExerciseListCellFactory2());
         routineExerciselist2.setCellFactory(new ExerciseForWOListCellFactory2());
+        correctSetUp.setVisible(false);
 
         radioButtonList = Arrays.asList(
                 mondayRadioButton,
@@ -247,7 +250,10 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
 
     @Override
     public void setExerciseStatus(ExerciseBean bean) {
-        //todo
+        PauseTransition pause = new PauseTransition(Duration.seconds(5));
+        pause.setOnFinished(event -> correctSetUp.setVisible(false));
+        correctSetUp.setVisible(true);
+        pause.play();
     }
     @Override
     public void update(String exerciseName, ExerciseStatus status) {
