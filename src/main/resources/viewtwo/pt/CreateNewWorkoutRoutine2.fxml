@@ -68,6 +68,11 @@
                </image>
             </ImageView>
             <Button fx:id="removeButton1" layoutX="381.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" text="Want to change the status of an exercise?" textFill="#911701" />
+            <Label fx:id="updateLabel" alignment="CENTER" layoutX="68.0" layoutY="393.0" prefHeight="30.0" prefWidth="250.0" text="You have just set this exercise active/suspended" textFill="#911701">
+               <font>
+                  <Font size="11.5" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

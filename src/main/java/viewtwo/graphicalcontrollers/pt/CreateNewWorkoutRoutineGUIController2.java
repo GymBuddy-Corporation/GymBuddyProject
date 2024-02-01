@@ -5,6 +5,9 @@ import exceptions.NoDayIsSelectedException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
 import exceptions.logger.CostumeLogger;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.scene.control.*;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.LoggedTrainerSingleton;
@@ -12,12 +15,17 @@ import engineering.Observer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.util.Duration;
 import model.Exercise;
 import model.ExerciseStatus;
+import viewone.managelistview.ManageExerciseList;
 import viewtwo.manageListView.ManageExerciseList2;
 import viewtwo.manageListView.listCells.ExerciseForWOListCellFactory2;
 import viewtwo.manageListView.listCells.ExerciseListCellFactory2;
+import viewtwo.popups.AddExePopUp;
+import viewtwo.popups.ChangeExeStatusPopUp;
 import viewtwo.popups.abstracts.AddExeInterface;
+import viewtwo.popups.abstracts.ChangeExeStatusInterface;
 import viewtwo.popups.abstracts.DeleteExeInterface;
 
 import java.io.IOException;
@@ -28,15 +36,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static java.lang.System.exit;
 
-public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Observer, AddExeInterface, DeleteExeInterface {
+public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Observer, AddExeInterface, DeleteExeInterface, ChangeExeStatusInterface {
     private String selectedDay;
     private final List<String> dayList = new ArrayList<>();
     @FXML private RequestBean requestBean;
     @FXML private ListView <ExerciseBean> exerciseDBList2;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist2;
     @FXML private List<RadioButton> radioButtonList;
+    @FXML private Label updateLabel;
 
     @FXML private RadioButton mondayRadioButton;
     @FXML private RadioButton tuesdayRadioButton;
@@ -88,7 +96,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         }
 
         ManageExerciseList2.setListenerDB(exerciseDBList2, this);
-        /* TODO METTI LISTNER CHE TI APRONO UN ALTRA SCHERMATA E TI PERMETTONO DI GESTIRE I DATI*/
         ManageExerciseList2.setListenerRoutineWorkout(routineExerciselist2, this);
 
         ManageExerciseList2.updateListFiltered(exerciseDBList2, exerciseBeanList);
@@ -195,14 +202,12 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         }
 
     }
-
-    @Override
-    public void update(String exerciseName, ExerciseStatus status) {
-        //todo da fare
-    }
-
-    public void changeStatus(ActionEvent actionEvent) {
-        //todo da fare
+    public void changeStatus() {
+        try{
+            ChangeExeStatusPopUp.getChangeExeStatusPopup(this, "ChangeExerciseStatusPopUp.fxml", "popups", 2);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 
     @Override
@@ -229,5 +234,47 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         List<ExerciseForWorkoutRoutineBean> activeExercises = getActiveExercises(bean.getDay());
         routineExerciselist2.getItems().setAll(activeExercises);
     }
+    public void updateExerciseList() {
+        try {
+            SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+            List<ExerciseBean> listBean2 = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
+            ManageExerciseList.updateListFiltered( exerciseDBList2, listBean2);
+        } catch (NoLoggedUserException e){
+            CostumeLogger.getInstance().logError(e);
+        }
+    }
 
+
+    @Override
+    public void setExerciseStatus(ExerciseBean bean) {
+        //todo
+    }
+    @Override
+    public void update(String exerciseName, ExerciseStatus status) {
+        updateLabel.setText("The exercise: " + exerciseName + " is now " + status);
+        PauseTransition pause = new PauseTransition(Duration.seconds(5));
+        pause.setOnFinished(event -> updateLabel.setVisible(false));
+        updateLabel.setVisible(true);
+        pause.play();
+        updateExerciseList();
+        for (WorkoutDayBean entry : workoutRoutine.getWorkoutDayList()) {
+            List<ExerciseForWorkoutRoutineBean> exerciseList = entry.getExerciseList();
+
+            for (ExerciseForWorkoutRoutineBean ex : exerciseList) {
+                if (ex.getName().equals(exerciseName)) {
+                    ex.setStatusExercise(status);
+                }
+            }
+        }
+        try {
+            selectedDay = getNameDay();
+            updateSelectedExerciseList();
+        } catch (NoDayIsSelectedException e) {
+            try {
+                e.callMe(1);
+            } catch (IOException ex) {
+                CostumeLogger.getInstance().logError(ex);
+            }
+        }
+    }
 }

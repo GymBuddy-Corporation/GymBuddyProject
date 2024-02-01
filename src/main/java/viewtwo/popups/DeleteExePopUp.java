@@ -4,7 +4,6 @@ import beans.ExerciseForWorkoutRoutineBean;
 import engineering.popups.PopupBaseClass;
 import engineering.popups.PopupBaseInterface;
 import viewtwo.popups.abstracts.DeleteExeInterface;
-import viewtwo.popups.controllers.AddExercisePopUpController;
 import viewtwo.popups.controllers.DeleteExercisePopUpController;
 
 import java.io.IOException;

@@ -4,8 +4,10 @@ import beans.ExerciseBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.NoLoggedUserException;
+import exceptions.UserCastException;
 import exceptions.logger.CostumeLogger;
 import model.ExerciseStatus;
+import model.User;
 import viewone.managelistview.listCells.ExerciseListCellFactoryForStatus;
 import viewone.managelistview.ManageExerciseList;
 import javafx.collections.FXCollections;
@@ -82,6 +84,9 @@ public class SetExerciseStatusGUIController implements Initializable{
         SatisfyWorkoutRequestsController controller;
         try{
             controller = new SatisfyWorkoutRequestsController();
+            showExerciseDBList(exerciseDBList, controller);
+            ManageExerciseList.setListenerDBSet(exerciseDBList, controller, this);
+            setVisibleButtons(false);
         } catch (NoLoggedUserException e){
             try {
                 e.callMe(1);
@@ -90,9 +95,6 @@ public class SetExerciseStatusGUIController implements Initializable{
                 throw new RuntimeException(ex);
             }
         }
-        showExerciseDBList(exerciseDBList, controller);
-        ManageExerciseList.setListenerDBSet(exerciseDBList, controller, this);
-        setVisibleButtons(false);
     }
 
     public void setFireBotton(int i) {
@@ -103,7 +105,7 @@ public class SetExerciseStatusGUIController implements Initializable{
         }
     }
 
-    @FXML public void setButtonStatus() throws Exception{
+    @FXML public void setButtonStatus() {
         ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
         ExerciseStatus selectedStatus = null;
 
@@ -121,17 +123,18 @@ public class SetExerciseStatusGUIController implements Initializable{
         SatisfyWorkoutRequestsController controller;
         try{
             controller = new SatisfyWorkoutRequestsController();
+            controller.setExerciseStatus(selectedExercise, selectedStatus);
+            SwitchPage.getController("CreateNewWorkoutRoutine.fxml", "pt");
+            SwitchPage.setStage(MainStage.getStage(), "CreateNewWorkoutRoutine.fxml", "pt", 1);
         } catch (NoLoggedUserException e){
             try {
                 e.callMe(1);
-                return;
             } catch (IOException ex) {
                 CostumeLogger.getInstance().logError(e);
-                return;
             }
+        } catch (UserCastException | IOException e){
+            CostumeLogger.getInstance().logError(e);
         }
-        controller.setExerciseStatus(selectedExercise, selectedStatus);
-        SwitchPage.getController("CreateNewWorkoutRoutine.fxml","pt");
-        SwitchPage.setStage(MainStage.getStage(),"CreateNewWorkoutRoutine.fxml","pt",1);
+
     }
 }

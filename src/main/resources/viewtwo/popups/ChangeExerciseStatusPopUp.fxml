@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="268.0" style="-fx-background-color: f9b700; -fx-border-color: black; -fx-border-radius: 4;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.popups.controllers.ChangeExerciseStatusPopUpController">
+   <top>
+      <Label text="Change exercise status" textFill="#931701" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+   </top>
+   <center>
+      <AnchorPane prefHeight="275.0" prefWidth="266.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="changeButton" layoutX="97.0" layoutY="257.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="38.0" prefWidth="70.0" stylesheets="@../GymBuddyCSS2.css" text="Change" textFill="#911701" />
+            <HBox fx:id="hboxButtons" layoutX="36.0" layoutY="211.0" prefHeight="30.0" prefWidth="196.0" style="-fx-padding: 4.5 20 0 20; -fx-spacing: 15; -fx-border-color: #911701; -fx-border-radius: 5em;">
+               <children>
+                  <RadioButton fx:id="activeRadioButton" mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Active" textFill="#911701" />
+                  <RadioButton fx:id="suspendedRadioButton" mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Suspended" textFill="#911701" />
+               </children>
+            </HBox>
+            <AnchorPane layoutX="6.0" prefHeight="204.0" prefWidth="254.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.999999999999972">
+               <children>
+                  <ListView fx:id="exerciseDBList2" layoutX="5.0" layoutY="38.0" prefHeight="127.0" prefWidth="245.0" stylesheets="@../GymBuddyCSS2.css" AnchorPane.leftAnchor="5.0" />
+                  <TextField fx:id="searchTextField" layoutX="28.0" layoutY="10.0" prefHeight="26.0" prefWidth="205.0" promptText="Find an exercise" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="10.0" />
+                  <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="208.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/LogoSearch.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

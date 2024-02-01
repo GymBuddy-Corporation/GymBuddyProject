@@ -53,7 +53,6 @@ public class PTHomeGUIController2 implements Initializable {
         try {
             PTSingleRequestGUIController2 controller = (PTSingleRequestGUIController2) MainMenuSingleton.getMainMenu().setActivity("ptSingleRequest.fxml", "pt");
             controller.setStuff(newItem);
-        //todo passa la richiesta alla pagina successiva
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

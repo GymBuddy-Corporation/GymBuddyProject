@@ -51,20 +51,6 @@ public class ManageExerciseList {
     }
 
 
-    public static void updateListFilteredDB(ListView<ExerciseForWorkoutRoutineBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
-        List<ExerciseForWorkoutRoutineBean> filteredList = exerciseBeanListView.getItems().stream()
-                .filter(exerciseForWorkoutRoutineBean -> {
-                    return exerciseForWorkoutRoutineBean != null &&
-                            exerciseBeanList.contains(exerciseForWorkoutRoutineBean) &&
-                            ExerciseStatus.ACTIVE.equals(exerciseForWorkoutRoutineBean.getStatusExercise());
-                })
-                .collect(Collectors.toList());
-
-        ObservableList<ExerciseForWorkoutRoutineBean> exerciseForWorkoutRoutineObservableList = FXCollections.observableList(filteredList);
-        exerciseBeanListView.setItems(exerciseForWorkoutRoutineObservableList);
-    }
-
-
     public static void setListenerRoutineWorkoutTrainer(ListView<ExerciseForWorkoutRoutineBean> exerciseList, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {

@@ -12,6 +12,7 @@ import viewone.graphicalcontrollers.pt.SetExerciseStatusGUIController;
 import viewtwo.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController2;
 import viewtwo.popups.AddExePopUp;
 import viewtwo.popups.DeleteExePopUp;
+import viewtwo.popups.controllers.ChangeExerciseStatusPopUpController;
 
 import java.io.IOException;
 import java.util.List;
@@ -84,21 +85,21 @@ public class ManageExerciseList2 {
         }
     }
 
-    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SetExerciseStatusGUIController setController) {
+    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, ChangeExerciseStatusPopUpController setController) {
         exerciseDBList.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue<? extends ExerciseBean> observableValue, ExerciseBean oldItem, ExerciseBean newItem) ->
                         listEventDBSet(newItem, setController)
         );
     }
 
-    private static void listEventDBSet(ExerciseBean newItem, SetExerciseStatusGUIController setController) {
+    private static void listEventDBSet(ExerciseBean newItem, ChangeExerciseStatusPopUpController setController) {
         if (newItem != null) {
-            setController.setVisibleButtons(true);
+            setController.setVisibilityButtons(true);
             ExerciseBean selectedExercise = setController.getExerciseDBList().getSelectionModel().getSelectedItem();
             if (selectedExercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
-                //.setFireButton(1);
+                setController.setFireButton(1);
             } else {
-                //setController.setFireButton(2);
+                setController.setFireButton(2);
             }
         }
     }
