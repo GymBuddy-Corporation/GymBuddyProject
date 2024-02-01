@@ -11,6 +11,7 @@ import model.ExerciseStatus;
 import viewone.graphicalcontrollers.pt.SetExerciseStatusGUIController;
 import viewtwo.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController2;
 import viewtwo.popups.AddExePopUp;
+import viewtwo.popups.DeleteExePopUp;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,8 +20,7 @@ import java.util.stream.Collectors;
 
 public class ManageExerciseList2 {
 
-    private ManageExerciseList2() {
-    }
+    private ManageExerciseList2() {}
 
     public static void setListenerDB(ListView<ExerciseBean> exerciseList, CreateNewWorkoutRoutineGUIController2 controller) {
         exerciseList.getSelectionModel().selectedItemProperty().addListener(
@@ -31,6 +31,7 @@ public class ManageExerciseList2 {
 
     private static void listEventDB(ExerciseBean newItem, CreateNewWorkoutRoutineGUIController2 controller) {
         if (newItem != null) {
+            controller.resetSelection(1);
             try{
                 String day = controller.getSelectedDay();
                 System.out.println(newItem.getName() + " giorno: " + day);
@@ -38,11 +39,6 @@ public class ManageExerciseList2 {
             } catch (IOException e){
                 CostumeLogger.getInstance().logError(e);
             }
-            /*todo togli sti schifi e gestisci la merda di queste funzioni fxml sotto
-                controller.setVisibleLabel(true);
-                controller.setVisibleAdd(true);
-                controller.setVisibleCancel(false);*/
-            controller.resetSelection(1);
         }
     }
 
@@ -56,6 +52,7 @@ public class ManageExerciseList2 {
     }
 
     public static void updateListFilteredDB(ListView<ExerciseForWorkoutRoutineBean> exerciseListView, List<ExerciseBean> exerciseList) {
+        //todo da usare nell'observer
         List<ExerciseForWorkoutRoutineBean> filteredList = exerciseListView.getItems().stream()
                 .filter(exerciseForWorkoutRoutineBean ->
                         exerciseForWorkoutRoutineBean != null &&
@@ -76,11 +73,14 @@ public class ManageExerciseList2 {
 
     private static void listEventRoutineWorkout(ExerciseForWorkoutRoutineBean newItem, CreateNewWorkoutRoutineGUIController2 controller) {
         if (newItem != null) {
-            //controller.setExerciseDetails(newItem.getRepetitions(), newItem.getSets(), newItem.getRest());
-            controller.setVisibleLabel(true);
-            controller.setVisibleAdd(false);
-            controller.setVisibleCancel(true);
             controller.resetSelection(2);
+            try{
+                String day = controller.getSelectedDay();
+                System.out.println(newItem.getName() + " giorno: " + day);
+                DeleteExePopUp.getDeleteExePopup(controller, newItem, "DeleteExercisePopUp.fxml", "popups", 2);
+            } catch (IOException e){
+                CostumeLogger.getInstance().logError(e);
+            }
         }
     }
 

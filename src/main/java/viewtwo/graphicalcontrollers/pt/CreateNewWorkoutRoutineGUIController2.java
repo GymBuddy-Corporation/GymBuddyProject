@@ -5,8 +5,6 @@ import exceptions.NoDayIsSelectedException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
 import exceptions.logger.CostumeLogger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.LoggedTrainerSingleton;
@@ -20,6 +18,7 @@ import viewtwo.manageListView.ManageExerciseList2;
 import viewtwo.manageListView.listCells.ExerciseForWOListCellFactory2;
 import viewtwo.manageListView.listCells.ExerciseListCellFactory2;
 import viewtwo.popups.abstracts.AddExeInterface;
+import viewtwo.popups.abstracts.DeleteExeInterface;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,18 +30,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.System.exit;
 
-public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Observer, AddExeInterface {
-    @FXML private Label repetitionsLabelNumber;
-    @FXML private Label setsLabelNumber;
-    @FXML private Label restLabelNumber;
-    @FXML private Label repetitionLabel;
-    @FXML private Label setsLabel;
-    @FXML private Label restLabel;
-    @FXML private Button removeButton;
-    @FXML private Button addButton;
-    @FXML private TextField restTextField;
-    @FXML private TextField repTextField;
-    @FXML private TextField setsTextField;
+public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Observer, AddExeInterface, DeleteExeInterface {
     private String selectedDay;
     private final List<String> dayList = new ArrayList<>();
     @FXML private RequestBean requestBean;
@@ -59,20 +47,10 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     @FXML private RadioButton sundayRadioButton;
     private WorkoutRoutineBean workoutRoutine;
 
+    //todo capire perchè stampa lancia bene solo l'eccezione sul REST sbagliato/nullo, ma non
+    // quelli su reps e sets errati/nulli (?)
     public String getSelectedDay(){
         return selectedDay;
-    }
-
-    public void setVisibleAdd(boolean bool){
-        addButton.setVisible(bool);
-        setsTextField.setVisible(bool);
-        restTextField.setVisible(bool);
-        repTextField.setVisible(bool);
-    }
-    public void setVisibleLabel(boolean bool){
-        repetitionLabel.setVisible(bool);
-        setsLabel.setVisible(bool);
-        restLabel.setVisible(bool);
     }
     public void resetSelection(int choice){
         if(choice == 1){
@@ -80,12 +58,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         } else {
             exerciseDBList2.getSelectionModel().clearSelection();
         }
-    }
-    public void setVisibleCancel(boolean bool) {
-        removeButton.setVisible(bool);
-        repetitionsLabelNumber.setVisible(bool);
-        setsLabelNumber.setVisible(bool);
-        restLabelNumber.setVisible(bool);
     }
 
     private int getDay() throws NoDayIsSelectedException {
@@ -156,12 +128,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             if(selectedDay == null){
                 throw new NoDayIsSelectedException();
             }
-            System.out.println("selectedDay11111: " + selectedDay);
             WorkoutDayBean workoutDayBean = workoutRoutine.getWorkoutDay(selectedDay);
-
-            for(ExerciseForWorkoutRoutineBean ex : workoutDayBean.getExerciseBeanList()){
-                System.out.println("Esercizio nel giorno: " + ex.getName());
-            }
 
             List<ExerciseForWorkoutRoutineBean> listActiveExercises = new ArrayList<>();
             for (ExerciseForWorkoutRoutineBean exe : workoutDayBean.getExerciseList()) {
@@ -179,7 +146,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
         if (workoutDay == null) {
             workoutDay = new WorkoutDayBean(newExercise.getDay());
-            System.out.println("Sto aggiungendo lesercizio: " + newExercise.getName() + " nel giorno " + workoutDay.getName());
             workoutRoutine.addWorkoutDayBean(workoutDay);
         }
         return workoutDay;
@@ -202,9 +168,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.workoutRoutine = new WorkoutRoutineBean();
-        setVisibleAdd(false);
-        setVisibleLabel(false);
-        setVisibleCancel(false);
         exerciseDBList2.setCellFactory(new ExerciseListCellFactory2());
         routineExerciselist2.setCellFactory(new ExerciseForWOListCellFactory2());
 
@@ -254,12 +217,17 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
                 CostumeLogger.getInstance().logError(e);
             }
         }
-
+        resetSelection(1);
         List<ExerciseForWorkoutRoutineBean> activeExercises = getActiveExercises(bean.getDay());
         routineExerciselist2.getItems().setAll(activeExercises);
     }
 
-    public void addExercise(ActionEvent actionEvent) {
-        //todo elimina
+    @Override
+    public void deleteExercise(ExerciseForWorkoutRoutineBean bean) {
+        WorkoutDayBean workoutDay = getOrCreateWorkoutDay(bean);
+        workoutDay.removeExerciseBean(bean);
+        List<ExerciseForWorkoutRoutineBean> activeExercises = getActiveExercises(bean.getDay());
+        routineExerciselist2.getItems().setAll(activeExercises);
     }
+
 }
