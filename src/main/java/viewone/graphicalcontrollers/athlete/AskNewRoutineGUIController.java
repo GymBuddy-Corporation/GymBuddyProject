@@ -40,13 +40,12 @@ public class AskNewRoutineGUIController implements Initializable {
         createRequestController.askForNewWorkoutRoutine(requestBean);
         SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
 
-
         //TODO gestisci la rischiesta di una nuova scheda
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //this.workoutRoutineBean = ;
-    //imposta la scheda associata a lui
+        //imposta la scheda associata a lui
     }
 }

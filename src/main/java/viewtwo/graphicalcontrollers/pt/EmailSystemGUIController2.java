@@ -33,14 +33,11 @@ public class EmailSystemGUIController2 {
             emailBean.setBody(content);
             SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             controller.sendEmailWithObject(emailBean);
-        } catch (NoLoggedUserException e){
-            e.callMe(1);
+        } catch (NoLoggedUserException | EmailFormException e){
+            e.callMe(2);
             return;
         } catch(URISyntaxException | IOException e2){
             CostumeLogger.getInstance().logError(e2);
-        } catch (EmailFormException e3) {
-            e3.callMe(2);
-            return;
         }
         MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
     }

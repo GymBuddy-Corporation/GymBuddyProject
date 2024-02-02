@@ -11,7 +11,6 @@ public class ManageCommunicationsGUIController2 implements Initializable {
     @FXML Button buttonSendCommunicationAthlete;
     public void setVisibleAdd(Boolean bool){
         buttonSendCommunicationAthlete.setVisible(bool);
-
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

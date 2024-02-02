@@ -25,7 +25,7 @@ public class CreateRequestController {
         WorkoutRoutine workoutRoutine = new WorkoutRoutineDAO().loadWorkoutRoutine(athleteBean.getPersonalInfo().getFc()) ;
         return convertWorkoutRoutineBean(workoutRoutine);
     }
-    public WorkoutRoutineBean convertWorkoutRoutineBean(WorkoutRoutine workoutRoutine){
+    private WorkoutRoutineBean convertWorkoutRoutineBean(WorkoutRoutine workoutRoutine){
         WorkoutRoutineBean workoutRoutineBean = new WorkoutRoutineBean();
         for(WorkoutDay workoutDay : workoutRoutine.getWorkoutDayList()){
             workoutRoutineBean.addWorkoutDayBean(new WorkoutDayBean(workoutDay.getDay(), getListExerciseBean(workoutDay)));

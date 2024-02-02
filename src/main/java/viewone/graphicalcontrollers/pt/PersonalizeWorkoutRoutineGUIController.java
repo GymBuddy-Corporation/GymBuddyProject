@@ -61,6 +61,8 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
             try {
                 controller.sendWorkoutRoutine(requestBean, this.workoutRoutine);
                 EmailBean email = new EmailBean(LoggedTrainerSingleton.getSingleton().getMyBean(), requestBean.getAthleteBean());
+                email.setBody("NAME WORKOUT ROUTINE:\n" + nameRoutineTextArea.getText() +
+                        "\n\nCOMMENT WORKOUT ROUTINE:\n" + commentTextArea.getText());
                 controller.sendEmailWithoutObject(email);
             } catch (DBUnrreachableException | EmailFormException e) {
                 e.callMe(1);

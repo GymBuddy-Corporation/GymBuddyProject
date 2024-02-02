@@ -41,10 +41,8 @@ public class SetExerciseStatusGUIController implements Initializable{
         SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
     }
     @FXML public void searchExercise(){
-        //TODO controlla se funziona
-        SatisfyWorkoutRequestsController controller;
         try{
-            controller = new SatisfyWorkoutRequestsController();
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             List<ExerciseBean> exerciseBeanList = controller.searchExercise(new SearchBean(searchExerciseText.getText()));
             ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
         } catch (NoLoggedUserException | EmptySearchException e){

@@ -26,7 +26,7 @@
                <children>
                   <ListView fx:id="exerciseDBList2" layoutX="5.0" layoutY="38.0" prefHeight="127.0" prefWidth="245.0" stylesheets="@../GymBuddyCSS2.css" AnchorPane.leftAnchor="5.0" />
                   <TextField fx:id="searchTextField" layoutX="28.0" layoutY="10.0" prefHeight="26.0" prefWidth="205.0" promptText="Find an exercise" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="10.0" />
-                  <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="208.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="208.0" layoutY="10.0" onMouseClicked="#search" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/LogoSearch.png" />
                      </image>

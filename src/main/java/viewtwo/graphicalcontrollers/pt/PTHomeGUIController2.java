@@ -6,6 +6,7 @@ import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,7 +54,7 @@ public class PTHomeGUIController2 implements Initializable {
             PTSingleRequestGUIController2 controller = (PTSingleRequestGUIController2) MainMenuSingleton.getMainMenu().setActivity("ptSingleRequest.fxml", "pt");
             controller.setStuff(newItem);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            CostumeLogger.getInstance().logError(e);
         }
     }
 

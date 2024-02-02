@@ -23,8 +23,7 @@ public class PersonalizeWRPopUpController extends PopupBaseController {
         this.caller=(PersonalizeWRPopUp) caller;
     }
 
-    @FXML
-    public void personalizeWR(){
+    @FXML public void personalizeWR(){
         String name = nameTextField.getText();
         String comment = commentTextField.getText();
         caller.submitWR(name, comment);

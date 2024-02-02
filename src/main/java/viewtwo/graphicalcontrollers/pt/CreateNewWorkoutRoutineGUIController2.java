@@ -94,7 +94,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             mondayRadioButton.fire();
             labelUser.setText(requestBean.getAthleteBean().getUsername());
         } catch (NoLoggedUserException e){
-           e.callMe(1);
+           e.callMe(2);
         }
     }
 
@@ -105,8 +105,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
                 updateSelectedExerciseList();
             }
         } catch (NoDayIsSelectedException e) {
-
-                e.callMe(1);
+                e.callMe(2);
         }
     }
 
@@ -206,9 +205,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         try {
             workoutDay.addExerciseBean(bean);
         } catch (DataFieldException e) {
-
-                e.callMe(1);
-
+                e.callMe(2);
         }
         resetSelection(1);
         List<ExerciseForWorkoutRoutineBean> activeExercises = getActiveExercises(bean.getDay());
@@ -261,7 +258,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             selectedDay = getNameDay();
             updateSelectedExerciseList();
         } catch (NoDayIsSelectedException e) {
-            e.callMe(1);
+            e.callMe(2);
         }
     }
 
@@ -275,10 +272,10 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             try {
                 controller.sendWorkoutRoutine(this.requestBean, this.workoutRoutine);
             } catch (DBUnrreachableException e) {
-                e.callMe(1);
+                e.callMe(2);
             }
         } catch (NoLoggedUserException | SubmitRoutineException e){
-            e.callMe(1);
+            e.callMe(2);
         } catch (IOException e){
             CostumeLogger.getInstance().logString("IOException in submitWorkoutRoutine");
         }
@@ -294,7 +291,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             filteredList = controller.searchExercise(new SearchBean(searchText));
             ManageExerciseList.updateListFiltered(exerciseDBList2, filteredList);
         } catch (NoLoggedUserException | EmptySearchException e) {
-            e.callMe(1);
+            e.callMe(2);
             CostumeLogger.getInstance().logError(e);
         }
     }

@@ -29,7 +29,6 @@ public class DeleteExercisePopUpController extends PopupBaseController {
 
     @FXML
     public void deleteExercise(){
-        //todo fai la delete
         caller.deleteExe(this.exercise);
     }
 }

@@ -1,10 +1,12 @@
 package viewtwo.popups.controllers;
 
 import beans.ExerciseBean;
+import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.popups.PopupBaseClass;
 import engineering.popups.PopupBaseController;
 import exceptions.CostumException;
+import exceptions.EmptySearchException;
 import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
 import exceptions.logger.CostumeLogger;
@@ -14,9 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import model.ExerciseStatus;
+import viewone.managelistview.ManageExerciseList;
 import viewtwo.manageListView.ManageExerciseList2;
 import viewtwo.manageListView.listCells.ExerciseListCellFactory2;
 import viewtwo.popups.ChangeExeStatusPopUp;
@@ -33,8 +37,8 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
     ListView<ExerciseBean> exerciseDBList2;
     @FXML RadioButton activeRadioButton;
     @FXML RadioButton suspendedRadioButton;
-    @FXML
-    HBox hboxButtons;
+    @FXML HBox hboxButtons;
+    @FXML TextField searchTextField;
     List<RadioButton> radioButtonList;
     ChangeExeStatusPopUp caller;
 
@@ -44,10 +48,8 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
             ObservableList<ExerciseBean> requestBeanObservableList = FXCollections.observableList(controller.getLoggedTrainerGymExercises());
             exerciseDBList2.setItems(FXCollections.observableList(requestBeanObservableList));
         }catch (CostumException e){
-
-                e.callMe(1);
+                e.callMe(2);
                 caller.hidePopUp();
-
         }
     }
 
@@ -78,6 +80,16 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
             }
         } catch (NoLoggedUserException e) {
             caller.hidePopUp();
+            CostumeLogger.getInstance().logError(e);
+        }
+    }
+    @FXML public void search(){
+        try{
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            List<ExerciseBean> exerciseBeanList = controller.searchExercise(new SearchBean(searchTextField.getText()));
+            ManageExerciseList.updateListFiltered(exerciseDBList2, exerciseBeanList);
+        } catch (NoLoggedUserException | EmptySearchException e){
+            e.callMe(2);
             CostumeLogger.getInstance().logError(e);
         }
     }

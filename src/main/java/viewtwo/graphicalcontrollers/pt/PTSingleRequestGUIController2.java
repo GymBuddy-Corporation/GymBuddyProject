@@ -21,42 +21,41 @@ public class PTSingleRequestGUIController2 {
         nameAthleteLabel.setText(requestBean.getAthleteBean().getUsername() + "'s request");
     }
     @FXML
-    public void satisfyRequest() throws Exception {
-        CreateNewWorkoutRoutineGUIController2 controller = (CreateNewWorkoutRoutineGUIController2) MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
-        Objects.requireNonNull(controller).setValue(requestBean);
-    }
-    @FXML
-    public void goBack() throws Exception {
-        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
-    }
-    @FXML
-    public void rejectRequest() throws Exception {
-        SatisfyWorkoutRequestsController controller;
+    public void satisfyRequest() {
         try{
-            controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
-
-                e.callMe(1);
-                return;
-
+            CreateNewWorkoutRoutineGUIController2 controller = (CreateNewWorkoutRoutineGUIController2) MainMenuSingleton.getMainMenu().setActivity("CreateNewWorkoutRoutine2.fxml", "pt");
+            Objects.requireNonNull(controller).setValue(requestBean);
+        } catch (IOException e){
+            CostumeLogger.getInstance().logError(e);
         }
-        controller.rejectRequest(requestBean);
-        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
-        /*try{
-
-            //fai la cancellazione della richiesta sul db e cambia page
-        } catch (DataFieldException e) {
-            try {
-                e.callMe(1);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        }*/
+    }
+    @FXML
+    public void goBack() {
+        try{
+            MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+        } catch (IOException e){
+            CostumeLogger.getInstance().logError(e);
+        }
+    }
+    @FXML
+    public void rejectRequest() {
+        try{
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            controller.rejectRequest(requestBean);
+            MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+        } catch (NoLoggedUserException e){
+                e.callMe(2);
+        }catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 
-    @FXML
-    public void askClarification() throws Exception {
-        EmailSystemGUIController2 controller = (EmailSystemGUIController2) MainMenuSingleton.getMainMenu().setActivity("EmailSystem2.fxml","pt");
-        Objects.requireNonNull(controller).setValue(requestBean);
+    @FXML public void askClarification(){
+        try{
+            EmailSystemGUIController2 controller = (EmailSystemGUIController2) MainMenuSingleton.getMainMenu().setActivity("EmailSystem2.fxml","pt");
+            Objects.requireNonNull(controller).setValue(requestBean);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 }
