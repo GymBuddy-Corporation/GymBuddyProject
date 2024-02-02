@@ -13,6 +13,7 @@ public class FieldGetter {
             case FieldsEnum.EXERCISE_SETS -> "exercise sets";
             case FieldsEnum.EXERCISE -> "exercise";
             case USERNAME -> "username";
+            case INFO -> "info";
             default -> "error";
         };
     }

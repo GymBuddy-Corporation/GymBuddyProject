@@ -49,7 +49,6 @@ public class SetExerciseStatusGUIController implements Initializable{
                 return;
         }
         List<ExerciseBean> exerciseBeanList = controller.searchExercise(new SearchBean(searchExerciseText.getText()));
-        System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
         ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
     }
 
@@ -108,7 +107,6 @@ public class SetExerciseStatusGUIController implements Initializable{
             selectedStatus = ExerciseStatus.SUSPENDED;
 
         } else {
-            System.out.println("Premuto niente");
             //TODO then throw exception
         }
 

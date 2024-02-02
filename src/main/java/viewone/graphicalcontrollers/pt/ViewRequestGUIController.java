@@ -5,6 +5,7 @@ import controllers.SatisfyWorkoutRequestsController;
 import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
+import exceptions.dataException.DataFieldException;
 import viewone.managelistview.ManageRequestList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -76,7 +77,7 @@ public class ViewRequestGUIController implements Initializable {
         }
         try {
             ManageRequestList.updateList(requestList, controller);
-        } catch (DBUnrreachableException e) {
+        } catch (DBUnrreachableException | DataFieldException e) {
             e.callMe(2);
             return;
         }

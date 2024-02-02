@@ -5,6 +5,7 @@ import controllers.SatisfyWorkoutRequestsController;
 import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
+import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,7 +34,7 @@ public class PTHomeGUIController2 implements Initializable {
         try {
             controller = new SatisfyWorkoutRequestsController();
             ManageRequestList2.setRequestList(requestList, controller);
-        } catch (NoLoggedUserException | DBUnrreachableException e) {
+        } catch (NoLoggedUserException | DataFieldException | DBUnrreachableException e) {
             e.callMe(2);
             return;
         }

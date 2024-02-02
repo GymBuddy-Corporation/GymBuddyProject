@@ -26,7 +26,7 @@ public class TrainerDAO {
     private static final String EMAIL = "trainerEmail";
     private static final String PASSWORD = "password";
 
-    public Trainer loadTrainer(String string,String type) {
+    public Trainer loadTrainer(String string,String type) throws DBUnrreachableException {
         String query= Objects.equals(type, "fc") ?Queries.LOAD_TRAINER_BY_FC:Queries.LOAD_TRAINER_BY_EMAIL;
         try(
              PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(query);
@@ -54,9 +54,7 @@ public class TrainerDAO {
             }
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
-            System.out.println(e.getErrorCode());
-            //todo handle exception
-            return null;
+            throw new DBUnrreachableException();
         }
     }
 

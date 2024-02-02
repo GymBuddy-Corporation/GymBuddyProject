@@ -7,6 +7,7 @@ import beans.UserBean;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
+import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import utils.MainStage;
 import utils.SwitchPage;
@@ -36,6 +37,8 @@ public class GeneralGUIController {
             SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml","launcher",1);
         } catch (AlreadyLoggedUserException e) {
                 changePage(LoggedUserSingleton.getSingleton().getMyBean());
+        } catch (DBUnrreachableException e) {
+           e.callMe(1);
         }
 
     }

@@ -11,6 +11,7 @@ import exceptions.DBUnrreachableException;
 import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
+import exceptions.dataException.DataFieldException;
 import model.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,9 +39,7 @@ public class SatisfyWorkoutRequestsController {
         for (Exercise ex : LoggedTrainerSingleton.getSingleton().getExcerciseList()){
             if(ex.getName().equals(exercise.getName())){
                 ex.setStatus(status);
-                //todo set status on DB new ExerciseDAO();
                 new ExerciseDAO().setExerciseStatus(ex, LoggedTrainerSingleton.getSingleton().getGym());
-                System.out.println(exercise.getName() + " ha lo stato " + exercise.getStatusExercise());
             }
         }
     }
@@ -107,10 +106,9 @@ public class SatisfyWorkoutRequestsController {
         emailBean.setObject(object);
         emailBean.setBody(content);
         new EmailSystemBoundary().sendEmail(emailBean);
-        System.out.println("Sender: " + sender + " Receiver: " + receiver + " object: " + object + " content: " + content);
     }
 
-    public List<RequestBean> getTrainerRequests() throws DBUnrreachableException  {
+    public List<RequestBean> getTrainerRequests() throws DBUnrreachableException, DataFieldException {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedTrainerSingleton.getSingleton().getUser()));
 
         List<RequestBean> requestBeanList = new ArrayList<>();

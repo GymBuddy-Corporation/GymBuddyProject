@@ -20,7 +20,6 @@ public class RequestDAO {
     public static final String ATHLETEMAIL = "athleteEmail";
 
     public void deleteRequest(String athleteFC, String trainersFC)  {
-        System.out.println(athleteFC + "    " + trainersFC);
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.DELETE_REQUEST_QUERY)){
             Queries.deleteRequest(preparedStatement, athleteFC, trainersFC);

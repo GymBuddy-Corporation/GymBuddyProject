@@ -10,6 +10,7 @@ import exceptions.NoLoggedUserException;
 import exceptions.NoUserFoundException;
 import exceptions.UserCastException;
 import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import model.*;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestSearch {
 
     @Test
-    public void TestSearchExercise() throws DataFieldException, NoUserFoundException, UserCastException {
+    public void TestSearchExercise() throws DataFieldException, NoUserFoundException {
         ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
 
         Exercise ex1 = new Exercise("Tricep Pushdown");
@@ -43,7 +44,8 @@ public class TestSearch {
             try{
                 Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
             } catch (NullPointerException exc){
-                exc.printStackTrace();
+                CostumeLogger.getInstance().logError(e);
+
             }
         }
 

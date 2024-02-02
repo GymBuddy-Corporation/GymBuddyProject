@@ -53,14 +53,13 @@ public class AthleteDAO {
         }
     }
 
-    public void removeWorkoutPlan(String athleteFC) {
+    public void removeWorkoutPlan(String athleteFC) throws DBUnrreachableException {
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.REMOVE_WORKOUT_ROUTINE_QUERY)) {
             Queries.removeWorkoutRoutine(preparedStatement, athleteFC);
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
-            System.out.println("Unreachable DB Exception.");
-            //todo handle exception
+            throw new DBUnrreachableException();
         }
     }
 

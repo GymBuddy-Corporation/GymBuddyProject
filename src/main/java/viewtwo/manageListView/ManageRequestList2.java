@@ -12,12 +12,12 @@ import viewtwo.manageListView.listCells.RequestListCellFactory2;
 
 public class ManageRequestList2 {
 
-    public static void setRequestList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException{
+    public static void setRequestList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException, DataFieldException {
         requestList.setCellFactory(new RequestListCellFactory2());
         updateList(requestList, satisfyWorkoutRequestsController);
     }
 
-    public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException {
+    public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException, DataFieldException {
         ObservableList<RequestBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getTrainerRequests());
         requestList.setItems(FXCollections.observableList(requestBeanObservableList));
     }

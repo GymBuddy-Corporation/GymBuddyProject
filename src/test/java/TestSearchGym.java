@@ -42,7 +42,7 @@ class TestSearchGym {
 //
 //    }
     @Test
-    public void testSearchAllGyms() throws DataFieldException, NoUserFoundException, SQLException, AlreadyLoggedUserException, NoLoggedUserException, DBUnrreachableException {
+    public void testSearchAllGyms() throws DataFieldException, NoUserFoundException, AlreadyLoggedUserException, NoLoggedUserException, DBUnrreachableException {
         UserAccessController accessController = new UserAccessController();
         accessController.login(CredentialsBean.ctorWithoutSyntaxCheck("lux@gmail.com", "lux"),false);
         System.out.println(LoggedAthleteSingleton.getSingleton().getUser().getName());

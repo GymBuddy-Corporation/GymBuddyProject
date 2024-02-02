@@ -1,5 +1,9 @@
 package beans;
 
+import exceptions.dataException.DataFieldException;
+import exceptions.dataException.TyperEnumerations.FieldsEnum;
+import exceptions.dataException.TyperEnumerations.ProblemEnum;
+
 import java.time.LocalDateTime;
 
 public class RequestBean {
@@ -8,7 +12,7 @@ public class RequestBean {
     private final AthleteBean athleteBean;
     private final String trainerFc;
 
-    public RequestBean(String info, AthleteBean athleteBean, String trainerFc) {
+    public RequestBean(String info, AthleteBean athleteBean, String trainerFc) throws DataFieldException {
         this.requestDate = LocalDateTime.now();
         setInfo(info);
         this.athleteBean = athleteBean;
@@ -26,14 +30,13 @@ public class RequestBean {
         return info;
     }
 
-    public void setInfo(String info)  {
+    public void setInfo(String info) throws DataFieldException {
         if(info.isEmpty()) {
-            //throw new EmptyFieldsException();
-            System.out.println("Campo vuoto\n\n");
+            throw new DataFieldException(FieldsEnum.INFO, ProblemEnum.EMPTY);
         }
         if(info.length() > 450) {
-            //throw new TextOutOfBoundException();
-            System.out.println("Lunghezza eccessiva\n\n");
+            throw new DataFieldException(FieldsEnum.INFO, ProblemEnum.NOT_VALID);
+
         }
         this.info = info;
     }

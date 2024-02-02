@@ -33,7 +33,6 @@ public class ManageExerciseList2 {
             controller.resetSelection(1);
             try{
                 String day = controller.getSelectedDay();
-                System.out.println(newItem.getName() + " giorno: " + day);
                 AddExePopUp.getAddExePopup(controller, newItem.getName(), day, "AddExercisePopUp.fxml", "popups", 2);
             } catch (IOException e){
                 CostumeLogger.getInstance().logError(e);
@@ -75,7 +74,6 @@ public class ManageExerciseList2 {
             controller.resetSelection(2);
             try{
                 String day = controller.getSelectedDay();
-                System.out.println(newItem.getName() + " giorno: " + day);
                 DeleteExePopUp.getDeleteExePopup(controller, newItem, "DeleteExercisePopUp.fxml", "popups", 2);
             } catch (IOException e){
                 CostumeLogger.getInstance().logError(e);

@@ -17,7 +17,7 @@ public class ManageRequestList {
         updateList(requestList, satisfyWorkoutRequestsController);
     }
 
-    public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException {
+    public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException, DataFieldException {
         ObservableList<RequestBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getTrainerRequests());
         requestList.setItems(FXCollections.observableList(requestBeanObservableList));
     }
