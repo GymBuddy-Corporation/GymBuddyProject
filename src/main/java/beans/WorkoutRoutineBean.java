@@ -1,5 +1,7 @@
 package beans;
 
+import exceptions.SubmitRoutineException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +37,27 @@ public class WorkoutRoutineBean {
 
     public String getName() {return name;}
 
-    public void setName(String name) {this.name = name;}
+    public void setName(String name) throws SubmitRoutineException {
+        if(name.isEmpty()){
+            throw new SubmitRoutineException("Routine name field empty");
+        } else if(name.length() >15){
+            throw new SubmitRoutineException("Routine name filed is too long");
+        } else {
+            this.name = name;
+        }
+    }
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComment(String comment) throws SubmitRoutineException {
+        if(comment.isEmpty()){
+            throw new SubmitRoutineException("Routine comment field empty");
+        } else if(comment.length() > 500){
+            throw new SubmitRoutineException("Routine name filed is too long");
+        }else {
+            this.comment = comment;
+        }
     }
 
     public void setAthlete(AthleteBean athlete) {

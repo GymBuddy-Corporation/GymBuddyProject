@@ -1,11 +1,14 @@
 package viewtwo.graphicalcontrollers.pt;
 
+import beans.EmailBean;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import engineering.LoggedUserSingleton;
 import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import viewtwo.engegnering.MainMenuSingleton;
 
@@ -15,32 +18,28 @@ import java.net.URISyntaxException;
 public class EmailSystemGUIController2 {
 
     @FXML private TextField objectTextField;
-    @FXML private TextField contentTextField;
+    @FXML private TextArea contentTextField;
 
     RequestBean selectedRequest;
 
     @FXML
     public void sendEmail() throws IOException {
-        SatisfyWorkoutRequestsController controller;
         try{
-            controller = new SatisfyWorkoutRequestsController();
+            EmailBean emailBean = new EmailBean(LoggedUserSingleton.getSingleton().getMyBean(),
+                    selectedRequest.getAthleteBean());
+            String object = objectTextField.getText();
+            String content = contentTextField.getText();
+            emailBean.setObject(object);
+            emailBean.setBody(content);
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            controller.sendEmailWithObject(emailBean);
         } catch (NoLoggedUserException e){
-
-                e.callMe(1);
-                return;
-
-        }
-        try {
-            controller.sendClarificationEmail(
-                    LoggedUserSingleton.getSingleton().getMyBean(),
-                    selectedRequest.getAthleteBean(),
-                    objectTextField.getText(),
-                    contentTextField.getText()
-            );
-        } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
-        } catch (EmailFormException e) {
-            e.callMe(2);
+            e.callMe(1);
+            return;
+        } catch(URISyntaxException | IOException e2){
+            CostumeLogger.getInstance().logError(e2);
+        } catch (EmailFormException e3) {
+            e3.callMe(2);
             return;
         }
         MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");

@@ -1,18 +1,24 @@
 package viewone.graphicalcontrollers.pt;
 
+import beans.EmailBean;
 import beans.RequestBean;
 import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
+import controllers.UserAccessController;
+import engineering.LoggedTrainerSingleton;
 import exceptions.DBUnrreachableException;
+import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
+import exceptions.SubmitRoutineException;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.popup.PopupAbstract;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     WorkoutRoutineBean workoutRoutine;
@@ -21,14 +27,18 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     @FXML TextArea commentTextArea;
     @FXML TextArea nameRoutineTextArea;
 
-    public void logout(MouseEvent event) {
-        // Your logout logic here
+    public void logout() {
+        try {
+            UserAccessController controller = new UserAccessController();
+            controller.logout();
+            SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
+        } catch (IOException e){
+            CostumeLogger.getInstance().logError(e);
+        }
     }
     @FXML
     public void submitRoutine() throws Exception{
             popUpCreate("Vuoi confermare la creazione?","Submit","Back");
-            //implementa il successivo invio definitivo della scheda, notifica e cambio pagina, segnando
-            //la richiesta come completata
     }
     @FXML
     public void goBack() throws Exception{
@@ -46,27 +56,26 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
         SatisfyWorkoutRequestsController controller;
         try{
             controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
-
+            this.workoutRoutine.setComment(commentTextArea.getText());
+            this.workoutRoutine.setName(nameRoutineTextArea.getText());
+            try {
+                controller.sendWorkoutRoutine(requestBean, this.workoutRoutine);
+                EmailBean email = new EmailBean(LoggedTrainerSingleton.getSingleton().getMyBean(), requestBean.getAthleteBean());
+                controller.sendEmailWithoutObject(email);
+            } catch (DBUnrreachableException | EmailFormException e) {
                 e.callMe(1);
-                return;
-
-        }
-        //TODO qua fare la scrittura su DB
-        this.workoutRoutine.setComment(commentTextArea.getText());
-        this.workoutRoutine.setName(nameRoutineTextArea.getText());
-        try {
-            controller.sendWorkoutRoutine(requestBean, this.workoutRoutine);
-        } catch (DBUnrreachableException e) {
-                    e.callMe(1);
-                    return;
+            } catch (URISyntaxException | IOException e){
+                CostumeLogger.getInstance().logError(e);
+            }
+        } catch (NoLoggedUserException | SubmitRoutineException e){
+                e.callMe(1);
         }
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
-
     }
 
     @Override
     public void popUpDelete() {
-        //comment to avoid code smell
+        commentTextArea.clear();
+        nameRoutineTextArea.clear();
     }
 }

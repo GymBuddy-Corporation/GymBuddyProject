@@ -7,7 +7,6 @@ public class ProblemGetter {
             case ProblemEnum.IS_NULL -> "null filed is not valid";
             case ProblemEnum.NOT_VALID -> "this value is not valid";
             case ProblemEnum.IS_ALREADY_ADDED -> "this value is is already added";
-
             default -> "error";
         };
     }

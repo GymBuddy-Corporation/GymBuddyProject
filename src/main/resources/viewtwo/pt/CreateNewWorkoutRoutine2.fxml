@@ -32,8 +32,8 @@
             <AnchorPane layoutX="64.0" layoutY="87.0" prefHeight="291.0" prefWidth="260.0" style="-fx-border-radius: 5em; -fx-background-radius: 5em; -fx-background-color: #d89e00;" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="87.0">
                <children>
                   <ListView fx:id="exerciseDBList2" layoutX="5.0" layoutY="38.0" prefHeight="215.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" AnchorPane.leftAnchor="5.0" />
-                  <TextField layoutX="28.0" layoutY="10.0" prefHeight="26.0" prefWidth="205.0" promptText="Find an exercise" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="10.0" />
-                  <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="208.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <TextField fx:id="searchExerciseText" layoutX="28.0" layoutY="10.0" prefHeight="26.0" prefWidth="205.0" promptText="Find an exercise" style="-fx-cursor: text;" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="10.0" />
+                  <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="208.0" layoutY="10.0" onMouseClicked="#searchButton" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                      <image>
                         <Image url="@../images/LogoSearch.png" />
                      </image>
@@ -45,7 +45,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fx:id="goBack" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0">
+            <ImageView fx:id="goBack" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" AnchorPane.leftAnchor="14.0">
                <image>
                   <Image url="@../images/LogoBack.png" />
                </image>
@@ -56,12 +56,12 @@
                   <Label fx:id="requestLabel1" alignment="CENTER" layoutX="52.0" layoutY="7.0" prefHeight="30.0" prefWidth="218.0" text="Workout Routine" textFill="#911701" AnchorPane.topAnchor="7.0" />
                </children>
             </AnchorPane>
-            <ImageView fx:id="goForward" fitHeight="50.0" fitWidth="50.0" layoutX="735.2" layoutY="384.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.399999999999977" AnchorPane.rightAnchor="14.0">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="735.2" layoutY="384.0" onMouseClicked="#goForward" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="16.399999999999977" AnchorPane.rightAnchor="14.0">
                <image>
                   <Image url="@../images/LogoForward.png" />
                </image>
             </ImageView>
-            <Button fx:id="removeButton1" layoutX="381.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="250.0" stylesheets="@../GymBuddyCSS2.css" text="Want to change the status of an exercise?" textFill="#911701" />
+            <Button fx:id="removeButton1" layoutX="381.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="27.0" prefWidth="250.0" style="-fx-cursor: hand;" stylesheets="@../GymBuddyCSS2.css" text="Want to change the status of an exercise?" textFill="#911701" />
             <Label fx:id="updateLabel" alignment="CENTER" layoutX="69.0" layoutY="393.0" prefHeight="30.0" prefWidth="250.0" text="You have just set this exercise active/suspended" textFill="#911701">
                <font>
                   <Font size="11.5" />

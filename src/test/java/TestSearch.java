@@ -5,10 +5,7 @@ import controllers.SatisfyWorkoutRequestsController;
 import controllers.UserAccessController;
 import engineering.ExerciseInventory;
 import engineering.LoggedUserSingleton;
-import exceptions.AlreadyLoggedUserException;
-import exceptions.NoLoggedUserException;
-import exceptions.NoUserFoundException;
-import exceptions.UserCastException;
+import exceptions.*;
 import exceptions.dataException.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import model.*;
@@ -39,31 +36,25 @@ public class TestSearch {
 
         UserAccessController controller1 = new UserAccessController();
         try {
-            controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","napule"),false);
+            controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","Password123@"),false);
         }catch(AlreadyLoggedUserException e){
             try{
                 Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
             } catch (NullPointerException exc){
                 CostumeLogger.getInstance().logError(e);
-
             }
+        } catch (DBUnrreachableException e){
+            e.callMe(1);
         }
-
         SatisfyWorkoutRequestsController controller;
         try{
             controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
-            try {
-                e.callMe(1);
-                return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            SearchBean searchBean = new SearchBean(exerciseToSearch.getName());
+            List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);
+            boolean flag = Objects.equals(exerciseBeanList.getFirst().getName(), exerciseToSearch.getName().toLowerCase());
+            assertTrue(flag);
+        } catch (NoLoggedUserException | EmptySearchException e){
+            e.callMe(1);
         }
-
-        SearchBean searchBean = new SearchBean(exerciseToSearch.getName());
-        List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);
-        boolean flag = Objects.equals(exerciseBeanList.getFirst().getName(), exerciseToSearch.getName().toLowerCase());
-        assertTrue(flag);
     }
 }

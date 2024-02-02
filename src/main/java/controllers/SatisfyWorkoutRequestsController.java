@@ -7,13 +7,10 @@ import database.dao.ExerciseDAO;
 import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedTrainerSingleton;
-import exceptions.DBUnrreachableException;
-import exceptions.EmailFormException;
-import exceptions.NoLoggedUserException;
-import exceptions.UserCastException;
+import exceptions.*;
 import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import model.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -33,9 +30,7 @@ public class SatisfyWorkoutRequestsController {
     }
 
     public void setExerciseStatus(ExerciseBean exercise, ExerciseStatus status)  {
-
         exercise.setStatusExercise(status);
-
         for (Exercise ex : LoggedTrainerSingleton.getSingleton().getExcerciseList()){
             if(ex.getName().equals(exercise.getName())){
                 ex.setStatus(status);
@@ -46,19 +41,15 @@ public class SatisfyWorkoutRequestsController {
 
     public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean) throws DBUnrreachableException {
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
-
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
             WorkoutDay newWorkoutDay = new WorkoutDay(workoutDay.getName());
             for (ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean : workoutDay.getExerciseList()) {
                 ExerciseForWorkoutRoutine exerciseForWorkoutRoutine = convertToExerciseForWorkoutRoutine(exerciseForWorkoutRoutineBean, workoutRoutineModel);
                 newWorkoutDay.addExercise(exerciseForWorkoutRoutine);
             }
-
             workoutRoutineModel.addWorkoutDay(newWorkoutDay);
         }
-
-        Athlete receiver ;
-        receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
+        Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
         if(receiver.getWorkoutRoutine() != null){
             new AthleteDAO().removeWorkoutPlan(receiver.getFC());
         }
@@ -75,14 +66,12 @@ public class SatisfyWorkoutRequestsController {
         exerciseForWorkoutRoutine.setRepetitions(exerciseForWorkoutRoutineBean.getRepetitions());
         exerciseForWorkoutRoutine.setSets(exerciseForWorkoutRoutineBean.getSets());
         exerciseForWorkoutRoutine.setRest(exerciseForWorkoutRoutineBean.getRest());
-
         return exerciseForWorkoutRoutine;
     }
 
     public List<ExerciseBean> searchExercise(SearchBean searchBean) {
         List<Exercise> exerciseList = LoggedTrainerSingleton.getSingleton().getExcerciseList();
         List<Exercise> filteredExercises = new ArrayList<>();
-
         for (Exercise exercise : exerciseList) {
             if (exercise.getName().toLowerCase().contains(searchBean.getName().toLowerCase())) {
                 filteredExercises.add(exercise);
@@ -91,7 +80,6 @@ public class SatisfyWorkoutRequestsController {
         return getExerciseBeanList(filteredExercises);
     }
 
-    @NotNull
     public List<ExerciseBean> getExerciseBeanList(List<Exercise> exerciseList) {
         List<ExerciseBean> exerciseBeanList = new ArrayList<>();
         for(Exercise exercise: exerciseList){
@@ -101,16 +89,25 @@ public class SatisfyWorkoutRequestsController {
         return exerciseBeanList;
     }
 
-    public void sendClarificationEmail(UserBean sender, UserBean receiver, String object, String content) throws URISyntaxException, IOException, EmailFormException {
-        EmailBean emailBean = new EmailBean(sender, receiver);
-        emailBean.setObject(object);
-        emailBean.setBody(content);
-        new EmailSystemBoundary().sendEmail(emailBean);
+    public void sendEmailWithObject(EmailBean emailBean) throws URISyntaxException, IOException {
+        sendEmail(emailBean);
+    }
+
+    public void sendEmailWithoutObject(EmailBean emailBean) throws EmailFormException, URISyntaxException, IOException {
+        String creationObject = "NEW WORKOUT ROUTINE";
+        emailBean.setObject(creationObject);
+        sendEmail(emailBean);
+    }
+    private void sendEmail(EmailBean emailBean) throws URISyntaxException, IOException {
+        try{
+            new EmailSystemBoundary().sendEmail(emailBean);
+        } catch (BrowsingNotSupportedException e){
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 
     public List<RequestBean> getTrainerRequests() throws DBUnrreachableException, DataFieldException {
         List<Request> requestList = new ArrayList<>(new RequestDAO().loadTrainerRequests(LoggedTrainerSingleton.getSingleton().getUser()));
-
         List<RequestBean> requestBeanList = new ArrayList<>();
         for(Request request: requestList) {
             Athlete usr = request.getAthlete();

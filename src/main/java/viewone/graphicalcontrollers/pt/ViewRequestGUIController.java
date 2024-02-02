@@ -2,10 +2,12 @@ package viewone.graphicalcontrollers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import controllers.UserAccessController;
 import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import viewone.managelistview.ManageRequestList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -37,8 +39,14 @@ public class ViewRequestGUIController implements Initializable {
     public void goBack() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
-    @FXML public void logout() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+    @FXML public void logout() {
+        try {
+            UserAccessController controller = new UserAccessController();
+            controller.logout();
+            SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
+        } catch (IOException e){
+            CostumeLogger.getInstance().logError(e);
+        }
     }
     @FXML
     public void askClarification() throws IOException{

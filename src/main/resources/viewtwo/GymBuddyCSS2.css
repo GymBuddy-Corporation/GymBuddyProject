@@ -70,9 +70,9 @@
 
 .text-area {
     -fx-background-color: transparent;
-    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #911701;
+    -fx-text-fill: #911701;
     -fx-cursor: text;
-    -fx-prompt-text-fill: #b34b0c;
 }
 
 .text-area .scroll-bar{

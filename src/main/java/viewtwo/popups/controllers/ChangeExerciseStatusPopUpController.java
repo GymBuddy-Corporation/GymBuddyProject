@@ -60,7 +60,6 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
     @Override
     public void setCaller(PopupBaseClass caller) {
         this.caller=(ChangeExeStatusPopUp) caller;
-
     }
 
     @FXML public void changeStatus(){

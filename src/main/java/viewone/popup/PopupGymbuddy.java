@@ -56,7 +56,7 @@ public class PopupGymbuddy {
         me.caller=null;
         me=null;
     }
-    public void popUpConfirm()  throws IOException{
+    public void popUpConfirm() throws IOException{
         caller.popUpConfirm();
     }
     public void popUpDelete() {

@@ -8,7 +8,6 @@ public class EmailBean {
     private String object;
     private String body;
 
-
     public EmailBean(UserBean sender, UserBean receiver) {
         this.sender = sender;
         this.receiver = receiver;

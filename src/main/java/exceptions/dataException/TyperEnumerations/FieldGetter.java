@@ -12,8 +12,10 @@ public class FieldGetter {
             case FieldsEnum.EXERCISE_REPS -> "exercise repetitions";
             case FieldsEnum.EXERCISE_SETS -> "exercise sets";
             case FieldsEnum.EXERCISE -> "exercise";
-            case USERNAME -> "username";
-            case INFO -> "info";
+            case FieldsEnum.USERNAME -> "username";
+            case FieldsEnum.INFO -> "info";
+            case FieldsEnum.ROUTINE_NAME -> "routines' name";
+            case FieldsEnum.ROUTINE_COMMENT -> "routines' comment";
             default -> "error";
         };
     }

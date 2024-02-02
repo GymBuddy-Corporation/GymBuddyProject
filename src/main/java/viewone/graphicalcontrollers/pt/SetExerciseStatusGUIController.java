@@ -3,6 +3,7 @@ package viewone.graphicalcontrollers.pt;
 import beans.ExerciseBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
+import exceptions.EmptySearchException;
 import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
 import exceptions.logger.CostumeLogger;
@@ -44,12 +45,12 @@ public class SetExerciseStatusGUIController implements Initializable{
         SatisfyWorkoutRequestsController controller;
         try{
             controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
+            List<ExerciseBean> exerciseBeanList = controller.searchExercise(new SearchBean(searchExerciseText.getText()));
+            ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
+        } catch (NoLoggedUserException | EmptySearchException e){
                 e.callMe(1);
-                return;
+                CostumeLogger.getInstance().logError(e);
         }
-        List<ExerciseBean> exerciseBeanList = controller.searchExercise(new SearchBean(searchExerciseText.getText()));
-        ManageExerciseList.updateListFiltered(exerciseDBList, exerciseBeanList);
     }
 
     public ListView<ExerciseBean> getExerciseDBList() {

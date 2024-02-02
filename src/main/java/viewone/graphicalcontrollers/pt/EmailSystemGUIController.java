@@ -1,7 +1,9 @@
 package viewone.graphicalcontrollers.pt;
 
+import beans.EmailBean;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
+import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
@@ -19,28 +21,31 @@ public class EmailSystemGUIController {
     @FXML private TextArea contentTextArea;
     RequestBean selectedRequest;
     @FXML public void sendEmail() throws IOException{
-        SatisfyWorkoutRequestsController controller;
         try{
-            controller = new SatisfyWorkoutRequestsController();
-        } catch (NoLoggedUserException e){
-
-                e.callMe(1);
-                return;
-
-        }
-        try {
-            controller.sendClarificationEmail(LoggedUserSingleton.getSingleton().getMyBean(), selectedRequest.getAthleteBean(), objectTextArea.getText(), contentTextArea.getText());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        } catch (EmailFormException e){
+            EmailBean emailBean = new EmailBean(LoggedUserSingleton.getSingleton().getMyBean(), selectedRequest.getAthleteBean());
+            String object = objectTextArea.getText();
+            String content = contentTextArea.getText();
+            emailBean.setObject(object);
+            emailBean.setBody(content);
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            controller.sendEmailWithObject(emailBean);
+        } catch (NoLoggedUserException | EmailFormException e){
             e.callMe(1);
             return;
+        } catch (URISyntaxException e) {
+            CostumeLogger.getInstance().logError(e);
         }
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
 
-    @FXML public void logout() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+    @FXML public void logout() {
+        try {
+            UserAccessController controller = new UserAccessController();
+            controller.logout();
+            SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
+        } catch (IOException e){
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 
     public void setValue(RequestBean selectedRequest) {

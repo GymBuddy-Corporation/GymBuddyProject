@@ -1,8 +1,7 @@
 package viewtwo.graphicalcontrollers.pt;
 
 import beans.*;
-import exceptions.NoDayIsSelectedException;
-import exceptions.NoLoggedUserException;
+import exceptions.*;
 import exceptions.dataException.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import javafx.animation.PauseTransition;
@@ -18,31 +17,33 @@ import javafx.util.Duration;
 import model.Exercise;
 import model.ExerciseStatus;
 import viewone.managelistview.ManageExerciseList;
+import viewtwo.engegnering.MainMenuSingleton;
 import viewtwo.manageListView.ManageExerciseList2;
 import viewtwo.manageListView.listCells.ExerciseForWOListCellFactory2;
 import viewtwo.manageListView.listCells.ExerciseListCellFactory2;
 import viewtwo.popups.ChangeExeStatusPopUp;
+import viewtwo.popups.PersonalizeWRPopUp;
 import viewtwo.popups.abstracts.AddExeInterface;
 import viewtwo.popups.abstracts.ChangeExeStatusInterface;
 import viewtwo.popups.abstracts.DeleteExeInterface;
+import viewtwo.popups.abstracts.PersonalizeWorkoutRequestInterface;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Observer, AddExeInterface, DeleteExeInterface, ChangeExeStatusInterface {
+public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Observer, AddExeInterface, DeleteExeInterface, ChangeExeStatusInterface, PersonalizeWorkoutRequestInterface {
     private String selectedDay;
-    private final List<String> dayList = new ArrayList<>();
     @FXML private RequestBean requestBean;
     @FXML private ListView <ExerciseBean> exerciseDBList2;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist2;
     @FXML private List<RadioButton> radioButtonList;
     @FXML private Label updateLabel;
+    @FXML private Label labelUser;
 
     @FXML private RadioButton mondayRadioButton;
     @FXML private RadioButton tuesdayRadioButton;
@@ -51,6 +52,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     @FXML private RadioButton fridayRadioButton;
     @FXML private RadioButton saturdayRadioButton;
     @FXML private RadioButton sundayRadioButton;
+    @FXML private TextField searchExerciseText;
     @FXML private ImageView correctSetUp;
     private WorkoutRoutineBean workoutRoutine;
 
@@ -77,24 +79,23 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     }
 
     public void setValue(RequestBean request){
-        this.requestBean = request;
-        SatisfyWorkoutRequestsController controller;
+
         try{
-            controller = new SatisfyWorkoutRequestsController();
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            this.requestBean = request;
+            List<ExerciseBean> exerciseBeanList = controller.getLoggedTrainerGymExercises();
+            for (Exercise exer : LoggedTrainerSingleton.getSingleton().getExcerciseList()) {
+                exer.addObserver(this);
+            }
+            ManageExerciseList2.setListenerDB(exerciseDBList2, this);
+            ManageExerciseList2.setListenerRoutineWorkout(routineExerciselist2, this);
+
+            ManageExerciseList2.updateListFiltered(exerciseDBList2, exerciseBeanList);
+            mondayRadioButton.fire();
+            labelUser.setText(requestBean.getAthleteBean().getUsername());
         } catch (NoLoggedUserException e){
            e.callMe(1);
-           return;
         }
-        List<ExerciseBean> exerciseBeanList = controller.getLoggedTrainerGymExercises();
-        for (Exercise exer : LoggedTrainerSingleton.getSingleton().getExcerciseList()) {
-            exer.addObserver(this);
-        }
-
-        ManageExerciseList2.setListenerDB(exerciseDBList2, this);
-        ManageExerciseList2.setListenerRoutineWorkout(routineExerciselist2, this);
-
-        ManageExerciseList2.updateListFiltered(exerciseDBList2, exerciseBeanList);
-        mondayRadioButton.fire();
     }
 
     @FXML void dayButtonAction(ActionEvent event) {
@@ -106,7 +107,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         } catch (NoDayIsSelectedException e) {
 
                 e.callMe(1);
-
         }
     }
 
@@ -171,6 +171,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         exerciseDBList2.setCellFactory(new ExerciseListCellFactory2());
         routineExerciselist2.setCellFactory(new ExerciseForWOListCellFactory2());
         correctSetUp.setVisible(false);
+        updateLabel.setVisible(false);
 
         radioButtonList = Arrays.asList(
                 mondayRadioButton,
@@ -190,11 +191,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         fridayRadioButton.setToggleGroup(group);
         saturdayRadioButton.setToggleGroup(group);
         sundayRadioButton.setToggleGroup(group);
-
-        for(int i = 1; i <= 7; i++) {
-            dayList.add(DayOfWeek.of(i).name());
-        }
-
     }
     public void changeStatus() {
         try{
@@ -266,6 +262,49 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             updateSelectedExerciseList();
         } catch (NoDayIsSelectedException e) {
             e.callMe(1);
+        }
+    }
+
+    @Override
+    public void submitWorkoutRoutine(String comment, String name) {
+        try{
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            this.workoutRoutine.setComment(comment);
+            this.workoutRoutine.setName(name);
+            MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+            try {
+                controller.sendWorkoutRoutine(this.requestBean, this.workoutRoutine);
+            } catch (DBUnrreachableException e) {
+                e.callMe(1);
+            }
+        } catch (NoLoggedUserException | SubmitRoutineException e){
+            e.callMe(1);
+        } catch (IOException e){
+            CostumeLogger.getInstance().logString("IOException in submitWorkoutRoutine");
+        }
+
+    }
+
+    @FXML
+    public void searchButton() {
+        try {
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            List<ExerciseBean> filteredList;
+            String searchText = searchExerciseText.getText();
+            filteredList = controller.searchExercise(new SearchBean(searchText));
+            ManageExerciseList.updateListFiltered(exerciseDBList2, filteredList);
+        } catch (NoLoggedUserException | EmptySearchException e) {
+            e.callMe(1);
+            CostumeLogger.getInstance().logError(e);
+        }
+    }
+
+
+    public void goForward() {
+        try{
+            PersonalizeWRPopUp.getPersonalizeWRPopup(this, this.workoutRoutine,"PersonalizeWRPopUp.fxml" , "popups", 2);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logString("IOException in goForward");
         }
     }
 }
