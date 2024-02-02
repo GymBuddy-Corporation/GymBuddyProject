@@ -1,6 +1,7 @@
 package database.dao;
 
 import database.SingletonConnection;
+import exceptions.logger.CostumeLogger;
 import model.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,8 +24,7 @@ public class ExerciseDAO {
                     statusString);
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
-            e.printStackTrace();
-            //todo handle exception
+            CostumeLogger.getInstance().logError(e);
         }
     }
 
@@ -36,7 +36,7 @@ public class ExerciseDAO {
             return getExercises(workoutDayName, rs, workoutRoutine.getName());
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
             return null;
             //todo handle null
         }
@@ -76,7 +76,6 @@ public class ExerciseDAO {
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
             e.printStackTrace();
-            //todo handle exception
         }
     }
 

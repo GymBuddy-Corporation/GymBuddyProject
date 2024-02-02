@@ -5,6 +5,7 @@ import beans.CredentialsBean;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
+import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
@@ -39,7 +40,7 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
         UserAccessController controller = new UserAccessController();
         try {
             controller.login(CredentialsBean.ctorWithSyntaxCheck(email, password),remember);
-        } catch (DataFieldException | NoUserFoundException e) {
+        } catch (NoUserFoundException | DataFieldException | DBUnrreachableException e) {
             e.callMe(2);
             return;
         } catch (AlreadyLoggedUserException e) {

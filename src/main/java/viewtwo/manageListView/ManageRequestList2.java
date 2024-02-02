@@ -12,7 +12,7 @@ import viewtwo.manageListView.listCells.RequestListCellFactory2;
 
 public class ManageRequestList2 {
 
-    public static void setRequestList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException, DBUnrreachableException{
+    public static void setRequestList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException{
         requestList.setCellFactory(new RequestListCellFactory2());
         updateList(requestList, satisfyWorkoutRequestsController);
     }

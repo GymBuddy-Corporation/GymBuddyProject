@@ -6,7 +6,7 @@ import engineering.popups.PopupBaseClass;
 import java.io.IOException;
 
 public class MembershipPopUP extends PopupBaseClass {
-    private MembershipConfirmPopupInterface castedInterface;
+    private final MembershipConfirmPopupInterface castedInterface;
     protected MembershipPopUP(MembershipConfirmPopupInterface instanceOfParent, String file, String folder, int view) throws IOException {
         super(instanceOfParent, file, folder, view);
         castedInterface=(MembershipConfirmPopupInterface) this.caller;

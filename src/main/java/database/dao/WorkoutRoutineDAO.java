@@ -1,6 +1,7 @@
 package database.dao;
 
 import database.SingletonConnection;
+import exceptions.logger.CostumeLogger;
 import model.WorkoutDay;
 import model.WorkoutRoutine;
 
@@ -17,7 +18,7 @@ public class WorkoutRoutineDAO {
                 Queries.INSERT_WORKOUT_ROUTINE_QUERY)) {
             Queries.insertWorkoutRoutine(preparedStatement1, workoutRoutine.getName(), workoutRoutine.getComment(), athleteFc);
         } catch (SQLException e) {
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
             //todo handle exception
         }
         for (WorkoutDay workoutDay : workoutRoutine.getWorkoutDayList()) {
@@ -42,7 +43,7 @@ public class WorkoutRoutineDAO {
                 //todo gestisci sto null
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
             return null;
         }
     }

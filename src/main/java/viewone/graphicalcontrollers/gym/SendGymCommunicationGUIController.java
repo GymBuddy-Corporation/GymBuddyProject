@@ -45,7 +45,7 @@ public class SendGymCommunicationGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
     }
     @FXML
-    public void setBottonept()throws  Exception{
+    public void setBottonept() {
         pt.setImage(full);
         user.setImage(empty);
         scelta= SendGymCommunicationGUIController.Selezione.PT;
@@ -59,7 +59,7 @@ public class SendGymCommunicationGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
     }
     @FXML
-    public void setBottoneuser()throws  Exception{
+    public void setBottoneuser() {
         pt.setImage(empty);
         user.setImage(full);
         scelta= SendGymCommunicationGUIController.Selezione.USER;

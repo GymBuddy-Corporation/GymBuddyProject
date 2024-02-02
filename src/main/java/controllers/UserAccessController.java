@@ -7,6 +7,7 @@ import engineering.LoggedAthleteSingleton;
 import engineering.LoggedGymSingleton;
 import engineering.LoggedTrainerSingleton;
 import exceptions.AlreadyLoggedUserException;
+import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 
 import exceptions.NoUserFoundException;
@@ -26,22 +27,22 @@ public class UserAccessController {
         return LoggedUserSingleton.getSingleton().getMyBean();
     }
 
-    public void logout() throws NoLoggedUserException {
+    public void logout() {
         UserDAO.eliminateSavedCredentials();
         LoggedUserSingleton.clearSingleton();
     }
 
-    public UserBean login(CredentialsBean credentials,boolean saveCredentials) throws DataFieldException, NoUserFoundException, AlreadyLoggedUserException {
+    public UserBean login(CredentialsBean credentials,boolean saveCredentials) throws NoUserFoundException, AlreadyLoggedUserException, DBUnrreachableException {
         if (LoggedUserSingleton.getSingleton() != null) throw new AlreadyLoggedUserException();
         Credentials credentialsObj=new Credentials(credentials.getEmail(), credentials.getPassword());
         return loginCall(credentialsObj,saveCredentials);
     }
 
-    public UserBean loginDeserialization() throws NoUserFoundException, AlreadyLoggedUserException {
+    public UserBean loginDeserialization() throws NoUserFoundException, AlreadyLoggedUserException, DBUnrreachableException {
         return loginCall(UserDAO.deserializeSavedCredentials(),true);
     }
 
-    private  UserBean loginCall(Credentials credentials,boolean saveCredential) throws  NoUserFoundException, AlreadyLoggedUserException {
+    private  UserBean loginCall(Credentials credentials,boolean saveCredential) throws NoUserFoundException, AlreadyLoggedUserException, DBUnrreachableException {
         UserDAO userDAO = new UserDAO();
         User user = userDAO.loadUser(credentials);
         if(saveCredential)UserDAO.serializeSavedCredential(credentials);

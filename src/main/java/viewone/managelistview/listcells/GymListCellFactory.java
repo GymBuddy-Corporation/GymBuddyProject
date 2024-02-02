@@ -1,4 +1,4 @@
-package viewone.managelistview.listCells;
+package viewone.managelistview.listcells;
 
 import beans.GymInfoBean;
 import javafx.scene.Parent;

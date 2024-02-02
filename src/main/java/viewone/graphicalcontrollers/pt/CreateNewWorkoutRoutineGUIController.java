@@ -6,9 +6,8 @@ import engineering.LoggedTrainerSingleton;
 import engineering.Observer;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;
-import exceptions.logger.CostumeLogger;
-import viewone.managelistview.listCells.ExerciseForWOListCellFactory;
-import viewone.managelistview.listCells.ExerciseListCellFactory;
+import viewone.managelistview.listcells.ExerciseForWOListCellFactory;
+import viewone.managelistview.listcells.ExerciseListCellFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -125,7 +124,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
 
     @FXML
-    public void addExercise() throws IOException {
+    public void addExercise() {
         final ExerciseBean selectedExercise = exerciseDBList.getSelectionModel().getSelectedItem();
         if (selectedExercise != null && selectedDay != null) {
             setVisibleLabel(false);

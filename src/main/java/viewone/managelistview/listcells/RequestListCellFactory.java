@@ -1,34 +1,35 @@
-package viewone.managelistview.listCells;
+package viewone.managelistview.listcells;
 
-import beans.ExerciseBean;
+
+import beans.RequestBean;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import java.io.IOException;
-
 import javafx.util.Callback;
 
-public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>, ListCell<ExerciseBean>> {
+import java.io.IOException;
+
+public class RequestListCellFactory implements Callback<ListView<RequestBean>, ListCell<RequestBean>> {
 
     @Override
-    public ListCell<ExerciseBean> call(ListView<ExerciseBean> param) {
-        return new ListCell<ExerciseBean>() {
+    public ListCell<RequestBean> call(ListView<RequestBean> param) {
+        return new ListCell<RequestBean>() {
             private Parent parentNode = null;
 
             @Override
-            protected void updateItem(ExerciseBean exerciseBean, boolean empty) {
-                super.updateItem(exerciseBean, empty);
+            protected void updateItem(RequestBean requestBean, boolean empty) {
+                super.updateItem(requestBean, empty);
 
-                if (empty || exerciseBean == null) {
+                if (empty || requestBean == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
                     if (parentNode == null) {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListExerciseWorkoutRoutine.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListAthlete.fxml"));
                             parentNode = loader.load();
                         } catch (IOException e) {
                             CostumeLogger.getInstance().logError(e);
@@ -36,8 +37,8 @@ public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>,
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
+                    itemNameLabel.setText(requestBean.getAthleteBean().getUsername());
 
-                    itemNameLabel.setText(exerciseBean.getName());
                     setGraphic(parentNode);
                 }
             }

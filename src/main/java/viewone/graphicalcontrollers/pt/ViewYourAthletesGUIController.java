@@ -2,8 +2,7 @@ package viewone.graphicalcontrollers.pt;
 
 import beans.AthleteBean;
 import controllers.SatisfyWorkoutRequestsController;
-import exceptions.logger.CostumeLogger;
-import viewone.managelistview.listCells.AthleteListCellFactory;
+import viewone.managelistview.listcells.AthleteListCellFactory;
 import viewone.managelistview.ManageAthletesList;
 import exceptions.dataException.DataFieldException;
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import utils.MainStage;
 import utils.SwitchPage;
 
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -29,12 +27,6 @@ public class ViewYourAthletesGUIController implements Initializable{
     @FXML private Label labelFiscalCode;
     private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
 
-    /*private void clear(){
-        elements.clear();
-    }
-    private void refresh(){
-        dashboard.refresh();
-    }*/
 
     @FXML
     public void goBack() throws Exception {

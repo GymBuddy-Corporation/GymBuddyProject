@@ -1,4 +1,4 @@
-package viewone.managelistview.listCells;
+package viewone.managelistview.listcells;
 
 import beans.ExerciseBean;
 import exceptions.logger.CostumeLogger;

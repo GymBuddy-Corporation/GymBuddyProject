@@ -3,6 +3,7 @@ package database.dao;
 
 import database.SingletonConnection;
 import database.query.Queries;
+import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import model.Athlete;
@@ -63,7 +64,7 @@ public class AthleteDAO {
         }
     }
 
-    public void loadAthleteWallet(Athlete athlete){
+    public void loadAthleteWallet(Athlete athlete) throws CostumException {
         try(
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_WALLET);
                 ResultSet result=Queries.loadAndExecuteOneString(athlete.getFC(), preparedStatement)
@@ -85,10 +86,10 @@ public class AthleteDAO {
             athlete.setWallet(wallet);
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
-            //throw e;
-            //return null;
+            throw new DBUnrreachableException();
+
         } catch (NoUserFoundException e) {
-            //return  null;
+            throw new CostumException("Gym doesnt exits anymore");
         }
     }
 

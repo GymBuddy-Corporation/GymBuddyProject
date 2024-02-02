@@ -4,6 +4,7 @@ import beans.*;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
+import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
 import javafx.scene.control.Button;
@@ -47,14 +48,12 @@ public class LoginGUIController {
         UserAccessController controller=new UserAccessController();
         UserBean userBean=null;
         try {
-            try {
-                userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()),saveCredentials);
-            } catch (DataFieldException|NoUserFoundException e) {
-                e.callMe(1);
-                return;
-            }
+            userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()),saveCredentials);
         }catch(AlreadyLoggedUserException e){
             userBean = LoggedUserSingleton.getSingleton().getMyBean();
+        } catch (DataFieldException | NoUserFoundException | DBUnrreachableException e) {
+            e.callMe(1);
+            return;
         }
         changePage(userBean);
 

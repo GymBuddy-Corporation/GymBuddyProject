@@ -13,7 +13,7 @@ import utils.MainStage;
 import utils.SwitchPage;
 import utils.listview.ManageGenericList;
 import utils.listview.SetInfoListViewInterface;
-import viewone.managelistview.listCells.MembershipListCellFactory;
+import viewone.managelistview.listcells.MembershipListCellFactory;
 import viewone.popup.membershippopups.MembershipConfirmPopupInterface;
 import viewone.popup.membershippopups.MembershipPopUP;
 
@@ -35,8 +35,8 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
         }
     }
     public void logout() throws NoLoggedUserException {
-        UserAccessController controller=new UserAccessController();
-        controller.logout();
+        UserAccessController controllerAccess=new UserAccessController();
+        controllerAccess.logout();
         try {
             SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
         } catch (IOException e) {

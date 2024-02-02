@@ -41,21 +41,21 @@ public class ChooseActorGUIController implements Initializable {
 
 
 @FXML
-    public void setBottonegym()throws  Exception{
+    public void setBottonegym() {
         pt.setImage(empty);
         gym.setImage(full);
         athlete.setImage(empty);
         scelta=Selezione.GYM;
     }
     @FXML
-    public void setBottonept()throws  Exception{
+    public void setBottonept() {
         pt.setImage(full);
         gym.setImage(empty);
         athlete.setImage(empty);
         scelta=Selezione.PT;
     }
     @FXML
-    public void setBottoneuser()throws  Exception{
+    public void setBottoneuser() {
         pt.setImage(empty);
         gym.setImage(empty);
         athlete.setImage(full);

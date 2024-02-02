@@ -21,7 +21,7 @@ public class GymFirstGUIController {
         SwitchPage.setStage(MainStage.getStage(),"GymRegistration.fxml",launcher,1);
     }
 
-    @FXML public void getInfo() throws Exception {
+    @FXML public void getInfo() {
         //TODO organizza il bottone info
     }
 

@@ -1,6 +1,8 @@
-package viewone.managelistview.listCells;
+package viewone.managelistview.listcells;
 
 
+import beans.AthleteBean;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -10,32 +12,32 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class GymCommunicationListCellFactory implements Callback<ListView<String>, ListCell<String>> {
+public class AthleteListCellFactory implements Callback<ListView<AthleteBean>, ListCell<AthleteBean>> {
 
     @Override
-    public ListCell<String> call(ListView<String> param) {
-        return new ListCell<String>() {
+    public ListCell<AthleteBean> call(ListView<AthleteBean> param) {
+        return new ListCell<AthleteBean>() {
             private Parent parentNode = null;
 
             @Override
-            protected void updateItem(String info, boolean empty) {
-                super.updateItem(info, empty);
+            protected void updateItem(AthleteBean athleteBean, boolean empty) {
+                super.updateItem(athleteBean, empty);
 
-                if (empty || info == null) {
+                if (empty || athleteBean == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
                     if (parentNode == null) {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListGymCommunication.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewone/pt/ListAthlete.fxml"));
                             parentNode = loader.load();
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            CostumeLogger.getInstance().logError(e);
                         }
                     }
 
                     Label itemNameLabel = (Label) parentNode.lookup("#itemName1");
-                    itemNameLabel.setText(info);
+                    itemNameLabel.setText(athleteBean.getUsername());
 
                     setGraphic(parentNode);
                 }

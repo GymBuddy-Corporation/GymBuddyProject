@@ -3,7 +3,7 @@ package viewone.managelistview;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.DBUnrreachableException;
-import viewone.managelistview.listCells.RequestListCellFactory;
+import viewone.managelistview.listcells.RequestListCellFactory;
 import exceptions.dataException.DataFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ public class ManageRequestList {
         updateList(requestList, satisfyWorkoutRequestsController);
     }
 
-    public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DataFieldException, DBUnrreachableException {
+    public static void updateList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException {
         ObservableList<RequestBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getTrainerRequests());
         requestList.setItems(FXCollections.observableList(requestBeanObservableList));
     }

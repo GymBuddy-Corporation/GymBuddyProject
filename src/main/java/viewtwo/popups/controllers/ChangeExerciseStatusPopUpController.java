@@ -77,7 +77,7 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
                 caller.setExeStatus(exe);
                 controller.setExerciseStatus(exe, ExerciseStatus.SUSPENDED);
             }
-        } catch (NoLoggedUserException | UserCastException e) {
+        } catch (NoLoggedUserException e) {
             caller.hidePopUp();
             CostumeLogger.getInstance().logError(e);
         }

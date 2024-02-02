@@ -2,6 +2,7 @@ package database.dao;
 
 
 import database.SingletonConnection;
+import exceptions.logger.CostumeLogger;
 import model.*;
 
 import java.sql.ResultSet;
@@ -20,7 +21,8 @@ public class WorkoutDayDAO {
                 Statement.RETURN_GENERATED_KEYS)){
                 Queries.insertWorkoutDay(preparedStatement, workoutDay.getDay(), athleteFC);
         } catch (SQLException e) {
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
+
             //todo handle exception
         }
 
@@ -45,7 +47,7 @@ public class WorkoutDayDAO {
             }
             return myList;
         } catch (SQLException e) {
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
             return null;
             //todo handle exception
         }

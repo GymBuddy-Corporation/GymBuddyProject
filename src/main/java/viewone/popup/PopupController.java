@@ -21,7 +21,7 @@ public class PopupController {
         PopupGymbuddy.clearSingleton();
     }
     @FXML
-    public void rifiuta() throws IOException{
+    public void rifiuta() {
         PopupGymbuddy.getPopUp().popUpDelete();
         PopupGymbuddy.clearSingleton();
     }

@@ -4,6 +4,7 @@ package database.dao;
 import database.SingletonConnection;
 import database.query.Queries;
 import exceptions.DBUnrreachableException;
+import exceptions.logger.CostumeLogger;
 import model.Request;
 import model.Trainer;
 
@@ -24,7 +25,8 @@ public class RequestDAO {
                 Queries.DELETE_REQUEST_QUERY)){
             Queries.deleteRequest(preparedStatement, athleteFC, trainersFC);
         } catch (SQLException e) {
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
+
         }
     }
 
@@ -50,7 +52,7 @@ public class RequestDAO {
                 Queries.INSERT_REQUEST_QUERY)){
             Queries.insertRequest(preparedStatement, info, athleteFc, trainerfc);
         } catch (SQLException e) {
-            e.printStackTrace();
+            CostumeLogger.getInstance().logError(e);
         }
     }
 }

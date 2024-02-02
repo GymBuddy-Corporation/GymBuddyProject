@@ -3,6 +3,8 @@ package viewone.graphicalcontrollers.pt;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.CostumException;
+import exceptions.DBUnrreachableException;
+import exceptions.NoLoggedUserException;
 import viewone.managelistview.ManageRequestList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -58,20 +60,27 @@ public class ViewRequestGUIController implements Initializable {
     }
 
     @FXML
-    public void rejectRequest() throws IOException {
+    public void rejectRequest() {
         //TODO gestisci la cancellazione di una richiesta
 
+        SatisfyWorkoutRequestsController controller = null;
         try {
-            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
-            controller.rejectRequest(selectedRequest);
-            if (requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
-                return;
-            }
-            ManageRequestList.updateList(requestList, controller);
-            textUsersRequest.setText("");
-        }catch (CostumException e){
-            e.callMe(1);
+            controller = new SatisfyWorkoutRequestsController();
+        } catch (NoLoggedUserException e) {
+            e.callMe(2);
+            return;
         }
+        controller.rejectRequest(selectedRequest);
+        if (requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
+            return;
+        }
+        try {
+            ManageRequestList.updateList(requestList, controller);
+        } catch (DBUnrreachableException e) {
+            e.callMe(2);
+            return;
+        }
+        textUsersRequest.setText("");
     }
 
     @Override

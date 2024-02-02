@@ -7,7 +7,7 @@ public class CouponNotCumulativeException extends CostumException{
         return membership;
     }
 
-    private transient final MembershipInterface membership;
+    private final transient  MembershipInterface membership;
     public CouponNotCumulativeException(MembershipInterface membership){
         super("Some coupons wheere not cumulable");
         this.membership=membership;

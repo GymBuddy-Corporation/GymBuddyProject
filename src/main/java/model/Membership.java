@@ -49,7 +49,7 @@ public class Membership implements MembershipInterface {
     }
 
     @Override
-    public boolean isForNewUsers() throws DecoratorNoBaseComponentException{
+    public boolean isForNewUsers() {
         return false;
     }
 }

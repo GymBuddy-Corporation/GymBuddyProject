@@ -4,7 +4,6 @@ import beans.GymInfoBean;
 import beans.SearchGymBean;
 import controllers.ManageMembershipController;
 import controllers.UserAccessController;
-import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import exceptions.NoUserFoundException;
@@ -19,7 +18,7 @@ import utils.MainStage;
 import utils.SwitchPage;
 import utils.listview.ManageGenericList;
 import utils.listview.SetInfoListViewInterface;
-import viewone.managelistview.listCells.GymListCellFactory;
+import viewone.managelistview.listcells.GymListCellFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -117,10 +116,8 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
 
     try {
         controller.initialize(bean);
-    } catch (NoLoggedUserException e) {
-       return;
-    }catch (NoUserFoundException e) {
-        return;
+    } catch (NoLoggedUserException | NoUserFoundException e) {
+       e.callMe(1);
     }
 
 }

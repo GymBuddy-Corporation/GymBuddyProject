@@ -41,7 +41,7 @@ public class GymPTGUIController implements Initializable {
     }
 
     @FXML
-    public void deletePT() throws Exception {
+    public void deletePT() {
         //TODO questo diventa il popup da sitemare e cliccabile solo se è stata scelta almeno un'opzione dalla ListView.
     }
 

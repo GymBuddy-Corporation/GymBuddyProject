@@ -3,6 +3,8 @@ package viewtwo.graphicalcontrollers.pt;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.CostumException;
+import exceptions.DBUnrreachableException;
+import exceptions.NoLoggedUserException;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,22 +29,22 @@ public class PTHomeGUIController2 implements Initializable {
     }
 
     private void initializeRequestList() {
+        SatisfyWorkoutRequestsController controller = null;
         try {
-            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            controller = new SatisfyWorkoutRequestsController();
             ManageRequestList2.setRequestList(requestList, controller);
-            requestList.getSelectionModel().selectedItemProperty().addListener(
-                    (ObservableValue<? extends RequestBean> observable, RequestBean oldItem, RequestBean newItem) -> {
-                        if (newItem != null) {
-                            handleSelectedRequest(newItem);
-                        }
-                    }
-            );
-        }catch (CostumException e){
-
-                e.callMe(2);
-                throw new RuntimeException(e);
-
+        } catch (NoLoggedUserException | DBUnrreachableException e) {
+            e.callMe(2);
+            return;
         }
+
+        requestList.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue<? extends RequestBean> observable, RequestBean oldItem, RequestBean newItem) -> {
+                    if (newItem != null) {
+                        handleSelectedRequest(newItem);
+                    }
+                }
+        );
     }
 
     private void handleSelectedRequest(RequestBean newItem) {

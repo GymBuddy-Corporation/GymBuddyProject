@@ -1,5 +1,6 @@
 package utils.listview;
 
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
@@ -28,7 +29,7 @@ public abstract class AbstratctCellFactory implements Callback<ListView<Object>,
                             FXMLLoader loader = new FXMLLoader(this.getClass().getResource(getListFXMLPathPath()));
                             parentNode = loader.load();
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            CostumeLogger.getInstance().logError(e);
                         }
                     }
                     makeChangesToList(parentNode, item);

@@ -31,7 +31,7 @@ public class SatisfyWorkoutRequestsController {
         return getExerciseBeanList(exerciseList);
     }
 
-    public void setExerciseStatus(ExerciseBean exercise, ExerciseStatus status) throws UserCastException {
+    public void setExerciseStatus(ExerciseBean exercise, ExerciseStatus status)  {
 
         exercise.setStatusExercise(status);
 
@@ -58,7 +58,7 @@ public class SatisfyWorkoutRequestsController {
             workoutRoutineModel.addWorkoutDay(newWorkoutDay);
         }
 
-        Athlete receiver = null;
+        Athlete receiver ;
         receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
         if(receiver.getWorkoutRoutine() != null){
             new AthleteDAO().removeWorkoutPlan(receiver.getFC());

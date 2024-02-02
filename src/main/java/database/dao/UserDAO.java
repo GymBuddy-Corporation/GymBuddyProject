@@ -40,7 +40,7 @@ public class UserDAO {
         return gDao.loadGym(username);
     }
 
-    public User loadUser(Credentials obj) throws NoUserFoundException  {
+    public User loadUser(Credentials obj) throws NoUserFoundException, DBUnrreachableException {
         Connection connection = SingletonConnection.getInstance().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM gymbuddy.user WHERE email = ? AND password = ?")) {
             preparedStatement.setString(1, obj.email());
@@ -52,13 +52,9 @@ public class UserDAO {
                     throw new NoUserFoundException();
                 }
             }
-        } catch (SQLException | DBUnrreachableException sqlException) {
-            sqlException.printStackTrace();
-            // Handle the SQL exception, throware una nuova eccezioen dedicata per sql
-            return null;
+        }  catch (SQLException e) {
+            throw new DBUnrreachableException();
         }
-
-
 
 
     }

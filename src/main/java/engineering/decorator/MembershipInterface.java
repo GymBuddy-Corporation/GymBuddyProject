@@ -6,7 +6,7 @@ public interface MembershipInterface {
     float getPrice() throws DecoratorNoBaseComponentException;
     int getPoints() throws DecoratorNoBaseComponentException;
     int getDuration() throws DecoratorNoBaseComponentException;
-    String getName() throws DecoratorNoBaseComponentException;
+    String getName();
 
     String getBuildedName()throws DecoratorNoBaseComponentException;
     String getDescription();

@@ -40,7 +40,7 @@ public class ManageGymCommunicationList {
             }
     }
 
-    public static void setCommunicationList(ListView<String> communicationList) throws DataFieldException {
+    public static void setCommunicationList(ListView<String> communicationList) {
         SeeCommunications seeCommunications = new SeeCommunications();
         List<String> comList;
         comList = seeCommunications.getGymCommunications();

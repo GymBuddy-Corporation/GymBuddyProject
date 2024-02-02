@@ -7,7 +7,7 @@ import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
 import exceptions.logger.CostumeLogger;
 import model.ExerciseStatus;
-import viewone.managelistview.listCells.ExerciseListCellFactoryForStatus;
+import viewone.managelistview.listcells.ExerciseListCellFactoryForStatus;
 import viewone.managelistview.ManageExerciseList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -120,7 +120,7 @@ public class SetExerciseStatusGUIController implements Initializable{
             SwitchPage.setStage(MainStage.getStage(), "CreateNewWorkoutRoutine.fxml", "pt", 1);
         } catch (NoLoggedUserException e){
                 e.callMe(1);
-        } catch (UserCastException | IOException e){
+        } catch ( IOException e){
             CostumeLogger.getInstance().logError(e);
         }
 

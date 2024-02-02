@@ -2,7 +2,6 @@ package viewone.graphicalcontrollers.pt;
 
 import controllers.UserAccessController;
 import exceptions.dataException.DataFieldException;
-import exceptions.logger.CostumeLogger;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
@@ -10,9 +9,8 @@ import viewone.managelistview.ManageGymCommunicationList;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
-import viewone.managelistview.listCells.GymCommunicationListCellFactory;
+import viewone.managelistview.listcells.GymCommunicationListCellFactory;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,14 +55,8 @@ public class PTHomeGUIController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            //todo con db
-            ManageGymCommunicationList.setCommunicationList(communicationList);
-        } catch (DataFieldException e) {
-
-                e.callMe(1);
-
-        }
+        //todo con db
+        ManageGymCommunicationList.setCommunicationList(communicationList);
         communicationList.setCellFactory(new GymCommunicationListCellFactory());
         //ManageGymCommunicationList.setListenerCommunication(communicationList, this);
     }

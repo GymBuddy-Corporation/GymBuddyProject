@@ -38,8 +38,8 @@ module start {
     opens engineering;
     exports viewone.managelistview;
     opens viewone.managelistview;
-    exports viewone.managelistview.listCells;
-    opens viewone.managelistview.listCells;
+    exports viewone.managelistview.listcells;
+    opens viewone.managelistview.listcells;
     opens utils;
     exports exceptions.dataException;
     opens engineering.popups to javafx.fxml;
