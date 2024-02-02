@@ -5,8 +5,8 @@ import exceptions.DecoratorNoBaseComponentException;
 public class PercentageDiscountCoupon extends Cupon{
     private final float discountPercentage;
 
-    public PercentageDiscountCoupon(int code,String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountPecentage) {
-        super(code,name, description, pointsPrice, forNewMembers, isCoumulable);
+    public PercentageDiscountCoupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountPecentage) {
+        super(name, description, pointsPrice, forNewMembers, isCoumulable);
         this.discountPercentage=discountPecentage;
     }
 

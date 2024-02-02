@@ -4,11 +4,9 @@ import beans.AthleteBean;
 import beans.CredentialsBean;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
-import engineering.UserTypes;
 import exceptions.AlreadyLoggedUserException;
 import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
-import utils.EmailValdator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import utils.MainStage;
@@ -21,7 +19,6 @@ import viewtwo.popups.abstracts.LoginPopUpInterface;
 import viewtwo.popups.abstracts.UserRegistrationPopupInterface;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class LoginPageController implements LoginPopUpInterface,UserRegistrationPopupInterface{
 

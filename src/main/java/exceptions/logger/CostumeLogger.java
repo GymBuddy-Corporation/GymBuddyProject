@@ -38,6 +38,9 @@ public class CostumeLogger {
         }
     }
     public void logError(Exception error){
-        if(fileHandler!=null) logger.log(Level.WARNING,()->error.getStackTrace().toString());
+        if(fileHandler!=null) logger.log(Level.WARNING,
+                //() -> Arrays.toString(error.getStackTrace())
+                error.getMessage()
+        );
     }
 }

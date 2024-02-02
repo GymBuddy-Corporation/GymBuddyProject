@@ -7,8 +7,8 @@ public class DirectDiscountCupon extends Cupon {
     private static final float MIN_PRICE = 0;
     private final float discountValue;
 
-    public DirectDiscountCupon(int code,String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountValue) {
-        super(code,name, description, pointsPrice, forNewMembers, isCoumulable);
+    public DirectDiscountCupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountValue) {
+        super(name, description, pointsPrice, forNewMembers, isCoumulable);
         this.discountValue = discountValue;
     }
 

@@ -1,49 +1,24 @@
 package viewone.managelistview.listCells;
 
 import beans.GymInfoBean;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.util.Callback;
 import utils.SwitchPage;
+import utils.listView.AbstratctCellFactory;
 
-import java.io.IOException;
-
-public class GymListCellFactory implements Callback<ListView<GymInfoBean>, ListCell<GymInfoBean>> {
+public class GymListCellFactory extends AbstratctCellFactory {
+    @Override
+    public String getListFXMLPathPath() {
+        return SwitchPage.getpath("ListGyms.fxml", "athlete", 1);
+    }
 
     @Override
-    public ListCell<GymInfoBean> call(ListView<GymInfoBean> param) {
-        return new ListCell<GymInfoBean>() {
-            private Parent parentNode = null;
+    public void makeChangesToList(Parent parent, Object item) {
+        GymInfoBean gymBean = (GymInfoBean) item;
+        Label gymNameLabel = (Label) parent.lookup("#gymLabel");
+        gymNameLabel.setText(gymBean.getName());
+        Label gymCityLabel = (Label) parent.lookup("#cityLabel");
+        gymCityLabel.setText(gymBean.getCity());
 
-            @Override
-            protected void updateItem(GymInfoBean gymBean, boolean empty) {
-                super.updateItem(gymBean, empty);
-
-                if (empty || gymBean == null) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    if (parentNode == null) {
-                        try {
-                            FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SwitchPage.getpath("ListGyms.fxml","athlete",1)));
-                            parentNode = loader.load();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    Label gymNameLabel = (Label) parentNode.lookup("#gymLabel");
-                    gymNameLabel.setText(gymBean.getName());
-                    Label gymCityLabel = (Label) parentNode.lookup("#cityLabel");
-                    gymCityLabel.setText(gymBean.getCity());
-
-                    setGraphic(parentNode);
-                }
-            }
-        };
     }
 }
-

@@ -25,7 +25,7 @@ public class UserDAO {
     private static final Integer TRAINER_TYPE = 1 ;
     private static final Integer ATHLETE_TYPE = 2 ;
 
-    private static String  fileForCredentials="credentials.ser";
+    private static final String  fileForCredentials="credentials.ser";
 
 
     private @NotNull User getUser(String username) throws SQLException, NoUserFoundException, DBUnrreachableException {

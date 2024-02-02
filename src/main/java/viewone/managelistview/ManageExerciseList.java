@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import model.ExerciseStatus;
-import viewone.graphicalcontrollers.athlete.AthletesRoutineGUIController;
 import viewone.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController;
 import viewone.graphicalcontrollers.pt.SetExerciseStatusGUIController;
 

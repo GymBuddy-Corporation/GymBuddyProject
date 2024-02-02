@@ -6,9 +6,7 @@ import engineering.popups.PopupBaseController;
 import exceptions.dataException.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import viewtwo.popups.AddExePopUp;
 
 import java.io.IOException;

@@ -2,7 +2,6 @@ package viewone.popup;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import utils.MainStage;
 import utils.SwitchPage;
@@ -15,7 +14,7 @@ public class PopupGymbuddy {
     String rifiuto;
     PopupAbstract caller;
 
-    private Popup popupReference;
+    private final Popup popupReference;
     private static PopupGymbuddy me;
 
 

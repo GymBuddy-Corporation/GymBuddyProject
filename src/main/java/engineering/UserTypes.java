@@ -2,5 +2,5 @@ package engineering;
 
 public enum UserTypes
 {
-    pt,gym,athlete;
+    pt,gym,athlete
 }

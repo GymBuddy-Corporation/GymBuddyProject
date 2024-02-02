@@ -2,12 +2,12 @@ package beans;
 
 public class PaymentBean {
 
-    private String iban;
-    private String beneficiary;
-    private String membership;
-    private float value;
-    private CardInfoBean infoBean;
-    private String email;
+    private final String iban;
+    private final String beneficiary;
+    private final String membership;
+    private final float value;
+    private final CardInfoBean infoBean;
+    private final String email;
 
     public PaymentBean(String iban, String beneficiary, String membership, float value, CardInfoBean infoBean, String email) {
         this.iban = iban;

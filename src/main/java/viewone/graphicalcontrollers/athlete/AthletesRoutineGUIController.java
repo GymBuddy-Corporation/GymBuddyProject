@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewone.managelistview.ManageExerciseList;
 
 import java.net.URL;
 import java.util.ResourceBundle;

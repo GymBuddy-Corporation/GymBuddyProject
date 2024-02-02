@@ -7,7 +7,6 @@ import exceptions.NoLoggedUserException;
 import exceptions.UserCastException;
 import exceptions.logger.CostumeLogger;
 import model.ExerciseStatus;
-import model.User;
 import viewone.managelistview.listCells.ExerciseListCellFactoryForStatus;
 import viewone.managelistview.ManageExerciseList;
 import javafx.collections.FXCollections;
@@ -34,7 +33,7 @@ public class SetExerciseStatusGUIController implements Initializable{
     Button selectedButton;
     @FXML private TextField searchExerciseText;
     @FXML private Button setStatusButton;
-    private final ExerciseStatusButtonController exerciseStatusButtonController = new ExerciseStatusButtonController();;
+    private final ExerciseStatusButtonController exerciseStatusButtonController = new ExerciseStatusButtonController();
 
     @FXML
     public void logout() throws Exception {
@@ -90,7 +89,6 @@ public class SetExerciseStatusGUIController implements Initializable{
         } catch (NoLoggedUserException e){
             try {
                 e.callMe(1);
-                return;
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -6,7 +6,7 @@ module start {
     requires java.sql;
     requires mysql.connector.j;
     requires java.desktop;
-
+    exports viewone.popup.MembershipCoupons;
     opens start to javafx.fxml;
     exports start;
     exports model.record;
@@ -22,6 +22,7 @@ module start {
     opens viewone.graphicalcontrollers.pt;
     exports  viewone.popup;
     opens viewone.popup to javafx.fxml;
+    opens viewone.popup.MembershipCoupons to javafx.fxml;
     opens viewone.graphicalcontrollers.launcher.gym to javafx.fxml;
     opens viewone.graphicalcontrollers.launcher to javafx.fxml;
     opens viewtwo.graphicalcontrollers.launcher to javafx.fxml;
@@ -56,5 +57,7 @@ exports engineering.decorator;
     exports database.dao;
     exports  exceptions.logger;
     opens viewtwo.popups to javafx.fxml;
+    exports utils.listView;
+    opens utils.listView;
 
 }

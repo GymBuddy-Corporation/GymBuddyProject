@@ -3,8 +3,6 @@ package viewtwo.graphicalcontrollers.pt;
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.CostumException;
-import exceptions.NoLoggedUserException;
-import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

@@ -42,7 +42,6 @@ public class ManageMembershipController {
         List<MembershipBean> beanList = new ArrayList<>();
         for (Membership membership : listOfMemberships) {
             beanList.add(new MembershipBean(
-                    membership.getCode(),
                     onlyGymNameBean.getName(),
                     membership.getName(),
                     membership.getDescription(),
@@ -58,7 +57,7 @@ public class ManageMembershipController {
         List<Cupon> listOfCoupons=selectedGym.getCoupons();
         List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
         for(Cupon cupon: listOfCoupons ){
-            CuponsBean temp=new CuponsBean(cupon.getCode(),
+            CuponsBean temp=new CuponsBean(
                     cupon.getPointsPrice(),
                     cupon.getName(),
                     cupon.getOnlyForNewUsers(),
@@ -89,7 +88,7 @@ public class ManageMembershipController {
             List<Cupon> cuponsList=selectedGym.getCoupons();
             Membership membership=null;
             for(Membership temp:membershipsList){
-                if(selectedMembership.getCode()==temp.getCode()){
+                if(Objects.equals(selectedMembership.getName(), temp.getName())){
                     membership=temp;
                     break;
                 }
@@ -103,7 +102,7 @@ public class ManageMembershipController {
                 Iterator<CuponsBean> couponBeanIterator= selectedCoupons.iterator();
                 while (couponBeanIterator.hasNext()){
                     CuponsBean couponBeanTemp=couponBeanIterator.next();
-                    if(couponBeanTemp.getCode()==couponTemp.getCode()){
+                    if(Objects.equals(couponBeanTemp.getName(), couponTemp.getName())){
                         couponsToApply.add(couponTemp);
                         couponBeanIterator.remove();
                         couponIterator.remove();

@@ -5,8 +5,8 @@ import exceptions.DecoratorNoBaseComponentException;
 public class PointsCoupon extends Cupon{
 
     int pointAwarded;
-    public PointsCoupon(int code,String name, String description, boolean forNewMembers, int pointToAward) {
-        super(code,name, description, 0, forNewMembers, false);
+    public PointsCoupon(String name, String description, boolean forNewMembers, int pointToAward) {
+        super(name, description, 0, forNewMembers, false);
         this.pointAwarded=pointToAward;
     }
     @Override

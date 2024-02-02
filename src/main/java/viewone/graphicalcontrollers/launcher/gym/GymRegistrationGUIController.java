@@ -20,7 +20,7 @@ public class GymRegistrationGUIController implements Initializable {
     @FXML private TextField address;
     @FXML private TextField name;
     @FXML private TextField email;
-    @FXML private SplitMenuButton splitCityButton = new SplitMenuButton();
+    @FXML private final SplitMenuButton splitCityButton = new SplitMenuButton();
 
     @FXML
     public void goForward() throws Exception {

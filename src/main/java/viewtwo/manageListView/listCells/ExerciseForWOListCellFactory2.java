@@ -1,6 +1,5 @@
 package viewtwo.manageListView.listCells;
 
-import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;

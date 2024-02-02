@@ -5,7 +5,7 @@ public class CardInfoBean {
         return cardNumber;
     }
 
-    private String cardNumber;
+    private final String cardNumber;
 
     public String getYearOfExpiration() {
         return yearOfExpiration;
@@ -23,11 +23,11 @@ public class CardInfoBean {
         return surnameOfOwenr;
     }
 
-    private String monthOfExpiration;
-    private String yearOfExpiration;
+    private final String monthOfExpiration;
+    private final String yearOfExpiration;
 
-    private String nameOfOwner;
-    private String surnameOfOwenr;
+    private final String nameOfOwner;
+    private final String surnameOfOwenr;
     public CardInfoBean(String cardNumber,String monthOfExpiration,String yearOfExpiration,String nameOfOwner,String surnameOfOwenr){
         this.cardNumber = cardNumber;
         this.monthOfExpiration = monthOfExpiration;

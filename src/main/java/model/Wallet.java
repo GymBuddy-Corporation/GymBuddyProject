@@ -3,12 +3,12 @@ package model;
 import java.util.Date;
 
 public class Wallet {
-    private  Date startOfMembership;
-    private  Date endOfMembership;
-    private  Gym currentGym;
-    private  int points;
-    private  String membershipName;
-    private  float membershipPrice;
+    private final Date startOfMembership;
+    private final Date endOfMembership;
+    private final Gym currentGym;
+    private final int points;
+    private final String membershipName;
+    private final float membershipPrice;
 
     public Trainer getTrainer() {
         return trainer;

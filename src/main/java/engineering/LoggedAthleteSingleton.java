@@ -1,14 +1,9 @@
 package engineering;
 
 import beans.AthleteBean;
-import beans.TrainerBean;
 import engineering.decorator.MembershipInterface;
 import exceptions.AlreadyLoggedUserException;
 import model.Athlete;
-import model.Exercise;
-import model.Trainer;
-
-import java.util.List;
 
 public class LoggedAthleteSingleton extends LoggedUserSingleton{
     protected LoggedAthleteSingleton(Athlete temp) {

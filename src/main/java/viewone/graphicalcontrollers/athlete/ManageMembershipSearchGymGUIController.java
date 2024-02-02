@@ -4,8 +4,10 @@ import beans.GymInfoBean;
 import beans.SearchGymBean;
 import controllers.ManageMembershipController;
 import controllers.UserAccessController;
+import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
+import exceptions.NoUserFoundException;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,8 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewone.managelistview.ManageGymList;
-import viewone.managelistview.interfaces.GymListGUIInterface;
+import utils.listView.ManageGenericList;
+import utils.listView.SetInfoListViewInterface;
 import viewone.managelistview.listCells.GymListCellFactory;
 
 import java.io.IOException;
@@ -25,9 +27,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ManageMembershipSearchGymGUIController implements Initializable, GymListGUIInterface {
+public class ManageMembershipSearchGymGUIController implements Initializable, SetInfoListViewInterface {
     @FXML
-    ListView<GymInfoBean> gymList;
+    ListView<Object> gymList;
     @FXML
     Text selectedNameLabel;
     @FXML
@@ -62,10 +64,12 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Gy
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List <GymInfoBean> list=searchWithFilter(new SearchGymBean("","","",""));
-        ManageGymList.setGymList(gymList,list);
+        ManageGenericList.setList(gymList,list);
         gymList.setCellFactory(new GymListCellFactory());
-        ManageGymList.setListnere(gymList,this);
-       }
+        ManageGenericList.setListnere(gymList,this);
+        selectedButton.setVisible(false);
+
+    }
 
     private List<GymInfoBean> searchWithFilter(SearchGymBean filter){
         ManageMembershipController controller=null;
@@ -89,17 +93,36 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Gy
         String add= addressField.getText();
         String city= cityField.getText();
         List <GymInfoBean> list=searchWithFilter(new SearchGymBean(name,city,add,country));
-        ManageGymList.setGymList(gymList,list);
-        ManageGymList.setListnere(gymList,this);
+        ManageGenericList.setList(gymList,list);
+        ManageGenericList.setListnere(gymList,this);
     }
 
-
+    GymInfoBean bean;
     @Override
-    public void setInfo(GymInfoBean bean) {
+    public void setInfo(Object item) {
+                bean=(GymInfoBean) item;
                 selectedCityLabel.setText(bean.getCity());
                 selectedCountryLabel.setText(bean.getCountry());
                 selectedNameLabel.setText(bean.getName());
                 selectedAddressLabel.setText(bean.getAddress());
                 selectedButton.setVisible(true);
     }
+@FXML
+    public void nextPage() {
+    if (bean == null) return;
+    ManageMembershipCreateMembershipGUIController controller = null;
+    try {
+        controller = (ManageMembershipCreateMembershipGUIController) SwitchPage.setStage(MainStage.getStage(), "ManageMembershipCreateMembershipGui.fxml", "athlete", 1);
+        try {
+            controller.initialize(bean);
+        } catch (NoLoggedUserException e) {
+            SwitchPage.setStage(MainStage.getStage(),"Login.fxml", "launcher",1);
+
+        } catch (NoUserFoundException e) {
+            (new CostumException("The gym doesn't exit")).callMe(1);
+        }
+    } catch (IOException e) {
+        CostumeLogger.getInstance().logError(e);}
+
+}
 }

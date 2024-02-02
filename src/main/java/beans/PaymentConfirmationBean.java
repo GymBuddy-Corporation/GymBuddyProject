@@ -5,7 +5,7 @@ public class PaymentConfirmationBean {
         this.valueTransfered = valueTransfered;
     }
 
-    private String paymentId;
+    private final String paymentId;
 
     public void setSuccessOfTransation(boolean successOfTransation) {
         this.successOfTransation = successOfTransation;
@@ -16,7 +16,7 @@ public class PaymentConfirmationBean {
     }
 
     private float valueTransfered;
-    private String ibanOfBenefeicary;
+    private final String ibanOfBenefeicary;
     private boolean successOfTransation;
     private String errorMessage;
 

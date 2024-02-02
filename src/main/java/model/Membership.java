@@ -3,19 +3,14 @@ package model;
 import engineering.decorator.MembershipInterface;
 import exceptions.DecoratorNoBaseComponentException;
 public class Membership implements MembershipInterface {
-    public int getCode() {
-        return code;
-    }
 
-    private final int code;
     private final String name;
     private final String description;
     private final float price;
     private final int durationInDays;
     private final int pointsAwardedOnBuy;
 
-    public Membership(int code, String name, String description, float price, int duration, int points){
-        this.code = code;
+    public Membership(String name, String description, float price, int duration, int points){
         this.name=name;
         this.description=description;
         this.durationInDays=duration;

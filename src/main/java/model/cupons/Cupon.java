@@ -9,7 +9,6 @@ import model.Membership;
 public abstract class Cupon implements MembershipInterface {
 
 
-    private final int code;
     private final int pointsPrice;
     protected MembershipInterface component;
     private final String name;
@@ -21,8 +20,7 @@ public abstract class Cupon implements MembershipInterface {
     }
 
     private final boolean isCumulative;
-    Cupon(int code, String name, String description, int pointsPrice, boolean forNewMembers, boolean isComulative){
-        this.code = code;
+    Cupon( String name, String description, int pointsPrice, boolean forNewMembers, boolean isComulative){
         this.name=name;
         this.description=description;
         this.pointsPrice=pointsPrice;
@@ -65,13 +63,14 @@ public abstract class Cupon implements MembershipInterface {
         checkIfBaseExists();
         if(this.component instanceof Membership )return 0; //In caso si utilizzino i coupon non si puo ottenere pure i punti del abbonamento
         return this.component.getPoints();
-    };
+    }
 
     @Override
     public int getDuration() throws DecoratorNoBaseComponentException {
         checkIfBaseExists();
         return component.getDuration();
-    };
+    }
+
     public int getPointsPrice() {
         return pointsPrice;
     }
@@ -89,9 +88,7 @@ public abstract class Cupon implements MembershipInterface {
         return this.onlyForNewMembers;
     }
 
-    public int getCode() {
-        return code;
-    }
+
     @Override
     public boolean isForNewUsers() throws DecoratorNoBaseComponentException {
         checkIfBaseExists();

@@ -11,11 +11,8 @@ import exceptions.NoUserFoundException;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Logger;
 
 public class GeneralGUIController {
 

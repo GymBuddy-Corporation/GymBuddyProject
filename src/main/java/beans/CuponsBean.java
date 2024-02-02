@@ -2,7 +2,6 @@ package beans;
 
 
 public class CuponsBean {
-    private final int code;
     private final int pointsPrice;
     private final String name;
     private String description;
@@ -13,8 +12,7 @@ public class CuponsBean {
 
     private final String couponValue;
 
-    public CuponsBean(int code, int pointsPrice, String name, boolean onlyForNewMembers, boolean isCumulative, String couponType, String cuponValue) {
-        this.code = code;
+    public CuponsBean( int pointsPrice, String name, boolean onlyForNewMembers, boolean isCumulative, String couponType, String cuponValue) {
         this.pointsPrice = pointsPrice;
         this.name = name;
         this.onlyForNewMembers = onlyForNewMembers;
@@ -28,9 +26,6 @@ public class CuponsBean {
         this.description = description;
     }
 
-    public int getCode() {
-        return code;
-    }
 
     public int getPointsPrice() {
         return pointsPrice;

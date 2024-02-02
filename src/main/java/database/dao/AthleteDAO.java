@@ -66,8 +66,8 @@ public class AthleteDAO {
     public void loadAthleteWallet(Athlete athlete){
         try(
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_WALLET);
-                ResultSet result=Queries.loadAndExecuteOneString(athlete.getFC(), preparedStatement);
-            ) {
+                ResultSet result=Queries.loadAndExecuteOneString(athlete.getFC(), preparedStatement)
+        ) {
             Wallet wallet = null;
             if (result.next()) {
                 // DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);

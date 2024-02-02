@@ -5,11 +5,7 @@ public class MembershipBean {
         return gymName;
     }
 
-    public int getCode() {
-        return code;
-    }
 
-    private final int code;
     private final String gymName;
     private final String name;
     private final String description;
@@ -17,8 +13,7 @@ public class MembershipBean {
     private final int durationInDays;
     private final int pointsAwardedOnBuy;
 
-    public MembershipBean(int code, String gymName, String name, String description, float price, int durationInDays, int pointsAwardedOnBuy){
-        this.code = code;
+    public MembershipBean( String gymName, String name, String description, float price, int durationInDays, int pointsAwardedOnBuy){
         this.gymName=gymName;
         this.name = name;
         this.description = description;
@@ -27,7 +22,6 @@ public class MembershipBean {
         this.pointsAwardedOnBuy = pointsAwardedOnBuy;
     }
     public MembershipBean(String gymName, String name, float price, int durationInDays, int pointsAwardedOnBuy){
-        this.code = 0;
         this.gymName=gymName;
         this.name = name;
         this.description=null;

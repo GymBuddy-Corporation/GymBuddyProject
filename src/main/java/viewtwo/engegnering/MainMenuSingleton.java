@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class MainMenuSingleton {
     private static MainMenuSingleton me;
-    private MainMenuController controller;
+    private final MainMenuController controller;
     private MainMenuSingleton(MainMenuController controller){
         this.controller=controller;
     }

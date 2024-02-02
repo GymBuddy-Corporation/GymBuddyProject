@@ -18,9 +18,6 @@ import model.User;
 import engineering.LoggedUserSingleton;
 import model.record.Credentials;
 
-import java.io.*;
-import java.sql.SQLException;
-
 
 public class UserAccessController {
 

@@ -1,5 +1,5 @@
 package model;
 
 public enum ExerciseStatus {
-    ACTIVE, SUSPENDED;
+    ACTIVE, SUSPENDED
 }

@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import model.ExerciseStatus;
-import viewone.graphicalcontrollers.pt.SetExerciseStatusGUIController;
 import viewtwo.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController2;
 import viewtwo.popups.AddExePopUp;
 import viewtwo.popups.DeleteExePopUp;
@@ -16,7 +15,6 @@ import viewtwo.popups.controllers.ChangeExerciseStatusPopUpController;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class ManageExerciseList2 {

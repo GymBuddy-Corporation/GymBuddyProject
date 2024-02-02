@@ -11,12 +11,8 @@ import javafx.scene.control.TextField;
 import utils.MainStage;
 import utils.SwitchPage;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 
-import java.awt.*;
 import java.io.IOException;
-
-import java.sql.SQLException;
 
 
 public class LoginGUIController {
@@ -29,8 +25,8 @@ public class LoginGUIController {
     private TextField passwordField;
     @FXML
     private Button saveButton;
-    private static String color1="45065D";
-    private static String color2="linear-gradient(to bottom, #00e4af, #5d7cf3)";
+    private static final String color1="45065D";
+    private static final String color2="linear-gradient(to bottom, #00e4af, #5d7cf3)";
 
     @FXML
     public void changeStatus(){

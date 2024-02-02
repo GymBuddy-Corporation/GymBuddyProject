@@ -13,7 +13,7 @@ public class MainMenuController {
     public void setActivity(Node e){
         try{
         paneSfondo.getChildren().removeFirst();
-        }catch(NoSuchElementException ignored){};
+        }catch(NoSuchElementException ignored){}
         paneSfondo.getChildren().add(e);
     }
 

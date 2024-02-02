@@ -359,7 +359,7 @@
                </Text>
             </children>
          </HBox>
-         <Button fx:id="selectedButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" style="visibility: false;" text="Button" textAlignment="RIGHT">
+         <Button fx:id="selectedButton" mnemonicParsing="false" onMouseClicked="#nextPage" prefHeight="27.0" prefWidth="59.0" text="Button" textAlignment="RIGHT" visible="false">
             <VBox.margin>
                <Insets left="110.0" />
             </VBox.margin>

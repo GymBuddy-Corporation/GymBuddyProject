@@ -21,7 +21,6 @@ import utils.MainStage;
 import utils.SwitchPage;
 import viewone.DaysOfTheWeekButtonController;
 import controllers.SatisfyWorkoutRequestsController;
-import beans.RequestBean;
 
 import java.io.IOException;
 import java.net.URL;

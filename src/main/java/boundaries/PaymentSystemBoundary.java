@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class PaymentSystemBoundary {
 
-    private PaymentBean bean;
+    private final PaymentBean bean;
     public  PaymentSystemBoundary(PaymentBean bean){
         this.bean=bean;
     }
