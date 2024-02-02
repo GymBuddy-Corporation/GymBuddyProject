@@ -38,12 +38,10 @@ public class PTHomeGUIController2 implements Initializable {
                     }
             );
         }catch (CostumException e){
-            try {
+
                 e.callMe(2);
                 throw new RuntimeException(e);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+
         }
     }
 

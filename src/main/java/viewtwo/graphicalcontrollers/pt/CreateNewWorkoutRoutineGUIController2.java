@@ -82,12 +82,8 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         try{
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e){
-            try {
-                e.callMe(1);
-                return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+           e.callMe(1);
+           return;
         }
         List<ExerciseBean> exerciseBeanList = controller.getLoggedTrainerGymExercises();
         for (Exercise exer : LoggedTrainerSingleton.getSingleton().getExcerciseList()) {
@@ -108,11 +104,9 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
                 updateSelectedExerciseList();
             }
         } catch (NoDayIsSelectedException e) {
-            try {
+
                 e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(ex);
-            }
+
         }
     }
 
@@ -216,11 +210,9 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         try {
             workoutDay.addExerciseBean(bean);
         } catch (DataFieldException e) {
-            try {
+
                 e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(e);
-            }
+
         }
         resetSelection(1);
         List<ExerciseForWorkoutRoutineBean> activeExercises = getActiveExercises(bean.getDay());
@@ -273,11 +265,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             selectedDay = getNameDay();
             updateSelectedExerciseList();
         } catch (NoDayIsSelectedException e) {
-            try {
-                e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(ex);
-            }
+            e.callMe(1);
         }
     }
 }

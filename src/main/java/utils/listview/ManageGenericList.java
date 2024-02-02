@@ -1,4 +1,4 @@
-package utils.listView;
+package utils.listview;
 
 import javafx.scene.control.ListView;
 
@@ -18,7 +18,6 @@ public  class ManageGenericList {
     }
 
         public static void setList(ListView<Object> listview, List<?> items)  {
-        List<Object> a=new ArrayList<>(items);
         listview.getItems().addAll(items);
     }
 }

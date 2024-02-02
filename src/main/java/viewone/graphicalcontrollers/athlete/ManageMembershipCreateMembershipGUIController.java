@@ -11,11 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import utils.MainStage;
 import utils.SwitchPage;
-import utils.listView.ManageGenericList;
-import utils.listView.SetInfoListViewInterface;
+import utils.listview.ManageGenericList;
+import utils.listview.SetInfoListViewInterface;
 import viewone.managelistview.listCells.MembershipListCellFactory;
-import viewone.popup.MembershipCoupons.MembershipConfirmPopupInterface;
-import viewone.popup.MembershipCoupons.MembershipPopUP;
+import viewone.popup.membershippopups.MembershipConfirmPopupInterface;
+import viewone.popup.membershippopups.MembershipPopUP;
 
 
 import java.io.IOException;
@@ -27,13 +27,21 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
 
     ManageMembershipController controller;
 
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+    public void goBack()  {
+        try {
+            SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
     }
-    public void logout() throws Exception {
+    public void logout() throws NoLoggedUserException {
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        try {
+            SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 
     public void initialize(GymInfoBean bean) throws NoLoggedUserException, NoUserFoundException {

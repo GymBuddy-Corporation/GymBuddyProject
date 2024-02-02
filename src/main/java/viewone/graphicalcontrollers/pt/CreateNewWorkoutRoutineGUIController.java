@@ -278,11 +278,8 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         try{
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e){
-            try {
                 e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(ex);
-            }
+                return;
         }
 
         setVisibleAdd(false);

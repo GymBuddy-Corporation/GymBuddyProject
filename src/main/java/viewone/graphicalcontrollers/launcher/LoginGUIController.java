@@ -25,16 +25,16 @@ public class LoginGUIController {
     private TextField passwordField;
     @FXML
     private Button saveButton;
-    private static final String color1="45065D";
-    private static final String color2="linear-gradient(to bottom, #00e4af, #5d7cf3)";
+    private static final String COLOR_1 ="45065D";
+    private static final String COLOR_2 ="linear-gradient(to bottom, #00e4af, #5d7cf3)";
 
     @FXML
     public void changeStatus(){
         if(saveCredentials) {
-            saveButton.setStyle("-fx-background-color: "+color1);
+            saveButton.setStyle("-fx-background-color: "+ COLOR_1);
             saveCredentials=false;
         }else {
-            saveButton.setStyle("-fx-background-color:"+color2);
+            saveButton.setStyle("-fx-background-color:"+ COLOR_2);
             saveCredentials=true;
         }
     }

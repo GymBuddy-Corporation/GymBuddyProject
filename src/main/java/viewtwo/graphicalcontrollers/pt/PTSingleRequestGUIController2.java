@@ -35,13 +35,10 @@ public class PTSingleRequestGUIController2 {
         try{
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e){
-            try {
+
                 e.callMe(1);
                 return;
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(e);
-                return;
-            }
+
         }
         controller.rejectRequest(requestBean);
         MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");

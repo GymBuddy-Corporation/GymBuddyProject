@@ -47,12 +47,10 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
         try{
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e){
-            try {
+
                 e.callMe(1);
                 return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+
         }
         //TODO qua fare la scrittura su DB
         this.workoutRoutine.setComment(commentTextArea.getText());

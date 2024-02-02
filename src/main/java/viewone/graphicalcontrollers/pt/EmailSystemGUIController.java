@@ -23,13 +23,10 @@ public class EmailSystemGUIController {
         try{
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e){
-            try {
+
                 e.callMe(1);
                 return;
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(e);
-                return;
-            }
+
         }
         try {
             controller.sendClarificationEmail(LoggedUserSingleton.getSingleton().getMyBean(), selectedRequest.getAthleteBean(), objectTextArea.getText(), contentTextArea.getText());

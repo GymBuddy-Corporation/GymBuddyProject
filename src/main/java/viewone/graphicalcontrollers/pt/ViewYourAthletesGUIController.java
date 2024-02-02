@@ -59,12 +59,10 @@ public class ViewYourAthletesGUIController implements Initializable{
         try {
             ManageAthletesList.setAthletesList(athletesList);
         } catch (DataFieldException e) {
-            try {
+
                 e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(e);
                 return;
-            }
+
         }
 
         athletesList.setCellFactory(new AthleteListCellFactory());

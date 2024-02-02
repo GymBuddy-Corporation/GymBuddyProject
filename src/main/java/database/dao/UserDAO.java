@@ -25,7 +25,7 @@ public class UserDAO {
     private static final Integer TRAINER_TYPE = 1 ;
     private static final Integer ATHLETE_TYPE = 2 ;
 
-    private static final String  fileForCredentials="credentials.ser";
+    private static final String FILE_FOR_CREDENTIALS ="credentials.ser";
 
 
     private @NotNull User getUser(String username) throws SQLException, NoUserFoundException, DBUnrreachableException {
@@ -67,7 +67,7 @@ public class UserDAO {
     public static Credentials deserializeSavedCredentials() throws NoUserFoundException {
         Credentials credentials;
         try {
-            FileInputStream fileIn = new FileInputStream(fileForCredentials);
+            FileInputStream fileIn = new FileInputStream(FILE_FOR_CREDENTIALS);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             credentials = (Credentials) in.readObject();
             in.close();
@@ -81,7 +81,7 @@ public class UserDAO {
     public static void serializeSavedCredential(Credentials credentials){
         try {
             eliminateSavedCredentials();
-            FileOutputStream fileOut = new FileOutputStream(fileForCredentials);
+            FileOutputStream fileOut = new FileOutputStream(FILE_FOR_CREDENTIALS);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(credentials);
             out.close();
@@ -92,7 +92,7 @@ public class UserDAO {
     }
 
     public  static void eliminateSavedCredentials(){
-        File myObj = new File(fileForCredentials);
+        File myObj = new File(FILE_FOR_CREDENTIALS);
         myObj.delete();
     }
 

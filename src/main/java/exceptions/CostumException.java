@@ -1,6 +1,7 @@
 package exceptions;
 
 import engineering.popups.PopupErrorLuncher;
+import exceptions.logger.CostumeLogger;
 
 import java.io.IOException;
 
@@ -12,7 +13,11 @@ public class CostumException extends Exception{
     public CostumException(String message,Throwable invocationCause){
         super(message,invocationCause);
     }
-    public void callMe(int view) throws IOException {
-        PopupErrorLuncher.getErrorPopup(this,view);
+    public void callMe(int view){
+        try {
+            PopupErrorLuncher.getErrorPopup(this,view);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 }

@@ -91,12 +91,8 @@ public class ViewRequestGUIController implements Initializable {
                 }
             });
         }catch (CostumException e){
-            try {
                 e.callMe(1);
                 throw new RuntimeException(e);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
         }
     }
 }

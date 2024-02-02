@@ -61,11 +61,9 @@ public class PTHomeGUIController implements Initializable{
             //todo con db
             ManageGymCommunicationList.setCommunicationList(communicationList);
         } catch (DataFieldException e) {
-            try {
+
                 e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(e);
-            }
+
         }
         communicationList.setCellFactory(new GymCommunicationListCellFactory());
         //ManageGymCommunicationList.setListenerCommunication(communicationList, this);

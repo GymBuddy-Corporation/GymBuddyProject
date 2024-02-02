@@ -45,12 +45,8 @@ public class SetExerciseStatusGUIController implements Initializable{
         try{
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e){
-            try {
                 e.callMe(1);
                 return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
         }
         List<ExerciseBean> exerciseBeanList = controller.searchExercise(new SearchBean(searchExerciseText.getText()));
         System.out.println("Exercise Bean List Size: " + exerciseBeanList.size());
@@ -87,11 +83,9 @@ public class SetExerciseStatusGUIController implements Initializable{
             ManageExerciseList.setListenerDBSet(exerciseDBList, controller, this);
             setVisibleButtons(false);
         } catch (NoLoggedUserException e){
-            try {
+
                 e.callMe(1);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+
         }
     }
 
@@ -125,11 +119,7 @@ public class SetExerciseStatusGUIController implements Initializable{
             SwitchPage.getController("CreateNewWorkoutRoutine.fxml", "pt");
             SwitchPage.setStage(MainStage.getStage(), "CreateNewWorkoutRoutine.fxml", "pt", 1);
         } catch (NoLoggedUserException e){
-            try {
                 e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(e);
-            }
         } catch (UserCastException | IOException e){
             CostumeLogger.getInstance().logError(e);
         }

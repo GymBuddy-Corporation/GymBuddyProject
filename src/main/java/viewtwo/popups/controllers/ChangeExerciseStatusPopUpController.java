@@ -44,12 +44,10 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
             ObservableList<ExerciseBean> requestBeanObservableList = FXCollections.observableList(controller.getLoggedTrainerGymExercises());
             exerciseDBList2.setItems(FXCollections.observableList(requestBeanObservableList));
         }catch (CostumException e){
-            try {
+
                 e.callMe(1);
-            } catch (IOException ex){
-                CostumeLogger.getInstance().logError(ex);
                 caller.hidePopUp();
-            }
+
         }
     }
 

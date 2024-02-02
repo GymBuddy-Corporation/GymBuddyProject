@@ -17,8 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
-import utils.listView.ManageGenericList;
-import utils.listView.SetInfoListViewInterface;
+import utils.listview.ManageGenericList;
+import utils.listview.SetInfoListViewInterface;
 import viewone.managelistview.listCells.GymListCellFactory;
 
 import java.io.IOException;
@@ -77,11 +77,7 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
             controller = new ManageMembershipController();
             return  controller.searchGym(filter);
         } catch (NoLoggedUserException | DBUnrreachableException e) {
-            try {
-                e.callMe(1);
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(ex);
-            }
+            e.callMe(1);
         }
         return Collections.emptyList();
     }
@@ -111,18 +107,21 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
     public void nextPage() {
     if (bean == null) return;
     ManageMembershipCreateMembershipGUIController controller = null;
+
     try {
         controller = (ManageMembershipCreateMembershipGUIController) SwitchPage.setStage(MainStage.getStage(), "ManageMembershipCreateMembershipGui.fxml", "athlete", 1);
-        try {
-            controller.initialize(bean);
-        } catch (NoLoggedUserException e) {
-            SwitchPage.setStage(MainStage.getStage(),"Login.fxml", "launcher",1);
-
-        } catch (NoUserFoundException e) {
-            (new CostumException("The gym doesn't exit")).callMe(1);
-        }
     } catch (IOException e) {
-        CostumeLogger.getInstance().logError(e);}
+        CostumeLogger.getInstance().logError(e);
+    return;
+    }
+
+    try {
+        controller.initialize(bean);
+    } catch (NoLoggedUserException e) {
+       return;
+    }catch (NoUserFoundException e) {
+        return;
+    }
 
 }
 }

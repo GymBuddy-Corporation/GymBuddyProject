@@ -4,7 +4,7 @@ import beans.MembershipBean;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import utils.SwitchPage;
-import utils.listView.AbstratctCellFactory;
+import utils.listview.AbstratctCellFactory;
 
 public class MembershipListCellFactory extends AbstratctCellFactory {
     @Override

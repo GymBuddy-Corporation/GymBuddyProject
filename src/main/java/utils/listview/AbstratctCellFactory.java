@@ -1,4 +1,4 @@
-package utils.listView;
+package utils.listview;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

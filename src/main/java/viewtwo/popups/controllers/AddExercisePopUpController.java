@@ -45,13 +45,10 @@ public class AddExercisePopUpController extends PopupBaseController {
             CostumeLogger.getInstance().logError(e);
             caller.hidePopUp();
         }catch (DataFieldException e){
-            try {
+
                 e.callMe(1);
                 caller.hidePopUp();
-            } catch (IOException ex) {
-                CostumeLogger.getInstance().logError(ex);
-                caller.hidePopUp();
-            }
+
         }
     }
 }

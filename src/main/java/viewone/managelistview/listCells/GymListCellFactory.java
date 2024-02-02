@@ -4,7 +4,7 @@ import beans.GymInfoBean;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import utils.SwitchPage;
-import utils.listView.AbstratctCellFactory;
+import utils.listview.AbstratctCellFactory;
 
 public class GymListCellFactory extends AbstratctCellFactory {
     @Override

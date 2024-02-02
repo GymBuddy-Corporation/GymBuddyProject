@@ -1,4 +1,4 @@
-package viewone.popup.MembershipCoupons;
+package viewone.popup.membershippopups;
 
 import beans.MembershipBean;
 import engineering.popups.PopupBaseInterface;

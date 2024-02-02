@@ -25,12 +25,10 @@ public class EmailSystemGUIController2 {
         try{
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e){
-            try {
+
                 e.callMe(1);
                 return;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+
         }
         try {
             controller.sendClarificationEmail(
