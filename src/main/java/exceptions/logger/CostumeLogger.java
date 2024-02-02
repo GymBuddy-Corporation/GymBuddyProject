@@ -43,4 +43,7 @@ public class CostumeLogger {
                 error.getMessage()
         );
     }
+    public void logString(String toLog){
+        if(fileHandler!=null) logger.log(Level.WARNING,toLog);
+    }
 }
