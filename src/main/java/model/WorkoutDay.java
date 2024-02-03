@@ -36,19 +36,10 @@ public class WorkoutDay {
     }
 
     public String getDay() {
-        return day;
+        return this.day;
     }
 
     public String getWorkoutRoutineName() {
         return workoutRoutineName;
     }
-
-   /* public void removeExercise(String name, String info) {
-        for(Exercise exercise: exerciseList) {
-            if(Objects.equals(exercise.getName(), name) && Objects.equals(exercise.getInfo(), info)) {
-                exerciseList.remove(exercise);
-                return;
-            }
-        }
-    }*/
 }

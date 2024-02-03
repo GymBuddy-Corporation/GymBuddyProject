@@ -39,7 +39,7 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean) throws DBUnrreachableException {
+    protected WorkoutRoutine createWorkoutRoutine(WorkoutRoutineBean workoutRoutineBean){
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
             WorkoutDay newWorkoutDay = new WorkoutDay(workoutDay.getName());
@@ -49,6 +49,11 @@ public class SatisfyWorkoutRequestsController {
             }
             workoutRoutineModel.addWorkoutDay(newWorkoutDay);
         }
+        return workoutRoutineModel;
+    }
+
+    public void sendWorkoutRoutine(RequestBean requestBean, WorkoutRoutineBean workoutRoutineBean) throws DBUnrreachableException {
+        WorkoutRoutine workoutRoutineModel = createWorkoutRoutine(workoutRoutineBean);
         Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
         if(receiver.getWorkoutRoutine() != null){
             new AthleteDAO().removeWorkoutPlan(receiver.getFC());

@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestSearch {
 
     @Test
-    public void TestSearchExercise() throws DataFieldException, NoUserFoundException {
+    public void TestSearchExercise() {
         ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
 
         Exercise ex1 = new Exercise("Tricep Pushdown");
@@ -34,21 +34,20 @@ public class TestSearch {
         exList.getExerciseList().add(ex3);
         exList.getExerciseList().add(ex4);
 
-        UserAccessController controller1 = new UserAccessController();
         try {
-            controller1.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","Password123@"),false);
-        }catch(AlreadyLoggedUserException e){
+            UserAccessController loginController = new UserAccessController();
+            loginController.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","Password123@"),false);
+        }catch(AlreadyLoggedUserException | NoUserFoundException | DataFieldException e){
             try{
                 Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
             } catch (NullPointerException exc){
                 CostumeLogger.getInstance().logError(e);
             }
         } catch (DBUnrreachableException e){
-            e.callMe(1);
+           CostumeLogger.getInstance().logError(e);
         }
-        SatisfyWorkoutRequestsController controller;
         try{
-            controller = new SatisfyWorkoutRequestsController();
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             SearchBean searchBean = new SearchBean(exerciseToSearch.getName());
             List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);
             boolean flag = Objects.equals(exerciseBeanList.getFirst().getName(), exerciseToSearch.getName().toLowerCase());

@@ -9,14 +9,9 @@ import java.util.List;
 
 public class WorkoutDayBean {
 
-    private String name;
+    private final String name;
 
     List<ExerciseForWorkoutRoutineBean> exerciseBeanList;
-
-    public WorkoutDayBean(){
-        this.exerciseBeanList = new ArrayList<>();
-    }
-
     public WorkoutDayBean(String name){
         this.name = name;
         this.exerciseBeanList = new ArrayList<>();

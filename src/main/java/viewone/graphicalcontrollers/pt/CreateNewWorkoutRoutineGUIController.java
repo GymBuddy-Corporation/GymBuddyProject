@@ -98,9 +98,13 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
     @FXML
-    public void submitRoutine() throws IOException {
-        PersonalizeWorkoutRoutineGUIController specializedController = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(),"PersonalizeWorkoutRoutine.fxml","pt",1);
-        Objects.requireNonNull(specializedController).setValue(requestBean, this.workoutRoutine);
+    public void submitRoutine() {
+        try {
+            PersonalizeWorkoutRoutineGUIController specializedController = (PersonalizeWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(), "PersonalizeWorkoutRoutine.fxml", "pt", 1);
+            Objects.requireNonNull(specializedController).setValue(requestBean, this.workoutRoutine);
+        } catch (IOException e){
+            CostumeLogger.getInstance().logError(e);
+        }
     }
 
     public void setValue(RequestBean request){
