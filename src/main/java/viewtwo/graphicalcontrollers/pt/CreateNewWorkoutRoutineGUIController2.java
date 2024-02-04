@@ -77,7 +77,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     }
 
     public void setValue(RequestBean request){
-
         try{
             SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             this.requestBean = request;
