@@ -23,6 +23,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import static java.lang.System.in;
+
 
 public class AthleteDAO {
 
@@ -67,26 +69,42 @@ public class AthleteDAO {
         }
     }
 
-    public boolean loadCard(Athlete athlete){
+    public boolean loadCard(Athlete athlete) {
         Card card;
+        FileInputStream fileIn ;
+        ObjectInputStream in;
         try {
-            FileInputStream fileIn = new FileInputStream(FILE_FOR_CARD);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
+            fileIn = new FileInputStream(FILE_FOR_CARD);
+            in = new ObjectInputStream(fileIn);
             card = (Card) in.readObject();
-            in.close();
-            fileIn.close();
             athlete.setCard(card);
         } catch (IOException | ClassNotFoundException i) {
-                return false;
+            return false;
         }
+        try {
+            in.close();
+            fileIn.close();
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
+
         return true;
     }
-    private final String FILE_FOR_CARD="CAR.ser";
+    private static final String FILE_FOR_CARD="CAR.ser";
     public void saveCard(Card card){
+        ObjectOutputStream out;
+        FileOutputStream fileOut;
         try {
-            FileOutputStream fileOut = new FileOutputStream(FILE_FOR_CARD);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            fileOut = new FileOutputStream(FILE_FOR_CARD);
+            out = new ObjectOutputStream(fileOut);
             out.writeObject(card);
+            out.close();
+            fileOut.close();
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+            return;
+        }
+        try {
             out.close();
             fileOut.close();
         } catch (IOException e) {

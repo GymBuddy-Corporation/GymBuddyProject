@@ -31,7 +31,7 @@ public class RequestDAO {
 
     public List<Request> loadTrainerRequests(Trainer trainer) throws DBUnrreachableException {
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
-                Queries.LOAD_TRAINER_REQUESTS_QUERY); ResultSet rs = Queries.loadTrainerRequests(trainer.getFC(), preparedStatement)){
+                Queries.LOAD_TRAINER_REQUESTS_QUERY); ResultSet rs = Queries.loadAndExecuteOneString(trainer.getFC(), preparedStatement)){
             List<Request> myList = new ArrayList<>();
             while(rs.next()) {
                     myList.add(new Request(
