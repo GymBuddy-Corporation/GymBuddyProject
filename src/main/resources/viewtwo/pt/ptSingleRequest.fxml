@@ -22,7 +22,7 @@
             <Button fx:id="buttonSatisfyRequest" layoutX="578.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#satisfyRequest" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Satisfy Request" textFill="#911701" AnchorPane.topAnchor="147.0" />
             <Button fx:id="buttonRejectRequest" layoutX="578.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#rejectRequest" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Reject Request" textFill="#911701" AnchorPane.leftAnchor="578.0" AnchorPane.topAnchor="271.0" />
             <Button fx:id="buttonAskClarification" layoutX="578.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#askClarification" prefHeight="48.0" prefWidth="166.0" stylesheets="@../GymBuddyCSS2.css" text="Ask Clarification" textFill="#911701" AnchorPane.topAnchor="209.0" />
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="386.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="386.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="384.0">
                <image>
                   <Image url="@../images/LogoBack.png" />
                </image>

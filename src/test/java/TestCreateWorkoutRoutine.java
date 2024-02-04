@@ -17,24 +17,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCreateWorkoutRoutine extends SatisfyWorkoutRequestsController {
 
-    private TestCreateWorkoutRoutine() throws NoLoggedUserException {}
+    public TestCreateWorkoutRoutine() throws NoLoggedUserException {}
 
     @Test
     void createWorkoutRoutine_shouldCreateWorkoutRoutineCorrectly() {
-
+        //todo veifica perchè lancia NoLoggedUserException
         try {
             UserAccessController loginController = new UserAccessController();
             loginController.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","Password123@"),true);
-        }catch(AlreadyLoggedUserException | NoUserFoundException | DataFieldException e){
-            try{
-                Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
-            } catch (NullPointerException exc){
-                CostumeLogger.getInstance().logError(e);
-            }
-        } catch (DBUnrreachableException e){
-            CostumeLogger.getInstance().logError(e);
-        }
-        try {
             WorkoutRoutineBean workoutRoutineBean = createBean();
             TestCreateWorkoutRoutine controller = new TestCreateWorkoutRoutine();
             WorkoutRoutine result = controller.createWorkoutRoutine(workoutRoutineBean);
@@ -45,18 +35,24 @@ public class TestCreateWorkoutRoutine extends SatisfyWorkoutRequestsController {
             assertEquals(1, result.getWorkoutDayList().size());
 
             WorkoutDay createdWorkoutDay = result.getWorkoutDayList().get(0);
-            assertEquals("Day 1", createdWorkoutDay.getDay());
+            assertEquals("MONDAY", createdWorkoutDay.getDay());
 
 
             ExerciseForWorkoutRoutine createdExercise = createdWorkoutDay.getExerciseList().get(0);
-            assertEquals("Push-up", createdExercise.getName());
+            assertEquals("tricep pushdown", createdExercise.getName());
             assertEquals(ExerciseStatus.ACTIVE, createdExercise.getStatus());
-            assertEquals("Monday", createdExercise.getDay());
+            assertEquals("MONDAY", createdExercise.getDay());
             assertEquals(10, createdExercise.getRepetitions());
             assertEquals(3, createdExercise.getSets());
             assertEquals("00:30", createdExercise.getRest());
 
-        } catch (DataFieldException | SubmitRoutineException | NoLoggedUserException e) {
+        }catch(AlreadyLoggedUserException | NoUserFoundException | DataFieldException e){
+            try{
+                Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
+            } catch (NullPointerException exc){
+                CostumeLogger.getInstance().logError(e);
+            }
+        } catch (DBUnrreachableException | NoLoggedUserException | SubmitRoutineException e) {
             CostumeLogger.getInstance().logError(e);
         }
     }

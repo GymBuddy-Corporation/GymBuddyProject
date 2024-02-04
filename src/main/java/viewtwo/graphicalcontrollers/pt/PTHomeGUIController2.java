@@ -69,4 +69,13 @@ public class PTHomeGUIController2 implements Initializable {
     public void manageCourse() throws Exception {
         SwitchPage.setStage(MainStage.getStage(), "ManageCourse.fxml", "pt", 1);
     }
+
+    public void refreshList() {
+        try {
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            ManageRequestList2.updateList(requestList, controller);
+        } catch (DataFieldException | DBUnrreachableException | NoLoggedUserException e) {
+            e.callMe(2);
+        }
+    }
 }

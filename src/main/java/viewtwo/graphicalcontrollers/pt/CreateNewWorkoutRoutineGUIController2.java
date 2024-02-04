@@ -56,8 +56,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
     @FXML private ImageView correctSetUp;
     private WorkoutRoutineBean workoutRoutine;
 
-    //todo capire perchè stampa lancia bene solo l'eccezione sul REST sbagliato/nullo, ma non
-    // quelli su reps e sets errati/nulli (?)
     public String getSelectedDay(){
         return selectedDay;
     }
@@ -268,13 +266,10 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             this.workoutRoutine.setComment(comment);
             this.workoutRoutine.setName(name);
-            MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
-            try {
-                controller.sendWorkoutRoutine(this.requestBean, this.workoutRoutine);
-            } catch (DBUnrreachableException e) {
-                e.callMe(2);
-            }
-        } catch (NoLoggedUserException | SubmitRoutineException e){
+            controller.sendWorkoutRoutine(this.requestBean, this.workoutRoutine);
+            PTHomeGUIController2 graphicController = (PTHomeGUIController2) MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+            graphicController.refreshList();
+        } catch (NoLoggedUserException | SubmitRoutineException | DBUnrreachableException e){
             e.callMe(2);
         } catch (IOException e){
             CostumeLogger.getInstance().logString("IOException in submitWorkoutRoutine");
@@ -302,6 +297,15 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             PersonalizeWRPopUp.getPersonalizeWRPopup(this, this.workoutRoutine,"PersonalizeWRPopUp.fxml" , "popups", 2);
         } catch (IOException e) {
             CostumeLogger.getInstance().logString("IOException in goForward");
+        }
+    }
+
+    public void goBack() {
+        try{
+            PTHomeGUIController2 graphicController = (PTHomeGUIController2) MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+            graphicController.refreshList();
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logString("IOException in goBack");
         }
     }
 }

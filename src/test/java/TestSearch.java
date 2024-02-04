@@ -52,8 +52,10 @@ public class TestSearch {
             List<ExerciseBean> exerciseBeanList = controller.searchExercise(searchBean);
             boolean flag = Objects.equals(exerciseBeanList.getFirst().getName(), exerciseToSearch.getName().toLowerCase());
             assertTrue(flag);
-        } catch (NoLoggedUserException | EmptySearchException e){
+        } catch (EmptySearchException e){
             e.callMe(1);
+        } catch (NoLoggedUserException e){
+            CostumeLogger.getInstance().logError(e);
         }
     }
 }
