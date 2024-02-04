@@ -25,6 +25,7 @@ public class MembershipPopupController extends PopupBaseController {
     @FXML
     TextArea descriptionArea;
 
+
     @Override
     public void setCaller(PopupBaseClass caller) {
             this.caller=(MembershipPopUP) caller;
@@ -43,5 +44,8 @@ public class MembershipPopupController extends PopupBaseController {
     @FXML
     public void confirm(){
         caller.confirm(bean);
+
     }
+    @FXML
+    public void decline(){caller.decline();}
 }

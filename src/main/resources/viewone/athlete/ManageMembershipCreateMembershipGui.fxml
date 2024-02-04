@@ -12,6 +12,48 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2D043D;" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.graphicalcontrollers.athlete.ManageMembershipCreateMembershipGUIController">
+   <Text layoutX="637.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buy" textAlignment="CENTER" wrappingWidth="97.40001983642583">
+      <font>
+         <Font name="Allerta Stencil Regular" size="17.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="532.0" layoutY="443.0" onMouseClicked="#cancel" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" textAlignment="CENTER" wrappingWidth="66.20006866455083">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
 
 
    <Text layoutX="75.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="37.600001525878895">
@@ -69,7 +111,7 @@
          <Font size="10.0" />
       </font>
    </Button>
-   <Text layoutX="69.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="37.60000152587895">
+   <Text fx:id="userName" layoutX="69.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="37.60000152587895">
       <font>
          <Font name="Allerta Stencil Regular" size="15.0" />
       </font>
@@ -97,8 +139,8 @@
    <ImageView fitHeight="107.0" fitWidth="238.0" layoutX="281.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/LogoGymBuddy.png" />
    </ImageView>
-   <Button layoutX="75.0" layoutY="117.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="393.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <Text layoutX="472.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected gym" textAlignment="CENTER" wrappingWidth="356.5999710083008">
+   <Button layoutX="50.0" layoutY="120.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="409.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Text layoutX="444.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Membership" textAlignment="CENTER" wrappingWidth="356.5999710083008">
       <font>
          <Font name="Allerta Stencil Regular" size="27.0" />
       </font>
@@ -119,9 +161,294 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button layoutX="107.0" layoutY="321.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="329.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
-   <ListView fx:id="membershipListView" layoutX="112.0" layoutY="131.0" prefHeight="130.0" prefWidth="320.0" />
-   <ListView layoutX="142.0" layoutY="337.0" prefHeight="107.0" prefWidth="258.0" />
+   <Button layoutX="59.0" layoutY="322.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="390.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <ListView fx:id="membershipListView" layoutX="87.0" layoutY="134.0" prefHeight="130.0" prefWidth="338.0" />
+   <ListView fx:id="couponListView" layoutX="84.0" layoutY="338.0" prefHeight="107.0" prefWidth="338.0" />
+   <Button layoutX="474.0" layoutY="91.0" mnemonicParsing="false" prefHeight="374.0" prefWidth="298.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+   <Text layoutX="565.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Membership" wrappingWidth="97.40001983642583">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text fx:id="selectedMembershipNameLabel" layoutX="514.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="186.4000244140625">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="573.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coupons" wrappingWidth="97.40001983642583">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <ListView fx:id="selectedCuponsListView" layoutX="482.0" layoutY="189.0" prefHeight="139.0" prefWidth="284.0" />
+   <Text layoutX="491.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="97.40001983642583">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="491.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration:" wrappingWidth="97.40001983642583">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="491.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Points:" wrappingWidth="97.40001983642583">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text fx:id="priceLabel" layoutX="540.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.199951171875">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text fx:id="durationLabel" layoutX="569.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="186.4000244140625">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text fx:id="pointsLabel" layoutX="545.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="186.4000244140625">
+      <font>
+         <Font name="Allerta Stencil Regular" size="15.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Button layoutX="520.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#cancel" prefHeight="23.0" prefWidth="97.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" textAlignment="CENTER">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="0.006729475100942127">
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Button>
+   <Button layoutX="637.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#buy" prefHeight="23.0" prefWidth="98.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;">
+      <textFill>
+         <LinearGradient>
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="0.006729475100942127">
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Button>
+   <Text layoutX="78.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memberships" textAlignment="CENTER" wrappingWidth="356.5999710083008">
+      <font>
+         <Font name="Allerta Stencil Regular" size="27.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Text layoutX="78.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coupons" textAlignment="CENTER" wrappingWidth="356.5999710083008">
+      <font>
+         <Font name="Allerta Stencil Regular" size="27.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.3977272420218496">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color green="0.8941176533699036" blue="0.686274528503418" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
 
 
 

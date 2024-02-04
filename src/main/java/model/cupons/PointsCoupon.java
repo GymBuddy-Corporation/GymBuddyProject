@@ -1,16 +1,18 @@
 package model.cupons;
 
-import exceptions.DecoratorNoBaseComponentException;
 
-public class PointsCoupon extends Cupon{
+public class PointsCoupon extends Coupon {
 
     int pointAwarded;
     public PointsCoupon(String name, String description, boolean forNewMembers, int pointToAward) {
-        super(name, description, 0, forNewMembers, false);
+        super(name, description, 0, forNewMembers, true);
         this.pointAwarded=pointToAward;
     }
+    public Coupon clone() {
+        return new PointsCoupon( super.getName(),super.getDescription(),super.isForNewUsers(),pointAwarded);
+    }
     @Override
-    public int getPoints() throws DecoratorNoBaseComponentException {
+    public int getPoints() {
         int points=super.getPoints();
         return points+pointAwarded;
     }
@@ -22,6 +24,6 @@ public class PointsCoupon extends Cupon{
 
     @Override
     public String getCouponsValue() {
-        return String.valueOf(pointAwarded);
+        return String.valueOf(pointAwarded)+" points";
     }
 }

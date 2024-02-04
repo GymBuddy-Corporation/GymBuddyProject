@@ -49,7 +49,8 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
     TextField countryField;
 
 
-
+    @FXML
+    Text userName;
 
     public void goBack() throws Exception {
         SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
@@ -67,6 +68,7 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
         gymList.setCellFactory(new GymListCellFactory());
         ManageGenericList.setListnere(gymList,this);
         selectedButton.setVisible(false);
+        userName.setText(new UserAccessController().getUser().getUsername());
 
     }
 
@@ -116,7 +118,7 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
 
     try {
         controller.initialize(bean);
-    } catch (NoLoggedUserException | NoUserFoundException e) {
+    } catch (NoLoggedUserException |DBUnrreachableException| NoUserFoundException e) {
        e.callMe(1);
     }
 

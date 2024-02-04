@@ -4,6 +4,7 @@ package database.dao;
 import database.SingletonConnection;
 
 import exceptions.DBUnrreachableException;
+import exceptions.logger.CostumeLogger;
 import model.Gym;
 import model.Trainer;
 import database.query.Queries;
@@ -69,4 +70,17 @@ public class TrainerDAO {
     }
 
 
+    public Trainer loadTrainerToAdd(Gym gymToAdd) throws DBUnrreachableException {
+                String fc;
+                try {
+                    PreparedStatement statement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_TRAINER_FC_FROM_GYM_NAME_LOWEST_ATHLETES);
+                    statement.setString(1,gymToAdd.getGymName());
+                    ResultSet resultSet = statement.executeQuery();
+                    resultSet.next();
+                    return loadTrainer(resultSet.getString("fc"), "fc");
+                }catch (SQLException e){
+                    CostumeLogger.getInstance().logError(e);
+                    throw new DBUnrreachableException();
+                }
+                }
 }

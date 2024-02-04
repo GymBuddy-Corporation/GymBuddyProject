@@ -1,8 +1,8 @@
 package database.dao;
 
 import model.Membership;
-import model.cupons.Cupon;
-import model.cupons.DirectDiscountCupon;
+import model.cupons.Coupon;
+import model.cupons.DirectDiscountCoupon;
 import model.cupons.PercentageDiscountCoupon;
 import model.cupons.PointsCoupon;
 
@@ -20,14 +20,14 @@ public class MembershipDAO {
         return membershipList;
     }
 
-    public List<Cupon> getCoupons(String gymname){
-        List<Cupon> coupons = new ArrayList<>();
-        coupons.add(new PercentageDiscountCoupon("Percentage Discount",null,1000,false,true,20.3F));
+    public List<Coupon> getCoupons(String gymname){
+        List<Coupon> coupons = new ArrayList<>();
+        coupons.add(new PercentageDiscountCoupon("Percentage Discount",null,1000,false,false,20.3F));
         coupons.add(new PointsCoupon("Points Coupon", null,  false, 100));
-        coupons.add(new DirectDiscountCupon("Direct Discount", null, 1500, false, true, 50.5F));
+        coupons.add(new DirectDiscountCoupon("Direct Discount", null, 1500, false, false, 50.5F));
         coupons.add(new PercentageDiscountCoupon("Extra Percentage Discount",null,1200,false,true,25.5F));
         coupons.add(new PointsCoupon("Extra Points Coupon", null,  false, 150));
-        coupons.add(new DirectDiscountCupon("Extra Direct Discount", null, 2000, false, true, 75.5F));
+        coupons.add(new DirectDiscountCoupon("Extra Direct Discount", null, 2000, false, false, 75.5F));
         return coupons;
     }
 

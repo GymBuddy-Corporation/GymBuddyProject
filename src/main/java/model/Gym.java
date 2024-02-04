@@ -2,7 +2,7 @@ package model;
 
 import database.dao.GymDAO;
 import engineering.ExerciseInventory;
-import model.cupons.Cupon;
+import model.cupons.Coupon;
 import model.record.Credentials;
 import model.record.Location;
 
@@ -15,11 +15,11 @@ public class Gym extends User  {
     private ExerciseInventory gymExercises;
     private Location location;
 
-    public List<Cupon> getCoupons() {
+    public List<Coupon> getCoupons() {
         return coupons;
     }
 
-    public void setCoupons(List<Cupon> coupons) {
+    public void setCoupons(List<Coupon> coupons) {
         this.coupons = coupons;
     }
 
@@ -34,7 +34,7 @@ public class Gym extends User  {
     }
 
     private List<Membership> memberships;
-    private List<Cupon> coupons;
+    private List<Coupon> coupons;
     public Gym(String username, Credentials credentials, String iban, String gymName) {
         super(username, credentials);
         this.iban = iban;

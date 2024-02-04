@@ -6,6 +6,7 @@ import database.SingletonConnection;
 import database.query.Queries;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
+import exceptions.logger.CostumeLogger;
 import model.*;
 import model.record.Credentials;
 import org.jetbrains.annotations.NotNull;
@@ -104,22 +105,33 @@ public class GymDAO {
         }
     }
 
-    public Gym loadGymByTrainerFc(String fc) throws SQLException {
-        PreparedStatement statement=SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_GYM_BY_TRAINER_FC);
-        ResultSet rs=Queries.loadAndExecuteOneString(fc,statement);
+    public Gym loadGymByTrainerFc(String fc) throws DBUnrreachableException {
+    try {
+        PreparedStatement statement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_GYM_BY_TRAINER_FC);
+        ResultSet rs = Queries.loadAndExecuteOneString(fc, statement);
         rs.next();
-        String email=rs.getString(EMAIL);
-        Gym gym=null;
-        try {
-            gym = loadGym(email);
-        } catch (NoUserFoundException ignore) {
-        }
+        String email = rs.getString(EMAIL);
+        Gym gym = null;
+        gym = loadGym(email);
         return gym;
+    }catch (SQLException e){
+        CostumeLogger.getInstance().logError(e);
+        throw new DBUnrreachableException();
+    } catch (NoUserFoundException e) {
+        CostumeLogger.getInstance().logError(e);
+        CostumeLogger.getInstance().logError(e);
+    }
+    return null ;
     }
 
-    public Gym getGymByName(String name) throws SQLException, NoUserFoundException {
-        PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_NAME_QUERRT);
-        return getGym(name, preparedStatement);
+    public Gym getGymByName(String name) throws NoUserFoundException, DBUnrreachableException {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_NAME_QUERRT);
+            return getGym(name, preparedStatement);
+        } catch (SQLException e) {
+            throw new DBUnrreachableException();
+        }
     }
 
 }

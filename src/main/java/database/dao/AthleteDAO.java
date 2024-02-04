@@ -6,15 +6,18 @@ import database.query.Queries;
 import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
+import exceptions.logger.CostumeLogger;
 import model.Athlete;
 import model.Gym;
 import model.Trainer;
 
 import model.Wallet;
+import model.record.Card;
 import model.record.Credentials;
 import model.record.PersonalInfo;
 
 
+import java.io.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,6 +52,7 @@ public class AthleteDAO {
             }
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            CostumeLogger.getInstance().logError(e);
             throw new DBUnrreachableException();
         }
     }
@@ -63,6 +67,34 @@ public class AthleteDAO {
         }
     }
 
+    public boolean loadCard(Athlete athlete){
+        Card card;
+        try {
+            FileInputStream fileIn = new FileInputStream(FILE_FOR_CARD);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            card = (Card) in.readObject();
+            in.close();
+            fileIn.close();
+            athlete.setCard(card);
+        } catch (IOException | ClassNotFoundException i) {
+                return false;
+        }
+        return true;
+    }
+    private String FILE_FOR_CARD="CAR.ser";
+    public void saveCard(Card card){
+        try {
+            FileOutputStream fileOut = new FileOutputStream(FILE_FOR_CARD);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(card);
+            out.close();
+            fileOut.close();
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
+    }
+
+
     public void loadAthleteWallet(Athlete athlete) throws CostumException {
         try(
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_WALLET);
@@ -70,8 +102,7 @@ public class AthleteDAO {
         ) {
             Wallet wallet = null;
             if (result.next()) {
-                // DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                Date dataInizio = result.getDate("starDateMembership");
+                Date dataInizio = result.getDate("starDatetMembership");
                 Date dataFine = result.getDate("endDateMembership");
                 GymDAO dao = new GymDAO();
                 Gym gym = dao.getGymByName(result.getString("nameGym"));
@@ -85,11 +116,26 @@ public class AthleteDAO {
             athlete.setWallet(wallet);
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            CostumeLogger.getInstance().logError(e);
             throw new DBUnrreachableException();
 
         } catch (NoUserFoundException e) {
             throw new CostumException("Gym doesnt exits anymore");
         }
+    }
+
+    public void saveWallet(Wallet wallet, Athlete athlete) throws DBUnrreachableException {
+        try {
+            PreparedStatement statementEliminazione = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.DELETE_WALLET);
+            statementEliminazione.setString(1,athlete.getFC());
+            statementEliminazione.executeUpdate();
+            PreparedStatement statementInserimento = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.INSERT_WALLET);
+            Queries.loadAndExecuteWalletInsertion(statementInserimento, athlete.getFC(), wallet.getStartOfMembership(), wallet.getCurrentGym().getGymName(), wallet.getEndOfMembership(), wallet.getPoints(), wallet.getMembershipName(), wallet.getMembershipPrice(), wallet.getTrainer().getFC());
+        }catch (SQLException e ){
+                CostumeLogger.getInstance().logError(e);
+                throw new DBUnrreachableException();
+        }
+
     }
 
 

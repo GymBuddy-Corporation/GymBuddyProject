@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Queries {
     public static final String FROM=" FROM ";
@@ -232,10 +233,33 @@ public class Queries {
     public static final String LOAD_USER_GYM_BY_NAME_QUERRT=SELECT+GYM_BASIC_INFO+FROM+GYM_TABLES+"WHERE g.nameGym=?";
 
     public static final String LOAD_GYM_BY_TRAINER_FC="SELECT g.email AS gymEmail FROM "+GYM_TABLES+"JOIN gymbuddy.trainers AS t ON t.nameGym=g.nameGym WHERE t.fc=?";
-    public static final String LOAD_USER_WALLET="SELECT c.athleteFC,c.starDatetMembership,c.nameGym,c.endDateMembership,c.points,c.membershipPrice FROM gymbuddy.currentmembership as  c JOIN  gymbuddy.athlete AS a ON a.fc = c.athleteFC where a.fc=?";
+    public static final String LOAD_USER_WALLET="SELECT c.athleteFC,c.starDatetMembership,c.nameGym,c.endDateMembership,c.points,c.membershipPrice,c.membershipName,c.trainers_fc FROM gymbuddy.currentmembership as  c JOIN  gymbuddy.athlete AS a ON a.fc = c.athleteFC where a.fc=?";
     public static ResultSet loadAndExecuteOneString(String string, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, string);
         return preparedStatement.executeQuery();
     }
+
+    public static final  String LOAD_TRAINER_FC_FROM_GYM_NAME_LOWEST_ATHLETES="SELECT Trainer.fc\n" +
+            "FROM trainers AS Trainer\n" +
+            "JOIN gym AS Gym ON Trainer.nameGym = Gym.nameGym\n" +
+            "LEFT JOIN athlete AS Athlete ON Trainer.fc = Athlete.trainersFC\n" +
+            "WHERE Gym.nameGym =?\n" +
+            "GROUP BY Trainer.fc\n" +
+            "ORDER BY COUNT(Athlete.fc) ASC\n" +
+            "LIMIT 1;";
     protected Queries() {}
+    public static final String DELETE_WALLET="DELETE FROM currentmembership WHERE athleteFC=?";
+    public static final String INSERT_WALLET="INSERT INTO currentmembership VALUES (?,?, ?,?,?,?,?,?)";
+    public static int loadAndExecuteWalletInsertion(PreparedStatement preparedStatement, String athleteFc, Date startDate,String nameGym,Date endDate,int points,String nameMembership,float price,String trainerFc) throws SQLException {
+            preparedStatement.setString(1,athleteFc);
+            preparedStatement.setDate(2,new java.sql.Date(startDate.getTime()));
+            preparedStatement.setString(3,nameGym);
+            preparedStatement.setDate(4,new java.sql.Date(endDate.getTime()));
+            preparedStatement.setInt(5,points);
+            preparedStatement.setString(6,nameMembership);
+            preparedStatement.setFloat(7,price);
+            preparedStatement.setString(8,trainerFc);
+            return preparedStatement.executeUpdate();
+
+    }
 }

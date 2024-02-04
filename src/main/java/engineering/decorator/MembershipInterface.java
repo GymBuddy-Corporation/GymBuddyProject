@@ -3,12 +3,12 @@ package engineering.decorator;
 import exceptions.DecoratorNoBaseComponentException;
 
 public interface MembershipInterface {
-    float getPrice() throws DecoratorNoBaseComponentException;
-    int getPoints() throws DecoratorNoBaseComponentException;
-    int getDuration() throws DecoratorNoBaseComponentException;
+    float getPrice();
+    int getPoints() ;
+    int getDuration() ;
     String getName();
 
-    String getBuildedName()throws DecoratorNoBaseComponentException;
+    String getBuildedName();
     String getDescription();
-    boolean isForNewUsers() throws DecoratorNoBaseComponentException;
+    boolean isForNewUsers() ;
 }
