@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="358.0" prefWidth="469.0" style="-fx-background-color: #2D043D; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.popup.membershippopups.BuyPopUpController">
+   <children>
+      <Button layoutX="37.0" layoutY="56.0" mnemonicParsing="false" prefHeight="181.0" prefWidth="378.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 5em;            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-border-radius: 5em;" textAlignment="CENTER" textFill="#300743" />
+      <Button layoutX="181.0" layoutY="299.0" mnemonicParsing="false" onMouseClicked="#decline" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Go Back" textAlignment="CENTER">
+         <textFill>
+            <LinearGradient>
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Allerta Stencil Regular" size="17.0" />
+         </font>
+      </Button>
+      <Label fx:id="typeLabel" layoutX="122.0" layoutY="14.0" prefHeight="37.0" prefWidth="320.0" text="Insert card details">
+         <font>
+            <Font name="Allerta Stencil Regular" size="20.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.3977272420218496">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="cardNumber" layoutX="89.0" layoutY="71.0" prefHeight="26.0" prefWidth="224.0" promptText="Card number" />
+      <TextField fx:id="name" layoutX="89.0" layoutY="105.0" prefHeight="26.0" prefWidth="99.0" promptText="Name" />
+      <TextField fx:id="surname" layoutX="203.0" layoutY="105.0" prefHeight="26.0" prefWidth="108.0" promptText="Surname" />
+      <TextField fx:id="month" layoutX="89.0" layoutY="140.0" prefHeight="26.0" prefWidth="74.0" promptText="Month" />
+      <TextField fx:id="year" layoutX="203.0" layoutY="140.0" prefHeight="26.0" prefWidth="62.0" promptText="Year" />
+      <Label fx:id="rememberLabel" layoutX="89.0" layoutY="248.0" prefHeight="38.0" prefWidth="253.0" text="or pay with stored card">
+         <font>
+            <Font name="Allerta Stencil Regular" size="17.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.3977272420218496">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Button fx:id="pay1" layoutX="311.0" layoutY="176.0" mnemonicParsing="false" onMouseClicked="#buy1" prefHeight="37.0" prefWidth="83.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Pay" textAlignment="CENTER">
+         <textFill>
+            <LinearGradient>
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Allerta Stencil Regular" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="pay2" layoutX="311.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#buy2" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Pay" textAlignment="CENTER">
+         <textFill>
+            <LinearGradient>
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Allerta Stencil Regular" size="17.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="remember" layoutX="95.0" layoutY="186.0" mnemonicParsing="false" text="Remember">
+         <font>
+            <Font name="Allerta Stencil Regular" size="12.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color green="0.8941176533699036" blue="0.686274528503418" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.364705890417099" green="0.48627451062202454" blue="0.9529411792755127" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </CheckBox>
+   </children>
+</AnchorPane>

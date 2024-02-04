@@ -25,8 +25,7 @@ public  class PopupBaseClass extends Popup{
         this.caller=instanceOfParent;
         String path= SwitchPage.getpath(file,folder,view);
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
-        Parent load = null;
-        load = fxmlLoader.load();
+        Parent load =fxmlLoader.load();
         this.getContent().add(load);
         ((PopupBaseController)fxmlLoader.getController()).setCaller(this);
         popupController=fxmlLoader.getController();

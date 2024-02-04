@@ -1,5 +1,6 @@
 package utils;
 
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,7 +36,14 @@ public class SwitchPage {
     private SwitchPage(){
         remembered_scenes=new HashMap<String,Old_scene>();
     }
+    public static void changePage(String file,String folder,int view){
+        try {
+            SwitchPage.setStage(MainStage.getStage(),file,folder,view);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
 
+    }
     private static SwitchPage me=null;
 
     public static void saveElement(String name,String folder,Scene scene,Object controller){

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Queries {
     public static final String FROM=" FROM ";
@@ -58,12 +59,13 @@ public class Queries {
 
 
 
-    public static final String LOAD_ALL_WORKOUT_DAYS_QUERY = "SELECT wd.*\n" +
-            "FROM gymbuddy.workoutDay wd\n" +
-            "JOIN gymbuddy.workoutRoutines wr ON wd.athleteFC = wr.fc AND" +
-            "wd.workoutRoutineInitDate = wr.initDate\n" +
-            "WHERE wd.athleteFC = ?\n" +
-            "  AND wd.workoutRoutineInitDate = ?;";
+    public static final String LOAD_ALL_WORKOUT_DAYS_QUERY = """
+            SELECT wd.* 
+            FROM gymbuddy.workoutDay wd 
+            JOIN gymbuddy.workoutRoutines wr ON wd.athleteFC = wr.fc AND
+            wd.workoutRoutineInitDate = wr.initDate
+            WHERE wd.athleteFC = ?
+              AND wd.workoutRoutineInitDate = ?;""";
 
     public static ResultSet loadAllWorkoutDays(PreparedStatement preparedStatement, String athleteFC, LocalDateTime date) throws SQLException {
         preparedStatement.setString(1, athleteFC);
@@ -140,39 +142,37 @@ public class Queries {
     }
 
 
-    public static final String LOAD_USER_1_QUERY = "SELECT\n" +
-            "    u.username as athleteUsername,\n" +
-            "    u.password as athletePassword,\n" +
-            "    pia.surname as athleteSurname,\n" +
-            "    pia.dateofBirth as athleteDateofBirth,\n" +
-            "    pia.birthplace as athleteBirthplace,\n" +
-            "    pia.gender as athelteGender,\n" +
-            "    pia.namePerson as athleteName,\n" +
-            "    a.user_email AS athleteEmail,\n" +
-            "    a.fc AS athleteFC,\n" +
-            "    t.nameGym AS nameGym,\n" +
-            "    pit.namePerson AS trainerName,\n" +
-            "    pit.surname AS trainerSurname,\n" +
-            "    pit.fc AS trainerFC,\n" +
-            "    pit.dateofBirth AS traineDateOfBirth,\n" +
-            "    pit.birthplace AS trainerBirthplace,\n" +
-            "    pit.gender AS trainerGender,\n" +
-            "    gi.iban AS gymIban,\n" +
-            "    gi.city AS gymCity,\n" +
-            "    gi.address AS gymAddress,\n" +
-            "    gi.nameGym\n" +
-            "FROM gymbuddy.athlete a\n" +
-            "JOIN gymbuddy.personalInfo pia ON a.fc = pia.fc\n" +
-            "JOIN gymbuddy.trainers t ON a.trainersFC = t.fc\n" +
-            "JOIN gymbuddy.personalinfo pit ON t.fc = pit.fc\n" +
-            "JOIN gymbuddy.gymlinfo gi ON t.nameGym = gi.nameGym\n" +
-            "JOIN gymbuddy.user u ON a.user_email = u.email\n" +
-            "WHERE u.email = ?;";
+    public static final String LOAD_USER_1_QUERY = """
+            SELECT
+             u.username as athleteUsername,
+             u.password as athletePassword,
+             pia.surname as athleteSurname,
+             pia.dateofBirth as athleteDateofBirth,
+             pia.birthplace as athleteBirthplace,
+             pia.gender as athelteGender,
+             pia.namePerson as athleteName,
+             a.user_email AS athleteEmail,
+             a.fc AS athleteFC,
+             t.nameGym AS nameGym,
+             pit.namePerson AS trainerName,
+             pit.surname AS trainerSurname,
+             pit.fc AS trainerFC,
+             pit.dateofBirth AS traineDateOfBirth,
+             pit.birthplace AS trainerBirthplace,
+             pit.gender AS trainerGender,
+             gi.iban AS gymIban,
+             gi.city AS gymCity,
+             gi.address AS gymAddress,
+             gi.nameGym
+            FROM gymbuddy.athlete a
+            JOIN gymbuddy.personalInfo pia ON a.fc = pia.fc
+            JOIN gymbuddy.trainers t ON a.trainersFC = t.fc
+            JOIN gymbuddy.personalinfo pit ON t.fc = pit.fc
+            JOIN gymbuddy.gymlinfo gi ON t.nameGym = gi.nameGym
+            JOIN gymbuddy.user u ON a.user_email = u.email
+            WHERE u.email = ?;""";
 
-    public static ResultSet loadTrainer(String email, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setString(1, email);
-        return preparedStatement.executeQuery();
-    }
+
 
     public static ResultSet loadUser(String email, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, email);
@@ -180,11 +180,13 @@ public class Queries {
     }
 
 
-    private static final String LOAD_USER_TRAINER_QUERY = "SELECT " +
-            "    t.email AS trainerEmail, " +
-            "    pi.namePerson AS namePerson, pi.surname AS surnamePerson, pi.dateofBirth AS dateOfBirth, pi.birthplace AS birthPlace, pi.fc AS fc, pi.gender AS gender, " +
-            "    u.username AS username, u.password AS password " +
-            "FROM gymbuddy.trainers AS t JOIN gymbuddy.personalInfo AS pi ON t.fc = pi.fc JOIN gymbuddy.user AS u ON t.email = u.email " ;
+    private static final String LOAD_USER_TRAINER_QUERY = """
+            SELECT
+            t.email AS trainerEmail, 
+            pi.namePerson AS namePerson, pi.surname AS surnamePerson, pi.dateofBirth AS dateOfBirth, pi.birthplace AS birthPlace, pi.fc AS fc, pi.gender AS gender,
+            u.username AS username, u.password AS password
+            FROM gymbuddy.trainers AS t JOIN gymbuddy.personalInfo AS pi ON t.fc = pi.fc JOIN gymbuddy.user AS u ON t.email = u.email;
+            """ ;
 
     public static final String LOAD_TRAINER_BY_FC=LOAD_USER_TRAINER_QUERY+" WHERE t.fc=?";
     public static final String LOAD_TRAINER_BY_EMAIL=LOAD_USER_TRAINER_QUERY+"WHERE t.email=?";
@@ -205,16 +207,15 @@ public class Queries {
             "    WHERE  e.nameGym = ?";
 
 
-    public static final  String LOAD_TRAINER_REQUESTS_QUERY= "SELECT r.info, a.user_email as athleteEmail\n" +
-            "    FROM gymbuddy.request r\n" +
-            "    JOIN gymbuddy.trainers t ON r.trainersFC = t.fc\n" +
-            "    JOIN gymbuddy.athlete a ON r.athleteFC = a.fc\n" +
-            "    WHERE t.fc = ?";
+    public static final  String LOAD_TRAINER_REQUESTS_QUERY= """
+            SELECT r.info, a.user_email as athleteEmail
+            FROM gymbuddy.request r
+            JOIN gymbuddy.trainers t ON r.trainersFC = t.fc
+            JOIN gymbuddy.athlete a ON r.athleteFC = a.fc
+            WHERE t.fc = ?;
+            """;
 
-    public static ResultSet loadTrainerRequests(String trainerFc, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setString(1, trainerFc);
-        return preparedStatement.executeQuery();
-    }
+
     public static final String DELETE_REQUEST_QUERY = "DELETE FROM gymbuddy.request " +
             "WHERE athleteFC = ? AND trainersFC = ?";
     public static void deleteRequest(PreparedStatement preparedStatement, String athleteFC, String trainersFC) throws SQLException {
@@ -232,10 +233,35 @@ public class Queries {
     public static final String LOAD_USER_GYM_BY_NAME_QUERRT=SELECT+GYM_BASIC_INFO+FROM+GYM_TABLES+"WHERE g.nameGym=?";
 
     public static final String LOAD_GYM_BY_TRAINER_FC="SELECT g.email AS gymEmail FROM "+GYM_TABLES+"JOIN gymbuddy.trainers AS t ON t.nameGym=g.nameGym WHERE t.fc=?";
-    public static final String LOAD_USER_WALLET="SELECT c.athleteFC,c.starDatetMembership,c.nameGym,c.endDateMembership,c.points,c.membershipPrice FROM gymbuddy.currentmembership as  c JOIN  gymbuddy.athlete AS a ON a.fc = c.athleteFC where a.fc=?";
+    public static final String LOAD_USER_WALLET="SELECT c.athleteFC,c.starDatetMembership,c.nameGym,c.endDateMembership,c.points,c.membershipPrice,c.membershipName,c.trainers_fc FROM gymbuddy.currentmembership as  c JOIN  gymbuddy.athlete AS a ON a.fc = c.athleteFC where a.fc=?";
     public static ResultSet loadAndExecuteOneString(String string, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, string);
         return preparedStatement.executeQuery();
     }
+
+    public static final  String LOAD_TRAINER_FC_FROM_GYM_NAME_LOWEST_ATHLETES="""
+            SELECT Trainer.fc
+            FROM trainers AS Trainer
+            JOIN gym AS Gym ON Trainer.nameGym = Gym.nameGym
+            LEFT JOIN athlete AS Athlete ON Trainer.fc = Athlete.trainersFC
+            WHERE Gym.nameGym =?
+            GROUP BY Trainer.fc
+            ORDER BY COUNT(Athlete.fc) ASC
+            LIMIT 1;
+            """;
     protected Queries() {}
+    public static final String DELETE_WALLET="DELETE FROM currentmembership WHERE athleteFC=?";
+    public static final String INSERT_WALLET="INSERT INTO currentmembership VALUES (?,?, ?,?,?,?,?,?)";
+    public static int loadAndExecuteWalletInsertion(PreparedStatement preparedStatement, String athleteFc, Date startDate,String nameGym,Date endDate,int points,String nameMembership,float price,String trainerFc) throws SQLException {
+            preparedStatement.setString(1,athleteFc);
+            preparedStatement.setDate(2,new java.sql.Date(startDate.getTime()));
+            preparedStatement.setString(3,nameGym);
+            preparedStatement.setDate(4,new java.sql.Date(endDate.getTime()));
+            preparedStatement.setInt(5,points);
+            preparedStatement.setString(6,nameMembership);
+            preparedStatement.setFloat(7,price);
+            preparedStatement.setString(8,trainerFc);
+            return preparedStatement.executeUpdate();
+
+    }
 }

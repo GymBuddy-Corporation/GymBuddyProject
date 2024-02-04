@@ -2,16 +2,14 @@ package controllers;
 
 import beans.CredentialsBean;
 import beans.UserBean;
+import database.dao.AthleteDAO;
 import database.dao.UserDAO;
 import engineering.LoggedAthleteSingleton;
 import engineering.LoggedGymSingleton;
 import engineering.LoggedTrainerSingleton;
-import exceptions.AlreadyLoggedUserException;
-import exceptions.DBUnrreachableException;
-import exceptions.NoLoggedUserException;
+import exceptions.*;
 
-import exceptions.NoUserFoundException;
-import exceptions.dataException.DataFieldException;
+import exceptions.logger.CostumeLogger;
 import model.Athlete;
 import model.Gym;
 import model.Trainer;
@@ -49,6 +47,11 @@ public class UserAccessController {
         if(user instanceof Gym gym){
             return LoggedGymSingleton.createGymSingleton(gym).getMyBean();
         } else if (user instanceof Athlete athlete) {
+            try {
+                new AthleteDAO().loadAthleteWallet(athlete);
+            } catch (CostumException e) {
+                CostumeLogger.getInstance().logError(e);
+            }
             return LoggedAthleteSingleton.createAthleteSingleton(athlete).getMyBean();
         } else{
             return LoggedTrainerSingleton.createTrainerSingleton((Trainer) user).getMyBean();

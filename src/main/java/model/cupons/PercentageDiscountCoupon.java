@@ -1,23 +1,24 @@
 package model.cupons;
 
-import exceptions.DecoratorNoBaseComponentException;
 
-public class PercentageDiscountCoupon extends Cupon{
+public class PercentageDiscountCoupon extends Coupon {
     private final float discountPercentage;
 
-    public PercentageDiscountCoupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isCoumulable, float discountPecentage) {
-        super(name, description, pointsPrice, forNewMembers, isCoumulable);
+    public PercentageDiscountCoupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isNotCoumulable, float discountPecentage) {
+        super(name, description, pointsPrice, forNewMembers, isNotCoumulable);
         this.discountPercentage=discountPecentage;
     }
-
+    public Coupon clone() {
+        return new PercentageDiscountCoupon( super.getName(),super.getDescription(),super.getPointsPrice(),super.isForNewUsers(),super.isNotCumulative(),discountPercentage);
+    }
     @Override
-    public float getPrice() throws DecoratorNoBaseComponentException {
+    public float getPrice() {
         float price = super.getPrice();
-        return price-price*discountPercentage/100f;
+        return Math.round(price-price*discountPercentage/100f);
     }
 
     @Override
-    public int getPoints() throws DecoratorNoBaseComponentException {
+    public int getPoints() {
         return super.getPoints()-this.getPointsPrice();
     }
 
@@ -28,6 +29,6 @@ public class PercentageDiscountCoupon extends Cupon{
 
     @Override
     public String getCouponsValue() {
-        return String.valueOf(discountPercentage);
+        return discountPercentage +"%";
     }
 }

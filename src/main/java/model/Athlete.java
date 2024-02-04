@@ -3,15 +3,17 @@ package model;
 import model.record.Card;
 import model.record.Credentials;
 import model.record.PersonalInfo;
-import java.time.YearMonth;
+
+import java.util.Date;
+import java.time.Instant;
 
 public class Athlete extends Person  {
+    public Card getCard() {
+        return card;
+    }
+
     private Card card;
     private WorkoutRoutine workoutRoutine;
-
-    public Wallet getWallet() {
-        return wallet;
-    }
 
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
@@ -24,8 +26,7 @@ public class Athlete extends Person  {
     }
 
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Trainer trainer) /*throws ExpiredCardException*/ {
-        //costruttore con inizializzazione della carta
+    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Trainer trainer)  {
         super(username, credentials, personalInfo);
         this.card = card;
     }
@@ -41,10 +42,26 @@ public class Athlete extends Person  {
     public void setCard(Card card) {
         this.card = card;
     }
+    public String gymName(){
+            if(wallet==null || wallet.getCurrentGym().getGymName()==null)return "";
+            return  wallet.getCurrentGym().getGymName();
 
-    public YearMonth getCardExpirationDate() {
-            return card.cardExpirationDate();
     }
+    public boolean isMembershipValid(){
+        if(wallet==null || wallet.getEndOfMembership()==null)return false;
+        return Date.from(Instant.now()).after(wallet.getEndOfMembership());
+    }
+
+    public int getPoints(){
+        if(wallet==null)return 0;
+        return wallet.getPoints();
+    }
+
+    public Date getExpirationOfmembership(){
+        if(wallet==null)return null;
+        return wallet.getEndOfMembership();
+    }
+
 
     public String getCardExpirationYear(){
             return String.valueOf(card.cardExpirationDate().getYear());

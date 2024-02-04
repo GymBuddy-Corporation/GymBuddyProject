@@ -4,5 +4,5 @@ import beans.MembershipBean;
 import engineering.popups.PopupBaseInterface;
 
 public interface MembershipConfirmPopupInterface extends PopupBaseInterface {
-    void conferma(MembershipBean bean);
+    void confermaPopupMembership(MembershipBean bean);
 }

@@ -20,6 +20,10 @@ public class MembershipPopUP extends PopupBaseClass {
     }
 
     public void confirm(MembershipBean bean){
-                castedInterface.conferma(bean);
+                castedInterface.confermaPopupMembership(bean);
+                popupReference.hidePopUp();
+    }
+    public void decline(){
+                popupReference.hidePopUp();
     }
 }

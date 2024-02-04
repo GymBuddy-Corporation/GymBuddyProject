@@ -1,7 +1,6 @@
 package viewone.graphicalcontrollers.pt;
 
 import controllers.UserAccessController;
-import exceptions.dataException.DataFieldException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;

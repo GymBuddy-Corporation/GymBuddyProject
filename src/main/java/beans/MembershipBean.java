@@ -13,6 +13,12 @@ public class MembershipBean {
     private final int durationInDays;
     private final int pointsAwardedOnBuy;
 
+    public boolean isOnlyForNewUsers() {
+        return onlyForNewUsers;
+    }
+
+    private final boolean onlyForNewUsers;
+
     public MembershipBean( String gymName, String name, String description, float price, int durationInDays, int pointsAwardedOnBuy){
         this.gymName=gymName;
         this.name = name;
@@ -20,14 +26,16 @@ public class MembershipBean {
         this.price = price;
         this.durationInDays = durationInDays;
         this.pointsAwardedOnBuy = pointsAwardedOnBuy;
+        onlyForNewUsers=false;
     }
-    public MembershipBean(String gymName, String name, float price, int durationInDays, int pointsAwardedOnBuy){
+    public MembershipBean(String gymName, String name, float price, int durationInDays, int pointsAwardedOnBuy,boolean onlyForNewUsers){
         this.gymName=gymName;
         this.name = name;
         this.description=null;
         this.price = price;
         this.durationInDays = durationInDays;
         this.pointsAwardedOnBuy = pointsAwardedOnBuy;
+        this.onlyForNewUsers=onlyForNewUsers;
     }
 
     public String getName() {

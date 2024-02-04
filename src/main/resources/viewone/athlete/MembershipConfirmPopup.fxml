@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="340.0" prefWidth="400.0" style="-fx-background-color: #2D043D; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.popup.membershippopups.MembershipPopupController">
-   <Button layoutX="235.0" layoutY="270.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Select" textAlignment="CENTER">
+<AnchorPane prefHeight="340.0" prefWidth="400.0" style="-fx-background-color: #2D043D; -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3);" stylesheets="@../GymBuddyCSS1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewone.popup.membershippopups.MembershipPopupController">
+   <Button layoutX="235.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#confirm" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Select" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>
@@ -27,7 +31,7 @@
          <Font name="Allerta Stencil Regular" size="17.0" />
       </font>
    </Button>
-   <Button layoutX="56.0" layoutY="270.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Go Back" textAlignment="CENTER">
+   <Button layoutX="56.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#decline" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: rgba(0, 0, 0, 0);            -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em;            -fx-border-radius: 5em;" text="Go Back" textAlignment="CENTER">
       <textFill>
          <LinearGradient>
             <stops>

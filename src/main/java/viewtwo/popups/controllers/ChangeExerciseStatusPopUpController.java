@@ -8,7 +8,6 @@ import engineering.popups.PopupBaseController;
 import exceptions.CostumException;
 import exceptions.EmptySearchException;
 import exceptions.NoLoggedUserException;
-import exceptions.UserCastException;
 import exceptions.logger.CostumeLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +24,6 @@ import viewtwo.manageListView.ManageExerciseList2;
 import viewtwo.manageListView.listCells.ExerciseListCellFactory2;
 import viewtwo.popups.ChangeExeStatusPopUp;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;

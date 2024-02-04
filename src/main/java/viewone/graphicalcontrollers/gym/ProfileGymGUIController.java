@@ -6,25 +6,25 @@ import utils.MainStage;
 import utils.SwitchPage;
 
 public class ProfileGymGUIController {
-
+    private static final int VIEW=1;
+    private static final String GYM="gym";
+    private static  final String LAUNCHER = "launcher";
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
+    public void goBack() {
+        SwitchPage.changePage("GymHome.fxml",GYM,VIEW);
     }
     @FXML
-    public void logout() throws Exception {
+    public void logout() {
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        SwitchPage.changePage("Login.fxml",LAUNCHER,VIEW);
     }
     @FXML
-    public void deleteAccount() throws Exception {
-        //TODO gestisci l'eliminazione dell'account con notifiche e pop-up
-        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
+    public void deleteAccount()  {
+        SwitchPage.changePage("GymFirst.fxml",LAUNCHER,VIEW);
     }
     @FXML
-    public void editProfile() throws Exception {
-        //TODO gestisci la gestione dell'account
-        SwitchPage.setStage(MainStage.getStage(),"ProfileGym.fxml","gym",1);
+    public void editProfile() {
+        SwitchPage.changePage("ProfileGym.fxml",GYM,VIEW);
     }
 }

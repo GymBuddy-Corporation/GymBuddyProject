@@ -1,32 +1,34 @@
 package viewone.graphicalcontrollers.athlete;
 
 import controllers.UserAccessController;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import utils.MainStage;
 import utils.SwitchPage;
 
+import java.io.IOException;
+
 public class ProfileAthleteGUIController {
-    private final String athlete = "athlete";
-    private final String launcher = "launcher";
+    private static final String ATHLETE = "athlete";
+    private static  final String LAUNCHER = "launcher";
+    private static final int VIEW=1;
 
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml",athlete,1);
+    public void goBack()  {
+        SwitchPage.changePage("AthleteHome.fxml",ATHLETE,VIEW);
     }
     @FXML
-    public void logout() throws Exception {
+    public void logout() {
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        SwitchPage.changePage("Login.fxml",LAUNCHER,VIEW);
     }
     @FXML
-    public void deleteAccount() throws Exception {
-        //TODO gestisci l'eliminazione dell'account con notifiche e pop-up
-        SwitchPage.setStage(MainStage.getStage(),"AthleteLogin.fxml",launcher,1);
+    public void deleteAccount()  {
+        SwitchPage.changePage("AthleteLogin.fxml",LAUNCHER,VIEW);
     }
     @FXML
-    public void editProfile() throws Exception {
-        //TODO gestisci la gestione dell'account
-        SwitchPage.setStage(MainStage.getStage(),"AthletePT.fxml",athlete,1);
+    public void editProfile()  {
+        SwitchPage.changePage("AthletePT.fxml",ATHLETE,VIEW);
     }
 }

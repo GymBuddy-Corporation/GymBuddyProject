@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import viewtwo.popups.AddExePopUp;
 
-import java.io.IOException;
-
 public class AddExercisePopUpController extends PopupBaseController {
     @FXML TextField repTextField;
     @FXML TextField setsTextField;

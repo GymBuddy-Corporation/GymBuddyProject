@@ -6,39 +6,43 @@ import exceptions.DecoratorNoBaseComponentException;
 import model.Membership;
 
 
-public abstract class Cupon implements MembershipInterface {
+public abstract class Coupon implements MembershipInterface {
 
 
     private final int pointsPrice;
     protected MembershipInterface component;
     private final String name;
     private final String description;
-    private final boolean onlyForNewMembers;
+    private  boolean onlyForNewMembers;
 
-    public boolean isCumulative() {
-        return isCumulative;
+    public boolean isNotCumulative() {
+        return isNotCumulative;
     }
 
-    private final boolean isCumulative;
-    Cupon( String name, String description, int pointsPrice, boolean forNewMembers, boolean isComulative){
+    private final boolean isNotCumulative;
+    Coupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isNotComulative){
         this.name=name;
         this.description=description;
         this.pointsPrice=pointsPrice;
         this.onlyForNewMembers=forNewMembers;
-        this.isCumulative=isComulative;
+        this.isNotCumulative =isNotComulative;
     }
-    public Cupon setComponent(MembershipInterface component) throws CouponNotCumulativeException {
-        if(!this.isCumulative){
+
+    public abstract Coupon clone();
+    public Coupon setComponent(MembershipInterface component) throws CouponNotCumulativeException, DecoratorNoBaseComponentException {
+        if(this.isNotCumulative){
             if(component instanceof Membership membership){
-                this.component=component;
+                this.component=membership;
             }else{
                 throw new CouponNotCumulativeException();
             }
         }
-        if(component instanceof Cupon cupon){
-            if(!cupon.isCumulative){
+        if(component instanceof Coupon coupon){
+            if(coupon.isNotCumulative){
                 throw new CouponNotCumulativeException();
             }
+            coupon.checkIfBaseExists();
+            this.onlyForNewMembers=this.onlyForNewMembers| coupon.onlyForNewMembers;
         }
         this.component=component;
         return this;
@@ -49,8 +53,7 @@ public abstract class Cupon implements MembershipInterface {
         }
     }
     @Override
-    public float getPrice() throws DecoratorNoBaseComponentException {
-        checkIfBaseExists();
+    public float getPrice() {
         return this.component.getPrice();
     }
     @Override
@@ -59,15 +62,13 @@ public abstract class Cupon implements MembershipInterface {
     }
 
     @Override
-    public int getPoints() throws DecoratorNoBaseComponentException {
-        checkIfBaseExists();
-        if(this.component instanceof Membership )return 0; //In caso si utilizzino i coupon non si puo ottenere pure i punti del abbonamento
+    public int getPoints()  {
+        if(this.component instanceof Membership )return 0;
         return this.component.getPoints();
     }
 
     @Override
-    public int getDuration() throws DecoratorNoBaseComponentException {
-        checkIfBaseExists();
+    public int getDuration() {
         return component.getDuration();
     }
 
@@ -75,8 +76,7 @@ public abstract class Cupon implements MembershipInterface {
         return pointsPrice;
     }
     @Override
-    public String getBuildedName() throws DecoratorNoBaseComponentException {
-        checkIfBaseExists();
+    public String getBuildedName()  {
         return this.component.getBuildedName()+"+"+this.name;
     }
 
@@ -90,9 +90,9 @@ public abstract class Cupon implements MembershipInterface {
 
 
     @Override
-    public boolean isForNewUsers() throws DecoratorNoBaseComponentException {
-        checkIfBaseExists();
-        return onlyForNewMembers || this.component.isForNewUsers();
+    public boolean isForNewUsers() {
+
+        return onlyForNewMembers ;
     }
     public abstract String getType();
     public abstract String getCouponsValue();

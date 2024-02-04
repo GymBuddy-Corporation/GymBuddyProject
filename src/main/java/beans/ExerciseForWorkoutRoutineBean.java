@@ -46,7 +46,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
     public void setRest(String timeString) throws DataFieldException{
         if(isValidTime(timeString)) {
             this.rest = timeString;
-        } else if (!timeString.equals("00:00")){
+        } else if (timeString==null){
             throw new DataFieldException(FieldsEnum.EXERCISE_REST, ProblemEnum.IS_NULL);
         }else {
             throw new DataFieldException(FieldsEnum.EXERCISE_REST, ProblemEnum.NOT_VALID);
@@ -74,7 +74,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
 
     public static boolean isValidTime(String timeString) {
         if (timeString == null) {
-            return false;  // or handle the null case differently
+            return false;
         }
 
         String timeRegex = "([01]?\\d|2[0-3]):[0-5]\\d";

@@ -2,28 +2,32 @@ package controllers;
 
 import beans.*;
 import boundaries.PaymentSystemBoundary;
+import database.dao.AthleteDAO;
 import database.dao.GymDAO;
 import database.dao.MembershipDAO;
+import database.dao.TrainerDAO;
 import engineering.LoggedAthleteSingleton;
 import engineering.decorator.MembershipInterface;
 import exceptions.*;
-import model.Athlete;
-import model.Gym;
-import model.Membership;
-import model.cupons.Cupon;
+import model.*;
+import model.cupons.Coupon;
+import model.record.Card;
 import org.jetbrains.annotations.NotNull;
-
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.YearMonth;
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class ManageMembershipController {
     protected final GymDAO gymDao;
     private static Gym selectedGym;
+    private final boolean hasCard;
     LoggedAthleteSingleton singletonInstance;
     public ManageMembershipController() throws NoLoggedUserException {
         singletonInstance =LoggedAthleteSingleton.getSingleton();
         if(singletonInstance==null)throw new NoLoggedUserException();
+        hasCard=new AthleteDAO().loadCard(singletonInstance.getUser());
         gymDao = new GymDAO();
         resetSelectedGym();
     }
@@ -31,12 +35,15 @@ public class ManageMembershipController {
     private static void resetSelectedGym(){
         selectedGym=null;
     }
-
+    public static ActiveMembershipBean getActiveMembership(){
+        Athlete me=LoggedAthleteSingleton.getSingleton().getUser();
+        return new ActiveMembershipBean(me.gymName(), me.getPoints(), me.getExpirationOfmembership());
+    }
     private static void setSelectedGym(Gym gym){
         selectedGym=gym;
     }
 
-    public List<MembershipBean> getMembershipList(GymInfoBean onlyGymNameBean) throws  NoUserFoundException {
+    public List<MembershipBean> getMembershipList(GymInfoBean onlyGymNameBean) throws NoUserFoundException, DBUnrreachableException {
         loadSelectedGym(onlyGymNameBean);
         List<Membership> listOfMemberships = selectedGym.getMemberships();
         List<MembershipBean> beanList = new ArrayList<>();
@@ -52,40 +59,40 @@ public class ManageMembershipController {
         return beanList;
     }
 
-    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym) throws NoUserFoundException {
+    public List<CuponsBean> getCouponsList(GymInfoBean onlyNameGym) throws NoUserFoundException, DBUnrreachableException {
         loadSelectedGym(onlyNameGym);
-        List<Cupon> listOfCoupons=selectedGym.getCoupons();
+        List<Coupon> listOfCoupons=selectedGym.getCoupons();
         List <CuponsBean> listOfCouponsBeans=new ArrayList<>();
-        for(Cupon cupon: listOfCoupons ){
+        for(Coupon coupon : listOfCoupons ){
             CuponsBean temp=new CuponsBean(
-                    cupon.getPointsPrice(),
-                    cupon.getName(),
-                    cupon.getOnlyForNewUsers(),
-                    cupon.isCumulative(),
-                    cupon.getType(),
-                    cupon.getCouponsValue());
-            if(!Objects.equals(cupon.getDescription(), ""))temp.setDescription(cupon.getDescription());
+                    coupon.getPointsPrice(),
+                    coupon.getName(),
+                    coupon.getOnlyForNewUsers(),
+                    !coupon.isNotCumulative(),
+                    coupon.getType(),
+                    coupon.getCouponsValue());
+            if(!Objects.equals(coupon.getDescription(), ""))temp.setDescription(coupon.getDescription());
             listOfCouponsBeans.add(temp);
         }
         return listOfCouponsBeans;
     }
 
-    private void loadSelectedGym(GymInfoBean name) throws  NoUserFoundException {
+    private void loadSelectedGym(GymInfoBean name) throws NoUserFoundException, DBUnrreachableException {
             if(selectedGym!=null && Objects.equals(selectedGym.getGymName(), name.getName()))return;
         try {
             setSelectedGym(gymDao.getGymByName(name.getName()));
-        } catch (SQLException e) {
-            throw new NoUserFoundException();
+        } catch (DBUnrreachableException e) {
+            throw new DBUnrreachableException();
         }
         MembershipDAO memDao=new MembershipDAO();
-            selectedGym.setMemberships(memDao.getMembership(selectedGym.getGymName()));
-            selectedGym.setCoupons(memDao.getCoupons(selectedGym.getGymName()));
+        selectedGym.setMemberships(memDao.getMembership(selectedGym.getGymName()));
+        selectedGym.setCoupons(memDao.getCoupons(selectedGym.getGymName()));
     }
 
-    public MembershipBean applyCouponsToMembership(GymInfoBean onlyName,MembershipBean selectedMembership,List<CuponsBean> selectedCoupons) throws MembershipCouponNotFoundException, DecoratorNoBaseComponentException, CouponNotFullyAppliedException, NoUserFoundException {
+    public MembershipBean applyCouponsToMembership(GymInfoBean onlyName,MembershipBean selectedMembership,List<CuponsBean> selectedCoupons) throws MembershipCouponNotFoundException, DecoratorNoBaseComponentException, NoUserFoundException, CouponNotCumulativeException, DBUnrreachableException {
             loadSelectedGym(onlyName);
             List<Membership> membershipsList=selectedGym.getMemberships();
-            List<Cupon> cuponsList=selectedGym.getCoupons();
+            List<Coupon> cuponsList=selectedGym.getCoupons();
             Membership membership=null;
             for(Membership temp:membershipsList){
                 if(Objects.equals(selectedMembership.getName(), temp.getName())){
@@ -94,93 +101,94 @@ public class ManageMembershipController {
                 }
             }
             if(membership==null)throw new MembershipCouponNotFoundException();
-
-            List<Cupon> couponsToApply=new ArrayList<>();
-            Iterator<Cupon> couponIterator= cuponsList.iterator();
-            while(couponIterator.hasNext()){
-                Cupon couponTemp=couponIterator.next();
-                Iterator<CuponsBean> couponBeanIterator= selectedCoupons.iterator();
-                while (couponBeanIterator.hasNext()){
-                    CuponsBean couponBeanTemp=couponBeanIterator.next();
+            List<Coupon> couponsToApply=new ArrayList<>();
+            int i=0;
+            Iterator<CuponsBean> couponBeanIterator= selectedCoupons.iterator();
+            while(couponBeanIterator.hasNext()){
+                Iterator<Coupon> couponIterator= cuponsList.iterator();
+                CuponsBean couponBeanTemp=couponBeanIterator.next();
+                while (couponIterator.hasNext()){
+                    Coupon couponTemp= couponIterator.next().clone();
                     if(Objects.equals(couponBeanTemp.getName(), couponTemp.getName())){
                         couponsToApply.add(couponTemp);
-                        couponBeanIterator.remove();
-                        couponIterator.remove();
+                        i++;
                         break;
                     }
                 }
             }
-            if(!cuponsList.isEmpty())throw new MembershipCouponNotFoundException();
-
-            MembershipInterface finalMembership = null;
-            try {
-                finalMembership = decoratorBuilder(membership, couponsToApply);
-            }catch (CouponNotCumulativeException e) {
-                LoggedAthleteSingleton.getSingleton().setMembership(e.getMembership(),onlyName.getName());
-                throw new CouponNotFullyAppliedException(e,onlyName.getName());
-            }
-            LoggedAthleteSingleton.getSingleton().setMembership(finalMembership,onlyName.getName());
-            return new MembershipBean(onlyName.getName(),finalMembership.getName(),finalMembership.getPrice(),finalMembership.getDuration(), finalMembership.getPoints());
+            if(i-selectedCoupons.size()!=0)throw new MembershipCouponNotFoundException();
+            MembershipInterface finalMembership = decoratorBuilder(membership, couponsToApply);
+            return new MembershipBean(onlyName.getName(),finalMembership.getName(),finalMembership.getPrice(),finalMembership.getDuration(), finalMembership.getPoints(), finalMembership.isForNewUsers());
     }
 
-    protected MembershipInterface decoratorBuilder(Membership membership,List<Cupon> coupons) throws CouponNotCumulativeException {
+    protected MembershipInterface decoratorBuilder(Membership membership,List<Coupon> coupons) throws CouponNotCumulativeException, DecoratorNoBaseComponentException {
         MembershipInterface finalMembership=membership;
-        boolean wasExceptionTriggered=false;
-        for(Cupon temp:coupons){
-            try {
+        for(Coupon temp:coupons){
                 finalMembership=temp.setComponent(finalMembership);
-            } catch (CouponNotCumulativeException e) {
-                wasExceptionTriggered=true;
-            }
         }
-        if(wasExceptionTriggered)throw new CouponNotCumulativeException(finalMembership);
         return finalMembership;
        }
 
 
-    public PaymentConfirmationBean payNewMembership(GymInfoBean onlyNameGym,MembershipBean membershipBean){
-
-                return null;
+    public PaymentConfirmationBean payNewMembership(GymInfoBean onlyNameGym,MembershipBean membershipBean,List<CuponsBean> cupons) throws CostumException {
+        if(!hasCard) throw new CostumException("donest have a saved card");
+        return makePayment(onlyNameGym,membershipBean,cupons,singletonInstance.getUser().getCard());
     }
 
-    public PaymentConfirmationBean payNewMebership(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean,boolean rememberCard){
-        return null;
+    public PaymentConfirmationBean payNewMebership(GymInfoBean onlyNameGym,MembershipBean membershipBean,List<CuponsBean> cupons,CardInfoBean cardInfoBean,boolean rememberCard) throws MembershipCouponNotFoundException, DecoratorNoBaseComponentException, FailedToSaveNewMembership, NoUserFoundException, MembershipOnlyForNewUserException, PaymentFailedException, CouponNotCumulativeException, DBUnrreachableException {
+        Card card=new Card(cardInfoBean.getCardNumber(),cardInfoBean.getNameOfOwner(),cardInfoBean.getSurnameOfOwenr(),YearMonth.of(Integer.parseInt(cardInfoBean.getYearOfExpiration()),Integer.parseInt(cardInfoBean.getMonthOfExpiration())));
+        if(rememberCard)new AthleteDAO().saveCard(card);
+        return makePayment(onlyNameGym,membershipBean,cupons,card);
     }
 
-    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym,MembershipBean membershipBean,CardInfoBean cardInfoBean) throws PaymentFailedException, FailedToSaveNewMembership {
-        PaymentBean paymentBean=makePaymentBean(onlyNameGym,membershipBean);
-        PaymentSystemBoundary boundary=new PaymentSystemBoundary(paymentBean);
+    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym,MembershipBean membershipBean,List<CuponsBean> cupons,Card card) throws PaymentFailedException, FailedToSaveNewMembership, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, NoUserFoundException, CouponNotCumulativeException, MembershipOnlyForNewUserException, DBUnrreachableException {
+        MembershipBean finalMembership=applyCouponsToMembership(onlyNameGym,membershipBean,cupons);
+        if(Objects.equals(onlyNameGym.getName(), getActiveMembership().getGymName()) && finalMembership.isOnlyForNewUsers()) throw new MembershipOnlyForNewUserException();
+        Wallet toSave=updateedUserWallet(finalMembership);
+        PaymentBean paymentBean=getPaymentBean(finalMembership,card);
+        PaymentSystemBoundary boundary=new PaymentSystemBoundary(paymentBean,new CardInfoBean(card.cardNumber(), String.valueOf(card.cardExpirationDate().getMonthValue()),String.valueOf(card.cardExpirationDate().getYear()), card.name(), card.surname()));
         PaymentConfirmationBean paymentConfirmationBean=boundary.pay();
         try{
-            saveNewMemberShipToPersistence(paymentConfirmationBean,onlyNameGym,membershipBean);
+            saveNewMemberShipToPersistence(toSave,LoggedAthleteSingleton.getSingleton().getUser());
         }catch (FailedToSaveNewMembership e){
             boundary.refund(paymentConfirmationBean);
             throw new FailedToSaveNewMembership();
         }
+        singletonInstance.getUser().setWallet(toSave);
         return paymentConfirmationBean;
     }
 
-    private void saveNewMemberShipToPersistence(PaymentConfirmationBean paymentConfirmationBean,GymInfoBean onlyNameGym,MembershipBean membershipBean) throws FailedToSaveNewMembership {
-        throw new FailedToSaveNewMembership();
+    private Wallet updateedUserWallet(MembershipBean bean) throws FailedToSaveNewMembership,  NoUserFoundException, DBUnrreachableException {
+        Athlete me=LoggedAthleteSingleton.getSingleton().getUser();
+        if(me.getPoints()+bean.getPointsAwardedOnBuy()<0)throw new FailedToSaveNewMembership("Not Enough points for the membership");
+        Date newDate;
+        if(me.getExpirationOfmembership()==null || !Objects.equals(me.gymName(), bean.getGymName())) {
+            newDate=new Date();
+        }
+        else{
+            newDate=me.getExpirationOfmembership();
+        }
+        Calendar newDateCalender = Calendar. getInstance();
+        newDateCalender.setTime(newDate);
+        newDateCalender.add(Calendar.HOUR,bean.getDurationInDays()*24);
+        Gym gymToAdd=new GymDAO().getGymByName(bean.getGymName());
+        Trainer trainerToAdd;
+        TrainerDAO trainerDAO=new TrainerDAO();
+        if(me.gymName()==null || Objects.equals(me.gymName(), "") || !Objects.equals(me.gymName(), bean.getGymName())){
+                 trainerToAdd=trainerDAO.loadTrainerToAdd(gymToAdd);
+        }else{
+            trainerToAdd=trainerDAO.loadTrainer(me.getTrainerFc(),"fc");
+        }
+        return new Wallet(Date.from(Instant.now()),newDateCalender.getTime(),gymToAdd,bean.getPointsAwardedOnBuy()+me.getPoints(),bean.getGymName(),bean.getPrice(),trainerToAdd);
     }
 
-    private PaymentBean makePaymentBean(GymInfoBean onlyNameGym,MembershipBean membershipBean) throws PaymentFailedException {
-        if(!Objects.equals(onlyNameGym.getName(), singletonInstance.getGymToSubscribe())){
-            throw new PaymentFailedException();
-        }
-        if(!Objects.equals(selectedGym.getGymName(),onlyNameGym.getName()))throw new PaymentFailedException();
-        try {
-            if(!Objects.equals(membershipBean.getName(), singletonInstance.getMembership().getBuildedName())) {
-                throw new PaymentFailedException();
-            }
-        } catch (DecoratorNoBaseComponentException e) {
-            throw new PaymentFailedException();
-        }
-        return getPaymentBean(membershipBean);
+    private void saveNewMemberShipToPersistence(Wallet membership,Athlete me) throws FailedToSaveNewMembership, DBUnrreachableException {
+        new AthleteDAO().saveWallet(membership,me);
     }
+
 
     @NotNull
-    private PaymentBean getPaymentBean(MembershipBean membershipBean) {
+    private PaymentBean getPaymentBean(MembershipBean membershipBean,Card card) {
         Athlete athlete=singletonInstance.getUser();
        return new PaymentBean(
                 selectedGym.getIban(),
@@ -188,11 +196,11 @@ public class ManageMembershipController {
                 membershipBean.getName(),
                 membershipBean.getPrice(),
                 new CardInfoBean(
-                        athlete.getCardNumber(),
-                        athlete.getCardExpirationMonth(),
-                        athlete.getCardExpirationYear(),
-                        athlete.getName(),
-                        athlete.getSurname()),
+                        card.cardNumber(),
+                        String.valueOf(card.cardExpirationDate().getMonthValue()),
+                        String.valueOf(card.cardExpirationDate().getMonthValue()),
+                        card.name(),
+                        card.surname()),
                 athlete.getEmail());
     }
 
@@ -202,7 +210,7 @@ public class ManageMembershipController {
     }
 
     public List<GymInfoBean> searchGym(SearchGymBean searchBean) throws DBUnrreachableException {
-        List<Gym> gyms = Collections.emptyList();
+        List<Gym> gyms;
         try {
             gyms = gymDao.loadAllGyms();
         } catch (SQLException e) {

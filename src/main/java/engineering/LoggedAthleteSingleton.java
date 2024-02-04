@@ -1,7 +1,6 @@
 package engineering;
 
 import beans.AthleteBean;
-import engineering.decorator.MembershipInterface;
 import exceptions.AlreadyLoggedUserException;
 import model.Athlete;
 
@@ -9,25 +8,6 @@ public class LoggedAthleteSingleton extends LoggedUserSingleton{
     protected LoggedAthleteSingleton(Athlete temp) {
         super(temp);
     }
-
-
-    private MembershipInterface membership;
-
-    public String getGymToSubscribe() {
-        return gymToSubscribe;
-    }
-
-    private String gymToSubscribe;
-
-    public MembershipInterface getMembership() {
-        return membership;
-    }
-
-    public void setMembership(MembershipInterface membership,String name) {
-        this.gymToSubscribe=name;
-        this.membership = membership;
-    }
-
     @Override
     public Athlete getUser(){
         return (Athlete) user;
