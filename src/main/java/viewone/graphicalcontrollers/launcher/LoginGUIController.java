@@ -46,7 +46,7 @@ public class LoginGUIController {
     @FXML
     public void goForward() throws IOException  {
         UserAccessController controller=new UserAccessController();
-        UserBean userBean=null;
+        UserBean userBean;
         try {
             userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()),saveCredentials);
         }catch(AlreadyLoggedUserException e){

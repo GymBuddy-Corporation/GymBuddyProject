@@ -33,7 +33,7 @@ public class StreamEncryption {
 
     public static Object decrypt(byte[] key,InputStream istream) throws IOException, InvalidKeyException {
         SecretKeySpec sks = new SecretKeySpec(key, transformation);
-        Cipher cipher = null;
+        Cipher cipher;
         try {
             cipher = Cipher.getInstance(transformation);
         } catch (NoSuchAlgorithmException|NoSuchPaddingException e) {

@@ -72,7 +72,7 @@ public class ViewRequestGUIController implements Initializable {
     public void rejectRequest() {
         //TODO gestisci la cancellazione di una richiesta
 
-        SatisfyWorkoutRequestsController controller = null;
+        SatisfyWorkoutRequestsController controller;
         try {
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e) {

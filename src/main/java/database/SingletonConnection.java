@@ -1,5 +1,9 @@
 package database;
 
+import exceptions.logger.CostumeLogger;
+
+import java.io.Closeable;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,6 +27,16 @@ public class SingletonConnection {
                     PASSWORD);
         } catch ( SQLException e) {
             this.conn = null;
+        }
+
+    }
+    public static void closeAll(Closeable ... chanels){
+        for(Closeable closeIt:chanels){
+            try{
+                closeIt.close();
+            }catch (IOException e){
+                CostumeLogger.getInstance().logError(e);
+            }
         }
 
     }

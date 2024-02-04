@@ -66,6 +66,7 @@ public class GymDAO {
         List<Gym> gyms = new ArrayList<>();
         PreparedStatement preparedStatement=SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_ALL_GYMS);
         ResultSet resultSet=preparedStatement.executeQuery();
+        preparedStatement.close();
         while(resultSet.next()){
             gyms.add( new Gym(
                     resultSet.getString(USERNAME),
@@ -111,7 +112,7 @@ public class GymDAO {
         ResultSet rs = Queries.loadAndExecuteOneString(fc, statement);
         rs.next();
         String email = rs.getString(EMAIL);
-        Gym gym = null;
+        Gym gym;
         gym = loadGym(email);
         return gym;
     }catch (SQLException e){
@@ -125,7 +126,7 @@ public class GymDAO {
     }
 
     public Gym getGymByName(String name) throws NoUserFoundException, DBUnrreachableException {
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
         try {
             preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_NAME_QUERRT);
             return getGym(name, preparedStatement);

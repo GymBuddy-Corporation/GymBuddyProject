@@ -30,7 +30,7 @@ public class PTHomeGUIController2 implements Initializable {
     }
 
     private void initializeRequestList() {
-        SatisfyWorkoutRequestsController controller = null;
+        SatisfyWorkoutRequestsController controller;
         try {
             controller = new SatisfyWorkoutRequestsController();
             ManageRequestList2.setRequestList(requestList, controller);

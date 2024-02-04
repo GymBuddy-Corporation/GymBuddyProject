@@ -62,34 +62,42 @@ public class UserDAO {
 
     public static Credentials deserializeSavedCredentials() throws NoUserFoundException {
         Credentials credentials;
+        FileInputStream fileIn = null;
+        ObjectInputStream in = null;
         try {
-            FileInputStream fileIn = new FileInputStream(FILE_FOR_CREDENTIALS);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
+            fileIn = new FileInputStream(FILE_FOR_CREDENTIALS);
+            in = new ObjectInputStream(fileIn);
             credentials = (Credentials) in.readObject();
             in.close();
             fileIn.close();
         } catch (IOException | ClassNotFoundException i) {
             throw new NoUserFoundException();
+        } finally {
+            SingletonConnection.closeAll(fileIn, in);
         }
         return credentials;
     }
 
-    public static void serializeSavedCredential(Credentials credentials){
+    public static void serializeSavedCredential(Credentials credentials) {
+        ObjectOutputStream out = null;
+        FileOutputStream fileOut = null;
         try {
             eliminateSavedCredentials();
-            FileOutputStream fileOut = new FileOutputStream(FILE_FOR_CREDENTIALS);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            fileOut = new FileOutputStream(FILE_FOR_CREDENTIALS);
+            out = new ObjectOutputStream(fileOut);
             out.writeObject(credentials);
             out.close();
             fileOut.close();
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
+        } finally {
+            SingletonConnection.closeAll(fileOut, out);
         }
     }
 
     public  static void eliminateSavedCredentials(){
         File myObj = new File(FILE_FOR_CREDENTIALS);
-        myObj.delete();
+        if(!myObj.delete())CostumeLogger.getInstance().logString("failed to delete cred file");
     }
 
 
