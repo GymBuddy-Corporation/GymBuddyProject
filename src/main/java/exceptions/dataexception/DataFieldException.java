@@ -1,14 +1,14 @@
-package exceptions.dataException;
+package exceptions.dataexception;
 
 import exceptions.CostumException;
-import exceptions.dataException.TyperEnumerations.FieldGetter;
-import exceptions.dataException.TyperEnumerations.FieldsEnum;
-import exceptions.dataException.TyperEnumerations.ProblemEnum;
-import exceptions.dataException.TyperEnumerations.ProblemGetter;
+import exceptions.dataexception.TyperEnumerations.FieldGetter;
+import exceptions.dataexception.TyperEnumerations.FieldsEnum;
+import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.TyperEnumerations.ProblemGetter;
 
 public class DataFieldException extends CostumException {
-    FieldsEnum dataType;
-    ProblemEnum problem;
+    private final  FieldsEnum  dataType;
+    private final ProblemEnum problem;
     public DataFieldException (FieldsEnum type, ProblemEnum problemType){
             super("Error with "+ FieldGetter.getField(type)+": "+ ProblemGetter.getProblem(problemType));
             dataType=type;

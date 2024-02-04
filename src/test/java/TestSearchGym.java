@@ -7,7 +7,7 @@ import exceptions.AlreadyLoggedUserException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import exceptions.NoUserFoundException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import org.junit.jupiter.api.Test;
 import controllers.ManageMembershipController;
 

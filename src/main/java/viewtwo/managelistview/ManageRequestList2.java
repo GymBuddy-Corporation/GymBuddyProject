@@ -1,13 +1,13 @@
-package viewtwo.manageListView;
+package viewtwo.managelistview;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.DBUnrreachableException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import viewtwo.manageListView.listCells.RequestListCellFactory2;
+import viewtwo.managelistview.listCells.RequestListCellFactory2;
 
 
 public class ManageRequestList2 {

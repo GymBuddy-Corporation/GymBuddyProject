@@ -1,7 +1,7 @@
 package beans;
 
 
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 
 public class PersonBean extends UserBean{
 

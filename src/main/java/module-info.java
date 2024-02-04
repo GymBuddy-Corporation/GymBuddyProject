@@ -41,9 +41,9 @@ module start {
     exports viewone.managelistview.listcells;
     opens viewone.managelistview.listcells;
     opens utils;
-    exports exceptions.dataException;
+    exports exceptions.dataexception;
     opens engineering.popups to javafx.fxml;
-    exports exceptions.dataException.TyperEnumerations;
+    exports exceptions.dataexception.TyperEnumerations;
     exports exceptions;
     exports viewone.beans;
     opens viewone.beans to javafx.fxml;

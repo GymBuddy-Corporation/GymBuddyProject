@@ -1,4 +1,4 @@
-package viewtwo.manageListView;
+package viewtwo.managelistview;
 
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
@@ -50,7 +50,6 @@ public class ManageExerciseList2 {
     }
 
     public static void updateListFilteredDB(ListView<ExerciseForWorkoutRoutineBean> exerciseListView, List<ExerciseBean> exerciseList) {
-        //todo da usare nell'observer
         List<ExerciseForWorkoutRoutineBean> filteredList = exerciseListView.getItems().stream()
                 .filter(exerciseForWorkoutRoutineBean ->
                         exerciseForWorkoutRoutineBean != null &&
@@ -73,7 +72,6 @@ public class ManageExerciseList2 {
         if (newItem != null) {
             controller.resetSelection(2);
             try{
-                String day = controller.getSelectedDay();
                 DeleteExePopUp.getDeleteExePopup(controller, newItem, "DeleteExercisePopUp.fxml", "popups", 2);
             } catch (IOException e){
                 CostumeLogger.getInstance().logError(e);

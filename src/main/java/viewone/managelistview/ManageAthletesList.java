@@ -3,7 +3,7 @@ package viewone.managelistview;
 import beans.AthleteBean;
 import beans.CredentialsBean;
 import beans.PersonalInfoBean;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ListView;

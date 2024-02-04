@@ -1,8 +1,8 @@
 package beans;
 
-import exceptions.dataException.DataFieldException;
-import exceptions.dataException.TyperEnumerations.FieldsEnum;
-import exceptions.dataException.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.DataFieldException;
+import exceptions.dataexception.TyperEnumerations.FieldsEnum;
+import exceptions.dataexception.TyperEnumerations.ProblemEnum;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

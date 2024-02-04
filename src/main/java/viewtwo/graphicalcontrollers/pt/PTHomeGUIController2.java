@@ -4,7 +4,7 @@ import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import javafx.scene.control.ListView;
 import viewtwo.engegnering.MainMenuSingleton;
 import utils.MainStage;
 import utils.SwitchPage;
-import viewtwo.manageListView.ManageRequestList2;
+import viewtwo.managelistview.ManageRequestList2;
 
 import java.io.IOException;
 import java.net.URL;

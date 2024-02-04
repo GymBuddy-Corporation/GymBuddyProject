@@ -4,7 +4,7 @@ import beans.AthleteBean;
 import beans.CredentialsBean;
 import beans.PersonalInfoBean;
 import engineering.popups.PopupBaseController;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

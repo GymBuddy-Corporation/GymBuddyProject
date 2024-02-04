@@ -4,7 +4,7 @@ import controllers.ManageMembershipController;
 import controllers.UserAccessController;
 import engineering.decorator.MembershipInterface;
 import exceptions.*;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import model.Membership;
 import model.cupons.Coupon;
 import model.cupons.DirectDiscountCoupon;

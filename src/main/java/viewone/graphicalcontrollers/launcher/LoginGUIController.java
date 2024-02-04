@@ -6,7 +6,7 @@ import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import utils.MainStage;

@@ -20,8 +20,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import model.ExerciseStatus;
 import viewone.managelistview.ManageExerciseList;
-import viewtwo.manageListView.ManageExerciseList2;
-import viewtwo.manageListView.listCells.ExerciseListCellFactory2;
+import viewtwo.managelistview.ManageExerciseList2;
+import viewtwo.managelistview.listCells.ExerciseListCellFactory2;
 import viewtwo.popups.ChangeExeStatusPopUp;
 
 import java.net.URL;
