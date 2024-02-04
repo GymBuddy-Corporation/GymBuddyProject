@@ -2,7 +2,6 @@ package viewtwo.graphicalcontrollers.pt;
 
 import beans.RequestBean;
 import controllers.SatisfyWorkoutRequestsController;
-import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataException.DataFieldException;

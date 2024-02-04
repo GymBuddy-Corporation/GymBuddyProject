@@ -1,7 +1,6 @@
 package engineering;
 
 import beans.AthleteBean;
-import engineering.decorator.MembershipInterface;
 import exceptions.AlreadyLoggedUserException;
 import model.Athlete;
 

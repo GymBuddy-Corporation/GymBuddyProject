@@ -1,7 +1,6 @@
 package viewone.managelistview.listcells;
 
 import beans.CuponsBean;
-import beans.GymInfoBean;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import utils.SwitchPage;

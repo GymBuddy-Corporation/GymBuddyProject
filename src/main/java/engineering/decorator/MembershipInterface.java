@@ -1,7 +1,5 @@
 package engineering.decorator;
 
-import exceptions.DecoratorNoBaseComponentException;
-
 public interface MembershipInterface {
     float getPrice();
     int getPoints() ;

@@ -9,7 +9,6 @@ import engineering.LoggedGymSingleton;
 import engineering.LoggedTrainerSingleton;
 import exceptions.*;
 
-import exceptions.dataException.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import model.Athlete;
 import model.Gym;

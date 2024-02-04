@@ -1,7 +1,6 @@
 import beans.*;
 import controllers.SatisfyWorkoutRequestsController;
 import controllers.UserAccessController;
-import engineering.ExerciseInventory;
 import engineering.LoggedUserSingleton;
 import exceptions.*;
 import exceptions.dataException.DataFieldException;
@@ -9,8 +8,6 @@ import exceptions.logger.CostumeLogger;
 import model.*;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;

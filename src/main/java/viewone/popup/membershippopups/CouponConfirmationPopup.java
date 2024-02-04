@@ -1,9 +1,7 @@
 package viewone.popup.membershippopups;
 
 import beans.CuponsBean;
-import beans.MembershipBean;
 import engineering.popups.PopupBaseClass;
-import engineering.popups.PopupBaseController;
 
 import java.io.IOException;
 

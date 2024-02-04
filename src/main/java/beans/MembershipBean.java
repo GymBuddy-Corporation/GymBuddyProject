@@ -17,7 +17,7 @@ public class MembershipBean {
         return onlyForNewUsers;
     }
 
-    private boolean onlyForNewUsers;
+    private final boolean onlyForNewUsers;
 
     public MembershipBean( String gymName, String name, String description, float price, int durationInDays, int pointsAwardedOnBuy){
         this.gymName=gymName;

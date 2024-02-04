@@ -1,7 +1,7 @@
 package model;
 
 import engineering.decorator.MembershipInterface;
-import exceptions.DecoratorNoBaseComponentException;
+
 public class Membership implements MembershipInterface {
 
     private final String name;

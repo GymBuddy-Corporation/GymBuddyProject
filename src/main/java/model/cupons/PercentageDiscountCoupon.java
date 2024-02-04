@@ -29,6 +29,6 @@ public class PercentageDiscountCoupon extends Coupon {
 
     @Override
     public String getCouponsValue() {
-        return String.valueOf(discountPercentage)+"%";
+        return discountPercentage +"%";
     }
 }

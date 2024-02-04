@@ -3,7 +3,6 @@ package utils.listview;
 import exceptions.logger.CostumeLogger;
 import javafx.scene.control.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public  class ManageGenericList {

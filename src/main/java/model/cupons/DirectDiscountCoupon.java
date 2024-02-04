@@ -35,7 +35,7 @@ public class DirectDiscountCoupon extends Coupon {
 
     @Override
     public String getCouponsValue() {
-        return String.valueOf(discountValue)+" $";
+        return discountValue +" $";
     }
 
 }

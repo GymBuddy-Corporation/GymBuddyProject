@@ -1,18 +1,15 @@
 package database;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SingletonConnection {
     private static SingletonConnection dbConn;
     private static final String URL = "jdbc:mysql://localhost:3306/gymbuddy";
-    private static final String USER = "root";
+    private static final String USER = "gymbuddy";
     private static final String PASSWORD = "root1234!S";
 
     private static final Logger logger = Logger.getLogger(SingletonConnection.class.getName());
@@ -24,11 +21,8 @@ public class SingletonConnection {
                     URL,
                     USER,
                     PASSWORD);
-            System.out.println("connection correctly initialized.");
-        } catch (/*CJCommunicationsException | IOException |*/ SQLException e) {
+        } catch ( SQLException e) {
             this.conn = null;
-            System.out.println(e.getErrorCode());
-            /*throw new DBConnectionFailedException();*/
         }
 
     }

@@ -24,6 +24,6 @@ public class PointsCoupon extends Coupon {
 
     @Override
     public String getCouponsValue() {
-        return String.valueOf(pointAwarded)+" points";
+        return pointAwarded +" points";
     }
 }

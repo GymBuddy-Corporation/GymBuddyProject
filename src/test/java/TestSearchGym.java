@@ -10,7 +10,7 @@ import exceptions.NoUserFoundException;
 import exceptions.dataException.DataFieldException;
 import org.junit.jupiter.api.Test;
 import controllers.ManageMembershipController;
-import java.sql.SQLException;
+
 import java.util.Iterator;
 import java.util.List;
 

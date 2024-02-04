@@ -5,7 +5,6 @@ import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
 import exceptions.EmptySearchException;
 import exceptions.NoLoggedUserException;
-import exceptions.UserCastException;
 import exceptions.logger.CostumeLogger;
 import model.ExerciseStatus;
 import viewone.managelistview.listcells.ExerciseListCellFactoryForStatus;

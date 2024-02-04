@@ -81,7 +81,7 @@ public class AthleteDAO {
         }
         return true;
     }
-    private String FILE_FOR_CARD="CAR.ser";
+    private final String FILE_FOR_CARD="CAR.ser";
     public void saveCard(Card card){
         try {
             FileOutputStream fileOut = new FileOutputStream(FILE_FOR_CARD);

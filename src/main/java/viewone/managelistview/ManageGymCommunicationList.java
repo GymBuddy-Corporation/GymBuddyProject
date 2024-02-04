@@ -3,7 +3,6 @@ package viewone.managelistview;
 import beans.*;
 import controllers.SatisfyWorkoutRequestsController;
 import controllers.SeeCommunications;
-import exceptions.dataException.DataFieldException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

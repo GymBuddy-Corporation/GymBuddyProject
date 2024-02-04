@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class ManageMembershipController {
     protected final GymDAO gymDao;
     private static Gym selectedGym;
-    private boolean hasCard;
+    private final boolean hasCard;
     LoggedAthleteSingleton singletonInstance;
     public ManageMembershipController() throws NoLoggedUserException {
         singletonInstance =LoggedAthleteSingleton.getSingleton();
