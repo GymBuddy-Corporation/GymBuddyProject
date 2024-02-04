@@ -11,13 +11,18 @@ import utils.SwitchPage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//TODO GESTISCI BENE I PASSAGGI FRA UNA SCHERAMATA E UN'ALTRA
 
 public class SendGymCommunicationGUIController implements Initializable {
 
     @FXML
     private ImageView user;
     @FXML private ImageView pt;
+
+    private static final String GYM="gym";
+    private static final String LAUNCHER="launcher";
+
+    private static final int VIEW=1;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -32,17 +37,17 @@ public class SendGymCommunicationGUIController implements Initializable {
     Image empty;
     Image full;
 
-    enum Selezione{//TODO: Da rimuovere i bottoni radio belli e implementarli con una classe
+    enum Selezione{
         PT,
         USER
     }
 
 
     @FXML
-    public void logout() throws Exception {
+    public void logout()  {
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        SwitchPage.changePage("Login.fxml",LAUNCHER,VIEW);
     }
     @FXML
     public void setBottonept() {
@@ -51,12 +56,12 @@ public class SendGymCommunicationGUIController implements Initializable {
         scelta= SendGymCommunicationGUIController.Selezione.PT;
     }
     @FXML
-    public void sendCommunication() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
+    public void sendCommunication()  {
+        SwitchPage.changePage("GymHome.fxml",GYM,VIEW);
     }
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
+    public void goBack()  {
+        SwitchPage.changePage("GymHome.fxml",GYM,VIEW);
     }
     @FXML
     public void setBottoneuser() {
@@ -65,14 +70,14 @@ public class SendGymCommunicationGUIController implements Initializable {
         scelta= SendGymCommunicationGUIController.Selezione.USER;
     }
     @FXML
-    public void goForward() throws Exception {
+    public void goForward()  {
         String path;
         if (scelta== SendGymCommunicationGUIController.Selezione.PT) {
-            path = "Login.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            path = "Login.fxml";
         } else if(scelta== SendGymCommunicationGUIController.Selezione.USER) {
-            path = "AthleteLogin.fxml"; //TODO alla fine avremo un solo login ora serve solo per andare avantisenza DB
+            path = "AthleteLogin.fxml";
         }else{return;}
-        SwitchPage.setStage(MainStage.getStage(),path,"gym",1);
+        SwitchPage.changePage(path,GYM,VIEW);
     }
 
 }

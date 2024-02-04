@@ -19,7 +19,7 @@ public class ManageGymCommunicationList {
 
     private ManageGymCommunicationList() {}
 
-    public static void setListenerDB(ListView<ExerciseBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerDB(ListView<ExerciseBean> exerciseList,  CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -41,8 +41,7 @@ public class ManageGymCommunicationList {
 
     public static void setCommunicationList(ListView<String> communicationList) {
         SeeCommunications seeCommunications = new SeeCommunications();
-        List<String> comList;
-        comList = seeCommunications.getGymCommunications();
+        seeCommunications.getGymCommunications();
         communicationList.getItems().addAll();
     }
 
@@ -50,7 +49,7 @@ public class ManageGymCommunicationList {
         // Filter out exercises with status other than ACTIVE
         List<ExerciseBean> filteredList = exerciseBeanList.stream()
                 .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise()))
-                .collect(Collectors.toList());
+                .toList();
 
         ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(filteredList);
         exerciseBeanListView.setItems(exerciseBeanObservableList);
@@ -72,7 +71,7 @@ public class ManageGymCommunicationList {
     }
 
 
-    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
+    public static void setListenerRoutineWorkout(ListView<ExerciseForWorkoutRoutineBean> exerciseList,  CreateNewWorkoutRoutineGUIController satisfyWorkoutRoutineRequestGUIController) {
         exerciseList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
@@ -92,7 +91,7 @@ public class ManageGymCommunicationList {
         }
     }
 
-    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SetExerciseStatusGUIController setExerciseStatusGUIController) {
+    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SetExerciseStatusGUIController setExerciseStatusGUIController) {
         exerciseDBList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override
