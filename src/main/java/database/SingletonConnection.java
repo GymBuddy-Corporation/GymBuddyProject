@@ -33,7 +33,7 @@ public class SingletonConnection {
     public static void closeAll(Closeable ... chanels){
         for(Closeable closeIt:chanels){
             try{
-                closeIt.close();
+                if(closeIt!=null)closeIt.close();
             }catch (IOException e){
                 CostumeLogger.getInstance().logError(e);
             }

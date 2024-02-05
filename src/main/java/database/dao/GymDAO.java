@@ -34,6 +34,7 @@ public class GymDAO {
                 Queries.LOAD_GYM_EXERCISES); ResultSet rs = Queries.loadTrainerExercises(gymName, preparedStatement)){
             return getExercises(rs);
         } catch (SQLException e) {
+            CostumeLogger.getInstance().logError(e);
             throw new DBUnrreachableException();
         }
     }
@@ -66,7 +67,6 @@ public class GymDAO {
         List<Gym> gyms = new ArrayList<>();
         PreparedStatement preparedStatement=SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_ALL_GYMS);
         ResultSet resultSet=preparedStatement.executeQuery();
-        preparedStatement.close();
         while(resultSet.next()){
             gyms.add( new Gym(
                     resultSet.getString(USERNAME),
@@ -131,6 +131,7 @@ public class GymDAO {
             preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_NAME_QUERRT);
             return getGym(name, preparedStatement);
         } catch (SQLException e) {
+            CostumeLogger.getInstance().logError(e);
             throw new DBUnrreachableException();
         }
     }

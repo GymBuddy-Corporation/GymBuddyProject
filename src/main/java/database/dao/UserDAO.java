@@ -53,6 +53,8 @@ public class UserDAO {
                 }
             }
         }  catch (SQLException e) {
+            CostumeLogger.getInstance().logError(e);
+
             throw new DBUnrreachableException();
         }
 
@@ -68,8 +70,6 @@ public class UserDAO {
             fileIn = new FileInputStream(FILE_FOR_CREDENTIALS);
             in = new ObjectInputStream(fileIn);
             credentials = (Credentials) in.readObject();
-            in.close();
-            fileIn.close();
         } catch (IOException | ClassNotFoundException i) {
             throw new NoUserFoundException();
         } finally {
@@ -86,8 +86,6 @@ public class UserDAO {
             fileOut = new FileOutputStream(FILE_FOR_CREDENTIALS);
             out = new ObjectOutputStream(fileOut);
             out.writeObject(credentials);
-            out.close();
-            fileOut.close();
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
         } finally {
