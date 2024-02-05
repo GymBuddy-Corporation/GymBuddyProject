@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TestDecorator{
 
-    class testController extends ManageMembershipController{
+    static class testController extends ManageMembershipController{
 
         public testController() throws NoLoggedUserException {
             super();
@@ -42,7 +42,7 @@ public class TestDecorator{
 
     @org.junit.jupiter.api.Test
     public void testDecorator() throws DecoratorNoBaseComponentException, CouponNotCumulativeException, NoLoggedUserException {
-        testController controller=new testController();
+        testController controller= new testController();
 
         Membership membership=new Membership("Test abbonamento","Good for those committed to regular workout",100.0f,90,20);
         List<Coupon> coupons=new ArrayList<>();

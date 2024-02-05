@@ -12,19 +12,30 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestCreateWorkoutRoutine extends SatisfyWorkoutRequestsController {
+public class TestCreateWorkoutRoutine {
 
-    public TestCreateWorkoutRoutine() throws NoLoggedUserException {}
+    /*Test dell'alunno Martorelli Luca.
+                MATRICOLA: 0281213*/
+
+    static class testController extends SatisfyWorkoutRequestsController{
+        public testController() throws NoLoggedUserException {
+            super();
+        }
+
+        public WorkoutRoutine create(WorkoutRoutineBean workoutRoutineBean){
+            return  this.createWorkoutRoutine(workoutRoutineBean);
+        }
+
+    }
 
     @Test
-    void createWorkoutRoutine_shouldCreateWorkoutRoutineCorrectly() {
-        //todo veifica perchè lancia NoLoggedUserException
+    void createWorkoutRoutine_shouldCreateWorkoutRoutineCorrectly () {
         try {
             UserAccessController loginController = new UserAccessController();
-            loginController.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com","Password123@"),true);
+            loginController.login(CredentialsBean.ctorWithSyntaxCheck("pt@gmail.com", "Password123@"), true);
             WorkoutRoutineBean workoutRoutineBean = createBean();
-            TestCreateWorkoutRoutine controller = new TestCreateWorkoutRoutine();
-            WorkoutRoutine result = controller.createWorkoutRoutine(workoutRoutineBean);
+            testController controller = new testController();
+            WorkoutRoutine result = controller.create(workoutRoutineBean);
 
             assertNotNull(result);
             assertEquals("SampleRoutine", result.getName());
@@ -43,10 +54,10 @@ public class TestCreateWorkoutRoutine extends SatisfyWorkoutRequestsController {
             assertEquals(3, createdExercise.getSets());
             assertEquals("00:30", createdExercise.getRest());
 
-        }catch(AlreadyLoggedUserException | NoUserFoundException | DataFieldException e){
-            try{
+        } catch (AlreadyLoggedUserException | NoUserFoundException | DataFieldException e) {
+            try {
                 Objects.requireNonNull(LoggedUserSingleton.getSingleton()).getMyBean();
-            } catch (NullPointerException exc){
+            } catch (NullPointerException exc) {
                 CostumeLogger.getInstance().logError(e);
             }
         } catch (DBUnrreachableException | NoLoggedUserException | SubmitRoutineException e) {
@@ -54,7 +65,7 @@ public class TestCreateWorkoutRoutine extends SatisfyWorkoutRequestsController {
         }
     }
 
-    private WorkoutRoutineBean createBean() throws SubmitRoutineException, DataFieldException {
+    private WorkoutRoutineBean createBean () throws SubmitRoutineException, DataFieldException {
 
         WorkoutRoutineBean workoutRoutineBean = new WorkoutRoutineBean();
         workoutRoutineBean.setName("SampleRoutine");

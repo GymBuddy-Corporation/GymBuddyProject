@@ -7,7 +7,6 @@ import java.util.List;
 
 public abstract class Observable {
 
-    //ogni esercizio ha N observer
     private final List<Observer> observers = new ArrayList<>();
 
     public void addObserver(Observer observer) {

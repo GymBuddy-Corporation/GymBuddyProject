@@ -22,7 +22,8 @@ public class TestSearch {
     @Test
     public void TestSearchExercise() {
         ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
-
+        /*Test dell'alunno Martorelli Luca.
+            MATRICOLA: 0281213*/
         Exercise ex1 = new Exercise("Tricep Pushdown");
         Exercise exerciseToSearch = new Exercise("Shoulder Press");
         Exercise ex3 = new Exercise("Squat", ExerciseStatus.SUSPENDED);

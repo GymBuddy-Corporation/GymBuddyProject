@@ -16,10 +16,8 @@ class TestLogin {
     private static final String EMAIL = "lux@gmail.com";
     private static final String PASSWORD = "Password123@";
 
-    /* Nel database è stato precedentemente registrato l'atleta
-     *  con email 'lux@gmail.com' e password 'Password123@'.
-     * Lo scopo del seguente test è di verificare se il login con tali credenziali
-     *  vada effettivamente a buon fine e restituisca l'atleta corretto.*/
+    /*Test dell'alunno Martorelli Luca.
+            MATRICOLA: 0281213*/
 
     @Test void testLogin() {
         int flag = 1;
