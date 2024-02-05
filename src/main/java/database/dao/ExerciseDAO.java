@@ -25,6 +25,7 @@ public class ExerciseDAO {
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
             CostumeLogger.getInstance().logError(e);
+            CostumeLogger.getInstance().logError(e);
         }
     }
 

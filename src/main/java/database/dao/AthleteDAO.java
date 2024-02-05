@@ -63,6 +63,8 @@ public class AthleteDAO {
             Queries.removeWorkoutRoutine(preparedStatement, athleteFC);
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
+            CostumeLogger.getInstance().logError(e);
+
             throw new DBUnrreachableException();
         }
     }
@@ -136,7 +138,6 @@ public class AthleteDAO {
             PreparedStatement statementEliminazione = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.DELETE_WALLET);
             statementEliminazione.setString(1,athlete.getFC());
             statementEliminazione.executeUpdate();
-            statementEliminazione.close();
             PreparedStatement statementInserimento = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.INSERT_WALLET);
             Queries.loadAndExecuteWalletInsertion(statementInserimento, athlete.getFC(), wallet.getStartOfMembership(), wallet.getCurrentGym().getGymName(), wallet.getEndOfMembership(), wallet.getPoints(), wallet.getMembershipName(), wallet.getMembershipPrice(), wallet.getTrainer().getFC());
         }catch (SQLException e ){

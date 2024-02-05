@@ -185,8 +185,7 @@ public class Queries {
             t.email AS trainerEmail, 
             pi.namePerson AS namePerson, pi.surname AS surnamePerson, pi.dateofBirth AS dateOfBirth, pi.birthplace AS birthPlace, pi.fc AS fc, pi.gender AS gender,
             u.username AS username, u.password AS password
-            FROM gymbuddy.trainers AS t JOIN gymbuddy.personalInfo AS pi ON t.fc = pi.fc JOIN gymbuddy.user AS u ON t.email = u.email;
-            """ ;
+            FROM gymbuddy.trainers AS t JOIN gymbuddy.personalInfo AS pi ON t.fc = pi.fc JOIN gymbuddy.user AS u ON t.email = u.email""" ;
 
     public static final String LOAD_TRAINER_BY_FC=LOAD_USER_TRAINER_QUERY+" WHERE t.fc=?";
     public static final String LOAD_TRAINER_BY_EMAIL=LOAD_USER_TRAINER_QUERY+"WHERE t.email=?";
@@ -212,8 +211,7 @@ public class Queries {
             FROM gymbuddy.request r
             JOIN gymbuddy.trainers t ON r.trainersFC = t.fc
             JOIN gymbuddy.athlete a ON r.athleteFC = a.fc
-            WHERE t.fc = ?;
-            """;
+            WHERE t.fc = ?""";
 
 
     public static final String DELETE_REQUEST_QUERY = "DELETE FROM gymbuddy.request " +
@@ -247,11 +245,10 @@ public class Queries {
             WHERE Gym.nameGym =?
             GROUP BY Trainer.fc
             ORDER BY COUNT(Athlete.fc) ASC
-            LIMIT 1;
-            """;
+            LIMIT 1;""";
     protected Queries() {}
-    public static final String DELETE_WALLET="DELETE FROM currentmembership WHERE athleteFC=?";
-    public static final String INSERT_WALLET="INSERT INTO currentmembership VALUES (?,?, ?,?,?,?,?,?)";
+    public static final String DELETE_WALLET="DELETE FROM currentmembership WHERE athleteFC=?;";
+    public static final String INSERT_WALLET="INSERT INTO currentmembership VALUES (?,?, ?,?,?,?,?,?);";
     public static int loadAndExecuteWalletInsertion(PreparedStatement preparedStatement, String athleteFc, Date startDate,String nameGym,Date endDate,int points,String nameMembership,float price,String trainerFc) throws SQLException {
             preparedStatement.setString(1,athleteFc);
             preparedStatement.setDate(2,new java.sql.Date(startDate.getTime()));

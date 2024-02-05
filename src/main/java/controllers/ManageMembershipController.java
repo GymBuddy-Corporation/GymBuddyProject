@@ -9,6 +9,7 @@ import database.dao.TrainerDAO;
 import engineering.LoggedAthleteSingleton;
 import engineering.decorator.MembershipInterface;
 import exceptions.*;
+import exceptions.logger.CostumeLogger;
 import model.*;
 import model.cupons.Coupon;
 import model.record.Card;
@@ -214,6 +215,7 @@ public class ManageMembershipController {
         try {
             gyms = gymDao.loadAllGyms();
         } catch (SQLException e) {
+            CostumeLogger.getInstance().logError(e);
             throw new DBUnrreachableException();
         }
         List<GymInfoBean> beanList = new ArrayList<>();
