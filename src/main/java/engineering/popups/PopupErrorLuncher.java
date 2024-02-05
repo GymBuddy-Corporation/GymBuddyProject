@@ -15,7 +15,7 @@ public class PopupErrorLuncher  extends Popup {
         super();
         String path= SwitchPage.getpath("ErrorPopup.fxml","popups",view);
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
-        Parent load = null;
+        Parent load;
         load = fxmlLoader.load();
        this.setAnchorX(MainStage.getStage().getX());
         this.setAnchorY(MainStage.getStage().getY());

@@ -1,12 +1,8 @@
 package viewone.graphicalcontrollers.athlete;
 
 import controllers.UserAccessController;
-import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
-import utils.MainStage;
 import utils.SwitchPage;
-
-import java.io.IOException;
 
 public class ProfileAthleteGUIController {
     private static final String ATHLETE = "athlete";

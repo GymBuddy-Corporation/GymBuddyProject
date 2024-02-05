@@ -1,4 +1,4 @@
-package exceptions.dataException.TyperEnumerations;
+package exceptions.dataexception.TyperEnumerations;
 
 public class FieldGetter {
     public static String getField(FieldsEnum field){

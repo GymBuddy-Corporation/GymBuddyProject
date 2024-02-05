@@ -8,7 +8,7 @@ import database.dao.RequestDAO;
 import database.dao.WorkoutRoutineDAO;
 import engineering.LoggedTrainerSingleton;
 import exceptions.*;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import model.*;
 

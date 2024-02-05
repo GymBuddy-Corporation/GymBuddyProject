@@ -6,7 +6,7 @@ import engineering.LoggedTrainerSingleton;
 import engineering.Observer;
 import exceptions.EmptySearchException;
 import exceptions.NoLoggedUserException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import viewone.managelistview.listcells.ExerciseForWOListCellFactory;
 import viewone.managelistview.listcells.ExerciseListCellFactory;

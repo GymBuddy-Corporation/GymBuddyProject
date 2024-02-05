@@ -76,6 +76,7 @@ public class TrainerDAO {
                     PreparedStatement statement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_TRAINER_FC_FROM_GYM_NAME_LOWEST_ATHLETES);
                     statement.setString(1,gymToAdd.getGymName());
                     ResultSet resultSet = statement.executeQuery();
+                    statement.close();
                     resultSet.next();
                     return loadTrainer(resultSet.getString("fc"), "fc");
                 }catch (SQLException e){

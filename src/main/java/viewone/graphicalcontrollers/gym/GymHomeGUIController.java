@@ -12,36 +12,42 @@ import java.util.ResourceBundle;
 
 public class GymHomeGUIController implements Initializable {
 
+    private static final String GYM="gym";
+    private static final String LAUNCHER="launcher";
+
+    private static final int VIEW=1;
+
+
     @FXML
     Text userText;
 
     @FXML
-    public void manageAthletes() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymUserView.fxml","gym",1);
+    public void manageAthletes()  {
+        SwitchPage.changePage("GymUserView.fxml",GYM,VIEW);
     }
 
     @FXML
-    public void managePT() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymPTView.fxml","gym",1);
+    public void managePT()  {
+        SwitchPage.changePage("GymPTView.fxml",GYM,VIEW);
     }
     @FXML
-    public void manageGymEquipment() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymEquipmentView.fxml","gym",1);
+    public void manageGymEquipment()  {
+        SwitchPage.changePage("GymEquipmentView.fxml",GYM,VIEW);
     }
     @FXML
-    public void sendCommunication() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"SendGymCommunication.fxml","gym",1);
+    public void sendCommunication()  {
+        SwitchPage.changePage("SendGymCommunication.fxml",GYM,VIEW);
     }
     @FXML
-    public void logout() throws Exception {
+    public void logout()  {
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        SwitchPage.changePage("Login.fxml",LAUNCHER,VIEW);
     }
 
     @FXML
-    public void seeProfile() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"ProfileGym.fxml","gym",1);
+    public void seeProfile()  {
+        SwitchPage.changePage("ProfileGym.fxml",GYM,VIEW);
     }
 
     @Override

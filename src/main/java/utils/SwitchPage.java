@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import static java.lang.System.exit;
-class Old_scene{
+class OldScene{
     Scene scene;
     Object controller;
-    Old_scene(Scene a,Object b){
+    OldScene(Scene a,Object b){
         scene=a;
         controller=b;
     }
@@ -31,10 +31,10 @@ public class SwitchPage {
 
 
 
-    private final HashMap<String, Old_scene> remembered_scenes;
+    private final HashMap<String, OldScene> oldSceneHashMap;
 
     private SwitchPage(){
-        remembered_scenes=new HashMap<String,Old_scene>();
+        oldSceneHashMap =new HashMap<String,OldScene>();
     }
     public static void changePage(String file,String folder,int view){
         try {
@@ -50,34 +50,33 @@ public class SwitchPage {
         if(me==null) {
             me = new SwitchPage();
         }
-        if(me.remembered_scenes.get(name+folder)!=null)me.remembered_scenes.remove(name+folder);
-        me.remembered_scenes.put(name+folder,new Old_scene(scene,controller));
+        if(me.oldSceneHashMap.get(name+folder)!=null)me.oldSceneHashMap.remove(name+folder);
+        me.oldSceneHashMap.put(name+folder,new OldScene(scene,controller));
     }
 
     public static void deleteElement(String name,String folder){
         if(me==null) {
             me = new SwitchPage();
         }
-        if(me.remembered_scenes.get(name+folder)!=null)me.remembered_scenes.remove(name+folder);
+        if(me.oldSceneHashMap.get(name+folder)!=null)me.oldSceneHashMap.remove(name+folder);
     }
 
     public static Object getController(String name,String folder){
         if(me==null){
             return  null;
         }
-        if(me.remembered_scenes.get(name+folder)==null)return null;
-        return me.remembered_scenes.get(name+folder).controller;
+        if(me.oldSceneHashMap.get(name+folder)==null)return null;
+        return me.oldSceneHashMap.get(name+folder).controller;
     }
 
 
     public static  Object setStage(Stage stage, String name,String folder,int view) throws IOException {
-        if(me!=null){
-            if(me.remembered_scenes.get(name+folder)!=null){
-                Old_scene old_scene=me.remembered_scenes.get(name+folder);
-                stage.setScene(old_scene.scene);
+        if(me!=null && me.oldSceneHashMap.get(name+folder)!=null){
+                OldScene oldScene=me.oldSceneHashMap.get(name+folder);
+                stage.setScene(oldScene.scene);
                 stage.show();
-                return old_scene.controller;
-            }
+                return oldScene.controller;
+
         }
         String path;
         path=SwitchPage.getpath(name,folder,view);
@@ -100,7 +99,6 @@ public class SwitchPage {
                 viewPath=VIEWTWO;
                 break;
             default:
-                //TODO:trhoware un exception quando capiro come fare
                 exit(-1);
                 break;
         }

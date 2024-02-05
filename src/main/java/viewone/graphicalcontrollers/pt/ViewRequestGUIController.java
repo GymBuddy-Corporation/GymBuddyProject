@@ -6,7 +6,7 @@ import controllers.UserAccessController;
 import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import viewone.managelistview.ManageRequestList;
 import javafx.beans.value.ChangeListener;
@@ -72,7 +72,7 @@ public class ViewRequestGUIController implements Initializable {
     public void rejectRequest() {
         //TODO gestisci la cancellazione di una richiesta
 
-        SatisfyWorkoutRequestsController controller = null;
+        SatisfyWorkoutRequestsController controller;
         try {
             controller = new SatisfyWorkoutRequestsController();
         } catch (NoLoggedUserException e) {

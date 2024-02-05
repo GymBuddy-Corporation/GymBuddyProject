@@ -3,7 +3,7 @@ package viewtwo.popups.controllers;
 import beans.ExerciseForWorkoutRoutineBean;
 import engineering.popups.PopupBaseClass;
 import engineering.popups.PopupBaseController;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

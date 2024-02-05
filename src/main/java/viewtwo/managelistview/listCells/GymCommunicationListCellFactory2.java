@@ -1,6 +1,5 @@
-package viewtwo.manageListView.listCells;
+package viewtwo.managelistview.listCells;
 
-import beans.ExerciseBean;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -10,18 +9,18 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class ExerciseListCellFactoryForStatus2 implements Callback<ListView<ExerciseBean>, ListCell<ExerciseBean>> {
+public class GymCommunicationListCellFactory2 implements Callback<ListView<String>, ListCell<String>> {
 
     @Override
-    public ListCell<ExerciseBean> call(ListView<ExerciseBean> param) {
-        return new ExerciseListCell();
+    public ListCell<String> call(ListView<String> param) {
+        return new GymCommunicationListCell();
     }
 
-    private static class ExerciseListCell extends ListCell<ExerciseBean> {
-        private static final String FXML_PATH = "/viewone/pt/ListExerciseWorkoutRoutine.fxml";
+    private static class GymCommunicationListCell extends ListCell<String> {
+        private static final String FXML_PATH = "/viewone/pt/ListGymCommunication.fxml";
         private final Label itemNameLabel;
 
-        public ExerciseListCell() {
+        public GymCommunicationListCell() {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH));
                 Parent parentNode = loader.load();
@@ -33,13 +32,13 @@ public class ExerciseListCellFactoryForStatus2 implements Callback<ListView<Exer
         }
 
         @Override
-        protected void updateItem(ExerciseBean exerciseBean, boolean empty) {
-            super.updateItem(exerciseBean, empty);
+        protected void updateItem(String info, boolean empty) {
+            super.updateItem(info, empty);
 
-            if (empty || exerciseBean == null) {
+            if (empty || info == null) {
                 setText(null);
             } else {
-                itemNameLabel.setText(exerciseBean.getName());
+                itemNameLabel.setText(info);
             }
         }
     }

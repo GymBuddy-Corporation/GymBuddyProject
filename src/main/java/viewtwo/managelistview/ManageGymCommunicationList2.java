@@ -1,4 +1,4 @@
-package viewtwo.manageListView;
+package viewtwo.managelistview;
 
 import controllers.SeeCommunications;
 import javafx.scene.control.ListView;

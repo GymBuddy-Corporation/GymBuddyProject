@@ -4,7 +4,7 @@ import beans.AthleteBean;
 import controllers.SatisfyWorkoutRequestsController;
 import viewone.managelistview.listcells.AthleteListCellFactory;
 import viewone.managelistview.ManageAthletesList;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

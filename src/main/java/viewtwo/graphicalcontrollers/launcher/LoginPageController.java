@@ -7,7 +7,7 @@ import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import utils.MainStage;

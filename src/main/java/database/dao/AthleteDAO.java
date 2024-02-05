@@ -23,8 +23,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-import static java.lang.System.in;
-
 
 public class AthleteDAO {
 
@@ -71,8 +69,8 @@ public class AthleteDAO {
 
     public boolean loadCard(Athlete athlete) {
         Card card;
-        FileInputStream fileIn ;
-        ObjectInputStream in;
+        FileInputStream fileIn = null;
+        ObjectInputStream in = null;
         try {
             fileIn = new FileInputStream(FILE_FOR_CARD);
             in = new ObjectInputStream(fileIn);
@@ -80,20 +78,16 @@ public class AthleteDAO {
             athlete.setCard(card);
         } catch (IOException | ClassNotFoundException i) {
             return false;
-        }
-        try {
-            in.close();
-            fileIn.close();
-        } catch (IOException e) {
-            CostumeLogger.getInstance().logError(e);
+        }finally {
+            SingletonConnection.closeAll(fileIn,in);
         }
 
         return true;
     }
     private static final String FILE_FOR_CARD="CAR.ser";
     public void saveCard(Card card){
-        ObjectOutputStream out;
-        FileOutputStream fileOut;
+        ObjectOutputStream out = null;
+        FileOutputStream fileOut = null;
         try {
             fileOut = new FileOutputStream(FILE_FOR_CARD);
             out = new ObjectOutputStream(fileOut);
@@ -102,13 +96,8 @@ public class AthleteDAO {
             fileOut.close();
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
-            return;
-        }
-        try {
-            out.close();
-            fileOut.close();
-        } catch (IOException e) {
-            CostumeLogger.getInstance().logError(e);
+        }finally {
+            SingletonConnection.closeAll(out,fileOut);
         }
     }
 
@@ -147,6 +136,7 @@ public class AthleteDAO {
             PreparedStatement statementEliminazione = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.DELETE_WALLET);
             statementEliminazione.setString(1,athlete.getFC());
             statementEliminazione.executeUpdate();
+            statementEliminazione.close();
             PreparedStatement statementInserimento = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.INSERT_WALLET);
             Queries.loadAndExecuteWalletInsertion(statementInserimento, athlete.getFC(), wallet.getStartOfMembership(), wallet.getCurrentGym().getGymName(), wallet.getEndOfMembership(), wallet.getPoints(), wallet.getMembershipName(), wallet.getMembershipPrice(), wallet.getTrainer().getFC());
         }catch (SQLException e ){

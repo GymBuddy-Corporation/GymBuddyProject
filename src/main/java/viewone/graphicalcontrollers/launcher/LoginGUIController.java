@@ -6,7 +6,7 @@ import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
-import exceptions.dataException.DataFieldException;
+import exceptions.dataexception.DataFieldException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import utils.MainStage;
@@ -46,7 +46,7 @@ public class LoginGUIController {
     @FXML
     public void goForward() throws IOException  {
         UserAccessController controller=new UserAccessController();
-        UserBean userBean=null;
+        UserBean userBean;
         try {
             userBean=controller.login(CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()),saveCredentials);
         }catch(AlreadyLoggedUserException e){

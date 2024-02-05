@@ -1,7 +1,6 @@
 package viewone.graphicalcontrollers.pt;
 
 import javafx.fxml.FXML;
-import utils.MainStage;
 import utils.SwitchPage;
 
 public class ProfilePTGUIControllerGUIController {

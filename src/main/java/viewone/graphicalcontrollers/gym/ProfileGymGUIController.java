@@ -2,7 +2,6 @@ package viewone.graphicalcontrollers.gym;
 
 import controllers.UserAccessController;
 import javafx.fxml.FXML;
-import utils.MainStage;
 import utils.SwitchPage;
 
 public class ProfileGymGUIController {

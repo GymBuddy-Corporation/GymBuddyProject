@@ -73,7 +73,7 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
     }
 
     private List<GymInfoBean> searchWithFilter(SearchGymBean filter){
-        ManageMembershipController controller=null;
+        ManageMembershipController controller;
         try {
             controller = new ManageMembershipController();
             return  controller.searchGym(filter);
@@ -107,7 +107,7 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
 @FXML
     public void nextPage() {
     if (bean == null) return;
-    ManageMembershipCreateMembershipGUIController controller = null;
+    ManageMembershipCreateMembershipGUIController controller;
 
     try {
         controller = (ManageMembershipCreateMembershipGUIController) SwitchPage.setStage(MainStage.getStage(), "ManageMembershipCreateMembershipGui.fxml", "athlete", 1);

@@ -25,7 +25,7 @@ public class PopupGymbuddy {
         this.caller=a;
         String path=SwitchPage.getpath("ConfirmSubmitRoutine.fxml","pt",1);
         FXMLLoader fxmlLoader = new FXMLLoader(SwitchPage.class.getResource(path));
-        Parent load = null;
+        Parent load;
         load = fxmlLoader.load();
         popupReference =new Popup();
         popupReference.getContent().add(load);

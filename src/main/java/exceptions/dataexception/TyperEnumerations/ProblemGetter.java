@@ -1,4 +1,4 @@
-package exceptions.dataException.TyperEnumerations;
+package exceptions.dataexception.TyperEnumerations;
 
 public class ProblemGetter {
     public static String getProblem(ProblemEnum field){

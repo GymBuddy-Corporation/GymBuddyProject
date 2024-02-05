@@ -1,4 +1,4 @@
-package exceptions.dataException.TyperEnumerations;
+package exceptions.dataexception.TyperEnumerations;
 
 public enum FieldsEnum {
     EMAIL, PASSWORD, DATE, FC, NAME, USERNAME, INFO,
