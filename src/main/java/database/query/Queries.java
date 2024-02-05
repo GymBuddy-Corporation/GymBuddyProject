@@ -188,7 +188,7 @@ public class Queries {
             FROM gymbuddy.trainers AS t JOIN gymbuddy.personalInfo AS pi ON t.fc = pi.fc JOIN gymbuddy.user AS u ON t.email = u.email""" ;
 
     public static final String LOAD_TRAINER_BY_FC=LOAD_USER_TRAINER_QUERY+" WHERE t.fc=?";
-    public static final String LOAD_TRAINER_BY_EMAIL=LOAD_USER_TRAINER_QUERY+"WHERE t.email=?";
+    public static final String LOAD_TRAINER_BY_EMAIL=LOAD_USER_TRAINER_QUERY+" WHERE t.email=?";
 
     private static final  String GYM_BASIC_INFO=
                             " g.email AS gymEmail," +
