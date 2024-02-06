@@ -76,7 +76,7 @@ public class ManageMembershipSearchGymGUIController implements Initializable, Se
         ManageMembershipController controller;
         try {
             controller = new ManageMembershipController();
-            return  controller.searchGym(filter);
+            return  controller.searchGym(filter,true);
         } catch (NoLoggedUserException | DBUnrreachableException e) {
             e.callMe(1);
         }

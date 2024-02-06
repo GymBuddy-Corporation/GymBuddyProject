@@ -17,6 +17,7 @@ public final class Card implements Serializable {
         this.cardExpirationDate = cardExpirationDate;
     }
 
+
     public String cardNumber() {
         return cardNumber;
     }
@@ -34,6 +35,11 @@ public final class Card implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(cardNumber, name, surname, cardExpirationDate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
@@ -42,11 +48,6 @@ public final class Card implements Serializable {
                 Objects.equals(this.name, that.name) &&
                 Objects.equals(this.surname, that.surname) &&
                 Objects.equals(this.cardExpirationDate, that.cardExpirationDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cardNumber, name, surname, cardExpirationDate);
     }
 
     @Override

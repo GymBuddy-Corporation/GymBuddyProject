@@ -3,17 +3,12 @@ package viewtwo.graphicalcontrollers.launcher;
 import beans.AthleteBean;
 import beans.CredentialsBean;
 import controllers.UserAccessController;
-import engineering.LoggedUserSingleton;
 import exceptions.AlreadyLoggedUserException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import exceptions.dataexception.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import utils.MainStage;
-import utils.SwitchPage;
-import viewtwo.engegnering.MainMenuSingleton;
-import viewtwo.graphicalcontrollers.home.MainMenuController;
 import viewtwo.popups.LoginPopUp;
 import viewtwo.popups.UserRegistrationPopup;
 import viewtwo.popups.abstracts.LoginPopUpInterface;
@@ -32,9 +27,7 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
     public void createUserRegistrationPopup() throws IOException {
         UserRegistrationPopup.getRegistrationPopup(this,"userRegistrationPopUP.fxml","popups",2);
     }
-    private void setErrorText(String error){
-        errorLabel.setText(error);
-    }
+
     @Override
     public void loginCredentialInserted(String email, String password, boolean remember) throws IOException {
         UserAccessController controller = new UserAccessController();
@@ -46,19 +39,15 @@ public class LoginPageController implements LoginPopUpInterface,UserRegistration
         } catch (AlreadyLoggedUserException e) {
             e.callMe(2);
         }
-        MainMenuController a = (MainMenuController) SwitchPage.setStage(MainStage.getStage(), "mainMenu.fxml", "home", 2);
-        MainMenuSingleton.createMainMenu(a);
-        switch (LoggedUserSingleton.getSingleton().getUserType()) {
-            case pt ->        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
-            case gym ->         MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml", "gym");
-            case athlete ->          MainMenuSingleton.getMainMenu().setActivity("atheleteHome.fxml", "athlete");
-            case null, default ->  MainStage.getStage().close();
-
-        }
+        WelcomeController.afterLogin();
     }
 
     @Override
     public void userRegistration(AthleteBean bean) {
         setErrorText("Registrazione effettuata con successo, effettuare login");
+    }
+
+    private void setErrorText(String error){
+        errorLabel.setText(error);
     }
 }

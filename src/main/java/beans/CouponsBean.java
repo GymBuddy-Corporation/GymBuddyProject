@@ -1,7 +1,7 @@
 package beans;
 
 
-public class CuponsBean {
+public class CouponsBean {
     private final int pointsPrice;
     private final String name;
     private String description;
@@ -12,7 +12,7 @@ public class CuponsBean {
 
     private final String couponValue;
 
-    public CuponsBean( int pointsPrice, String name, boolean onlyForNewMembers, boolean isCumulative, String couponType, String cuponValue) {
+    public CouponsBean(int pointsPrice, String name, boolean onlyForNewMembers, boolean isCumulative, String couponType, String cuponValue) {
         this.pointsPrice = pointsPrice;
         this.name = name;
         this.onlyForNewMembers = onlyForNewMembers;

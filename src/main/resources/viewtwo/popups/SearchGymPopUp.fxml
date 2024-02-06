@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="268.0" style="-fx-background-color: f9b700; -fx-border-color: black; -fx-border-radius: 4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.popups.controllers.SearchGymPopUpController">
+   <center>
+      <AnchorPane prefHeight="275.0" prefWidth="266.0" stylesheets="@../GymBuddyCSS2.css" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="gymsListView" layoutX="16.0" layoutY="57.0" prefHeight="270.0" prefWidth="234.0" />
+            <Label alignment="CENTER" layoutX="24.0" layoutY="14.0" prefHeight="32.0" prefWidth="217.0" text="Search result" textFill="#911701">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

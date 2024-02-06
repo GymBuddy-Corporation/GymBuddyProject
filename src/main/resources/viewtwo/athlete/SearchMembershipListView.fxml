@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="390.0" spacing="10.0" style="-fx-background-radius: 50; -fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <Label fx:id="name" layoutX="36.0" layoutY="28.0" prefHeight="19.0" prefWidth="165.0" text="Name" textFill="#911701">
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Label>
+   <Label fx:id="price" prefHeight="19.0" prefWidth="82.0" text="Price" textFill="#911701">
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Label>
+   <Label fx:id="duration" prefHeight="19.0" prefWidth="165.0" text="Duration" textFill="#911701">
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Label>
+</HBox>

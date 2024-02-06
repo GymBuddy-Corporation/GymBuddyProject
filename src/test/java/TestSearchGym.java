@@ -47,7 +47,7 @@ class TestSearchGym {
         accessController.login(CredentialsBean.ctorWithoutSyntaxCheck("lux@gmail.com", "lux"),false);
         System.out.println(LoggedAthleteSingleton.getSingleton().getUser().getName());
         ManageMembershipController controller = new ManageMembershipController();
-        List<GymInfoBean> lista = controller.searchGym(new SearchGymBean("", "", "", ""));
+        List<GymInfoBean> lista = controller.searchGym(new SearchGymBean("", "", "", ""),true);
         Iterator it = lista.iterator();
         while (it.hasNext()) {
             GymInfoBean gym = (GymInfoBean) it.next();

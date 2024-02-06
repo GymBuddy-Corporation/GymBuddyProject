@@ -9,15 +9,15 @@ public  class ManageGenericList {
 
     private ManageGenericList() {}
 
-    public static void setListnere(ListView<Object> gymList, SetInfoListViewInterface interfaceToGUI) {
-        gymList.getSelectionModel().selectedItemProperty().
+    public static void setListnere(ListView<Object> listView, SetInfoListViewInterface interfaceToGUI) {
+        listView.getSelectionModel().selectedItemProperty().
                 addListener((observableValue, oldItem, newItem) -> {
                     if(newItem==null)return;
                     interfaceToGUI.setInfo(newItem);
                 });
     }
-    public static void setListnere(ListView<Object> gymList, SetInfoListViewInterface interfaceToGUI,boolean repeatable) {
-        gymList.getSelectionModel().selectedItemProperty().
+    public static void setListnere(ListView<Object> listView, SetInfoListViewInterface interfaceToGUI,boolean repeatable) {
+        listView.getSelectionModel().selectedItemProperty().
                 addListener((observableValue, oldItem, newItem) -> {
                     if(newItem==null){
                         CostumeLogger.getInstance().logString("ddd");

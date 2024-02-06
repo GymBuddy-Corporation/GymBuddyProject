@@ -22,10 +22,19 @@
 }
 
 
+
+.anchorPane{
+    -fx-border-color:#911701 ;
+    -fx-border-radius:5em;
+    -fx-background-radius:5em;
+    -fx-background-color: #ffbe0b;
+}
+
 .list-view, .list-view .list-cell{
     -fx-background-color: transparent;
     -fx-background-radius: 5em;
     border: none;
+
 }
 
 .list-view .list-cell:filled:hover, .list-view .list-cell:filled:selected{

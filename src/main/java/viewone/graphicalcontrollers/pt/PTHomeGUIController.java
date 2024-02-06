@@ -1,13 +1,12 @@
 package viewone.graphicalcontrollers.pt;
 
 import controllers.UserAccessController;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import viewone.managelistview.ManageGymCommunicationList;
-import utils.MainStage;
 import utils.SwitchPage;
-import javafx.fxml.FXML;
+import viewone.managelistview.ManageGymCommunicationList;
 import viewone.managelistview.listcells.GymCommunicationListCellFactory;
 
 import java.net.URL;

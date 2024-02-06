@@ -1,4 +1,4 @@
-package viewone.managelistview.listcells;
+package viewtwo.managelistview.listCells;
 
 import beans.CouponsBean;
 import javafx.scene.Parent;
@@ -6,16 +6,16 @@ import javafx.scene.control.Label;
 import utils.SwitchPage;
 import utils.listview.AbstratctCellFactory;
 
-public class SelectedCouponsListCellFactory extends AbstratctCellFactory {
+public class SelectedCouponCellFactory extends AbstratctCellFactory {
     @Override
     public String getListFXMLPathPath() {
-        return SwitchPage.getpath("ListSelectedCoupons.fxml","athlete",1);
+        return SwitchPage.getpath("SelectedCouponListView.fxml","athlete",2);
     }
 
     @Override
     public void makeChangesToList(Parent parent, Object item) {
         CouponsBean bean = (CouponsBean) item;
-        Label nameLabel = (Label) parent.lookup("#nameLabel");
+        Label nameLabel = (Label) parent.lookup("#name");
         nameLabel.setText(bean.getName());
     }
 }

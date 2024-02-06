@@ -1,6 +1,6 @@
 package viewone.popup.membershippopups;
 
-import beans.CuponsBean;
+import beans.CouponsBean;
 import engineering.popups.PopupBaseClass;
 import engineering.popups.PopupBaseController;
 import javafx.fxml.FXML;
@@ -29,8 +29,8 @@ public class CouponConfirmationPopupController extends PopupBaseController {
             this.caller=(CouponConfirmationPopup) caller;
     }
 
-    CuponsBean bean;
-    public void setBean(CuponsBean bean){
+    CouponsBean bean;
+    public void setBean(CouponsBean bean){
         this.bean=bean;
         nameLabel.setText(bean.getName());
         priceLabel.setText(bean.getPointsPrice()+"points");

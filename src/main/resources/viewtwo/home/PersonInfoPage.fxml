@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.athlete.PersonInfoGUIController">
+   <children>
+      <AnchorPane layoutX="32.0" layoutY="64.0" prefHeight="166.0" prefWidth="274.0" styleClass="anchorPane" />
+      <Label alignment="CENTER" layoutX="63.0" layoutY="26.0" prefHeight="32.0" prefWidth="212.0" text="Gym Comunications" textFill="#911701">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="444.0" layoutY="32.0" prefHeight="32.0" prefWidth="212.0" text="User informations" textFill="#911701">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="413.0" layoutY="74.0" prefHeight="166.0" prefWidth="274.0" styleClass="anchorPane">
+         <children>
+            <Label alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="19.0" prefWidth="71.0" text="Name:" textAlignment="RIGHT" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="16.0" layoutY="50.0" prefHeight="19.0" prefWidth="71.0" text="Surname:" textAlignment="RIGHT" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="16.0" layoutY="101.0" prefHeight="19.0" prefWidth="71.0" text="Username:" textAlignment="RIGHT" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="41.0" layoutY="118.0" prefHeight="19.0" prefWidth="46.0" text="Email:" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="name" layoutX="101.0" layoutY="31.0" prefHeight="19.0" prefWidth="114.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="surname" layoutX="101.0" layoutY="50.0" prefHeight="19.0" prefWidth="114.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="username" layoutX="101.0" layoutY="101.0" prefHeight="19.0" prefWidth="124.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="email" layoutX="101.0" layoutY="118.0" prefHeight="19.0" prefWidth="114.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="membershipLabel" alignment="CENTER" layoutX="248.0" layoutY="258.0" prefHeight="32.0" prefWidth="212.0" text="Current Membership" textFill="#911701" visible="false">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="membershipCorner" layoutX="216.0" layoutY="290.0" prefHeight="126.0" prefWidth="274.0" styleClass="anchorPane" visible="false">
+         <children>
+            <Label layoutX="35.0" layoutY="19.0" prefHeight="19.0" prefWidth="46.0" text="Name:" textAlignment="RIGHT" textFill="#911701" />
+            <Label layoutX="35.0" layoutY="39.0" prefHeight="19.0" prefWidth="89.0" text="Expiration date:" textAlignment="RIGHT" textFill="#911701" />
+            <Label layoutX="35.0" layoutY="59.0" prefHeight="19.0" prefWidth="82.0" text="Current points:" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="membershipName" layoutX="75.0" layoutY="19.0" prefHeight="19.0" prefWidth="170.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="membershipDate" layoutX="123.0" layoutY="39.0" prefHeight="19.0" prefWidth="130.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="membershipPoints" layoutX="122.0" layoutY="59.0" prefHeight="19.0" prefWidth="124.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

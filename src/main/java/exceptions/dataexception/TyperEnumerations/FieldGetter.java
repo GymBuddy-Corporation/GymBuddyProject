@@ -16,6 +16,9 @@ public class FieldGetter {
             case FieldsEnum.INFO -> "info";
             case FieldsEnum.ROUTINE_NAME -> "routines' name";
             case FieldsEnum.ROUTINE_COMMENT -> "routines' comment";
+            case FieldsEnum.CREDIT_NUMBER -> "credit card number";
+            case FieldsEnum.CREDIT_MONTH -> "credit card month";
+            case FieldsEnum.CREDIT_YEAR -> "credit card year";
             default -> "error";
         };
     }

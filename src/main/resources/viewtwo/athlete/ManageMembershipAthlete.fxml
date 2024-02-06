@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.athlete.ManageMembershipAthleteGUIController">
+   <children>
+      <AnchorPane fx:id="gymCorner" layoutX="32.0" layoutY="64.0" prefHeight="211.0" prefWidth="260.0" styleClass="anchorPane">
+         <children>
+            <TextField fx:id="searchGymTextField" layoutX="27.0" layoutY="10.0" prefHeight="26.0" prefWidth="205.0" promptText="Find a gym" style="-fx-cursor: text;" stylesheets="@../GymBuddyCSS2.css" AnchorPane.topAnchor="10.0" />
+            <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="208.0" layoutY="10.0" onMouseClicked="#searchButton" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@../images/LogoSearch.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="84.0" prefHeight="19.0" prefWidth="71.0" text="Gym name:" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="14.0" layoutY="106.0" prefHeight="19.0" prefWidth="71.0" text="Address:" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="26.0" layoutY="127.0" prefHeight="19.0" prefWidth="71.0" text="City:" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="15.0" layoutY="145.0" prefHeight="19.0" prefWidth="71.0" text="Country:" textFill="#911701" />
+            <Label fx:id="gymName" layoutX="85.0" layoutY="83.0" prefHeight="19.0" prefWidth="166.0" textFill="#911701" AnchorPane.leftAnchor="86.0" />
+            <Label fx:id="gymAddress" layoutX="86.0" layoutY="106.0" prefHeight="19.0" prefWidth="160.0" stylesheets="@../GymBuddyCSS2.css" textFill="#911701" AnchorPane.leftAnchor="86.0" />
+            <Label fx:id="gymCity" layoutX="85.0" layoutY="127.0" prefHeight="19.0" prefWidth="160.0" textFill="#911701" />
+            <Label fx:id="gymCountry" layoutX="74.0" layoutY="144.0" prefHeight="19.0" prefWidth="167.0" textFill="#911701" AnchorPane.leftAnchor="86.0" />
+            <Label alignment="CENTER" layoutX="77.0" layoutY="51.0" prefHeight="19.0" prefWidth="106.0" text="Selected Gym" textFill="#911701">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="94.0" layoutY="26.0" prefHeight="32.0" prefWidth="135.0" text="Gym Finder" textFill="#911701">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="membershipCorner" layoutX="301.0" layoutY="58.0" prefHeight="211.0" prefWidth="246.0" styleClass="anchorPane">
+         <children>
+            <Label alignment="CENTER" layoutX="11.0" layoutY="19.0" prefHeight="19.0" prefWidth="71.0" text="Name:" textAlignment="RIGHT" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="22.0" layoutY="39.0" prefHeight="19.0" prefWidth="56.0" text="Price:" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="6.0" layoutY="57.0" prefHeight="19.0" prefWidth="71.0" text="Duration:" textFill="#911701" />
+            <Label alignment="CENTER" layoutX="12.0" layoutY="77.0" prefHeight="19.0" prefWidth="71.0" text="Reward:" textFill="#911701" />
+            <TextArea fx:id="descriptionMembership" editable="false" layoutX="23.0" layoutY="96.0" prefHeight="92.0" prefWidth="200.0" wrapText="true" />
+            <Label fx:id="nameMembership" layoutX="72.0" layoutY="19.0" prefHeight="19.0" prefWidth="160.0" textFill="#911701" AnchorPane.leftAnchor="72.0" />
+            <Label fx:id="durationMembership" layoutX="81.0" layoutY="56.0" prefHeight="19.0" prefWidth="160.0" textFill="#911701" AnchorPane.leftAnchor="72.0" />
+            <Label fx:id="priceMembership" layoutX="80.0" layoutY="39.0" prefHeight="19.0" prefWidth="149.0" textFill="#911701" AnchorPane.leftAnchor="72.0" />
+            <Label fx:id="rewardMembership" layoutX="72.0" layoutY="77.0" prefHeight="19.0" prefWidth="172.0" textFill="#911701" AnchorPane.leftAnchor="72.0" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="selectedMembershipLabel" alignment="CENTER" layoutX="315.0" layoutY="26.0" prefHeight="32.0" prefWidth="217.0" text="Selected Membership" textFill="#911701">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="couponsCorner" layoutX="555.0" layoutY="58.0" prefHeight="211.0" prefWidth="218.0" styleClass="anchorPane">
+         <children>
+            <ListView fx:id="couponsListview" layoutX="26.0" layoutY="14.0" prefHeight="183.0" prefWidth="174.0" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="searchMembershipButton" layoutX="340.0" layoutY="275.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#searchMembership" prefHeight="27.0" prefWidth="166.0" style="-fx-cursor: hand;" stylesheets="@../GymBuddyCSS2.css" text="Search for a membesrhip" textFill="#911701" />
+      <Button fx:id="searchCouponButton" layoutX="581.0" layoutY="275.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#searchCoupons" prefHeight="27.0" prefWidth="166.0" style="-fx-cursor: hand;" stylesheets="@../GymBuddyCSS2.css" text="Search for a coupon" textFill="#911701" />
+      <Label fx:id="selectedCouponsLabel" alignment="CENTER" layoutX="555.0" layoutY="26.0" prefHeight="32.0" prefWidth="217.0" text="Selected Coupon" textFill="#911701">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="payCorner" layoutX="32.0" layoutY="330.0" prefHeight="83.0" prefWidth="438.0" styleClass="anchorPane">
+         <children>
+            <Label alignment="CENTER" layoutX="31.0" layoutY="14.0" prefHeight="26.0" prefWidth="47.0" text="Price" textFill="#911701">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="100.0" layoutY="14.0" prefHeight="26.0" prefWidth="71.0" text="Points" textFill="#911701">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="189.0" layoutY="14.0" prefHeight="26.0" prefWidth="92.0" text="Duration" textFill="#911701">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="payButton" layoutX="295.0" layoutY="22.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#pay" prefHeight="39.0" prefWidth="119.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Pay" textFill="#911701" />
+            <Label fx:id="priceFinal" alignment="CENTER" layoutX="19.0" layoutY="40.0" prefHeight="26.0" prefWidth="71.0" textFill="#911701">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="pointsFinal" alignment="CENTER" layoutX="100.0" layoutY="40.0" prefHeight="26.0" prefWidth="82.0" textFill="#911701">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="durationFinal" alignment="CENTER" layoutX="194.0" layoutY="40.0" prefHeight="26.0" prefWidth="82.0" textFill="#911701">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="resetCorner" layoutX="481.0" layoutY="321.0" prefHeight="92.0" prefWidth="298.0" styleClass="anchorPane">
+         <children>
+            <Button fx:id="resetCoupons" layoutX="162.0" layoutY="32.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#resetCoupons" prefHeight="27.0" prefWidth="106.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Reset Coupons" textFill="#911701" />
+            <Button fx:id="resetMembership" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#resetMembership" prefHeight="27.0" prefWidth="126.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Reset Membership" textFill="#911701" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

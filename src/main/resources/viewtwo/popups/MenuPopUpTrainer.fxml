@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="268.0" style="-fx-background-color: f9b700; -fx-border-color: black; -fx-border-radius: 4;" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="viewtwo.popups.controllers.MenuPopUpTrainerController">
+   <center>
+      <AnchorPane prefHeight="275.0" prefWidth="266.0" stylesheets="@../GymBuddyCSS2.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="24.0" layoutY="14.0" prefHeight="32.0" prefWidth="217.0" text="Options" textFill="#911701">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#goToProfile" prefHeight="40.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Profile" textFill="#911701">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="53.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#goToCreateNewWorkoutRoutine" prefHeight="62.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Home" textAlignment="CENTER" textFill="#911701" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

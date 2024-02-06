@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
    <children>
-      <Button layoutX="442.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#createLoginPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Login">
+      <Button layoutX="397.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#createLoginPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Login">
          <font>
             <Font size="29.0" />
          </font>
@@ -34,9 +37,9 @@
                         <Insets left="70.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Label prefHeight="30.0" prefWidth="214.0" text="    Vuoi iscriverti come atleta?" textAlignment="CENTER" textFill="#931701">
+                  <Label prefHeight="78.0" prefWidth="206.0" text="Hai problemi utilizzando gymbuddy?" textAlignment="CENTER" textFill="#931701" wrapText="true">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="20.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -45,7 +48,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <Label prefHeight="121.0" prefWidth="207.0" text="Al momento non forniamo la registrazione come atleta attraverso la nostra applicazione, ma abbonati ad una delle palestre adderetenti ed otterai delle credenziali per effettuare il login." textFill="#931701" wrapText="true" />
+                  <Label prefHeight="61.0" prefWidth="174.0" text="Contatta il nostro servizio clienti apero 24h/24h 7/7 al numero 3090119007" textFill="#931701" wrapText="true" />
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />
@@ -53,11 +56,11 @@
             </VBox>
          </center>
       </BorderPane>
-      <Label fx:id="errorLabel" layoutX="493.0" layoutY="43.0" prefHeight="45.0" prefWidth="232.0" textFill="RED">
+      <Label fx:id="errorLabel" layoutX="457.0" layoutY="57.0" prefHeight="45.0" prefWidth="232.0" textFill="RED">
          <font>
             <Font size="32.0" />
          </font></Label>
-      <Button layoutX="442.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#createUserRegistrationPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Register">
+      <Button layoutX="397.0" layoutY="264.0" mnemonicParsing="false" onMouseClicked="#createUserRegistrationPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Register">
          <font>
             <Font size="29.0" />
          </font>

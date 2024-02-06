@@ -1,7 +1,7 @@
 package viewone.managelistview;
 
-import beans.*;
-import controllers.SatisfyWorkoutRequestsController;
+import beans.ExerciseBean;
+import beans.ExerciseForWorkoutRoutineBean;
 import controllers.SeeCommunications;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

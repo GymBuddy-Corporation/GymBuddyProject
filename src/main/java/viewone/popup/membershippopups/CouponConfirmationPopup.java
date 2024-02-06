@@ -1,6 +1,6 @@
 package viewone.popup.membershippopups;
 
-import beans.CuponsBean;
+import beans.CouponsBean;
 import engineering.popups.PopupBaseClass;
 
 import java.io.IOException;
@@ -11,7 +11,7 @@ public class CouponConfirmationPopup extends PopupBaseClass {
         super(instanceOfParent, file, folder, view);
         castedInterface=(CouponConfirmationInterface) this.caller;
     }
-    public static PopupBaseClass getPopup(CouponConfirmationInterface caller, CuponsBean bean, String file, String folder, int view) throws IOException {
+    public static PopupBaseClass getPopup(CouponConfirmationInterface caller, CouponsBean bean, String file, String folder, int view) throws IOException {
         if(PopupBaseClass.popupReference==null){
             PopupBaseClass.popupReference=new CouponConfirmationPopup(caller,file,folder,view);
             ((CouponConfirmationPopupController)popupReference.getPopupController()).setBean(bean);
@@ -19,7 +19,7 @@ public class CouponConfirmationPopup extends PopupBaseClass {
         return PopupBaseClass.popupReference;
     }
 
-    public void confirm(CuponsBean bean){
+    public void confirm(CouponsBean bean){
         castedInterface.confermaCuoponPopup(bean);
         popupReference.hidePopUp();
 

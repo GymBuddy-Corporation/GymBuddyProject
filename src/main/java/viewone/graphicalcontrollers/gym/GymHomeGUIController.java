@@ -2,11 +2,11 @@ package viewone.graphicalcontrollers.gym;
 
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import utils.MainStage;
 import utils.SwitchPage;
-import javafx.fxml.FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 

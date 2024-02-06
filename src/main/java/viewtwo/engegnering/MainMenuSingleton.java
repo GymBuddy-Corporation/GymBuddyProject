@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class MainMenuSingleton {
     private static MainMenuSingleton me;
-    private final MainMenuController controller;
+    private  MainMenuController controller;
     private MainMenuSingleton(MainMenuController controller){
         this.controller=controller;
     }
@@ -20,7 +20,10 @@ public class MainMenuSingleton {
     public static MainMenuSingleton getMainMenu(){
         return me;
     }
-
+    public void reset(){
+        controller=null;
+        me=null;
+    }
     public Object setActivity(String name,String folder) throws IOException {
         FXMLLoader fx=new FXMLLoader(SwitchPage.class.getResource(SwitchPage.getpath(name,folder,2)));
         controller.setActivity(fx.load());

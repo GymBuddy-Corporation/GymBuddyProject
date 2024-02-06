@@ -59,5 +59,5 @@ exports engineering.decorator;
     opens viewtwo.popups to javafx.fxml;
     exports utils.listview;
     opens utils.listview;
-
+        opens viewtwo.graphicalcontrollers.athlete;
 }
