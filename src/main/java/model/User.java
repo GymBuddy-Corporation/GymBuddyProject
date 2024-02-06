@@ -3,8 +3,8 @@ package model;
 import model.record.Credentials;
 
 public abstract class User {
-    protected String username;
-    protected Credentials credentials;
+    private String username;
+    private Credentials credentials;
 
     protected User() {}
     protected User(String username){

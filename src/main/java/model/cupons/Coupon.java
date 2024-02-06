@@ -10,22 +10,22 @@ public abstract class Coupon implements MembershipInterface {
 
 
     private final int pointsPrice;
-    protected MembershipInterface component;
     private final String name;
     private final String description;
+    private final boolean isNotCumulative;
+    protected MembershipInterface component;
     private  boolean onlyForNewMembers;
 
-    public boolean isNotCumulative() {
-        return isNotCumulative;
-    }
-
-    private final boolean isNotCumulative;
     Coupon(String name, String description, int pointsPrice, boolean forNewMembers, boolean isNotComulative){
         this.name=name;
         this.description=description;
         this.pointsPrice=pointsPrice;
         this.onlyForNewMembers=forNewMembers;
         this.isNotCumulative =isNotComulative;
+    }
+
+    public boolean isNotCumulative() {
+        return isNotCumulative;
     }
 
     public abstract Coupon clone();
@@ -56,10 +56,6 @@ public abstract class Coupon implements MembershipInterface {
     public float getPrice() {
         return this.component.getPrice();
     }
-    @Override
-    public String getName(){
-        return name;
-    }
 
     @Override
     public int getPoints()  {
@@ -72,28 +68,33 @@ public abstract class Coupon implements MembershipInterface {
         return component.getDuration();
     }
 
-    public int getPointsPrice() {
-        return pointsPrice;
-    }
     @Override
     public String getBuildedName()  {
         return this.component.getBuildedName()+"+"+this.name;
     }
 
     @Override
-    public String getDescription(){
-        return this.description;
-    }
-    public boolean getOnlyForNewUsers(){
-        return this.onlyForNewMembers;
-    }
-
-
-    @Override
     public boolean isForNewUsers() {
 
         return onlyForNewMembers ;
     }
+
+    public String getDescription(){
+        return this.description;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getPointsPrice() {
+        return pointsPrice;
+    }
+
+    public boolean getOnlyForNewUsers(){
+        return this.onlyForNewMembers;
+    }
+
     public abstract String getType();
     public abstract String getCouponsValue();
 }

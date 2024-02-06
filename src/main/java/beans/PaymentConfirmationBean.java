@@ -1,25 +1,11 @@
 package beans;
 
 public class PaymentConfirmationBean {
-    public void setValueTransfered(float valueTransfered) {
-        this.valueTransfered = valueTransfered;
-    }
-
     private final String paymentId;
-
-    public void setSuccessOfTransation(boolean successOfTransation) {
-        this.successOfTransation = successOfTransation;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     private float valueTransfered;
-    private final String ibanOfBenefeicary;
+    private  String ibanOfBenefeicary;
     private boolean successOfTransation;
     private String errorMessage;
-
     public PaymentConfirmationBean(String paymentId, float valueTransfered ,String ibanOfBenefeicary) {
         this.paymentId = paymentId;
         this.ibanOfBenefeicary = ibanOfBenefeicary;
@@ -27,7 +13,6 @@ public class PaymentConfirmationBean {
         this.errorMessage = null;
         this.valueTransfered=valueTransfered;
     }
-
     public PaymentConfirmationBean(String paymentId, float valueTransfered,String ibanOfBenefeicary, String errorMessage) {
         this.paymentId = paymentId;
         this.valueTransfered=valueTransfered;
@@ -48,11 +33,23 @@ public class PaymentConfirmationBean {
         return successOfTransation;
     }
 
+    public void setSuccessOfTransation(boolean successOfTransation) {
+        this.successOfTransation = successOfTransation;
+    }
+
     public String getErrorMessage() {
         return errorMessage;
     }
 
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
     public float getValueTransfered() {
         return valueTransfered;
+    }
+
+    public void setValueTransfered(float valueTransfered) {
+        this.valueTransfered = valueTransfered;
     }
 }

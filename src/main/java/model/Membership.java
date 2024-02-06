@@ -34,22 +34,20 @@ public class Membership implements MembershipInterface {
     }
 
     @Override
+    public String getBuildedName() {
+        return getName();
+    }
+
     public final String getName() {
         return name;
     }
 
     @Override
-    public String getBuildedName() {
-        return getName();
-    }
-
-    @Override
-    public final String getDescription() {
-        return description;
-    }
-
-    @Override
     public boolean isForNewUsers() {
         return false;
+    }
+
+    public final String getDescription() {
+        return description;
     }
 }

@@ -7,6 +7,7 @@ import database.dao.GymDAO;
 import database.dao.MembershipDAO;
 import database.dao.TrainerDAO;
 import engineering.LoggedAthleteSingleton;
+import engineering.decorator.MembershipBuilder;
 import engineering.decorator.MembershipInterface;
 import exceptions.*;
 import exceptions.dataexception.DataFieldException;
@@ -104,10 +105,10 @@ public class ManageMembershipController {
     // this function lets the Athlete pay with saved credit card if exists
     public PaymentConfirmationBean payNewMembership(GymInfoBean onlyNameGym,MembershipBean membershipBean,List<CouponsBean> cupons) throws NoCardFoundException, DBUnrreachableException, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, FailedToSaveNewMembership, NoUserFoundException, MembershipOnlyForNewUserException, PaymentFailedException, CouponNotCumulativeException, DataFieldException {
         if(!hasCard) throw new NoCardFoundException();
-        return makePayment(onlyNameGym,membershipBean,cupons,singletonInstance.getUser().getCard());
+        return makePaymentAndSave(onlyNameGym,membershipBean,cupons,singletonInstance.getUser().getCard());
     }
     //if the payment is successful the new membership(Wallet) is saved to persistence and set to the athlete, if the save is not successful the payment is reverted
-    private PaymentConfirmationBean makePayment(GymInfoBean onlyNameGym, MembershipBean membershipBean, List<CouponsBean> cupons, Card card) throws  FailedToSaveNewMembership, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, NoUserFoundException, CouponNotCumulativeException, MembershipOnlyForNewUserException, DBUnrreachableException, DataFieldException {
+    private PaymentConfirmationBean makePaymentAndSave(GymInfoBean onlyNameGym, MembershipBean membershipBean, List<CouponsBean> cupons, Card card) throws  FailedToSaveNewMembership, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, NoUserFoundException, CouponNotCumulativeException, MembershipOnlyForNewUserException, DBUnrreachableException, DataFieldException {
         MembershipBean finalMembership=applyCouponsToMembership(onlyNameGym,membershipBean,cupons);
         if(Objects.equals(onlyNameGym.getName(), getActiveMembership().getGymName()) && finalMembership.isOnlyForNewUsers()) throw new MembershipOnlyForNewUserException();
         Wallet toSave=updateedUserWallet(finalMembership);
@@ -152,8 +153,8 @@ public class ManageMembershipController {
                 }
             }
             if(i-selectedCoupons.size()!=0)throw new MembershipCouponNotFoundException();
-            MembershipInterface finalMembership = decoratorBuilder(membership, couponsToApply);
-            return new MembershipBean(onlyName.getName(),finalMembership.getName(),finalMembership.getPrice(),finalMembership.getDuration(), finalMembership.getPoints(), finalMembership.isForNewUsers());
+            MembershipInterface finalMembership = buildMembership(membership, couponsToApply);
+            return new MembershipBean(onlyName.getName(),finalMembership.getBuildedName(),finalMembership.getPrice(),finalMembership.getDuration(), finalMembership.getPoints(), finalMembership.isForNewUsers());
     }
     //fetches the active memberships and returns a bean
     public static ActiveMembershipBean getActiveMembership(){
@@ -205,20 +206,15 @@ public class ManageMembershipController {
         new AthleteDAO().saveWallet(membership,me);
     }
 
-    //its protected for test only, it decorates the membership with coupons
-    protected final MembershipInterface decoratorBuilder(Membership membership,List<Coupon> coupons) throws CouponNotCumulativeException, DecoratorNoBaseComponentException {
-        MembershipInterface finalMembership=membership;
-        for(Coupon temp:coupons){
-                finalMembership=temp.setComponent(finalMembership);
-        }
-        return finalMembership;
+    private  MembershipInterface buildMembership(Membership membership, List<Coupon> coupons) throws CouponNotCumulativeException, DecoratorNoBaseComponentException {
+        return MembershipBuilder.buildMembership(membership,coupons);
        }
     // this function lets the Athlete pay with a card passed by bean
 
     public PaymentConfirmationBean payNewMebership(GymInfoBean onlyNameGym, MembershipBean membershipBean, List<CouponsBean> cupons, CardInfoBean cardInfoBean, boolean rememberCard) throws MembershipCouponNotFoundException, DecoratorNoBaseComponentException, FailedToSaveNewMembership, NoUserFoundException, MembershipOnlyForNewUserException, PaymentFailedException, CouponNotCumulativeException, DBUnrreachableException, DataFieldException {
         Card card=new Card(cardInfoBean.getCardNumber(),cardInfoBean.getNameOfOwner(),cardInfoBean.getSurnameOfOwenr(),YearMonth.of(Integer.parseInt(cardInfoBean.getYearOfExpiration()),Integer.parseInt(cardInfoBean.getMonthOfExpiration())));
         if(rememberCard)new AthleteDAO().saveCard(card);
-        return makePayment(onlyNameGym,membershipBean,cupons,card);
+        return makePaymentAndSave(onlyNameGym,membershipBean,cupons,card);
     }
     //returns a list of gym by filtering using the searchBean, if fullMatch the match happens only if all the not null fields of the searchBean match with the gym otherwise it just need one match from all the fields
     public List<GymInfoBean> searchGym(SearchGymBean searchBean,boolean fullMatch) throws DBUnrreachableException {

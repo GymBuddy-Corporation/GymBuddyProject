@@ -295,7 +295,8 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
         } catch (NoCardFoundException | DBUnrreachableException | MembershipCouponNotFoundException |
                  DecoratorNoBaseComponentException | FailedToSaveNewMembership | MembershipOnlyForNewUserException |
                  PaymentFailedException | CouponNotCumulativeException | DataFieldException e) {
-            throw new RuntimeException(e);
+            e.callMe(2);
+            return;
         } catch (NoUserFoundException e) {
             MainMenuSingleton.getMainMenu().reset();
             e.callMe(2);

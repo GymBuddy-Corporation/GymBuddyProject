@@ -9,13 +9,14 @@ import java.util.Objects;
 public class PaymentSystemBoundary {
 
     private final PaymentBean bean;
+    private   CardInfoBean beanCrard;
     public  PaymentSystemBoundary(PaymentBean bean, CardInfoBean beanCrard){
         this.bean=bean;
         this.beanCrard = beanCrard;
     }
-    private  final CardInfoBean beanCrard;
+
     public PaymentConfirmationBean pay(){
-        if(Objects.equals(bean.getBeneficiary(), "testGym")){
+        if(Objects.equals(beanCrard.getNameOfOwner(), "testGym")){
             return new PaymentConfirmationBean("-1",bean.getValue(), bean.getIban(),"fallito perche è un test");
         }
         return new PaymentConfirmationBean("1", bean.getValue(), bean.getIban());
