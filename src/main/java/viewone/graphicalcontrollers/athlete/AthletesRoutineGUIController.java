@@ -7,6 +7,7 @@ import beans.WorkoutRoutineBean;
 import controllers.CreateRequestController;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -47,5 +48,9 @@ public class AthletesRoutineGUIController implements Initializable {
         exerciseBeanList = controller.loadWorkoutRoutine((AthleteBean) LoggedUserSingleton.getSingleton().getMyBean());
 
         //imposta la scheda associata a lui (???)
+    }
+
+    public void dayButtonAction() {
+        //stub method
     }
 }

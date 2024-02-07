@@ -56,7 +56,7 @@ public class SatisfyWorkoutRequestsController {
         WorkoutRoutine workoutRoutineModel = createWorkoutRoutine(workoutRoutineBean);
         Athlete receiver = new AthleteDAO().loadAthlete(requestBean.getAthleteBean().getCredentials().getEmail());
         if(receiver.getWorkoutRoutine() != null){
-            new AthleteDAO().removeWorkoutPlan(receiver.getFC());
+            new AthleteDAO().removeWorkoutRoutine(receiver.getFC());
         }
         new WorkoutRoutineDAO().saveWorkoutRoutine(
                 workoutRoutineModel,

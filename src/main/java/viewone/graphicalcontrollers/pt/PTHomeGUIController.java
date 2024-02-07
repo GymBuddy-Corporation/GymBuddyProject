@@ -24,8 +24,7 @@ public class PTHomeGUIController implements Initializable{
     @FXML private ListView<String> communicationList;
     @FXML
     public void sendCommunication() {
-        SwitchPage.changePage("ManageCommunication.fxml",PT,VIEW);
-
+        //not implemented yet
     }
     @FXML
     public void yourAthletes() {
