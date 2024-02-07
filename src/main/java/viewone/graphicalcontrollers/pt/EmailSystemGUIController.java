@@ -11,6 +11,7 @@ import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
@@ -60,5 +61,9 @@ public class EmailSystemGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameText.setText(new UserAccessController().getUser().getUsername());
+    }
+
+    public void goBack() throws IOException {
+        SwitchPage.setStage(MainStage.getStage(),"ViewWorkoutRoutineRequests.fxml","pt",1);
     }
 }

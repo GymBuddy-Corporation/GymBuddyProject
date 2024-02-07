@@ -74,10 +74,10 @@ public class ViewRequestGUIController implements Initializable {
             e.callMe(2);
             return;
         }
-        controller.rejectRequest(selectedRequest);
         if (requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
             return;
         }
+        controller.rejectRequest(selectedRequest);
         try {
             ManageRequestList.updateList(requestList, controller);
         } catch (DBUnrreachableException | DataFieldException e) {

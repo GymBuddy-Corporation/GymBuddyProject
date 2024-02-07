@@ -130,7 +130,7 @@
          </LinearGradient>
       </fill>
    </Text>
-   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="438.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="438.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="438.0">
       <Image url="@../images/LogoBackPage96.png" />
    </ImageView>
    <Button layoutX="616.0" layoutY="15.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: linear-gradient(to bottom, #00e4af, #5d7cf3); -fx-background-radius: 5em; -fx-border-radius: 5em;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0" />
