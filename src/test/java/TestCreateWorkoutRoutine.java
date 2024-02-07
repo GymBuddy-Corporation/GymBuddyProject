@@ -1,32 +1,28 @@
-import beans.*;
+import beans.CredentialsBean;
+import beans.ExerciseForWorkoutRoutineBean;
+import beans.WorkoutDayBean;
+import beans.WorkoutRoutineBean;
 import controllers.SatisfyWorkoutRequestsController;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import exceptions.*;
 import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
-import model.*;
+import model.ExerciseForWorkoutRoutine;
+import model.ExerciseStatus;
+import model.WorkoutDay;
+import model.WorkoutRoutine;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestCreateWorkoutRoutine {
+class TestCreateWorkoutRoutine {
 
     /*Test dell'alunno Martorelli Luca.
                 MATRICOLA: 0281213*/
-
-    static class testController extends SatisfyWorkoutRequestsController{
-        public testController() throws NoLoggedUserException {
-            super();
-        }
-
-        public WorkoutRoutine create(WorkoutRoutineBean workoutRoutineBean){
-            return  this.createWorkoutRoutine(workoutRoutineBean);
-        }
-
-    }
 
     @Test
     void createWorkoutRoutine_shouldCreateWorkoutRoutineCorrectly () {
@@ -78,5 +74,16 @@ public class TestCreateWorkoutRoutine {
         workoutDayBean.addExerciseBean(exerciseBean);
         workoutRoutineBean.addWorkoutDayBean(workoutDayBean);
         return workoutRoutineBean;
+    }
+
+    static class testController extends SatisfyWorkoutRequestsController{
+        public testController() throws NoLoggedUserException {
+            super();
+        }
+
+        public WorkoutRoutine create(WorkoutRoutineBean workoutRoutineBean){
+            return  this.createWorkoutRoutine(workoutRoutineBean);
+        }
+
     }
 }

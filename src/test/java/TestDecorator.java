@@ -11,8 +11,10 @@ import model.cupons.PercentageDiscountCoupon;
 import java.util.ArrayList;
 import java.util.List;
 
-class TestDecorator{
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+class TestDecorator{
+    /*Test del alunno Alexandru Nazare 0307030*/
 
     public TestDecorator() {
 
@@ -27,6 +29,6 @@ class TestDecorator{
         coupons.add(new DirectDiscountCoupon("Direct Discount", null, 1500, false, false, 50F));
         MembershipInterface test= MembershipBuilder.buildMembership(membership,coupons);
         System.out.println(test.getBuildedName());
-        assert(test.getPrice()==30f);
+        assertEquals(test.getPrice(),30f);
     }
 }

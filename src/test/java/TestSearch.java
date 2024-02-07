@@ -8,7 +8,8 @@ import engineering.LoggedUserSingleton;
 import exceptions.*;
 import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
-import model.*;
+import model.Exercise;
+import model.ExerciseStatus;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestSearch {
+class TestSearch {
 
     @Test
-    public void TestSearchExercise() {
+    void TestSearchExercise() {
         ExerciseInventory exList = new ExerciseInventory(new ArrayList<>());
         /*Test dell'alunno Martorelli Luca.
             MATRICOLA: 0281213*/
