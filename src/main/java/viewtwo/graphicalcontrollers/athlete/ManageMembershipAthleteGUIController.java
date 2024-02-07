@@ -267,7 +267,7 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
             e.callMe(VIEW);
             return;
         } catch (NoUserFoundException e) {
-            MainMenuSingleton.getMainMenu().reset();
+            MainMenuSingleton.reset();
             e.callMe(VIEW);
             return;
         }
@@ -286,7 +286,7 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
                  MembershipOnlyForNewUserException | PaymentFailedException | CouponNotCumulativeException |
                  DataFieldException e) {
 e.callMe(VIEW);        } catch (NoUserFoundException | DBUnrreachableException e) {
-            MainMenuSingleton.getMainMenu().reset();
+            MainMenuSingleton.reset();
             e.callMe(VIEW);
         }
         try {

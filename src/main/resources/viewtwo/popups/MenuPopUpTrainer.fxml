@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="268.0" style="-fx-background-color: f9b700; -fx-border-color: black; -fx-border-radius: 4;" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="viewtwo.popups.controllers.MenuPopUpTrainerController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="268.0" style="-fx-background-color: f9b700; -fx-border-color: black; -fx-border-radius: 4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.popups.controllers.MenuPopUpTrainerController">
    <center>
       <AnchorPane prefHeight="275.0" prefWidth="266.0" stylesheets="@../GymBuddyCSS2.css" BorderPane.alignment="CENTER">
          <children>
@@ -14,14 +15,19 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#goToProfile" prefHeight="40.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Profile" textFill="#911701">
+            <Button layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#goToProfile" prefHeight="34.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Profile" textFill="#911701" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="55.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="53.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#goToCreateNewWorkoutRoutine" prefHeight="62.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Home" textAlignment="CENTER" textFill="#911701" wrapText="true">
+            <Button layoutX="53.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#goToCreateNewWorkoutRoutine" prefHeight="26.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Home" textAlignment="CENTER" textFill="#911701" wrapText="true" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="55.0">
                <font>
-                  <Font size="18.0" />
+                  <Font size="21.0" />
+               </font>
+            </Button>
+            <Button layoutX="53.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="27.0" prefWidth="143.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Logout" textFill="#911701" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="54.20000000000002">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Button>
          </children>

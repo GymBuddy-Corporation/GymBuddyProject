@@ -131,10 +131,15 @@ public class AthleteDAO {
 
     public void saveWallet(Wallet wallet, Athlete athlete) throws DBUnrreachableException {
         try(PreparedStatement statementEliminazione = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.DELETE_WALLET);) {
-            statementEliminazione.setString(1,athlete.getFC());
+            statementEliminazione.setString(1, athlete.getFC());
             statementEliminazione.executeUpdate();
+        }catch(SQLException e) {
+            CostumeLogger.getInstance().logError(e);
+            throw new DBUnrreachableException();
+        }
+        try(
             PreparedStatement statementInserimento = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.INSERT_WALLET);
-            statementInserimento.setString(1,athlete.getFC());
+        ){statementInserimento.setString(1,athlete.getFC());
             statementInserimento.setDate(2,new java.sql.Date(wallet.getStartOfMembership().getTime()));
             statementInserimento.setString(3,wallet.getCurrentGym().getGymName());
             statementInserimento.setDate(4,new java.sql.Date( wallet.getEndOfMembership().getTime()));

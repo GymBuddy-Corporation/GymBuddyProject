@@ -1,6 +1,5 @@
 package viewtwo.graphicalcontrollers.home;
 
-import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import engineering.UserTypes;
 import exceptions.logger.CostumeLogger;
@@ -8,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import utils.SwitchPage;
-import viewtwo.engegnering.MainMenuSingleton;
 import viewtwo.popups.MenuPopUp;
 import viewtwo.popups.abstracts.MenuPopupInterface;
 
@@ -34,11 +31,6 @@ public class MainMenuController implements MenuPopupInterface {
             if(LoggedUserSingleton.getSingleton().getUserType()== UserTypes.ATHLETE) MenuPopUp.getMenu(this,"MenuPopUpAthlete.fxml","popups",2);
             if(LoggedUserSingleton.getSingleton().getUserType()==UserTypes.PT)MenuPopUp.getMenu(this,"MenuPopUpTrainer.fxml","popups",2);
     }
-    public void logout(){
-        UserAccessController userAccessController=new UserAccessController();
-        userAccessController.logout();
-        MainMenuSingleton.getMainMenu().reset();
-        SwitchPage.changePage("loginPage.fxml","launcher",2);
-    }
+
 
 }

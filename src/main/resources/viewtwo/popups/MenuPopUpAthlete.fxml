@@ -15,14 +15,19 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#goToProfile" prefHeight="40.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Profile" textFill="#911701">
+            <Button layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#goToProfile" prefHeight="40.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Profile" textFill="#911701" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="54.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="53.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#goToManageMembership" prefHeight="62.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Manage memebership" textAlignment="CENTER" textFill="#911701" wrapText="true">
+            <Button layoutX="53.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#goToManageMembership" prefHeight="66.0" prefWidth="159.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Manage memebership" textAlignment="CENTER" textFill="#911701" wrapText="true" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="54.0">
                <font>
-                  <Font size="14.0" />
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="61.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="27.0" prefWidth="143.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Logout" textFill="#911701" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Button>
          </children>
