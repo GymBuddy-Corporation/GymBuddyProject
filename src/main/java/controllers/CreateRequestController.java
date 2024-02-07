@@ -13,7 +13,6 @@ import java.util.List;
 public class CreateRequestController {
     public void askForNewWorkoutRoutine(RequestBean requestBean){
         new RequestDAO().saveRequest(
-                requestBean.getRequestDate(),
                 requestBean.getInfo(),
                 requestBean.getAthleteBean().getPersonalInfo().getFc(),
                 requestBean.getTrainerFc()

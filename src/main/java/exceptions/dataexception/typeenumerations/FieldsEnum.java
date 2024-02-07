@@ -1,4 +1,4 @@
-package exceptions.dataexception.TyperEnumerations;
+package exceptions.dataexception.typeenumerations;
 
 public enum FieldsEnum {
     EMAIL, PASSWORD, DATE, FC, NAME, USERNAME, INFO, CREDIT_NUMBER,CREDIT_MONTH,CREDIT_YEAR,

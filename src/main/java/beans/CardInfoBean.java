@@ -1,8 +1,8 @@
 package beans;
 
 import exceptions.dataexception.DataFieldException;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

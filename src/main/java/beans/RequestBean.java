@@ -1,16 +1,16 @@
 package beans;
 
 import exceptions.dataexception.DataFieldException;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
 
 import java.time.LocalDateTime;
 
 public class RequestBean {
     private final LocalDateTime requestDate;
-    private String info;
     private final AthleteBean athleteBean;
     private final String trainerFc;
+    private String info;
 
     public RequestBean(String info, AthleteBean athleteBean, String trainerFc) throws DataFieldException {
         this.requestDate = LocalDateTime.now();

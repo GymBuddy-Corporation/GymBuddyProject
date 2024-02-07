@@ -2,12 +2,12 @@ package beans;
 
 
 import exceptions.dataexception.DataFieldException;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
 
 public class UserBean {
-    private String username;
     private final CredentialsBean credentials;
+    private String username;
 
     public UserBean( CredentialsBean credentials, String username) {
         //This is a constructor without syntax check and is used by controller
@@ -21,8 +21,16 @@ public class UserBean {
         this.credentials = CredentialsBean.ctorWithSyntaxCheck(credentials.getEmail(), credentials.getPassword());
     }
 
+    private boolean isValidLength(String str) {
+        return str.length() <= 20;
+    }
+
     public CredentialsBean getCredentials() {
         return this.credentials;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) throws DataFieldException {
@@ -31,13 +39,5 @@ public class UserBean {
         }else {
            throw new DataFieldException(FieldsEnum.USERNAME, ProblemEnum.NOT_VALID);
         }
-    }
-
-    private boolean isValidLength(String str) {
-        return str.length() <= 20;
-    }
-
-    public String getUsername() {
-        return username;
     }
 }

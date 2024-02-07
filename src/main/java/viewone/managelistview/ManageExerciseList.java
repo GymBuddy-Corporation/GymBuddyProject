@@ -2,7 +2,6 @@ package viewone.managelistview;
 
 import beans.ExerciseBean;
 import beans.ExerciseForWorkoutRoutineBean;
-import controllers.SatisfyWorkoutRequestsController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,9 +11,7 @@ import model.ExerciseStatus;
 import viewone.graphicalcontrollers.pt.CreateNewWorkoutRoutineGUIController;
 import viewone.graphicalcontrollers.pt.SetExerciseStatusGUIController;
 
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ManageExerciseList {
 
@@ -42,8 +39,7 @@ public class ManageExerciseList {
 
     public static void updateListFiltered(ListView<ExerciseBean> exerciseBeanListView, List<ExerciseBean> exerciseBeanList) {
         List<ExerciseBean> filteredList = exerciseBeanList.stream()
-                .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise()))
-                .collect(Collectors.toList());
+                .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise())).toList();
 
         ObservableList<ExerciseBean> exerciseBeanObservableList = FXCollections.observableList(filteredList);
         exerciseBeanListView.setItems(exerciseBeanObservableList);
@@ -70,7 +66,7 @@ public class ManageExerciseList {
         }
     }
 
-    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController, SetExerciseStatusGUIController setExerciseStatusGUIController) {
+    public static void setListenerDBSet(ListView<ExerciseBean> exerciseDBList, SetExerciseStatusGUIController setExerciseStatusGUIController) {
         exerciseDBList.getSelectionModel().selectedItemProperty().
                 addListener(new ChangeListener<>() {
                     @Override

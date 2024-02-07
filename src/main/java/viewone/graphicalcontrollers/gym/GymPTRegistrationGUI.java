@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import utils.MainStage;
 import utils.SwitchPage;
 
 import java.net.URL;
@@ -17,17 +16,18 @@ public class GymPTRegistrationGUI implements Initializable {
     @FXML RadioButton female;
 
     @FXML
-    public void home() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
+    public void home()  {
+        SwitchPage.changePage("GymHome.fxml","gym",1);
     }
 
-    @FXML public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymPTView.fxml","gym",1);
+    @FXML public void goBack() {
+        SwitchPage.changePage("GymPTView.fxml","gym",1);
     }
 
-    @FXML public void submit() throws Exception {
-        //TODO questo diventa il popup da sitemare e cliccabile solo se ogni campo è stato colmato, sennò stampa "ci sono campi incompleti".
-        SwitchPage.setStage(MainStage.getStage(),"GymPTView.fxml","gym",1);
+    @FXML public void submit()  {
+        //questo diventa il popup da sitemare e cliccabile solo se ogni campo è stato colmato, sennò stampa "ci sono campi incompleti".
+        //to be implemented
+        SwitchPage.changePage("GymPTView.fxml","gym",1);
     }
 
     @Override

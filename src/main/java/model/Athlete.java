@@ -4,31 +4,28 @@ import model.record.Card;
 import model.record.Credentials;
 import model.record.PersonalInfo;
 
-import java.util.Date;
 import java.time.Instant;
+import java.util.Date;
 
 public class Athlete extends Person  {
-    public Card getCard() {
-        return card;
-    }
-
     private Card card;
     private WorkoutRoutine workoutRoutine;
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
-
     private Wallet wallet;
 
     public Athlete(String username, PersonalInfo personalInfo, Credentials credentials) {
         super(username, credentials, personalInfo);
     }
 
+    public Card getCard() {
+        return card;
+    }
 
-    public Athlete(String username, PersonalInfo personalInfo, Credentials credentials, Card card, Trainer trainer)  {
-        super(username, credentials, personalInfo);
+    public void setCard(Card card) {
         this.card = card;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
     public String getCardNumber() {
@@ -39,9 +36,6 @@ public class Athlete extends Person  {
         }
     }
 
-    public void setCard(Card card) {
-        this.card = card;
-    }
     public String gymName(){
             if(wallet==null || wallet.getCurrentGym().getGymName()==null)return "";
             return  wallet.getCurrentGym().getGymName();

@@ -10,12 +10,10 @@ import exceptions.logger.CostumeLogger;
 import model.Athlete;
 import model.Gym;
 import model.Trainer;
-
 import model.Wallet;
 import model.record.Card;
 import model.record.Credentials;
 import model.record.PersonalInfo;
-
 
 import java.io.*;
 import java.sql.PreparedStatement;
@@ -25,6 +23,8 @@ import java.util.Date;
 
 
 public class AthleteDAO {
+
+    private static final String FILE_FOR_CARD="CAR.ser";
 
     public Athlete loadAthlete(String email) throws DBUnrreachableException {
         try(
@@ -86,7 +86,7 @@ public class AthleteDAO {
 
         return true;
     }
-    private static final String FILE_FOR_CARD="CAR.ser";
+
     public void saveCard(Card card){
         ObjectOutputStream out = null;
         FileOutputStream fileOut = null;
@@ -134,8 +134,7 @@ public class AthleteDAO {
     }
 
     public void saveWallet(Wallet wallet, Athlete athlete) throws DBUnrreachableException {
-        try {
-            PreparedStatement statementEliminazione = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.DELETE_WALLET);
+        try(PreparedStatement statementEliminazione = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.DELETE_WALLET);) {
             statementEliminazione.setString(1,athlete.getFC());
             statementEliminazione.executeUpdate();
             PreparedStatement statementInserimento = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.INSERT_WALLET);

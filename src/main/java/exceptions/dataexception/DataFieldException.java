@@ -1,10 +1,10 @@
 package exceptions.dataexception;
 
 import exceptions.CostumException;
-import exceptions.dataexception.TyperEnumerations.FieldGetter;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemGetter;
+import exceptions.dataexception.typeenumerations.FieldGetter;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.ProblemGetter;
 
 public class DataFieldException extends CostumException {
     private final  FieldsEnum  dataType;

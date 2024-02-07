@@ -2,8 +2,8 @@ package beans;
 
 
 import exceptions.dataexception.DataFieldException;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
 import model.ExerciseStatus;
 
 import java.util.regex.Matcher;
@@ -39,7 +39,27 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
 
     public int getRepetitions() {return repetitions;}
 
+    public void setRepetitions(int reps) throws DataFieldException {
+        if(reps>0){
+            this.repetitions = reps;
+        } else if (reps == 0){
+            throw new DataFieldException(FieldsEnum.EXERCISE_REPS, ProblemEnum.IS_NULL);
+        } else {
+            throw new DataFieldException(FieldsEnum.EXERCISE_REPS, ProblemEnum.NOT_VALID);
+        }
+    }
+
     public int getSets() {return sets;}
+
+    public void setSets(int sets) throws DataFieldException{
+        if(sets>0){
+            this.sets = sets;
+        } else if (sets == 0){
+            throw new DataFieldException(FieldsEnum.EXERCISE_SETS, ProblemEnum.IS_NULL);
+        } else {
+            throw new DataFieldException(FieldsEnum.EXERCISE_SETS, ProblemEnum.NOT_VALID);
+        }
+    }
 
     public String getRest() {return rest;}
 
@@ -50,25 +70,6 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
             throw new DataFieldException(FieldsEnum.EXERCISE_REST, ProblemEnum.IS_NULL);
         }else {
             throw new DataFieldException(FieldsEnum.EXERCISE_REST, ProblemEnum.NOT_VALID);
-        }
-    }
-
-    public void setRepetitions(int reps) throws DataFieldException {
-        if(reps>0){
-            this.repetitions = reps;
-        } else if (reps == 0){
-            throw new DataFieldException(FieldsEnum.EXERCISE_REPS, ProblemEnum.IS_NULL);
-        } else {
-            throw new DataFieldException(FieldsEnum.EXERCISE_REPS, ProblemEnum.NOT_VALID);
-        }
-    }
-    public void setSets(int sets) throws DataFieldException{
-        if(sets>0){
-            this.sets = sets;
-        } else if (sets == 0){
-            throw new DataFieldException(FieldsEnum.EXERCISE_SETS, ProblemEnum.IS_NULL);
-        } else {
-            throw new DataFieldException(FieldsEnum.EXERCISE_SETS, ProblemEnum.NOT_VALID);
         }
     }
 

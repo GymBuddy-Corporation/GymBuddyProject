@@ -2,8 +2,8 @@ package beans;
 
 
 import exceptions.dataexception.DataFieldException;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
 
 import java.util.regex.Pattern;
 
@@ -21,6 +21,15 @@ public class CredentialsBean {
         return credentialsBean;
     }
 
+    private boolean isValidEmail(String email) {
+        final Pattern emailRegex = Pattern.compile("^[a-z\\d_!#$%&’*+/=?`{|}~^.-]+@[a-z\\d.-]+$", Pattern.CASE_INSENSITIVE);
+
+        return emailRegex.matcher(email).matches();
+    }
+
+    private boolean isValidPassword(String password) {
+        return Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).{8,45}$",password);
+    }
 
     public static CredentialsBean ctorWithoutSyntaxCheck(String email, String password) {
         /*This is a constructor without syntax check and is used by controller*/
@@ -45,12 +54,6 @@ public class CredentialsBean {
         }
     }
 
-    private boolean isValidEmail(String email) {
-        final Pattern emailRegex = Pattern.compile("^[a-z\\d_!#$%&’*+/=?`{|}~^.-]+@[a-z\\d.-]+$", Pattern.CASE_INSENSITIVE);
-
-        return emailRegex.matcher(email).matches();
-    }
-
     public String getPassword() {
         return password;
     }
@@ -65,10 +68,5 @@ public class CredentialsBean {
         } else{
             throw new DataFieldException(FieldsEnum.PASSWORD,ProblemEnum.NOT_VALID);
         }
-    }
-
-
-    private boolean isValidPassword(String password) {
-        return Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).{8,45}$",password);
     }
 }

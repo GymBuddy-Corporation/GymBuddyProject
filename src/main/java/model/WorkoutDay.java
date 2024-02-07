@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkoutDay {
-    private String workoutRoutineName;
     protected String day;
-    protected transient List<ExerciseForWorkoutRoutine> exerciseList;
+    protected  List<ExerciseForWorkoutRoutine> exerciseList;
+    private String workoutRoutineName;
 
     public WorkoutDay(String day, String workoutRoutine, List<ExerciseForWorkoutRoutine> exerciseList){
         this.day = day;
         this.workoutRoutineName = workoutRoutine;
         addAllExercise(exerciseList);
+    }
+
+    public void addAllExercise(List<ExerciseForWorkoutRoutine> exerciseList){
+        this.exerciseList = exerciseList;
     }
 
     public WorkoutDay(String day) {
@@ -29,10 +33,6 @@ public class WorkoutDay {
 
     public void addExercise(ExerciseForWorkoutRoutine exercise){
         this.exerciseList.add(exercise);
-    }
-
-    public void addAllExercise(List<ExerciseForWorkoutRoutine> exerciseList){
-        this.exerciseList = exerciseList;
     }
 
     public String getDay() {

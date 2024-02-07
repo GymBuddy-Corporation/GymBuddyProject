@@ -4,7 +4,6 @@ import controllers.UserAccessController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import utils.MainStage;
 import utils.SwitchPage;
 
 import java.net.URL;
@@ -19,30 +18,31 @@ public class GymPTGUIController implements Initializable {
     private ListView<String> athletesList;
 
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
+    public void goBack(){
+        SwitchPage.changePage("GymHome.fxml","gym",1);
     }
 
-    public void logout() throws Exception {
+    public void logout(){
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        SwitchPage.changePage("Login.fxml","launcher",1);
     }
 
     @FXML
-    public void goForward() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationPT.fxml","gym",1);
+    public void goForward()  {
+        SwitchPage.changePage("GymRegistrationPT.fxml","gym",1);
     }
 
 
     @FXML
-    public void addPT() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationPT.fxml","gym",1);
+    public void addPT() {
+        SwitchPage.changePage("GymRegistrationPT.fxml","gym",1);
     }
 
     @FXML
     public void deletePT() {
-        //TODO questo diventa il popup da sitemare e cliccabile solo se è stata scelta almeno un'opzione dalla ListView.
+        //questo diventa il popup da sitemare e cliccabile solo se è stata scelta almeno un'opzione dalla ListView.
+        //to be implemented
     }
 
 

@@ -1,8 +1,8 @@
 package beans;
 
 import exceptions.dataexception.DataFieldException;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +21,6 @@ public class WorkoutDayBean {
         this.name = name;
         this.exerciseBeanList = exerciseBeanList;
     }
-    public List<ExerciseForWorkoutRoutineBean> getExerciseList() {
-        return exerciseBeanList;
-    }
-
-    public void setExerciseBeanList(List<ExerciseForWorkoutRoutineBean> exerciseBeanList) {
-        this.exerciseBeanList = exerciseBeanList;
-    }
 
     public String getName(){
         return this.name;
@@ -37,6 +30,10 @@ public class WorkoutDayBean {
         return exerciseBeanList;
     }
 
+    public void setExerciseBeanList(List<ExerciseForWorkoutRoutineBean> exerciseBeanList) {
+        this.exerciseBeanList = exerciseBeanList;
+    }
+
     public void addExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) throws DataFieldException{
         for (ExerciseForWorkoutRoutineBean existingExercise : this.getExerciseList()) {
             if (existingExercise.getName().equals(exerciseBean.getName())) {
@@ -44,6 +41,10 @@ public class WorkoutDayBean {
             }
         }
         this.exerciseBeanList.add(exerciseBean);
+    }
+
+    public List<ExerciseForWorkoutRoutineBean> getExerciseList() {
+        return exerciseBeanList;
     }
 
     public void removeExerciseBean(ExerciseForWorkoutRoutineBean exerciseBean) {

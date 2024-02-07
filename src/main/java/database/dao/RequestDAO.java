@@ -11,7 +11,6 @@ import model.Trainer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class RequestDAO {
         }
     }
 
-    public void saveRequest(LocalDateTime requestDate, String info, String athleteFc, String trainerfc) /*throws SQLException, DBUnreachableException*/ {
+    public void saveRequest( String info, String athleteFc, String trainerfc) /*throws SQLException, DBUnreachableException*/ {
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.INSERT_REQUEST_QUERY)){
             Queries.insertRequest(preparedStatement, info, athleteFc, trainerfc);

@@ -4,7 +4,6 @@ import controllers.UserAccessController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import utils.MainStage;
 import utils.SwitchPage;
 
 import java.net.URL;
@@ -19,26 +18,25 @@ public class GymEquipmentGUIController implements Initializable {
     private ListView<String> athletesList;
 
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
+    public void goBack()  {
+        SwitchPage.changePage("GymHome.fxml","gym",1);
     }
 
     @FXML
-    public void goForward() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
+    public void goForward()  {
+        SwitchPage.changePage("GymRegistrationUser.fxml","gym",1);
     }
 
 
     @FXML
     public void addEquipment() /*throws Exception*/ {
-        //TODO fai la GUI appropriata
-        //SwitchPage.setStage(MainStage.getStage(),"GymRegistrationUser.fxml","gym",1);
+        //to be implemented
     }
 
-    public void logout() throws Exception {
+    public void logout()  {
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        SwitchPage.changePage("Login.fxml","launcher",1);
     }
 
 

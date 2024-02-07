@@ -6,6 +6,7 @@ import model.cupons.Coupon;
 import model.record.Credentials;
 import model.record.Location;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,27 +15,10 @@ public class Gym extends User  {
     private final String gymName;
     private ExerciseInventory gymExercises;
     private Location location;
-
-    public List<Coupon> getCoupons() {
-        return coupons;
-    }
-
-    public void setCoupons(List<Coupon> coupons) {
-        this.coupons = coupons;
-    }
-
     private List<String> gymCommunication;
-
-    public List<Membership> getMemberships() {
-        return memberships;
-    }
-
-    public void setMemberships(List<Membership> memberships) {
-        this.memberships = memberships;
-    }
-
     private List<Membership> memberships;
     private List<Coupon> coupons;
+
     public Gym(String username, Credentials credentials, String iban, String gymName) {
         super(username, credentials);
         this.iban = iban;
@@ -63,6 +47,23 @@ public class Gym extends User  {
         this.coupons=null;
         this.memberships=null;
     }
+
+    public List<Coupon> getCoupons() {
+        return coupons;
+    }
+
+    public void setCoupons(List<Coupon> coupons) {
+        this.coupons = coupons;
+    }
+
+    public List<Membership> getMemberships() {
+        return memberships;
+    }
+
+    public void setMemberships(List<Membership> memberships) {
+        this.memberships = memberships;
+    }
+
     public String getIban() {
         return iban;
     }
@@ -87,18 +88,12 @@ public class Gym extends User  {
         return this.gymExercises;
     }
 
-    public void addGymExercise(Exercise exerciseToAdd) {
-        this.gymExercises.addExercise(exerciseToAdd);
-    }
-
     public void setGymExercises(List<Exercise> gymExercises) {
         this.gymExercises = new ExerciseInventory(gymExercises);
     }
 
-    public static List<String> loadComm(String gymName) {
-        GymDAO gymdao=new GymDAO();
-
-        return Collections.emptyList();
+    public void addGymExercise(Exercise exerciseToAdd) {
+        this.gymExercises.addExercise(exerciseToAdd);
     }
 
     public List<String> getGymCommunication() {
@@ -106,5 +101,14 @@ public class Gym extends User  {
             this.gymCommunication = loadComm(this.gymName);
         }
         return gymCommunication;
+    }
+
+    public static List<String> loadComm(String gymName) {
+        //to be implemented just a stub
+        GymDAO gymdao=new GymDAO();
+        if(gymdao==null)return Collections.emptyList();
+           List<String> lista= new ArrayList<String>();
+           lista.add("ciao");
+           return lista;
     }
 }

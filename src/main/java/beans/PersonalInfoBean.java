@@ -1,8 +1,8 @@
 package beans;
 
 import exceptions.dataexception.DataFieldException;
-import exceptions.dataexception.TyperEnumerations.FieldsEnum;
-import exceptions.dataexception.TyperEnumerations.ProblemEnum;
+import exceptions.dataexception.typeenumerations.FieldsEnum;
+import exceptions.dataexception.typeenumerations.ProblemEnum;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -41,14 +41,6 @@ public class PersonalInfoBean {
         checkFc(fiscalCode);
     }
 
-    private void checkName(String name) throws DataFieldException  {
-        if(name.isEmpty()){
-            throw new DataFieldException(FieldsEnum.PASSWORD, ProblemEnum.EMPTY);
-        } else if(isNotValidLength(name)) {
-            throw new DataFieldException(FieldsEnum.PASSWORD,ProblemEnum.NOT_VALID);
-        }
-    }
-
     private LocalDate checkBirth(String birth) throws DataFieldException{
         if(birth.isEmpty()){
             throw new DataFieldException(FieldsEnum.DATE,ProblemEnum.EMPTY);
@@ -59,21 +51,12 @@ public class PersonalInfoBean {
         }
     }
 
-    private boolean isNotValidLength(String str) {
-        return str.length() > 45;
-    }
-
-    private void checkFc(String fc) throws DataFieldException {
-        if(fc.isEmpty()){
-            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.EMPTY);
-        } else if(!isValidFc(fc)) {
-            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.NOT_VALID);
+    private void checkName(String name) throws DataFieldException  {
+        if(name.isEmpty()){
+            throw new DataFieldException(FieldsEnum.PASSWORD, ProblemEnum.EMPTY);
+        } else if(isNotValidLength(name)) {
+            throw new DataFieldException(FieldsEnum.PASSWORD,ProblemEnum.NOT_VALID);
         }
-    }
-
-
-    private boolean isValidFc(String fc) {
-        return Pattern.matches("^([A-Z]{6}[\\dLMNPQRSTUV]{2}[ABCDEHLMPRST][\\dLMNPQRSTUV]{2}[A-Z][\\dLMNPQRSTUV]{3}[A-Z])$|(\\d{11})$",fc);
     }
 
     private void checkSurname(String surname) throws DataFieldException {
@@ -81,6 +64,14 @@ public class PersonalInfoBean {
             throw new DataFieldException(FieldsEnum.NAME,ProblemEnum.EMPTY);
         } else if(isNotValidLength(surname)){
             throw new DataFieldException(FieldsEnum.NAME,ProblemEnum.NOT_VALID);
+        }
+    }
+
+    private void checkFc(String fc) throws DataFieldException {
+        if(fc.isEmpty()){
+            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.EMPTY);
+        } else if(!isValidFc(fc)) {
+            throw new DataFieldException(FieldsEnum.FC,ProblemEnum.NOT_VALID);
         }
     }
 
@@ -93,6 +84,14 @@ public class PersonalInfoBean {
         } catch (DateTimeParseException e) {
             throw new DataFieldException(FieldsEnum.DATE,ProblemEnum.NOT_VALID);
         }
+    }
+
+    private boolean isNotValidLength(String str) {
+        return str.length() > 45;
+    }
+
+    private boolean isValidFc(String fc) {
+        return Pattern.matches("^([A-Z]{6}[\\dLMNPQRSTUV]{2}[ABCDEHLMPRST][\\dLMNPQRSTUV]{2}[A-Z][\\dLMNPQRSTUV]{3}[A-Z])$|(\\d{11})$",fc);
     }
 
     public String getName() {

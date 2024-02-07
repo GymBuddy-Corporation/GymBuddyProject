@@ -6,9 +6,6 @@ import controllers.SatisfyWorkoutRequestsController;
 import exceptions.EmptySearchException;
 import exceptions.NoLoggedUserException;
 import exceptions.logger.CostumeLogger;
-import model.ExerciseStatus;
-import viewone.managelistview.listcells.ExerciseListCellFactoryForStatus;
-import viewone.managelistview.ManageExerciseList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,23 +14,27 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import model.ExerciseStatus;
 import utils.MainStage;
 import utils.SwitchPage;
 import viewone.ExerciseStatusButtonController;
+import viewone.managelistview.ManageExerciseList;
+import viewone.managelistview.listcells.ExerciseListCellFactoryForStatus;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class SetExerciseStatusGUIController implements Initializable{
 
+    private final ExerciseStatusButtonController exerciseStatusButtonController = new ExerciseStatusButtonController();
+    Button selectedButton;
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private Button suspendStatusButton;
     @FXML private Button activeStatusButton;
-    Button selectedButton;
     @FXML private TextField searchExerciseText;
     @FXML private Button setStatusButton;
-    private final ExerciseStatusButtonController exerciseStatusButtonController = new ExerciseStatusButtonController();
 
     @FXML
     public void logout() throws Exception {
@@ -54,20 +55,9 @@ public class SetExerciseStatusGUIController implements Initializable{
         return exerciseDBList;
     }
 
-    public void setVisibleButtons(Boolean bool) {
-        activeStatusButton.setVisible(bool);
-        suspendStatusButton.setVisible(bool);
-        setStatusButton.setVisible(bool);
-    }
-
     @FXML
     public void changeStatus(ActionEvent event) {
         selectedButton = exerciseStatusButtonController.statusButtonAction(event);
-    }
-
-    public void showExerciseDBList(ListView<ExerciseBean> exerciseDBList,SatisfyWorkoutRequestsController satisfyWorkoutRequestsController){
-        ObservableList<ExerciseBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getLoggedTrainerGymExercises());
-        exerciseDBList.setItems(FXCollections.observableList(requestBeanObservableList));
     }
 
     @Override
@@ -77,13 +67,24 @@ public class SetExerciseStatusGUIController implements Initializable{
         try{
             controller = new SatisfyWorkoutRequestsController();
             showExerciseDBList(exerciseDBList, controller);
-            ManageExerciseList.setListenerDBSet(exerciseDBList, controller, this);
+            ManageExerciseList.setListenerDBSet(exerciseDBList, this);
             setVisibleButtons(false);
         } catch (NoLoggedUserException e){
 
                 e.callMe(1);
 
         }
+    }
+
+    public void showExerciseDBList(ListView<ExerciseBean> exerciseDBList,SatisfyWorkoutRequestsController satisfyWorkoutRequestsController){
+        ObservableList<ExerciseBean> requestBeanObservableList = FXCollections.observableList(satisfyWorkoutRequestsController.getLoggedTrainerGymExercises());
+        exerciseDBList.setItems(FXCollections.observableList(requestBeanObservableList));
+    }
+
+    public void setVisibleButtons(Boolean bool) {
+        activeStatusButton.setVisible(bool);
+        suspendStatusButton.setVisible(bool);
+        setStatusButton.setVisible(bool);
     }
 
     public void setFireBotton(int i) {
@@ -105,7 +106,7 @@ public class SetExerciseStatusGUIController implements Initializable{
             selectedStatus = ExerciseStatus.SUSPENDED;
 
         } else {
-            //TODO then throw exception
+                return;
         }
 
         SatisfyWorkoutRequestsController controller;

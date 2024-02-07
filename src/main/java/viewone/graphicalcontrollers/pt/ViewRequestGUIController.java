@@ -7,20 +7,18 @@ import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoLoggedUserException;
 import exceptions.dataexception.DataFieldException;
-import exceptions.logger.CostumeLogger;
-import viewone.managelistview.ManageRequestList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import utils.MainStage;
 import utils.SwitchPage;
+import viewone.managelistview.ManageRequestList;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class ViewRequestGUIController implements Initializable {
 
@@ -36,42 +34,38 @@ public class ViewRequestGUIController implements Initializable {
     private RequestBean selectedRequest;
 
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
+    public void goBack()  {
+        SwitchPage.changePage("PTHome.fxml","pt",1);
     }
     @FXML public void logout() {
-        try {
+
             UserAccessController controller = new UserAccessController();
             controller.logout();
-            SwitchPage.setStage(MainStage.getStage(), "Login.fxml", "launcher", 1);
-        } catch (IOException e){
-            CostumeLogger.getInstance().logError(e);
-        }
+            SwitchPage.changePage( "Login.fxml", "launcher", 1);
+
     }
     @FXML
-    public void askClarification() throws IOException{
+    public void askClarification() {
         if (!requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
-            EmailSystemGUIController controller = (EmailSystemGUIController) SwitchPage.setStage(MainStage.getStage(),"EmailSystem.fxml","pt",1);
+            EmailSystemGUIController controller = (EmailSystemGUIController) SwitchPage.changePage("EmailSystem.fxml","pt",1);
             Objects.requireNonNull(controller).setValue(selectedRequest);
         }
     }
 
     @FXML
-    public void wantToCreateNewRoutine() throws Exception {
+    public void wantToCreateNewRoutine()  {
         if (!requestList.getSelectionModel().getSelectedIndices().isEmpty()) {
             createNewRoutine();
         }
     }
 
-    public void createNewRoutine() throws IOException {
-        CreateNewWorkoutRoutineGUIController controller = (CreateNewWorkoutRoutineGUIController) SwitchPage.setStage(MainStage.getStage(), "CreateNewWorkoutRoutine.fxml", "pt", 1);
+    public void createNewRoutine() {
+        CreateNewWorkoutRoutineGUIController controller = (CreateNewWorkoutRoutineGUIController) SwitchPage.changePage( "CreateNewWorkoutRoutine.fxml", "pt", 1);
         Objects.requireNonNull(controller).setValue(selectedRequest);
     }
 
     @FXML
     public void rejectRequest() {
-        //TODO gestisci la cancellazione di una richiesta
-
         SatisfyWorkoutRequestsController controller;
         try {
             controller = new SatisfyWorkoutRequestsController();
@@ -110,7 +104,6 @@ public class ViewRequestGUIController implements Initializable {
             });
         }catch (CostumException e){
                 e.callMe(1);
-                throw new RuntimeException(e);
         }
     }
 }

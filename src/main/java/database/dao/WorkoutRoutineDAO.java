@@ -41,11 +41,9 @@ public class WorkoutRoutineDAO {
             else {
                 return null;
             }
-        } catch (SQLException e) {
+        } catch (SQLException | DBUnrreachableException e) {
             CostumeLogger.getInstance().logError(e);
             return null;
-        } catch (DBUnrreachableException e) {
-            throw new RuntimeException(e);
         }
     }
     private LocalDateTime getLocalDateTime(String dateString){

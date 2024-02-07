@@ -3,6 +3,7 @@ package viewtwo.managelistview.listcells;
 import beans.ExerciseBean;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -16,16 +17,9 @@ public class ExerciseListCellFactory2 implements Callback<ListView<ExerciseBean>
     public ListCell<ExerciseBean> call(ListView<ExerciseBean> param) {
         return new ListCell<ExerciseBean>() {
             private Label itemNameLabel;
+            private Parent parentNode = null;
 
-            {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewtwo/pt/ListExerciseWorkoutRoutine2.fxml"));
-                    loader.load();
-                    itemNameLabel = (Label) loader.getNamespace().get("itemName1");
-                } catch (IOException e) {
-                    CostumeLogger.getInstance().logError(e);
-                }
-            }
+
 
             @Override
             protected void updateItem(ExerciseBean exerciseBean, boolean empty) {
@@ -35,9 +29,21 @@ public class ExerciseListCellFactory2 implements Callback<ListView<ExerciseBean>
                     setText(null);
                     setGraphic(null);
                 } else {
-                    itemNameLabel.setText(exerciseBean.getName());
-                    setGraphic(itemNameLabel);
-                }
+                    if(parentNode==null){
+                        {
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewtwo/pt/ListExerciseWorkoutRoutine2.fxml"));
+                                parentNode=loader.load();
+                                itemNameLabel = (Label)parentNode.lookup("#itemName1");
+                            } catch (IOException e) {
+                                CostumeLogger.getInstance().logError(e);
+                            }
+                        }
+                    }
+                        itemNameLabel.setText(exerciseBean.getName());
+                        setGraphic(itemNameLabel);
+
+                    }
             }
         };
     }

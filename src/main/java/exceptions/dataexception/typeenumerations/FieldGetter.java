@@ -1,6 +1,9 @@
-package exceptions.dataexception.TyperEnumerations;
+package exceptions.dataexception.typeenumerations;
 
 public class FieldGetter {
+    private FieldGetter() {
+        throw new IllegalStateException("Utility class");
+    }
     public static String getField(FieldsEnum field){
         return switch (field) {
             case FieldsEnum.EMAIL -> "email";

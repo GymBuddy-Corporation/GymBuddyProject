@@ -1,6 +1,7 @@
 package viewtwo.managelistview.listcells;
 
 import beans.RequestBean;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -17,8 +18,8 @@ public class RequestListCellFactory2 implements Callback<ListView<RequestBean>, 
         return new RequestListCell();
     }
     private static class RequestListCell extends ListCell<RequestBean> {
-        private final Parent parentNode;
-        private final Label itemNameLabel;
+        private  Parent parentNode;
+        private  Label itemNameLabel;
 
         public RequestListCell() {
             try {
@@ -26,7 +27,7 @@ public class RequestListCellFactory2 implements Callback<ListView<RequestBean>, 
                 parentNode = loader.load();
                 itemNameLabel = (Label) parentNode.lookup("#itemName1");
             } catch (IOException e) {
-                throw new RuntimeException("Error loading FXML", e);
+                CostumeLogger.getInstance().logError(e);
             }
         }
 

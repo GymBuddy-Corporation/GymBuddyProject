@@ -20,7 +20,7 @@ class TestSearchGym {
 
 
     @Test
-    public void testSearchAllGyms() throws NoUserFoundException, AlreadyLoggedUserException, NoLoggedUserException, DBUnrreachableException {
+    void testSearchAllGymGyms() throws NoUserFoundException, AlreadyLoggedUserException, NoLoggedUserException, DBUnrreachableException {
         UserAccessController accessController = new UserAccessController();
         accessController.login(CredentialsBean.ctorWithoutSyntaxCheck("lux@gmail.com", "Password123@"),false);
         ManageMembershipController controller = new ManageMembershipController();

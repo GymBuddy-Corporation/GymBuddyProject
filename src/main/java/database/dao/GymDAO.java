@@ -1,13 +1,14 @@
 package database.dao;
 
 
-
 import database.SingletonConnection;
 import database.query.Queries;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import exceptions.logger.CostumeLogger;
-import model.*;
+import model.Exercise;
+import model.ExerciseStatus;
+import model.Gym;
 import model.record.Credentials;
 import org.jetbrains.annotations.NotNull;
 
@@ -81,6 +82,24 @@ public class GymDAO {
         return gyms;
     }
 
+    public Gym loadGymByTrainerFc(String fc) throws DBUnrreachableException {
+    try(PreparedStatement statement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_GYM_BY_TRAINER_FC);) {
+        ResultSet rs = Queries.loadAndExecuteOneString(fc, statement);
+        rs.next();
+        String email = rs.getString(EMAIL);
+        Gym gym;
+        gym = loadGym(email);
+        return gym;
+    }catch (SQLException e){
+        CostumeLogger.getInstance().logError(e);
+        throw new DBUnrreachableException();
+    } catch (NoUserFoundException e) {
+        CostumeLogger.getInstance().logError(e);
+        CostumeLogger.getInstance().logError(e);
+    }
+    return null ;
+    }
+
     public Gym loadGym(String email) throws SQLException, NoUserFoundException {
                 PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_USER_GYM_BY_EMAIL_QUERY);
                 return getGym(email, preparedStatement);
@@ -104,25 +123,6 @@ public class GymDAO {
         } else {
             throw new NoUserFoundException();
         }
-    }
-
-    public Gym loadGymByTrainerFc(String fc) throws DBUnrreachableException {
-    try {
-        PreparedStatement statement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_GYM_BY_TRAINER_FC);
-        ResultSet rs = Queries.loadAndExecuteOneString(fc, statement);
-        rs.next();
-        String email = rs.getString(EMAIL);
-        Gym gym;
-        gym = loadGym(email);
-        return gym;
-    }catch (SQLException e){
-        CostumeLogger.getInstance().logError(e);
-        throw new DBUnrreachableException();
-    } catch (NoUserFoundException e) {
-        CostumeLogger.getInstance().logError(e);
-        CostumeLogger.getInstance().logError(e);
-    }
-    return null ;
     }
 
     public Gym getGymByName(String name) throws NoUserFoundException, DBUnrreachableException {

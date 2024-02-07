@@ -29,6 +29,6 @@ class TestDecorator{
         coupons.add(new DirectDiscountCoupon("Direct Discount", null, 1500, false, false, 50F));
         MembershipInterface test= MembershipBuilder.buildMembership(membership,coupons);
         System.out.println(test.getBuildedName());
-        assertEquals(test.getPrice(),30f);
+        assertEquals(30f,test.getPrice());
     }
 }

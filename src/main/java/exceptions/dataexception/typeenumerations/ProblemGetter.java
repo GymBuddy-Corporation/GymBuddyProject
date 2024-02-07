@@ -1,6 +1,9 @@
-package exceptions.dataexception.TyperEnumerations;
+package exceptions.dataexception.typeenumerations;
 
 public class ProblemGetter {
+    private ProblemGetter() {
+        throw new IllegalStateException("Utility class");
+    }
     public static String getProblem(ProblemEnum field){
         return switch (field) {
             case ProblemEnum.EMPTY -> "empty field is not valid";
