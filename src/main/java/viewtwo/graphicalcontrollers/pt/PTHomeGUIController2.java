@@ -57,16 +57,9 @@ public class PTHomeGUIController2 implements Initializable {
         }
     }
 
-
-
     @FXML
     public void manageCommunication() throws Exception {
         MainMenuSingleton.getMainMenu().setActivity("ManageCommunication.fxml", "pt");
-    }
-
-    @FXML
-    public void manageCourse() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(), "ManageCourse.fxml", "pt", 1);
     }
 
     public void refreshList() {

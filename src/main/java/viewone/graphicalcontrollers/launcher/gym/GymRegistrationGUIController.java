@@ -1,5 +1,6 @@
 package viewone.graphicalcontrollers.launcher.gym;
 
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import utils.MainStage;
 import utils.SwitchPage;
 import javafx.scene.control.MenuItem;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,15 +25,13 @@ public class GymRegistrationGUIController implements Initializable {
     @FXML private final SplitMenuButton splitCityButton = new SplitMenuButton();
 
     @FXML
-    public void goForward() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymHome.fxml","gym",1);
+    public void goBack() {
+        try {
+            SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
+        } catch (IOException e) {
+            CostumeLogger.getInstance().logError(e);
+        }
     }
-
-    @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymFirst.fxml","launcher",1);
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

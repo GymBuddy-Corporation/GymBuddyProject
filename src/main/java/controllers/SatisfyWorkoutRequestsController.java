@@ -39,7 +39,7 @@ public class SatisfyWorkoutRequestsController {
         }
     }
 
-    protected WorkoutRoutine createWorkoutRoutine(WorkoutRoutineBean workoutRoutineBean){
+    protected final WorkoutRoutine createWorkoutRoutine(WorkoutRoutineBean workoutRoutineBean){
         WorkoutRoutine workoutRoutineModel = new WorkoutRoutine(workoutRoutineBean.getName(), workoutRoutineBean.getComment());
         for (WorkoutDayBean workoutDay : workoutRoutineBean.getWorkoutDayList()) {
             WorkoutDay newWorkoutDay = new WorkoutDay(workoutDay.getName());
@@ -60,10 +60,9 @@ public class SatisfyWorkoutRequestsController {
         }
         new WorkoutRoutineDAO().saveWorkoutRoutine(
                 workoutRoutineModel,
-                requestBean.getAthleteBean().getPersonalInfo().getFc()
-
-        );
-        new RequestDAO().deleteRequest(requestBean.getAthleteBean().getPersonalInfo().getFc(), requestBean.getTrainerFc());
+                requestBean.getAthleteBean().getPersonalInfo().getFc());
+        new RequestDAO().deleteRequest(requestBean.getAthleteBean().getPersonalInfo().getFc(),
+                requestBean.getTrainerFc());
     }
 
     private ExerciseForWorkoutRoutine convertToExerciseForWorkoutRoutine(ExerciseForWorkoutRoutineBean exerciseForWorkoutRoutineBean, WorkoutRoutine workoutRoutineModel) {
