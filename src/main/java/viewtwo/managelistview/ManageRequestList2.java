@@ -11,7 +11,9 @@ import viewtwo.managelistview.listcells.RequestListCellFactory2;
 
 
 public class ManageRequestList2 {
-
+    private ManageRequestList2() {
+        throw new IllegalStateException("Utility class");
+    }
     public static void setRequestList(ListView<RequestBean> requestList, SatisfyWorkoutRequestsController satisfyWorkoutRequestsController) throws DBUnrreachableException, DataFieldException {
         requestList.setCellFactory(new RequestListCellFactory2());
         updateList(requestList, satisfyWorkoutRequestsController);

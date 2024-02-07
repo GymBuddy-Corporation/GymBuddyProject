@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import utils.MainStage;
 import utils.SwitchPage;
 
 import java.net.URL;
@@ -53,22 +52,23 @@ public class ChooseActorGUIController implements Initializable {
     }
 
     @FXML
-    public void goForward() throws Exception {
-        String path;
+    public void goForward(){
+        String path="ChoseActor.fxml";
         if(scelta==Selezione.GYM) {
             path = "GymFirst.fxml";
 
-            SwitchPage.setStage(MainStage.getStage(),path, LAUNCHER_FOLDER,1);
+
         } else if (scelta==Selezione.PT) {
 
             path = "Login.fxml";
-           SwitchPage.setStage(MainStage.getStage(),path, LAUNCHER_FOLDER,1);
+
 
         } else if(scelta==Selezione.ATHLETE) {
 
             path = "Login.fxml";
-            SwitchPage.setStage(MainStage.getStage(),path, LAUNCHER_FOLDER,1);
+
         }
+        SwitchPage.changePage(path, LAUNCHER_FOLDER,1);
     }
     enum Selezione{
         GYM,

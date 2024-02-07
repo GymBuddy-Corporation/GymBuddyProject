@@ -64,10 +64,11 @@ public class GymDAO {
 
 
 
-    public List<Gym> loadAllGyms() throws SQLException {
+    public List<Gym> loadAllGyms() throws DBUnrreachableException {
         List<Gym> gyms = new ArrayList<>();
+        try(
         PreparedStatement preparedStatement=SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_ALL_GYMS);
-        ResultSet resultSet=preparedStatement.executeQuery();
+        ){ResultSet resultSet=preparedStatement.executeQuery();
         while(resultSet.next()){
             gyms.add( new Gym(
                     resultSet.getString(USERNAME),
@@ -78,6 +79,9 @@ public class GymDAO {
                     resultSet.getString(COUNTRY),
                     resultSet.getString(NAME)
             ));
+        }}catch (SQLException e){
+            CostumeLogger.getInstance().logError(e);
+            throw new DBUnrreachableException();
         }
         return gyms;
     }

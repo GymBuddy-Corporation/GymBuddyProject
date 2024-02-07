@@ -42,8 +42,7 @@ public class ManageExerciseList2 {
 
     public static void updateListFiltered(ListView<ExerciseBean> exerciseListView, List<ExerciseBean> exerciseList) {
         List<ExerciseBean> filteredList = exerciseList.stream()
-                .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise()))
-                .collect(Collectors.toList());
+                .filter(exerciseBean -> ExerciseStatus.ACTIVE.equals(exerciseBean.getStatusExercise())).toList();
 
         ObservableList<ExerciseBean> filteredObservableList = FXCollections.observableList(filteredList);
         exerciseListView.setItems(filteredObservableList);

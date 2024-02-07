@@ -1,6 +1,5 @@
 package model;
 
-import model.record.Card;
 import model.record.Credentials;
 import model.record.PersonalInfo;
 

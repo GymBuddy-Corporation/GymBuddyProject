@@ -57,7 +57,6 @@ public class PersonInfoGUIController implements Initializable {
     private void currentMembershipInizializer() {
         membershipCorner.setVisible(true);
         membershipLabel.setVisible(true);
-        ManageMembershipController manageMembershipController;
 
         ActiveMembershipBean bean=ManageMembershipController.getActiveMembership();
         membershipName.setText(bean.getGymName());

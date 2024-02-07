@@ -18,7 +18,7 @@ public class GymInfoBean {
         this.country = country;
     }
 
-    /*This is a constructor used only for searching gym stuff knowing his name;*/
+    /*This is a constructor used only for searching gym stuff knowing his name*/
     public GymInfoBean(String name){
         this.name=name;
         this.address = null;

@@ -3,12 +3,15 @@ package viewtwo.popups.controllers;
 import beans.AthleteBean;
 import beans.CredentialsBean;
 import beans.PersonalInfoBean;
+import engineering.popups.PopupBaseClass;
 import engineering.popups.PopupBaseController;
 import exceptions.dataexception.DataFieldException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import engineering.popups.PopupBaseClass;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import viewtwo.popups.UserRegistrationPopup;
 
 import java.net.URL;
@@ -46,6 +49,16 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
                 genderField.getItems().add("Female");
                 genderField.getItems().add("Not specified");
     }
+
+    public void userRegistration() throws DataFieldException {
+        caller.userRegistration(
+                new AthleteBean(usernameField.getText()
+                ,new PersonalInfoBean( nameField.getText(),surnameField.getText(),dateField.getValue(), fiscalcodeField.getText(),getGenderFromChoice())
+                ,CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()), "GESTISCI L'ASSEGNAZIONE DEL PT")
+        );
+        caller.hidePopUp();
+    }
+
     private char getGenderFromChoice(){
         switch (genderField.getValue().toString()){
             case "Male":
@@ -56,16 +69,5 @@ public class UserRegistrationPopupController extends PopupBaseController impleme
                 return 'o';
 
         }
-    }
-    public void userRegistration() throws DataFieldException {
-        //todo ALEX mi raccomando sistema sto piccolo problema:
-        // quando un cliente viene registrato, qualcuno deve asseganrgli un trainer, o comunque in
-        // qualche modo deve avvenire
-        caller.userRegistration(
-                new AthleteBean(usernameField.getText()
-                ,new PersonalInfoBean( nameField.getText(),surnameField.getText(),dateField.getValue(), fiscalcodeField.getText(),getGenderFromChoice())
-                ,CredentialsBean.ctorWithSyntaxCheck(emailField.getText(),passwordField.getText()), "GESTISCI L'ASSEGNAZIONE DEL PT")
-        );
-        caller.hidePopUp();
     }
 }

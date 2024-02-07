@@ -30,7 +30,6 @@ public class ExerciseListCellFactory2 implements Callback<ListView<ExerciseBean>
                     setGraphic(null);
                 } else {
                     if(parentNode==null){
-                        {
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewtwo/pt/ListExerciseWorkoutRoutine2.fxml"));
                                 parentNode=loader.load();
@@ -38,7 +37,6 @@ public class ExerciseListCellFactory2 implements Callback<ListView<ExerciseBean>
                             } catch (IOException e) {
                                 CostumeLogger.getInstance().logError(e);
                             }
-                        }
                     }
                         itemNameLabel.setText(exerciseBean.getName());
                         setGraphic(itemNameLabel);

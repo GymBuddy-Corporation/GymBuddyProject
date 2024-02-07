@@ -20,8 +20,7 @@ public class MainMenuSingleton {
     public static MainMenuSingleton getMainMenu(){
         return me;
     }
-    public void reset(){
-        controller=null;
+    public static void reset(){
         me=null;
     }
     public Object setActivity(String name,String folder) throws IOException {

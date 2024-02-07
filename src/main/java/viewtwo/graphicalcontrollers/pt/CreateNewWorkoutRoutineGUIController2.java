@@ -296,7 +296,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
 
     public void goForward() {
         try{
-            PersonalizeWRPopUp.getPersonalizeWRPopup(this, this.workoutRoutine,"PersonalizeWRPopUp.fxml" , "popups", 2);
+            PersonalizeWRPopUp.getPersonalizeWRPopup(this, "PersonalizeWRPopUp.fxml" , "popups", 2);
         } catch (IOException e) {
             CostumeLogger.getInstance().logString("IOException in goForward");
         }

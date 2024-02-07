@@ -11,13 +11,10 @@ import engineering.decorator.MembershipBuilder;
 import engineering.decorator.MembershipInterface;
 import exceptions.*;
 import exceptions.dataexception.DataFieldException;
-import exceptions.logger.CostumeLogger;
 import model.*;
 import model.cupons.Coupon;
-import model.record.Card;
 import org.jetbrains.annotations.NotNull;
 
-import java.sql.SQLException;
 import java.time.Instant;
 import java.time.YearMonth;
 import java.util.*;
@@ -219,12 +216,7 @@ public class ManageMembershipController {
     //returns a list of gym by filtering using the searchBean, if fullMatch the match happens only if all the not null fields of the searchBean match with the gym otherwise it just need one match from all the fields
     public List<GymInfoBean> searchGym(SearchGymBean searchBean,boolean fullMatch) throws DBUnrreachableException {
         List<Gym> gyms;
-        try {
-            gyms = gymDao.loadAllGyms();
-        } catch (SQLException e) {
-            CostumeLogger.getInstance().logError(e);
-            throw new DBUnrreachableException();
-        }
+        gyms = gymDao.loadAllGyms();
         List<GymInfoBean> beanList = new ArrayList<>();
         for (Gym gym : gyms) {
             boolean isNameValid = (searchBean.getName() == null) || stringExistsInText(searchBean.getName(), gym.getGymName());

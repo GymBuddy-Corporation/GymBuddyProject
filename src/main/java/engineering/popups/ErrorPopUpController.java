@@ -14,7 +14,7 @@ public class ErrorPopUpController implements Initializable {
     @FXML
     ProgressBar progress;
 
-    public double progressValue;
+    private double progressValue;
     public void setText(String testo){
         errorLabel.setText(testo);
     }

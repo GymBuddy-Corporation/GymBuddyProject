@@ -14,10 +14,10 @@ public class DeleteExePopUp extends PopupBaseClass {
         super(instanceOfParent, file, folder, view);
         castedInterface=(DeleteExeInterface) this.caller;
     }
-    public static PopupBaseClass getDeleteExePopup(DeleteExeInterface caller,ExerciseForWorkoutRoutineBean Exercise, String file, String folder, int view) throws IOException {
+    public static PopupBaseClass getDeleteExePopup(DeleteExeInterface caller,ExerciseForWorkoutRoutineBean exercise, String file, String folder, int view) throws IOException {
         if(PopupBaseClass.popupReference==null){
             PopupBaseClass.popupReference=new DeleteExePopUp(caller,file,folder,view);
-            ((DeleteExercisePopUpController)popupReference.getPopupController()).setExeName(Exercise);
+            ((DeleteExercisePopUpController)popupReference.getPopupController()).setExeName(exercise);
         }
         return PopupBaseClass.popupReference;
     }

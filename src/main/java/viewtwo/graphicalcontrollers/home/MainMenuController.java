@@ -3,6 +3,7 @@ package viewtwo.graphicalcontrollers.home;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import engineering.UserTypes;
+import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,9 @@ public class MainMenuController implements MenuPopupInterface {
     public void setActivity(Node e){
         try{
         paneSfondo.getChildren().removeFirst();
-        }catch(NoSuchElementException ignored){}
+        }catch(NoSuchElementException ex){
+            CostumeLogger.getInstance().logError(ex);
+        }
         paneSfondo.getChildren().add(e);
     }
     @FXML

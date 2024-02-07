@@ -1,12 +1,10 @@
 package model;
 
-import database.dao.GymDAO;
 import engineering.ExerciseInventory;
 import model.cupons.Coupon;
 import model.record.Credentials;
 import model.record.Location;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -98,17 +96,13 @@ public class Gym extends User  {
 
     public List<String> getGymCommunication() {
         if (this.gymExercises == null) {
-            this.gymCommunication = loadComm(this.gymName);
+            this.gymCommunication = loadComm();
         }
         return gymCommunication;
     }
 
-    public static List<String> loadComm(String gymName) {
+    public static List<String> loadComm() {
         //to be implemented just a stub
-        GymDAO gymdao=new GymDAO();
-        if(gymdao==null)return Collections.emptyList();
-           List<String> lista= new ArrayList<String>();
-           lista.add("ciao");
-           return lista;
+        return  Collections.emptyList();
     }
 }

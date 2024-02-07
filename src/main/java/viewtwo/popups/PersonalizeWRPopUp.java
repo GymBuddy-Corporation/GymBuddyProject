@@ -1,6 +1,5 @@
 package viewtwo.popups;
 
-import beans.WorkoutRoutineBean;
 import engineering.popups.PopupBaseClass;
 import engineering.popups.PopupBaseInterface;
 import viewtwo.popups.abstracts.PersonalizeWorkoutRequestInterface;
@@ -13,7 +12,7 @@ public class PersonalizeWRPopUp extends PopupBaseClass {
         super(instanceOfParent, file, folder, view);
         castedInterface=(PersonalizeWorkoutRequestInterface) this.caller;
     }
-    public static PopupBaseClass getPersonalizeWRPopup(PersonalizeWorkoutRequestInterface caller, WorkoutRoutineBean wr, String file, String folder, int view) throws IOException {
+    public static PopupBaseClass getPersonalizeWRPopup(PersonalizeWorkoutRequestInterface caller, String file, String folder, int view) throws IOException {
         if(PopupBaseClass.popupReference==null){
             PopupBaseClass.popupReference=new PersonalizeWRPopUp(caller,file,folder,view);
         }

@@ -20,7 +20,6 @@ public class CreateRequestController {
     }
 
     public WorkoutRoutineBean loadWorkoutRoutine(AthleteBean athleteBean){
-        //todo verifica se funziona
         WorkoutRoutine workoutRoutine = new WorkoutRoutineDAO().loadWorkoutRoutine(athleteBean.getPersonalInfo().getFc()) ;
         return convertWorkoutRoutineBean(workoutRoutine);
     }

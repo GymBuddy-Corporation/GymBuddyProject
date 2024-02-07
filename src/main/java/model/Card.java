@@ -1,14 +1,14 @@
-package model.record;
+package model;
 
 import java.io.Serializable;
 import java.time.YearMonth;
 import java.util.Objects;
 
 public final class Card implements Serializable {
-    private final String cardNumber;
-    private final String name;
-    private final String surname;
-    private final YearMonth cardExpirationDate;
+    private  String cardNumber;
+    private  String name;
+    private  String surname;
+    private  YearMonth cardExpirationDate;
 
     public Card(String cardNumber, String name, String surname, YearMonth cardExpirationDate) {
         this.cardNumber = cardNumber;

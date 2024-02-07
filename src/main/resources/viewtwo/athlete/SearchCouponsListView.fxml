@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="450.0" spacing="10.0" style="-fx-background-radius: 50; -fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="450.0" spacing="10.0" style="-fx-background-radius: 50; -fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
@@ -29,6 +28,6 @@
          <Font size="13.0" />
       </font>
    </Label>
-   <CheckBox fx:id="onlyNewMembers" mnemonicParsing="false" mouseTransparent="true" prefHeight="18.0" prefWidth="33.0" selected="true" />
-   <CheckBox fx:id="cumulable" mnemonicParsing="false" mouseTransparent="true" prefHeight="18.0" prefWidth="23.0" selected="true" />
+   <CheckBox fx:id="onlyNewMembers" mnemonicParsing="false" mouseTransparent="true" prefHeight="18.0" prefWidth="33.0" selected="true" textFill="#911701" />
+   <CheckBox fx:id="cumulable" mnemonicParsing="false" mouseTransparent="true" prefHeight="18.0" prefWidth="23.0" selected="true" textFill="#911701" />
 </HBox>

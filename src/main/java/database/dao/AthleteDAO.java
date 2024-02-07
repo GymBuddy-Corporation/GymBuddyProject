@@ -7,11 +7,7 @@ import exceptions.CostumException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import exceptions.logger.CostumeLogger;
-import model.Athlete;
-import model.Gym;
-import model.Trainer;
-import model.Wallet;
-import model.record.Card;
+import model.*;
 import model.record.Credentials;
 import model.record.PersonalInfo;
 
@@ -138,7 +134,15 @@ public class AthleteDAO {
             statementEliminazione.setString(1,athlete.getFC());
             statementEliminazione.executeUpdate();
             PreparedStatement statementInserimento = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.INSERT_WALLET);
-            Queries.loadAndExecuteWalletInsertion(statementInserimento, athlete.getFC(), wallet.getStartOfMembership(), wallet.getCurrentGym().getGymName(), wallet.getEndOfMembership(), wallet.getPoints(), wallet.getMembershipName(), wallet.getMembershipPrice(), wallet.getTrainer().getFC());
+            statementInserimento.setString(1,athlete.getFC());
+            statementInserimento.setDate(2,new java.sql.Date(wallet.getStartOfMembership().getTime()));
+            statementInserimento.setString(3,wallet.getCurrentGym().getGymName());
+            statementInserimento.setDate(4,new java.sql.Date( wallet.getEndOfMembership().getTime()));
+            statementInserimento.setInt(5,wallet.getPoints());
+            statementInserimento.setString(6,wallet.getMembershipName());
+            statementInserimento.setFloat(7, wallet.getMembershipPrice());
+            statementInserimento.setString(8,wallet.getTrainer().getFC());
+            statementInserimento.executeUpdate();
         }catch (SQLException e ){
                 CostumeLogger.getInstance().logError(e);
                 throw new DBUnrreachableException();

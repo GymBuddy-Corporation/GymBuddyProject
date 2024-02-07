@@ -79,7 +79,6 @@ public class LoggedUserSingleton {
                     )
             );
         }
-        //throw new NoUserFoundException();
         return null;
      }
 

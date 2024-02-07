@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFD04F; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.launcher.LoginPageController">
    <children>
-      <Button layoutX="397.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#createLoginPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Login">
+      <Button layoutX="397.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#createLoginPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Login" textFill="#931701">
          <font>
             <Font size="29.0" />
          </font>
@@ -32,7 +32,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Registrati">
+                  <Button mnemonicParsing="false" stylesheets="@../GymBuddyCSS2.css" text="Registrati" textFill="#931701">
                      <VBox.margin>
                         <Insets left="70.0" top="10.0" />
                      </VBox.margin>
@@ -60,7 +60,7 @@
          <font>
             <Font size="32.0" />
          </font></Label>
-      <Button layoutX="397.0" layoutY="264.0" mnemonicParsing="false" onMouseClicked="#createUserRegistrationPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Register">
+      <Button layoutX="397.0" layoutY="264.0" mnemonicParsing="false" onMouseClicked="#createUserRegistrationPopup" prefHeight="67.0" prefWidth="191.0" stylesheets="@../GymBuddyCSS2.css" text="Register" textFill="#931701">
          <font>
             <Font size="29.0" />
          </font>

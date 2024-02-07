@@ -19,9 +19,14 @@ public class ExerciseDAO {
         String statusString = exercise.getStatus().toString();
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
             Queries.INSERT_EXERCISE_IN_WORKOUT_DAY_QUERY)) {
-            Queries.insertExerciseInWorkoutDay(preparedStatement, exercise.getSets(), exercise.getRest(),
-                    exercise.getRepetitions(), workoutDay.getDay(), athleteFC, exercise.getName(),
-                    statusString);
+            preparedStatement.setInt(1, exercise.getSets());
+            preparedStatement.setString(2, exercise.getRest());
+            preparedStatement.setInt(3, exercise.getRepetitions());
+            preparedStatement.setString(4, workoutDay.getDay());
+            preparedStatement.setString(5, athleteFC);
+            preparedStatement.setString(6, exercise.getName());
+            preparedStatement.setString(7, statusString);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
             CostumeLogger.getInstance().logError(e);

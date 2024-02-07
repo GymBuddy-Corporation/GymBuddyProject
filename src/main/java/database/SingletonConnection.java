@@ -11,12 +11,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SingletonConnection {
-    private static SingletonConnection dbConn;
     private static final String URL = "jdbc:mysql://localhost:3306/gymbuddy";
-    private static final String USER = "gymbuddy";
-    private static final String PASSWORD = "root1234!S";
-
+    private static final String USER = System.getenv("USER");
+    private static final String PASSWORD = System.getenv("PASSWORD");
     private static final Logger logger = Logger.getLogger(SingletonConnection.class.getName());
+    private static SingletonConnection dbConn;
     private Connection conn;
 
     private SingletonConnection() {
@@ -41,10 +40,6 @@ public class SingletonConnection {
 
     }
 
-    public Connection getConnection() {
-        return this.conn;
-    }
-
     public static void closeConnection(Connection connection) {
         if (connection != null) {
             try {
@@ -64,5 +59,9 @@ public class SingletonConnection {
 
     public static void deleteInstance() {
         dbConn = null;
+    }
+
+    public Connection getConnection() {
+        return this.conn;
     }
 }

@@ -7,27 +7,25 @@ import exceptions.AlreadyLoggedUserException;
 import exceptions.DBUnrreachableException;
 import exceptions.NoUserFoundException;
 import exceptions.dataexception.DataFieldException;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import utils.MainStage;
 import utils.SwitchPage;
-import javafx.fxml.FXML;
-
-import java.io.IOException;
 
 
 public class LoginGUIController {
 
 
 
+    private static final String COLOR_1 ="45065D";
+    private static final String COLOR_2 ="linear-gradient(to bottom, #00e4af, #5d7cf3)";
     @FXML
     private TextField emailField;
     @FXML
     private TextField passwordField;
     @FXML
     private Button saveButton;
-    private static final String COLOR_1 ="45065D";
-    private static final String COLOR_2 ="linear-gradient(to bottom, #00e4af, #5d7cf3)";
+    private boolean saveCredentials=false;
 
     @FXML
     public void changeStatus(){
@@ -40,11 +38,8 @@ public class LoginGUIController {
         }
     }
 
-
-    private boolean saveCredentials=false;
-
     @FXML
-    public void goForward() throws IOException  {
+    public void goForward() {
         UserAccessController controller=new UserAccessController();
         UserBean userBean;
         try {
@@ -58,18 +53,18 @@ public class LoginGUIController {
         changePage(userBean);
 
     }
-    private void changePage(UserBean userBean) throws IOException {
+    private void changePage(UserBean userBean) {
         if (userBean instanceof AthleteBean) {
-            SwitchPage.setStage(MainStage.getStage(), "AthleteHome.fxml", "athlete", 1);
+            SwitchPage.changePage( "AthleteHome.fxml", "athlete", 1);
         } else if (userBean instanceof TrainerBean) {
-            SwitchPage.setStage(MainStage.getStage(), "PTHome.fxml", "pt", 1);
+            SwitchPage.changePage( "PTHome.fxml", "pt", 1);
         } else if(userBean instanceof GymBean) {
-            SwitchPage.setStage(MainStage.getStage(), "GymHome.fxml", "gym", 1);
+            SwitchPage.changePage( "GymHome.fxml", "gym", 1);
         }
     }
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(), "ChooseActor.fxml", "launcher", 1);
+    public void goBack()  {
+        SwitchPage.changePage( "ChooseActor.fxml", "launcher", 1);
     }
 
 

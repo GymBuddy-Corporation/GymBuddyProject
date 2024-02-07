@@ -54,7 +54,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
     List<CouponsBean> loadedCupons;
     MembershipBean composedMembership;
 
-    public void logout() throws NoLoggedUserException {
+    public void logout()  {
         UserAccessController controllerAccess=new UserAccessController();
         controllerAccess.logout();
         try {
