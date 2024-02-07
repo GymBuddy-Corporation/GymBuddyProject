@@ -6,7 +6,6 @@ import controllers.ManageMembershipController;
 import exceptions.*;
 import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -28,102 +27,74 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ManageMembershipAthleteGUIController implements Initializable , SearchGymInterface , SearchMembershipInterface , SearchCouponInterface , BuyPopupInterface {
 
 
+    public static final String POPUPS = "popups";
+    private static final int VIEW=2;
     GymInfoBean selectedGym;
     MembershipBean selectedMembership;
-
     List<CouponsBean> selectedCoupons;
     @FXML
     private AnchorPane couponsCorner;
-
     @FXML
     private ListView<Object> couponsListview;
-
     @FXML
     private TextArea descriptionMembership;
-
     @FXML
     private Label durationFinal;
-
     @FXML
     private Label durationMembership;
-
     @FXML
     private Label gymAddress;
-
     @FXML
     private Label gymCity;
-
     @FXML
     private AnchorPane gymCorner;
-
     @FXML
     private Label gymCountry;
-
     @FXML
     private Label gymName;
-
     @FXML
     private AnchorPane membershipCorner;
-
     @FXML
     private Label nameMembership;
-
     @FXML
     private AnchorPane payCorner;
-
     @FXML
     private Label pointsFinal;
-
     @FXML
     private Label priceFinal;
-
     @FXML
     private Label priceMembership;
-
     @FXML
     private AnchorPane resetCorner;
-
     @FXML
     private Label rewardMembership;
-
     @FXML
     private Button searchCouponButton;
-
     @FXML
     private Button resetMembership;
-
     @FXML
     private Button resetCoupons;
-
     @FXML
     private TextField searchGymTextField;
-
     @FXML
     private Button searchMembershipButton;
-
     @FXML
     private Button payButton;
-
     @FXML
     private Label selectedCouponsLabel;
-
     @FXML
     private Label selectedMembershipLabel;
     private ManageMembershipController manageMembershipController;
 
     @FXML
-    void changeStatus(ActionEvent event) {
-
-    }
-
-    @FXML
     void pay(MouseEvent event) throws IOException {
-        BuyPopUp.getSearchPopUp(this,manageMembershipController.fetchSavedCardStub(),"PayPopUp.fxml","popups",2);
+        BuyPopUp.getSearchPopUp(this,manageMembershipController.fetchSavedCardStub(),"PayPopUp.fxml", POPUPS,VIEW);
     }
 
     @FXML
@@ -134,11 +105,11 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
         try {
             resultOfSearch = manageMembershipController.searchGym(searchBean,false);
         } catch (DBUnrreachableException e) {
-            e.callMe(2);
+            e.callMe(VIEW);
             return;
         }
         try {
-            SearchGymPopUp.getSearchPopUp(this, resultOfSearch,"SearchGymPopUp.fxml","popups",2);
+            SearchGymPopUp.getSearchPopUp(this, resultOfSearch,"SearchGymPopUp.fxml",POPUPS,VIEW);
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
         }
@@ -146,7 +117,7 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
 
     @Override
     public void searchResult(GymInfoBean bean) {
-        if(bean==null || bean.getName()=="" || bean.getName()==null)return;
+        if(bean==null || Objects.equals(bean.getName(), "") || bean.getName()==null)return;
         gymName.setText(bean.getName());
         gymAddress.setText(bean.getAddress());
         gymCity.setText(bean.getCity());
@@ -191,7 +162,7 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
         try {
             manageMembershipController=new ManageMembershipController();
         } catch (NoLoggedUserException e) {
-            e.callMe(2);
+            e.callMe(VIEW);
         }
         payCorner.setVisible(false);
         resetCorner.setVisible(false);
@@ -207,17 +178,16 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
         try {
             beans = manageMembershipController.getMembershipList(selectedGym);
         } catch (NoUserFoundException e) {
-            new DBUnrreachableException().callMe(2);
+            new DBUnrreachableException().callMe(VIEW);
             return;
         } catch (DBUnrreachableException e) {
-            e.callMe(2);
+            e.callMe(VIEW);
             return;
         }
         try {
-            SearchMembershipPopUp.getSearchPopUp(this, beans,"SearchMembershipPopUp.fxml","popups",2);
+            SearchMembershipPopUp.getSearchPopUp(this, beans,"SearchMembershipPopUp.fxml",POPUPS,VIEW);
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
-            return;
         }
     }
 
@@ -240,7 +210,7 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
         try {
             finalMembership = manageMembershipController.applyCouponsToMembership(selectedGym, selectedMembership, selectedCoupons);
         } catch ( DBUnrreachableException e) {
-            e.callMe(2);
+            e.callMe(VIEW);
             return;
         } catch (NoUserFoundException e) {
             resetCoupons();
@@ -249,7 +219,7 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
             return;
         }catch (MembershipCouponNotFoundException | DecoratorNoBaseComponentException |
                 CouponNotCumulativeException e){
-            e.callMe(2);
+            e.callMe(VIEW);
             resetCoupons();
             composeFinalMembership();
             return;
@@ -266,17 +236,16 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
         try {
             beans = manageMembershipController.getCouponsList(selectedGym);
         } catch (NoUserFoundException e) {
-            new DBUnrreachableException().callMe(2);
+            new DBUnrreachableException().callMe(VIEW);
             return;
         } catch (DBUnrreachableException e) {
-            e.callMe(2);
+            e.callMe(VIEW);
             return;
         }
         try {
-            SearchCouponPopUp.getSearchPopUp(this, beans,"SearchCouponsPopUp.fxml","popups",2);
+            SearchCouponPopUp.getSearchPopUp(this, beans,"SearchCouponsPopUp.fxml",POPUPS,VIEW);
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
-            return;
         }
     }
 
@@ -294,12 +263,13 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
             manageMembershipController.payNewMembership(selectedGym,selectedMembership,selectedCoupons);
         } catch (NoCardFoundException | DBUnrreachableException | MembershipCouponNotFoundException |
                  DecoratorNoBaseComponentException | FailedToSaveNewMembership | MembershipOnlyForNewUserException |
-                 PaymentFailedException | CouponNotCumulativeException | DataFieldException e) {
-            e.callMe(2);
+                 CouponNotCumulativeException | DataFieldException | PaymentFailedException e) {
+            e.callMe(VIEW);
             return;
         } catch (NoUserFoundException e) {
             MainMenuSingleton.getMainMenu().reset();
-            e.callMe(2);
+            e.callMe(VIEW);
+            return;
         }
         try {
             MainMenuSingleton.getMainMenu().setActivity("PersonInfoPage.fxml", "home");
@@ -315,13 +285,9 @@ public class ManageMembershipAthleteGUIController implements Initializable , Sea
         } catch (MembershipCouponNotFoundException | DecoratorNoBaseComponentException | FailedToSaveNewMembership |
                  MembershipOnlyForNewUserException | PaymentFailedException | CouponNotCumulativeException |
                  DataFieldException e) {
-            throw new RuntimeException(e);
-        } catch (NoUserFoundException e) {
+e.callMe(VIEW);        } catch (NoUserFoundException | DBUnrreachableException e) {
             MainMenuSingleton.getMainMenu().reset();
-            e.callMe(2);
-        } catch (DBUnrreachableException e) {
-            MainMenuSingleton.getMainMenu().reset();
-            e.callMe(3);
+            e.callMe(VIEW);
         }
         try {
             MainMenuSingleton.getMainMenu().setActivity("PersonInfoPage.fxml", "home");

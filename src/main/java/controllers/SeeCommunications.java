@@ -1,15 +1,12 @@
 package controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 public class SeeCommunications {
     public SeeCommunications() {}
     public List<String> getGymCommunications(){
-        /*String username = LoggedUserSingleton.getSingleton().getSpecificUser(Trainer.class).getUsername();
-        for(){
-
-        }
-        List<String> communicationList = ()*/
-        return null;
+        //Not implemented for now, just a stub
+        return Collections.emptyList();
     }
 }

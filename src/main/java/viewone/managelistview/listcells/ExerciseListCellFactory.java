@@ -7,14 +7,18 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import java.io.IOException;
-
 import javafx.util.Callback;
+
+import java.io.IOException;
 
 public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>, ListCell<ExerciseBean>> {
 
     @Override
     public ListCell<ExerciseBean> call(ListView<ExerciseBean> param) {
+        return getListener();
+    }
+
+    public static ListCell<ExerciseBean> getListener(){
         return new ListCell<ExerciseBean>() {
             private Parent parentNode = null;
 
@@ -42,5 +46,6 @@ public class ExerciseListCellFactory implements Callback<ListView<ExerciseBean>,
                 }
             }
         };
+
     }
 }

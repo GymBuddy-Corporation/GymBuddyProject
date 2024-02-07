@@ -15,13 +15,13 @@ public class CardInfoBean {
     private final String surnameOfOwenr;
 
     public CardInfoBean(String cardNumber,String monthOfExpiration,String yearOfExpiration,String nameOfOwner,String surnameOfOwenr) throws DataFieldException {
-        Pattern pattern = Pattern.compile("^[ ]*\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d[ ]*$", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("^ *\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d *$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(cardNumber);
         if (!matcher.matches()) throw new DataFieldException(FieldsEnum.CREDIT_NUMBER, ProblemEnum.NOT_VALID);
-        pattern = Pattern.compile("^[ ]*(0?[1-9]|1[0-2])[ ]*$", Pattern.CASE_INSENSITIVE);
+        pattern = Pattern.compile("^ *(0?[1-9]|1[0-2]) *$", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(monthOfExpiration);
         if (!matcher.matches()) throw new DataFieldException(FieldsEnum.CREDIT_MONTH, ProblemEnum.NOT_VALID);
-        pattern = Pattern.compile("^[ ]*[1-2][0-9][0-9][0-9][ ]*$", Pattern.CASE_INSENSITIVE);
+        pattern = Pattern.compile("^ *[1-2]\\d\\d\\d *$", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(yearOfExpiration);
         if (!matcher.matches()) throw new DataFieldException(FieldsEnum.CREDIT_YEAR, ProblemEnum.NOT_VALID);
         this.cardNumber = cardNumber;

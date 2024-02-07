@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class SingletonConnection {
     private static SingletonConnection dbConn;
     private static final String URL = "jdbc:mysql://localhost:3306/gymbuddy";
-    private static final String USER = "root";
+    private static final String USER = "gymbuddy";
     private static final String PASSWORD = "root1234!S";
 
     private static final Logger logger = Logger.getLogger(SingletonConnection.class.getName());

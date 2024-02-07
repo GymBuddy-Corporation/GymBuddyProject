@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewtwo.graphicalcontrollers.athlete.ManageMembershipAthleteGUIController">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="viewtwo.graphicalcontrollers.athlete.ManageMembershipAthleteGUIController">
    <children>
       <AnchorPane fx:id="gymCorner" layoutX="32.0" layoutY="64.0" prefHeight="211.0" prefWidth="260.0" styleClass="anchorPane">
          <children>
@@ -63,8 +58,8 @@
             <ListView fx:id="couponsListview" layoutX="26.0" layoutY="14.0" prefHeight="183.0" prefWidth="174.0" />
          </children>
       </AnchorPane>
-      <Button fx:id="searchMembershipButton" layoutX="340.0" layoutY="275.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#searchMembership" prefHeight="27.0" prefWidth="166.0" style="-fx-cursor: hand;" stylesheets="@../GymBuddyCSS2.css" text="Search for a membesrhip" textFill="#911701" />
-      <Button fx:id="searchCouponButton" layoutX="581.0" layoutY="275.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#searchCoupons" prefHeight="27.0" prefWidth="166.0" style="-fx-cursor: hand;" stylesheets="@../GymBuddyCSS2.css" text="Search for a coupon" textFill="#911701" />
+      <Button fx:id="searchMembershipButton" layoutX="340.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#searchMembership" prefHeight="27.0" prefWidth="166.0" style="-fx-cursor: hand;" stylesheets="@../GymBuddyCSS2.css" text="Search for a membesrhip" textFill="#911701" />
+      <Button fx:id="searchCouponButton" layoutX="581.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#searchCoupons" prefHeight="27.0" prefWidth="166.0" style="-fx-cursor: hand;" stylesheets="@../GymBuddyCSS2.css" text="Search for a coupon" textFill="#911701" />
       <Label fx:id="selectedCouponsLabel" alignment="CENTER" layoutX="555.0" layoutY="26.0" prefHeight="32.0" prefWidth="217.0" text="Selected Coupon" textFill="#911701">
          <font>
             <Font size="22.0" />
@@ -87,7 +82,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="payButton" layoutX="295.0" layoutY="22.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#pay" prefHeight="39.0" prefWidth="119.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Pay" textFill="#911701" />
+            <Button fx:id="payButton" layoutX="295.0" layoutY="22.0" mnemonicParsing="false" onAction="#ì" onMouseClicked="#pay" prefHeight="39.0" prefWidth="119.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Pay" textFill="#911701" />
             <Label fx:id="priceFinal" alignment="CENTER" layoutX="19.0" layoutY="40.0" prefHeight="26.0" prefWidth="71.0" textFill="#911701">
                <font>
                   <Font size="16.0" />
@@ -107,8 +102,8 @@
       </AnchorPane>
       <AnchorPane fx:id="resetCorner" layoutX="481.0" layoutY="321.0" prefHeight="92.0" prefWidth="298.0" styleClass="anchorPane">
          <children>
-            <Button fx:id="resetCoupons" layoutX="162.0" layoutY="32.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#resetCoupons" prefHeight="27.0" prefWidth="106.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Reset Coupons" textFill="#911701" />
-            <Button fx:id="resetMembership" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#changeStatus" onMouseClicked="#resetMembership" prefHeight="27.0" prefWidth="126.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Reset Membership" textFill="#911701" />
+            <Button fx:id="resetCoupons" layoutX="162.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#resetCoupons" prefHeight="27.0" prefWidth="106.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Reset Coupons" textFill="#911701" />
+            <Button fx:id="resetMembership" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#resetMembership" prefHeight="27.0" prefWidth="126.0" style="-fx-cursor: hand; -fx-background-color: #FFD04F;" stylesheets="@../GymBuddyCSS2.css" text="Reset Membership" textFill="#911701" />
          </children>
       </AnchorPane>
    </children>

@@ -1,32 +1,28 @@
 package viewone.graphicalcontrollers.launcher.gym;
 
-import utils.MainStage;
-import utils.SwitchPage;
 import javafx.fxml.FXML;
+import utils.SwitchPage;
 
 public class GymFirstGUIController {
-    private final String launcher = "launcher";
-    private String typeUser;
+    private static final String LAUNCHER = "launcher";
+
 
     @FXML
-    protected void login() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml",launcher,1);
+    protected void login() {
+        SwitchPage.changePage("Login.fxml", LAUNCHER,1);
     }
 
-    public void setValue(String user){
-        this.typeUser = user;
-    }
 
-    @FXML protected void registration() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"GymRegistration.fxml",launcher,1);
+    @FXML protected void registration() {
+        SwitchPage.changePage("GymRegistration.fxml", LAUNCHER,1);
     }
 
     @FXML public void getInfo() {
-        //TODO organizza il bottone info
+        //Not Implemented For now
     }
 
-    @FXML public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"ChooseActor.fxml",launcher,1);
+    @FXML public void goBack()  {
+        SwitchPage.changePage("ChooseActor.fxml", LAUNCHER,1);
     }
 
 }

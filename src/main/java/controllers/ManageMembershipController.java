@@ -98,26 +98,28 @@ public class ManageMembershipController {
     //if its saved it returns a string with the first 4 digits of the credit card saved by the athlete
     public String fetchSavedCardStub() {
         if(!hasCard)return null;
-        String cardStu="***************";
+        String cardStu=new String( singletonInstance.getUser().getCard().cardNumber());
+        cardStu.replaceFirst("\\d\\d\\d\\d\\d\\d\\d\\d","*********");
         return cardStu;
     }
 
     // this function lets the Athlete pay with saved credit card if exists
-    public PaymentConfirmationBean payNewMembership(GymInfoBean onlyNameGym,MembershipBean membershipBean,List<CouponsBean> cupons) throws NoCardFoundException, DBUnrreachableException, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, FailedToSaveNewMembership, NoUserFoundException, MembershipOnlyForNewUserException, PaymentFailedException, CouponNotCumulativeException, DataFieldException {
+    public PaymentConfirmationBean payNewMembership(GymInfoBean onlyNameGym,MembershipBean membershipBean,List<CouponsBean> cupons) throws NoCardFoundException, DBUnrreachableException, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, FailedToSaveNewMembership, NoUserFoundException, MembershipOnlyForNewUserException, CouponNotCumulativeException, DataFieldException, PaymentFailedException {
         if(!hasCard) throw new NoCardFoundException();
         return makePaymentAndSave(onlyNameGym,membershipBean,cupons,singletonInstance.getUser().getCard());
     }
     //if the payment is successful the new membership(Wallet) is saved to persistence and set to the athlete, if the save is not successful the payment is reverted
-    private PaymentConfirmationBean makePaymentAndSave(GymInfoBean onlyNameGym, MembershipBean membershipBean, List<CouponsBean> cupons, Card card) throws  FailedToSaveNewMembership, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, NoUserFoundException, CouponNotCumulativeException, MembershipOnlyForNewUserException, DBUnrreachableException, DataFieldException {
+    private PaymentConfirmationBean makePaymentAndSave(GymInfoBean onlyNameGym, MembershipBean membershipBean, List<CouponsBean> cupons, Card card) throws FailedToSaveNewMembership, MembershipCouponNotFoundException, DecoratorNoBaseComponentException, NoUserFoundException, CouponNotCumulativeException, MembershipOnlyForNewUserException, DBUnrreachableException, DataFieldException, PaymentFailedException {
         MembershipBean finalMembership=applyCouponsToMembership(onlyNameGym,membershipBean,cupons);
         if(Objects.equals(onlyNameGym.getName(), getActiveMembership().getGymName()) && finalMembership.isOnlyForNewUsers()) throw new MembershipOnlyForNewUserException();
         Wallet toSave=updateedUserWallet(finalMembership);
         PaymentBean paymentBean=getPaymentBean(finalMembership,card);
         PaymentSystemBoundary boundary=new PaymentSystemBoundary(paymentBean,new CardInfoBean(card.cardNumber(), String.valueOf(card.cardExpirationDate().getMonthValue()),String.valueOf(card.cardExpirationDate().getYear()), card.name(), card.surname()));
         PaymentConfirmationBean paymentConfirmationBean=boundary.pay();
+        if(!paymentConfirmationBean.isSuccessOfTransation()) throw new PaymentFailedException();
         try{
             saveNewMemberShipToPersistence(toSave,LoggedAthleteSingleton.getSingleton().getUser());
-        }catch (FailedToSaveNewMembership e){
+        }catch (DBUnrreachableException e){
             boundary.refund(paymentConfirmationBean);
             throw new FailedToSaveNewMembership();
         }
@@ -202,7 +204,7 @@ public class ManageMembershipController {
                 athlete.getEmail());
     }
 
-    private void saveNewMemberShipToPersistence(Wallet membership,Athlete me) throws FailedToSaveNewMembership, DBUnrreachableException {
+    private void saveNewMemberShipToPersistence(Wallet membership,Athlete me) throws  DBUnrreachableException {
         new AthleteDAO().saveWallet(membership,me);
     }
 

@@ -177,7 +177,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
     public void buyMembership() {
         try {
             controller.payNewMembership(selectedGym, selectedMembership, selectedCoupons);
-        }catch (DBUnrreachableException | PaymentFailedException | MembershipOnlyForNewUserException |
+        }catch (DBUnrreachableException | MembershipOnlyForNewUserException |
                 CouponNotCumulativeException | FailedToSaveNewMembership | DecoratorNoBaseComponentException |
                 MembershipCouponNotFoundException e) {
             e.callMe(1);

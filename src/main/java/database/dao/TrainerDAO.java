@@ -2,15 +2,17 @@ package database.dao;
 
 
 import database.SingletonConnection;
-
+import database.query.Queries;
 import exceptions.DBUnrreachableException;
 import exceptions.logger.CostumeLogger;
 import model.Gym;
 import model.Trainer;
-import database.query.Queries;
 import model.record.Credentials;
 import model.record.PersonalInfo;
-import java.sql.*;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class TrainerDAO {
@@ -26,6 +28,16 @@ public class TrainerDAO {
     private static final String GENDER = "gender";
     private static final String EMAIL = "trainerEmail";
     private static final String PASSWORD = "password";
+
+    public Trainer loadTrainerWithAgregations(String email) throws DBUnrreachableException {
+                Trainer trainer=loadTrainer(email,"email");
+                if(trainer==null)return null;
+                GymDAO dao=new GymDAO();
+                Gym gym=dao.loadGymByTrainerFc(trainer.getFC());
+                gym.setGymExercises(dao.loadDBExercises(gym.getGymName()));
+                trainer.setGym(gym);
+                return  trainer;
+    }
 
     public Trainer loadTrainer(String string,String type) throws DBUnrreachableException {
         String query= Objects.equals(type, "fc") ?Queries.LOAD_TRAINER_BY_FC:Queries.LOAD_TRAINER_BY_EMAIL;
@@ -60,21 +72,8 @@ public class TrainerDAO {
         }
     }
 
-    public Trainer loadTrainerWithAgregations(String email) throws SQLException, DBUnrreachableException {
-                Trainer trainer=loadTrainer(email,"email");
-                if(trainer==null)return null;
-                GymDAO dao=new GymDAO();
-                Gym gym=dao.loadGymByTrainerFc(trainer.getFC());
-                gym.setGymExercises(dao.loadDBExercises(gym.getGymName()));
-                trainer.setGym(gym);
-                return  trainer;
-    }
-
-
     public Trainer loadTrainerToAdd(Gym gymToAdd) throws DBUnrreachableException {
-                String fc;
-                try {
-                    PreparedStatement statement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_TRAINER_FC_FROM_GYM_NAME_LOWEST_ATHLETES);
+                try(PreparedStatement statement = SingletonConnection.getInstance().getConnection().prepareStatement(Queries.LOAD_TRAINER_FC_FROM_GYM_NAME_LOWEST_ATHLETES)) {
                     statement.setString(1,gymToAdd.getGymName());
                     ResultSet resultSet = statement.executeQuery();
                     resultSet.next();
