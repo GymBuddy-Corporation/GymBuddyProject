@@ -33,12 +33,12 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="membershipCorner" layoutX="216.0" layoutY="290.0" prefHeight="126.0" prefWidth="274.0" styleClass="anchorPane" visible="false">
+      <AnchorPane fx:id="membershipCorner" layoutX="216.0" layoutY="290.0" prefHeight="126.0" prefWidth="274.0" styleClass="anchorPane">
          <children>
-            <Label layoutX="35.0" layoutY="19.0" prefHeight="19.0" prefWidth="46.0" text="Name:" textAlignment="RIGHT" textFill="#911701" />
+            <Label layoutX="35.0" layoutY="19.0" prefHeight="19.0" prefWidth="64.0" text="Gym name:" textAlignment="RIGHT" textFill="#911701" />
             <Label layoutX="35.0" layoutY="39.0" prefHeight="19.0" prefWidth="89.0" text="Expiration date:" textAlignment="RIGHT" textFill="#911701" />
             <Label layoutX="35.0" layoutY="59.0" prefHeight="19.0" prefWidth="82.0" text="Current points:" textAlignment="RIGHT" textFill="#911701" />
-            <Label fx:id="membershipName" layoutX="75.0" layoutY="19.0" prefHeight="19.0" prefWidth="170.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
+            <Label fx:id="membershipName" layoutX="97.0" layoutY="19.0" prefHeight="19.0" prefWidth="148.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
             <Label fx:id="membershipDate" layoutX="123.0" layoutY="39.0" prefHeight="19.0" prefWidth="130.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
             <Label fx:id="membershipPoints" layoutX="122.0" layoutY="59.0" prefHeight="19.0" prefWidth="124.0" text="aa" textAlignment="RIGHT" textFill="#911701" />
          </children>
