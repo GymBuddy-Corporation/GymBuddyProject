@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestCreateWorkoutRoutine {
+class TestCreateWorkoutRoutine {
 
     /*Test dell'alunno Martorelli Luca.
                 MATRICOLA: 0281213*/
