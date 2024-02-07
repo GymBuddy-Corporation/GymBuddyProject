@@ -26,7 +26,6 @@ public class AthletesHomeGUIController implements Initializable {
     @FXML
     public void manageWorkoutRoutine() {
         //not implemented
-        //SwitchPage.setStage(MainStage.getStage(),"AthleteRoutine.fxml",ATHELTE,1);
     }
 
     @FXML

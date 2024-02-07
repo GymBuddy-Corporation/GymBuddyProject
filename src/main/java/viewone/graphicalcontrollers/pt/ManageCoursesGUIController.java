@@ -8,7 +8,6 @@ public class ManageCoursesGUIController {
     @FXML
     public void addCourse(){
         //not implemented
-        //SwitchPage.changePage("AddCourse.fxml","pt",1);
     }
 
     @FXML
