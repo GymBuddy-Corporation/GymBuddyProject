@@ -65,9 +65,9 @@
          <Font size="10.0" />
       </font>
    </Button>
-   <Text layoutX="69.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="37.60000152587895">
+   <Text fx:id="usernameText" layoutX="69.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" wrappingWidth="90.39999999999992" AnchorPane.topAnchor="24.61328125">
       <font>
-         <Font name="Allerta Stencil Regular" size="15.0" />
+         <Font name="Allerta Stencil Regular" size="12.0" />
       </font>
       <fill>
          <LinearGradient endY="0.3977272420218496">

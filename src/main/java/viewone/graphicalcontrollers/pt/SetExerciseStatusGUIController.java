@@ -3,6 +3,7 @@ package viewone.graphicalcontrollers.pt;
 import beans.ExerciseBean;
 import beans.SearchBean;
 import controllers.SatisfyWorkoutRequestsController;
+import controllers.UserAccessController;
 import exceptions.EmptySearchException;
 import exceptions.NoLoggedUserException;
 import exceptions.logger.CostumeLogger;
@@ -14,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import model.ExerciseStatus;
 import utils.MainStage;
 import utils.SwitchPage;
@@ -35,6 +37,7 @@ public class SetExerciseStatusGUIController implements Initializable{
     @FXML private Button activeStatusButton;
     @FXML private TextField searchExerciseText;
     @FXML private Button setStatusButton;
+    @FXML private Text usernameText;
 
     @FXML
     public void logout() throws Exception {
@@ -70,10 +73,9 @@ public class SetExerciseStatusGUIController implements Initializable{
             ManageExerciseList.setListenerDBSet(exerciseDBList, this);
             setVisibleButtons(false);
         } catch (NoLoggedUserException e){
-
                 e.callMe(1);
-
         }
+        usernameText.setText(new UserAccessController().getUser().getUsername());
     }
 
     public void showExerciseDBList(ListView<ExerciseBean> exerciseDBList,SatisfyWorkoutRequestsController satisfyWorkoutRequestsController){

@@ -27,6 +27,7 @@ public class ViewRequestGUIController implements Initializable {
 
     @FXML
     private Text textUsersRequest;
+    @FXML private Text usernameText;
 
     @FXML
     private Text usernameRequestText;
@@ -88,7 +89,7 @@ public class ViewRequestGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        usernameText.setText(new UserAccessController().getUser().getUsername());
         try {
             SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             ManageRequestList.setRequestList(requestList, controller);

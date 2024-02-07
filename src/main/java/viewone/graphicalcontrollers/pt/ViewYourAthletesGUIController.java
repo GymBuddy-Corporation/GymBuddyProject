@@ -2,6 +2,8 @@ package viewone.graphicalcontrollers.pt;
 
 import beans.AthleteBean;
 import controllers.SatisfyWorkoutRequestsController;
+import controllers.UserAccessController;
+import javafx.scene.text.Text;
 import viewone.managelistview.listcells.AthleteListCellFactory;
 import viewone.managelistview.ManageAthletesList;
 import exceptions.dataexception.DataFieldException;
@@ -25,8 +27,7 @@ public class ViewYourAthletesGUIController implements Initializable{
     @FXML private Label labelBirthDate;
     @FXML private Label labelEmail;
     @FXML private Label labelFiscalCode;
-    private SatisfyWorkoutRequestsController satisfyWorkoutRequestsController;
-
+    @FXML private Text usernameText;
 
     @FXML
     public void goBack() throws Exception {
@@ -56,7 +57,7 @@ public class ViewYourAthletesGUIController implements Initializable{
                 return;
 
         }
-
+        usernameText.setText(new UserAccessController().getUser().getUsername());
         athletesList.setCellFactory(new AthleteListCellFactory());
         ManageAthletesList.setListenerAthletes(athletesList, this);
     }

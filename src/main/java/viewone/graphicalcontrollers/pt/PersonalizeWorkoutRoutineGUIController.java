@@ -12,19 +12,24 @@ import exceptions.NoLoggedUserException;
 import exceptions.SubmitRoutineException;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import utils.SwitchPage;
 import viewone.popup.PopupAbstract;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
+public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract implements Initializable {
     WorkoutRoutineBean workoutRoutine;
     RequestBean requestBean;
 
     @FXML TextArea commentTextArea;
     @FXML TextArea nameRoutineTextArea;
+    @FXML private Text usernameText;
 
     public void logout() {
             UserAccessController controller = new UserAccessController();
@@ -80,5 +85,10 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract {
     public void popUpDelete() {
         commentTextArea.clear();
         nameRoutineTextArea.clear();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameText.setText(new UserAccessController().getUser().getUsername());
     }
 }

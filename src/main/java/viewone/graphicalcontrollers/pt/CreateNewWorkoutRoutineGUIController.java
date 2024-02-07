@@ -35,6 +35,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     private String selectedDay;
     private final WorkoutRoutineBean workoutRoutine = new WorkoutRoutineBean();
     private static final String MY_XML_FILE ="CreateNewWorkoutRoutine.fxml";
+    @FXML private Text usernameText;
     @FXML private ListView<ExerciseBean> exerciseDBList;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist;
     @FXML private Spinner<Integer> spinnerRepetitions;
@@ -295,6 +296,6 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         setVisibleCancel(false);
         exerciseDBList.setCellFactory(new ExerciseListCellFactory());
         routineExerciselist.setCellFactory(new ExerciseForWOListCellFactory());
-
+        usernameText.setText(new UserAccessController().getUser().getUsername());
     }
 }

@@ -51,5 +51,6 @@ public class PTHomeGUIController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ManageGymCommunicationList.setCommunicationList(communicationList);
         communicationList.setCellFactory(new GymCommunicationListCellFactory());
+        usernameText.setText(new UserAccessController().getUser().getUsername());
     }
 }

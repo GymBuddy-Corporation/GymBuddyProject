@@ -9,16 +9,21 @@ import exceptions.EmailFormException;
 import exceptions.NoLoggedUserException;
 import exceptions.logger.CostumeLogger;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import utils.MainStage;
 import utils.SwitchPage;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class EmailSystemGUIController {
+public class EmailSystemGUIController implements Initializable {
     @FXML private TextArea objectTextArea;
     @FXML private TextArea contentTextArea;
+    @FXML private Text usernameText;
     RequestBean selectedRequest;
     @FXML public void sendEmail() throws IOException{
         try{
@@ -50,5 +55,10 @@ public class EmailSystemGUIController {
 
     public void setValue(RequestBean selectedRequest) {
         this.selectedRequest = selectedRequest;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameText.setText(new UserAccessController().getUser().getUsername());
     }
 }
