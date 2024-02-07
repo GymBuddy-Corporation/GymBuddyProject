@@ -1,17 +1,17 @@
 package viewtwo.graphicalcontrollers.pt;
 
 import beans.*;
+import controllers.SatisfyWorkoutRequestsController;
+import engineering.LoggedTrainerSingleton;
+import engineering.Observer;
 import exceptions.*;
 import exceptions.dataexception.DataFieldException;
 import exceptions.logger.CostumeLogger;
 import javafx.animation.PauseTransition;
-import javafx.scene.control.*;
-import controllers.SatisfyWorkoutRequestsController;
-import engineering.LoggedTrainerSingleton;
-import engineering.Observer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import model.Exercise;
@@ -19,8 +19,8 @@ import model.ExerciseStatus;
 import viewone.managelistview.ManageExerciseList;
 import viewtwo.engegnering.MainMenuSingleton;
 import viewtwo.managelistview.ManageExerciseList2;
-import viewtwo.managelistview.listCells.ExerciseForWOListCellFactory2;
-import viewtwo.managelistview.listCells.ExerciseListCellFactory2;
+import viewtwo.managelistview.listcells.ExerciseForWOListCellFactory2;
+import viewtwo.managelistview.listcells.ExerciseListCellFactory2;
 import viewtwo.popups.ChangeExeStatusPopUp;
 import viewtwo.popups.PersonalizeWRPopUp;
 import viewtwo.popups.abstracts.AddExeInterface;
@@ -58,22 +58,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
 
     public String getSelectedDay(){
         return selectedDay;
-    }
-    public void resetSelection(int choice){
-        if(choice == 1){
-            routineExerciselist2.getSelectionModel().clearSelection();
-        } else {
-            exerciseDBList2.getSelectionModel().clearSelection();
-        }
-    }
-
-    private int getDay() throws NoDayIsSelectedException {
-        for(int i = 0; i < 7; i++) {
-            if(radioButtonList.get(i).isSelected()) {
-                return i+1;
-            }
-        }
-        throw new NoDayIsSelectedException();
     }
 
     public void setValue(RequestBean request){
@@ -138,27 +122,13 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         }
     }
 
-    private WorkoutDayBean getOrCreateWorkoutDay(ExerciseForWorkoutRoutineBean newExercise) {
-        WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
-        if (workoutDay == null) {
-            workoutDay = new WorkoutDayBean(newExercise.getDay());
-            workoutRoutine.addWorkoutDayBean(workoutDay);
-        }
-        return workoutDay;
-    }
-
-    private List<ExerciseForWorkoutRoutineBean> getActiveExercises(String day) {
-        List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
-        WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(day);
-
-        if (workoutDay != null) {
-            for (ExerciseForWorkoutRoutineBean exercise : workoutDay.getExerciseBeanList()) {
-                if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
-                    activeExercises.add(exercise);
-                }
+    private int getDay() throws NoDayIsSelectedException {
+        for(int i = 0; i < 7; i++) {
+            if(radioButtonList.get(i).isSelected()) {
+                return i+1;
             }
         }
-        return activeExercises;
+        throw new NoDayIsSelectedException();
     }
 
     @Override
@@ -188,6 +158,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         saturdayRadioButton.setToggleGroup(group);
         sundayRadioButton.setToggleGroup(group);
     }
+
     public void changeStatus() {
         try{
             ChangeExeStatusPopUp.getChangeExeStatusPopup(this, "ChangeExerciseStatusPopUp.fxml", "popups", 2);
@@ -209,6 +180,37 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         routineExerciselist2.getItems().setAll(activeExercises);
     }
 
+    private WorkoutDayBean getOrCreateWorkoutDay(ExerciseForWorkoutRoutineBean newExercise) {
+        WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(newExercise.getDay());
+        if (workoutDay == null) {
+            workoutDay = new WorkoutDayBean(newExercise.getDay());
+            workoutRoutine.addWorkoutDayBean(workoutDay);
+        }
+        return workoutDay;
+    }
+
+    public void resetSelection(int choice){
+        if(choice == 1){
+            routineExerciselist2.getSelectionModel().clearSelection();
+        } else {
+            exerciseDBList2.getSelectionModel().clearSelection();
+        }
+    }
+
+    private List<ExerciseForWorkoutRoutineBean> getActiveExercises(String day) {
+        List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
+        WorkoutDayBean workoutDay = workoutRoutine.getWorkoutDay(day);
+
+        if (workoutDay != null) {
+            for (ExerciseForWorkoutRoutineBean exercise : workoutDay.getExerciseBeanList()) {
+                if (exercise.getStatusExercise() == ExerciseStatus.ACTIVE) {
+                    activeExercises.add(exercise);
+                }
+            }
+        }
+        return activeExercises;
+    }
+
     @Override
     public void deleteExercise(ExerciseForWorkoutRoutineBean bean) {
         WorkoutDayBean workoutDay = getOrCreateWorkoutDay(bean);
@@ -216,16 +218,6 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         List<ExerciseForWorkoutRoutineBean> activeExercises = getActiveExercises(bean.getDay());
         routineExerciselist2.getItems().setAll(activeExercises);
     }
-    public void updateExerciseList() {
-        try {
-            SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
-            List<ExerciseBean> listBean2 = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
-            ManageExerciseList.updateListFiltered( exerciseDBList2, listBean2);
-        } catch (NoLoggedUserException e){
-            CostumeLogger.getInstance().logError(e);
-        }
-    }
-
 
     @Override
     public void setExerciseStatus(ExerciseBean bean) {
@@ -234,6 +226,7 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
         correctSetUp.setVisible(true);
         pause.play();
     }
+
     @Override
     public void update(String exerciseName, ExerciseStatus status) {
         updateLabel.setText("The exercise: " + exerciseName + " is now " + status);
@@ -256,6 +249,16 @@ public class CreateNewWorkoutRoutineGUIController2 implements Initializable, Obs
             updateSelectedExerciseList();
         } catch (NoDayIsSelectedException e) {
             e.callMe(2);
+        }
+    }
+
+    public void updateExerciseList() {
+        try {
+            SatisfyWorkoutRequestsController satisfyWorkoutRequestsController = new SatisfyWorkoutRequestsController();
+            List<ExerciseBean> listBean2 = satisfyWorkoutRequestsController.getLoggedTrainerGymExercises();
+            ManageExerciseList.updateListFiltered( exerciseDBList2, listBean2);
+        } catch (NoLoggedUserException e){
+            CostumeLogger.getInstance().logError(e);
         }
     }
 

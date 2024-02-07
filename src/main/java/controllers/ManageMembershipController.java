@@ -98,9 +98,7 @@ public class ManageMembershipController {
     //if its saved it returns a string with the first 4 digits of the credit card saved by the athlete
     public String fetchSavedCardStub() {
         if(!hasCard)return null;
-        String cardStu=new String( singletonInstance.getUser().getCard().cardNumber());
-        cardStu.replaceFirst("\\d\\d\\d\\d\\d\\d\\d\\d","*********");
-        return cardStu;
+        return  singletonInstance.getUser().getCard().cardNumber().replaceFirst("\\d\\d\\d\\d\\d\\d\\d\\d","*********");
     }
 
     // this function lets the Athlete pay with saved credit card if exists

@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import utils.listview.ManageGenericList;
 import viewtwo.engegnering.MainMenuSingleton;
-import viewtwo.managelistview.listCells.SelectedCouponCellFactory;
+import viewtwo.managelistview.listcells.SelectedCouponCellFactory;
 import viewtwo.popups.BuyPopUp;
 import viewtwo.popups.SearchCouponPopUp;
 import viewtwo.popups.SearchGymPopUp;

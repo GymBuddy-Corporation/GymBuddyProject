@@ -1,4 +1,4 @@
-package viewtwo.managelistview.listCells;
+package viewtwo.managelistview.listcells;
 
 import beans.CouponsBean;
 import javafx.scene.Parent;

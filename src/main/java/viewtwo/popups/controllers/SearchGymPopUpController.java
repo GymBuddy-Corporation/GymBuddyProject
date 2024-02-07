@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import utils.listview.ManageGenericList;
 import utils.listview.SetInfoListViewInterface;
-import viewtwo.managelistview.listCells.SearchGymCellFactory;
+import viewtwo.managelistview.listcells.SearchGymCellFactory;
 import viewtwo.popups.SearchGymPopUp;
 
 import java.util.List;

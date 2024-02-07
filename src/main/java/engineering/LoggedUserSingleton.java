@@ -1,28 +1,23 @@
 package engineering;
 
 import beans.*;
-
-import model.*;
+import model.Athlete;
+import model.Gym;
+import model.Trainer;
+import model.User;
 
 public class LoggedUserSingleton {
 
+    protected static LoggedUserSingleton me=null;
     protected final User user;
     protected   UserTypes userType;
-    protected static LoggedUserSingleton me=null;
 
     protected LoggedUserSingleton(User temp) {
-        if(temp instanceof Gym)userType=UserTypes.gym;
-        else if (temp instanceof Athlete)userType=UserTypes.athlete;
-        else if (temp instanceof Trainer)userType=UserTypes.pt;
+        if(temp instanceof Gym)userType=UserTypes.GYM;
+        else if (temp instanceof Athlete)userType=UserTypes.ATHLETE;
+        else if (temp instanceof Trainer)userType=UserTypes.PT;
         user=temp;
     }
-
-
-
-    public User getUser(){
-        return user;
-    }
-
 
     public static LoggedUserSingleton getSingleton()
      {
@@ -33,6 +28,13 @@ public class LoggedUserSingleton {
         LoggedUserSingleton.me=null;
     }
 
+    public User getUser(){
+        return user;
+    }
+
+        public UserBean getMyBean()  {
+        return getUserBean(user);
+        }
 
     public static UserBean getUserBean(User usr)
      {
@@ -80,10 +82,6 @@ public class LoggedUserSingleton {
         //throw new NoUserFoundException();
         return null;
      }
-
-        public UserBean getMyBean()  {
-        return getUserBean(user);
-        }
 
     public UserTypes getUserType() {
         return userType;

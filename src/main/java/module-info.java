@@ -27,7 +27,6 @@ module start {
     opens viewone.graphicalcontrollers.launcher to javafx.fxml;
     opens viewtwo.graphicalcontrollers.launcher to javafx.fxml;
     opens viewtwo.popups.controllers to javafx.fxml;
-    opens  viewtwo.graphicalcontrollers.home to javafx.fxml;
     exports viewone.graphicalcontrollers.gym;
     exports utils;
     exports beans;
@@ -60,4 +59,5 @@ exports engineering.decorator;
     exports utils.listview;
     opens utils.listview;
         opens viewtwo.graphicalcontrollers.athlete;
+    opens viewtwo.graphicalcontrollers.home;
 }

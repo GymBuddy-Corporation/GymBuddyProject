@@ -7,7 +7,7 @@ import exceptions.dataexception.DataFieldException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import viewtwo.managelistview.listCells.RequestListCellFactory2;
+import viewtwo.managelistview.listcells.RequestListCellFactory2;
 
 
 public class ManageRequestList2 {

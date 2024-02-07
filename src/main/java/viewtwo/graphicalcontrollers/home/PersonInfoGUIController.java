@@ -1,4 +1,4 @@
-package viewtwo.graphicalcontrollers.athlete;
+package viewtwo.graphicalcontrollers.home;
 
 import beans.ActiveMembershipBean;
 import beans.AthleteBean;
@@ -56,6 +56,7 @@ public class PersonInfoGUIController implements Initializable {
 
     private void currentMembershipInizializer() {
         membershipCorner.setVisible(true);
+        membershipLabel.setVisible(true);
         ManageMembershipController manageMembershipController;
 
         ActiveMembershipBean bean=ManageMembershipController.getActiveMembership();

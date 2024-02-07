@@ -28,8 +28,8 @@ public class MainMenuController implements MenuPopupInterface {
     }
     @FXML
     void openMenu() {
-            if(LoggedUserSingleton.getSingleton().getUserType()== UserTypes.athlete) MenuPopUp.getMenu(this,"MenuPopUpAthlete.fxml","popups",2);
-            if(LoggedUserSingleton.getSingleton().getUserType()==UserTypes.pt)MenuPopUp.getMenu(this,"MenuPopUpTrainer.fxml","popups",2);
+            if(LoggedUserSingleton.getSingleton().getUserType()== UserTypes.ATHLETE) MenuPopUp.getMenu(this,"MenuPopUpAthlete.fxml","popups",2);
+            if(LoggedUserSingleton.getSingleton().getUserType()==UserTypes.PT)MenuPopUp.getMenu(this,"MenuPopUpTrainer.fxml","popups",2);
     }
     public void logout(){
         UserAccessController userAccessController=new UserAccessController();

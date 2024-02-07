@@ -1,6 +1,8 @@
 package database.dao;
 
 import database.SingletonConnection;
+import database.query.Queries;
+import exceptions.DBUnrreachableException;
 import exceptions.logger.CostumeLogger;
 import model.*;
 import org.jetbrains.annotations.NotNull;
@@ -10,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import database.query.Queries;
 
 public class ExerciseDAO {
 
@@ -29,7 +29,7 @@ public class ExerciseDAO {
         }
     }
 
-    public List<ExerciseForWorkoutRoutine> loadExerciseInWorkoutRoutine(String athleteFC, String workoutDayName, WorkoutRoutine workoutRoutine) {
+    public List<ExerciseForWorkoutRoutine> loadExerciseInWorkoutRoutine(String athleteFC, String workoutDayName, WorkoutRoutine workoutRoutine) throws DBUnrreachableException {
         try(PreparedStatement preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.LOAD_ALL_EXERCISE_IN_WORKOUT_DAYS_QUERY);
                 ResultSet rs = Queries.loadAllExerciseInWorkoutDays(preparedStatement, athleteFC,
@@ -38,8 +38,7 @@ public class ExerciseDAO {
         } catch (SQLException e) {
             SingletonConnection.closeConnection(SingletonConnection.getInstance().getConnection());
             CostumeLogger.getInstance().logError(e);
-            return null;
-            //todo handle null
+            throw new DBUnrreachableException();
         }
     }
 

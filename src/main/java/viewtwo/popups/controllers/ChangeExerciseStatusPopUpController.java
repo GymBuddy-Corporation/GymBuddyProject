@@ -21,7 +21,7 @@ import javafx.scene.layout.HBox;
 import model.ExerciseStatus;
 import viewone.managelistview.ManageExerciseList;
 import viewtwo.managelistview.ManageExerciseList2;
-import viewtwo.managelistview.listCells.ExerciseListCellFactory2;
+import viewtwo.managelistview.listcells.ExerciseListCellFactory2;
 import viewtwo.popups.ChangeExeStatusPopUp;
 
 import java.net.URL;
@@ -39,23 +39,6 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
     @FXML TextField searchTextField;
     List<RadioButton> radioButtonList;
     ChangeExeStatusPopUp caller;
-
-    private void showExerciseDBList(){
-        try {
-            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
-            ObservableList<ExerciseBean> requestBeanObservableList = FXCollections.observableList(controller.getLoggedTrainerGymExercises());
-            exerciseDBList2.setItems(FXCollections.observableList(requestBeanObservableList));
-        }catch (CostumException e){
-                e.callMe(2);
-                caller.hidePopUp();
-        }
-    }
-
-    public void setVisibilityButtons(boolean bool){
-        suspendedRadioButton.setVisible(bool);
-        activeRadioButton.setVisible(bool);
-        hboxButtons.setVisible(bool);
-    }
 
     @Override
     public void setCaller(PopupBaseClass caller) {
@@ -81,6 +64,7 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
             CostumeLogger.getInstance().logError(e);
         }
     }
+
     @FXML public void search(){
         try{
             SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
@@ -113,6 +97,23 @@ public class ChangeExerciseStatusPopUpController extends PopupBaseController imp
         ToggleGroup group = new ToggleGroup();
         activeRadioButton.setToggleGroup(group);
         suspendedRadioButton.setToggleGroup(group);
+    }
+
+    private void showExerciseDBList(){
+        try {
+            SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
+            ObservableList<ExerciseBean> requestBeanObservableList = FXCollections.observableList(controller.getLoggedTrainerGymExercises());
+            exerciseDBList2.setItems(FXCollections.observableList(requestBeanObservableList));
+        }catch (CostumException e){
+                e.callMe(2);
+                caller.hidePopUp();
+        }
+    }
+
+    public void setVisibilityButtons(boolean bool){
+        suspendedRadioButton.setVisible(bool);
+        activeRadioButton.setVisible(bool);
+        hboxButtons.setVisible(bool);
     }
 
     public ListView<ExerciseBean> getExerciseDBList() {

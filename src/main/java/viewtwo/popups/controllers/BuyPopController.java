@@ -53,6 +53,6 @@ public class BuyPopController extends PopupBaseController {
             oldCard.setVisible(false);
             return;
         }
-        oldCard.setText("pay with saved card: "+savedcard);
+        oldCard.setText("pay with:"+savedcard);
     }
 }

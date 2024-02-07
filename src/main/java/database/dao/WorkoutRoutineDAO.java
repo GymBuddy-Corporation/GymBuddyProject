@@ -1,25 +1,25 @@
 package database.dao;
 
 import database.SingletonConnection;
+import database.query.Queries;
+import exceptions.DBUnrreachableException;
 import exceptions.logger.CostumeLogger;
 import model.WorkoutDay;
 import model.WorkoutRoutine;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import database.query.Queries;
-import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 
 public class WorkoutRoutineDAO {
-    public void saveWorkoutRoutine(WorkoutRoutine workoutRoutine, String athleteFc) {
+    public void saveWorkoutRoutine(WorkoutRoutine workoutRoutine, String athleteFc) throws DBUnrreachableException {
         try (PreparedStatement preparedStatement1 = SingletonConnection.getInstance().getConnection().prepareStatement(
                 Queries.INSERT_WORKOUT_ROUTINE_QUERY)) {
             Queries.insertWorkoutRoutine(preparedStatement1, workoutRoutine.getName(), workoutRoutine.getComment(), athleteFc);
         } catch (SQLException e) {
             CostumeLogger.getInstance().logError(e);
-            //todo handle exception
+            throw new DBUnrreachableException();
         }
         for (WorkoutDay workoutDay : workoutRoutine.getWorkoutDayList()) {
             new WorkoutDayDAO().saveWorkoutDay(workoutDay, athleteFc);
@@ -40,11 +40,12 @@ public class WorkoutRoutineDAO {
             }
             else {
                 return null;
-                //todo gestisci sto null
             }
         } catch (SQLException e) {
             CostumeLogger.getInstance().logError(e);
             return null;
+        } catch (DBUnrreachableException e) {
+            throw new RuntimeException(e);
         }
     }
     private LocalDateTime getLocalDateTime(String dateString){

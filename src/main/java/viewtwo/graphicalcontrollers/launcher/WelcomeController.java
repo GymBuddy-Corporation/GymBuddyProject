@@ -33,9 +33,9 @@ public class WelcomeController {
         MainMenuController a = (MainMenuController) SwitchPage.setStage(MainStage.getStage(), "mainMenu.fxml", "home", 2);
         MainMenuSingleton.createMainMenu(a);
         switch (LoggedUserSingleton.getSingleton().getUserType()) {
-            case pt ->        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
-            case gym ->         MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml", "gym");
-            case athlete ->          MainMenuSingleton.getMainMenu().setActivity("PersonInfoPage.fxml", "home");
+            case PT ->        MainMenuSingleton.getMainMenu().setActivity("ptHome.fxml", "pt");
+            case GYM ->         MainMenuSingleton.getMainMenu().setActivity("gymUsersHome.fxml", "gym");
+            case ATHLETE ->          MainMenuSingleton.getMainMenu().setActivity("PersonInfoPage.fxml", "home");
             case null, default ->  MainStage.getStage().close();
 
         }

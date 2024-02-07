@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import utils.listview.ManageGenericList;
 import utils.listview.SetInfoListViewInterface;
-import viewtwo.managelistview.listCells.SearchCouponsCellFactory;
+import viewtwo.managelistview.listcells.SearchCouponsCellFactory;
 import viewtwo.popups.SearchCouponPopUp;
 
 import java.util.List;
