@@ -4,7 +4,6 @@ import controllers.UserAccessController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import utils.MainStage;
 import utils.SwitchPage;
 
 import java.net.URL;
@@ -19,22 +18,22 @@ public class AthletesWorkoutsGUIController implements Initializable {
     private ListView<String> athletesList;
 
     @FXML
-    public void goBack() throws Exception {
-        SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+    public void goBack()  {
+        SwitchPage.changePage("AthleteHome.fxml","athlete",1);
     }
-    public void logout() throws Exception {
+    public void logout() {
         UserAccessController controller=new UserAccessController();
         controller.logout();
-        SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+        SwitchPage.changePage("Login.fxml","launcher",1);
     }
     @FXML
     public void addWorkout() {
-        //TODO gestisci la rischiesta di una nuova scheda
+        //gestisci la rischiesta di una nuova scheda, to be implemented
     }
 
     @FXML
     public void modifyWorkout() {
-        //TODO gestisci la modifica di una scheda
+        //gestisci la modifica di una scheda,to be implemented
     }
 
     @Override

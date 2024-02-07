@@ -8,7 +8,6 @@ import controllers.CreateRequestController;
 import controllers.UserAccessController;
 import engineering.LoggedUserSingleton;
 import javafx.fxml.FXML;
-
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -21,9 +20,9 @@ import java.util.ResourceBundle;
 
 public class AthletesRoutineGUIController implements Initializable {
 
+    WorkoutRoutineBean exerciseBeanList;
     @FXML private ListView<ExerciseForWorkoutRoutineBean> routineExerciselist;
     @FXML private Button mondayButton;
-    WorkoutRoutineBean exerciseBeanList;
 
     @FXML
     public void goBack() throws Exception {
@@ -46,8 +45,7 @@ public class AthletesRoutineGUIController implements Initializable {
         controller.loadWorkoutRoutine((AthleteBean) LoggedUserSingleton.getSingleton().getMyBean());
 
         exerciseBeanList = controller.loadWorkoutRoutine((AthleteBean) LoggedUserSingleton.getSingleton().getMyBean());
-        //ManageExerciseList.updateListFilteredDB(routineExerciselist, exerciseBeanList);
 
-        //todo imposta la scheda associata a lui
+        //imposta la scheda associata a lui (???)
     }
 }

@@ -15,9 +15,7 @@ public class AthletesPTCommunicationsGUIController {
 
     @FXML
     public void openCommunication(){
-        //not implemented for now
-            UserAccessController controller=new UserAccessController();
-            controller.logout();
+            //not implemented for now
             SwitchPage.changePage("Login.fxml", LAUNCHER,VIEW);
     }
 

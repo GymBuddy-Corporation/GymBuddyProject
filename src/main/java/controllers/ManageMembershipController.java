@@ -144,7 +144,7 @@ public class ManageMembershipController {
                 Iterator<Coupon> couponIterator= cuponsList.iterator();
                 CouponsBean couponBeanTemp=couponBeanIterator.next();
                 while (couponIterator.hasNext()){
-                    Coupon couponTemp= couponIterator.next().clone();
+                    Coupon couponTemp= couponIterator.next().copyMe();
                     if(Objects.equals(couponBeanTemp.getName(), couponTemp.getName())){
                         couponsToApply.add(couponTemp);
                         i++;

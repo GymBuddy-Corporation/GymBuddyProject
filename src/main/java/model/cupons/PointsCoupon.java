@@ -8,7 +8,7 @@ public class PointsCoupon extends Coupon {
         super(name, description, 0, forNewMembers, true);
         this.pointAwarded=pointToAward;
     }
-    public Coupon clone() {
+    public Coupon copyMe() {
         return new PointsCoupon( super.getName(),super.getDescription(),super.isForNewUsers(),pointAwarded);
     }
     @Override

@@ -8,7 +8,7 @@ public class PercentageDiscountCoupon extends Coupon {
         super(name, description, pointsPrice, forNewMembers, isNotCoumulable);
         this.discountPercentage=discountPecentage;
     }
-    public Coupon clone() {
+    public Coupon copyMe() {
         return new PercentageDiscountCoupon( super.getName(),super.getDescription(),super.getPointsPrice(),super.isForNewUsers(),super.isNotCumulative(),discountPercentage);
     }
     @Override

@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManageMembershipCreateMembershipGUIController  implements SetInfoListViewInterface, MembershipConfirmPopupInterface, CouponConfirmationInterface, BuyPopUpInterface {
+    public static final String ATHLETE = "athlete";
+    public static final String LAUNCHER = "launcher";
+    public static final int VIEW =1;
+
     @FXML
     ListView<Object> membershipListView;
     @FXML
@@ -54,7 +58,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
         UserAccessController controllerAccess=new UserAccessController();
         controllerAccess.logout();
         try {
-            SwitchPage.setStage(MainStage.getStage(),"Login.fxml","launcher",1);
+            SwitchPage.setStage(MainStage.getStage(),"Login.fxml",LAUNCHER,VIEW);
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
         }
@@ -82,8 +86,8 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
     @Override
     public void setInfo(Object bean) {
         try {
-            if(bean instanceof CouponsBean temp) CouponConfirmationPopup.getPopup(this,temp,"CouponConfirmPopup.fxml","athlete",1);
-            if(bean instanceof MembershipBean temp)MembershipPopUP.getLoginPopup(this,temp,"MembershipConfirmPopup.fxml","athlete",1);
+            if(bean instanceof CouponsBean temp) CouponConfirmationPopup.getPopup(this,temp,"CouponConfirmPopup.fxml",ATHLETE,VIEW);
+            if(bean instanceof MembershipBean temp)MembershipPopUP.getLoginPopup(this,temp,"MembershipConfirmPopup.fxml",ATHLETE,VIEW);
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
         }
@@ -94,7 +98,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
         try {
             composedMembership=controller.applyCouponsToMembership(selectedGym,selectedMembership,selectedCoupons);
         } catch (MembershipCouponNotFoundException |DBUnrreachableException| CouponNotCumulativeException e) {
-            e.callMe(1);
+            e.callMe(VIEW);
            cancel();
             return;
         } catch (DecoratorNoBaseComponentException e) {
@@ -102,7 +106,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
             return;
         } catch (NoUserFoundException e) {
             try {
-                SwitchPage.setStage(MainStage.getStage(),"ManageMembershipSearchGym.fxml","athlete",1);
+                SwitchPage.setStage(MainStage.getStage(),"ManageMembershipSearchGym.fxml",ATHLETE,VIEW);
                 return;
             } catch (IOException ex) {
                 CostumeLogger.getInstance().logError(ex);
@@ -139,7 +143,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
     }
 
     public void buy() throws IOException {
-            BuyPopUp.getPayPopUp(this,"BuyPopUp.fxml","athlete",1);
+            BuyPopUp.getPayPopUp(this,"BuyPopUp.fxml",ATHLETE,VIEW);
     }
 
     @Override
@@ -149,7 +153,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
         }catch (DBUnrreachableException | PaymentFailedException | MembershipOnlyForNewUserException |
                 CouponNotCumulativeException | FailedToSaveNewMembership | DecoratorNoBaseComponentException |
                 MembershipCouponNotFoundException | DataFieldException e ) {
-            e.callMe(1);
+            e.callMe(VIEW);
            return;
         } catch (NoUserFoundException e) {
             goBack();
@@ -159,7 +163,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
 
     public void goBack()  {
         try {
-            SwitchPage.setStage(MainStage.getStage(),"ManageMembershipSearchGym.fxml","athlete",1);
+            SwitchPage.setStage(MainStage.getStage(),"ManageMembershipSearchGym.fxml",ATHLETE,VIEW);
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
         }
@@ -167,7 +171,7 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
 
     public void goToHome(){
         try {
-            SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
+            SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml", ATHLETE,VIEW);
         } catch (IOException e) {
             CostumeLogger.getInstance().logError(e);
         }
@@ -180,12 +184,12 @@ public class ManageMembershipCreateMembershipGUIController  implements SetInfoLi
         }catch (DBUnrreachableException | MembershipOnlyForNewUserException |
                 CouponNotCumulativeException | FailedToSaveNewMembership | DecoratorNoBaseComponentException |
                 MembershipCouponNotFoundException e) {
-            e.callMe(1);
+            e.callMe(VIEW);
             return;
         } catch (NoUserFoundException e) {
             goBack();
         } catch (CostumException e) {
-            e.callMe(1);
+            e.callMe(VIEW);
             return;
         }
         goToHome();

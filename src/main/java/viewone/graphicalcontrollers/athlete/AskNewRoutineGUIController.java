@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import utils.MainStage;
 import utils.SwitchPage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,13 +40,11 @@ public class AskNewRoutineGUIController implements Initializable {
         RequestBean requestBean = new RequestBean(infoCommentTextArea.getText(), athleteBean, athleteBean.getTrainerFC());
         createRequestController.askForNewWorkoutRoutine(requestBean);
         SwitchPage.setStage(MainStage.getStage(),"AthleteHome.fxml","athlete",1);
-
-        //TODO gestisci la rischiesta di una nuova scheda
+        //to be implemented
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //this.workoutRoutineBean = ;
         //imposta la scheda associata a lui
     }
 }

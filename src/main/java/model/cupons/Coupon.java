@@ -28,7 +28,7 @@ public abstract class Coupon implements MembershipInterface {
         return isNotCumulative;
     }
 
-    public abstract Coupon clone();
+    public abstract Coupon copyMe();
     public Coupon setComponent(MembershipInterface component) throws CouponNotCumulativeException, DecoratorNoBaseComponentException {
         if(this.isNotCumulative){
             if(component instanceof Membership membership){
@@ -42,7 +42,7 @@ public abstract class Coupon implements MembershipInterface {
                 throw new CouponNotCumulativeException();
             }
             coupon.checkIfBaseExists();
-            this.onlyForNewMembers=this.onlyForNewMembers| coupon.onlyForNewMembers;
+            this.onlyForNewMembers=this.onlyForNewMembers || coupon.onlyForNewMembers;
         }
         this.component=component;
         return this;

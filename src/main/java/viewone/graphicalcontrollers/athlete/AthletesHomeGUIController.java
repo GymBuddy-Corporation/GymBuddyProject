@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AthletesHomeGUIController implements Initializable {
-    private final String athlete = "athlete";
+        private static final String ATHELTE = "athlete";
     @FXML
     Text userName;
     @FXML
@@ -25,17 +25,17 @@ public class AthletesHomeGUIController implements Initializable {
     Text points;
     @FXML
     public void manageWorkoutRoutine() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"AthleteRoutine.fxml",athlete,1);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteRoutine.fxml",ATHELTE,1);
     }
 
     @FXML
         public void viewPTCommunications() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"AthletePTCommunications.fxml",athlete,1);
+        SwitchPage.setStage(MainStage.getStage(),"AthletePTCommunications.fxml",ATHELTE,1);
     }
 
     @FXML
     public void manageWorkouts() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"AthleteWorkouts.fxml",athlete,1);
+        SwitchPage.setStage(MainStage.getStage(),"AthleteWorkouts.fxml",ATHELTE,1);
     }
 
     @FXML
@@ -47,11 +47,11 @@ public class AthletesHomeGUIController implements Initializable {
 
     @FXML
     public void membership() throws IOException {
-        SwitchPage.setStage(MainStage.getStage(),"ManageMembershipSearchGym.fxml",athlete,1);
+        SwitchPage.setStage(MainStage.getStage(),"ManageMembershipSearchGym.fxml",ATHELTE,1);
     }
     @FXML
     public void openProfile() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"ProfileAthlete.fxml",athlete,1);
+        SwitchPage.setStage(MainStage.getStage(),"ProfileAthlete.fxml",ATHELTE,1);
     }
 
     @Override

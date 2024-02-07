@@ -12,7 +12,7 @@ public class DirectDiscountCoupon extends Coupon {
     }
 
     @Override
-    public Coupon clone() {
+    public Coupon copyMe() {
         return new DirectDiscountCoupon( super.getName(),super.getDescription(),super.getPointsPrice(),super.isForNewUsers(),super.isNotCumulative(),discountValue);
     }
 
