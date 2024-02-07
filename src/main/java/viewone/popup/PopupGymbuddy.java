@@ -58,8 +58,10 @@ public class PopupGymbuddy {
     }
     public void popUpConfirm() throws IOException{
         caller.popUpConfirm();
+        popupReference.hide();
     }
     public void popUpDelete() {
         caller.popUpDelete();
+        popupReference.hide();
     }
 }
