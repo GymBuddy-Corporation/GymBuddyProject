@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SingletonConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/gymbuddy";
+    private static final String URL = System.getenv("SERVER");
     private static final String USER = System.getenv("USER");
     private static final String PASSWORD = System.getenv("PASSWORD");
     private static final Logger logger = Logger.getLogger(SingletonConnection.class.getName());

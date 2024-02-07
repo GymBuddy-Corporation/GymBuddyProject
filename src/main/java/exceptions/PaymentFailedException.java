@@ -7,7 +7,7 @@ public class PaymentFailedException extends CostumException{
 
     public PaymentFailedException(){
         super(
-                "Paymnet failed"
+                "Payment failed"
         );
     }
 }
