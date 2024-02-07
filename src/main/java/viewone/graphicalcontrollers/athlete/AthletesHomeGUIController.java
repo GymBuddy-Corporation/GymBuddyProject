@@ -24,8 +24,9 @@ public class AthletesHomeGUIController implements Initializable {
     @FXML
     Text points;
     @FXML
-    public void manageWorkoutRoutine() throws Exception{
-        SwitchPage.setStage(MainStage.getStage(),"AthleteRoutine.fxml",ATHELTE,1);
+    public void manageWorkoutRoutine() {
+        //not implemented
+        //SwitchPage.setStage(MainStage.getStage(),"AthleteRoutine.fxml",ATHELTE,1);
     }
 
     @FXML
