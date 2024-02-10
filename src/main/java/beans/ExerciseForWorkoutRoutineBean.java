@@ -73,7 +73,7 @@ public class ExerciseForWorkoutRoutineBean extends ExerciseBean{
         }
     }
 
-    public static boolean isValidTime(String timeString) {
+    private static boolean isValidTime(String timeString) {
         if (timeString == null) {
             return false;
         }

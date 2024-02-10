@@ -23,27 +23,27 @@ public class PTHomeGUIController implements Initializable{
     @FXML private Text usernameText;
     @FXML private ListView<String> communicationList;
     @FXML
-    public void sendCommunication() {
+    void sendCommunication() {
         //not implemented yet
     }
     @FXML
-    public void yourAthletes() {
+    void yourAthletes() {
         SwitchPage.changePage("ViewYourAthletes.fxml",PT,VIEW);
     }
     @FXML
-    public void logout()  {
+    void logout()  {
         UserAccessController controller=new UserAccessController();
         controller.logout();
         SwitchPage.changePage("Login.fxml", LAUNCHER, VIEW);
     }
 
     @FXML
-    public void viewRequests() {
+    void viewRequests() {
         SwitchPage.changePage("ViewWorkoutRoutineRequests.fxml", PT, VIEW);
     }
 
     @FXML
-    public void manageCourse() {
+    void manageCourse() {
         SwitchPage.changePage("ManageCourse.fxml", PT, VIEW);
     }
 

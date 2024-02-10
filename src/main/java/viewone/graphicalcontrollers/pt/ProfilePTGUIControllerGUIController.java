@@ -8,19 +8,17 @@ public class ProfilePTGUIControllerGUIController {
     private static final String PT="pt";
     private static  final String LAUNCHER = "launcher";
     @FXML
-    public void goBack()  {
+    void goBack()  {
         SwitchPage.changePage("PTHome.fxml",PT,VIEW);
     }
     @FXML
-    public void logout()  {
+    void logout()  {
         SwitchPage.changePage("Login.fxml",LAUNCHER,VIEW);
     }
-    @FXML
-    public void deleteAccount()  {
+    @FXML void deleteAccount()  {
         SwitchPage.changePage("Login.fxml",LAUNCHER,VIEW);
     }
-    @FXML
-    public void editProfile()  {
+    @FXML void editProfile()  {
         SwitchPage.changePage("ProfilePT.fxml",PT,VIEW);
     }
 }

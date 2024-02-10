@@ -174,13 +174,13 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         cleanGuiAfterAdd();
     }
 
-    void cleanGuiAfterAdd(){
+    private void cleanGuiAfterAdd(){
         resetSelection(1);
         exerciseDBList.getSelectionModel().clearSelection();
         routineExerciselist.getSelectionModel().clearSelection();
     }
 
-    public void removeExerciseFromDWorkoutRoutineBean (ExerciseForWorkoutRoutineBean exercise) {
+    private void removeExerciseFromDWorkoutRoutineBean (ExerciseForWorkoutRoutineBean exercise) {
         workoutRoutine.getWorkoutDay(exercise.getDay()).removeExerciseBean(exercise);
     }
 
@@ -247,7 +247,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
         }
     }
 
-    public void updateSelectedExerciseList() {
+    private void updateSelectedExerciseList() {
         List<ExerciseForWorkoutRoutineBean> activeExercises = new ArrayList<>();
         WorkoutDayBean selectedWorkoutDay = workoutRoutine.getWorkoutDay(selectedDay);
         if (selectedWorkoutDay != null) {
@@ -261,7 +261,7 @@ public class CreateNewWorkoutRoutineGUIController implements Initializable, Obse
     }
 
 
-    public void updateExerciseList() {
+    private void updateExerciseList() {
         try {
             SatisfyWorkoutRequestsController controller = new SatisfyWorkoutRequestsController();
             List<ExerciseBean> listBean;

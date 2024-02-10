@@ -26,7 +26,7 @@ public class EmailSystemGUIController implements Initializable {
     @FXML private TextArea contentTextArea;
     @FXML private Text usernameText;
     RequestBean selectedRequest;
-    @FXML public void sendEmail() throws IOException{
+    @FXML void sendEmail() throws IOException{
         try{
             EmailBean emailBean = new EmailBean(LoggedUserSingleton.getSingleton().getMyBean(), selectedRequest.getAthleteBean());
             String object = objectTextArea.getText();
@@ -44,7 +44,7 @@ public class EmailSystemGUIController implements Initializable {
         SwitchPage.setStage(MainStage.getStage(),"PTHome.fxml","pt",1);
     }
 
-    @FXML public void logout() {
+    @FXML void logout() {
         try {
             UserAccessController controller = new UserAccessController();
             controller.logout();

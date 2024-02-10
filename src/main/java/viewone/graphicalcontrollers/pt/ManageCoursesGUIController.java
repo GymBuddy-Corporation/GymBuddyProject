@@ -9,11 +9,11 @@ public class ManageCoursesGUIController {
         //not implemented
     }
     @FXML
-    public void logout()  {
+    void logout()  {
         SwitchPage.changePage( "Login.fxml", "launcher", 1);
     }
     @FXML
-    public void goBack() {
+    void goBack() {
         SwitchPage.changePage("PTHome.fxml","pt",1);
     }
 }

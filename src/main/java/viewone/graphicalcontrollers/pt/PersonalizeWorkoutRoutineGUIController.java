@@ -35,10 +35,9 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract implem
             UserAccessController controller = new UserAccessController();
             controller.logout();
             SwitchPage.changePage( "Login.fxml", "launcher", 1);
-
     }
     @FXML
-    public void submitRoutine() {
+    void submitRoutine() {
         try {
             popUpCreate("Vuoi confermare la creazione?","Submit","Back");
         } catch (IOException e) {
@@ -46,7 +45,7 @@ public class PersonalizeWorkoutRoutineGUIController extends PopupAbstract implem
         }
     }
     @FXML
-    public void goBack(){
+    void goBack(){
         SwitchPage.changePage("CreateNewWorkoutRoutine.fxml.fxml","pt",1);
     }
     public void setValue(RequestBean request, WorkoutRoutineBean workoutRoutine) {
